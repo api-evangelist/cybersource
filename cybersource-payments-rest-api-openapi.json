@@ -1,0 +1,319 @@
+{
+    "openapi": "3.0.0",
+    "servers": [
+        "http:\/\/api.cybersource.com\/pts\/"
+    ],
+    "paths": {
+        "\/v2\/payments\/": {
+            "post": {
+                "summary": "Process a Payment",
+                "description": "Authorize the payment for the transaction.\n",
+                "operationId": "CreatePayment",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Successful response."
+                    }
+                }
+            }
+        },
+        "\/v2\/payments\/{ID}": {
+            "get": {
+                "summary": "Retrieve a Payment",
+                "description": "Include the payment ID in the GET request to retrieve the payment details.",
+                "operationId": "GetPayment",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The payment ID returned from a previous payment request.\n"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response."
+                    }
+                }
+            }
+        },
+        "\/v2\/payments\/{ID}\/reversals": {
+            "post": {
+                "summary": "Process an Authorization Reversal",
+                "description": "Include the payment ID in the POST request to reverse the payment amount.",
+                "operationId": "AuthReversal",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The payment ID returned from a previous payment request.\n"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response."
+                    }
+                }
+            }
+        },
+        "\/v2\/reversals\/{ID}": {
+            "get": {
+                "summary": "Retrieve an Authorization Reversal",
+                "description": "Include the authorization reversal ID in the GET request to retrieve the authorization reversal details.\n",
+                "operationId": "GetAuthReversal",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The payment ID returned from a previous payment request.\n"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response."
+                    }
+                }
+            }
+        },
+        "\/v2\/payments\/{ID}\/captures": {
+            "post": {
+                "summary": "Capture a Payment",
+                "description": "Include the payment ID in the POST request to capture the payment amount.",
+                "operationId": "CapturePayment",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The payment ID returned from a previous payment request.\n"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response."
+                    }
+                }
+            }
+        },
+        "\/v2\/captures\/{ID}": {
+            "get": {
+                "summary": "Retrieve a Capture",
+                "description": "Include the capture ID in the GET request to retrieve the capture details.\n",
+                "operationId": "GetCapture",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The payment ID returned from a previous payment request.\n"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response."
+                    }
+                }
+            }
+        },
+        "\/v2\/payments\/{ID}\/refunds": {
+            "post": {
+                "summary": "Refund a Payment",
+                "description": "Include the payment ID in the POST request to refund the payment amount.\n",
+                "operationId": "RefundPayment",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The payment ID returned from a previous payment request.\n"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response."
+                    }
+                }
+            }
+        },
+        "\/v2\/captures\/{ID}\/refunds": {
+            "post": {
+                "summary": "Refund a Capture",
+                "description": "Include the capture ID in the POST request to refund the captured amount.\n",
+                "operationId": "RefundCapture",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The payment ID returned from a previous payment request.\n"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response."
+                    }
+                }
+            }
+        },
+        "\/v2\/refunds\/{ID}": {
+            "get": {
+                "summary": "Retrieve a Refund",
+                "description": "Include the refund ID in the GET request to to retrieve the refund details.",
+                "operationId": "GetRefund",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The payment ID returned from a previous payment request.\n"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response."
+                    }
+                }
+            }
+        },
+        "\/v2\/credits\/": {
+            "post": {
+                "summary": "Process a Credit",
+                "description": "POST to the credit resource to credit funds to a specified credit card.",
+                "operationId": "CreateCredit",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Successful response."
+                    }
+                }
+            }
+        },
+        "\/v2\/credits\/{ID}": {
+            "get": {
+                "summary": "Retrieve a Credit",
+                "description": "Include the credit ID in the GET request to return details of the credit.",
+                "operationId": "GetCredit",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The payment ID returned from a previous payment request.\n"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response."
+                    }
+                }
+            }
+        },
+        "\/v2\/payments\/{ID}\/voids": {
+            "post": {
+                "summary": "Void a Payment",
+                "description": "Include the payment ID in the POST request to cancel the payment.",
+                "operationId": "VoidPayment",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The payment ID returned from a previous payment request.\n"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response."
+                    }
+                }
+            }
+        },
+        "\/v2\/captures\/{ID}\/voids": {
+            "post": {
+                "summary": "Void a Capture",
+                "description": "Include the capture ID in the POST request to cancel the capture.",
+                "operationId": "VoidCapture",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The payment ID returned from a previous payment request.\n"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response."
+                    }
+                }
+            }
+        },
+        "\/v2\/refunds\/{ID}\/voids": {
+            "post": {
+                "summary": "Void a Refund",
+                "description": "Include the refund ID in the POST request to cancel the refund.",
+                "operationId": "VoidRefund",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The payment ID returned from a previous payment request.\n"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response."
+                    }
+                }
+            }
+        },
+        "\/v2\/credits\/{ID}\/voids": {
+            "post": {
+                "summary": "Void a Credit",
+                "description": "Include the credit ID in the POST request to cancel the credit.",
+                "operationId": "VoidCredit",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The payment ID returned from a previous payment request.\n"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response."
+                    }
+                }
+            }
+        },
+        "\/v2\/voids\/{ID}": {
+            "get": {
+                "summary": "Retrieve A Void",
+                "description": "Include the void ID in the GET request to retrieve the void details.",
+                "operationId": "GetVoid",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "ID",
+                        "in": "path",
+                        "description": "The payment ID returned from a previous payment request.\n"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response."
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": []
+    }
+}
