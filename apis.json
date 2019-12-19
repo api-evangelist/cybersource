@@ -1,0 +1,91 @@
+{
+    "name": "CyberSource",
+    "description": "CyberSource is a leading global provider of credit card processing, fraud and security risk management solutions.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/2647-cybersource.jpg",
+    "tags": [
+        "api provider",
+        "have api",
+        "have openapi",
+        "have swagger",
+        "payments"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/cybersource\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Cybersource API Paths",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/2647-cybersource.jpg",
+            "humanURL": "http:\/\/cybersource.co.uk",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/cybersource-payments-rest-api-openapi.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/cybersource-api-paths.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/cybersource-payments-rest-api-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Swagger Source",
+            "url": "http:\/\/apps.cybersource.com\/library\/documentation\/dev_guides\/REST_API\/payments-swagger.json"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/cybersource.co.uk"
+        },
+        {
+            "type": "Base",
+            "url": "https:\/\/ics2ws.ic3.com\/commerce\/"
+        },
+        {
+            "type": "Blog RSS",
+            "url": "http:\/\/www.cybersource.com\/news_and_events\/rss\/"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "http:\/\/www.crunchbase.com\/company\/cybersource"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/cybersource"
+        },
+        {
+            "type": "Developers",
+            "url": "http:\/\/www.cybersource.com\/developers\/"
+        },
+        {
+            "type": "Documentation",
+            "url": "http:\/\/apps.cybersource.com\/library\/documentation\/dev_guides\/REST_API\/payments_api.html#"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/2647-2019-09-06-18-51-11.json"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/CyberSourceUK"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/cybersourcenews"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/www.cybersource.com\/"
+        }
+    ]
+}
