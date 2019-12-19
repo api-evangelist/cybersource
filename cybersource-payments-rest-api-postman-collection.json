@@ -1,0 +1,493 @@
+{
+    "id": "d37e4b00f4f1059107c66f9a7397658b",
+    "name": "Cybersource Payments REST API",
+    "description": null,
+    "auth": null,
+    "events": null,
+    "variables": [],
+    "order": [],
+    "folders_order": [],
+    "folders": [],
+    "requests": [
+        {
+            "id": "3f67dc8083daa9a5979316abd730e5c7",
+            "name": "Process a Payment",
+            "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/payments\/",
+            "description": "Authorize the payment for the transaction.\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "rawModeData": ""
+        },
+        {
+            "id": "05a1ac321a8d924265e35e4a1dd771e4",
+            "name": "Retrieve a Payment",
+            "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/payments\/{ID}",
+            "description": "Include the payment ID in the GET request to retrieve the payment details.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "ID",
+                    "description": "The payment ID returned from a previous payment request.\n",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "rawModeData": ""
+        },
+        {
+            "id": "ee291c504be458acb1dfb2292f7ae9a5",
+            "name": "Process an Authorization Reversal",
+            "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/payments\/{ID}\/reversals",
+            "description": "Include the payment ID in the POST request to reverse the payment amount.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "ID",
+                    "description": "The payment ID returned from a previous payment request.\n",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "rawModeData": ""
+        },
+        {
+            "id": "47dab0b7e0f2bda33bfc20db97ed3e9e",
+            "name": "Retrieve an Authorization Reversal",
+            "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/reversals\/{ID}",
+            "description": "Include the authorization reversal ID in the GET request to retrieve the authorization reversal details.\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "ID",
+                    "description": "The payment ID returned from a previous payment request.\n",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "rawModeData": ""
+        },
+        {
+            "id": "83c5e0d0a63e20ef4ecb1b394b60c672",
+            "name": "Capture a Payment",
+            "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/payments\/{ID}\/captures",
+            "description": "Include the payment ID in the POST request to capture the payment amount.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "ID",
+                    "description": "The payment ID returned from a previous payment request.\n",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "rawModeData": ""
+        },
+        {
+            "id": "3bb7a0002003e3547b1cc804227ace1d",
+            "name": "Retrieve a Capture",
+            "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/captures\/{ID}",
+            "description": "Include the capture ID in the GET request to retrieve the capture details.\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "ID",
+                    "description": "The payment ID returned from a previous payment request.\n",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "rawModeData": ""
+        },
+        {
+            "id": "1251bcbc3b6e25e36ad55527721a0f97",
+            "name": "Refund a Payment",
+            "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/payments\/{ID}\/refunds",
+            "description": "Include the payment ID in the POST request to refund the payment amount.\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "ID",
+                    "description": "The payment ID returned from a previous payment request.\n",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "rawModeData": ""
+        },
+        {
+            "id": "576a58fc95662fc67a89616dd5ac2185",
+            "name": "Refund a Capture",
+            "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/captures\/{ID}\/refunds",
+            "description": "Include the capture ID in the POST request to refund the captured amount.\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "ID",
+                    "description": "The payment ID returned from a previous payment request.\n",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "rawModeData": ""
+        },
+        {
+            "id": "58642a6655fa358afc599fad5a5b7064",
+            "name": "Retrieve a Refund",
+            "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/refunds\/{ID}",
+            "description": "Include the refund ID in the GET request to to retrieve the refund details.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "ID",
+                    "description": "The payment ID returned from a previous payment request.\n",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "rawModeData": ""
+        },
+        {
+            "id": "cc6afe00a84eb1d004caaf6a0165e64d",
+            "name": "Process a Credit",
+            "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/credits\/",
+            "description": "POST to the credit resource to credit funds to a specified credit card.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "rawModeData": ""
+        },
+        {
+            "id": "07f24b64da59f9eaa0bde07cc85b52e4",
+            "name": "Retrieve a Credit",
+            "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/credits\/{ID}",
+            "description": "Include the credit ID in the GET request to return details of the credit.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "ID",
+                    "description": "The payment ID returned from a previous payment request.\n",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "rawModeData": ""
+        },
+        {
+            "id": "293e6237926a27daa1e245338f34dd55",
+            "name": "Void a Payment",
+            "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/payments\/{ID}\/voids",
+            "description": "Include the payment ID in the POST request to cancel the payment.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "ID",
+                    "description": "The payment ID returned from a previous payment request.\n",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "rawModeData": ""
+        },
+        {
+            "id": "44a326e437f1ab2cb7ad4aae174190d8",
+            "name": "Void a Capture",
+            "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/captures\/{ID}\/voids",
+            "description": "Include the capture ID in the POST request to cancel the capture.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "ID",
+                    "description": "The payment ID returned from a previous payment request.\n",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "rawModeData": ""
+        },
+        {
+            "id": "9ce9deb80e35abcd56e242010feb29ba",
+            "name": "Void a Refund",
+            "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/refunds\/{ID}\/voids",
+            "description": "Include the refund ID in the POST request to cancel the refund.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "ID",
+                    "description": "The payment ID returned from a previous payment request.\n",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "rawModeData": ""
+        },
+        {
+            "id": "8e2e96ed361c378f179dbe16e80f5c64",
+            "name": "Void a Credit",
+            "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/credits\/{ID}\/voids",
+            "description": "Include the credit ID in the POST request to cancel the credit.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "ID",
+                    "description": "The payment ID returned from a previous payment request.\n",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "rawModeData": ""
+        },
+        {
+            "id": "f9069b2ae1741207200101dca7a9b6ff",
+            "name": "Retrieve A Void",
+            "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/voids\/{ID}",
+            "description": "Include the void ID in the GET request to retrieve the void details.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "ID",
+                    "description": "The payment ID returned from a previous payment request.\n",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "rawModeData": ""
+        }
+    ]
+}
