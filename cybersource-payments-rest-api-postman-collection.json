@@ -1,5 +1,5 @@
 {
-    "id": "d37e4b00f4f1059107c66f9a7397658b",
+    "id": "0fba34481a375ad02f6284dc05b18958",
     "name": "Cybersource Payments REST API",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "3f67dc8083daa9a5979316abd730e5c7",
+            "id": "8d7ec06bb776e1e630722ab285c60cb5",
             "name": "Process a Payment",
             "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/payments\/",
             "description": "Authorize the payment for the transaction.\n",
@@ -29,11 +29,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "collectionId": "0fba34481a375ad02f6284dc05b18958",
             "rawModeData": ""
         },
         {
-            "id": "05a1ac321a8d924265e35e4a1dd771e4",
+            "id": "641d7410e17c56d8b706f78885c29877",
             "name": "Retrieve a Payment",
             "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/payments\/{ID}",
             "description": "Include the payment ID in the GET request to retrieve the payment details.",
@@ -60,11 +60,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "collectionId": "0fba34481a375ad02f6284dc05b18958",
             "rawModeData": ""
         },
         {
-            "id": "ee291c504be458acb1dfb2292f7ae9a5",
+            "id": "fb9f9873bd87771c24f28ca6d861b9de",
             "name": "Process an Authorization Reversal",
             "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/payments\/{ID}\/reversals",
             "description": "Include the payment ID in the POST request to reverse the payment amount.",
@@ -91,11 +91,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "collectionId": "0fba34481a375ad02f6284dc05b18958",
             "rawModeData": ""
         },
         {
-            "id": "47dab0b7e0f2bda33bfc20db97ed3e9e",
+            "id": "72e14ca94b1e9b96037ba81d559adfb1",
             "name": "Retrieve an Authorization Reversal",
             "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/reversals\/{ID}",
             "description": "Include the authorization reversal ID in the GET request to retrieve the authorization reversal details.\n",
@@ -122,11 +122,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "collectionId": "0fba34481a375ad02f6284dc05b18958",
             "rawModeData": ""
         },
         {
-            "id": "83c5e0d0a63e20ef4ecb1b394b60c672",
+            "id": "827513df53c448c85359b2e40d28f1bb",
             "name": "Capture a Payment",
             "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/payments\/{ID}\/captures",
             "description": "Include the payment ID in the POST request to capture the payment amount.",
@@ -153,11 +153,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "collectionId": "0fba34481a375ad02f6284dc05b18958",
             "rawModeData": ""
         },
         {
-            "id": "3bb7a0002003e3547b1cc804227ace1d",
+            "id": "3367c4267932a78548f5586559155eb2",
             "name": "Retrieve a Capture",
             "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/captures\/{ID}",
             "description": "Include the capture ID in the GET request to retrieve the capture details.\n",
@@ -184,11 +184,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "collectionId": "0fba34481a375ad02f6284dc05b18958",
             "rawModeData": ""
         },
         {
-            "id": "1251bcbc3b6e25e36ad55527721a0f97",
+            "id": "fdc55644a950c8637a6caa55c8387a29",
             "name": "Refund a Payment",
             "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/payments\/{ID}\/refunds",
             "description": "Include the payment ID in the POST request to refund the payment amount.\n",
@@ -215,11 +215,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "collectionId": "0fba34481a375ad02f6284dc05b18958",
             "rawModeData": ""
         },
         {
-            "id": "576a58fc95662fc67a89616dd5ac2185",
+            "id": "d42134fd6b890cce3ed3f942318086c6",
             "name": "Refund a Capture",
             "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/captures\/{ID}\/refunds",
             "description": "Include the capture ID in the POST request to refund the captured amount.\n",
@@ -246,11 +246,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "collectionId": "0fba34481a375ad02f6284dc05b18958",
             "rawModeData": ""
         },
         {
-            "id": "58642a6655fa358afc599fad5a5b7064",
+            "id": "1728234ac6545102ad0763db4f1bef85",
             "name": "Retrieve a Refund",
             "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/refunds\/{ID}",
             "description": "Include the refund ID in the GET request to to retrieve the refund details.",
@@ -277,11 +277,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "collectionId": "0fba34481a375ad02f6284dc05b18958",
             "rawModeData": ""
         },
         {
-            "id": "cc6afe00a84eb1d004caaf6a0165e64d",
+            "id": "ae0ea8005955f689f266b84e67ff6c96",
             "name": "Process a Credit",
             "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/credits\/",
             "description": "POST to the credit resource to credit funds to a specified credit card.",
@@ -300,11 +300,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "collectionId": "0fba34481a375ad02f6284dc05b18958",
             "rawModeData": ""
         },
         {
-            "id": "07f24b64da59f9eaa0bde07cc85b52e4",
+            "id": "79cf0d148d37547b8c81ee2df92e85cf",
             "name": "Retrieve a Credit",
             "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/credits\/{ID}",
             "description": "Include the credit ID in the GET request to return details of the credit.",
@@ -331,11 +331,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "collectionId": "0fba34481a375ad02f6284dc05b18958",
             "rawModeData": ""
         },
         {
-            "id": "293e6237926a27daa1e245338f34dd55",
+            "id": "1a2fd1ca8ab4f50156d30240bdc65612",
             "name": "Void a Payment",
             "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/payments\/{ID}\/voids",
             "description": "Include the payment ID in the POST request to cancel the payment.",
@@ -362,11 +362,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "collectionId": "0fba34481a375ad02f6284dc05b18958",
             "rawModeData": ""
         },
         {
-            "id": "44a326e437f1ab2cb7ad4aae174190d8",
+            "id": "de8e3e9aedbd93fc3cebc64494de0b09",
             "name": "Void a Capture",
             "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/captures\/{ID}\/voids",
             "description": "Include the capture ID in the POST request to cancel the capture.",
@@ -393,11 +393,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "collectionId": "0fba34481a375ad02f6284dc05b18958",
             "rawModeData": ""
         },
         {
-            "id": "9ce9deb80e35abcd56e242010feb29ba",
+            "id": "d2560914418bfcfa0d27995623c01662",
             "name": "Void a Refund",
             "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/refunds\/{ID}\/voids",
             "description": "Include the refund ID in the POST request to cancel the refund.",
@@ -424,11 +424,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "collectionId": "0fba34481a375ad02f6284dc05b18958",
             "rawModeData": ""
         },
         {
-            "id": "8e2e96ed361c378f179dbe16e80f5c64",
+            "id": "d6ab755ad766920d73925c4b2d9a7644",
             "name": "Void a Credit",
             "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/credits\/{ID}\/voids",
             "description": "Include the credit ID in the POST request to cancel the credit.",
@@ -455,11 +455,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "collectionId": "0fba34481a375ad02f6284dc05b18958",
             "rawModeData": ""
         },
         {
-            "id": "f9069b2ae1741207200101dca7a9b6ff",
+            "id": "015d62706d95072e7e84db96b5851f72",
             "name": "Retrieve A Void",
             "url": "http:\/\/api.cybersource.com\/pts\/\/v2\/voids\/{ID}",
             "description": "Include the void ID in the GET request to retrieve the void details.",
@@ -486,7 +486,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "d37e4b00f4f1059107c66f9a7397658b",
+            "collectionId": "0fba34481a375ad02f6284dc05b18958",
             "rawModeData": ""
         }
     ]
