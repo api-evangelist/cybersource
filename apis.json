@@ -9,8 +9,8 @@
         "have swagger",
         "payments"
     ],
-    "created": "2019-12-19",
-    "modified": "2019-12-19",
+    "created": "2019-12-20",
+    "modified": "2019-12-20",
     "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/cybersource\/master\/apis.json",
     "specificationVersion": "0.14",
     "apis": [
@@ -24,7 +24,7 @@
             "properties": [
                 {
                     "type": "x-openapi",
-                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/cybersource-payments-rest-api-openapi.json"
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/cybersource\/master\/cybersource-payments-rest-api-openapi.json"
                 },
                 {
                     "type": "x-openapi",
@@ -32,13 +32,17 @@
                 },
                 {
                     "type": "x-postman-collecction",
-                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/cybersource-payments-rest-api-postman-collection.json"
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/cybersource\/master\/cybersource-payments-rest-api-postman-collection.json"
                 }
             ]
         }
     ],
     "include": [],
     "x-common": [
+        {
+            "type": "APIs.json",
+            "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/apis.json"
+        },
         {
             "type": "Swagger Source",
             "url": "http:\/\/apps.cybersource.com\/library\/documentation\/dev_guides\/REST_API\/payments-swagger.json"
