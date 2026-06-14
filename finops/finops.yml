@@ -1,0 +1,94 @@
+finops:
+  description: >-
+    CyberSource operates a custom/enterprise pricing model with no publicly
+    listed rate card. All commercial terms are negotiated directly with
+    Visa/CyberSource sales and vary significantly by merchant size, transaction
+    volume, product modules, geography, and industry vertical. The notes below
+    reflect publicly available information from community discussions, third-party
+    reviews, and documentation references.
+
+  pricing_model: custom_enterprise
+  public_pricing: false
+  contact_for_pricing: https://www.cybersource.com/en-us/contact-us.html
+
+  cost_components:
+    - component: Platform / Gateway Fee
+      type: recurring_monthly
+      notes: >-
+        A monthly platform or gateway access fee is typically assessed. Older
+        community references cite approximately $40/month, but current rates
+        require direct negotiation and are not confirmed.
+
+    - component: Transaction Fee
+      type: per_transaction
+      notes: >-
+        Per-transaction fees apply to authorized payment transactions.
+        Community references from earlier years cited $0.10 per transaction.
+        Current rates are negotiated per merchant agreement and may include
+        volume tiering.
+
+    - component: Batch Processing Fee
+      type: per_batch
+      notes: >-
+        Daily batch settlement submissions may incur a per-batch fee. Older
+        references cited $0.25 per daily batch. Current rates are negotiated.
+
+    - component: Fraud Management (Decision Manager)
+      type: add_on
+      notes: >-
+        Decision Manager fraud screening is a separately priced add-on module.
+        Pricing is based on transaction volume screened and contracted product
+        tier.
+
+    - component: Token Management Service
+      type: included_or_add_on
+      notes: >-
+        Basic tokenization may be included in gateway contracts; advanced TMS
+        features including network token support may be separately priced.
+
+    - component: Payouts (AFT/OCT)
+      type: per_transaction
+      notes: >-
+        Account Funding Transactions and Original Credit Transactions for
+        payouts are typically priced per transaction, separate from standard
+        payment processing fees.
+
+    - component: 3D Secure / Payer Authentication
+      type: add_on
+      notes: >-
+        Payer Authentication services may be separately priced or bundled
+        depending on the merchant contract and geography.
+
+    - component: eCheck / ACH Processing
+      type: per_transaction
+      notes: >-
+        Electronic check and ACH transactions are priced separately from card
+        transactions. Processing volume limits are established during
+        underwriting.
+
+  cost_optimization:
+    - tip: >-
+        Negotiate volume-based tiering in your merchant agreement; larger
+        transaction volumes typically yield lower per-transaction rates.
+    - tip: >-
+        Use network tokenization to reduce interchange costs — CyberSource
+        reports average fraud reduction of 28% with network tokens, which can
+        lower chargeback and dispute costs.
+    - tip: >-
+        Implement Level 2 and Level 3 transaction data for B2B card payments
+        to qualify for lower interchange rates from Visa/Mastercard.
+    - tip: >-
+        Use batch submission APIs for offline and deferred transactions to
+        minimize real-time gateway fees where applicable.
+    - tip: >-
+        Leverage Payer Authentication (3D Secure) to shift chargeback liability
+        to card issuers, reducing direct fraud loss expenses.
+    - tip: >-
+        Consolidate reporting through the Reporting API to reduce manual
+        reconciliation labor costs.
+
+  references:
+    - CyberSource pricing community discussion: https://community.developer.cybersource.com/t5/Integration-and-Testing/CIM-API-Cost/td-p/35018
+    - TrustRadius pricing overview: https://www.trustradius.com/products/visa-acceptance-solutions-cybersource/pricing
+    - Capterra pricing: https://www.capterra.com/p/195/cybersource/
+    - Contact CyberSource sales: https://www.cybersource.com/en-us/contact-us.html

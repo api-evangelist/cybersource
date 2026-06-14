@@ -1,0 +1,46 @@
+rate_limits:
+  description: >-
+    CyberSource does not publish specific API rate limit thresholds in their
+    public developer documentation. Rate limits and throughput caps are
+    configured per merchant account during the underwriting and onboarding
+    process, and may vary based on contracted volume, business type, and
+    processing history. The limits below reflect what is publicly documented
+    or referenced in CyberSource support materials.
+
+  general:
+    notes: >-
+      API rate limits are set at the merchant account level and are not
+      published publicly. Contact CyberSource support or your account
+      manager to understand the specific limits applied to your merchant ID.
+    sandbox:
+      description: >-
+        Sandbox environments may have lower throughput limits than production
+        to prevent abuse. Exact values are not published.
+
+  documented_limits:
+    - api: eCheck / ACH Processing
+      limit: Monthly processing cap on total charges and refunds
+      notes: >-
+        eCheck monthly processing limits are established during underwriting
+        and are based on business risk assessment. Limits apply to total
+        charge and refund volume per calendar month.
+      source: https://developer.cybersource.com/docs/cybs/en-us/echeck/user/all/rest/echeck-user-guide/echeck-txnprocess-overview/echeck-processing-limits.html
+
+    - api: Level 2 / Level 3 Payment Data
+      limit: Maximum 98 line items per payment capture request
+      notes: >-
+        Payments submitted with Level 3 enhanced data support up to 98 individual
+        line items per transaction request.
+      source: https://knowledgecenter.zuora.com/Zuora_Payments/Manage_payment_gateway_integrations_and_payment_methods/Set_up_payment_gateway_integrations/CyberSource_Payment_Gateway/Level_2_and_Level_3_Support_for_CyberSource
+
+  endpoints:
+    production: https://api.cybersource.com
+    sandbox: https://apitest.cybersource.com
+
+  recommendations:
+    - Implement exponential backoff and retry logic for HTTP 429 and 503 responses
+    - Use batch transaction endpoints where available to reduce API call volume
+    - Cache BIN lookup results to minimize repeated calls for the same card ranges
+    - Subscribe to the CyberSource status page for service degradation alerts
+    - Contact your CyberSource account representative to discuss throughput
+      increases if approaching limits in production

@@ -1,0 +1,45 @@
+plans:
+  - name: Custom / Enterprise
+    description: >-
+      CyberSource does not publish standardized self-serve pricing tiers. All
+      plans are negotiated directly with Visa/CyberSource sales based on
+      transaction volume, business type, geographic footprint, and required
+      product modules. A sandbox account is available for free during development
+      and testing. Production credentials and pricing require a merchant
+      agreement.
+    url: https://www.cybersource.com/en-us/solutions/enterprise.html
+    contact:
+      - url: https://www.cybersource.com/en-us/contact-us.html
+    features:
+      - Payment gateway processing
+      - Fraud management (Decision Manager)
+      - Tokenization (Token Management Service)
+      - Recurring billing and subscriptions
+      - Payouts (AFT/OCT)
+      - 3D Secure / Payer Authentication
+      - Reporting and reconciliation
+      - Webhooks
+      - Account management and boarding
+      - In-person (card-present) acceptance
+      - Alternative payment methods
+      - Digital wallets (Apple Pay, Google Pay)
+    notes: >-
+      Older community references cite ~$40/month platform fee plus $0.10 per
+      transaction and $0.25 per daily batch, but these figures are unconfirmed
+      and likely outdated. Contact CyberSource for current commercial terms.
+
+  - name: Sandbox / Developer (Free)
+    description: >-
+      Free sandbox environment for development and integration testing. Provides
+      access to test credentials, processor-specific trigger data, and a live API
+      console. No payment processing fees apply in the sandbox. Sandbox
+      credentials are separate from production credentials and require separate
+      registration.
+    url: https://developer.cybersource.com/hello-world/sandbox.html
+    features:
+      - Full REST API access (test environment)
+      - Test card numbers and processor triggers
+      - Sandbox Business Center access
+      - SDK and sample code testing
+      - Webhook endpoint testing
+      - No transaction fees

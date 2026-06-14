@@ -1,0 +1,419 @@
+name: CyberSource
+description: >-
+  CyberSource, a Visa solution, is a global payment management platform that
+  enables businesses to accept payments online, in-app, and in-person. It
+  provides REST APIs for payment authorization and processing, fraud management
+  via Decision Manager, payment tokenization, recurring billing, payouts, and
+  comprehensive post-transaction reporting. The platform operates across 190+
+  countries and supports card-present, card-not-present, digital wallets,
+  alternative payment methods, and buy-now-pay-later integrations.
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/cybersource/refs/heads/main/apis.yml
+version: '0.19'
+modified: '2026-06-13'
+created: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Payments
+  - Payment Processing
+  - Fraud Management
+  - Tokenization
+  - Recurring Billing
+  - Payouts
+  - Payment Gateway
+  - Financial Technology
+
+apis:
+
+  - name: CyberSource Payments API
+    description: >-
+      Processes payment transactions including authorization, capture, void, and
+      refund for credit cards, debit cards, and prepaid cards. Supports online
+      and card-present transactions, multi-currency, Level 2/Level 3 data,
+      dynamic currency conversion, and specialized payment types including
+      airline, healthcare, and ACH/eCheck.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    baseURL: https://api.cybersource.com
+    tags:
+      - Payments
+      - Authorization
+      - Capture
+      - Refund
+      - ACH
+      - eCheck
+    properties:
+      - type: Documentation
+        url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+      - type: OpenAPI
+        url: https://developer.cybersource.com/api-reference-assets/index.html
+    contact:
+      - FN: CyberSource Developer Support
+        url: https://developer.cybersource.com/
+        email: ''
+
+  - name: CyberSource Token Management Service (TMS) API
+    description: >-
+      Securely tokenizes, stores, and manages customer payment credentials and
+      card data. Supports instrument identifiers, payment instruments, customer
+      profiles, network tokens, and cryptograms. Reduces PCI DSS scope by
+      replacing sensitive card data with non-sensitive tokens and supports
+      stored credentials for recurring and one-click payment flows.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms.html
+    baseURL: https://api.cybersource.com
+    tags:
+      - Tokenization
+      - Token Management
+      - PCI DSS
+      - Stored Credentials
+      - Network Tokens
+    properties:
+      - type: Documentation
+        url: https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms.html
+    contact:
+      - FN: CyberSource Developer Support
+        url: https://developer.cybersource.com/
+        email: ''
+
+  - name: CyberSource Decision Manager API
+    description: >-
+      Provides AI-powered fraud detection and risk management using machine
+      learning models trained on Visa and CyberSource transaction data. Offers
+      real-time fraud scoring, custom rules, device fingerprinting, account
+      takeover protection, case management, and post-transactional review
+      workflows. Supports list management, fraud marking, and hierarchical
+      organization-level rules.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developer.cybersource.com/docs/cybs/en-us/fraud/developer/all/rest/fraud.html
+    baseURL: https://api.cybersource.com
+    tags:
+      - Fraud Management
+      - Decision Manager
+      - Risk Management
+      - Machine Learning
+      - Fraud Detection
+    properties:
+      - type: Documentation
+        url: https://developer.cybersource.com/docs/cybs/en-us/fraud/developer/all/rest/fraud.html
+    contact:
+      - FN: CyberSource Developer Support
+        url: https://developer.cybersource.com/
+        email: ''
+
+  - name: CyberSource Recurring Billing API
+    description: >-
+      Enables subscription management and automated recurring payments without
+      storing sensitive card data. Create and manage subscription plans, customer
+      billing agreements, and on-demand charges. Supports trial periods,
+      installment billing, standing orders, and integrates with Token Management
+      Service for secure credential storage.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing.html
+    baseURL: https://api.cybersource.com
+    tags:
+      - Recurring Billing
+      - Subscriptions
+      - Installments
+      - Stored Credentials
+    properties:
+      - type: Documentation
+        url: https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing.html
+    contact:
+      - FN: CyberSource Developer Support
+        url: https://developer.cybersource.com/
+        email: ''
+
+  - name: CyberSource Payouts API
+    description: >-
+      Delivers funds directly to recipients via eligible Visa and Mastercard
+      debit accounts using Account Funding Transactions (AFT) and Original Credit
+      Transactions (OCT). Supports use cases including gig economy worker
+      payments, insurance disbursements, gaming winnings, and marketplace seller
+      payouts across global markets.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developer.cybersource.com/docs/cybs/en-us/payouts/developer/all/rest/payouts.html
+    baseURL: https://api.cybersource.com
+    tags:
+      - Payouts
+      - Disbursements
+      - Account Funding
+      - OCT
+      - AFT
+    properties:
+      - type: Documentation
+        url: https://developer.cybersource.com/docs/cybs/en-us/payouts/developer/all/rest/payouts.html
+    contact:
+      - FN: CyberSource Developer Support
+        url: https://developer.cybersource.com/
+        email: ''
+
+  - name: CyberSource Flex Microform API
+    description: >-
+      PCI DSS-compliant hosted payment field solution that replaces sensitive
+      card input fields with secure CyberSource-hosted iFrame components.
+      Encrypts card data on the customer's device before transmission, generates
+      transient tokens for server-side processing, and significantly reduces PCI
+      scope for merchants.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/microform-integ-v2.html
+    baseURL: https://api.cybersource.com
+    tags:
+      - Flex Microform
+      - Tokenization
+      - PCI DSS
+      - Hosted Fields
+      - Secure Acceptance
+    properties:
+      - type: Documentation
+        url: https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/microform-integ-v2.html
+    contact:
+      - FN: CyberSource Developer Support
+        url: https://developer.cybersource.com/
+        email: ''
+
+  - name: CyberSource Unified Checkout API
+    description: >-
+      Pre-built, customizable payment acceptance widget supporting multiple
+      payment methods from a single integration. Supports credit/debit cards,
+      digital wallets (Apple Pay, Google Pay, Click to Pay), buy-now-pay-later
+      providers, and alternative payment methods. Reduces development burden and
+      accelerates time-to-live for multi-method checkout flows.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/uc-intro.html
+    baseURL: https://api.cybersource.com
+    tags:
+      - Unified Checkout
+      - Digital Wallets
+      - Apple Pay
+      - Google Pay
+      - Buy Now Pay Later
+    properties:
+      - type: Documentation
+        url: https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/uc-intro.html
+    contact:
+      - FN: CyberSource Developer Support
+        url: https://developer.cybersource.com/
+        email: ''
+
+  - name: CyberSource Payer Authentication (3D Secure) API
+    description: >-
+      Implements 3D Secure 2.x authentication to reduce fraud liability and
+      enable frictionless payment experiences. Checks enrollment, validates
+      payer authentication responses, and integrates with issuer bank
+      authentication flows. Helps merchants shift chargeback liability and
+      satisfy Strong Customer Authentication (SCA) requirements in regulated
+      markets.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developer.cybersource.com/docs/cybs/en-us/payer-authentication/developer/all/rest/payer-auth.html
+    baseURL: https://api.cybersource.com
+    tags:
+      - Payer Authentication
+      - 3D Secure
+      - Fraud Prevention
+      - SCA
+      - Chargeback Liability
+    properties:
+      - type: Documentation
+        url: https://developer.cybersource.com/docs/cybs/en-us/payer-authentication/developer/all/rest/payer-auth.html
+    contact:
+      - FN: CyberSource Developer Support
+        url: https://developer.cybersource.com/
+        email: ''
+
+  - name: CyberSource Reporting API
+    description: >-
+      Generates financial, reconciliation, and operational reports covering
+      transaction history, settlement data, chargebacks, and OCT activity.
+      Supports on-demand report generation, scheduled report subscriptions, and
+      report download by date range. Provides data for accounting reconciliation,
+      business intelligence, and compliance requirements.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developer.cybersource.com/docs/cybs/en-us/reporting/developer/all/rest/reporting.html
+    baseURL: https://api.cybersource.com
+    tags:
+      - Reporting
+      - Reconciliation
+      - Financial Reports
+      - Analytics
+    properties:
+      - type: Documentation
+        url: https://developer.cybersource.com/docs/cybs/en-us/reporting/developer/all/rest/reporting.html
+    contact:
+      - FN: CyberSource Developer Support
+        url: https://developer.cybersource.com/
+        email: ''
+
+  - name: CyberSource Transaction Search API
+    description: >-
+      Enables merchants to query, filter, and retrieve transaction records by
+      various criteria including date range, amount, card type, merchant
+      reference number, and transaction status. Supports both individual
+      transaction detail retrieval and batch queries for operational monitoring
+      and customer service workflows.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developer.cybersource.com/docs/cybs/en-us/reporting/developer/all/rest/reporting/txn-search.html
+    baseURL: https://api.cybersource.com
+    tags:
+      - Transaction Search
+      - Transaction Details
+      - Reporting
+    properties:
+      - type: Documentation
+        url: https://developer.cybersource.com/docs/cybs/en-us/reporting/developer/all/rest/reporting/txn-search.html
+    contact:
+      - FN: CyberSource Developer Support
+        url: https://developer.cybersource.com/
+        email: ''
+
+  - name: CyberSource Webhooks API
+    description: >-
+      Event-driven notification system that delivers real-time alerts for payment
+      events, fraud decisions, and system state changes to merchant-configured
+      endpoints. Supports digital signatures for payload verification, retry
+      logic for failed deliveries, and multiple event subscription types.
+      Webhooks v2 is the current supported version following decommission of v1.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developer.cybersource.com/docs/cybs/en-us/webhooks/developer/all/rest/webhooks.html
+    baseURL: https://api.cybersource.com
+    tags:
+      - Webhooks
+      - Event Notifications
+      - Real-time
+    properties:
+      - type: Documentation
+        url: https://developer.cybersource.com/docs/cybs/en-us/webhooks/developer/all/rest/webhooks.html
+    contact:
+      - FN: CyberSource Developer Support
+        url: https://developer.cybersource.com/
+        email: ''
+
+  - name: CyberSource Boarding API
+    description: >-
+      Programmatically creates and manages hierarchical merchant account
+      structures representing business units, divisions, and sub-merchants.
+      Enables ISOs, payment facilitators, and technology partners to onboard
+      merchants, configure product settings, and manage organizational
+      hierarchies at scale through REST API calls.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developer.cybersource.com/docs/cybs/en-us/account-management/developer/all/rest/account-mgmt.html
+    baseURL: https://api.cybersource.com
+    tags:
+      - Account Management
+      - Merchant Onboarding
+      - Hierarchies
+      - Payment Facilitators
+    properties:
+      - type: Documentation
+        url: https://developer.cybersource.com/docs/cybs/en-us/account-management/developer/all/rest/account-mgmt.html
+    contact:
+      - FN: CyberSource Developer Support
+        url: https://developer.cybersource.com/
+        email: ''
+
+  - name: CyberSource Invoicing API
+    description: >-
+      Creates and manages payment invoices with customizable fields, due dates,
+      and customer information. Generates shareable payment links, tracks invoice
+      status, and enables merchants to collect payments via email-delivered
+      invoices without requiring customer account creation or full checkout
+      integration.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing.html
+    baseURL: https://api.cybersource.com
+    tags:
+      - Invoicing
+      - Payment Links
+      - Pay By Link
+    properties:
+      - type: Documentation
+        url: https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing.html
+    contact:
+      - FN: CyberSource Developer Support
+        url: https://developer.cybersource.com/
+        email: ''
+
+  - name: CyberSource BIN Lookup API
+    description: >-
+      Identifies card type, issuing bank, country of origin, and fast funds
+      eligibility based on the Bank Identification Number (BIN) extracted from
+      payment card numbers. Helps merchants optimize checkout routing decisions,
+      apply appropriate fee structures, and support dynamic currency conversion
+      logic.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developer.cybersource.com/docs/cybs/en-us/bin-lookup/developer/all/rest/bin-lookup.html
+    baseURL: https://api.cybersource.com
+    tags:
+      - BIN Lookup
+      - Card Identification
+      - Fast Funds
+      - Routing
+    properties:
+      - type: Documentation
+        url: https://developer.cybersource.com/docs/cybs/en-us/bin-lookup/developer/all/rest/bin-lookup.html
+    contact:
+      - FN: CyberSource Developer Support
+        url: https://developer.cybersource.com/
+        email: ''
+
+  - name: CyberSource Intelligent Commerce API
+    description: >-
+      Unified API suite for secure, cross-network agent-initiated payments
+      enabling seamless merchant onboarding, card enrollment, and transaction
+      management. Designed to support AI agent workflows, automated payment
+      orchestration, and programmatic commerce integrations for next-generation
+      payment scenarios.
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developer.cybersource.com/
+    baseURL: https://api.cybersource.com
+    tags:
+      - Intelligent Commerce
+      - AI Payments
+      - Agent Payments
+      - Payment Orchestration
+    properties:
+      - type: Documentation
+        url: https://developer.cybersource.com/
+    contact:
+      - FN: CyberSource Developer Support
+        url: https://developer.cybersource.com/
+        email: ''
+
+common:
+  - type: Portal
+    url: https://developer.cybersource.com/
+  - type: Documentation
+    url: https://docs.cybersource.com/en/main.html
+  - type: GettingStarted
+    url: https://developer.cybersource.com/docs/cybs/en-us/platform/developer/all/rest/rest-getting-started.html
+  - type: APIReference
+    url: https://developer.cybersource.com/api-reference-assets/index.html
+  - type: SDKs
+    url: https://developer.cybersource.com/api/developer-guides.html
+  - type: GitHub
+    url: https://github.com/CyberSource
+  - type: Status
+    url: https://status.cybersource.com/
+  - type: ReleaseNotes
+    url: https://docs.cybersource.com/en/release-notes/index.html
+  - type: Community
+    url: https://community.developer.cybersource.com/
+  - type: Support
+    url: https://support.cybersource.com/
+  - type: Sandbox
+    url: https://developer.cybersource.com/hello-world/sandbox.html
+  - type: TestingGuide
+    url: https://developer.cybersource.com/hello-world/testing-guide.html
+  - type: ResponseCodes
+    url: https://developer.cybersource.com/api/reference/response-codes.html
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/cybersource/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: https://raw.githubusercontent.com/api-evangelist/cybersource/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/cybersource/refs/heads/main/finops/finops.yml
+
+maintainers:
+  - FN: API Evangelist
+    url: https://apievangelist.com
+    email: info@apievangelist.com
