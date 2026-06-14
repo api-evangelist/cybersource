@@ -47,6 +47,8 @@ apis:
         url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
       - type: OpenAPI
         url: https://developer.cybersource.com/api-reference-assets/index.html
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/cybersource/refs/heads/main/openapi/openapi.json
     contact:
       - FN: CyberSource Developer Support
         url: https://developer.cybersource.com/

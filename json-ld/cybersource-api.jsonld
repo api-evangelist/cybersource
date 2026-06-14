@@ -1,0 +1,310 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "cybersource": "https://developer.cybersource.com/api-reference/",
+    "payments": "cybersource:payments#",
+    "tms": "cybersource:tms#",
+    "fraud": "cybersource:fraud#",
+    "reporting": "cybersource:reporting#",
+    "payouts": "cybersource:payouts#",
+    "webhooks": "cybersource:webhooks#"
+  },
+  "@graph": [
+    {
+      "@type": "WebAPI",
+      "@id": "https://api.cybersource.com/",
+      "name": "CyberSource Merged Spec",
+      "description": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "version": "0.0.1",
+      "url": "https://developer.cybersource.com/",
+      "provider": {
+        "@type": "Organization",
+        "name": "CyberSource",
+        "url": "https://www.cybersource.com/"
+      },
+      "documentation": "https://developer.cybersource.com/docs/",
+      "termsOfService": "https://developer.cybersource.com/",
+      "endpointUrl": "https://api.cybersource.com/",
+      "availableChannel": [
+        {
+          "@type": "ServiceChannel",
+          "serviceUrl": "https://api.cybersource.com/"
+        },
+        {
+          "@type": "ServiceChannel",
+          "serviceUrl": "https://apitest.cybersource.com/"
+        }
+      ]
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/payments#post",
+      "name": "Process a Payment",
+      "description": "A payment authorizes the amount for the transaction. There are a number of supported payment features, such as E-commerce and Card Present - Credit Card/Debit Card, Echeck, e-Wallets, Level II/III Data, etc..\n\nA payment response includes the status of the request. It also includes processor-specific information when the request is successful and errors if unsuccessful. See the [Payments Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/payments/developer/ctv/rest/payments/payments-intro.html).\n\nAuthorization can be requested with Capture, Decision Manager, Payer Authentication(3ds), and Token Creation.\n",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/payments",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/payments/{id}#patch",
+      "name": "Increment an Authorization",
+      "description": "Use this service to authorize additional charges in a lodging or autorental transaction. Include the ID returned from the original authorization in the PATCH request to add additional charges to that authorization.\n",
+      "httpMethod": "PATCH",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/payments/{id}",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/payments/{id}/reversals#post",
+      "name": "Process an Authorization Reversal",
+      "description": "Include the payment ID in the POST request to reverse the payment amount.",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/payments/{id}/reversals",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/reversals#post",
+      "name": "Timeout Reversal",
+      "description": "This is to reverse a previous payment that merchant does not receive a reply(Mostly due to Timeout). To use this feature/API, make sure to pass unique value to field - clientReferenceInformation -> transactionId in [/pts/v2/payments](https://developer.cybersource.com/api-reference-assets/index.html#payments_payments) API call and use same transactionId in this API request payload to reverse the payment.",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/reversals",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/payments/{id}/captures#post",
+      "name": "Capture a Payment",
+      "description": "Include the payment ID in the POST request to capture the payment amount.",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/payments/{id}/captures",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/payments/{id}/refunds#post",
+      "name": "Refund a Payment",
+      "description": "Refund a Payment API is only used, if you have requested Authorization and Capture together in [/pts/v2/payments](https://developer.cybersource.com/api-reference-assets/index.html#payments_payments) API call. Include the payment ID in the POST request to refund the payment amount.\n",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/payments/{id}/refunds",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/captures/{id}/refunds#post",
+      "name": "Refund a Capture",
+      "description": "Refund a capture API is only used, if you have requested Capture independenlty using [/pts/v2/payments/{id}/captures](https://developer.cybersource.com/api-reference-assets/index.html#payments_capture) API call. Include the capture ID in the POST request to refund the captured amount.\n",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/captures/{id}/refunds",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/credits#post",
+      "name": "Process a Credit",
+      "description": "POST to the credit resource to credit funds to a specified credit card.",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/credits",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/payments/{id}/voids#post",
+      "name": "Void a Payment",
+      "description": "Void a Payment API is only used, if you have requested Authorization and Capture together in [/pts/v2/payments](https://developer.cybersource.com/api-reference-assets/index.html#payments_payments) API call. Include the payment ID in the POST request to cancel the payment.\n",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/payments/{id}/voids",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/captures/{id}/voids#post",
+      "name": "Void a Capture",
+      "description": "Refund a capture API is only used, if you have requested Capture independenlty using [/pts/v2/payments/{id}/captures](https://developer.cybersource.com/api-reference-assets/index.html#payments_capture) API call. Include the capture ID in the POST request to cancel the capture.\n",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/captures/{id}/voids",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/refunds/{id}/voids#post",
+      "name": "Void a Refund",
+      "description": "Include the refund ID in the POST request to cancel the refund.",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/refunds/{id}/voids",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/credits/{id}/voids#post",
+      "name": "Void a Credit",
+      "description": "Include the credit ID in the POST request to cancel the credit.",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/credits/{id}/voids",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/voids#post",
+      "name": "Timeout Void",
+      "description": "This is to void a previous payment, capture, refund, or credit that merchant does not receive a reply(Mostly due to timeout). To use this feature/API, make sure to pass unique value to field - clientReferenceInformation -> transactionId in your payment, capture, refund, or credit API call and use same transactionId in this API request payload to reverse the payment.",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/voids",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v1/transaction-batches#get",
+      "name": "Get a List of Batch Files",
+      "description": "Provide the date and time search range to get a list of Batch Files ready for settlement",
+      "httpMethod": "GET",
+      "urlTemplate": "https://api.cybersource.com/pts/v1/transaction-batches",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v1/transaction-batches/{id}#get",
+      "name": "Get Individual Batch File",
+      "description": "This API provides details like upload date, completion date, transaction count and accepted and rejected transaction count of the individual batch file using the batch id",
+      "httpMethod": "GET",
+      "urlTemplate": "https://api.cybersource.com/pts/v1/transaction-batches/{id}",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v1/transaction-batch-details/{id}#get",
+      "name": "Get Transaction Details for a given Batch Id",
+      "description": "Provides real-time detailed status information about the transactions that you previously uploaded in the Business Center or processed with the Offline Transaction File Submission service.\n",
+      "httpMethod": "GET",
+      "urlTemplate": "https://api.cybersource.com/pts/v1/transaction-batch-details/{id}",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v1/transaction-batch-upload#post",
+      "name": "Upload a Batch File",
+      "description": "This endpoint enables the upload of a batch file containing transactions for processing.",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.cybersource.com/pts/v1/transaction-batch-upload",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/refresh-payment-status/{id}#post",
+      "name": "Check a Payment Status",
+      "description": "Checks and updates the payment status\n",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/refresh-payment-status/{id}",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/billing-agreements#post",
+      "name": "Create a Billing Agreement",
+      "description": "#### Standing Instruction:\nStanding Instruction with or without Token. Transaction amount in case First payment is coming along with registration. Only 2 decimal places allowed\n\n#### Create Mandate:\nYou can create a mandate through the direct debit mandate flow.\nPossible create mandate status values:\n  - Pending\u2014the create mandate request was successfully processed.\n  - Failed\u2014the create mandate request was not accepted.\n\n#### Import Mandate:\nIn the Bacs scheme, a mandate is created with a status of active. Direct debit collections can be made against it immediately.\nYou can import a mandate to the CyberSource database when:\n  - You have existing customers with signed, active mandates\n  - You manage mandates outside of CyberSource.\n\nWhen you import an existing mandate to the CyberSource database, provide a unique value for the mandate ID or the request results in an error.\nIf an import mandate request is not accepted, the import mandate status value is failed.\n",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/billing-agreements",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/billing-agreements/{id}#patch",
+      "name": "Modify a Billing Agreement",
+      "description": "#### Standing Instruction:\nStanding Instruction with or without Token.\n\n#### Revoke Mandate:\nWhen you revoke a mandate, any pending direct debits linked to that mandate are canceled. No notifications are sent.\nWhen you revoke a mandate with no pending direct debits, the Bacs scheme or customer's bank notify you of any subsequent direct debit events.\nWhen you revoke a mandate, you cannot send a direct debit request using the mandate ID. Customer payments cannot be made against a revoked mandate.\nYou can revoke a mandate when the customer:\n  - Requests that you revoke the mandate.\n  - Closes their account with you.\nPossible revoke mandate status values -\n  - Revoked\u2014the revoke mandate request was successfully processed.\n  - Failed\u2014the revoke mandate request was not accepted.\n\n#### Update Mandate:\nIn most cases, the account details of an existing mandate cannot be updated in the Bacs schema,\nexcept by creating a new mandate. However, some very limited customer information, like name and address,\ncan be updated to the mandate without needing to revoke it first\n\n#### Mandate Status:\nAfter the customer signs the mandate, request that the mandate status service verify the mandate status.\nPossible mandate status values:\n  - Active\u2014the mandate is successfully created. A direct debit can be sent for this mandate ID.\n  - Pending\u2014a pending mandate means the mandate is not yet signed.\n  - Failed\u2014the customer did not authenticate.\n  - Expired\u2014the deadline to create the mandate passed.\n  - Revoked\u2014the mandate is cancelled.\n\n#### Paypal Billing Agreement: \nA billing agreement is set up between PayPal and your customer.\nWhen you collect the details of a customer's billing agreement, you are able to bill that customer without requiring an authorization for each payment. \nYou can bill the customer at the same time you process their PayPal Express checkout order, which simplifies your business processes.\n",
+      "httpMethod": "PATCH",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/billing-agreements/{id}",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/billing-agreements/{id}/intimations#post",
+      "name": "Standing Instruction intimation",
+      "description": "Standing Instruction with or without Token.",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/billing-agreements/{id}/intimations",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/payment-references/{id}/intents#post",
+      "name": "Create a Payment Order Request",
+      "description": "Create a Payment Order Request",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/payment-references/{id}/intents",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/payment-references#post",
+      "name": "Create Alternative Payments Sessions Request",
+      "description": "Create Alternative Payments Sessions Request",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/payment-references",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/payment-references/{id}#patch",
+      "name": "Update Alternative Payments Sessions Request",
+      "description": "Update Alternative Payments Sessions Request",
+      "httpMethod": "PATCH",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/payment-references/{id}",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/intents#post",
+      "name": "Create an Order",
+      "description": "A create order request enables you to send the itemized details along with the order. This API can be used by merchants initiating their transactions with the create order API. \n",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/intents",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/intents/{id}#patch",
+      "name": "Update an Order",
+      "description": "This API can be used in two flavours - for updating the order as well as saving the order.\n",
+      "httpMethod": "PATCH",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/intents/{id}",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/pts/v2/payment-tokens#post",
+      "name": "Retrieve or Delete Payment Token",
+      "description": "This API can be used in two flavours - for retrieval or deletion of vault id.\n",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.cybersource.com/pts/v2/payment-tokens",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/tms/v2/tokenize#post",
+      "name": "Tokenize",
+      "description": "|  |  |  |  \n| --- | --- | --- |\n|The **Tokenize API** endpoint facilitates the creation of various TMS tokens such as Customers, Payment Instruments, Shipping Addresses, and Instrument Identifiers in a single operation. The request includes a processingInformation object, which specifies **\"TOKEN_CREATE\"** and the types of tokens to be created. The **tokenInformation** section of the request includes detailed information relevant to each token type. This includes attributes for Customers, Payment Instruments, Shipping Addresses, Instrument Identifiers and Transient Token data. The payload is flexible, allowing for different combinations of tokens to be created in a single request.|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|The **API response** includes a responses array, which details the outcome of the tokenization process for each requested resource type, such as Customer, Payment Instrument, Shipping Address, and Instrument Identifier. Each entry in this array provides an HTTP status code such as **201/200 for successful creations**, and a unique identifier for the newly created token.<br>In cases where token creation encounters issues, the response includes a **non-2XX** status code and an errors array for the affected resource. Each error object in the array details the **error type and a descriptive message** providing insight into why a particular token creation was not attempted or failed.\n",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.cybersource.com/tms/v2/tokenize",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/tms/v2/tokenized-cards#post",
+      "name": "Create a Tokenized Card",
+      "description": "**Tokenized cards**<br>A Tokenized card represents a network token.\nNetwork tokens perform better than regular card numbers and they are not necessarily invalidated when a cardholder loses their card, or it expires.\nThis API submits a request to the card association to create a network token. If successful, a tokenized card will be created in TMS to represent the network token.\n",
+      "httpMethod": "POST",
+      "urlTemplate": "https://api.cybersource.com/tms/v2/tokenized-cards",
+      "encodingType": "application/json"
+    },
+    {
+      "@type": "EntryPoint",
+      "@id": "https://api.cybersource.com/tms/v2/tokenized-cards/{tokenizedCardId}#get",
+      "name": "Retrieve a Tokenized Card",
+      "description": "|**Tokenized Cards**<br>A Tokenized Card represents a network token.\nNetwork tokens perform better than regular card numbers and they are not necessarily invalidated when a cardholder loses their card, or it expires.\nThis API returns the details of a tokenized card stored in TMS. You can use this API to check the status of a tokenized card and retrieve details such as the last four digits of the underlying card, expiration date, and card type.\n",
+      "httpMethod": "GET",
+      "urlTemplate": "https://api.cybersource.com/tms/v2/tokenized-cards/{tokenizedCardId}",
+      "encodingType": "application/json"
+    }
+  ]
+}

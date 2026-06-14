@@ -1,0 +1,1641 @@
+{
+  "title": "CyberSource API Vocabulary",
+  "description": "API property vocabulary extracted from CyberSource REST API specification",
+  "properties": {
+    "clientReferenceInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "incrementAuth",
+        "authReversal",
+        "mitReversal",
+        "capturePayment",
+        "refundPayment",
+        "refundCapture",
+        "createCredit",
+        "voidPayment",
+        "voidCapture",
+        "voidRefund",
+        "voidCredit",
+        "mitVoid",
+        "refreshPaymentStatus",
+        "billingAgreementsRegistration",
+        "billingAgreementsDeRegistration",
+        "billingAgreementsIntimation",
+        "createOrderRequest",
+        "CreateSessionRequest",
+        "UpdateSessionReq",
+        "createOrder",
+        "updateOrder",
+        "postCustomer",
+        "patchCustomer",
+        "createBundledDecisionManagerCase",
+        "payerAuthSetup",
+        "checkPayerAuthEnrollment",
+        "validateAuthenticationResults",
+        "addNegative",
+        "fraudUpdate",
+        "verifyCustomerAddress",
+        "validateExportCompliance",
+        "octCreatePayment",
+        "createPushFundsTransfer",
+        "createPullFundsTransfer",
+        "createPullFundsReversal",
+        "createPullFundsRefund",
+        "createSubscription",
+        "updateSubscription",
+        "createFollowOnSubscription",
+        "getAccountInfo",
+        "createInvoice",
+        "createPaymentLink",
+        "updatePaymentLink",
+        "calculateTax",
+        "voidTax",
+        "saveSymEgressKey",
+        "saveAsymEgressKey",
+        "bankAccountValidationRequest",
+        "createOffer"
+      ]
+    },
+    "processingInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "incrementAuth",
+        "authReversal",
+        "mitReversal",
+        "capturePayment",
+        "refundPayment",
+        "refundCapture",
+        "createCredit",
+        "voidPayment",
+        "voidCapture",
+        "voidRefund",
+        "voidCredit",
+        "mitVoid",
+        "refreshPaymentStatus",
+        "billingAgreementsRegistration",
+        "billingAgreementsDeRegistration",
+        "createOrderRequest",
+        "CreateSessionRequest",
+        "UpdateSessionReq",
+        "createOrder",
+        "updateOrder",
+        "retrieveOrDeletePaymentToken",
+        "tokenize",
+        "postInstrumentIdentifier",
+        "patchInstrumentIdentifier",
+        "postInstrumentIdentifierEnrollment",
+        "postPaymentInstrument",
+        "patchPaymentInstrument",
+        "postCustomerPaymentInstrument",
+        "patchCustomersPaymentInstrument",
+        "createBundledDecisionManagerCase",
+        "payerAuthSetup",
+        "checkPayerAuthEnrollment",
+        "validateAuthenticationResults",
+        "actionDecisionManagerCase",
+        "octCreatePayment",
+        "createPushFundsTransfer",
+        "createPullFundsTransfer",
+        "updatePlan",
+        "createSubscription",
+        "updateSubscription",
+        "createFollowOnSubscription",
+        "getAccountInfo",
+        "createInvoice",
+        "updateInvoice",
+        "createPaymentLink",
+        "updatePaymentLink",
+        "bankAccountValidationRequest"
+      ]
+    },
+    "issuerInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment"
+      ]
+    },
+    "paymentInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "authReversal",
+        "capturePayment",
+        "refundPayment",
+        "refundCapture",
+        "createCredit",
+        "voidPayment",
+        "voidCapture",
+        "voidRefund",
+        "voidCredit",
+        "mitVoid",
+        "refreshPaymentStatus",
+        "billingAgreementsRegistration",
+        "billingAgreementsDeRegistration",
+        "billingAgreementsIntimation",
+        "createOrderRequest",
+        "CreateSessionRequest",
+        "UpdateSessionReq",
+        "createOrder",
+        "updateOrder",
+        "retrieveOrDeletePaymentToken",
+        "createBundledDecisionManagerCase",
+        "payerAuthSetup",
+        "checkPayerAuthEnrollment",
+        "validateAuthenticationResults",
+        "addNegative",
+        "octCreatePayment",
+        "createPushFundsTransfer",
+        "createSubscription",
+        "getAccountInfo",
+        "bankAccountValidationRequest",
+        "createOffer",
+        "enrollCard",
+        "initiatePurchaseIntent",
+        "updatePurchaseIntent",
+        "cancelPurchaseIntent",
+        "retrievePaymentCredentials",
+        "confirmTransactionEvents"
+      ]
+    },
+    "orderInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "incrementAuth",
+        "authReversal",
+        "mitReversal",
+        "capturePayment",
+        "refundPayment",
+        "refundCapture",
+        "createCredit",
+        "voidPayment",
+        "voidCapture",
+        "voidRefund",
+        "voidCredit",
+        "mitVoid",
+        "billingAgreementsRegistration",
+        "billingAgreementsDeRegistration",
+        "billingAgreementsIntimation",
+        "createOrderRequest",
+        "CreateSessionRequest",
+        "UpdateSessionReq",
+        "createOrder",
+        "updateOrder",
+        "postTokenPaymentCredentialsV3",
+        "postTokenPaymentCredentials",
+        "createBundledDecisionManagerCase",
+        "checkPayerAuthEnrollment",
+        "validateAuthenticationResults",
+        "addNegative",
+        "verifyCustomerAddress",
+        "validateExportCompliance",
+        "octCreatePayment",
+        "createPushFundsTransfer",
+        "createPullFundsTransfer",
+        "createPullFundsRefund",
+        "createPlan",
+        "updatePlan",
+        "createSubscription",
+        "updateSubscription",
+        "createFollowOnSubscription",
+        "createInvoice",
+        "updateInvoice",
+        "createPaymentLink",
+        "updatePaymentLink",
+        "calculateTax",
+        "generateUnifiedCheckoutCaptureContext",
+        "createOffer"
+      ]
+    },
+    "buyerInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "capturePayment",
+        "refundPayment",
+        "refundCapture",
+        "createCredit",
+        "billingAgreementsRegistration",
+        "billingAgreementsDeRegistration",
+        "CreateSessionRequest",
+        "UpdateSessionReq",
+        "postPaymentInstrument",
+        "patchPaymentInstrument",
+        "postCustomer",
+        "patchCustomer",
+        "postCustomerPaymentInstrument",
+        "patchCustomersPaymentInstrument",
+        "createBundledDecisionManagerCase",
+        "checkPayerAuthEnrollment",
+        "addNegative",
+        "verifyCustomerAddress",
+        "validateExportCompliance",
+        "createPullFundsTransfer",
+        "calculateTax",
+        "enrollCard",
+        "initiatePurchaseIntent",
+        "updatePurchaseIntent"
+      ]
+    },
+    "senderInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "createCredit",
+        "createOrder",
+        "octCreatePayment",
+        "createPushFundsTransfer",
+        "createPullFundsTransfer"
+      ]
+    },
+    "recipientInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "createCredit",
+        "createOrder",
+        "octCreatePayment",
+        "createPushFundsTransfer",
+        "createPullFundsTransfer"
+      ]
+    },
+    "deviceInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "authReversal",
+        "mitReversal",
+        "capturePayment",
+        "refundPayment",
+        "refundCapture",
+        "createCredit",
+        "billingAgreementsRegistration",
+        "billingAgreementsDeRegistration",
+        "CreateSessionRequest",
+        "UpdateSessionReq",
+        "postTokenPaymentCredentialsV3",
+        "postTokenPaymentCredentials",
+        "createBundledDecisionManagerCase",
+        "checkPayerAuthEnrollment",
+        "validateAuthenticationResults",
+        "addNegative",
+        "validateExportCompliance",
+        "enrollCard",
+        "initiatePurchaseIntent",
+        "updatePurchaseIntent",
+        "cancelPurchaseIntent"
+      ]
+    },
+    "merchantInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "incrementAuth",
+        "capturePayment",
+        "refundPayment",
+        "refundCapture",
+        "createCredit",
+        "voidPayment",
+        "voidCapture",
+        "voidRefund",
+        "voidCredit",
+        "billingAgreementsRegistration",
+        "billingAgreementsDeRegistration",
+        "billingAgreementsIntimation",
+        "CreateSessionRequest",
+        "UpdateSessionReq",
+        "createOrder",
+        "updateOrder",
+        "postTokenPaymentCredentialsV3",
+        "postTokenPaymentCredentials",
+        "postPaymentInstrument",
+        "patchPaymentInstrument",
+        "postCustomerPaymentInstrument",
+        "patchCustomersPaymentInstrument",
+        "createBundledDecisionManagerCase",
+        "checkPayerAuthEnrollment",
+        "octCreatePayment",
+        "createPushFundsTransfer",
+        "createPullFundsTransfer",
+        "calculateTax"
+      ]
+    },
+    "aggregatorInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "capturePayment",
+        "refundPayment",
+        "refundCapture",
+        "createCredit",
+        "billingAgreementsRegistration",
+        "billingAgreementsDeRegistration",
+        "octCreatePayment",
+        "createPushFundsTransfer",
+        "createPullFundsTransfer"
+      ]
+    },
+    "consumerAuthenticationInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "billingAgreementsRegistration",
+        "billingAgreementsDeRegistration",
+        "createBundledDecisionManagerCase",
+        "checkPayerAuthEnrollment",
+        "validateAuthenticationResults"
+      ]
+    },
+    "pointOfSaleInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "authReversal",
+        "mitReversal",
+        "capturePayment",
+        "refundPayment",
+        "refundCapture",
+        "createCredit",
+        "postInstrumentIdentifier",
+        "patchInstrumentIdentifier",
+        "postInstrumentIdentifierEnrollment",
+        "createOffer"
+      ]
+    },
+    "merchantDefinedInformation": {
+      "description": "The object containing the custom data that the merchant defines.\n",
+      "type": "array",
+      "contexts": [
+        "createPayment",
+        "capturePayment",
+        "refundPayment",
+        "refundCapture",
+        "createCredit",
+        "CreateSessionRequest",
+        "UpdateSessionReq",
+        "postCustomer",
+        "patchCustomer",
+        "createBundledDecisionManagerCase",
+        "checkPayerAuthEnrollment"
+      ]
+    },
+    "merchantDefinedSecureInformation": {
+      "description": "The object containing the secure data that the merchant defines.\n",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "capturePayment",
+        "createCredit"
+      ]
+    },
+    "installmentInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "capturePayment",
+        "createCredit",
+        "billingAgreementsRegistration",
+        "billingAgreementsDeRegistration",
+        "billingAgreementsIntimation"
+      ]
+    },
+    "travelInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "incrementAuth",
+        "capturePayment",
+        "refundPayment",
+        "refundCapture",
+        "createCredit",
+        "CreateSessionRequest",
+        "UpdateSessionReq",
+        "createOrder",
+        "createBundledDecisionManagerCase",
+        "checkPayerAuthEnrollment"
+      ]
+    },
+    "healthCareInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment"
+      ]
+    },
+    "promotionInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "capturePayment",
+        "refundPayment",
+        "refundCapture",
+        "createCredit"
+      ]
+    },
+    "tokenInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "createCredit",
+        "tokenize",
+        "createBundledDecisionManagerCase",
+        "payerAuthSetup",
+        "checkPayerAuthEnrollment",
+        "validateAuthenticationResults",
+        "getAccountInfo",
+        "bankAccountValidationRequest"
+      ]
+    },
+    "invoiceDetails": {
+      "description": "invoice Details",
+      "type": "object",
+      "contexts": [
+        "createPayment"
+      ]
+    },
+    "processorInformation": {
+      "description": "Processor Information",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "authReversal",
+        "mitReversal",
+        "capturePayment",
+        "refundPayment",
+        "refundCapture",
+        "createCredit",
+        "createBundledDecisionManagerCase"
+      ]
+    },
+    "agreementInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "voidPayment",
+        "voidCapture",
+        "voidRefund",
+        "voidCredit",
+        "refreshPaymentStatus",
+        "billingAgreementsRegistration",
+        "billingAgreementsDeRegistration",
+        "CreateSessionRequest",
+        "UpdateSessionReq"
+      ]
+    },
+    "riskInformation": {
+      "description": "This object is only needed when you are requesting both payment and DM services at same time.",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "createBundledDecisionManagerCase",
+        "checkPayerAuthEnrollment",
+        "addNegative",
+        "fraudUpdate"
+      ]
+    },
+    "acquirerInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "createBundledDecisionManagerCase",
+        "checkPayerAuthEnrollment"
+      ]
+    },
+    "recurringPaymentInformation": {
+      "description": "This object contains recurring payment information.",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "createBundledDecisionManagerCase",
+        "checkPayerAuthEnrollment"
+      ]
+    },
+    "unscheduledPaymentInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment"
+      ]
+    },
+    "hostedPaymentInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment"
+      ]
+    },
+    "watchlistScreeningInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPayment",
+        "createBundledDecisionManagerCase"
+      ]
+    },
+    "reversalInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "authReversal",
+        "mitReversal",
+        "createPullFundsReversal"
+      ]
+    },
+    "userInterface": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "CreateSessionRequest",
+        "UpdateSessionReq"
+      ]
+    },
+    "eventInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createOrder"
+      ]
+    },
+    "accountReferenceId": {
+      "description": "An identifier provided by the issuer for the account.\n**Required when source is ISSUER.**\n",
+      "type": "string",
+      "contexts": [
+        "postTokenizedCard"
+      ]
+    },
+    "consumerId": {
+      "description": "Identifier of the consumer within the wallet. Maximum 24 characters for VTS.",
+      "type": "string",
+      "contexts": [
+        "postTokenizedCard"
+      ]
+    },
+    "createPanInstrumentIdentifier": {
+      "description": "Specifies whether the Instrument Identifier should be created (true) or not (false) with the PAN provided for the Network Token Provision request.\nPossible Values:\n- `true`: The InstrumentIdentifier should be created.\n- `false`: The InstrumentIdentifier should not be created.\n",
+      "type": "boolean",
+      "contexts": [
+        "postTokenizedCard"
+      ]
+    },
+    "source": {
+      "description": "Source of the card details.\nPossible Values:\n- ONFILE\n- TOKEN\n- ISSUER\n",
+      "type": "string",
+      "contexts": [
+        "postTokenizedCard",
+        "postInstrumentIdentifier",
+        "patchInstrumentIdentifier",
+        "postInstrumentIdentifierEnrollment"
+      ]
+    },
+    "card": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "postTokenizedCard",
+        "postIssuerLifeCycleSimulation",
+        "postInstrumentIdentifier",
+        "patchInstrumentIdentifier",
+        "postInstrumentIdentifierEnrollment",
+        "postPaymentInstrument",
+        "patchPaymentInstrument",
+        "postCustomerPaymentInstrument",
+        "patchCustomersPaymentInstrument"
+      ]
+    },
+    "passcode": {
+      "description": "Passcode by issuer for ID&V.\n",
+      "type": "object",
+      "contexts": [
+        "postTokenizedCard"
+      ]
+    },
+    "billTo": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "postTokenizedCard",
+        "postInstrumentIdentifier",
+        "patchInstrumentIdentifier",
+        "postInstrumentIdentifierEnrollment",
+        "postPaymentInstrument",
+        "patchPaymentInstrument",
+        "postCustomerPaymentInstrument",
+        "patchCustomersPaymentInstrument",
+        "enrollCard"
+      ]
+    },
+    "reason": {
+      "description": "Reason for deleting the network token.\n",
+      "type": "object",
+      "contexts": [
+        "postTokenizedCardDelete"
+      ]
+    },
+    "paymentCredentialType": {
+      "description": "The type of payment credentials to be returned.\nBy default, payment credentials include network token and cryptogram or dynamic CVV.\nIf \"NETWORK_TOKEN\" is supplied then only network token card number will be returned and no cryptogram or dynamic CVV will be requested.\nIf \"SECURITY_CODE\" is supplied then dynamic CVV will be requested and returned with the network token card number. Dynamic CVV is only supported for Amex and SCOF.\nIf \"CRYPTOGRAM\" is supplied then cryptogram will be requested and returned with the network token card number. Cryptogram is NOT supported for Amex.\n\nPossible Values:\n  - NETWORK_TOKEN\n  - SECURITY_CODE\n  - CRYPTOGRAM\n",
+      "type": "string",
+      "contexts": [
+        "postTokenPaymentCredentialsV3",
+        "postTokenPaymentCredentials"
+      ]
+    },
+    "transactionType": {
+      "description": "Specifies the type of transaction for which the network token credentials are required.\nPossible Values:\n  - ECOM: Ecommerce transaction. If transactionType is not provided, ECOM is set as the default.\n  - AFT: Account Funding Transaction. This is only supported for VISA and paymentCredentialType of CRYPTOGRAM.\n",
+      "type": "string",
+      "contexts": [
+        "postTokenPaymentCredentialsV3",
+        "postTokenPaymentCredentials"
+      ]
+    },
+    "clientCorrelationId": {
+      "description": "Used to correlate authentication and payment credential requests.\n",
+      "type": "string",
+      "contexts": [
+        "postTokenPaymentCredentialsV3",
+        "postTokenPaymentCredentials",
+        "enrollCard",
+        "initiatePurchaseIntent",
+        "updatePurchaseIntent",
+        "cancelPurchaseIntent",
+        "retrievePaymentCredentials",
+        "confirmTransactionEvents"
+      ]
+    },
+    "authenticatedIdentities": {
+      "description": "",
+      "type": "array",
+      "contexts": [
+        "postTokenPaymentCredentialsV3",
+        "postTokenPaymentCredentials"
+      ]
+    },
+    "state": {
+      "description": "The new state of the Tokenized Card.\nPossible Values:\n- ACTIVE\n- SUSPENDED\n- DELETED\n",
+      "type": "string",
+      "contexts": [
+        "postIssuerLifeCycleSimulation",
+        "postInstrumentIdentifier",
+        "patchInstrumentIdentifier",
+        "postInstrumentIdentifierEnrollment",
+        "postPaymentInstrument",
+        "patchPaymentInstrument",
+        "postCustomerPaymentInstrument",
+        "patchCustomersPaymentInstrument"
+      ]
+    },
+    "metadata": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "postIssuerLifeCycleSimulation",
+        "postInstrumentIdentifier",
+        "patchInstrumentIdentifier",
+        "postInstrumentIdentifierEnrollment",
+        "postPaymentInstrument",
+        "patchPaymentInstrument",
+        "postCustomer",
+        "patchCustomer",
+        "postCustomerShippingAddress",
+        "patchCustomersShippingAddress",
+        "postCustomerPaymentInstrument",
+        "patchCustomersPaymentInstrument"
+      ]
+    },
+    "_links": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "postInstrumentIdentifier",
+        "patchInstrumentIdentifier",
+        "postInstrumentIdentifierEnrollment",
+        "postPaymentInstrument",
+        "patchPaymentInstrument",
+        "postCustomer",
+        "patchCustomer",
+        "postCustomerShippingAddress",
+        "patchCustomersShippingAddress",
+        "postCustomerPaymentInstrument",
+        "patchCustomersPaymentInstrument"
+      ]
+    },
+    "id": {
+      "description": "The Id of the Instrument Identifier Token.\n",
+      "type": "string",
+      "contexts": [
+        "postInstrumentIdentifier",
+        "patchInstrumentIdentifier",
+        "postInstrumentIdentifierEnrollment",
+        "postPaymentInstrument",
+        "patchPaymentInstrument",
+        "postCustomer",
+        "patchCustomer",
+        "postCustomerShippingAddress",
+        "patchCustomersShippingAddress",
+        "postCustomerPaymentInstrument",
+        "patchCustomersPaymentInstrument"
+      ]
+    },
+    "object": {
+      "description": "The type.\n\nPossible Values:\n- instrumentIdentifier\n",
+      "type": "string",
+      "contexts": [
+        "postInstrumentIdentifier",
+        "patchInstrumentIdentifier",
+        "postInstrumentIdentifierEnrollment",
+        "postPaymentInstrument",
+        "patchPaymentInstrument",
+        "postCustomerPaymentInstrument",
+        "patchCustomersPaymentInstrument"
+      ]
+    },
+    "type": {
+      "description": "The type of Instrument Identifier.\nPossible Values:\n- enrollable card\n- enrollable token\n",
+      "type": "string",
+      "contexts": [
+        "postInstrumentIdentifier",
+        "patchInstrumentIdentifier",
+        "postInstrumentIdentifierEnrollment",
+        "postPaymentInstrument",
+        "patchPaymentInstrument",
+        "postCustomerPaymentInstrument",
+        "patchCustomersPaymentInstrument",
+        "postBatch"
+      ]
+    },
+    "tokenProvisioningInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "postInstrumentIdentifier",
+        "patchInstrumentIdentifier",
+        "postInstrumentIdentifierEnrollment"
+      ]
+    },
+    "bankAccount": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "postInstrumentIdentifier",
+        "patchInstrumentIdentifier",
+        "postInstrumentIdentifierEnrollment",
+        "postPaymentInstrument",
+        "patchPaymentInstrument",
+        "postCustomerPaymentInstrument",
+        "patchCustomersPaymentInstrument"
+      ]
+    },
+    "tokenizedCard": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "postInstrumentIdentifier",
+        "patchInstrumentIdentifier",
+        "postInstrumentIdentifierEnrollment"
+      ]
+    },
+    "issuer": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "postInstrumentIdentifier",
+        "patchInstrumentIdentifier",
+        "postInstrumentIdentifierEnrollment"
+      ]
+    },
+    "_embedded": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "postInstrumentIdentifier",
+        "patchInstrumentIdentifier",
+        "postInstrumentIdentifierEnrollment",
+        "postPaymentInstrument",
+        "patchPaymentInstrument",
+        "postCustomer",
+        "patchCustomer",
+        "postCustomerPaymentInstrument",
+        "patchCustomersPaymentInstrument"
+      ]
+    },
+    "default": {
+      "description": "Flag that indicates whether customer payment instrument is the dafault.\nPossible Values:\n - `true`: Payment instrument is customer's default.\n - `false`: Payment instrument is not customer's default.\n",
+      "type": "boolean",
+      "contexts": [
+        "postPaymentInstrument",
+        "patchPaymentInstrument",
+        "postCustomerShippingAddress",
+        "patchCustomersShippingAddress",
+        "postCustomerPaymentInstrument",
+        "patchCustomersPaymentInstrument"
+      ]
+    },
+    "instrumentIdentifier": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "postPaymentInstrument",
+        "patchPaymentInstrument",
+        "postCustomerPaymentInstrument",
+        "patchCustomersPaymentInstrument"
+      ]
+    },
+    "objectInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "postCustomer",
+        "patchCustomer"
+      ]
+    },
+    "defaultPaymentInstrument": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "postCustomer",
+        "patchCustomer"
+      ]
+    },
+    "defaultShippingAddress": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "postCustomer",
+        "patchCustomer"
+      ]
+    },
+    "shipTo": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "postCustomerShippingAddress",
+        "patchCustomersShippingAddress"
+      ]
+    },
+    "clientVersion": {
+      "description": "Specify the version of Microform that you want to use.\n",
+      "type": "string",
+      "contexts": [
+        "generateCaptureContext",
+        "generateUnifiedCheckoutCaptureContext",
+        "generateUnifiedCheckoutV1CaptureContext"
+      ]
+    },
+    "targetOrigins": {
+      "description": "The [target origin](https://developer.mozilla.org/en-US/docs/Glossary/Origin) of the website on which you will be launching Microform is defined by the scheme (protocol), hostname (domain) and port number (if used).  \n\nYou must use https://hostname (unless you use http://localhost)\nWildcards are NOT supported.  Ensure that subdomains are included.\nAny valid top-level domain is supported (e.g. .com, .co.uk, .gov.br etc)\n\nExamples:\n  - https://example.com\n  - https://subdomain.example.com\n  - https://example.com:8080<br><br>\n\nIf you are embedding within multiple nested iframes you need to specify the origins of all the browser contexts used, for example:\n\n  targetOrigins: [\n    \"https://example.com\",\n    \"https://basket.example.com\",\n    \"https://ecom.example.com\"\n  ]<br><br>\n\nYou can supply up to nine origins within the targetOrigins field for nested iframes.\nIf the list of origins exceeds five ensure that you:\n  - Compare the list of origins in the v2/sessions targetOrigins field against the location.ancestorOrigins of the browser. \n  - Ensure that the count of origins and their content matches in both.  If any origins are absent or mismatched, the system will prevent Microform from loading and display a client-side error message.\n",
+      "type": "array",
+      "contexts": [
+        "generateCaptureContext",
+        "generateUnifiedCheckoutCaptureContext",
+        "generateUnifiedCheckoutV1CaptureContext"
+      ]
+    },
+    "allowedCardNetworks": {
+      "description": "The list of card networks you want to use for this Microform transaction.\n\nMicroform currently supports the following card networks:\n    - VISA\n    - MASTERCARD\n    - AMEX\n    - CARNET\n    - CARTESBANCAIRES\n    - CUP\n    - DINERSCLUB\n    - DISCOVER\n    - EFTPOS\n    - ELO\n    - JAYWAN\n    - JCB\n    - JCREW\n    - KCP\n    - MADA\n    - MAESTRO\n    - MEEZA\n    - PAYPAK\n    - UATP\n\n**Important:** \n  - When integrating Microform (Card) at least one card network should be specified in the allowedCardNetworks field in the capture context request.\n  - When integrating Microform (ACH/eCheck) the allowedCardNetworks field is not required in the capture context request.\n  - When integrating both Microform (Card) and Microform (ACH/eCheck) at least one card network should be specified in the allowedCardNetworks field in the capture context request.\n",
+      "type": "array",
+      "contexts": [
+        "generateCaptureContext",
+        "generateUnifiedCheckoutCaptureContext",
+        "generateUnifiedCheckoutV1CaptureContext"
+      ]
+    },
+    "allowedPaymentTypes": {
+      "description": "The payment types that are allowed for the merchant.  \n\nPossible values when launching Microform:\n- CARD\n- CHECK <br><br>\n",
+      "type": "array",
+      "contexts": [
+        "generateCaptureContext",
+        "generateUnifiedCheckoutCaptureContext",
+        "generateUnifiedCheckoutV1CaptureContext"
+      ]
+    },
+    "transientTokenResponseOptions": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "generateCaptureContext",
+        "generateUnifiedCheckoutCaptureContext",
+        "generateUnifiedCheckoutV1CaptureContext"
+      ]
+    },
+    "fields": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "generateFlexAPICaptureContext"
+      ]
+    },
+    "decisionInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "actionDecisionManagerCase"
+      ]
+    },
+    "comments": {
+      "description": "Comments to be added to case.",
+      "type": "string",
+      "contexts": [
+        "commentDecisionManagerCase"
+      ]
+    },
+    "exportComplianceInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "validateExportCompliance"
+      ]
+    },
+    "pointOfServiceInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPushFundsTransfer"
+      ]
+    },
+    "planInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createPlan",
+        "updatePlan",
+        "createSubscription",
+        "updateSubscription",
+        "createFollowOnSubscription"
+      ]
+    },
+    "subscriptionInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createSubscription",
+        "updateSubscription",
+        "createFollowOnSubscription"
+      ]
+    },
+    "billingCyclesToSkip": {
+      "description": "A list of billing cycles that are marked to be skipped.\nThe payment cannot be added to the list if it is a retry attempt.\nThe payment cannot be added to or removed from the list if it is on the same day as its scheduled processing time.\n",
+      "type": "array",
+      "contexts": [
+        "subscriptionsIdPaymentsPut"
+      ]
+    },
+    "requestor": {
+      "description": "Identifies the service requesting parsing\n",
+      "type": "string",
+      "contexts": [
+        "parseEmvTags"
+      ]
+    },
+    "parsedTagLimit": {
+      "description": "Number of tags to parse for each EMV tag string provided.\n",
+      "type": "integer",
+      "contexts": [
+        "parseEmvTags"
+      ]
+    },
+    "emvDetailsList": {
+      "description": "An array of objects, each containing a requestId and the corresponding emvRequestCombinedTags\n",
+      "type": "array",
+      "contexts": [
+        "parseEmvTags"
+      ]
+    },
+    "save": {
+      "description": "Indicates whether or not you want to save this search request for future use. The options are:\n\n* `true`\n* `false` (default value)\n\nIf set to `true`, this field returns\n`searchID` in the response. You can use this value to retrieve the details of the saved search.\n",
+      "type": "boolean",
+      "contexts": [
+        "createSearch"
+      ]
+    },
+    "name": {
+      "description": "Name of this search. When `save` is set to `true`, this search is saved with this name.\n",
+      "type": "string",
+      "contexts": [
+        "createSearch",
+        "post__notification-subscriptions_v2_webhooks",
+        "patch__notification-subscriptions_v2_webhooks_{webhookId}"
+      ]
+    },
+    "timezone": {
+      "description": "Merchant's time zone in ISO standard, using the TZ database format. For example: `America/Chicago`\n",
+      "type": "string",
+      "contexts": [
+        "createSearch",
+        "createReport",
+        "createSubscription",
+        "createStandardOrClassicSubscription"
+      ]
+    },
+    "query": {
+      "description": "String that contains the filters and variables for which you want to search. For information about supported field-filters and operators, see the [Query Filters]( https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn-search-intro/txn-filtering.html) section of the Transaction Search Developer Guide.\n",
+      "type": "string",
+      "contexts": [
+        "createSearch",
+        "postSearchQuery",
+        "postSearchQueryV3"
+      ]
+    },
+    "offset": {
+      "description": "Controls the starting point within the collection of results, which defaults to 0. The first item in the collection is retrieved by setting a zero offset.\n\nFor example, if you have a collection of 15 items to be retrieved from a resource and you specify limit=5, you can retrieve the entire set of results in 3 successive requests by varying the offset value like this:\n\n`offset=0`\n`offset=5`\n`offset=10`\n\n**Note:** If an offset larger than the number of results is provided, this will result in no embedded object being returned.\n",
+      "type": "integer",
+      "contexts": [
+        "createSearch",
+        "postSearchQuery",
+        "postSearchQueryV3"
+      ]
+    },
+    "limit": {
+      "description": "Controls the maximum number of items that may be returned for a single request. The default is 20, the maximum is 2500.\n",
+      "type": "integer",
+      "contexts": [
+        "createSearch",
+        "postSearchQuery",
+        "postSearchQueryV3"
+      ]
+    },
+    "sort": {
+      "description": "A comma separated list of the following form:\n\n`submitTimeUtc:desc`\n",
+      "type": "string",
+      "contexts": [
+        "createSearch",
+        "postSearchQuery",
+        "postSearchQueryV3"
+      ]
+    },
+    "organizationId": {
+      "description": "Valid CyberSource Organization Id",
+      "type": "string",
+      "contexts": [
+        "createReport",
+        "createSubscription",
+        "searchUsers",
+        "post__notification-subscriptions_v2_webhooks",
+        "patch__notification-subscriptions_v2_webhooks_{webhookId}"
+      ]
+    },
+    "reportDefinitionName": {
+      "description": "",
+      "type": "string",
+      "contexts": [
+        "createReport",
+        "createSubscription",
+        "createStandardOrClassicSubscription"
+      ]
+    },
+    "reportFields": {
+      "description": "List of fields which needs to get included in a report",
+      "type": "array",
+      "contexts": [
+        "createReport",
+        "createSubscription"
+      ]
+    },
+    "reportMimeType": {
+      "description": "'Format of the report'\n                \nValid values:\n- application/xml\n- text/csv\n",
+      "type": "string",
+      "contexts": [
+        "createReport",
+        "createSubscription",
+        "createStandardOrClassicSubscription"
+      ]
+    },
+    "reportName": {
+      "description": "Name of the report",
+      "type": "string",
+      "contexts": [
+        "createReport",
+        "createSubscription",
+        "createStandardOrClassicSubscription"
+      ]
+    },
+    "reportStartTime": {
+      "description": "Start time of the report",
+      "type": "string",
+      "contexts": [
+        "createReport"
+      ]
+    },
+    "reportEndTime": {
+      "description": "End time of the report",
+      "type": "string",
+      "contexts": [
+        "createReport"
+      ]
+    },
+    "reportFilters": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "createReport",
+        "createSubscription"
+      ]
+    },
+    "reportPreferences": {
+      "description": "Report Preferences",
+      "type": "object",
+      "contexts": [
+        "createReport",
+        "createSubscription"
+      ]
+    },
+    "groupName": {
+      "description": "Specifies the group name",
+      "type": "string",
+      "contexts": [
+        "createReport",
+        "createSubscription"
+      ]
+    },
+    "reportFrequency": {
+      "description": "'The frequency for which subscription is created.'\n**NOTE: Do not document USER_DEFINED Frequency field in developer center**\nValid Values:\n  - 'DAILY'\n  - 'WEEKLY'\n  - 'MONTHLY'\n  - 'USER_DEFINED'\n",
+      "type": "string",
+      "contexts": [
+        "createSubscription",
+        "createStandardOrClassicSubscription"
+      ]
+    },
+    "reportInterval": {
+      "description": "If the reportFrequency is User-defined, reportInterval should be in **ISO 8601 time format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Time Format](https://en.wikipedia.org/wiki/ISO_8601#Durations)\n\n**Example time format for 2 hours and 30 Mins:**\n  - PT2H30M\n**NOTE: Do not document reportInterval field in developer center**\n",
+      "type": "string",
+      "contexts": [
+        "createSubscription",
+        "createStandardOrClassicSubscription"
+      ]
+    },
+    "startTime": {
+      "description": "The hour at which the report generation should start. It should be in hhmm format.",
+      "type": "string",
+      "contexts": [
+        "createSubscription",
+        "createStandardOrClassicSubscription"
+      ]
+    },
+    "startDay": {
+      "description": "This is the start day if the frequency is WEEKLY or MONTHLY. The value varies from 1-7 for WEEKLY and 1-31 for MONTHLY. For WEEKLY 1 means Sunday and 7 means Saturday. By default the value is 1.",
+      "type": "integer",
+      "contexts": [
+        "createSubscription",
+        "createStandardOrClassicSubscription"
+      ]
+    },
+    "subscriptionType": {
+      "description": "The subscription type for which report definition is required. Valid values are CLASSIC and STANDARD.\nValid Values:\n  - CLASSIC\n  - STANDARD\n",
+      "type": "string",
+      "contexts": [
+        "createStandardOrClassicSubscription"
+      ]
+    },
+    "subscriptionStatus": {
+      "description": "The status for subscription which is either created or updated. By default it is ACTIVE.\nValid Values:\n  - ACTIVE\n  - INACTIVE\n",
+      "type": "string",
+      "contexts": [
+        "createStandardOrClassicSubscription"
+      ]
+    },
+    "customerInformation": {
+      "description": "Contains all of the customer-related fields for the invoice.",
+      "type": "object",
+      "contexts": [
+        "createInvoice",
+        "updateInvoice"
+      ]
+    },
+    "invoiceInformation": {
+      "description": "Contains all of the invoice-specific fields, such as the invoice number and due date.",
+      "type": "object",
+      "contexts": [
+        "createInvoice",
+        "updateInvoice"
+      ]
+    },
+    "merchantDefinedFieldValues": {
+      "description": "",
+      "type": "array",
+      "contexts": [
+        "createInvoice",
+        "updateInvoice"
+      ]
+    },
+    "invoiceSettingsInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "updateInvoiceSettings"
+      ]
+    },
+    "fieldType": {
+      "description": "Possible values:\n- text\n- select",
+      "type": "string",
+      "contexts": [
+        "createMerchantDefinedFieldDefinition",
+        "putMerchantDefinedFieldsDefinitions"
+      ]
+    },
+    "label": {
+      "description": "",
+      "type": "string",
+      "contexts": [
+        "createMerchantDefinedFieldDefinition",
+        "putMerchantDefinedFieldsDefinitions"
+      ]
+    },
+    "customerVisible": {
+      "description": "",
+      "type": "boolean",
+      "contexts": [
+        "createMerchantDefinedFieldDefinition",
+        "putMerchantDefinedFieldsDefinitions"
+      ]
+    },
+    "textMinLength": {
+      "description": "Should be used only if fieldType = \"text\"",
+      "type": "integer",
+      "contexts": [
+        "createMerchantDefinedFieldDefinition",
+        "putMerchantDefinedFieldsDefinitions"
+      ]
+    },
+    "textMaxLength": {
+      "description": "Should be used only if fieldType = \"text\"",
+      "type": "integer",
+      "contexts": [
+        "createMerchantDefinedFieldDefinition",
+        "putMerchantDefinedFieldsDefinitions"
+      ]
+    },
+    "textDefaultValue": {
+      "description": "Should be used only if fieldType = \"text\"",
+      "type": "string",
+      "contexts": [
+        "createMerchantDefinedFieldDefinition",
+        "putMerchantDefinedFieldsDefinitions"
+      ]
+    },
+    "possibleValues": {
+      "description": "Should be mandatory and used only if fieldType = \"select\"",
+      "type": "string",
+      "contexts": [
+        "createMerchantDefinedFieldDefinition",
+        "putMerchantDefinedFieldsDefinitions"
+      ]
+    },
+    "readOnly": {
+      "description": "",
+      "type": "boolean",
+      "contexts": [
+        "createMerchantDefinedFieldDefinition",
+        "putMerchantDefinedFieldsDefinitions"
+      ]
+    },
+    "merchantDefinedDataIndex": {
+      "description": "",
+      "type": "integer",
+      "contexts": [
+        "createMerchantDefinedFieldDefinition",
+        "putMerchantDefinedFieldsDefinitions"
+      ]
+    },
+    "purchaseInformation": {
+      "description": "Contains link specific detail.",
+      "type": "object",
+      "contexts": [
+        "createPaymentLink",
+        "updatePaymentLink"
+      ]
+    },
+    "status": {
+      "description": "The status of the purchase or donation link.\n\nPossible values:\n- ACTIVE\n- INACTIVE\n",
+      "type": "string",
+      "contexts": [
+        "updatePaymentLink",
+        "put__notification-subscriptions_v2_webhooks_{webhookId}_status"
+      ]
+    },
+    "userName": {
+      "description": "User ID of the user you want to get details on.",
+      "type": "string",
+      "contexts": [
+        "searchUsers"
+      ]
+    },
+    "roleId": {
+      "description": "role of the user you are trying to search on.",
+      "type": "string",
+      "contexts": [
+        "searchUsers"
+      ]
+    },
+    "permissionId": {
+      "description": "permission that you are trying to search user on.",
+      "type": "string",
+      "contexts": [
+        "searchUsers"
+      ]
+    },
+    "taxInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "calculateTax"
+      ]
+    },
+    "registrationInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "postRegistration"
+      ]
+    },
+    "integrationInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "postRegistration"
+      ]
+    },
+    "organizationInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "postRegistration"
+      ]
+    },
+    "productInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "postRegistration"
+      ]
+    },
+    "documentInformation": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "postRegistration"
+      ]
+    },
+    "clientRequestAction": {
+      "description": "Client request action.\n",
+      "type": "string",
+      "contexts": [
+        "saveSymEgressKey",
+        "saveAsymEgressKey"
+      ]
+    },
+    "keyInformation": {
+      "description": "Egress Key Information Request\n",
+      "type": "object",
+      "contexts": [
+        "saveSymEgressKey",
+        "saveAsymEgressKey"
+      ]
+    },
+    "description": {
+      "description": "Client friendly webhook description.",
+      "type": "string",
+      "contexts": [
+        "post__notification-subscriptions_v2_webhooks",
+        "patch__notification-subscriptions_v2_webhooks_{webhookId}"
+      ]
+    },
+    "products": {
+      "description": "To see the valid productId and eventTypes, call the \"Create and Manage Webhooks - Retrieve a list of event types\" endpoint.",
+      "type": "array",
+      "contexts": [
+        "post__notification-subscriptions_v2_webhooks",
+        "patch__notification-subscriptions_v2_webhooks_{webhookId}"
+      ]
+    },
+    "webhookUrl": {
+      "description": "The client's endpoint (URL) to receive webhooks.",
+      "type": "string",
+      "contexts": [
+        "post__notification-subscriptions_v2_webhooks",
+        "patch__notification-subscriptions_v2_webhooks_{webhookId}"
+      ]
+    },
+    "healthCheckUrl": {
+      "description": "The client's health check endpoint (URL). If the user does not provide the health check URL, it is the user's responsibility to re-activate the webhook if it is deactivated by calling the test endpoint.\n",
+      "type": "string",
+      "contexts": [
+        "post__notification-subscriptions_v2_webhooks",
+        "patch__notification-subscriptions_v2_webhooks_{webhookId}"
+      ]
+    },
+    "retryPolicy": {
+      "description": "Retry policy for the individual webhooks that are a part of your subscription. If a message fails to deliver, it will execute through this retry policy.\n\nAutomatic suspend and resume:\n\nIf you experience downtime and have `deactivateFlag = true` any new messages will be held in a \"SUSPENDED\" status.\nWhen your healthCheckUrl returns healthy again, the subscription will automatically be re-enabled and your messages will be sent.\nWe will ping your healthCheckUrl routinely using a POST call with an empty payload to check availability.\nIf your endpoint returns an unhealthy status of != 200, we will check the healthCheckUrl at a more frequent rate until it is healthy again.\n\nIf you experience downtime and have `deactivateFlag = false` and your message exhausts all retry attempts the message will go to a \"FAILED\" status.\nSupport will be notified and will reach out to suggest you execute the \"REPLAY\" endpoint at a later date when your server is healthy.\n\n\nReference the below values for formulas and calculations related to the frequency of retries depending on algorithm and configuration.\n",
+      "type": "object",
+      "contexts": [
+        "post__notification-subscriptions_v2_webhooks"
+      ]
+    },
+    "notificationScope": {
+      "description": "The webhook scope. 1. SELF The Webhook is used to deliver webhooks for only this Organization (or Merchant). 2. DESCENDANTS The Webhook is used to deliver webhooks for this Organization and its children. This field is optional. \n \nPossible values:\n- SELF\n- DESCENDANTS",
+      "type": "string",
+      "contexts": [
+        "post__notification-subscriptions_v2_webhooks",
+        "patch__notification-subscriptions_v2_webhooks_{webhookId}"
+      ]
+    },
+    "securityPolicy": {
+      "description": "The security option to authenticate with your API or client server.",
+      "type": "object",
+      "contexts": [
+        "post__notification-subscriptions_v2_webhooks",
+        "patch__notification-subscriptions_v2_webhooks_{webhookId}"
+      ]
+    },
+    "deviceId": {
+      "description": "UUID of the device which needs to be de-associated",
+      "type": "string",
+      "contexts": [
+        "deleteTerminalAssociation"
+      ]
+    },
+    "country": {
+      "description": "Country the purchase is originating from (e.g. country of the merchant). \nUse the two-character ISO Standard\n",
+      "type": "string",
+      "contexts": [
+        "generateUnifiedCheckoutCaptureContext",
+        "generateUnifiedCheckoutV1CaptureContext"
+      ]
+    },
+    "locale": {
+      "description": "Localization of the User experience conforming to the ISO 639-1 language standards and two-character ISO Standard Country Code.\n\nPlease refer to list of [supported locales through Unified Checkout](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-appendix-languages.html)\n",
+      "type": "string",
+      "contexts": [
+        "generateUnifiedCheckoutCaptureContext",
+        "generateUnifiedCheckoutV1CaptureContext"
+      ]
+    },
+    "buttonType": {
+      "description": "Changes the label on the payment button within Unified Checkout .<br><br>\n\nPossible values:\n- ADD_CARD\n- CARD_PAYMENT\n- CHECKOUT\n- CHECKOUT_AND_CONTINUE\n- DEBIT_CREDIT\n- DONATE\n- PAY\n- PAY_WITH_CARD\n- SAVE_CARD\n- SUBSCRIBE_WITH_CARD<br><br>\n\nThis is an optional field,\n",
+      "type": "string",
+      "contexts": [
+        "generateUnifiedCheckoutCaptureContext",
+        "generateUnifiedCheckoutV1CaptureContext"
+      ]
+    },
+    "captureMandate": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "generateUnifiedCheckoutCaptureContext",
+        "generateUnifiedCheckoutV1CaptureContext"
+      ]
+    },
+    "completeMandate": {
+      "description": "The completeMandate object is designed to provide instructions for orchestrating payment services.  Unified Checkout is capable of orchestrating a number of services on your behalf.<br><br>  \nBy providing this field in the capture context Unified Checkout will initiate services on your behalf from the browser, simplifying your integration.\n",
+      "type": "object",
+      "contexts": [
+        "generateUnifiedCheckoutCaptureContext",
+        "generateUnifiedCheckoutV1CaptureContext"
+      ]
+    },
+    "data": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "generateUnifiedCheckoutCaptureContext",
+        "generateUnifiedCheckoutV1CaptureContext"
+      ]
+    },
+    "paymentConfigurations": {
+      "description": "Allows per-transaction payment type configuration overrides.\n",
+      "type": "object",
+      "contexts": [
+        "generateUnifiedCheckoutV1CaptureContext"
+      ]
+    },
+    "appearance": {
+      "description": "Controls the Unified Checkout UI appearance.",
+      "type": "object",
+      "contexts": [
+        "generateUnifiedCheckoutV1CaptureContext"
+      ]
+    },
+    "included": {
+      "description": "",
+      "type": "object",
+      "contexts": [
+        "postBatch"
+      ]
+    },
+    "merchantReference": {
+      "description": "Reference used by merchant to identify batch.",
+      "type": "string",
+      "contexts": [
+        "postBatch"
+      ]
+    },
+    "notificationEmail": {
+      "description": "Email used to notify the batch status.",
+      "type": "string",
+      "contexts": [
+        "postBatch"
+      ]
+    },
+    "consumerIdentity": {
+      "description": "Consumer Identity data. Identifies the consumer using an email address or phone number.",
+      "type": "object",
+      "contexts": [
+        "enrollCard"
+      ]
+    },
+    "enrollmentReferenceData": {
+      "description": "Enrollment Reference Data. Links the enrollment to an existing token reference.",
+      "type": "object",
+      "contexts": [
+        "enrollCard"
+      ]
+    },
+    "assuranceData": {
+      "description": "Assurance data.",
+      "type": "array",
+      "contexts": [
+        "enrollCard",
+        "initiatePurchaseIntent",
+        "updatePurchaseIntent",
+        "cancelPurchaseIntent"
+      ]
+    },
+    "consentData": {
+      "description": "Consent data.",
+      "type": "array",
+      "contexts": [
+        "enrollCard"
+      ]
+    },
+    "mandates": {
+      "description": "Mandate data.",
+      "type": "array",
+      "contexts": [
+        "initiatePurchaseIntent",
+        "updatePurchaseIntent"
+      ]
+    },
+    "isRecurring": {
+      "description": "Indicates whether the transaction is recurring. Default value is false.",
+      "type": "boolean",
+      "contexts": [
+        "initiatePurchaseIntent"
+      ]
+    },
+    "consumerPrompt": {
+      "description": "Recap - A summary or condensed version of user prompts that leads to the purchase.",
+      "type": "string",
+      "contexts": [
+        "initiatePurchaseIntent",
+        "updatePurchaseIntent"
+      ]
+    },
+    "transactionData": {
+      "description": "List of transaction data.",
+      "type": "array",
+      "contexts": [
+        "retrievePaymentCredentials"
+      ]
+    },
+    "confirmationData": {
+      "description": "(Required) Contains Transaction, Order and Payment Confirmation Events.",
+      "type": "array",
+      "contexts": [
+        "confirmTransactionEvents"
+      ]
+    },
+    "instrumentId": {
+      "description": "TMS instrument identifier referencing the stored card.",
+      "type": "string",
+      "contexts": [
+        "provisionMppCredentials"
+      ]
+    },
+    "challenge": {
+      "description": "MPP challenge context received from the merchant's 402 response.",
+      "type": "object",
+      "contexts": [
+        "provisionMppCredentials"
+      ]
+    }
+  }
+}

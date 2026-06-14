@@ -1,0 +1,882 @@
+{
+  "title": "CyberSource API Examples",
+  "description": "Request body examples derived from CyberSource REST API schemas",
+  "examples": {
+    "createPayment_request": {
+      "clientReferenceInformation": {},
+      "processingInformation": {},
+      "issuerInformation": {},
+      "paymentInformation": {},
+      "orderInformation": {},
+      "buyerInformation": {},
+      "senderInformation": {},
+      "recipientInformation": {},
+      "deviceInformation": {},
+      "merchantInformation": {},
+      "aggregatorInformation": {},
+      "consumerAuthenticationInformation": {},
+      "pointOfSaleInformation": {},
+      "merchantDefinedInformation": [],
+      "merchantDefinedSecureInformation": {},
+      "installmentInformation": {},
+      "travelInformation": {},
+      "healthCareInformation": {},
+      "promotionInformation": {},
+      "tokenInformation": {},
+      "invoiceDetails": {},
+      "processorInformation": {},
+      "agreementInformation": {},
+      "riskInformation": {},
+      "acquirerInformation": {},
+      "recurringPaymentInformation": {},
+      "unscheduledPaymentInformation": {},
+      "hostedPaymentInformation": {},
+      "watchlistScreeningInformation": {}
+    },
+    "incrementAuth_request": {
+      "clientReferenceInformation": {},
+      "processingInformation": {},
+      "orderInformation": {},
+      "merchantInformation": {},
+      "travelInformation": {}
+    },
+    "authReversal_request": {
+      "clientReferenceInformation": {},
+      "reversalInformation": {},
+      "processingInformation": {},
+      "orderInformation": {},
+      "pointOfSaleInformation": {},
+      "paymentInformation": {},
+      "deviceInformation": {},
+      "processorInformation": {}
+    },
+    "mitReversal_request": {
+      "clientReferenceInformation": {},
+      "reversalInformation": {},
+      "processingInformation": {},
+      "orderInformation": {},
+      "pointOfSaleInformation": {},
+      "deviceInformation": {},
+      "processorInformation": {}
+    },
+    "capturePayment_request": {
+      "clientReferenceInformation": {},
+      "processingInformation": {},
+      "paymentInformation": {},
+      "orderInformation": {},
+      "buyerInformation": {},
+      "deviceInformation": {},
+      "merchantInformation": {},
+      "aggregatorInformation": {},
+      "pointOfSaleInformation": {},
+      "merchantDefinedInformation": [],
+      "merchantDefinedSecureInformation": {},
+      "installmentInformation": {},
+      "travelInformation": {},
+      "promotionInformation": {},
+      "processorInformation": {}
+    },
+    "refundPayment_request": {
+      "clientReferenceInformation": {},
+      "processingInformation": {},
+      "paymentInformation": {},
+      "orderInformation": {},
+      "buyerInformation": {},
+      "deviceInformation": {},
+      "merchantInformation": {},
+      "aggregatorInformation": {},
+      "pointOfSaleInformation": {},
+      "merchantDefinedInformation": [],
+      "travelInformation": {},
+      "promotionInformation": {},
+      "processorInformation": {}
+    },
+    "refundCapture_request": {
+      "clientReferenceInformation": {},
+      "processingInformation": {},
+      "paymentInformation": {},
+      "orderInformation": {},
+      "buyerInformation": {},
+      "deviceInformation": {},
+      "merchantInformation": {},
+      "aggregatorInformation": {},
+      "pointOfSaleInformation": {},
+      "merchantDefinedInformation": [],
+      "travelInformation": {},
+      "promotionInformation": {},
+      "processorInformation": {}
+    },
+    "createCredit_request": {
+      "clientReferenceInformation": {},
+      "processingInformation": {},
+      "paymentInformation": {},
+      "orderInformation": {},
+      "buyerInformation": {},
+      "deviceInformation": {},
+      "merchantInformation": {},
+      "aggregatorInformation": {},
+      "pointOfSaleInformation": {},
+      "merchantDefinedInformation": [],
+      "merchantDefinedSecureInformation": {},
+      "installmentInformation": {},
+      "travelInformation": {},
+      "recipientInformation": {},
+      "senderInformation": {},
+      "promotionInformation": {},
+      "processorInformation": {},
+      "tokenInformation": {}
+    },
+    "voidPayment_request": {
+      "clientReferenceInformation": {},
+      "paymentInformation": {},
+      "orderInformation": {},
+      "agreementInformation": {},
+      "merchantInformation": {},
+      "processingInformation": {}
+    },
+    "voidCapture_request": {
+      "clientReferenceInformation": {},
+      "paymentInformation": {},
+      "orderInformation": {},
+      "agreementInformation": {},
+      "merchantInformation": {},
+      "processingInformation": {}
+    },
+    "voidRefund_request": {
+      "clientReferenceInformation": {},
+      "paymentInformation": {},
+      "orderInformation": {},
+      "agreementInformation": {},
+      "merchantInformation": {},
+      "processingInformation": {}
+    },
+    "voidCredit_request": {
+      "clientReferenceInformation": {},
+      "paymentInformation": {},
+      "orderInformation": {},
+      "agreementInformation": {},
+      "merchantInformation": {},
+      "processingInformation": {}
+    },
+    "mitVoid_request": {
+      "clientReferenceInformation": {},
+      "paymentInformation": {},
+      "orderInformation": {},
+      "processingInformation": {}
+    },
+    "refreshPaymentStatus_request": {
+      "paymentInformation": {},
+      "clientReferenceInformation": {},
+      "agreementInformation": {},
+      "processingInformation": {}
+    },
+    "billingAgreementsRegistration_request": {
+      "agreementInformation": {},
+      "clientReferenceInformation": {},
+      "aggregatorInformation": {},
+      "consumerAuthenticationInformation": {},
+      "deviceInformation": {},
+      "installmentInformation": {},
+      "merchantInformation": {},
+      "orderInformation": {},
+      "paymentInformation": {},
+      "processingInformation": {},
+      "buyerInformation": {}
+    },
+    "billingAgreementsDeRegistration_request": {
+      "agreementInformation": {},
+      "clientReferenceInformation": {},
+      "aggregatorInformation": {},
+      "consumerAuthenticationInformation": {},
+      "deviceInformation": {},
+      "installmentInformation": {},
+      "merchantInformation": {},
+      "orderInformation": {},
+      "paymentInformation": {},
+      "processingInformation": {},
+      "buyerInformation": {}
+    },
+    "billingAgreementsIntimation_request": {
+      "clientReferenceInformation": {},
+      "installmentInformation": {},
+      "merchantInformation": {},
+      "orderInformation": {},
+      "paymentInformation": {}
+    },
+    "createOrderRequest_request": {
+      "clientReferenceInformation": {},
+      "processingInformation": {},
+      "paymentInformation": {},
+      "orderInformation": {}
+    },
+    "CreateSessionRequest_request": {
+      "clientReferenceInformation": {},
+      "processingInformation": {},
+      "paymentInformation": {},
+      "orderInformation": {},
+      "buyerInformation": {},
+      "deviceInformation": {},
+      "merchantInformation": {},
+      "userInterface": {},
+      "merchantDefinedInformation": [],
+      "agreementInformation": {},
+      "travelInformation": {}
+    },
+    "UpdateSessionReq_request": {
+      "clientReferenceInformation": {},
+      "processingInformation": {},
+      "paymentInformation": {},
+      "orderInformation": {},
+      "buyerInformation": {},
+      "deviceInformation": {},
+      "merchantInformation": {},
+      "userInterface": {},
+      "merchantDefinedInformation": [],
+      "agreementInformation": {},
+      "travelInformation": {}
+    },
+    "createOrder_request": {
+      "clientReferenceInformation": {},
+      "processingInformation": {},
+      "merchantInformation": {},
+      "paymentInformation": {},
+      "orderInformation": {},
+      "senderInformation": {},
+      "eventInformation": {},
+      "travelInformation": {},
+      "recipientInformation": {}
+    },
+    "updateOrder_request": {
+      "clientReferenceInformation": {},
+      "orderInformation": {},
+      "merchantInformation": {},
+      "paymentInformation": {},
+      "processingInformation": {}
+    },
+    "retrieveOrDeletePaymentToken_request": {
+      "processingInformation": {},
+      "paymentInformation": {}
+    },
+    "tokenize_request": {
+      "processingInformation": {},
+      "tokenInformation": {}
+    },
+    "postTokenizedCard_request": {
+      "accountReferenceId": "example_accountReferenceId",
+      "consumerId": "example_consumerId",
+      "createPanInstrumentIdentifier": true,
+      "source": "example_source",
+      "card": {},
+      "passcode": {},
+      "billTo": {}
+    },
+    "postTokenizedCardDelete_request": {
+      "reason": {}
+    },
+    "postTokenPaymentCredentialsV3_request": {
+      "paymentCredentialType": "example_paymentCredentialType",
+      "transactionType": "example_transactionType",
+      "clientCorrelationId": "example_clientCorrelationId",
+      "orderInformation": {},
+      "merchantInformation": {},
+      "deviceInformation": {},
+      "authenticatedIdentities": []
+    },
+    "postTokenPaymentCredentials_request": {
+      "paymentCredentialType": "example_paymentCredentialType",
+      "transactionType": "example_transactionType",
+      "clientCorrelationId": "example_clientCorrelationId",
+      "orderInformation": {},
+      "merchantInformation": {},
+      "deviceInformation": {},
+      "authenticatedIdentities": []
+    },
+    "postIssuerLifeCycleSimulation_request": {
+      "state": "example_state",
+      "card": {},
+      "metadata": {}
+    },
+    "postInstrumentIdentifier_request": {
+      "_links": {},
+      "id": "example_id",
+      "object": "example_object",
+      "state": "example_state",
+      "type": "example_type",
+      "source": "example_source",
+      "tokenProvisioningInformation": {},
+      "card": {},
+      "pointOfSaleInformation": {},
+      "bankAccount": {},
+      "tokenizedCard": {},
+      "issuer": {},
+      "processingInformation": {},
+      "billTo": {},
+      "metadata": {},
+      "_embedded": {}
+    },
+    "patchInstrumentIdentifier_request": {
+      "_links": {},
+      "id": "example_id",
+      "object": "example_object",
+      "state": "example_state",
+      "type": "example_type",
+      "source": "example_source",
+      "tokenProvisioningInformation": {},
+      "card": {},
+      "pointOfSaleInformation": {},
+      "bankAccount": {},
+      "tokenizedCard": {},
+      "issuer": {},
+      "processingInformation": {},
+      "billTo": {},
+      "metadata": {},
+      "_embedded": {}
+    },
+    "postInstrumentIdentifierEnrollment_request": {
+      "_links": {},
+      "id": "example_id",
+      "object": "example_object",
+      "state": "example_state",
+      "type": "example_type",
+      "source": "example_source",
+      "tokenProvisioningInformation": {},
+      "card": {},
+      "pointOfSaleInformation": {},
+      "bankAccount": {},
+      "tokenizedCard": {},
+      "issuer": {},
+      "processingInformation": {},
+      "billTo": {},
+      "metadata": {},
+      "_embedded": {}
+    },
+    "postPaymentInstrument_request": {
+      "_links": {},
+      "id": "example_id",
+      "object": "example_object",
+      "default": true,
+      "state": "example_state",
+      "type": "example_type",
+      "bankAccount": {},
+      "card": {},
+      "buyerInformation": {},
+      "billTo": {},
+      "processingInformation": {},
+      "merchantInformation": {},
+      "instrumentIdentifier": {},
+      "metadata": {},
+      "_embedded": {}
+    },
+    "patchPaymentInstrument_request": {
+      "_links": {},
+      "id": "example_id",
+      "object": "example_object",
+      "default": true,
+      "state": "example_state",
+      "type": "example_type",
+      "bankAccount": {},
+      "card": {},
+      "buyerInformation": {},
+      "billTo": {},
+      "processingInformation": {},
+      "merchantInformation": {},
+      "instrumentIdentifier": {},
+      "metadata": {},
+      "_embedded": {}
+    },
+    "postCustomer_request": {
+      "_links": {},
+      "id": "example_id",
+      "objectInformation": {},
+      "buyerInformation": {},
+      "clientReferenceInformation": {},
+      "merchantDefinedInformation": [],
+      "defaultPaymentInstrument": {},
+      "defaultShippingAddress": {},
+      "metadata": {},
+      "_embedded": {}
+    },
+    "patchCustomer_request": {
+      "_links": {},
+      "id": "example_id",
+      "objectInformation": {},
+      "buyerInformation": {},
+      "clientReferenceInformation": {},
+      "merchantDefinedInformation": [],
+      "defaultPaymentInstrument": {},
+      "defaultShippingAddress": {},
+      "metadata": {},
+      "_embedded": {}
+    },
+    "postCustomerShippingAddress_request": {
+      "_links": {},
+      "id": "example_id",
+      "default": true,
+      "shipTo": {},
+      "metadata": {}
+    },
+    "patchCustomersShippingAddress_request": {
+      "_links": {},
+      "id": "example_id",
+      "default": true,
+      "shipTo": {},
+      "metadata": {}
+    },
+    "postCustomerPaymentInstrument_request": {
+      "_links": {},
+      "id": "example_id",
+      "object": "example_object",
+      "default": true,
+      "state": "example_state",
+      "type": "example_type",
+      "bankAccount": {},
+      "card": {},
+      "buyerInformation": {},
+      "billTo": {},
+      "processingInformation": {},
+      "merchantInformation": {},
+      "instrumentIdentifier": {},
+      "metadata": {},
+      "_embedded": {}
+    },
+    "patchCustomersPaymentInstrument_request": {
+      "_links": {},
+      "id": "example_id",
+      "object": "example_object",
+      "default": true,
+      "state": "example_state",
+      "type": "example_type",
+      "bankAccount": {},
+      "card": {},
+      "buyerInformation": {},
+      "billTo": {},
+      "processingInformation": {},
+      "merchantInformation": {},
+      "instrumentIdentifier": {},
+      "metadata": {},
+      "_embedded": {}
+    },
+    "generateCaptureContext_request": {
+      "clientVersion": "example_clientVersion",
+      "targetOrigins": [],
+      "allowedCardNetworks": [],
+      "allowedPaymentTypes": [],
+      "transientTokenResponseOptions": {}
+    },
+    "generateFlexAPICaptureContext_request": {
+      "fields": {}
+    },
+    "createBundledDecisionManagerCase_request": {
+      "clientReferenceInformation": {},
+      "processorInformation": {},
+      "processingInformation": {},
+      "paymentInformation": {},
+      "orderInformation": {},
+      "buyerInformation": {},
+      "deviceInformation": {},
+      "riskInformation": {},
+      "travelInformation": {},
+      "merchantDefinedInformation": [],
+      "merchantInformation": {},
+      "acquirerInformation": {},
+      "recurringPaymentInformation": {},
+      "consumerAuthenticationInformation": {},
+      "watchlistScreeningInformation": {},
+      "tokenInformation": {}
+    },
+    "payerAuthSetup_request": {
+      "clientReferenceInformation": {},
+      "paymentInformation": {},
+      "processingInformation": {},
+      "tokenInformation": {}
+    },
+    "checkPayerAuthEnrollment_request": {
+      "clientReferenceInformation": {},
+      "orderInformation": {},
+      "paymentInformation": {},
+      "processingInformation": {},
+      "tokenInformation": {},
+      "buyerInformation": {},
+      "deviceInformation": {},
+      "merchantInformation": {},
+      "acquirerInformation": {},
+      "recurringPaymentInformation": {},
+      "consumerAuthenticationInformation": {},
+      "riskInformation": {},
+      "travelInformation": {},
+      "merchantDefinedInformation": []
+    },
+    "validateAuthenticationResults_request": {
+      "clientReferenceInformation": {},
+      "processingInformation": {},
+      "orderInformation": {},
+      "paymentInformation": {},
+      "consumerAuthenticationInformation": {},
+      "deviceInformation": {},
+      "tokenInformation": {}
+    },
+    "addNegative_request": {
+      "orderInformation": {},
+      "paymentInformation": {},
+      "clientReferenceInformation": {},
+      "deviceInformation": {},
+      "riskInformation": {},
+      "buyerInformation": {}
+    },
+    "actionDecisionManagerCase_request": {
+      "decisionInformation": {},
+      "processingInformation": {}
+    },
+    "commentDecisionManagerCase_request": {
+      "comments": "example_comments"
+    },
+    "fraudUpdate_request": {
+      "riskInformation": {},
+      "clientReferenceInformation": {}
+    },
+    "verifyCustomerAddress_request": {
+      "clientReferenceInformation": {},
+      "orderInformation": {},
+      "buyerInformation": {}
+    },
+    "validateExportCompliance_request": {
+      "clientReferenceInformation": {},
+      "orderInformation": {},
+      "buyerInformation": {},
+      "deviceInformation": {},
+      "exportComplianceInformation": {}
+    },
+    "octCreatePayment_request": {
+      "clientReferenceInformation": {},
+      "orderInformation": {},
+      "merchantInformation": {},
+      "recipientInformation": {},
+      "senderInformation": {},
+      "processingInformation": {},
+      "paymentInformation": {},
+      "aggregatorInformation": {}
+    },
+    "createPushFundsTransfer_request": {
+      "aggregatorInformation": {},
+      "clientReferenceInformation": {},
+      "orderInformation": {},
+      "processingInformation": {},
+      "recipientInformation": {},
+      "senderInformation": {},
+      "merchantInformation": {},
+      "paymentInformation": {},
+      "pointOfServiceInformation": {}
+    },
+    "createPullFundsTransfer_request": {
+      "clientReferenceInformation": {},
+      "orderInformation": {},
+      "processingInformation": {},
+      "recipientInformation": {},
+      "senderInformation": {},
+      "buyerInformation": {},
+      "aggregatorInformation": {},
+      "merchantInformation": {}
+    },
+    "createPullFundsReversal_request": {
+      "clientReferenceInformation": {},
+      "reversalInformation": {}
+    },
+    "createPullFundsRefund_request": {
+      "clientReferenceInformation": {},
+      "orderInformation": {}
+    },
+    "createPlan_request": {
+      "planInformation": {},
+      "orderInformation": {}
+    },
+    "updatePlan_request": {
+      "planInformation": {},
+      "processingInformation": {},
+      "orderInformation": {}
+    },
+    "createSubscription_request": {
+      "organizationId": "example_organizationId",
+      "reportDefinitionName": "example_reportDefinitionName",
+      "reportFields": [],
+      "reportMimeType": "example_reportMimeType",
+      "reportFrequency": "example_reportFrequency",
+      "reportInterval": "example_reportInterval",
+      "reportName": "example_reportName",
+      "timezone": "example_timezone",
+      "startTime": "example_startTime",
+      "reportFilters": {},
+      "reportPreferences": {},
+      "groupName": "example_groupName"
+    },
+    "updateSubscription_request": {
+      "clientReferenceInformation": {},
+      "processingInformation": {},
+      "planInformation": {},
+      "subscriptionInformation": {},
+      "orderInformation": {}
+    },
+    "createFollowOnSubscription_request": {
+      "clientReferenceInformation": {},
+      "processingInformation": {},
+      "planInformation": {},
+      "subscriptionInformation": {},
+      "orderInformation": {}
+    },
+    "subscriptionsIdPaymentsPut_request": {
+      "billingCyclesToSkip": []
+    },
+    "getAccountInfo_request": {
+      "clientReferenceInformation": {},
+      "paymentInformation": {},
+      "tokenInformation": {},
+      "processingInformation": {}
+    },
+    "parseEmvTags_request": {
+      "requestor": "example_requestor",
+      "emvDetailsList": []
+    },
+    "createSearch_request": {
+      "save": true,
+      "name": "example_name",
+      "timezone": "example_timezone",
+      "query": "example_query",
+      "sort": "example_sort"
+    },
+    "createReport_request": {
+      "organizationId": "example_organizationId",
+      "reportDefinitionName": "example_reportDefinitionName",
+      "reportFields": [],
+      "reportMimeType": "example_reportMimeType",
+      "reportName": "example_reportName",
+      "timezone": "example_timezone",
+      "reportStartTime": "example_reportStartTime",
+      "reportEndTime": "example_reportEndTime",
+      "reportFilters": {},
+      "reportPreferences": {},
+      "groupName": "example_groupName"
+    },
+    "createStandardOrClassicSubscription_request": {
+      "reportDefinitionName": "example_reportDefinitionName",
+      "subscriptionType": "example_subscriptionType",
+      "reportName": "example_reportName",
+      "reportMimeType": "example_reportMimeType",
+      "reportFrequency": "example_reportFrequency",
+      "reportInterval": "example_reportInterval",
+      "timezone": "example_timezone",
+      "startTime": "example_startTime",
+      "subscriptionStatus": "example_subscriptionStatus"
+    },
+    "createInvoice_request": {
+      "clientReferenceInformation": {},
+      "customerInformation": {},
+      "processingInformation": {},
+      "invoiceInformation": {},
+      "orderInformation": {},
+      "merchantDefinedFieldValues": []
+    },
+    "updateInvoice_request": {
+      "customerInformation": {},
+      "processingInformation": {},
+      "invoiceInformation": {},
+      "orderInformation": {},
+      "merchantDefinedFieldValues": []
+    },
+    "updateInvoiceSettings_request": {
+      "invoiceSettingsInformation": {}
+    },
+    "createMerchantDefinedFieldDefinition_request": {
+      "fieldType": "example_fieldType",
+      "label": "example_label",
+      "customerVisible": true,
+      "textDefaultValue": "example_textDefaultValue",
+      "possibleValues": "example_possibleValues",
+      "readOnly": true
+    },
+    "putMerchantDefinedFieldsDefinitions_request": {
+      "fieldType": "example_fieldType",
+      "label": "example_label",
+      "customerVisible": true,
+      "textDefaultValue": "example_textDefaultValue",
+      "possibleValues": "example_possibleValues",
+      "readOnly": true
+    },
+    "createPaymentLink_request": {
+      "clientReferenceInformation": {},
+      "processingInformation": {},
+      "purchaseInformation": {},
+      "orderInformation": {}
+    },
+    "updatePaymentLink_request": {
+      "status": "example_status",
+      "clientReferenceInformation": {},
+      "processingInformation": {},
+      "purchaseInformation": {},
+      "orderInformation": {}
+    },
+    "searchUsers_request": {
+      "organizationId": "example_organizationId",
+      "userName": "example_userName",
+      "roleId": "example_roleId",
+      "permissionId": "example_permissionId"
+    },
+    "calculateTax_request": {
+      "clientReferenceInformation": {},
+      "taxInformation": {},
+      "orderInformation": {},
+      "merchantInformation": {},
+      "buyerInformation": {}
+    },
+    "voidTax_request": {
+      "clientReferenceInformation": {}
+    },
+    "postRegistration_request": {
+      "registrationInformation": {},
+      "integrationInformation": {},
+      "organizationInformation": {},
+      "productInformation": {},
+      "documentInformation": {}
+    },
+    "saveSymEgressKey_request": {
+      "clientReferenceInformation": {},
+      "clientRequestAction": "example_clientRequestAction",
+      "keyInformation": {}
+    },
+    "post__notification-subscriptions_v2_webhooks_request": {
+      "name": "example_name",
+      "description": "example_description",
+      "organizationId": "example_organizationId",
+      "products": [],
+      "webhookUrl": "example_webhookUrl",
+      "healthCheckUrl": "example_healthCheckUrl",
+      "retryPolicy": {},
+      "notificationScope": "example_notificationScope",
+      "securityPolicy": {}
+    },
+    "patch__notification-subscriptions_v2_webhooks_{webhookId}_request": {
+      "name": "example_name",
+      "organizationId": "example_organizationId",
+      "description": "example_description",
+      "products": [],
+      "webhookUrl": "example_webhookUrl",
+      "notificationScope": "example_notificationScope",
+      "healthCheckUrl": "example_healthCheckUrl",
+      "securityPolicy": {}
+    },
+    "put__notification-subscriptions_v2_webhooks_{webhookId}_status_request": {
+      "status": "example_status"
+    },
+    "saveAsymEgressKey_request": {
+      "clientReferenceInformation": {},
+      "clientRequestAction": "example_clientRequestAction",
+      "keyInformation": {}
+    },
+    "postSearchQuery_request": {
+      "query": "example_query",
+      "sort": "example_sort"
+    },
+    "deleteTerminalAssociation_request": {
+      "deviceId": "example_deviceId"
+    },
+    "postSearchQueryV3_request": {
+      "query": "example_query",
+      "sort": "example_sort"
+    },
+    "generateUnifiedCheckoutCaptureContext_request": {
+      "clientVersion": "example_clientVersion",
+      "targetOrigins": [],
+      "allowedCardNetworks": [],
+      "allowedPaymentTypes": [],
+      "country": "example_country",
+      "locale": "example_locale",
+      "buttonType": "example_buttonType",
+      "captureMandate": {},
+      "completeMandate": {},
+      "transientTokenResponseOptions": {},
+      "data": {},
+      "orderInformation": {}
+    },
+    "generateUnifiedCheckoutV1CaptureContext_request": {
+      "clientVersion": "example_clientVersion",
+      "targetOrigins": [],
+      "allowedCardNetworks": [],
+      "allowedPaymentTypes": [],
+      "paymentConfigurations": {},
+      "appearance": {},
+      "country": "example_country",
+      "locale": "example_locale",
+      "buttonType": "example_buttonType",
+      "captureMandate": {},
+      "completeMandate": {},
+      "transientTokenResponseOptions": {},
+      "data": {}
+    },
+    "postBatch_request": {
+      "type": "example_type",
+      "included": {},
+      "merchantReference": "example_merchantReference",
+      "notificationEmail": "example_notificationEmail"
+    },
+    "bankAccountValidationRequest_request": {
+      "clientReferenceInformation": {},
+      "processingInformation": {},
+      "paymentInformation": {},
+      "tokenInformation": {}
+    },
+    "createOffer_request": {
+      "clientReferenceInformation": {},
+      "paymentInformation": {},
+      "orderInformation": {},
+      "pointOfSaleInformation": {}
+    },
+    "enrollCard_request": {
+      "clientCorrelationId": "example_clientCorrelationId",
+      "deviceInformation": {},
+      "buyerInformation": {},
+      "billTo": {},
+      "consumerIdentity": {},
+      "paymentInformation": {},
+      "enrollmentReferenceData": {},
+      "assuranceData": [],
+      "consentData": []
+    },
+    "initiatePurchaseIntent_request": {
+      "clientCorrelationId": "example_clientCorrelationId",
+      "paymentInformation": {},
+      "deviceInformation": {},
+      "assuranceData": [],
+      "mandates": [],
+      "buyerInformation": {},
+      "isRecurring": true,
+      "consumerPrompt": "example_consumerPrompt"
+    },
+    "updatePurchaseIntent_request": {
+      "clientCorrelationId": "example_clientCorrelationId",
+      "paymentInformation": {},
+      "deviceInformation": {},
+      "assuranceData": [],
+      "mandates": [],
+      "buyerInformation": {},
+      "consumerPrompt": "example_consumerPrompt"
+    },
+    "cancelPurchaseIntent_request": {
+      "clientCorrelationId": "example_clientCorrelationId",
+      "paymentInformation": {},
+      "deviceInformation": {},
+      "assuranceData": []
+    },
+    "retrievePaymentCredentials_request": {
+      "clientCorrelationId": "example_clientCorrelationId",
+      "paymentInformation": {},
+      "transactionData": []
+    },
+    "confirmTransactionEvents_request": {
+      "clientCorrelationId": "example_clientCorrelationId",
+      "paymentInformation": {},
+      "confirmationData": []
+    },
+    "provisionMppCredentials_request": {
+      "instrumentId": "example_instrumentId",
+      "challenge": {}
+    }
+  }
+}
