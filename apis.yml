@@ -7,7 +7,7 @@ description: >-
   comprehensive post-transaction reporting. The platform operates across 190+
   countries and supports card-present, card-not-present, digital wallets,
   alternative payment methods, and buy-now-pay-later integrations.
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/cybersource/refs/heads/main/apis.yml
 version: '0.19'
 modified: '2026-06-13'
@@ -32,7 +32,7 @@ apis:
       and card-present transactions, multi-currency, Level 2/Level 3 data,
       dynamic currency conversion, and specialized payment types including
       airline, healthcare, and ACH/eCheck.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
     baseURL: https://api.cybersource.com
     tags:
@@ -61,7 +61,7 @@ apis:
       profiles, network tokens, and cryptograms. Reduces PCI DSS scope by
       replacing sensitive card data with non-sensitive tokens and supports
       stored credentials for recurring and one-click payment flows.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms.html
     baseURL: https://api.cybersource.com
     tags:
@@ -86,7 +86,7 @@ apis:
       takeover protection, case management, and post-transactional review
       workflows. Supports list management, fraud marking, and hierarchical
       organization-level rules.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.cybersource.com/docs/cybs/en-us/fraud/developer/all/rest/fraud.html
     baseURL: https://api.cybersource.com
     tags:
@@ -110,7 +110,7 @@ apis:
       billing agreements, and on-demand charges. Supports trial periods,
       installment billing, standing orders, and integrates with Token Management
       Service for secure credential storage.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing.html
     baseURL: https://api.cybersource.com
     tags:
@@ -133,7 +133,7 @@ apis:
       Transactions (OCT). Supports use cases including gig economy worker
       payments, insurance disbursements, gaming winnings, and marketplace seller
       payouts across global markets.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.cybersource.com/docs/cybs/en-us/payouts/developer/all/rest/payouts.html
     baseURL: https://api.cybersource.com
     tags:
@@ -157,7 +157,7 @@ apis:
       Encrypts card data on the customer's device before transmission, generates
       transient tokens for server-side processing, and significantly reduces PCI
       scope for merchants.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/microform-integ-v2.html
     baseURL: https://api.cybersource.com
     tags:
@@ -181,7 +181,7 @@ apis:
       digital wallets (Apple Pay, Google Pay, Click to Pay), buy-now-pay-later
       providers, and alternative payment methods. Reduces development burden and
       accelerates time-to-live for multi-method checkout flows.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/uc-intro.html
     baseURL: https://api.cybersource.com
     tags:
@@ -206,7 +206,7 @@ apis:
       authentication flows. Helps merchants shift chargeback liability and
       satisfy Strong Customer Authentication (SCA) requirements in regulated
       markets.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.cybersource.com/docs/cybs/en-us/payer-authentication/developer/all/rest/payer-auth.html
     baseURL: https://api.cybersource.com
     tags:
@@ -230,7 +230,7 @@ apis:
       Supports on-demand report generation, scheduled report subscriptions, and
       report download by date range. Provides data for accounting reconciliation,
       business intelligence, and compliance requirements.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.cybersource.com/docs/cybs/en-us/reporting/developer/all/rest/reporting.html
     baseURL: https://api.cybersource.com
     tags:
@@ -253,7 +253,7 @@ apis:
       reference number, and transaction status. Supports both individual
       transaction detail retrieval and batch queries for operational monitoring
       and customer service workflows.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.cybersource.com/docs/cybs/en-us/reporting/developer/all/rest/reporting/txn-search.html
     baseURL: https://api.cybersource.com
     tags:
@@ -275,7 +275,7 @@ apis:
       endpoints. Supports digital signatures for payload verification, retry
       logic for failed deliveries, and multiple event subscription types.
       Webhooks v2 is the current supported version following decommission of v1.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.cybersource.com/docs/cybs/en-us/webhooks/developer/all/rest/webhooks.html
     baseURL: https://api.cybersource.com
     tags:
@@ -297,7 +297,7 @@ apis:
       Enables ISOs, payment facilitators, and technology partners to onboard
       merchants, configure product settings, and manage organizational
       hierarchies at scale through REST API calls.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.cybersource.com/docs/cybs/en-us/account-management/developer/all/rest/account-mgmt.html
     baseURL: https://api.cybersource.com
     tags:
@@ -320,7 +320,7 @@ apis:
       status, and enables merchants to collect payments via email-delivered
       invoices without requiring customer account creation or full checkout
       integration.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing.html
     baseURL: https://api.cybersource.com
     tags:
@@ -342,7 +342,7 @@ apis:
       payment card numbers. Helps merchants optimize checkout routing decisions,
       apply appropriate fee structures, and support dynamic currency conversion
       logic.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.cybersource.com/docs/cybs/en-us/bin-lookup/developer/all/rest/bin-lookup.html
     baseURL: https://api.cybersource.com
     tags:
@@ -365,7 +365,7 @@ apis:
       management. Designed to support AI agent workflows, automated payment
       orchestration, and programmatic commerce integrations for next-generation
       payment scenarios.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developer.cybersource.com/
     baseURL: https://api.cybersource.com
     tags:
