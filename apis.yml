@@ -382,6 +382,10 @@ apis:
         email: ''
 
 common:
+  - type: DomainSecurity
+    url: security/cybersource-domain-security.yml
+  - url: https://www.cybersource.com/en-us/blog.html
+    type: Blog
   - type: Portal
     url: https://developer.cybersource.com/
   - type: Documentation
