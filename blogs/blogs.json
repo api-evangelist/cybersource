@@ -1,0 +1,14 @@
+{
+  "repo": "cybersource",
+  "feeds": [
+    {
+      "source": "https://www.cybersource.com/en-us/blog.html",
+      "feed_url": "https://www.cybersource.com/en-us/blog.html",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 10
+}
