@@ -382,6 +382,8 @@ apis:
         email: ''
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/cybersource-agentic-access.yml
   - type: DomainSecurity
     url: security/cybersource-domain-security.yml
   - url: https://www.cybersource.com/en-us/blog.html
