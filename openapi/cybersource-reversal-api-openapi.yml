@@ -1,0 +1,2264 @@
+swagger: '2.0'
+info:
+  description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
+  version: 0.0.1
+  title: CyberSource Merged Spec bankAccountValidation reversal API
+host: apitest.cybersource.com
+basePath: /
+schemes:
+- https
+consumes:
+- application/json;charset=utf-8
+produces:
+- application/hal+json;charset=utf-8
+tags:
+- name: reversal
+  description: An authorization reversal releases the hold that the payment placed on the customer's funds.
+paths:
+  /pts/v2/payments/{id}/reversals:
+    post:
+      summary: Process an Authorization Reversal
+      description: Include the payment ID in the POST request to reverse the payment amount.
+      tags:
+      - reversal
+      operationId: authReversal
+      x-devcenter-metaData:
+        categoryTag: Payments
+        developerGuides: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/ctv/rest/payments/payments-intro.html
+        isMLEsupported: true
+        mleForRequest: optional
+      parameters:
+      - name: id
+        in: path
+        description: The payment ID returned from a previous payment request.
+        required: true
+        type: string
+      - name: authReversalRequest
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            clientReferenceInformation:
+              type: object
+              properties:
+                code:
+                  type: string
+                  maxLength: 59
+                  description: 'Merchant-generated order reference or tracking number. It is recommended that you send a unique value for each
+
+                    transaction so that you can perform meaningful searches for the transaction.
+
+
+                    #### Used by
+
+                    **Authorization**
+
+                    Required field.
+
+
+                    #### PIN Debit
+
+                    Requests for PIN debit reversals need to use the same merchant reference number that was used in the transaction that is being
+
+                    reversed.
+
+
+                    Required field for all PIN Debit requests (purchase, credit, and reversal).
+
+
+                    #### FDC Nashville Global
+
+                    Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports.
+
+                    '
+                pausedRequestId:
+                  type: string
+                  maxLength: 26
+                  description: 'Used to resume a transaction that was paused for an order modification rule to allow for payer authentication to complete. To resume and continue with the authorization/decision service flow, call the services and include the request id from the prior decision call.
+
+                    '
+                comments:
+                  type: string
+                  description: Brief description of the order or any comment you wish to add to the order.
+                partner:
+                  type: object
+                  properties:
+                    developerId:
+                      type: string
+                      maxLength: 8
+                      description: 'Identifier for the developer that helped integrate a partner solution to CyberSource.
+
+
+                        Send this value in all requests that are sent through the partner solutions built by that developer.
+
+                        CyberSource assigns the ID to the developer.
+
+
+                        **Note** When you see a developer ID of 999 in reports, the developer ID that was submitted is incorrect.
+
+                        '
+                    solutionId:
+                      type: string
+                      maxLength: 8
+                      description: 'Identifier for the partner that is integrated to CyberSource.
+
+
+                        Send this value in all requests that are sent through the partner solution. CyberSource assigns the ID to the partner.
+
+
+                        **Note** When you see a solutionId of 999 in reports, the solutionId that was submitted is incorrect.
+
+                        '
+                    thirdPartyCertificationNumber:
+                      type: string
+                      maxLength: 12
+                      description: 'Value that identifies the application vendor and application version for a third party gateway.
+
+                        CyberSource provides you with this value during testing and validation.
+
+                        This field is supported only on CyberSource through VisaNet.
+
+
+                        #### Used by
+
+                        **Authorization, Authorization Reversal, Capture, Credit, Incremental Authorization, and Void**
+
+                        Optional field.
+
+
+                        #### PIN debit
+
+                        Required field for PIN debit credit, PIN debit purchase, or PIN debit reversal request.
+
+                        '
+                applicationName:
+                  type: string
+                  description: 'The name of the Connection Method client (such as Virtual Terminal or SOAP Toolkit API) that the merchant uses to send a transaction request to CyberSource.
+
+                    '
+                applicationVersion:
+                  type: string
+                  description: 'Version of the CyberSource application or integration used for a transaction.
+
+                    '
+                applicationUser:
+                  type: string
+                  description: 'The entity that is responsible for running the transaction and submitting the processing request to CyberSource. This could be a person, a system, or a connection method.
+
+                    '
+                reconciliationId:
+                  type: string
+                  maxLength: 60
+                  description: 'Reference number for the transaction.
+
+                    Depending on how your Cybersource account is configured, this value could either be provided in the API request or generated by CyberSource.
+
+                    The actual value used in the request to the processor is provided back to you by Cybersource in the response.
+
+                    '
+                transactionId:
+                  type: string
+                  maxLength: 30
+                  description: 'Identifier that you assign to the transaction. Normally generated by a client server to identify a unique API request.
+
+
+                    **Note** Use this field only if you want to support merchant-initiated reversal and void operations.
+
+
+                    #### Used by
+
+                    **Authorization, Authorization Reversal, Capture, Credit, and Void**
+
+                    Optional field.
+
+
+                    #### PIN Debit
+
+                    For a PIN debit reversal, your request must include a request ID or a merchant transaction identifier.
+
+                    Optional field for PIN debit purchase or credit requests.
+
+                    '
+            reversalInformation:
+              type: object
+              properties:
+                amountDetails:
+                  type: object
+                  properties:
+                    totalAmount:
+                      type: string
+                      maxLength: 19
+                      description: "Grand total for the order. This value cannot be negative. You can include a decimal point (.), but no other special characters.\nCyberSource truncates the amount to the correct number of decimal places.\n\n**Note** For CTV, FDCCompass, Paymentech processors, the maximum length for this field is 12.\n\n**Important** Some processors have specific requirements and limitations, such as maximum amounts and maximum field lengths.\n\nIf your processor supports zero amount authorizations, you can set this field to 0 for the authorization to check if the card is lost or stolen. \n\n#### Card Present\nRequired to include either this field or `orderInformation.lineItems[].unitPrice` for the order.\n\n#### Invoicing / Pay By Link\nRequired for creating a new invoice or payment link.\n\n#### PIN Debit\nAmount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount.\n\nRequired field for PIN Debit purchase and PIN Debit credit requests.\nOptional field for PIN Debit reversal requests.\n\n#### GPX\nThis field is optional for reversing an authorization or credit; however, for all other processors, these fields are required.\n\n#### DCC with a Third-Party Provider\nSet this field to the converted amount that was returned by the DCC provider. You must include either this field or the 1st line item in the order and the specific line-order amount in your request. \n\n#### DCC for First Data\nNot used.\n"
+                    currency:
+                      type: string
+                      maxLength: 3
+                      description: 'Currency used for the order. Use the three-character [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)
+
+
+                        #### Used by
+
+                        **Authorization**
+
+                        Required field.
+
+
+                        **Authorization Reversal**
+
+                        For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.
+
+
+                        #### PIN Debit
+
+                        Currency for the amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+
+                        Returned by PIN debit purchase.
+
+
+                        For PIN debit reversal requests, you must use the same currency that was used for the PIN debit purchase or PIN debit credit that you are reversing.
+
+                        For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+
+
+                        Required field for PIN Debit purchase and PIN Debit credit requests.
+
+                        Optional field for PIN Debit reversal requests.
+
+
+                        #### GPX
+
+                        This field is optional for reversing an authorization or credit.
+
+
+                        #### DCC for First Data
+
+                        Your local currency.
+
+
+                        #### Tax Calculation
+
+                        Required for international tax and value added tax only.
+
+                        Optional for U.S. and Canadian taxes.
+
+                        Your local currency.
+
+                        '
+                reason:
+                  type: string
+                  description: "Reason for the authorization reversal. Possible value:\n\n - `34`: Suspected fraud\n\nThis field is ignored for processors that do not support this value.\n\nReturned by authorization reversal.\n"
+            processingInformation:
+              type: object
+              properties:
+                paymentSolution:
+                  type: string
+                  maxLength: 12
+                  description: "Type of digital payment solution for the transaction. Possible Values:\n\n - `visacheckout`: Visa Checkout. This value is required for Visa Checkout transactions. For details, see `payment_solution` field description in [Visa Checkout Using the REST API.](https://developer.cybersource.com/content/dam/docs/cybs/en-us/apifields/reference/all/rest/api-fields.pdf)\n - `001`: Apple Pay.\n - `004`: Cybersource In-App Solution.\n - `005`: Masterpass. This value is required for Masterpass transactions on OmniPay Direct. \n - `006`: Android Pay.\n - `007`: Chase Pay.\n - `008`: Samsung Pay.\n - `012`: Google Pay.\n - `013`: Cybersource P2PE Decryption\n - `014`: Mastercard credential on file (COF) payment network token. Returned in authorizations that use a payment network token associated with a TMS token.\n - `015`: Visa credential on file (COF) payment network token. Returned in authorizations that use a payment network token associated with a TMS token.\n - `027`: Click to Pay.\n"
+                reconciliationId:
+                  type: string
+                  maxLength: 60
+                  description: 'Please check with Cybersource customer support to see if your merchant account is configured correctly so you
+
+                    can include this field in your request.
+
+                    * For Payouts: max length for FDCCompass is String (22).
+
+                    '
+                linkId:
+                  type: string
+                  maxLength: 26
+                  description: 'Value that links the current authorization request to the original authorization request. Set this value
+
+                    to the ID that was returned in the reply message from the original authorization request.
+
+
+                    This value is used for:
+
+
+                    - Partial authorizations
+
+                    - Split shipments
+
+                    '
+                reportGroup:
+                  type: string
+                  maxLength: 25
+                  description: 'Attribute that lets you define custom grouping for your processor reports. This field is supported only for **Worldpay VAP**.
+
+                    '
+                visaCheckoutId:
+                  type: string
+                  maxLength: 48
+                  description: 'Identifier for the **Visa Checkout** order. Visa Checkout provides a unique order ID for every transaction in
+
+                    the Visa Checkout **callID** field.
+
+                    '
+                issuer:
+                  type: object
+                  properties:
+                    discretionaryData:
+                      type: string
+                      maxLength: 255
+                      description: 'Data defined by the issuer.
+
+
+                        The value for this reply field will probably be the same as the value that you submitted in the authorization request, but it is possible for the processor, issuer, or acquirer to modify the value.
+
+
+                        This field is supported only for Visa transactions on **CyberSource through VisaNet**.
+
+                        '
+                actionList:
+                  type: array
+                  description: 'Array of actions (one or more) to be included in the reversal
+
+                    Possible value:
+
+                    - `AP_AUTH_REVERSAL`: Use this when you want to reverse an Alternative Payment Authorization.
+
+                    '
+                  items:
+                    type: string
+                transactionTypeIndicator:
+                  type: string
+                  maxLength: 3
+                  description: 'This field is used identify the type of payment transaction taking place. This field is applicable for MasterCard transactions only.
+
+                    Possible values:
+
+                    - 201- Mastercard Rebate
+
+                    - 202- rePower Load Value
+
+                    - 203- Gaming Re-pay
+
+                    - 204- General Person-to-Person
+
+                    - 205- General Transfer to Own Account
+
+                    - 206- Agent Cash Out
+
+                    - 207- Payment of Own Credit Card Bill
+
+                    - 208- Business Disbursement
+
+                    - 209- Government/Non-Profit Disbursement
+
+                    - 210- Rapid Merchant Settlement
+
+                    - 211- Cash in at ATM (Usage limited to specific countries)
+
+                    - 212- Cash in at Point of Sale (Usage limited to specific countries)
+
+                    - 213- General Business to Business Transfer
+
+                    - 214- Mastercard Merchant Presented QR
+
+                    - 215- Mastercard Merchant Presented QR Refund Payment
+
+                    - 216- Utility Payments (for Brazil domestic use only)
+
+                    - 217- Government Services (for Brazil domestic use only)
+
+                    - 218- Mobile phone top-ups (for Brazil domestic use only)
+
+                    - 219- Coupon booklet payments (for Brazil domestic use only)
+
+                    - 220- General Person-to-Person Transfer
+
+                    - 221- Person-to-Person Transfer to Card Account
+
+                    - 222- General Transfer to Own Account
+
+                    - 223- Agent Cash Out
+
+                    - 224- Payment of Own Credit Card Bill
+
+                    - 225- Business Disbursement
+
+                    - 226- Transfer to Own Staged Digital Wallet Account
+
+                    - 227- Transfer to Own Debit or Prepaid Account
+
+                    - 228- General Business-to-Business Transfer
+
+                    - 229- Installment-based repayment
+
+                    - 230- Mastercard ATM Cash Pick-Up Transaction
+
+                    - 231- Cryptocurrency
+
+                    - 232- High-risk Securities
+
+                    '
+            orderInformation:
+              type: object
+              properties:
+                amountDetails:
+                  type: object
+                  properties:
+                    serviceFeeAmount:
+                      type: string
+                      maxLength: 15
+                      description: 'Service fee. Required for service fee transactions.
+
+                        '
+                lineItems:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      quantity:
+                        type: integer
+                        minimum: 1
+                        maximum: 999999999
+                        default: 1
+                        description: 'Number of units for this order. Must be a non-negative integer.
+
+
+                          The default is `1`. For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`),
+
+                          this field is required when `orderInformation.lineItems[].productCode` is not `default` or one of the other values
+
+                          related to shipping and/or handling.
+
+
+                          #### Tax Calculation
+
+                          Optional field for U.S., Canadian, international tax, and value added taxes.
+
+                          '
+                      unitPrice:
+                        type: string
+                        maxLength: 15
+                        description: 'Per-item price of the product. This value for this field cannot be negative.
+
+
+                          You must include either this field or the request-level field `orderInformation.amountDetails.totalAmount` in your request.
+
+
+                          You can include a decimal point (.), but you cannot include any other special characters.
+
+                          The value is truncated to the correct number of decimal places.
+
+
+                          #### DCC with a Third-Party Provider
+
+                          Set this field to the converted amount that was returned by the DCC provider. You must include either
+
+                          the 1st line item in the order and this field, or the request-level field `orderInformation.amountDetails.totalAmount` in your request.
+
+
+                          #### Tax Calculation
+
+                          Required field for U.S., Canadian, international and value added taxes.
+
+
+                          #### Zero Amount Authorizations
+
+                          If your processor supports zero amount authorizations, you can set this field to 0 for the
+
+                          authorization to check if the card is lost or stolen.
+
+
+                          #### Maximum Field Lengths
+
+                          For GPN and JCN Gateway: Decimal (10)
+
+                          All other processors: Decimal (15)
+
+                          '
+            pointOfSaleInformation:
+              type: object
+              properties:
+                emv:
+                  type: object
+                  properties:
+                    tags:
+                      type: string
+                      maxLength: 1998
+                      description: "EMV data that is transmitted from the chip card to the issuer, and from the issuer to the chip card. The EMV\ndata is in the tag-length-value format and includes chip card tags, terminal tags, and transaction detail tags.\n\nFor information about the individual tags, see the \"Application Specification\" section in the EMV 4.3 Specifications: http://emvco.com\n\n**Note** Card present information about EMV applies only to credit card processing and PIN debit processing.\nAll other card present information applies only to credit card processing. PIN debit processing is available only\non FDC Nashville Global.\n\n**Important** The following tags contain sensitive information and **must not** be included in this field:\n\n - `56`: Track 1 equivalent data\n - `57`: Track 2 equivalent data\n - `5A`: Application PAN\n - `5F20`: Cardholder name\n - `5F24`: Application expiration date (This sensitivity has been relaxed for Credit Mutuel-CIC, American Express Direct, FDC Nashville Global, First Data Merchant Solutions, and SIX)\n - `99`: Transaction PIN\n - `9F0B`: Cardholder name (extended)\n - `9F1F`: Track 1 discretionary data\n - `9F20`: Track 2 discretionary data\n\nFor captures, this field is required for contact EMV transactions. Otherwise, it is optional.\n\nFor credits, this field is required for contact EMV stand-alone credits and contactless EMV stand-alone credits.\nOtherwise, it is optional.\n\n**Important** For contact EMV captures, contact EMV stand-alone credits, and contactless EMV stand-alone credits,\nyou must include the following tags in this field. For all other types of EMV transactions, the following tags\nare optional.\n\n - `95`: Terminal verification results\n - `9F10`: Issuer application data\n - `9F26`: Application cryptogram\n\n\n#### CyberSource through VisaNet\n- In Japan: 199 bytes\n- In other countries: String (252)\n\nFor Mastercard Transactions, Optionally Tag 9F60 (Authenticated Application Data) and \nTag 96 (Kernel Identifier - Terminal) can be included in the Field.\n\n#### GPX\nThis field only supports transactions from the following card types:\n- Visa\n- Mastercard\n- AMEX\n- Discover\n- Diners\n- JCB\n- Union Pay International\n\n#### JCN Gateway\nThe following tags must be included:\n- `4F`: Application identifier\n- `84`: Dedicated file name\n\nData length: 199 bytes\n\n#### All other processors:\nString (999)\n\n#### Used by\nAuthorization: Optional\nAuthorization Reversal: Optional\nCredit: Optional\nPIN Debit processing (purchase, credit and reversal): Optional\n"
+            paymentInformation:
+              type: object
+              properties:
+                paymentType:
+                  type: object
+                  properties:
+                    method:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: 'Identifier for the payment type
+
+                            '
+                merchantLimitedAcceptanceIndicator:
+                  type: string
+                  maxLength: 1
+                  description: 'Mastercard One Credential merchant limited acceptance indicator. Mastercard One Credential connects multiple Mastercard payment methods and allows cardhollers to access various options and set payment preferences.
+
+
+                    This field indicates which Mastercard One Credential funding PAN acceptance brands should NOT be assigned for this transaction.
+
+
+                    This field flows in ISO field 34, DSID 02 tag DB, mapped to Mastercard Data Element (DE) 48, Sub element 02, Subfield 01.
+
+
+                    Possible values:
+
+                    - `C`: Do not assign a Mastercard One Credential funding PAN containing the Mastercard Credit Acceptance Brand for this transaction
+
+                    - `D`: Do not assign a Mastercard One Credential funding PAN containing the Debit Mastercard Acceptance Brand for this transaction
+
+                    - `M`: Do not assign a Mastercard One Credential funding PAN containing the Maestro Acceptance Brand for this transaction
+
+
+                    This field is supported for Authorization reversal request.
+
+
+                    #### Used by
+
+                    **Authorization Reversal Request**
+
+                    Optional field.
+
+                    '
+            deviceInformation:
+              type: object
+              properties:
+                deviceType:
+                  type: string
+                  maxLength: 1
+                  description: "Account Entry Device Type for Tap to More transactions. This field flows in ISO Field 34 DSID 02 Tag 89.\n\nValid Values:\n- `1`: Off-the-shelf mobile consumer\n\nMastercard is introducing changes to support commercialization of Tap to More transactions. \nAcquirers globally must be prepared to send a value of 1 (Off-the-shelf mobile-consumer) \nin Field 34—Acceptance Environment Data (TLV Format), Dataset ID 02—Acceptance Environment \nAdditional Data, Tag 89—Account Entry Device Type for Tap to More transactions. Visa will \nmap this value to a value of 8 (Remote terminal) in Mastercard Data Element 61.10.\n\n#### Mapping\n- SCMP API Field: customer_device_type\n- Simple Order API Field: billTo_deviceType\n- CCS: device.type\n- NRTF Key: customer_device_type\n\nOptional field.\n"
+            processorInformation:
+              type: object
+              properties:
+                preApprovalToken:
+                  type: string
+                  maxLength: 60
+                  description: This is a token generated by PSP, which is received in response to the Sessions service. This token should be sent in the following transactions.
+                network:
+                  type: object
+                  properties:
+                    economicallyRelatedTxnId:
+                      type: string
+                      maxLength: 50
+                      description: Indicates the economically related transaction id
+          example:
+            clientReferenceInformation:
+              code: TC50171_3
+              transactionId: code
+            reversalInformation:
+              reason: testing
+              amountDetails:
+                totalAmount: '102.21'
+      responses:
+        '201':
+          description: Successful response.
+          schema:
+            title: ptsV2PaymentsReversalsPost201Response
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                        description: This is the endpoint of the resource that was created by the successful request.
+                      method:
+                        type: string
+                        description: '`method` refers to the HTTP method that you can send to the `self` endpoint to retrieve details of the resource.'
+              id:
+                type: string
+                maxLength: 26
+                description: 'An unique identification number generated by Cybersource to identify the submitted request. Returned by all services.
+
+                  It is also appended to the endpoint of the resource.
+
+                  On incremental authorizations, this value with be the same as the identification number returned in the original authorization response.
+
+                  '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - REVERSED\n"
+              reconciliationId:
+                type: string
+                maxLength: 60
+                description: 'Reference number for the transaction.
+
+                  Depending on how your Cybersource account is configured, this value could either be provided in the API request or generated by CyberSource.
+
+                  The actual value used in the request to the processor is provided back to you by Cybersource in the response.
+
+                  '
+              clientReferenceInformation:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    maxLength: 59
+                    description: 'Merchant-generated order reference or tracking number. It is recommended that you send a unique value for each
+
+                      transaction so that you can perform meaningful searches for the transaction.
+
+
+                      #### Used by
+
+                      **Authorization**
+
+                      Required field.
+
+
+                      #### PIN Debit
+
+                      Requests for PIN debit reversals need to use the same merchant reference number that was used in the transaction that is being
+
+                      reversed.
+
+
+                      Required field for all PIN Debit requests (purchase, credit, and reversal).
+
+
+                      #### FDC Nashville Global
+
+                      Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports.
+
+                      '
+                  submitLocalDateTime:
+                    type: string
+                    maxLength: 14
+                    description: 'Date and time at your physical location.
+
+
+                      Format: `YYYYMMDDhhmmss`, where YYYY = year, MM = month, DD = day, hh = hour, mm = minutes ss = seconds
+
+
+                      #### PIN Debit
+
+                      Optional field for PIN Debit purchase and credit requests.
+
+                      '
+                  ownerMerchantId:
+                    type: string
+                    description: 'Merchant ID that was used to create the subscription or customer profile for which the service was requested.
+
+
+                      If your CyberSource account is enabled for Recurring Billing, this field is returned only if you are using
+
+                      subscription sharing and if your merchant ID is in the same merchant ID pool as the owner merchant ID.
+
+
+                      If your CyberSource account is enabled for Payment Tokenization, this field is returned only if you are using
+
+                      profile sharing and if your merchant ID is in the same merchant ID pool as the owner merchant ID.
+
+                      '
+              reversalAmountDetails:
+                type: object
+                properties:
+                  reversedAmount:
+                    type: string
+                    maxLength: 15
+                    description: 'Total reversed amount.
+
+
+                      Returned by authorization reversal.
+
+                      '
+                  originalTransactionAmount:
+                    type: string
+                    maxLength: 15
+                    description: 'Amount of the original transaction.
+
+
+                      Returned by authorization reversal and void.
+
+                      '
+                  currency:
+                    type: string
+                    maxLength: 3
+                    description: 'Currency used for the order. Use the three-character [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)
+
+
+                      #### Used by
+
+                      **Authorization**
+
+                      Required field.
+
+
+                      **Authorization Reversal**
+
+                      For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.
+
+
+                      #### PIN Debit
+
+                      Currency for the amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+
+                      Returned by PIN debit purchase.
+
+
+                      For PIN debit reversal requests, you must use the same currency that was used for the PIN debit purchase or PIN debit credit that you are reversing.
+
+                      For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+
+
+                      Required field for PIN Debit purchase and PIN Debit credit requests.
+
+                      Optional field for PIN Debit reversal requests.
+
+
+                      #### GPX
+
+                      This field is optional for reversing an authorization or credit.
+
+
+                      #### DCC for First Data
+
+                      Your local currency.
+
+
+                      #### Tax Calculation
+
+                      Required for international tax and value added tax only.
+
+                      Optional for U.S. and Canadian taxes.
+
+                      Your local currency.
+
+                      '
+              processorInformation:
+                type: object
+                properties:
+                  transactionId:
+                    type: string
+                    maxLength: 255
+                    description: 'Network transaction identifier (TID). You can use this value to identify a specific transaction when you are
+
+                      discussing the transaction with your processor. Not all processors provide this value.
+
+
+                      Returned by the authorization service.
+
+
+                      #### PIN debit
+
+                      Transaction identifier generated by the processor.
+
+
+                      Returned by PIN debit credit.
+
+
+                      #### GPX
+
+                      Processor transaction ID.
+
+
+                      #### Cielo
+
+                      For Cielo, this value is the non-sequential unit (NSU) and is supported for all transactions. The value is generated by Cielo or the issuing bank.
+
+
+                      #### Comercio Latino
+
+                      For Comercio Latino, this value is the proof of sale or non-sequential unit (NSU) number generated by the acquirers Cielo and Rede, or the issuing bank.
+
+
+                      #### CyberSource through VisaNet and GPN
+
+                      For details about this value for CyberSource through VisaNet and GPN, see "processorInformation.networkTransactionId" in [REST API Fields](https://developer.cybersource.com/content/dam/docs/cybs/en-us/apifields/reference/all/rest/api-fields.pdf)
+
+
+                      #### Moneris
+
+                      This value identifies the transaction on a host system. It contains the following information:
+
+                      - Terminal used to process the transaction
+
+                      - Shift during which the transaction took place
+
+                      - Batch number
+
+                      - Transaction number within the batch
+
+                      You must store this value. If you give the customer a receipt, display this value on the receipt.
+
+
+                      **Example** For the value
+
+                      66012345001069003:
+
+                      - Terminal ID = 66012345
+
+                      - Shift number = 001
+
+                      - Batch number = 069
+
+                      - Transaction number = 003
+
+                      '
+                  responseCode:
+                    type: string
+                    maxLength: 10
+                    description: 'For most processors, this is the error message sent directly from the bank. Returned only when the processor
+
+                      returns this value.
+
+
+                      **Important** Do not use this field to evaluate the result of the authorization.
+
+
+                      #### PIN debit
+
+                      Response value that is returned by the processor or bank.
+
+                      **Important** Do not use this field to evaluate the results of the transaction request.
+
+
+                      Returned by PIN debit credit, PIN debit purchase, and PIN debit reversal.
+
+
+                      #### AIBMS
+
+                      If this value is `08`, you can accept the transaction if the customer provides you with identification.
+
+
+                      #### Atos
+
+                      This value is the response code sent from Atos and it might also include the response code from the bank.
+
+                      Format: `aa,bb` with the two values separated by a comma and where:
+
+                      - `aa` is the two-digit error message from Atos.
+
+                      - `bb` is the optional two-digit error message from the bank.
+
+
+                      #### Comercio Latino
+
+                      This value is the status code and the error or response code received from the processor separated by a colon.
+
+                      Format: [status code]:E[error code] or [status code]:R[response code]
+
+                      Example `2:R06`
+
+
+                      #### JCN Gateway
+
+                      Processor-defined detail error code. The associated response category code is in the `processorInformation.responseCategoryCode` field.
+
+                      String (3)
+
+
+                      #### paypalgateway
+
+                      Processor generated ID for the itemized detail.
+
+                      '
+                  networkTransactionId:
+                    type: string
+                    description: Same value as `processorInformation.transactionId`
+                  responseCategoryCode:
+                    type: string
+                    maxLength: 36
+                    description: "Processor-defined response category code. The associated detail error code is in the `processorInformation.responseCode` or `issuerInformation.responseCode`\nfield of the service you requested.\n\nThis field is supported only for:\n\n - Japanese issuers\n - Domestic transactions in Japan\n - Comercio Latino—processor transaction ID required for troubleshooting\n\n#### Maximum length for processors\n\n - Comercio Latino: 36\n - All other processors: 3\n"
+                  forwardedAcquirerCode:
+                    type: string
+                    maxLength: 32
+                    description: 'Name of the Japanese acquirer that processed the transaction. Returned only for JCN Gateway.
+
+                      Please contact the CyberSource Japan Support Group for more information.
+
+                      '
+                  masterCardServiceCode:
+                    type: string
+                    maxLength: 2
+                    description: "Mastercard service that was used for the transaction. Mastercard provides this value to CyberSource.\n\nPossible value:\n - 53: Mastercard card-on-file token service\n\n#### CyberSource through VisaNet\nThe value for this field corresponds to the following data in the TC 33 capture file:\n- Record: CP01 TCR6\n- Position: 133-134\n- Field: Mastercard Merchant on-behalf service.\n**Note** This field is returned only for CyberSource through VisaNet.\n"
+                  masterCardServiceReplyCode:
+                    type: string
+                    maxLength: 1
+                    description: "Result of the Mastercard card-on-file token service. Mastercard provides this value to CyberSource.\n\nPossible values:\n\n - `C`: Service completed successfully.\n - `F`: One of the following:\n   - Incorrect Mastercard POS entry mode. The Mastercard POS entry mode should be 81 for an authorization or\n     authorization reversal.\n   - Incorrect Mastercard POS entry mode. The Mastercard POS entry mode should be 01 for a tokenized request.\n   - Token requestor ID is missing or formatted incorrectly.\n - `I`: One of the following:\n   - Invalid token requestor ID.\n   - Suspended or deactivated token.\n   - Invalid token (not in mapping table).\n - `T`: Invalid combination of token requestor ID and token.\n - `U`: Expired token.\n - `W`: Primary account number (PAN) listed in electronic warning bulletin.\n\n**Note** This field is returned only for **CyberSource through VisaNet**.\n"
+                  responseDetails:
+                    type: string
+                    maxLength: 255
+                    description: 'This field might contain information about a decline.
+
+                      '
+                  providerResponse:
+                    type: string
+                    description: 'Processor response to the API request.
+
+                      '
+                  network:
+                    type: object
+                    properties:
+                      economicallyRelatedTxnId:
+                        type: string
+                        maxLength: 50
+                        description: Indicates the economically related transaction id
+              issuerInformation:
+                type: object
+                properties:
+                  responseCode:
+                    type: string
+                    maxLength: 6
+                    description: "This is the raw Association/Issuer Response Codes. You can use 'issuer/association' response codes to identify when you can retry to authorize a declined transaction and increase successful transaction volumes. You'll receive an association/issuer response code for the majority of transactions.\n\n#### Processors supported:\n  - HSBC\n  - FDC Nashville Global\n  - SIX\n\nCurrently SIX is not receiving Association/Issuer Response Codes here it receives the additional authorization code that must be printed on the receipt when returned by the processor.\n\n#### Possible values:\n| Card Type   | Response Code | Description                                                                    |\n| ----------- | ------------- | ------------------------------------------------------------------------------ |\n| VISA        | 000           | Successful approval/completion or that V.I.P. PIN verification is successful   |\n| VISA        | 001           | Refer to card issuer                                                           |\n| VISA        | 002           | Refer to card issuer, special condition                                        |\n| VISA        | 003           | Invalid merchant or service provider                                           |\n| VISA        | 004           | Pickup card                                                                    |  \n| MasterCard  | 000           | Approved or completed successfully                                             |\n| MasterCard  | 001           | Refer to card issuer                                                           |\n| MasterCard  | 003           | Invalid merchant                                                               |\n| MasterCard  | 004           | Capture card                                                                   |\n| MasterCard  | 005           | Do not honor                                                                   |\n| AMEX        | 000           | Approved                                                                       |\n| AMEX        | 001           | Approve with ID                                                                |\n| AMEX        | 002           | Partial Approval (Prepaid Cards only)                                          |\n| AMEX        | 100           | Deny                                                                           |\n| AMEX        | 101           | Expired Card/Invalid Expiration Date                                           |\n| Discover    | 000           | Approved or completed successfully                                             |\n| Discover    | 001           | Reserved for future USE                                                        |\n| Discover    | 002           | Reserved for future USE                                                        |\n| Discover    | 003           | Invalid Merchant                                                               |\n| Discover    | 004           | Capture Card                                                                   |\n"
+              authorizationInformation:
+                type: object
+                properties:
+                  approvalCode:
+                    type: string
+                    maxLength: 6
+                    description: The authorization code returned by the processor.
+                  reasonCode:
+                    type: string
+                    maxLength: 50
+                    description: Reply flag for the original transaction.
+                  reversalSubmitted:
+                    type: string
+                    maxLength: 1
+                    description: 'Flag indicating whether a full authorization reversal was successfully submitted.
+
+
+                      Possible values:
+
+                      - Y: The authorization reversal was successfully submitted.
+
+                      - N: The authorization reversal was not successfully submitted. You must send a credit request for a refund.
+
+
+                      This field is supported only for **FDC Nashville Global**.
+
+                      '
+              pointOfSaleInformation:
+                type: object
+                properties:
+                  emv:
+                    type: object
+                    properties:
+                      tags:
+                        type: string
+                        maxLength: 1998
+                        description: "EMV data that is transmitted from the chip card to the issuer, and from the issuer to the chip card. The EMV\ndata is in the tag-length-value format and includes chip card tags, terminal tags, and transaction detail tags.\n\nFor information about the individual tags, see the \"Application Specification\" section in the EMV 4.3 Specifications: http://emvco.com\n\n**Note** Card present information about EMV applies only to credit card processing and PIN debit processing.\nAll other card present information applies only to credit card processing. PIN debit processing is available only\non FDC Nashville Global.\n\n**Important** The following tags contain sensitive information and **must not** be included in this field:\n\n - `56`: Track 1 equivalent data\n - `57`: Track 2 equivalent data\n - `5A`: Application PAN\n - `5F20`: Cardholder name\n - `5F24`: Application expiration date (This sensitivity has been relaxed for Credit Mutuel-CIC, American Express Direct, FDC Nashville Global, First Data Merchant Solutions, and SIX)\n - `99`: Transaction PIN\n - `9F0B`: Cardholder name (extended)\n - `9F1F`: Track 1 discretionary data\n - `9F20`: Track 2 discretionary data\n\nFor captures, this field is required for contact EMV transactions. Otherwise, it is optional.\n\nFor credits, this field is required for contact EMV stand-alone credits and contactless EMV stand-alone credits.\nOtherwise, it is optional.\n\n**Important** For contact EMV captures, contact EMV stand-alone credits, and contactless EMV stand-alone credits,\nyou must include the following tags in this field. For all other types of EMV transactions, the following tags\nare optional.\n\n - `95`: Terminal verification results\n - `9F10`: Issuer application data\n - `9F26`: Application cryptogram\n\n\n#### CyberSource through VisaNet\n- In Japan: 199 bytes\n- In other countries: String (252)\n\nFor Mastercard Transactions, Optionally Tag 9F60 (Authenticated Application Data) and \nTag 96 (Kernel Identifier - Terminal) can be included in the Field.\n\n#### GPX\nThis field only supports transactions from the following card types:\n- Visa\n- Mastercard\n- AMEX\n- Discover\n- Diners\n- JCB\n- Union Pay International\n\n#### JCN Gateway\nThe following tags must be included:\n- `4F`: Application identifier\n- `84`: Dedicated file name\n\nData length: 199 bytes\n\n#### All other processors:\nString (999)\n\n#### Used by\nAuthorization: Optional\nAuthorization Reversal: Optional\nCredit: Optional\nPIN Debit processing (purchase, credit and reversal): Optional\n"
+            example:
+              _links:
+                self:
+                  href: /pts/v2/reversals/4963015523026180001545
+                  method: GET
+              id: '4963015523026180001545'
+              submitTimeUtc: 2017-06-01T071912Z
+              status: '200'
+              statusInformation:
+                reason: SUCCESS
+                message: Successful transaction.
+              clientReferenceInformation:
+                code: TC50171_3
+              orderInformation:
+                amountDetails:
+                  currency: USD
+              processorInformation:
+                responseCode: '100'
+              reversalAmountDetails:
+                reversedAmount: '102.21'
+                currency: USD
+        '400':
+          description: Invalid request.
+          schema:
+            type: object
+            title: ptsV2PaymentsReversalsPost400Response
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - INVALID_REQUEST\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n - DUPLICATE_REQUEST\n - INVALID_MERCHANT_CONFIGURATION\n - PROCESSOR_UNAVAILABLE\n - AUTH_ALREADY_REVERSED\n - TRANSACTION_ALREADY_SETTLED\n - INVALID_AMOUNT\n - MISSING_AUTH\n - TRANSACTION_ALREADY_REVERSED_OR_SETTLED\n - NOT_SUPPORTED\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: This is the flattened JSON object field name/path that is either missing or invalid.
+                    reason:
+                      type: string
+                      description: "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n"
+        '502':
+          description: Unexpected system error or system timeout.
+          schema:
+            title: ptsV2PaymentsReversalsPost502Response
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - SERVER_ERROR\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - SYSTEM_ERROR\n - SERVER_TIMEOUT\n - SERVICE_TIMEOUT\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+      x-example:
+        example0:
+          summary: Process an Authorization Reversal
+          value:
+            clientReferenceInformation:
+              code: TC50171_3
+            reversalInformation:
+              reason: testing
+              amountDetails:
+                totalAmount: '102.21'
+          depends:
+            example:
+              path: /pts/v2/payments
+              verb: post
+              exampleId: example0
+            fieldMapping:
+            - sourceField: id
+              destinationField: id
+              fieldTypeInDestination: path
+        example1:
+          summary: Service Fees Authorization Reversal
+          value:
+            clientReferenceInformation:
+              code: TC50171_3
+            reversalInformation:
+              reason: '34'
+              amountDetails:
+                totalAmount: '2325.00'
+                serviceFeeAmount: '30.0'
+          depends:
+            example:
+              path: /pts/v2/payments
+              verb: post
+              exampleId: example14
+            fieldMapping:
+            - sourceField: id
+              destinationField: id
+              fieldTypeInDestination: path
+  /pts/v2/reversals:
+    post:
+      summary: Timeout Reversal
+      description: This is to reverse a previous payment that merchant does not receive a reply(Mostly due to Timeout). To use this feature/API, make sure to pass unique value to field - clientReferenceInformation -> transactionId in [/pts/v2/payments](https://developer.cybersource.com/api-reference-assets/index.html#payments_payments) API call and use same transactionId in this API request payload to reverse the payment.
+      tags:
+      - reversal
+      operationId: mitReversal
+      x-devcenter-metaData:
+        categoryTag: Payments
+        developerGuides: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/ctv/rest/payments/payments-intro.html
+        isClientSideApi: true
+        isMLEsupported: true
+        mleForRequest: optional
+      parameters:
+      - name: mitReversalRequest
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            clientReferenceInformation:
+              type: object
+              properties:
+                code:
+                  type: string
+                  maxLength: 59
+                  description: 'Merchant-generated order reference or tracking number. It is recommended that you send a unique value for each
+
+                    transaction so that you can perform meaningful searches for the transaction.
+
+
+                    #### Used by
+
+                    **Authorization**
+
+                    Required field.
+
+
+                    #### PIN Debit
+
+                    Requests for PIN debit reversals need to use the same merchant reference number that was used in the transaction that is being
+
+                    reversed.
+
+
+                    Required field for all PIN Debit requests (purchase, credit, and reversal).
+
+
+                    #### FDC Nashville Global
+
+                    Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports.
+
+                    '
+                reconciliationId:
+                  type: string
+                  maxLength: 60
+                  description: 'Reference number for the transaction.
+
+                    Depending on how your Cybersource account is configured, this value could either be provided in the API request or generated by CyberSource.
+
+                    The actual value used in the request to the processor is provided back to you by Cybersource in the response.
+
+                    '
+                pausedRequestId:
+                  type: string
+                  maxLength: 26
+                  description: 'Used to resume a transaction that was paused for an order modification rule to allow for payer authentication to complete. To resume and continue with the authorization/decision service flow, call the services and include the request id from the prior decision call.
+
+                    '
+                transactionId:
+                  type: string
+                  maxLength: 30
+                  description: 'Identifier that you assign to the transaction. Normally generated by a client server to identify a unique API request.
+
+
+                    **Note** Use this field only if you want to support merchant-initiated reversal and void operations.
+
+
+                    #### Used by
+
+                    **Authorization, Authorization Reversal, Capture, Credit, and Void**
+
+                    Optional field.
+
+
+                    #### PIN Debit
+
+                    For a PIN debit reversal, your request must include a request ID or a merchant transaction identifier.
+
+                    Optional field for PIN debit purchase or credit requests.
+
+                    '
+                comments:
+                  type: string
+                  description: Brief description of the order or any comment you wish to add to the order.
+                partner:
+                  type: object
+                  properties:
+                    originalTransactionId:
+                      type: string
+                      maxLength: 32
+                      description: 'Value that links the previous transaction to the current follow-on request. This value is assigned by the client
+
+                        software that is installed on the POS terminal, which makes it available to the terminal''s software and to
+
+                        CyberSource. Therefore, you can use this value to reconcile transactions between CyberSource and the terminal''s
+
+                        software.
+
+
+                        CyberSource does not forward this value to the processor. Instead, the value is forwarded to the CyberSource
+
+                        reporting functionality.
+
+
+                        This field is supported only on these processors:
+
+                        - American Express Direct
+
+                        - Credit Mutuel-CIC
+
+                        - FDC Nashville Global
+
+                        - OmniPay Direct
+
+                        - SIX
+
+
+                        Optional field.
+
+                        '
+                    developerId:
+                      type: string
+                      maxLength: 8
+                      description: 'Identifier for the developer that helped integrate a partner solution to CyberSource.
+
+
+                        Send this value in all requests that are sent through the partner solutions built by that developer.
+
+                        CyberSource assigns the ID to the developer.
+
+
+                        **Note** When you see a developer ID of 999 in reports, the developer ID that was submitted is incorrect.
+
+                        '
+                    solutionId:
+                      type: string
+                      maxLength: 8
+                      description: 'Identifier for the partner that is integrated to CyberSource.
+
+
+                        Send this value in all requests that are sent through the partner solution. CyberSource assigns the ID to the partner.
+
+
+                        **Note** When you see a solutionId of 999 in reports, the solutionId that was submitted is incorrect.
+
+                        '
+                    thirdPartyCertificationNumber:
+                      type: string
+                      maxLength: 12
+                      description: 'Value that identifies the application vendor and application version for a third party gateway.
+
+                        CyberSource provides you with this value during testing and validation.
+
+                        This field is supported only on CyberSource through VisaNet.
+
+
+                        #### Used by
+
+                        **Authorization, Authorization Reversal, Capture, Credit, Incremental Authorization, and Void**
+
+                        Optional field.
+
+
+                        #### PIN debit
+
+                        Required field for PIN debit credit, PIN debit purchase, or PIN debit reversal request.
+
+                        '
+                applicationName:
+                  type: string
+                  description: 'The name of the Connection Method client (such as Virtual Terminal or SOAP Toolkit API) that the merchant uses to send a transaction request to CyberSource.
+
+                    '
+                applicationVersion:
+                  type: string
+                  description: 'Version of the CyberSource application or integration used for a transaction.
+
+                    '
+                applicationUser:
+                  type: string
+                  description: 'The entity that is responsible for running the transaction and submitting the processing request to CyberSource. This could be a person, a system, or a connection method.
+
+                    '
+            reversalInformation:
+              type: object
+              properties:
+                amountDetails:
+                  type: object
+                  properties:
+                    totalAmount:
+                      type: string
+                      maxLength: 19
+                      description: "Grand total for the order. This value cannot be negative. You can include a decimal point (.), but no other special characters.\nCyberSource truncates the amount to the correct number of decimal places.\n\n**Note** For CTV, FDCCompass, Paymentech processors, the maximum length for this field is 12.\n\n**Important** Some processors have specific requirements and limitations, such as maximum amounts and maximum field lengths.\n\nIf your processor supports zero amount authorizations, you can set this field to 0 for the authorization to check if the card is lost or stolen. \n\n#### Card Present\nRequired to include either this field or `orderInformation.lineItems[].unitPrice` for the order.\n\n#### Invoicing / Pay By Link\nRequired for creating a new invoice or payment link.\n\n#### PIN Debit\nAmount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount.\n\nRequired field for PIN Debit purchase and PIN Debit credit requests.\nOptional field for PIN Debit reversal requests.\n\n#### GPX\nThis field is optional for reversing an authorization or credit; however, for all other processors, these fields are required.\n\n#### DCC with a Third-Party Provider\nSet this field to the converted amount that was returned by the DCC provider. You must include either this field or the 1st line item in the order and the specific line-order amount in your request. \n\n#### DCC for First Data\nNot used.\n"
+                    currency:
+                      type: string
+                      maxLength: 3
+                      description: 'Currency used for the order. Use the three-character [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)
+
+
+                        #### Used by
+
+                        **Authorization**
+
+                        Required field.
+
+
+                        **Authorization Reversal**
+
+                        For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.
+
+
+                        #### PIN Debit
+
+                        Currency for the amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+
+                        Returned by PIN debit purchase.
+
+
+                        For PIN debit reversal requests, you must use the same currency that was used for the PIN debit purchase or PIN debit credit that you are reversing.
+
+                        For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+
+
+                        Required field for PIN Debit purchase and PIN Debit credit requests.
+
+                        Optional field for PIN Debit reversal requests.
+
+
+                        #### GPX
+
+                        This field is optional for reversing an authorization or credit.
+
+
+                        #### DCC for First Data
+
+                        Your local currency.
+
+
+                        #### Tax Calculation
+
+                        Required for international tax and value added tax only.
+
+                        Optional for U.S. and Canadian taxes.
+
+                        Your local currency.
+
+                        '
+                reason:
+                  type: string
+                  description: "Reason for the authorization reversal. Possible value:\n\n - `34`: Suspected fraud\n\nThis field is ignored for processors that do not support this value.\n\nReturned by authorization reversal.\n"
+            processingInformation:
+              type: object
+              properties:
+                paymentSolution:
+                  type: string
+                  maxLength: 12
+                  description: "Type of digital payment solution for the transaction. Possible Values:\n\n - `visacheckout`: Visa Checkout. This value is required for Visa Checkout transactions. For details, see `payment_solution` field description in [Visa Checkout Using the REST API.](https://developer.cybersource.com/content/dam/docs/cybs/en-us/apifields/reference/all/rest/api-fields.pdf)\n - `001`: Apple Pay.\n - `004`: Cybersource In-App Solution.\n - `005`: Masterpass. This value is required for Masterpass transactions on OmniPay Direct. \n - `006`: Android Pay.\n - `007`: Chase Pay.\n - `008`: Samsung Pay.\n - `012`: Google Pay.\n - `013`: Cybersource P2PE Decryption\n - `014`: Mastercard credential on file (COF) payment network token. Returned in authorizations that use a payment network token associated with a TMS token.\n - `015`: Visa credential on file (COF) payment network token. Returned in authorizations that use a payment network token associated with a TMS token.\n - `027`: Click to Pay.\n"
+                reconciliationId:
+                  type: string
+                  maxLength: 60
+                  description: 'Please check with Cybersource customer support to see if your merchant account is configured correctly so you
+
+                    can include this field in your request.
+
+                    * For Payouts: max length for FDCCompass is String (22).
+
+                    '
+                linkId:
+                  type: string
+                  maxLength: 26
+                  description: 'Value that links the current authorization request to the original authorization request. Set this value
+
+                    to the ID that was returned in the reply message from the original authorization request.
+
+
+                    This value is used for:
+
+
+                    - Partial authorizations
+
+                    - Split shipments
+
+                    '
+                reportGroup:
+                  type: string
+                  maxLength: 25
+                  description: 'Attribute that lets you define custom grouping for your processor reports. This field is supported only for **Worldpay VAP**.
+
+                    '
+                visaCheckoutId:
+                  type: string
+                  maxLength: 48
+                  description: 'Identifier for the **Visa Checkout** order. Visa Checkout provides a unique order ID for every transaction in
+
+                    the Visa Checkout **callID** field.
+
+                    '
+                issuer:
+                  type: object
+                  properties:
+                    discretionaryData:
+                      type: string
+                      maxLength: 255
+                      description: 'Data defined by the issuer.
+
+
+                        The value for this reply field will probably be the same as the value that you submitted in the authorization request, but it is possible for the processor, issuer, or acquirer to modify the value.
+
+
+                        This field is supported only for Visa transactions on **CyberSource through VisaNet**.
+
+                        '
+                actionList:
+                  type: array
+                  description: 'Array of actions (one or more) to be included in the reversal
+
+                    Possible value:
+
+                    - `AP_AUTH_REVERSAL`: Use this when you want to reverse an Alternative Payment Authorization.
+
+                    '
+                  items:
+                    type: string
+                transactionTypeIndicator:
+                  type: string
+                  maxLength: 3
+                  description: 'This field is used identify the type of payment transaction taking place. This field is applicable for MasterCard transactions only.
+
+                    Possible values:
+
+                    - 201- Mastercard Rebate
+
+                    - 202- rePower Load Value
+
+                    - 203- Gaming Re-pay
+
+                    - 204- General Person-to-Person
+
+                    - 205- General Transfer to Own Account
+
+                    - 206- Agent Cash Out
+
+                    - 207- Payment of Own Credit Card Bill
+
+                    - 208- Business Disbursement
+
+                    - 209- Government/Non-Profit Disbursement
+
+                    - 210- Rapid Merchant Settlement
+
+                    - 211- Cash in at ATM (Usage limited to specific countries)
+
+                    - 212- Cash in at Point of Sale (Usage limited to specific countries)
+
+                    - 213- General Business to Business Transfer
+
+                    - 214- Mastercard Merchant Presented QR
+
+                    - 215- Mastercard Merchant Presented QR Refund Payment
+
+                    - 216- Utility Payments (for Brazil domestic use only)
+
+                    - 217- Government Services (for Brazil domestic use only)
+
+                    - 218- Mobile phone top-ups (for Brazil domestic use only)
+
+                    - 219- Coupon booklet payments (for Brazil domestic use only)
+
+                    - 220- General Person-to-Person Transfer
+
+                    - 221- Person-to-Person Transfer to Card Account
+
+                    - 222- General Transfer to Own Account
+
+                    - 223- Agent Cash Out
+
+                    - 224- Payment of Own Credit Card Bill
+
+                    - 225- Business Disbursement
+
+                    - 226- Transfer to Own Staged Digital Wallet Account
+
+                    - 227- Transfer to Own Debit or Prepaid Account
+
+                    - 228- General Business-to-Business Transfer
+
+                    - 229- Installment-based repayment
+
+                    - 230- Mastercard ATM Cash Pick-Up Transaction
+
+                    - 231- Cryptocurrency
+
+                    - 232- High-risk Securities
+
+                    '
+            orderInformation:
+              type: object
+              properties:
+                amountDetails:
+                  type: object
+                  properties:
+                    serviceFeeAmount:
+                      type: string
+                      maxLength: 15
+                      description: 'Service fee. Required for service fee transactions.
+
+                        '
+                lineItems:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      quantity:
+                        type: integer
+                        minimum: 1
+                        maximum: 999999999
+                        default: 1
+                        description: 'Number of units for this order. Must be a non-negative integer.
+
+
+                          The default is `1`. For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`),
+
+                          this field is required when `orderInformation.lineItems[].productCode` is not `default` or one of the other values
+
+                          related to shipping and/or handling.
+
+
+                          #### Tax Calculation
+
+                          Optional field for U.S., Canadian, international tax, and value added taxes.
+
+                          '
+                      unitPrice:
+                        type: string
+                        maxLength: 15
+                        description: 'Per-item price of the product. This value for this field cannot be negative.
+
+
+                          You must include either this field or the request-level field `orderInformation.amountDetails.totalAmount` in your request.
+
+
+                          You can include a decimal point (.), but you cannot include any other special characters.
+
+                          The value is truncated to the correct number of decimal places.
+
+
+                          #### DCC with a Third-Party Provider
+
+                          Set this field to the converted amount that was returned by the DCC provider. You must include either
+
+                          the 1st line item in the order and this field, or the request-level field `orderInformation.amountDetails.totalAmount` in your request.
+
+
+                          #### Tax Calculation
+
+                          Required field for U.S., Canadian, international and value added taxes.
+
+
+                          #### Zero Amount Authorizations
+
+                          If your processor supports zero amount authorizations, you can set this field to 0 for the
+
+                          authorization to check if the card is lost or stolen.
+
+
+                          #### Maximum Field Lengths
+
+                          For GPN and JCN Gateway: Decimal (10)
+
+                          All other processors: Decimal (15)
+
+                          '
+            pointOfSaleInformation:
+              type: object
+              properties:
+                emv:
+                  type: object
+                  properties:
+                    tags:
+                      type: string
+                      maxLength: 1998
+                      description: "EMV data that is transmitted from the chip card to the issuer, and from the issuer to the chip card. The EMV\ndata is in the tag-length-value format and includes chip card tags, terminal tags, and transaction detail tags.\n\nFor information about the individual tags, see the \"Application Specification\" section in the EMV 4.3 Specifications: http://emvco.com\n\n**Note** Card present information about EMV applies only to credit card processing and PIN debit processing.\nAll other card present information applies only to credit card processing. PIN debit processing is available only\non FDC Nashville Global.\n\n**Important** The following tags contain sensitive information and **must not** be included in this field:\n\n - `56`: Track 1 equivalent data\n - `57`: Track 2 equivalent data\n - `5A`: Application PAN\n - `5F20`: Cardholder name\n - `5F24`: Application expiration date (This sensitivity has been relaxed for Credit Mutuel-CIC, American Express Direct, FDC Nashville Global, First Data Merchant Solutions, and SIX)\n - `99`: Transaction PIN\n - `9F0B`: Cardholder name (extended)\n - `9F1F`: Track 1 discretionary data\n - `9F20`: Track 2 discretionary data\n\nFor captures, this field is required for contact EMV transactions. Otherwise, it is optional.\n\nFor credits, this field is required for contact EMV stand-alone credits and contactless EMV stand-alone credits.\nOtherwise, it is optional.\n\n**Important** For contact EMV captures, contact EMV stand-alone credits, and contactless EMV stand-alone credits,\nyou must include the following tags in this field. For all other types of EMV transactions, the following tags\nare optional.\n\n - `95`: Terminal verification results\n - `9F10`: Issuer application data\n - `9F26`: Application cryptogram\n\n\n#### CyberSource through VisaNet\n- In Japan: 199 bytes\n- In other countries: String (252)\n\nFor Mastercard Transactions, Optionally Tag 9F60 (Authenticated Application Data) and \nTag 96 (Kernel Identifier - Terminal) can be included in the Field.\n\n#### GPX\nThis field only supports transactions from the following card types:\n- Visa\n- Mastercard\n- AMEX\n- Discover\n- Diners\n- JCB\n- Union Pay International\n\n#### JCN Gateway\nThe following tags must be included:\n- `4F`: Application identifier\n- `84`: Dedicated file name\n\nData length: 199 bytes\n\n#### All other processors:\nString (999)\n\n#### Used by\nAuthorization: Optional\nAuthorization Reversal: Optional\nCredit: Optional\nPIN Debit processing (purchase, credit and reversal): Optional\n"
+            deviceInformation:
+              type: object
+              properties:
+                deviceType:
+                  type: string
+                  maxLength: 1
+                  description: "Account Entry Device Type for Tap to More transactions. This field flows in ISO Field 34 DSID 02 Tag 89.\n\nValid Values:\n- `1`: Off-the-shelf mobile consumer\n\nMastercard is introducing changes to support commercialization of Tap to More transactions. \nAcquirers globally must be prepared to send a value of 1 (Off-the-shelf mobile-consumer) \nin Field 34—Acceptance Environment Data (TLV Format), Dataset ID 02—Acceptance Environment \nAdditional Data, Tag 89—Account Entry Device Type for Tap to More transactions. Visa will \nmap this value to a value of 8 (Remote terminal) in Mastercard Data Element 61.10.\n\n#### Mapping\n- SCMP API Field: customer_device_type\n- Simple Order API Field: billTo_deviceType\n- CCS: device.type\n- NRTF Key: customer_device_type\n\nOptional field.\n"
+            processorInformation:
+              type: object
+              properties:
+                network:
+                  type: object
+                  properties:
+                    economicallyRelatedTxnId:
+                      type: string
+                      maxLength: 50
+                      description: Indicates the economically related transaction id
+          example:
+            clientReferenceInformation:
+              transactionId: ''
+            reversalInformation:
+              reason: testing
+              amountDetails:
+                totalAmount: '102.21'
+      x-example:
+        example0:
+          summary: Timeout Reversal
+          value:
+            clientReferenceInformation:
+              transactionId: ''
+            reversalInformation:
+              reason: testing
+              amountDetails:
+                totalAmount: '102.21'
+      responses:
+        '201':
+          description: Successful response.
+          schema:
+            title: ptsV2ReversalsPost201Response
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                        description: This is the endpoint of the resource that was created by the successful request.
+                      method:
+                        type: string
+                        description: '`method` refers to the HTTP method that you can send to the `self` endpoint to retrieve details of the resource.'
+              id:
+                type: string
+                maxLength: 26
+                description: 'An unique identification number generated by Cybersource to identify the submitted request. Returned by all services.
+
+                  It is also appended to the endpoint of the resource.
+
+                  On incremental authorizations, this value with be the same as the identification number returned in the original authorization response.
+
+                  '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - REVERSED\n"
+              reconciliationId:
+                type: string
+                maxLength: 60
+                description: 'Reference number for the transaction.
+
+                  Depending on how your Cybersource account is configured, this value could either be provided in the API request or generated by CyberSource.
+
+                  The actual value used in the request to the processor is provided back to you by Cybersource in the response.
+
+                  '
+              clientReferenceInformation:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    maxLength: 59
+                    description: 'Merchant-generated order reference or tracking number. It is recommended that you send a unique value for each
+
+                      transaction so that you can perform meaningful searches for the transaction.
+
+
+                      #### Used by
+
+                      **Authorization**
+
+                      Required field.
+
+
+                      #### PIN Debit
+
+                      Requests for PIN debit reversals need to use the same merchant reference number that was used in the transaction that is being
+
+                      reversed.
+
+
+                      Required field for all PIN Debit requests (purchase, credit, and reversal).
+
+
+                      #### FDC Nashville Global
+
+                      Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports.
+
+                      '
+                  submitLocalDateTime:
+                    type: string
+                    maxLength: 14
+                    description: 'Date and time at your physical location.
+
+
+                      Format: `YYYYMMDDhhmmss`, where YYYY = year, MM = month, DD = day, hh = hour, mm = minutes ss = seconds
+
+
+                      #### PIN Debit
+
+                      Optional field for PIN Debit purchase and credit requests.
+
+                      '
+                  ownerMerchantId:
+                    type: string
+                    description: 'Merchant ID that was used to create the subscription or customer profile for which the service was requested.
+
+
+                      If your CyberSource account is enabled for Recurring Billing, this field is returned only if you are using
+
+                      subscription sharing and if your merchant ID is in the same merchant ID pool as the owner merchant ID.
+
+
+                      If your CyberSource account is enabled for Payment Tokenization, this field is returned only if you are using
+
+                      profile sharing and if your merchant ID is in the same merchant ID pool as the owner merchant ID.
+
+                      '
+              reversalAmountDetails:
+                type: object
+                properties:
+                  reversedAmount:
+                    type: string
+                    maxLength: 15
+                    description: 'Total reversed amount.
+
+
+                      Returned by authorization reversal.
+
+                      '
+                  originalTransactionAmount:
+                    type: string
+                    maxLength: 15
+                    description: 'Amount of the original transaction.
+
+
+                      Returned by authorization reversal and void.
+
+                      '
+                  currency:
+                    type: string
+                    maxLength: 3
+                    description: 'Currency used for the order. Use the three-character [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)
+
+
+                      #### Used by
+
+                      **Authorization**
+
+                      Required field.
+
+
+                      **Authorization Reversal**
+
+                      For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.
+
+
+                      #### PIN Debit
+
+                      Currency for the amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+
+                      Returned by PIN debit purchase.
+
+
+                      For PIN debit reversal requests, you must use the same currency that was used for the PIN debit purchase or PIN debit credit that you are reversing.
+
+                      For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+
+
+                      Required field for PIN Debit purchase and PIN Debit credit requests.
+
+                      Optional field for PIN Debit reversal requests.
+
+
+                      #### GPX
+
+                      This field is optional for reversing an authorization or credit.
+
+
+                      #### DCC for First Data
+
+                      Your local currency.
+
+
+                      #### Tax Calculation
+
+                      Required for international tax and value added tax only.
+
+                      Optional for U.S. and Canadian taxes.
+
+                      Your local currency.
+
+                      '
+              processorInformation:
+                type: object
+                properties:
+                  transactionId:
+                    type: string
+                    maxLength: 255
+                    description: 'Network transaction identifier (TID). You can use this value to identify a specific transaction when you are
+
+                      discussing the transaction with your processor. Not all processors provide this value.
+
+
+                      Returned by the authorization service.
+
+
+                      #### PIN debit
+
+                      Transaction identifier generated by the processor.
+
+
+                      Returned by PIN debit credit.
+
+
+                      #### GPX
+
+                      Processor transaction ID.
+
+
+                      #### Cielo
+
+                      For Cielo, this value is the non-sequential unit (NSU) and is supported for all transactions. The value is generated by Cielo or the issuing bank.
+
+
+                      #### Comercio Latino
+
+                      For Comercio Latino, this value is the proof of sale or non-sequential unit (NSU) number generated by the acquirers Cielo and Rede, or the issuing bank.
+
+
+                      #### CyberSource through VisaNet and GPN
+
+                      For details about this value for CyberSource through VisaNet and GPN, see "processorInformation.networkTransactionId" in [REST API Fields](https://developer.cybersource.com/content/dam/docs/cybs/en-us/apifields/reference/all/rest/api-fields.pdf)
+
+
+                      #### Moneris
+
+                      This value identifies the transaction on a host system. It contains the following information:
+
+                      - Terminal used to process the transaction
+
+                      - Shift during which the transaction took place
+
+                      - Batch number
+
+                      - Transaction number within the batch
+
+                      You must store this value. If you give the customer a receipt, display this value on the receipt.
+
+
+                      **Example** For the value
+
+                      66012345001069003:
+
+                      - Terminal ID = 66012345
+
+                      - Shift number = 001
+
+                      - Batch number = 069
+
+                      - Transaction number = 003
+
+                      '
+                  responseCode:
+                    type: string
+                    maxLength: 10
+                    description: 'For most processors, this is the error message sent directly from the bank. Returned only when the processor
+
+                      returns this value.
+
+
+                      **Important** Do not use this field to evaluate the result of the authorization.
+
+
+                      #### PIN debit
+
+                      Response value that is returned by the processor or bank.
+
+                      **Important** Do not use this field to evaluate the results of the transaction request.
+
+
+                      Returned by PIN debit credit, PIN debit purchase, and PIN debit reversal.
+
+
+                      #### AIBMS
+
+                      If this value is `08`, you can accept the transaction if the customer provides you with identification.
+
+
+                      #### Atos
+
+                      This value is the response code sent from Atos and it might also include the response code from the bank.
+
+                      Format: `aa,bb` with the two values separated by a comma and where:
+
+                      - `aa` is the two-digit error message from Atos.
+
+                      - `bb` is the optional two-digit error message from the bank.
+
+
+                      #### Comercio Latino
+
+                      This value is the status code and the error or response code received from the processor separated by a colon.
+
+                      Format: [status code]:E[error code] or [status code]:R[response code]
+
+                      Example `2:R06`
+
+
+                      #### JCN Gateway
+
+                      Processor-defined detail error code. The associated response category code is in the `processorInformation.responseCategoryCode` field.
+
+                      String (3)
+
+
+                      #### paypalgateway
+
+                      Processor generated ID for the itemized detail.
+
+                      '
+                  networkTransactionId:
+                    type: string
+                    description: Same value as `processorInformation.transactionId`
+                  responseCategoryCode:
+                    type: string
+                    maxLength: 36
+                    description: "Processor-defined response category code. The associated detail error code is in the `processorInformation.responseCode` or `issuerInformation.responseCode`\nfield of the service you requested.\n\nThis field is supported only for:\n\n - Japanese issuers\n - Domestic transactions in Japan\n - Comercio Latino—processor transaction ID required for troubleshooting\n\n#### Maximum length for processors\n\n - Comercio Latino: 36\n - All other processors: 3\n"
+                  forwardedAcquirerCode:
+                    type: string
+                    maxLength: 32
+                    description: 'Name of the Japanese acquirer that processed the transaction. Returned only for JCN Gateway.
+
+                      Please contact the CyberSource Japan Support Group for more information.
+
+                      '
+                  masterCardServiceCode:
+                    type: string
+                    maxLength: 2
+                    description: "Mastercard service that was used for the transaction. Mastercard provides this value to CyberSource.\n\nPossible value:\n - 53: Mastercard card-on-file token service\n\n#### CyberSource through VisaNet\nThe value for this field corresponds to the following data in the TC 33 capture file:\n- Record: CP01 TCR6\n- Position: 133-134\n- Field: Mastercard Merchant on-behalf service.\n**Note** This field is returned only for CyberSource through VisaNet.\n"
+                  masterCardServiceReplyCode:
+                    type: string
+                    maxLength: 1
+                    description: "Result of the Mastercard card-on-file token service. Mastercard provides this value to CyberSource.\n\nPossible values:\n\n - `C`: Service completed successfully.\n - `F`: One of the following:\n   - Incorrect Mastercard POS entry mode. The Mastercard POS entry mode should be 81 for an authorization or\n     authorization reversal.\n   - Incorrect Mastercard POS entry mode. The Mastercard POS entry mode should be 01 for a tokenized request.\n   - Token requestor ID is missing or formatted incorrectly.\n - `I`: One of the following:\n   - Invalid token requestor ID.\n   - Suspended or deactivated token.\n   - Invalid token (not in mapping table).\n - `T`: Invalid combination of token requestor ID and token.\n - `U`: Expired token.\n - `W`: Primary account number (PAN) listed in electronic warning bulletin.\n\n**Note** This field is returned only for **CyberSource through VisaNet**.\n"
+                  responseDetails:
+                    type: string
+                    maxLength: 255
+                    description: 'This field might contain information about a decline.
+
+                      '
+                  providerResponse:
+                    type: string
+                    description: 'Processor response to the API request.
+
+                      '
+                  network:
+                    type: object
+                    properties:
+                      economicallyRelatedTxnId:
+                        type: string
+                        maxLength: 50
+                        description: Indicates the economically related transaction id
+              issuerInformation:
+                type: object
+                properties:
+                  responseCode:
+                    type: string
+                    maxLength: 6
+                    description: "This is the raw Association/Issuer Response Codes. You can use 'issuer/association' response codes to identify when you can retry to authorize a declined transaction and increase successful transaction volumes. You'll receive an association/issuer response code for the majority of transactions.\n\n#### Processors supported:\n  - HSBC\n  - FDC Nashville Global\n  - SIX\n\nCurrently SIX is not receiving Association/Issuer Response Codes here it receives the additional authorization code that must be printed on the receipt when returned by the processor.\n\n#### Possible values:\n| Card Type   | Response Code | Description                                                                    |\n| ----------- | ------------- | ------------------------------------------------------------------------------ |\n| VISA        | 000           | Successful approval/completion or that V.I.P. PIN verification is successful   |\n| VISA        | 001           | Refer to card issuer                                                           |\n| VISA        | 002           | Refer to card issuer, special condition                                        |\n| VISA        | 003           | Invalid merchant or service provider                                           |\n| VISA        | 004           | Pickup card                                                                    |  \n| MasterCard  | 000           | Approved or completed successfully                                             |\n| MasterCard  | 001           | Refer to card issuer                                                           |\n| MasterCard  | 003           | Invalid merchant                                                               |\n| MasterCard  | 004           | Capture card                                                                   |\n| MasterCard  | 005           | Do not honor                                                                   |\n| AMEX        | 000           | Approved                                                                       |\n| AMEX        | 001           | Approve with ID                                                                |\n| AMEX        | 002           | Partial Approval (Prepaid Cards only)                                          |\n| AMEX        | 100           | Deny                                                                           |\n| AMEX        | 101           | Expired Card/Invalid Expiration Date                                           |\n| Discover    | 000           | Approved or completed successfully                                             |\n| Discover    | 001           | Reserved for future USE                                                        |\n| Discover    | 002           | Reserved for future USE                                                        |\n| Discover    | 003           | Invalid Merchant                                                               |\n| Discover    | 004           | Capture Card                                                                   |\n"
+              authorizationInformation:
+                type: object
+                properties:
+                  approvalCode:
+                    type: string
+                    maxLength: 6
+                    description: The authorization code returned by the processor.
+                  reasonCode:
+                    type: string
+                    maxLength: 50
+                    description: Reply flag for the original transaction.
+                  reversalSubmitted:
+                    type: string
+                    maxLength: 1
+                    description: 'Flag indicating whether a full authorization reversal was successfully submitted.
+
+
+                      Possible values:
+
+                      - Y: The authorization reversal was successfully submitted.
+
+                      - N: The authorization reversal was not successfully submitted. You must send a credit request for a refund.
+
+
+                      This field is supported only for **FDC Nashville Global**.
+
+                      '
+              pointOfSaleInformation:
+                type: object
+                properties:
+                  emv:
+                    type: object
+                    properties:
+                      tags:
+                        type: string
+                        maxLength: 1998
+                        description: "EMV data that is transmitted from the chip card to the issuer, and from the issuer to the chip card. The EMV\ndata is in the tag-length-value format and includes chip card tags, terminal tags, and transaction detail tags.\n\nFor information about the individual tags, see the \"Application Specification\" section in the EMV 4.3 Specifications: http://emvco.com\n\n**Note** Card present information about EMV applies only to credit card processing and PIN debit processing.\nAll other card present information applies only to credit card processing. PIN debit processing is available only\non FDC Nashville Global.\n\n**Important** The following tags contain sensitive information and **must not** be included in this field:\n\n - `56`: Track 1 equivalent data\n - `57`: Track 2 equivalent data\n - `5A`: Application PAN\n - `5F20`: Cardholder name\n - `5F24`: Application expiration date (This sensitivity has been relaxed for Credit Mutuel-CIC, American Express Direct, FDC Nashville Global, First Data Merchant Solutions, and SIX)\n - `99`: Transaction PIN\n - `9F0B`: Cardholder name (extended)\n - `9F1F`: Track 1 discretionary data\n - `9F20`: Track 2 discretionary data\n\nFor captures, this field is required for contact EMV transactions. Otherwise, it is optional.\n\nFor credits, this field is required for contact EMV stand-alone credits and contactless EMV stand-alone credits.\nOtherwise, it is optional.\n\n**Important** For contact EMV captures, contact EMV stand-alone credits, and contactless EMV stand-alone credits,\nyou must include the following tags in this field. For all other types of EMV transactions, the following tags\nare optional.\n\n - `95`: Terminal verification results\n - `9F10`: Issuer application data\n - `9F26`: Application cryptogram\n\n\n#### CyberSource through VisaNet\n- In Japan: 199 bytes\n- In other countries: String (252)\n\nFor Mastercard Transactions, Optionally Tag 9F60 (Authenticated Application Data) and \nTag 96 (Kernel Identifier - Terminal) can be included in the Field.\n\n#### GPX\nThis field only supports transactions from the following card types:\n- Visa\n- Mastercard\n- AMEX\n- Discover\n- Diners\n- JCB\n- Union Pay International\n\n#### JCN Gateway\nThe following tags must be included:\n- `4F`: Application identifier\n- `84`: Dedicated file name\n\nData length: 199 bytes\n\n#### All other processors:\nString (999)\n\n#### Used by\nAuthorization: Optional\nAuthorization Reversal: Optional\nCredit: Optional\nPIN Debit processing (purchase, credit and reversal): Optional\n"
+            example:
+              _links:
+                self:
+                  href: /pts/v2/reversals/4963015523026180001545
+                  method: GET
+              id: '4963015523026180001545'
+              submitTimeUtc: 2017-06-01T071912Z
+              status: '200'
+              statusInformation:
+                reason: SUCCESS
+                message: Successful transaction.
+              clientReferenceInformation:
+                code: TC50171_3
+              orderInformation:
+                amountDetails:
+                  currency: USD
+              processorInformation:
+                responseCode: '100'
+              reversalAmountDetails:
+                reversedAmount: '102.21'
+                currency: USD
+        '400':
+          description: Invalid request.
+          schema:
+            title: ptsV2ReversalsPost400Response
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - INVALID_REQUEST\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n - DUPLICATE_REQUEST\n - INVALID_MERCHANT_CONFIGURATION\n - PROCESSOR_UNAVAILABLE\n - AUTH_ALREADY_REVERSED\n - TRANSACTION_ALREADY_SETTLED\n - INVALID_AMOUNT\n - MISSING_AUTH\n - TRANSACTION_ALREADY_REVERSED_OR_SETTLED\n - NOT_SUPPORTED\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: This is the flattened JSON object field name/path that is either missing or invalid.
+                    reason:
+                      type: string
+                      description: "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n"
+        '502':
+          description: Unexpected system error or system timeout.
+          schema:
+            title: ptsV2ReversalsPost502Response
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - SERVER_ERROR\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - SYSTEM_ERROR\n - SERVER_TIMEOUT\n - SERVICE_TIMEOUT\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+x-devcenter-metaData:
+  categoryTagArray:
+  - name: Payments
+    description: For more information about Payments transactions, see the [Payments Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/payments/developer/ctv/rest/payments/payments-intro.html).
+  - name: Transaction_Batches
+    description: For more information about Transaction Batches, see the [Transaction Batches Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-transaction-batch-api/txn_batch_api_intro.html).
+  - name: eCheck_AVS
+    description: For more information about eCheck Account Validation, see the [Account Validation Developer Guides Page](https://...).
+  - name: Token_Management
+    description: For more information about the Token Management Service (TMS) see the [Token Management Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms/tms-overview.html)
+  - name: Flex_Microform
+    description: Microform Integration is a lightweight acceptance solution designed to safely and securely accept payment information within your web page.  Microform is designed to a be embedded seamlessly within your existing webpage experience, blending in with your existing acceptance form.  This solution allows for the replacement of sensitive payment date with a transient token (a short lived reference to the sensitive payment data).  For more information about Flex Microform transactions, see the [Flex Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-flex/SAFlexibleToken.html). For examples on how to integrate Flex Microform within your webpage please see our [GitHub Flex Samples](https://github.com/CyberSource?q=flex&type=&language=)
+  - name: Flex_API
+    description: For more information about Flex API, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/da-flex-api-intro.html).
+  - name: Risk_Management
+  - name: Payouts
+    description: 'For more information about Payouts, see the [Payouts Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-payouts/Introduction.html).
+
+      '
+  - name: Installments
+    description: For more information about Installment contact Cybersource Support. For Visa installments contact VISthroughCYBS@visa.com
+  - name: Recurring_Billing_Subscriptions
+    description: For more information about Recurring Billing, see the [Recurring Billing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-developer/recur-bill-services-intro.html).
+  - name: BIN_Lookup
+    description: 'The BIN Lookup Service is a versatile business tool that provides card network agnostic solution designed to ensure frictionless transaction experience by utilizing up-to-date Bank Identification Number (BIN) attributes sourced from multiple global and regional data sources.
+
+      This service helps to improve authorization rates by helping to route transactions to the best-suited card network, minimizes fraud through card detail verification and aids in regulatory compliance by identifying card properties. The service is flexible and provides businesses with a flexible choice of inputs such as primary account number (PAN), network token from major networks (such as Visa, American Express, Discover and regional networks) which includes device PAN (DPAN), and all types of tokens generated via CyberSource Token Management Service (TMS).
+
+      Currently, the range of available credentials is contingent on the networks enabled for the business entity. Therefore, the network information specified in this documentation is illustrative and subject to personalized offerings for each reseller or merchant.
+
+      '
+  - name: Transaction_Details
+    description: For more information about Transaction Details, see the [Transaction Details Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_details_api.html).
+  - name: Transaction_Search
+    description: For more information about Transaction Search, see the [Transaction Search Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_search_api.html).
+  - name: Reporting
+    description: 'For more information about Reporting, see the [Reporting Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-reporting-rest-api-dev-guide-102718/reporting_api.html).
+
+      '
+  - name: Secure_File_Share
+    description: For more information about Secure File Share, see the [Secure File Share Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-secure-file-share-api-102718/secure_file_share_api_intro.html).
+  - name: Invoices
+    description: For more information about Invoicing, see the [Invoicing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing/Introduction.html).
+  - name: Pay_By_Link
+    description: For more information about PayByLink, see the [PBL Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/boarding/user/all/rest/boarding/templates-matrix-intro/templates-matrix-pay-by-link.html).
+  - name: User_Management
+    description: For more information about User Management, see the [User Managment Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-user-management-api-102718/user_management_api_intro.html).
+  - name: Value_Added_Service
+  - name: Fee Service
+  - name: Merchant_Boarding
+    description: For more information about Merchant Boarding, please see [Developer Guides Page](https://developer.cybersource.com/api/developer-guides/Merchant-Boarding-API_ditamap/Merchant-Boarding-API.html).
+  - name: Webhooks
+    description: For more information about Webhooks, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/webhooks/implementation/all/rest/webhooks/wh-fg-intro.html).
+  - name: Unified_Checkout
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-intro.html).
+  - name: Unified_Checkoutv1
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-about-guide.html).
+  - name: Account_Updater
+    description: For more information about Account Updater, see the [Account Updater Developer Guides Page:](https://developer.cybersource.com/library/documentation/dev_guides/Account_Updater_UG/html/index.html).
+  - name: Visa_Bank_Account_Validation
+    description: 'The Visa Bank Account Validation Service is a new standalone product designed to validate customer''s routing and bank account number combination for ACH transactions. Merchant''s can use this standalone product to validate their customer''s account prior to processing an ACH transaction against the customer''s account to comply with Nacha''s account validation mandate for Web-debit transactions.
+
+      '
+  - name: Currency Conversion
+    description: 'Empower global transactions with transparency and choice. Our Dynamic Currency Conversion API lets merchants offer customers the option to pay in their home currency at checkout, delivering real-time exchange rates and clear cost disclosure.
+
+
+      **Key Benefits:**
+
+      - **Enhanced Customer Experience:** Provide clarity and convenience for international shoppers.
+
+      - **Real-Time Rates:** Accurate currency conversion with all the data required for acquirers and their merchants to maintain compliance with card network rules.
+
+      - **Seamless Integration:** Flexible API endpoints for rate lookup, authorization, and capture.
+
+      - **Regulatory Compliance:** Provides the data required for acquirers and merchants to meet and maintain card scheme requirements for disclosure and consent.
+
+
+      Ideal for merchants and payment partners seeking to boost trust and conversion in cross-border commerce.
+
+
+      **Key Features:**
+
+      - **Rate Lookup:** Retrieves the most up-to-date exchange rate for eligible cards before authorization.
+
+      - **Currency Choice:** Enables the merchant to offer customers the option to select between the merchant''s local currency and their card''s billing currency.
+
+      - **Compliance:** Ensures merchants have the data required to adhere to card network regulations; exchange rates, markups, etc.
+
+
+      **Supported Scenarios:**
+
+      - Dynamic Currency Conversion when cardholder''s billing currency differs from merchant''s pricing currency.
+
+      - Merchant and acquirer must support the cardholder''s billing currency.
+
+
+      **Core API Endpoints:**
+
+
+      **Currency Conversion API**
+
+      Returns eligibility and exchange rate details, including:
+
+      - exchangeRate
+
+      - marginRate
+
+      - reconciliationId and Id (for subsequent payment requests)
+
+
+      **Payment Authorization with DCC***
+
+      POST /pts/v2/payments
+
+      Required fields include:
+
+      - orderInformation.amountDetails.currency
+
+      - orderInformation.amountDetails.originalCurrency
+
+      - orderInformation.amountDetails.originalAmount
+
+      - orderInformation.amountDetails.exchangeRate
+
+      - currencyConversion.indicator (e.g., 1 = Converted, 2 = Nonconvertible, 3 = Declined)
+
+
+      **Capture with DCC***
+
+      POST /pts/v2/payments/{id}/captures
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      **Refund with DCC***
+
+      POST /pts/v2/captures/{id}/refunds
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      *Note: DCC is only supported on select processors. Contact your acquirer or account manager for more information.
+
+
+      **Compliance & Disclosure:**
+
+
+      Merchants must:
+
+      - Adhere to card network rules for Dynamic Currency Conversion (DCC) transactions.
+
+      - Display the converted amount, exchange rate, and markup percentage and other required disclosures.
+
+      - Obtain explicit cardholder consent before applying DCC.
+
+      - Work with your acquirer to obtain full set of compliance requirements.
+
+
+      For more information, see the [Currency Conversion Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/currency-conversion/developer/all/rest/currency-conversion/cc-intro.html).
+
+      '
+  - name: Intelligent_Commerce_Connect
+    description: For more information about Intelligent Commerce Cross Network Service API, please see [Developer Guides](https://developer.cybersource.com/docs/cybs/en-us/intelligent-commerce/developer/all/rest/intelligent-commerce/intelligent-commerce-about-guide.html).

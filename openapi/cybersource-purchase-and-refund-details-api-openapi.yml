@@ -1,0 +1,741 @@
+swagger: '2.0'
+info:
+  description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
+  version: 0.0.1
+  title: CyberSource Merged Spec bankAccountValidation Purchase And Refund Details API
+host: apitest.cybersource.com
+basePath: /
+schemes:
+- https
+consumes:
+- application/json;charset=utf-8
+produces:
+- application/hal+json;charset=utf-8
+tags:
+- name: Purchase And Refund Details
+  description: API for Purchase and Refund Details
+paths:
+  /reporting/v3/purchase-refund-details:
+    get:
+      tags:
+      - Purchase And Refund Details
+      summary: Get Purchase and Refund Details
+      description: 'Download the Purchase and Refund Details report. This report report includes all purchases and refund transactions, as well as all activities related to transactions resulting in an adjustment to the net proceeds.
+
+        '
+      operationId: getPurchaseAndRefundDetails
+      x-devcenter-metaData:
+        categoryTag: Reporting
+        enableDownload: true
+        x-custom-headers:
+          accept:
+          - text/csv
+          - application/xml
+          - application/hal+json
+      x-queryParameterDefaults:
+        organizationId: testrest
+        startTime: '2020-01-01T12:00:00Z'
+        endTime: '2020-01-30T12:00:00Z'
+        groupName: groupName
+        paymentSubtype: VI
+        viewBy: requestDate
+        offset: '20'
+        limit: '2000'
+      produces:
+      - application/hal+json
+      - application/xml
+      - text/csv
+      parameters:
+      - name: startTime
+        in: query
+        description: "Valid report Start Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n**Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)\n"
+        required: true
+        type: string
+        format: date-time
+      - name: endTime
+        in: query
+        description: "Valid report End Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n**Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)\n"
+        required: true
+        type: string
+        format: date-time
+      - name: organizationId
+        in: query
+        description: Valid Organization Id
+        pattern: '[a-zA-Z0-9-_]+'
+        required: false
+        type: string
+        minLength: 1
+        maxLength: 32
+      - name: paymentSubtype
+        in: query
+        description: "Payment Subtypes.\n  - **ALL**:  All Payment Subtypes\n  - **VI** :  Visa\n  - **MC** :  Master Card\n  - **AX** :  American Express\n  - **DI** :  Discover\n  - **DP** :  Pinless Debit\n"
+        required: false
+        type: string
+        default: ALL
+      - name: viewBy
+        in: query
+        description: "View results by Request Date or Submission Date.\n  - **requestDate** : Request Date\n  - **submissionDate**: Submission Date\n"
+        required: false
+        type: string
+        default: requestDate
+      - name: groupName
+        in: query
+        description: Valid CyberSource Group Name.User can define groups using CBAPI and Group Management Module in EBC2. Groups are collection of organizationIds
+        required: false
+        type: string
+      - name: offset
+        in: query
+        description: Offset of the Purchase and Refund Results.
+        required: false
+        type: integer
+        format: int32
+      - name: limit
+        in: query
+        description: Results count per page. Range(1-2000)
+        required: false
+        type: integer
+        minimum: 1
+        maximum: 2000
+        default: 2000
+        format: int32
+      responses:
+        '200':
+          description: Ok
+          schema:
+            title: reportingV3PurchaseRefundDetailsGet200Response
+            type: object
+            properties:
+              offset:
+                type: integer
+              limit:
+                type: integer
+              pageResults:
+                type: integer
+              requestDetails:
+                type: array
+                description: List of Request Info values
+                items:
+                  type: object
+                  properties:
+                    requestId:
+                      type: string
+                      example: '12345678901234567890123456'
+                      description: An unique identification number assigned by CyberSource to identify the submitted request.
+                    cybersourceMerchantId:
+                      type: string
+                      example: Cybersource Merchant Id
+                      description: Cybersource Merchant Id
+                    processorMerchantId:
+                      type: string
+                      example: Processor Merchant Id
+                      description: Cybersource Processor Merchant Id
+                    groupName:
+                      type: string
+                      example: '996411990498708810001'
+                      description: Group Name
+                    transactionReferenceNumber:
+                      type: string
+                      example: RZ3J9WCS9J33
+                      description: Transaction Reference Number
+                    merchantReferenceNumber:
+                      type: string
+                      example: '47882339'
+                      description: Merchant Reference Number
+                  description: Request Info Section
+              settlements:
+                type: array
+                description: List of Settlement Info values
+                items:
+                  type: object
+                  properties:
+                    requestId:
+                      type: string
+                      example: '12345678901234567890123456'
+                      description: An unique identification number assigned by CyberSource to identify the submitted request.
+                    transactionType:
+                      type: string
+                      example: Purchases
+                      description: Transaction Type
+                    submissionTime:
+                      type: string
+                      example: '2017-10-01T10:10:10+05:00'
+                      description: Submission Date
+                      format: date-time
+                    amount:
+                      type: string
+                      example: '23.00'
+                      description: Amount
+                    currencyCode:
+                      type: string
+                      example: USD
+                      description: Valid ISO 4217 ALPHA-3 currency code
+                    paymentMethod:
+                      type: string
+                      example: VISA
+                      description: payment method
+                    walletType:
+                      type: string
+                      example: V.me
+                      description: Solution Type (Wallet)
+                    paymentType:
+                      type: string
+                      example: credit card
+                      description: Payment Type
+                    accountSuffix:
+                      type: string
+                      example: '0004'
+                      description: Account Suffix
+                    cybersourceBatchTime:
+                      type: string
+                      example: '2017-10-01T10:10:10+05:00'
+                      description: Cybersource Batch Time
+                      format: date-time
+                    cybersourceBatchId:
+                      type: string
+                      example: '123123123123123'
+                      description: Cybersource Batch Id
+                    cardType:
+                      type: string
+                      example: 'null'
+                      description: Card Type
+                    debitNetwork:
+                      type: string
+                      example: ''
+                      description: Debit Network
+              authorizations:
+                type: array
+                description: List of Authorization Info values
+                items:
+                  type: object
+                  properties:
+                    requestId:
+                      type: string
+                      example: '12345678901234567890123456'
+                      description: An unique identification number assigned by CyberSource to identify the submitted request.
+                    transactionReferenceNumber:
+                      type: string
+                      example: RZ3J9WCS9J27
+                      description: Authorization Transaction Reference Number
+                    time:
+                      type: string
+                      example: '2017-10-01T10:10:10+05:00'
+                      description: Authorization Date
+                      format: date-time
+                    authorizationRequestId:
+                      type: string
+                      example: '12345678901234567890123459'
+                      description: Authorization Request Id
+                    amount:
+                      type: string
+                      example: '2.50'
+                      description: Authorization Amount
+                    currencyCode:
+                      type: string
+                      example: USD
+                      description: Valid ISO 4217 ALPHA-3 currency code
+                    code:
+                      type: string
+                      example: '160780'
+                      description: Authorization Code
+                    rcode:
+                      type: string
+                      example: '1'
+                      description: Authorization RCode
+                  description: Authorization Info Values
+              feeAndFundingDetails:
+                type: array
+                description: List of Fee Funding Info values
+                items:
+                  type: object
+                  properties:
+                    requestId:
+                      type: string
+                      maxLength: 26
+                      example: '12345678901234567890123456'
+                      description: An unique identification number assigned by CyberSource to identify the submitted request.
+                    interchangePerItemFee:
+                      type: string
+                      example: '2.7'
+                      description: interchange Per Item Fee
+                    interchangeDescription:
+                      type: string
+                      example: Visa International Assessments (Enhanced)
+                      description: interchange Description
+                    interchangePercentage:
+                      type: string
+                      example: '0.25'
+                      description: interchange Percentage
+                    interchangePercentageAmount:
+                      type: string
+                      example: '-3.7500'
+                      description: interchange Percentage Amount
+                    discountPercentage:
+                      type: string
+                      example: '2.39'
+                      description: Discount Percentage
+                    discountAmount:
+                      type: string
+                      example: '0.429'
+                      description: Discount Amount
+                    discountPerItemFee:
+                      type: string
+                      example: '0.002'
+                      description: Discount Per Item Fee
+                    totalFee:
+                      type: string
+                      example: '0.429'
+                      description: Total Fee
+                    feeCurrency:
+                      type: string
+                      example: '1'
+                      description: Fee Currency
+                    duesAssessments:
+                      type: string
+                      example: '0'
+                      description: Dues Assessments
+                    fundingAmount:
+                      type: string
+                      example: '2.50'
+                      description: Funding Amount
+                    fundingCurrency:
+                      type: string
+                      example: USD
+                      description: Funding Currency (ISO 4217)
+                  description: Fee Funding Section
+              others:
+                type: array
+                description: List of Other Info values
+                items:
+                  type: object
+                  properties:
+                    requestId:
+                      type: string
+                      maxLength: 26
+                      example: '12345678901234567890123456'
+                      description: An unique identification number assigned by CyberSource to identify the submitted request.
+                    merchantData1:
+                      type: string
+                      example: Merchant Defined Data
+                      description: Merchant Defined Data
+                    merchantData2:
+                      type: string
+                      example: Merchant Defined Data
+                      description: Merchant Defined Data
+                    merchantData3:
+                      type: string
+                      example: Merchant Defined Data
+                      description: Merchant Defined Data
+                    merchantData4:
+                      type: string
+                      example: Merchant Defined Data
+                      description: Merchant Defined Data
+                    firstName:
+                      type: string
+                      example: First Name
+                      description: First Name
+                    lastName:
+                      type: string
+                      example: Last Name
+                      description: Last Name
+                  description: Other Merchant Details Values.
+              settlementStatuses:
+                type: array
+                description: List of Settlement Status Info values
+                items:
+                  type: object
+                  properties:
+                    requestId:
+                      type: string
+                      maxLength: 26
+                      example: '12345678901234567890123456'
+                      description: An unique identification number assigned by CyberSource to identify the submitted request.
+                    status:
+                      type: string
+                      example: Settlement Status
+                      description: Settlement Status
+                    settlementTime:
+                      type: string
+                      example: '2017-10-01T10:10:10+05:00'
+                      format: date-time
+                      description: Settlement Date
+                    reasonCode:
+                      example: reasonCode
+                      type: string
+                      description: ReasonCode
+                    errorText:
+                      example: errorText
+                      type: string
+                      description: errorText
+                  description: Settlement Status Section Values.
+            description: PurchaseAndRefundDetails
+        '400':
+          description: Invalid request
+          schema:
+            title: reportingV3PurchaseRefundDetailsGet400Response
+            type: object
+            required:
+            - submitTimeUtc
+            - reason
+            - message
+            - details
+            properties:
+              submitTimeUtc:
+                type: string
+                format: date-time
+                description: "Time of request in UTC. \n"
+                example: '2016-08-11T22:47:57Z'
+              reason:
+                type: string
+                description: 'Documented reason code
+
+                  '
+                example: INVALID_DATA
+              message:
+                type: string
+                description: 'Short descriptive message to the user.
+
+                  '
+                example: One or more fields contains invalid data
+              details:
+                type: array
+                description: 'Error field list
+
+                  '
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: 'Field in request that caused an error
+
+                        '
+                    reason:
+                      type: string
+                      description: 'Documented reason code
+
+                        '
+                  description: 'Provides failed validation input field detail
+
+                    '
+            description: HTTP status code for client application
+        '401':
+          description: Unauthorized
+          schema:
+            title: reportingV3PurchaseRefundDetailsGet401Response
+            type: object
+            required:
+            - submitTimeUtc
+            - reason
+            - message
+            - details
+            properties:
+              submitTimeUtc:
+                type: string
+                format: date-time
+                description: "Time of request in UTC. \n"
+                example: '2016-08-11T22:47:57Z'
+              reason:
+                type: string
+                description: 'Documented reason code
+
+                  '
+                example: INVALID_DATA
+              message:
+                type: string
+                description: 'Short descriptive message to the user.
+
+                  '
+                example: One or more fields contains invalid data
+              details:
+                type: array
+                description: 'Error field list
+
+                  '
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: 'Field in request that caused an error
+
+                        '
+                    reason:
+                      type: string
+                      description: 'Documented reason code
+
+                        '
+                  description: 'Provides failed validation input field detail
+
+                    '
+            description: HTTP status code for client application
+        '404':
+          description: Report not found
+          schema:
+            title: reportingV3PurchaseRefundDetailsGet404Response
+            type: object
+            required:
+            - submitTimeUtc
+            - reason
+            - message
+            - details
+            properties:
+              submitTimeUtc:
+                type: string
+                format: date-time
+                description: "Time of request in UTC. \n"
+                example: '2016-08-11T22:47:57Z'
+              reason:
+                type: string
+                description: 'Documented reason code
+
+                  '
+                example: INVALID_DATA
+              message:
+                type: string
+                description: 'Short descriptive message to the user.
+
+                  '
+                example: One or more fields contains invalid data
+              details:
+                type: array
+                description: 'Error field list
+
+                  '
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: 'Field in request that caused an error
+
+                        '
+                    reason:
+                      type: string
+                      description: 'Documented reason code
+
+                        '
+                  description: 'Provides failed validation input field detail
+
+                    '
+            description: HTTP status code for client application
+        '500':
+          description: Internal Server Error
+          schema:
+            title: reportingV3PurchaseRefundDetailsGet500Response
+            type: object
+            required:
+            - submitTimeUtc
+            - reason
+            - message
+            - details
+            properties:
+              submitTimeUtc:
+                type: string
+                format: date-time
+                description: "Time of request in UTC. \n"
+                example: '2016-08-11T22:47:57Z'
+              reason:
+                type: string
+                description: 'Documented reason code
+
+                  '
+                example: INVALID_DATA
+              message:
+                type: string
+                description: 'Short descriptive message to the user.
+
+                  '
+                example: One or more fields contains invalid data
+              details:
+                type: array
+                description: 'Error field list
+
+                  '
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: 'Field in request that caused an error
+
+                        '
+                    reason:
+                      type: string
+                      description: 'Documented reason code
+
+                        '
+                  description: 'Provides failed validation input field detail
+
+                    '
+            description: HTTP status code for client application
+          examples:
+            application/json:
+              code: SERVER_ERROR
+              correlationId: null
+              detail: Internal Server Error. Please contact the customer support.
+              localizationKey: cybsapi.server.error
+              message: Error encountered while processing request
+x-devcenter-metaData:
+  categoryTagArray:
+  - name: Payments
+    description: For more information about Payments transactions, see the [Payments Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/payments/developer/ctv/rest/payments/payments-intro.html).
+  - name: Transaction_Batches
+    description: For more information about Transaction Batches, see the [Transaction Batches Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-transaction-batch-api/txn_batch_api_intro.html).
+  - name: eCheck_AVS
+    description: For more information about eCheck Account Validation, see the [Account Validation Developer Guides Page](https://...).
+  - name: Token_Management
+    description: For more information about the Token Management Service (TMS) see the [Token Management Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms/tms-overview.html)
+  - name: Flex_Microform
+    description: Microform Integration is a lightweight acceptance solution designed to safely and securely accept payment information within your web page.  Microform is designed to a be embedded seamlessly within your existing webpage experience, blending in with your existing acceptance form.  This solution allows for the replacement of sensitive payment date with a transient token (a short lived reference to the sensitive payment data).  For more information about Flex Microform transactions, see the [Flex Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-flex/SAFlexibleToken.html). For examples on how to integrate Flex Microform within your webpage please see our [GitHub Flex Samples](https://github.com/CyberSource?q=flex&type=&language=)
+  - name: Flex_API
+    description: For more information about Flex API, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/da-flex-api-intro.html).
+  - name: Risk_Management
+  - name: Payouts
+    description: 'For more information about Payouts, see the [Payouts Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-payouts/Introduction.html).
+
+      '
+  - name: Installments
+    description: For more information about Installment contact Cybersource Support. For Visa installments contact VISthroughCYBS@visa.com
+  - name: Recurring_Billing_Subscriptions
+    description: For more information about Recurring Billing, see the [Recurring Billing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-developer/recur-bill-services-intro.html).
+  - name: BIN_Lookup
+    description: 'The BIN Lookup Service is a versatile business tool that provides card network agnostic solution designed to ensure frictionless transaction experience by utilizing up-to-date Bank Identification Number (BIN) attributes sourced from multiple global and regional data sources.
+
+      This service helps to improve authorization rates by helping to route transactions to the best-suited card network, minimizes fraud through card detail verification and aids in regulatory compliance by identifying card properties. The service is flexible and provides businesses with a flexible choice of inputs such as primary account number (PAN), network token from major networks (such as Visa, American Express, Discover and regional networks) which includes device PAN (DPAN), and all types of tokens generated via CyberSource Token Management Service (TMS).
+
+      Currently, the range of available credentials is contingent on the networks enabled for the business entity. Therefore, the network information specified in this documentation is illustrative and subject to personalized offerings for each reseller or merchant.
+
+      '
+  - name: Transaction_Details
+    description: For more information about Transaction Details, see the [Transaction Details Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_details_api.html).
+  - name: Transaction_Search
+    description: For more information about Transaction Search, see the [Transaction Search Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_search_api.html).
+  - name: Reporting
+    description: 'For more information about Reporting, see the [Reporting Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-reporting-rest-api-dev-guide-102718/reporting_api.html).
+
+      '
+  - name: Secure_File_Share
+    description: For more information about Secure File Share, see the [Secure File Share Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-secure-file-share-api-102718/secure_file_share_api_intro.html).
+  - name: Invoices
+    description: For more information about Invoicing, see the [Invoicing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing/Introduction.html).
+  - name: Pay_By_Link
+    description: For more information about PayByLink, see the [PBL Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/boarding/user/all/rest/boarding/templates-matrix-intro/templates-matrix-pay-by-link.html).
+  - name: User_Management
+    description: For more information about User Management, see the [User Managment Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-user-management-api-102718/user_management_api_intro.html).
+  - name: Value_Added_Service
+  - name: Fee Service
+  - name: Merchant_Boarding
+    description: For more information about Merchant Boarding, please see [Developer Guides Page](https://developer.cybersource.com/api/developer-guides/Merchant-Boarding-API_ditamap/Merchant-Boarding-API.html).
+  - name: Webhooks
+    description: For more information about Webhooks, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/webhooks/implementation/all/rest/webhooks/wh-fg-intro.html).
+  - name: Unified_Checkout
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-intro.html).
+  - name: Unified_Checkoutv1
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-about-guide.html).
+  - name: Account_Updater
+    description: For more information about Account Updater, see the [Account Updater Developer Guides Page:](https://developer.cybersource.com/library/documentation/dev_guides/Account_Updater_UG/html/index.html).
+  - name: Visa_Bank_Account_Validation
+    description: 'The Visa Bank Account Validation Service is a new standalone product designed to validate customer''s routing and bank account number combination for ACH transactions. Merchant''s can use this standalone product to validate their customer''s account prior to processing an ACH transaction against the customer''s account to comply with Nacha''s account validation mandate for Web-debit transactions.
+
+      '
+  - name: Currency Conversion
+    description: 'Empower global transactions with transparency and choice. Our Dynamic Currency Conversion API lets merchants offer customers the option to pay in their home currency at checkout, delivering real-time exchange rates and clear cost disclosure.
+
+
+      **Key Benefits:**
+
+      - **Enhanced Customer Experience:** Provide clarity and convenience for international shoppers.
+
+      - **Real-Time Rates:** Accurate currency conversion with all the data required for acquirers and their merchants to maintain compliance with card network rules.
+
+      - **Seamless Integration:** Flexible API endpoints for rate lookup, authorization, and capture.
+
+      - **Regulatory Compliance:** Provides the data required for acquirers and merchants to meet and maintain card scheme requirements for disclosure and consent.
+
+
+      Ideal for merchants and payment partners seeking to boost trust and conversion in cross-border commerce.
+
+
+      **Key Features:**
+
+      - **Rate Lookup:** Retrieves the most up-to-date exchange rate for eligible cards before authorization.
+
+      - **Currency Choice:** Enables the merchant to offer customers the option to select between the merchant''s local currency and their card''s billing currency.
+
+      - **Compliance:** Ensures merchants have the data required to adhere to card network regulations; exchange rates, markups, etc.
+
+
+      **Supported Scenarios:**
+
+      - Dynamic Currency Conversion when cardholder''s billing currency differs from merchant''s pricing currency.
+
+      - Merchant and acquirer must support the cardholder''s billing currency.
+
+
+      **Core API Endpoints:**
+
+
+      **Currency Conversion API**
+
+      Returns eligibility and exchange rate details, including:
+
+      - exchangeRate
+
+      - marginRate
+
+      - reconciliationId and Id (for subsequent payment requests)
+
+
+      **Payment Authorization with DCC***
+
+      POST /pts/v2/payments
+
+      Required fields include:
+
+      - orderInformation.amountDetails.currency
+
+      - orderInformation.amountDetails.originalCurrency
+
+      - orderInformation.amountDetails.originalAmount
+
+      - orderInformation.amountDetails.exchangeRate
+
+      - currencyConversion.indicator (e.g., 1 = Converted, 2 = Nonconvertible, 3 = Declined)
+
+
+      **Capture with DCC***
+
+      POST /pts/v2/payments/{id}/captures
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      **Refund with DCC***
+
+      POST /pts/v2/captures/{id}/refunds
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      *Note: DCC is only supported on select processors. Contact your acquirer or account manager for more information.
+
+
+      **Compliance & Disclosure:**
+
+
+      Merchants must:
+
+      - Adhere to card network rules for Dynamic Currency Conversion (DCC) transactions.
+
+      - Display the converted amount, exchange rate, and markup percentage and other required disclosures.
+
+      - Obtain explicit cardholder consent before applying DCC.
+
+      - Work with your acquirer to obtain full set of compliance requirements.
+
+
+      For more information, see the [Currency Conversion Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/currency-conversion/developer/all/rest/currency-conversion/cc-intro.html).
+
+      '
+  - name: Intelligent_Commerce_Connect
+    description: For more information about Intelligent Commerce Cross Network Service API, please see [Developer Guides](https://developer.cybersource.com/docs/cybs/en-us/intelligent-commerce/developer/all/rest/intelligent-commerce/intelligent-commerce-about-guide.html).

@@ -1,0 +1,1050 @@
+swagger: '2.0'
+info:
+  description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
+  version: 0.0.1
+  title: CyberSource Merged Spec bankAccountValidation TransactionBatches API
+host: apitest.cybersource.com
+basePath: /
+schemes:
+- https
+consumes:
+- application/json;charset=utf-8
+produces:
+- application/hal+json;charset=utf-8
+tags:
+- name: TransactionBatches
+  description: 'Get a list of batch files or details of Individual file processed through the Offline Transaction Submission Services.
+
+    '
+paths:
+  /pts/v1/transaction-batches:
+    get:
+      summary: Get a List of Batch Files
+      description: Provide the date and time search range to get a list of Batch Files ready for settlement
+      tags:
+      - TransactionBatches
+      operationId: getTransactionBatches
+      x-devcenter-metaData:
+        categoryTag: Transaction_Batches
+        developerGuides: https://developer.cybersource.com/api/developer-guides/dita-transaction-batch-api/txn_batch_api_intro.html
+      x-queryParameterDefaults:
+        startTime: '2020-02-22T01:47:57Z'
+        endTime: '2020-02-22T22:47:57Z'
+      produces:
+      - application/hal+json
+      parameters:
+      - name: startTime
+        in: query
+        description: "Valid report Start Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n **Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZZ\n"
+        required: true
+        type: string
+        format: date-time
+      - name: endTime
+        in: query
+        description: "Valid report End Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n **Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZZ\n"
+        required: true
+        type: string
+        format: date-time
+      responses:
+        '200':
+          description: OK
+          schema:
+            title: ptsV1TransactionBatchesGet200Response
+            type: object
+            properties:
+              transactionBatches:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: Unique identifier assigned to the batch file.
+                      example: psy8s1d
+                      pattern: ^[a-zA-Z0-9_+-]*$
+                      minLength: 1
+                      maxLength: 8
+                    uploadDate:
+                      type: string
+                      description: Date when the batch template was update.
+                      example: '2018-01-01'
+                    completionDate:
+                      type: string
+                      description: The date when the batch template processing completed.
+                      example: '2018-01-01'
+                    transactionCount:
+                      type: integer
+                      description: Number of transactions in the transaction.
+                      example: 7534
+                    acceptedTransactionCount:
+                      type: integer
+                      description: Number of transactions accepted.
+                      example: 50013
+                    rejectedTransactionCount:
+                      type: string
+                      description: Number of transactions rejected.
+                      example: 2508
+                    status:
+                      type: string
+                      description: The status of you batch template processing.
+                      example: Completed
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                        example: /pts/v1/transaction-batches
+                      method:
+                        type: string
+                        example: GET
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+        '400':
+          description: Bad Request
+          schema:
+            title: ptsV1TransactionBatchesGet400Response
+            type: object
+            properties:
+              errorInformation:
+                type: object
+                properties:
+                  reason:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                            '
+                        message:
+                          type: string
+                          description: 'The detailed message related to the status and reason listed above.
+
+                            '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+        '401':
+          description: Not Authorized
+          schema:
+            title: ptsV1TransactionBatchesGet401Response
+            type: object
+            properties:
+              errorInformation:
+                type: object
+                properties:
+                  reason:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                            '
+                        message:
+                          type: string
+                          description: 'The detailed message related to the status and reason listed above.
+
+                            '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+        '403':
+          description: No Authenticated
+          schema:
+            title: ptsV1TransactionBatchesGet403Response
+            type: object
+            properties:
+              errorInformation:
+                type: object
+                properties:
+                  reason:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                            '
+                        message:
+                          type: string
+                          description: 'The detailed message related to the status and reason listed above.
+
+                            '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+        '404':
+          description: No Reports Found
+          schema:
+            title: ptsV1TransactionBatchesGet404Response
+            type: object
+            properties:
+              errorInformation:
+                type: object
+                properties:
+                  reason:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                            '
+                        message:
+                          type: string
+                          description: 'The detailed message related to the status and reason listed above.
+
+                            '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+        '500':
+          description: Bad Gateway
+          schema:
+            title: ptsV1TransactionBatchesGet500Response
+            type: object
+            properties:
+              errorInformation:
+                type: object
+                properties:
+                  reason:
+                    type: string
+                    description: The reason of status
+                  message:
+                    type: string
+                    description: The detailed message related to the status and reason listed above.
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+  /pts/v1/transaction-batches/{id}:
+    get:
+      summary: Get Individual Batch File
+      description: This API provides details like upload date, completion date, transaction count and accepted and rejected transaction count of the individual batch file using the batch id
+      tags:
+      - TransactionBatches
+      operationId: getTransactionBatchId
+      x-devcenter-metaData:
+        categoryTag: Transaction_Batches
+        developerGuides: https://developer.cybersource.com/api/developer-guides/dita-transaction-batch-api/txn_batch_api_intro.html
+      x-depends:
+        example:
+          path: /pts/v1/transaction-batches
+          verb: get
+          exampleId: Get a list of batch files
+        fieldMapping:
+        - sourceField: transactionBatches[0].id
+          destinationField: id
+          fieldTypeInDestination: path
+      produces:
+      - application/hal+json
+      parameters:
+      - name: id
+        in: path
+        description: The batch id assigned for the template.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            title: ptsV1TransactionBatchesIdGet200Response
+            type: object
+            properties:
+              id:
+                type: string
+                description: Unique identifier assigned to the batch file.
+                example: psy8s1d
+                pattern: ^[a-zA-Z0-9_+-]*$
+                minLength: 1
+                maxLength: 8
+              uploadDate:
+                type: string
+                description: Date when the batch template was update.
+                example: '2018-01-01'
+              completionDate:
+                type: string
+                description: The date when the batch template processing completed.
+                example: '2018-01-01'
+              transactionCount:
+                type: integer
+                description: Number of transactions in the transaction.
+                example: 7534
+              acceptedTransactionCount:
+                type: integer
+                description: Number of transactions accepted.
+                example: 50013
+              rejectedTransactionCount:
+                type: string
+                description: Number of transactions rejected.
+                example: 2508
+              status:
+                type: string
+                description: The status of you batch template processing.
+                example: Completed
+              _links:
+                type: object
+                properties:
+                  transactions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        href:
+                          type: string
+                          description: Self link for this request
+                          example: /tss/v2/transactions/5289798134206292501013
+                        method:
+                          type: string
+        '400':
+          description: Bad Request
+          schema:
+            title: ptsV1TransactionBatchesGet400Response
+            type: object
+            properties:
+              errorInformation:
+                type: object
+                properties:
+                  reason:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                            '
+                        message:
+                          type: string
+                          description: 'The detailed message related to the status and reason listed above.
+
+                            '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+        '401':
+          description: Not Authorized
+          schema:
+            title: ptsV1TransactionBatchesGet401Response
+            type: object
+            properties:
+              errorInformation:
+                type: object
+                properties:
+                  reason:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                            '
+                        message:
+                          type: string
+                          description: 'The detailed message related to the status and reason listed above.
+
+                            '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+        '403':
+          description: No Authenticated
+          schema:
+            title: ptsV1TransactionBatchesGet403Response
+            type: object
+            properties:
+              errorInformation:
+                type: object
+                properties:
+                  reason:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                            '
+                        message:
+                          type: string
+                          description: 'The detailed message related to the status and reason listed above.
+
+                            '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+        '404':
+          description: No Reports Found
+          schema:
+            title: ptsV1TransactionBatchesGet404Response
+            type: object
+            properties:
+              errorInformation:
+                type: object
+                properties:
+                  reason:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                            '
+                        message:
+                          type: string
+                          description: 'The detailed message related to the status and reason listed above.
+
+                            '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+        '502':
+          description: Bad Gateway
+          schema:
+            title: ptsV1TransactionBatchesGet502Response
+            type: object
+            properties:
+              errorInformation:
+                type: object
+                properties:
+                  reason:
+                    type: string
+                    description: The reason of status
+                  message:
+                    type: string
+                    description: The detailed message related to the status and reason listed above.
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+  /pts/v1/transaction-batch-details/{id}:
+    get:
+      tags:
+      - TransactionBatches
+      summary: Get Transaction Details for a given Batch Id
+      description: 'Provides real-time detailed status information about the transactions that you previously uploaded in the Business Center or processed with the Offline Transaction File Submission service.
+
+        '
+      operationId: getTransactionBatchDetails
+      x-streaming: true
+      x-devcenter-metaData:
+        categoryTag: Transaction_Batches
+        developerGuides: https://developer.cybersource.com/api/developer-guides/dita-transaction-batch-api/txn_batch_api_intro.html
+        enableDownload: true
+        x-custom-headers:
+          accept:
+          - text/csv
+          - application/xml
+          - text/vnd.cybersource.map-csv
+      x-queryParameterDefaults:
+        uploadDate: '2019-08-30'
+        status: Rejected
+      x-depends:
+        example:
+          path: /pts/v1/transaction-batches/{id}
+          verb: get
+          exampleId: Get individual batch file
+        fieldMapping:
+        - sourceField: id
+          destinationField: id
+          fieldTypeInDestination: path
+      produces:
+      - text/csv
+      - application/xml
+      - text/vnd.cybersource.map-csv
+      parameters:
+      - name: id
+        in: path
+        description: The batch id assigned for the template.
+        required: true
+        type: string
+      - name: uploadDate
+        in: query
+        description: "Date in which the original batch file was uploaded. Date must be in ISO-8601 format.\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n**Example date format:**\n - yyyy-MM-dd\n"
+        required: false
+        type: string
+        format: date
+      - name: status
+        in: query
+        description: 'Allows you to filter by rejected response.
+
+
+          Valid values:
+
+          - Rejected
+
+          '
+        required: false
+        type: string
+      responses:
+        '200':
+          description: OK
+          examples:
+            text/vnd.cybersource.map-csv: 'merchantID=testrest,batchID=01lzdah4
+
+
+              merchantReferenceCode=7vvc3645,purchaseTotals_currency=GBP,ccAuthReversalReply_processorResponse=00,ccAuthReversalReply_requestDateTime=2019-03-08 10:50:23 GMT,ccAuthReversalReply_amount=8.00,decision=ACCEPT,requestID=5520424090516341303098,merchantReferenceCode=7Y3E112F,requestToken=Ahj//wSTLNz0kRV6lzumGxkyXTozqrWfMbTWSi9xQvvlQFRe4pB8qekDsTiONhk0kyxdfAw3sUHMmWbkw9bmwBX9cAAA+Rh4,reasonCode=100,ccAuthReversalReply_reasonCode=100
+
+              '
+            text/csv: 'Submission Date/Time,Submission File ID,link_to_request,request_id,transaction_date,cybs_mid,processor_mid,hierarchy_id,trans_ref_number,merchant_ref_number,transaction_type,amount,transaction_amount_currency,payment_method,payment_type,account_suffix,decision,reason_code,reserved,auth_trans_ref_number,auth_date,auth_request_id,auth_amount,auth_currency,auth_code,auth_reason_code,auth_rcode,merchant_defined_data1,merchant_defined_data2,merchant_defined_data3,merchant_defined_data4
+
+              2019-03-08 10:50:23 GMT,01lzdah4,5520424090516341303098,5520424090516341303098,2019-03-08 10:53:29 GMT,testrest,,101011000871000110003,51512455,4,ics_auth,8.00,GBP  ,credit card,Visa,1111,,100,,,,5520424090516341303098,,,,,,3817,,,
+
+              '
+            application/xml: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!DOCTYPE Report SYSTEM \"https://apitest.cybersource.com/reporting/v2/dtds/bsd\">\n<Report MerchantID=\"testrest\"\n        Name=\"Batch Submission Detail Report\"\n        SubmissionFileID=\"01lzdah4\"\n        SubmissionDateTime=\"2019-03-08 10:50:23 GMT\"\n        Version=\"1.0\">\n    <Transaction>\n        <LinkToRequest>5520424090516341303098</LinkToRequest>\n        <RequestID>5520424090516341303098</RequestID>\n        <TransactionDate>2019-03-08 10:53:29 GMT</TransactionDate>\n        <CybsMID>pa_gpn</CybsMID>\n        <HierarchyID>101011000871000110003</HierarchyID>\n        <TransRefNumber>51512455</TransRefNumber>\n        <MerchantRefNumber>7vvc3645</MerchantRefNumber>\n        <TransactionType>ics_auth</TransactionType>\n        <Amount>8.00</Amount>\n        <TransactionAmountCurrency>GBP</TransactionAmountCurrency>\n        <PaymentMethod>credit card</PaymentMethod>\n        <PaymentType>Visa</PaymentType>\n        <AccountSuffix>1111</AccountSuffix>\n        <ReasonCode>100</ReasonCode>\n        <Auth>\n            <RequestID>5520424090516341303098</RequestID>\n        </Auth>\n        <MerchantDefinedData1>3817</MerchantDefinedData1>\n    </Transaction>\n</Report>\n"
+        '400':
+          description: Bad Request
+          schema:
+            title: ptsV1TransactionBatchDetailsGet400Response
+            type: object
+            properties:
+              errorInformation:
+                type: object
+                properties:
+                  reason:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                            '
+                        message:
+                          type: string
+                          description: 'The detailed message related to the status and reason listed above.
+
+                            '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+        '401':
+          description: Not Authorized
+          schema:
+            title: ptsV1TransactionBatchDetailsGet401Response
+            type: object
+            properties:
+              errorInformation:
+                type: object
+                properties:
+                  reason:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                            '
+                        message:
+                          type: string
+                          description: 'The detailed message related to the status and reason listed above.
+
+                            '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+        '403':
+          description: No Authenticated
+          schema:
+            title: ptsV1TransactionBatchDetailsGet403Response
+            type: object
+            properties:
+              errorInformation:
+                type: object
+                properties:
+                  reason:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                            '
+                        message:
+                          type: string
+                          description: 'The detailed message related to the status and reason listed above.
+
+                            '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+        '404':
+          description: No Reports Found
+          schema:
+            title: ptsV1TransactionBatchDetailsGet404Response
+            type: object
+            properties:
+              errorInformation:
+                type: object
+                properties:
+                  reason:
+                    type: string
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                            '
+                        message:
+                          type: string
+                          description: 'The detailed message related to the status and reason listed above.
+
+                            '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+        '502':
+          description: Bad Gateway
+          schema:
+            title: ptsV1TransactionBatchDetailsGet502Response
+            type: object
+            properties:
+              errorInformation:
+                type: object
+                properties:
+                  reason:
+                    type: string
+                    description: The reason of status
+                  message:
+                    type: string
+                    description: The detailed message related to the status and reason listed above.
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+  /pts/v1/transaction-batch-upload:
+    post:
+      summary: Upload a Batch File
+      description: This endpoint enables the upload of a batch file containing transactions for processing.
+      tags:
+      - TransactionBatches
+      operationId: uploadTransactionBatch
+      x-devcenter-metaData:
+        categoryTag: Transaction_Batches
+        developerGuides: https://developer.cybersource.com/api/developer-guides/dita-transaction-batch-api/txn_batch_api_intro.html
+        noAuth: true
+        firstLevelApiLifeCycle: hidden
+        secondLevelApiLifeCycle: hidden
+        apiLifeCycle: hidden
+      produces:
+      - application/json
+      consumes:
+      - multipart/form-data
+      parameters:
+      - in: formData
+        name: file
+        type: file
+        description: The file to upload.
+        required: true
+      responses:
+        '201':
+          description: Batch File uploaded successfully
+        '400':
+          description: Bad Request
+          schema:
+            title: 400UploadBatchFileResponse
+            type: object
+            properties:
+              error:
+                type: string
+              message:
+                type: string
+        '403':
+          description: Not Authorized
+          schema:
+            title: 403UploadBatchFileResponse
+            type: object
+            properties:
+              error:
+                type: string
+              message:
+                type: string
+        '500':
+          description: Bad Gateway
+          schema:
+            title: 500UploadBatchFileResponse
+            type: object
+            properties:
+              error:
+                type: string
+              message:
+                type: string
+x-devcenter-metaData:
+  categoryTagArray:
+  - name: Payments
+    description: For more information about Payments transactions, see the [Payments Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/payments/developer/ctv/rest/payments/payments-intro.html).
+  - name: Transaction_Batches
+    description: For more information about Transaction Batches, see the [Transaction Batches Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-transaction-batch-api/txn_batch_api_intro.html).
+  - name: eCheck_AVS
+    description: For more information about eCheck Account Validation, see the [Account Validation Developer Guides Page](https://...).
+  - name: Token_Management
+    description: For more information about the Token Management Service (TMS) see the [Token Management Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms/tms-overview.html)
+  - name: Flex_Microform
+    description: Microform Integration is a lightweight acceptance solution designed to safely and securely accept payment information within your web page.  Microform is designed to a be embedded seamlessly within your existing webpage experience, blending in with your existing acceptance form.  This solution allows for the replacement of sensitive payment date with a transient token (a short lived reference to the sensitive payment data).  For more information about Flex Microform transactions, see the [Flex Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-flex/SAFlexibleToken.html). For examples on how to integrate Flex Microform within your webpage please see our [GitHub Flex Samples](https://github.com/CyberSource?q=flex&type=&language=)
+  - name: Flex_API
+    description: For more information about Flex API, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/da-flex-api-intro.html).
+  - name: Risk_Management
+  - name: Payouts
+    description: 'For more information about Payouts, see the [Payouts Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-payouts/Introduction.html).
+
+      '
+  - name: Installments
+    description: For more information about Installment contact Cybersource Support. For Visa installments contact VISthroughCYBS@visa.com
+  - name: Recurring_Billing_Subscriptions
+    description: For more information about Recurring Billing, see the [Recurring Billing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-developer/recur-bill-services-intro.html).
+  - name: BIN_Lookup
+    description: 'The BIN Lookup Service is a versatile business tool that provides card network agnostic solution designed to ensure frictionless transaction experience by utilizing up-to-date Bank Identification Number (BIN) attributes sourced from multiple global and regional data sources.
+
+      This service helps to improve authorization rates by helping to route transactions to the best-suited card network, minimizes fraud through card detail verification and aids in regulatory compliance by identifying card properties. The service is flexible and provides businesses with a flexible choice of inputs such as primary account number (PAN), network token from major networks (such as Visa, American Express, Discover and regional networks) which includes device PAN (DPAN), and all types of tokens generated via CyberSource Token Management Service (TMS).
+
+      Currently, the range of available credentials is contingent on the networks enabled for the business entity. Therefore, the network information specified in this documentation is illustrative and subject to personalized offerings for each reseller or merchant.
+
+      '
+  - name: Transaction_Details
+    description: For more information about Transaction Details, see the [Transaction Details Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_details_api.html).
+  - name: Transaction_Search
+    description: For more information about Transaction Search, see the [Transaction Search Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_search_api.html).
+  - name: Reporting
+    description: 'For more information about Reporting, see the [Reporting Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-reporting-rest-api-dev-guide-102718/reporting_api.html).
+
+      '
+  - name: Secure_File_Share
+    description: For more information about Secure File Share, see the [Secure File Share Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-secure-file-share-api-102718/secure_file_share_api_intro.html).
+  - name: Invoices
+    description: For more information about Invoicing, see the [Invoicing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing/Introduction.html).
+  - name: Pay_By_Link
+    description: For more information about PayByLink, see the [PBL Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/boarding/user/all/rest/boarding/templates-matrix-intro/templates-matrix-pay-by-link.html).
+  - name: User_Management
+    description: For more information about User Management, see the [User Managment Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-user-management-api-102718/user_management_api_intro.html).
+  - name: Value_Added_Service
+  - name: Fee Service
+  - name: Merchant_Boarding
+    description: For more information about Merchant Boarding, please see [Developer Guides Page](https://developer.cybersource.com/api/developer-guides/Merchant-Boarding-API_ditamap/Merchant-Boarding-API.html).
+  - name: Webhooks
+    description: For more information about Webhooks, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/webhooks/implementation/all/rest/webhooks/wh-fg-intro.html).
+  - name: Unified_Checkout
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-intro.html).
+  - name: Unified_Checkoutv1
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-about-guide.html).
+  - name: Account_Updater
+    description: For more information about Account Updater, see the [Account Updater Developer Guides Page:](https://developer.cybersource.com/library/documentation/dev_guides/Account_Updater_UG/html/index.html).
+  - name: Visa_Bank_Account_Validation
+    description: 'The Visa Bank Account Validation Service is a new standalone product designed to validate customer''s routing and bank account number combination for ACH transactions. Merchant''s can use this standalone product to validate their customer''s account prior to processing an ACH transaction against the customer''s account to comply with Nacha''s account validation mandate for Web-debit transactions.
+
+      '
+  - name: Currency Conversion
+    description: 'Empower global transactions with transparency and choice. Our Dynamic Currency Conversion API lets merchants offer customers the option to pay in their home currency at checkout, delivering real-time exchange rates and clear cost disclosure.
+
+
+      **Key Benefits:**
+
+      - **Enhanced Customer Experience:** Provide clarity and convenience for international shoppers.
+
+      - **Real-Time Rates:** Accurate currency conversion with all the data required for acquirers and their merchants to maintain compliance with card network rules.
+
+      - **Seamless Integration:** Flexible API endpoints for rate lookup, authorization, and capture.
+
+      - **Regulatory Compliance:** Provides the data required for acquirers and merchants to meet and maintain card scheme requirements for disclosure and consent.
+
+
+      Ideal for merchants and payment partners seeking to boost trust and conversion in cross-border commerce.
+
+
+      **Key Features:**
+
+      - **Rate Lookup:** Retrieves the most up-to-date exchange rate for eligible cards before authorization.
+
+      - **Currency Choice:** Enables the merchant to offer customers the option to select between the merchant''s local currency and their card''s billing currency.
+
+      - **Compliance:** Ensures merchants have the data required to adhere to card network regulations; exchange rates, markups, etc.
+
+
+      **Supported Scenarios:**
+
+      - Dynamic Currency Conversion when cardholder''s billing currency differs from merchant''s pricing currency.
+
+      - Merchant and acquirer must support the cardholder''s billing currency.
+
+
+      **Core API Endpoints:**
+
+
+      **Currency Conversion API**
+
+      Returns eligibility and exchange rate details, including:
+
+      - exchangeRate
+
+      - marginRate
+
+      - reconciliationId and Id (for subsequent payment requests)
+
+
+      **Payment Authorization with DCC***
+
+      POST /pts/v2/payments
+
+      Required fields include:
+
+      - orderInformation.amountDetails.currency
+
+      - orderInformation.amountDetails.originalCurrency
+
+      - orderInformation.amountDetails.originalAmount
+
+      - orderInformation.amountDetails.exchangeRate
+
+      - currencyConversion.indicator (e.g., 1 = Converted, 2 = Nonconvertible, 3 = Declined)
+
+
+      **Capture with DCC***
+
+      POST /pts/v2/payments/{id}/captures
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      **Refund with DCC***
+
+      POST /pts/v2/captures/{id}/refunds
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      *Note: DCC is only supported on select processors. Contact your acquirer or account manager for more information.
+
+
+      **Compliance & Disclosure:**
+
+
+      Merchants must:
+
+      - Adhere to card network rules for Dynamic Currency Conversion (DCC) transactions.
+
+      - Display the converted amount, exchange rate, and markup percentage and other required disclosures.
+
+      - Obtain explicit cardholder consent before applying DCC.
+
+      - Work with your acquirer to obtain full set of compliance requirements.
+
+
+      For more information, see the [Currency Conversion Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/currency-conversion/developer/all/rest/currency-conversion/cc-intro.html).
+
+      '
+  - name: Intelligent_Commerce_Connect
+    description: For more information about Intelligent Commerce Cross Network Service API, please see [Developer Guides](https://developer.cybersource.com/docs/cybs/en-us/intelligent-commerce/developer/all/rest/intelligent-commerce/intelligent-commerce-about-guide.html).

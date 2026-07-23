@@ -1,0 +1,880 @@
+swagger: '2.0'
+info:
+  description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
+  version: 0.0.1
+  title: CyberSource Merged Spec bankAccountValidation Merchant Defined Fields API
+host: apitest.cybersource.com
+basePath: /
+schemes:
+- https
+consumes:
+- application/json;charset=utf-8
+produces:
+- application/hal+json;charset=utf-8
+tags:
+- name: Merchant Defined Fields
+paths:
+  /invoicing/v2/{referenceType}/merchantDefinedFields:
+    get:
+      tags:
+      - Merchant Defined Fields
+      summary: Get all merchant defined fields for a given reference type
+      operationId: getMerchantDefinedFieldsDefinitions
+      x-devcenter-metaData:
+        categoryTag: Invoicing
+        developerGuides: https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing/Introduction.html
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: referenceType
+        in: path
+        type: string
+        enum:
+        - Invoice
+        - Purchase
+        - Donation
+        description: The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation
+        required: true
+      responses:
+        '200':
+          description: Get all merchant defined fields for a given reference type
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                fieldType:
+                  type: string
+                label:
+                  type: string
+                customerVisible:
+                  type: boolean
+                textMinLength:
+                  type: integer
+                  format: int32
+                textMaxLength:
+                  type: integer
+                  format: int32
+                possibleValues:
+                  type: string
+                textDefaultValue:
+                  type: string
+                merchantId:
+                  type: string
+                referenceType:
+                  type: string
+                readOnly:
+                  type: boolean
+                merchantDefinedDataIndex:
+                  type: integer
+                  format: int32
+              example:
+                fieldType: Text
+                label: Cup
+                customerVisible: 'true'
+                readOnly: 'false'
+                textMinLength: 1
+                textMaxLength: 100
+                textDefaultValue: default text
+                merchantDefinedDataIndex: 15
+        '404':
+          description: Merchant defined fields not found
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: The time the response was submitted
+              status:
+                type: integer
+                description: The status code of the response
+                format: int32
+              reason:
+                type: string
+                description: The reason for the response
+              message:
+                type: string
+                description: The message of the response
+              details:
+                description: The details of the validation error
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: The field that caused the validation error
+                    reason:
+                      type: string
+                      description: The reason for the validation error
+            example:
+              correlationId: 08b69ffe-f79b-4e09-991f-b030058e21f4
+              status: 400
+              responseData:
+                submitTimeUtc: '2016-08-11T22:47:57Z'
+                status: 400
+                reason: MERCHANT_DEFINED_FIELD_ALREADY_UPDATED
+                message: Merchant defined field already updated or does not exist
+                details:
+                - field: customerVisible readOnly
+                  reason: For 'Select' field type 'Read only' must be false and 'Customer Visible' true
+                - field: textMinLength
+                  reason: textMinLength is not allowed for field type Select
+                - field: textMaxLength
+                  reason: textMaxLength is not allowed for field type Select
+                - field: textDefaultValue
+                  reason: textDefaultValue is not allowed for field type Select
+                - field: possibleValues
+                  reason: Possible values cannot be empty for Select field type
+                - field: possibleValues
+                  reason: Possible value Best Dad in the world is too long
+                - field: possibleValues
+                  reason: Possible values must contain at least two values
+                - field: possibleValues
+                  reason: Possible values total length cannot exceed 4000 characters
+                - field: possibleValues
+                  reason: Possible value cannot be empty
+    post:
+      tags:
+      - Merchant Defined Fields
+      x-devcenter-metaData:
+        categoryTag: Invoicing
+        developerGuides: https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing/Introduction.html
+      summary: Create merchant defined field for a given reference type
+      operationId: createMerchantDefinedFieldDefinition
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: referenceType
+        in: path
+        type: string
+        enum:
+        - Invoice
+        - Purchase
+        - Donation
+        description: The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation
+        required: true
+      - name: MerchantDefinedFieldDefinitionRequest
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            fieldType:
+              type: string
+              description: 'Possible values:
+
+                - text
+
+                - select'
+            label:
+              type: string
+              maxLength: 100
+            customerVisible:
+              type: boolean
+              default: false
+            textMinLength:
+              type: integer
+              default: 0
+              description: Should be used only if fieldType = "text"
+            textMaxLength:
+              type: integer
+              default: 100
+              description: Should be used only if fieldType = "text"
+            textDefaultValue:
+              type: string
+              maxLength: 100
+              description: Should be used only if fieldType = "text"
+            possibleValues:
+              type: string
+              maxLength: 600
+              description: Should be mandatory and used only if fieldType = "select"
+            readOnly:
+              type: boolean
+              default: false
+            merchantDefinedDataIndex:
+              type: integer
+          required:
+          - fieldType
+          - label
+          - merchantDefinedDataIndex
+          example:
+            fieldType: Text
+            label: Cup
+            customerVisible: 'true'
+            readOnly: 'false'
+            textMinLength: 1
+            textMaxLength: 100
+            textDefaultValue: default text
+            merchantDefinedDataIndex: 15
+      responses:
+        '201':
+          description: Create merchant defined field for a given reference type
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                fieldType:
+                  type: string
+                label:
+                  type: string
+                customerVisible:
+                  type: boolean
+                textMinLength:
+                  type: integer
+                  format: int32
+                textMaxLength:
+                  type: integer
+                  format: int32
+                possibleValues:
+                  type: string
+                textDefaultValue:
+                  type: string
+                merchantId:
+                  type: string
+                referenceType:
+                  type: string
+                readOnly:
+                  type: boolean
+                merchantDefinedDataIndex:
+                  type: integer
+                  format: int32
+              example:
+                fieldType: Text
+                label: Cup
+                customerVisible: 'true'
+                readOnly: 'false'
+                textMinLength: 1
+                textMaxLength: 100
+                textDefaultValue: default text
+                merchantDefinedDataIndex: 15
+        '400':
+          description: MerchantDefinedData definition is already updated or Merchant Defined Data Index is already assigned
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: The time the response was submitted
+              status:
+                type: integer
+                description: The status code of the response
+                format: int32
+              reason:
+                type: string
+                description: The reason for the response
+              message:
+                type: string
+                description: The message of the response
+              details:
+                description: The details of the validation error
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: The field that caused the validation error
+                    reason:
+                      type: string
+                      description: The reason for the validation error
+            example:
+              correlationId: 08b69ffe-f79b-4e09-991f-b030058e21f4
+              status: 400
+              responseData:
+                submitTimeUtc: '2016-08-11T22:47:57Z'
+                status: 400
+                reason: MERCHANT_DEFINED_FIELD_ALREADY_UPDATED
+                message: Merchant defined field already updated or does not exist
+                details:
+                - field: customerVisible readOnly
+                  reason: For 'Select' field type 'Read only' must be false and 'Customer Visible' true
+                - field: textMinLength
+                  reason: textMinLength is not allowed for field type Select
+                - field: textMaxLength
+                  reason: textMaxLength is not allowed for field type Select
+                - field: textDefaultValue
+                  reason: textDefaultValue is not allowed for field type Select
+                - field: possibleValues
+                  reason: Possible values cannot be empty for Select field type
+                - field: possibleValues
+                  reason: Possible value Best Dad in the world is too long
+                - field: possibleValues
+                  reason: Possible values must contain at least two values
+                - field: possibleValues
+                  reason: Possible values total length cannot exceed 4000 characters
+                - field: possibleValues
+                  reason: Possible value cannot be empty
+        '409':
+          description: MerchantDefinedData definition is already updated or Merchant Defined Data Index is already assigned
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: The time the response was submitted
+              status:
+                type: integer
+                description: The status code of the response
+                format: int32
+              reason:
+                type: string
+                description: The reason for the response
+              message:
+                type: string
+                description: The message of the response
+              details:
+                description: The details of the validation error
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: The field that caused the validation error
+                    reason:
+                      type: string
+                      description: The reason for the validation error
+            example:
+              correlationId: 08b69ffe-f79b-4e09-991f-b030058e21f4
+              status: 400
+              responseData:
+                submitTimeUtc: '2016-08-11T22:47:57Z'
+                status: 400
+                reason: MERCHANT_DEFINED_FIELD_ALREADY_UPDATED
+                message: Merchant defined field already updated or does not exist
+                details:
+                - field: customerVisible readOnly
+                  reason: For 'Select' field type 'Read only' must be false and 'Customer Visible' true
+                - field: textMinLength
+                  reason: textMinLength is not allowed for field type Select
+                - field: textMaxLength
+                  reason: textMaxLength is not allowed for field type Select
+                - field: textDefaultValue
+                  reason: textDefaultValue is not allowed for field type Select
+                - field: possibleValues
+                  reason: Possible values cannot be empty for Select field type
+                - field: possibleValues
+                  reason: Possible value Best Dad in the world is too long
+                - field: possibleValues
+                  reason: Possible values must contain at least two values
+                - field: possibleValues
+                  reason: Possible values total length cannot exceed 4000 characters
+                - field: possibleValues
+                  reason: Possible value cannot be empty
+        '412':
+          description: Merchant has exceeded limit for type {referenceType}
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: The time the response was submitted
+              status:
+                type: integer
+                description: The status code of the response
+                format: int32
+              reason:
+                type: string
+                description: The reason for the response
+              message:
+                type: string
+                description: The message of the response
+              details:
+                description: The details of the validation error
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: The field that caused the validation error
+                    reason:
+                      type: string
+                      description: The reason for the validation error
+            example:
+              correlationId: 08b69ffe-f79b-4e09-991f-b030058e21f4
+              status: 400
+              responseData:
+                submitTimeUtc: '2016-08-11T22:47:57Z'
+                status: 400
+                reason: MERCHANT_DEFINED_FIELD_ALREADY_UPDATED
+                message: Merchant defined field already updated or does not exist
+                details:
+                - field: customerVisible readOnly
+                  reason: For 'Select' field type 'Read only' must be false and 'Customer Visible' true
+                - field: textMinLength
+                  reason: textMinLength is not allowed for field type Select
+                - field: textMaxLength
+                  reason: textMaxLength is not allowed for field type Select
+                - field: textDefaultValue
+                  reason: textDefaultValue is not allowed for field type Select
+                - field: possibleValues
+                  reason: Possible values cannot be empty for Select field type
+                - field: possibleValues
+                  reason: Possible value Best Dad in the world is too long
+                - field: possibleValues
+                  reason: Possible values must contain at least two values
+                - field: possibleValues
+                  reason: Possible values total length cannot exceed 4000 characters
+                - field: possibleValues
+                  reason: Possible value cannot be empty
+      x-example:
+        example0:
+          summary: Create merchant defined field
+          value:
+            fieldType: Text
+            label: Cup
+            customerVisible: 'true'
+            readOnly: 'false'
+            textMinLength: 1
+            textMaxLength: 100
+            textDefaultValue: default text
+            merchantDefinedDataIndex: 15
+  /invoicing/v2/{referenceType}/merchantDefinedFields/{id}:
+    put:
+      tags:
+      - Merchant Defined Fields
+      x-devcenter-metaData:
+        categoryTag: Invoicing
+        developerGuides: https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing/Introduction.html
+      summary: Update a MerchantDefinedField by ID
+      operationId: putMerchantDefinedFieldsDefinitions
+      parameters:
+      - in: path
+        name: referenceType
+        required: true
+        type: string
+        enum:
+        - Invoice
+        - Purchase
+        - Donation
+      - in: path
+        name: id
+        required: true
+        type: integer
+        format: int64
+      - name: MerchantDefinedFieldCore
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            fieldType:
+              type: string
+              description: 'Possible values:
+
+                - text
+
+                - select'
+            label:
+              type: string
+              maxLength: 100
+            customerVisible:
+              type: boolean
+              default: false
+            textMinLength:
+              type: integer
+              default: 0
+              description: Should be used only if fieldType = "text"
+            textMaxLength:
+              type: integer
+              default: 100
+              description: Should be used only if fieldType = "text"
+            textDefaultValue:
+              type: string
+              maxLength: 100
+              description: Should be used only if fieldType = "text"
+            possibleValues:
+              type: string
+              maxLength: 600
+              description: Should be mandatory and used only if fieldType = "select"
+            readOnly:
+              type: boolean
+              default: false
+            merchantDefinedDataIndex:
+              type: integer
+          required:
+          - fieldType
+          - label
+          - merchantDefinedDataIndex
+          example:
+            fieldType: Text
+            label: Cup
+            customerVisible: 'true'
+            readOnly: 'false'
+            textMinLength: 1
+            textMaxLength: 100
+            textDefaultValue: default text
+            merchantDefinedDataIndex: 15
+      responses:
+        '200':
+          description: A list of MerchantDefinedField
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                fieldType:
+                  type: string
+                label:
+                  type: string
+                customerVisible:
+                  type: boolean
+                textMinLength:
+                  type: integer
+                  format: int32
+                textMaxLength:
+                  type: integer
+                  format: int32
+                possibleValues:
+                  type: string
+                textDefaultValue:
+                  type: string
+                merchantId:
+                  type: string
+                referenceType:
+                  type: string
+                readOnly:
+                  type: boolean
+                merchantDefinedDataIndex:
+                  type: integer
+                  format: int32
+              example:
+                fieldType: Text
+                label: Cup
+                customerVisible: 'true'
+                readOnly: 'false'
+                textMinLength: 1
+                textMaxLength: 100
+                textDefaultValue: default text
+                merchantDefinedDataIndex: 15
+        '400':
+          description: Wrong referenceType in the path
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: The time the response was submitted
+              status:
+                type: integer
+                description: The status code of the response
+                format: int32
+              reason:
+                type: string
+                description: The reason for the response
+              message:
+                type: string
+                description: The message of the response
+              details:
+                description: The details of the validation error
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: The field that caused the validation error
+                    reason:
+                      type: string
+                      description: The reason for the validation error
+            example:
+              correlationId: 08b69ffe-f79b-4e09-991f-b030058e21f4
+              status: 400
+              responseData:
+                submitTimeUtc: '2016-08-11T22:47:57Z'
+                status: 400
+                reason: MERCHANT_DEFINED_FIELD_ALREADY_UPDATED
+                message: Merchant defined field already updated or does not exist
+                details:
+                - field: customerVisible readOnly
+                  reason: For 'Select' field type 'Read only' must be false and 'Customer Visible' true
+                - field: textMinLength
+                  reason: textMinLength is not allowed for field type Select
+                - field: textMaxLength
+                  reason: textMaxLength is not allowed for field type Select
+                - field: textDefaultValue
+                  reason: textDefaultValue is not allowed for field type Select
+                - field: possibleValues
+                  reason: Possible values cannot be empty for Select field type
+                - field: possibleValues
+                  reason: Possible value Best Dad in the world is too long
+                - field: possibleValues
+                  reason: Possible values must contain at least two values
+                - field: possibleValues
+                  reason: Possible values total length cannot exceed 4000 characters
+                - field: possibleValues
+                  reason: Possible value cannot be empty
+        '409':
+          description: MerchantDefinedData definition is already updated or Merchant Defined Data Index is already assigned
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: The time the response was submitted
+              status:
+                type: integer
+                description: The status code of the response
+                format: int32
+              reason:
+                type: string
+                description: The reason for the response
+              message:
+                type: string
+                description: The message of the response
+              details:
+                description: The details of the validation error
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: The field that caused the validation error
+                    reason:
+                      type: string
+                      description: The reason for the validation error
+            example:
+              correlationId: 08b69ffe-f79b-4e09-991f-b030058e21f4
+              status: 400
+              responseData:
+                submitTimeUtc: '2016-08-11T22:47:57Z'
+                status: 400
+                reason: MERCHANT_DEFINED_FIELD_ALREADY_UPDATED
+                message: Merchant defined field already updated or does not exist
+                details:
+                - field: customerVisible readOnly
+                  reason: For 'Select' field type 'Read only' must be false and 'Customer Visible' true
+                - field: textMinLength
+                  reason: textMinLength is not allowed for field type Select
+                - field: textMaxLength
+                  reason: textMaxLength is not allowed for field type Select
+                - field: textDefaultValue
+                  reason: textDefaultValue is not allowed for field type Select
+                - field: possibleValues
+                  reason: Possible values cannot be empty for Select field type
+                - field: possibleValues
+                  reason: Possible value Best Dad in the world is too long
+                - field: possibleValues
+                  reason: Possible values must contain at least two values
+                - field: possibleValues
+                  reason: Possible values total length cannot exceed 4000 characters
+                - field: possibleValues
+                  reason: Possible value cannot be empty
+      x-example:
+        example0:
+          summary: Create merchant defined field
+          value:
+            fieldType: Text
+            label: Cup
+            customerVisible: 'true'
+            readOnly: 'false'
+            textMinLength: 1
+            textMaxLength: 100
+            textDefaultValue: default text
+            merchantDefinedDataIndex: 15
+    delete:
+      tags:
+      - Merchant Defined Fields
+      x-devcenter-metaData:
+        categoryTag: Invoicing
+        developerGuides: https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing/Introduction.html
+      summary: Delete a MerchantDefinedField by ID
+      operationId: deleteMerchantDefinedFieldsDefinitions
+      parameters:
+      - in: path
+        name: referenceType
+        required: true
+        type: string
+        enum:
+        - Invoice
+        - Purchase
+        - Donation
+      - in: path
+        name: id
+        required: true
+        type: integer
+        format: int64
+      responses:
+        '204':
+          description: MerchantDefinedField deleted
+x-devcenter-metaData:
+  categoryTagArray:
+  - name: Payments
+    description: For more information about Payments transactions, see the [Payments Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/payments/developer/ctv/rest/payments/payments-intro.html).
+  - name: Transaction_Batches
+    description: For more information about Transaction Batches, see the [Transaction Batches Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-transaction-batch-api/txn_batch_api_intro.html).
+  - name: eCheck_AVS
+    description: For more information about eCheck Account Validation, see the [Account Validation Developer Guides Page](https://...).
+  - name: Token_Management
+    description: For more information about the Token Management Service (TMS) see the [Token Management Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms/tms-overview.html)
+  - name: Flex_Microform
+    description: Microform Integration is a lightweight acceptance solution designed to safely and securely accept payment information within your web page.  Microform is designed to a be embedded seamlessly within your existing webpage experience, blending in with your existing acceptance form.  This solution allows for the replacement of sensitive payment date with a transient token (a short lived reference to the sensitive payment data).  For more information about Flex Microform transactions, see the [Flex Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-flex/SAFlexibleToken.html). For examples on how to integrate Flex Microform within your webpage please see our [GitHub Flex Samples](https://github.com/CyberSource?q=flex&type=&language=)
+  - name: Flex_API
+    description: For more information about Flex API, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/da-flex-api-intro.html).
+  - name: Risk_Management
+  - name: Payouts
+    description: 'For more information about Payouts, see the [Payouts Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-payouts/Introduction.html).
+
+      '
+  - name: Installments
+    description: For more information about Installment contact Cybersource Support. For Visa installments contact VISthroughCYBS@visa.com
+  - name: Recurring_Billing_Subscriptions
+    description: For more information about Recurring Billing, see the [Recurring Billing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-developer/recur-bill-services-intro.html).
+  - name: BIN_Lookup
+    description: 'The BIN Lookup Service is a versatile business tool that provides card network agnostic solution designed to ensure frictionless transaction experience by utilizing up-to-date Bank Identification Number (BIN) attributes sourced from multiple global and regional data sources.
+
+      This service helps to improve authorization rates by helping to route transactions to the best-suited card network, minimizes fraud through card detail verification and aids in regulatory compliance by identifying card properties. The service is flexible and provides businesses with a flexible choice of inputs such as primary account number (PAN), network token from major networks (such as Visa, American Express, Discover and regional networks) which includes device PAN (DPAN), and all types of tokens generated via CyberSource Token Management Service (TMS).
+
+      Currently, the range of available credentials is contingent on the networks enabled for the business entity. Therefore, the network information specified in this documentation is illustrative and subject to personalized offerings for each reseller or merchant.
+
+      '
+  - name: Transaction_Details
+    description: For more information about Transaction Details, see the [Transaction Details Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_details_api.html).
+  - name: Transaction_Search
+    description: For more information about Transaction Search, see the [Transaction Search Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_search_api.html).
+  - name: Reporting
+    description: 'For more information about Reporting, see the [Reporting Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-reporting-rest-api-dev-guide-102718/reporting_api.html).
+
+      '
+  - name: Secure_File_Share
+    description: For more information about Secure File Share, see the [Secure File Share Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-secure-file-share-api-102718/secure_file_share_api_intro.html).
+  - name: Invoices
+    description: For more information about Invoicing, see the [Invoicing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing/Introduction.html).
+  - name: Pay_By_Link
+    description: For more information about PayByLink, see the [PBL Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/boarding/user/all/rest/boarding/templates-matrix-intro/templates-matrix-pay-by-link.html).
+  - name: User_Management
+    description: For more information about User Management, see the [User Managment Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-user-management-api-102718/user_management_api_intro.html).
+  - name: Value_Added_Service
+  - name: Fee Service
+  - name: Merchant_Boarding
+    description: For more information about Merchant Boarding, please see [Developer Guides Page](https://developer.cybersource.com/api/developer-guides/Merchant-Boarding-API_ditamap/Merchant-Boarding-API.html).
+  - name: Webhooks
+    description: For more information about Webhooks, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/webhooks/implementation/all/rest/webhooks/wh-fg-intro.html).
+  - name: Unified_Checkout
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-intro.html).
+  - name: Unified_Checkoutv1
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-about-guide.html).
+  - name: Account_Updater
+    description: For more information about Account Updater, see the [Account Updater Developer Guides Page:](https://developer.cybersource.com/library/documentation/dev_guides/Account_Updater_UG/html/index.html).
+  - name: Visa_Bank_Account_Validation
+    description: 'The Visa Bank Account Validation Service is a new standalone product designed to validate customer''s routing and bank account number combination for ACH transactions. Merchant''s can use this standalone product to validate their customer''s account prior to processing an ACH transaction against the customer''s account to comply with Nacha''s account validation mandate for Web-debit transactions.
+
+      '
+  - name: Currency Conversion
+    description: 'Empower global transactions with transparency and choice. Our Dynamic Currency Conversion API lets merchants offer customers the option to pay in their home currency at checkout, delivering real-time exchange rates and clear cost disclosure.
+
+
+      **Key Benefits:**
+
+      - **Enhanced Customer Experience:** Provide clarity and convenience for international shoppers.
+
+      - **Real-Time Rates:** Accurate currency conversion with all the data required for acquirers and their merchants to maintain compliance with card network rules.
+
+      - **Seamless Integration:** Flexible API endpoints for rate lookup, authorization, and capture.
+
+      - **Regulatory Compliance:** Provides the data required for acquirers and merchants to meet and maintain card scheme requirements for disclosure and consent.
+
+
+      Ideal for merchants and payment partners seeking to boost trust and conversion in cross-border commerce.
+
+
+      **Key Features:**
+
+      - **Rate Lookup:** Retrieves the most up-to-date exchange rate for eligible cards before authorization.
+
+      - **Currency Choice:** Enables the merchant to offer customers the option to select between the merchant''s local currency and their card''s billing currency.
+
+      - **Compliance:** Ensures merchants have the data required to adhere to card network regulations; exchange rates, markups, etc.
+
+
+      **Supported Scenarios:**
+
+      - Dynamic Currency Conversion when cardholder''s billing currency differs from merchant''s pricing currency.
+
+      - Merchant and acquirer must support the cardholder''s billing currency.
+
+
+      **Core API Endpoints:**
+
+
+      **Currency Conversion API**
+
+      Returns eligibility and exchange rate details, including:
+
+      - exchangeRate
+
+      - marginRate
+
+      - reconciliationId and Id (for subsequent payment requests)
+
+
+      **Payment Authorization with DCC***
+
+      POST /pts/v2/payments
+
+      Required fields include:
+
+      - orderInformation.amountDetails.currency
+
+      - orderInformation.amountDetails.originalCurrency
+
+      - orderInformation.amountDetails.originalAmount
+
+      - orderInformation.amountDetails.exchangeRate
+
+      - currencyConversion.indicator (e.g., 1 = Converted, 2 = Nonconvertible, 3 = Declined)
+
+
+      **Capture with DCC***
+
+      POST /pts/v2/payments/{id}/captures
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      **Refund with DCC***
+
+      POST /pts/v2/captures/{id}/refunds
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      *Note: DCC is only supported on select processors. Contact your acquirer or account manager for more information.
+
+
+      **Compliance & Disclosure:**
+
+
+      Merchants must:
+
+      - Adhere to card network rules for Dynamic Currency Conversion (DCC) transactions.
+
+      - Display the converted amount, exchange rate, and markup percentage and other required disclosures.
+
+      - Obtain explicit cardholder consent before applying DCC.
+
+      - Work with your acquirer to obtain full set of compliance requirements.
+
+
+      For more information, see the [Currency Conversion Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/currency-conversion/developer/all/rest/currency-conversion/cc-intro.html).
+
+      '
+  - name: Intelligent_Commerce_Connect
+    description: For more information about Intelligent Commerce Cross Network Service API, please see [Developer Guides](https://developer.cybersource.com/docs/cybs/en-us/intelligent-commerce/developer/all/rest/intelligent-commerce/intelligent-commerce-about-guide.html).

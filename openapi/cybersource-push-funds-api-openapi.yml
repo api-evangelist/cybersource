@@ -1,0 +1,2459 @@
+swagger: '2.0'
+info:
+  description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
+  version: 0.0.1
+  title: CyberSource Merged Spec bankAccountValidation Push Funds API
+host: apitest.cybersource.com
+basePath: /
+schemes:
+- https
+consumes:
+- application/json;charset=utf-8
+produces:
+- application/hal+json;charset=utf-8
+tags:
+- name: Push Funds
+  description: 'A payout enables an originator to send funds on behalf of itself, merchants, or customers to credit card
+
+    accounts using an Original Credit Transaction (OCT). An originator is a merchant, government entity, or
+
+    corporation with a merchant account from an acquiring bank.
+
+    '
+paths:
+  /pts/v1/push-funds-transfer:
+    post:
+      summary: Process a Push Funds Transfer
+      description: 'Receive funds using an Original Credit Transaction (OCT).
+
+        '
+      tags:
+      - Push Funds
+      operationId: createPushFundsTransfer
+      x-devcenter-metaData:
+        categoryTag: Payouts
+        firstLevelApiLifeCycle: hidden
+        secondLevelApiLifeCycle: hidden
+        apiLifeCycle: hidden
+        developerGuides: https://developer.cybersource.com/api/developer-guides/dita-payouts/Introduction.html
+        isMLEsupported: true
+        mleForRequest: optional
+      parameters:
+      - name: pushFundsRequest
+        in: body
+        required: true
+        schema:
+          type: object
+          required:
+          - orderInformation
+          properties:
+            aggregatorInformation:
+              type: object
+              x-nullable: true
+              properties:
+                aggregatorId:
+                  type: string
+                  x-nullable: true
+                  maxLength: 20
+                  description: 'Value that identifies you as a payment aggregator. Get this value from the processor.
+
+                    '
+                name:
+                  type: string
+                  x-nullable: true
+                  maxLength: 37
+                  description: 'Your payment aggregator business name. This field is conditionally required when aggregator id is present.
+
+                    '
+                independentSalesOrganizationID:
+                  type: string
+                  x-nullable: true
+                  maxLength: 11
+                  description: 'Independent sales organization ID.
+
+                    This field is only used for Mastercard transactions submitted through PPGS.
+
+                    '
+                subMerchant:
+                  type: object
+                  x-nullable: true
+                  properties:
+                    id:
+                      type: string
+                      maxLength: 20
+                      x-nullable: true
+                      description: 'The ID you assigned to your sub-merchant.
+
+                        '
+                streetAddress:
+                  type: string
+                  maxLength: 150
+                  description: Acquirer street name.
+                city:
+                  type: string
+                  maxLength: 100
+                  description: Acquirer city.
+                state:
+                  type: string
+                  maxLength: 10
+                  description: Acquirer state.
+                postalCode:
+                  type: string
+                  maxLength: 20
+                  description: Acquirer postal code.
+                country:
+                  type: string
+                  maxLength: 10
+                  description: Acquirer country.
+            clientReferenceInformation:
+              type: object
+              x-nullable: true
+              properties:
+                code:
+                  type: string
+                  maxLength: 50
+                  x-nullable: true
+                  description: 'Merchant-generated order reference or tracking number. It is recommended that you send a unique value for each transaction so that you can perform meaningful searches for the transaction.
+
+                    '
+                applicationName:
+                  type: string
+                  maxLength: 50
+                  x-nullable: true
+                  description: 'The name of the Connection Method client (such as Virtual Terminal or SOAP Toolkit API) that the merchant uses to send a transaction request to CyberSource.
+
+                    '
+                applicationVersion:
+                  type: string
+                  maxLength: 50
+                  x-nullable: true
+                  description: 'Version of the CyberSource application or integration used for a transaction.
+
+                    '
+                applicationUser:
+                  type: string
+                  maxLength: 60
+                  x-nullable: true
+                  description: 'The entity that is responsible for running the transaction and submitting the processing request to CyberSource. This could be a person, a system, or a connection method.
+
+                    '
+            orderInformation:
+              type: object
+              required:
+              - amountDetails
+              properties:
+                amountDetails:
+                  type: object
+                  required:
+                  - totalAmount
+                  - currency
+                  properties:
+                    totalAmount:
+                      type: string
+                      maxLength: 19
+                      description: 'Grand total for the order. This value cannot be negative. You can include a decimal point (.), but no other special characters. CyberSource truncates the amount to the correct number of decimal places.
+
+                        '
+                    currency:
+                      type: string
+                      pattern: ^(\s{0,3}|.{3})$
+                      description: 'Use a 3-character alpha currency code for currency of the funds transfer.
+
+
+                        ISO standard currencies: http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf
+
+
+                        Currency must be supported by the processor.
+
+                        '
+                    sourceCurrency:
+                      type: string
+                      pattern: ^(\s{0,3}|.{3})$
+                      x-nullable: true
+                      description: 'Use a 3-character alpha currency code for source currency of the funds transfer. Supported for card and bank account based cross border funds transfers.
+
+
+                        ISO standard currencies: http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf
+
+                        '
+                    destinationCurrency:
+                      type: string
+                      pattern: ^(\s{0,3}|.{3})$
+                      x-nullable: true
+                      description: 'Use a 3-character alpha currency code for destination currency of the funds transfer. Supported for card and bank account based cross border funds transfers.
+
+
+                        ISO standard currencies: http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf
+
+                        '
+                    surcharge:
+                      type: object
+                      properties:
+                        amount:
+                          type: string
+                          maxLength: 15
+                          x-nullable: true
+                          description: "The surcharge amount is included in the total transaction amount but is passed in a separate field to the issuer and acquirer for tracking. \nThe issuer can provide information about the surcharge amount to the customer. \n\nIf the amount is positive, then it is a debit for the customer. \n\nIf the amount is negative, then it is a credit for the customer.\n"
+            processingInformation:
+              type: object
+              x-nullable: true
+              properties:
+                businessApplicationId:
+                  type: string
+                  x-nullable: true
+                  pattern: ^(\s{0,2}|.{2})$
+                  description: "Money Transfer (MT)\n- `AA`: Account to Account\n- `BI`: Bank-Initiated Money Transfer\n- `CD`: Cash Deposit\n- `FT`: Funds Transfer\n- `TU`: Prepaid Card Loan\n- `WT`: Wallet Transfer-Staged Digital Wallet (SDW) Transfer\n- `PP`: P2P Money Transfer\n\nFunds Disbursement (FD)\n- `BB`: Business-to-business Supplier Payments\n-\t`BP`: Non-Card Bill Pay \n-\t`CP`: Credit Card Bill Pay\n-\t`FD`: General Funds Disbursements\n-\t`GD`: Government Disbursements and Government Initiated Tax Refunds\n-\t`GP`: Gambling/Gaming Payouts (other than online gaming)\n-\t`LO`: Loyalty Payments\n-\t`MD`: Merchant Settlement\n-\t`MI`: Faster Refunds\n-\t`OG`: Online Gambling Payouts\n-\t`PD`: Payroll and Pension Disbursements\n-\t`RP`: Request-to-Pay Service\n"
+                payoutsOptions:
+                  type: object
+                  properties:
+                    sourceCurrency:
+                      type: string
+                      pattern: ^(\s{0,3}|.{3})$
+                      x-nullable: true
+                      description: 'Use a 3-character alpha currency code for source currency of the funds transfer.
+
+
+                        Required if sending processingInformation.payoutsOptions.sourceAmount.
+
+
+                        ISO standard currencies: http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf
+
+                        '
+                    destinationCurrency:
+                      type: string
+                      pattern: ^(\s{0,3}|.{3})$
+                      x-nullable: true
+                      description: 'Use a 3-character alpha currency code for destination currency of the funds transfer.
+
+
+                        Yellow Pepper
+
+
+                        Supported for cross border funds transfers.
+
+
+                        ISO standard currencies: http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf
+
+                        '
+                    sourceAmount:
+                      type: string
+                      maxLength: 12
+                      x-nullable: true
+                      description: 'Source Amount is required in certain markets to identify the transaction amount entered in the sender''s currency code prior to FX conversion by the originating entity.
+
+
+                        Format:
+
+
+                        Minimum Value: 0
+
+
+                        Maximum value: 999999999.99
+
+
+                        Allowed fractional digits: 2
+
+                        '
+                    retrievalReferenceNumber:
+                      type: string
+                      maxLength: 24
+                      x-nullable: true
+                      description: 'Unique reference number returned by the processor that identifies the transaction at the network.
+
+                        '
+                    accountFundingReferenceId:
+                      type: string
+                      maxLength: 40
+                      x-nullable: true
+                      description: 'Visa (maxLength of 15) or MasterCard (maxLength of 40) generated transaction identifier (TID) that is unique for each original authorization and financial request.
+
+                        '
+                feeProgramId:
+                  type: string
+                  x-nullable: true
+                  pattern: ^(\s{0,3}|[a-zA-Z0-9]{3})$
+                  description: 'Fee Program Indicator. This field identifies the interchange fee program applicable to each financial transaction. Fee program indicator (FPI) values correspond to the fee descriptor and rate for each existing fee program.
+
+                    '
+                networkPartnerId:
+                  type: string
+                  x-nullable: true
+                  maxLength: 8
+                  description: 'Merchant payment gateway ID that is assigned by Mastercard and is provided by the acquirer when a registered merchant payment gateway service provider is involved in the transaction.
+
+
+                    This field is supported for Visa Platform Connect, Chase Paymentech Salem.
+
+                    '
+                processingCode:
+                  type: string
+                  x-nullable: true
+                  pattern: ^(\s{0,4}|\d{4})$
+                  description: 'This field contains coding that identifies (1) the customer transaction type and (2) the customer account types affected by the transaction.
+
+
+                    Default: 5402 (Original Credit Transaction)
+
+
+                    Contains codes that combined with some other fields such as the BAI (Business Application Id) identify some unique use cases. For Sales Tax rebates this field should be populated with the value 5120 (Value-added tax/Sales Tax) along with the businessApplicationId field set to the value ''FD'' which indicates this push funds transfer is being conducted in order to facilitate a sales tax refund.
+
+                    '
+                sharingGroupCode:
+                  type: string
+                  x-nullable: true
+                  maxLength: 16
+                  description: 'This U.S.-only field is optionally used by PIN Debit Gateway Service participants (merchants and acquirers) to specify the network access priority. VisaNet checks to determine if there are issuer routing preferences for a network specified by the sharing group code. If an issuer preference exists for one of the specified debit networks, VisaNet makes a routing selection based on issuer preference. If an preference exists for multiple specified debit networks, or if no issuer preference exists, VisaNet makes a selection based on acquirer routing priorities.
+
+
+                    Valid Values:
+
+
+                    ACCEL_EXCHANGE_E
+
+
+                    CU24_C
+
+
+                    INTERLINK_G
+
+
+                    MAESTRO_8
+
+
+                    NYCE_Y
+
+
+                    NYCE_F
+
+
+                    PULSE_S
+
+
+                    PULSE_L
+
+
+                    PULSE_H
+
+
+                    STAR_N
+
+
+                    STAR_W
+
+
+                    STAR_Z
+
+
+                    STAR_Q
+
+
+                    STAR_M
+
+
+                    VISA_V
+
+                    '
+                purposeOfPayment:
+                  type: string
+                  x-nullable: true
+                  maxLength: 12
+                  description: 'This will send purpose of funds code for original credit transactions (OCTs).
+
+                    '
+                reconciliationId:
+                  type: string
+                  maxLength: 60
+                  description: Transaction's reference number.
+                accountVerificationCode:
+                  type: array
+                  x-nullable: true
+                  items:
+                    type: string
+                  description: 'Account verification code will inform what Payment Account Verification should be performed. With this array of codes, a merchant can choose à la carte what verifications to run. This field is optional, and the default is 1 if it is not passed in. This means that a full validation of the fields will be performed.
+
+                    Valid verification codes:
+
+                    - `1` = Full Account Verification (Card Account, CVN, CAVV, TAVV, Address, Name, eMail, Phone, Identity)
+
+                    - `2` = Card Account Verification
+
+                    - `3` = Address Verification
+
+                    - `4` = Card Authentication Method (CAM) (Cryptogram)
+
+                    - `5` = Cardholder Authentication Verification (CAVV)
+
+                    - `6` = Cardholder Identity Verification
+
+                    - `7` = CVV2 Verification
+
+                    - `8` = eMail Verification
+
+                    - `9` = Name Verification
+
+                    - `10` = Phone Verification
+
+                    '
+            recipientInformation:
+              type: object
+              properties:
+                paymentInformation:
+                  type: object
+                  properties:
+                    card:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          pattern: ^(\s{0,3}|.{3})$
+                          x-nullable: true
+                          description: '- `001`: Visa
+
+                            - `002`: Mastercard, Eurocard, which is a European regional brand of Mastercard.
+
+                            - `033`: Visa Electron
+
+                            - `024`: Maestro
+
+                            - `042`: Maestro International
+
+                            '
+                        securityCode:
+                          type: string
+                          maxLength: 4
+                          x-nullable: true
+                          description: '4-digit value that indicates the cardCvv2Value. Values can be 0-9.
+
+                            '
+                        number:
+                          type: string
+                          maxLength: 20
+                          x-nullable: true
+                          description: 'The customer''s payment card number, also known as the Primary Account Number (PAN).
+
+
+                            Conditional: this field is required if not using tokens.
+
+                            '
+                        expirationMonth:
+                          type: string
+                          maxLength: 2
+                          x-nullable: true
+                          description: 'Two-digit month in which the payment card expires.
+
+
+                            Format: MM.
+
+
+                            Valid values: 01 through 12. Leading 0 is required.
+
+                            '
+                        expirationYear:
+                          type: string
+                          maxLength: 4
+                          x-nullable: true
+                          description: 'Four-digit year in which the payment card expires.
+
+
+                            Format: YYYY.
+
+                            '
+                        customer:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              x-nullable: true
+                              maxLength: 32
+                              description: 'Unique identifier for the Customer token used in the transaction. When you include this value in your request, many of the fields that are normally required for an authorization or credit become optional.
+
+                                '
+                        paymentInstrument:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              x-nullable: true
+                              maxLength: 32
+                              description: 'Unique identifier for the Payment Instrument token used in the transaction. When you include this value in your request, many of the fields that are normally required for an authorization or credit become optional.
+
+                                '
+                        instrumentIdentifier:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              x-nullable: true
+                              maxLength: 32
+                              description: 'Unique identifier for the Instrument Identifier token used in the transaction. When you include this value in your request, many of the fields that can be supplied for an authorization or credit become optional.
+
+                                '
+                address1:
+                  type: string
+                  maxLength: 50
+                  x-nullable: true
+                  description: 'First line of the recipient''s address.
+
+                    Required for card payments
+
+                    '
+                address2:
+                  type: string
+                  maxLength: 50
+                  x-nullable: true
+                  description: 'Second line of the recipient''s address
+
+                    '
+                locality:
+                  type: string
+                  maxLength: 25
+                  x-nullable: true
+                  description: 'Recipient city.
+
+                    '
+                postalCode:
+                  type: string
+                  x-nullable: true
+                  maxLength: 10
+                  description: "Recipient postal code. \n\nFor USA, this must be a valid value of 5 digits or 5 digits hyphen 4 digits, for example '63368', '63368-5555'. For other regions, this can be alphanumeric, length 1-10.\n\nMandatory for card payments.\n"
+                administrativeArea:
+                  type: string
+                  maxLength: 3
+                  x-nullable: true
+                  description: 'The recipient''s province, state or territory. Conditional, required if recipient''s country is USA or CAN. Must be an ISO 3166-2 uppercase alpha 2 or 3 character country subdivision code. For example, Missouri is MO.
+
+
+                    See https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf
+
+
+                    Required for card payments.
+
+                    '
+                country:
+                  type: string
+                  pattern: ^(\s{0,2}|.{2})$
+                  x-nullable: true
+                  description: 'Recipient country code. Use the ISO Standard Alpha Country Codes.
+
+
+                    https://developer.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf
+
+                    '
+                firstName:
+                  type: string
+                  maxLength: 40
+                  x-nullable: true
+                  description: 'First name of recipient.
+
+                    '
+                middleName:
+                  type: string
+                  maxLength: 40
+                  x-nullable: true
+                  description: 'Sender''s middle name. This field is a passthrough, which means that CyberSource does not verify the value or modify it in any way before sending it to the processor. If the field is not required for the transaction, CyberSource does not forward it to the processor.
+
+                    '
+                lastName:
+                  type: string
+                  maxLength: 40
+                  x-nullable: true
+                  description: 'Last name of recipient.
+
+                    '
+                phoneNumber:
+                  type: string
+                  x-nullable: true
+                  maxLength: 20
+                  description: 'Customer''s phone number.
+
+
+                    It is recommended that you include the country code when the order is from outside the U.S.
+
+                    '
+                email:
+                  type: string
+                  x-nullable: true
+                  maxLength: 255
+                  description: 'Customer''s email address, including the full domain name.
+
+                    '
+                personalIdentification:
+                  type: object
+                  x-nullable: true
+                  properties:
+                    id:
+                      type: string
+                      x-nullable: true
+                      maxLength: 80
+                      description: 'The ID number/value.
+
+                        Processor(35)
+
+                        '
+                    type:
+                      type: string
+                      x-nullable: true
+                      maxLength: 4
+                      description: "This tag will contain the type of sender identification. The valid values are:\n-\t`BTHD`: (Date of birth)\n-\t`CUID`: (Customer identification (unspecified))\n-\t`NTID`: (National identification)\n-\t`PASN`: (Passport number)\n-\t`DRLN`: (Driver license)\n-\t`TXIN`: (Tax identification)\n-\t`CPNY`: (Company registration number)\n-\t`PRXY`: (Proxy identification)\n-\t`SSNB`: (Social security number)\n-\t`ARNB`: (Alien registration number)\n-\t`LAWE`: (Law enforcement identification)\n-\t`MILI`: (Military identification)\n-\t`TRVL`: (Travel identification (non-passport))\n-\t`EMAL`: (Email)\n-\t`PHON`: (Phone number)\n"
+                    issuingCountry:
+                      type: string
+                      x-nullable: true
+                      pattern: ^(\s{0,2}|.{2})$
+                      description: 'Issuing country of the identification.
+
+                        The field format should be a 2 character ISO 3166-1 alpha-2 country code.
+
+                        '
+                    personalIdType:
+                      type: string
+                      x-nullable: true
+                      maxLength: 1
+                      description: "This tag will denote whether the tax ID is a business or individual tax ID when personal ID Type contains the value of TXIN (Tax identification).\n\nThe valid values are: \n- `B` (Business)\n- `I` (Individual)\n"
+                buildingNumber:
+                  type: string
+                  x-nullable: true
+                  maxLength: 255
+                  description: 'Building number in the street address.
+
+
+                    For example, if the street address is: Rua da Quitanda 187 then the building number is 187.
+
+
+                    Applicable to domestic Colombia transactions only.
+
+                    '
+                streetName:
+                  type: string
+                  x-nullable: true
+                  maxLength: 99
+                  description: 'This field contains the street name of the recipient''s address.
+
+
+                    Applicable to domestic Colombia transactions only.
+
+                    '
+                type:
+                  type: string
+                  x-nullable: true
+                  maxLength: 1
+                  description: '`B` for Business or `I` for individual.
+
+                    '
+            senderInformation:
+              type: object
+              properties:
+                name:
+                  type: string
+                  maxLength: 30
+                  x-nullable: true
+                  description: 'Name of sender.
+
+
+                    Funds Disbursement
+
+
+                    This value is the name of the originator sending the funds disbursement.
+
+
+                    Government entities should use this field
+
+                    '
+                email:
+                  type: string
+                  maxLength: 255
+                  x-nullable: true
+                  description: 'Customer''s email address, including the full domain name.
+
+                    '
+                firstName:
+                  type: string
+                  maxLength: 40
+                  x-nullable: true
+                  description: 'This field contains the first name of the entity funding the transaction
+
+                    Mandatory for card payments
+
+                    '
+                lastName:
+                  type: string
+                  maxLength: 40
+                  x-nullable: true
+                  description: 'This field contains the last name of the entity funding the transaction
+
+                    Mandatory for card payments
+
+                    '
+                middleName:
+                  type: string
+                  maxLength: 40
+                  x-nullable: true
+                  description: 'This field contains the  middle name of the entity funding the transaction
+
+                    '
+                postalCode:
+                  type: string
+                  maxLength: 10
+                  x-nullable: true
+                  description: 'Sender''s postal code.  For USA, this must be a valid value of 5 digits or 5 digits hyphen 4 digits, for example ''63368'', ''63368-5555''. For other regions, this can be alphanumeric, length 1-10.
+
+
+                    Required for FDCCompass.
+
+                    '
+                buildingNumber:
+                  type: string
+                  maxLength: 255
+                  x-nullable: true
+                  description: 'Building number in the street address.
+
+
+                    For example, if the street address is: Rua da Quitanda 187 then the building number is 187.
+
+
+                    Applicable to domestic Colombia transactions only.
+
+                    '
+                streetName:
+                  type: string
+                  x-nullable: true
+                  maxLength: 99
+                  description: 'This field contains the street name of the recipient''s address.
+
+
+                    Applicable to domestic Colombia transactions only.
+
+                    '
+                address1:
+                  type: string
+                  maxLength: 60
+                  x-nullable: true
+                  description: 'Street address of sender.
+
+
+                    Funds Disbursement
+
+
+                    This value is the address of the originator sending the funds disbursement.
+
+
+                    Required for card transactions
+
+                    '
+                address2:
+                  type: string
+                  maxLength: 60
+                  x-nullable: true
+                  description: "Used for additional address information. For example: Attention: Accounts Payable \nOptional field.\n"
+                locality:
+                  type: string
+                  maxLength: 25
+                  x-nullable: true
+                  description: 'The sender''s city
+
+                    Mandatory for card payments
+
+                    '
+                administrativeArea:
+                  type: string
+                  maxLength: 3
+                  x-nullable: true
+                  description: 'Sender''s state. Use the State, Province, and Territory Codes for the United States and Canada.The sender''s province, state or territory. Conditional, required if sender''s country is USA or CAN. Must be uppercase alpha 2 or 3 character country subdivision code.
+
+
+                    See https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf
+
+
+                    Mandatory for card payments
+
+                    '
+                country:
+                  type: string
+                  pattern: ^(\s{0,2}|.{2})$
+                  x-nullable: true
+                  description: 'Sender''s country code. Use ISO Standard Alpha Country Codes.
+
+
+                    https://developer.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf
+
+                    '
+                dateOfBirth:
+                  type: string
+                  x-nullable: true
+                  pattern: ^(\s{0,8}|.{8})$
+                  description: 'Sender''s date of birth in YYYYMMDD format.
+
+                    '
+                phoneNumber:
+                  type: string
+                  x-nullable: true
+                  maxLength: 20
+                  description: 'Customer''s phone number.
+
+
+                    It is recommended that you include the country code when the order is from outside the U.S.
+
+                    '
+                paymentInformation:
+                  type: object
+                  properties:
+                    card:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          pattern: ^(\s{0,3}|.{3})$
+                          x-nullable: true
+                          description: "Three-digit value that indicates the card type.\n\nIMPORTANT It is strongly recommended that you include the card type field in request messages even if it is optional for your processor and card type. Omitting the card type can cause the transaction to be processed with the wrong card type.\n\nPossible values:\n-\t`001`: Visa. For card-present transactions on all processors except SIX, the Visa Electron card type is processed the same way that the Visa debit card is processed. Use card type value 001 for Visa Electron.\n-\t`002`: Mastercard, Eurocard[^1], which is a European regional brand of Mastercard.\n-\t`033`: Visa Electron\n-\t`024`: Maestro\n-\t`042`: Maestro International\n"
+                        securityCode:
+                          type: string
+                          x-nullable: true
+                          pattern: ^(\s{0,3}|.{3})$
+                          description: '3-digit value that indicates the card Cvv2Value. Values can be 0-9.
+
+                            '
+                        sourceAccountType:
+                          type: string
+                          x-nullable: true
+                          maxLength: 20
+                          description: 'Flag that specifies the type of account associated with the card. The cardholder provides this information during the payment process.
+
+                            '
+                        number:
+                          type: string
+                          x-nullable: true
+                          maxLength: 19
+                          description: 'The customer''s payment card number, also known as the Primary Account Number (PAN).
+
+                            '
+                        expirationMonth:
+                          type: string
+                          x-nullable: true
+                          pattern: ^(\s{0,2}|.{2})$
+                          description: 'Two-digit month in which the payment card expires.
+
+
+                            Format: MM.
+
+
+                            Valid values: 01 through 12. Leading 0 is required.
+
+                            '
+                        expirationYear:
+                          type: string
+                          x-nullable: true
+                          pattern: ^(\s{0,4}|.{4})$
+                          description: 'Four-digit year in which the payment card expires.
+
+                            '
+                referenceNumber:
+                  type: string
+                  maxLength: 19
+                  x-nullable: true
+                  description: 'Reference number generated by you that uniquely identifies the sender.
+
+                    '
+                account:
+                  type: object
+                  x-nullable: true
+                  properties:
+                    fundsSource:
+                      type: string
+                      x-nullable: true
+                      pattern: ^(\s{0,2}|.{2})$
+                      description: 'Source of funds. Possible values:
+
+
+                        - `01`: Credit card
+
+                        - `02`: Debit card
+
+                        - `03`: Prepaid card
+
+                        - `04`: Cash/Deposit Account
+
+                        - `05`: Debit or deposit account that is not linked to a Visa card. Includes checking accounts, savings accounts, and proprietary debit or ATM cards.
+
+                        - `06`: Credit account that is not linked to a Visa card. Includes credit cards and proprietary lines of credit.
+
+
+                        Funds Disbursement This value is most likely 05 to identify that the originator used a deposit account to fund the disbursement.
+
+
+                        Credit Card Bill Payment This value must be 02, 03, 04, or 05.
+
+                        '
+                    number:
+                      type: string
+                      x-nullable: true
+                      maxLength: 34
+                      description: 'The account number of the entity funding the transaction. It is the sender''s account number. It can be a debit/credit card account number or bank account number.
+
+
+                        Funds disbursements
+
+
+                        This field is optional.
+
+
+                        All other transactions
+
+
+                        This field is required when the sender funds the transaction with a financial instrument, for example debit card. Length:
+
+                        '
+                personalIdentification:
+                  type: object
+                  x-nullable: true
+                  properties:
+                    id:
+                      type: string
+                      maxLength: 80
+                      x-nullable: true
+                      description: 'Processor(35)
+
+                        '
+                    personalIdType:
+                      type: string
+                      maxLength: 1
+                      x-nullable: true
+                      description: 'This tag will denote whether the tax ID is a business or individual tax ID when personal ID Type contains the value of TXIN (Tax identification).
+
+
+                        The valid values are:
+
+                        - `B` (Business)
+
+                        - `I` (Individual)
+
+                        '
+                    type:
+                      type: string
+                      maxLength: 4
+                      x-nullable: true
+                      description: 'This tag will contain the type of sender identification. The valid values are:
+
+
+                        - `BTHD`: (Date of birth)
+
+                        - `CUID`: (Customer identification (unspecified))
+
+                        - `NTID`: (National identification)
+
+                        - `PASN`: (Passport number)
+
+                        - `DRLN`: (Driver license)
+
+                        - `TXIN`: (Tax identification)
+
+                        - `CPNY`: (Company registration number)
+
+                        - `PRXY`: (Proxy identification)
+
+                        - `SSNB`: (Social security number)
+
+                        - `ARNB`: (Alien registration number)
+
+                        - `LAWE`: (Law enforcement identification)
+
+                        - `MILI`: (Military identification)
+
+                        - `TRVL`: (Travel identification (non-passport))
+
+                        - `EMAL`: (Email)
+
+                        - `PHON`: (Phone number)
+
+                        '
+                    issuingCountry:
+                      x-nullable: true
+                      type: string
+                      pattern: ^(\s{0,2}|.{2})$
+                      description: 'Issuing country of the identification.
+
+                        The field format should be a 2 character ISO 3166-1 alpha-2 country code.
+
+                        '
+                type:
+                  type: string
+                  x-nullable: true
+                  maxLength: 1
+                  description: '`B` for Business or `I` for individual.
+
+                    '
+                vatRegistrationNumber:
+                  type: string
+                  x-nullable: true
+                  maxLength: 20
+                  description: 'Customer''s government-assigned tax identification number.
+
+                    '
+            merchantInformation:
+              type: object
+              properties:
+                categoryCode:
+                  x-nullable: true
+                  type: integer
+                  maximum: 9999
+                  description: "The value for this field is a four-digit number that the payment card industry uses to \nclassify merchants into market segments. A payment card company assigned one or more of \nthese values to your business when you started accepting the payment card company's cards. \nWhen you do not include this field in your request, CyberSource uses the value in your CyberSource account.\n"
+                merchantDescriptor:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      maxLength: 25
+                      description: Merchant name.
+                    locality:
+                      type: string
+                      maxLength: 30
+                      description: Merchant's city.
+                    country:
+                      type: string
+                      maxLength: 2
+                      description: Merchant's country.
+                    administrativeArea:
+                      type: string
+                      maxLength: 2
+                      description: Merchant's state.
+                    postalCode:
+                      type: string
+                      maxLength: 14
+                      description: Merchant's postal code.
+                    contact:
+                      type: string
+                      maxLength: 14
+                      description: Merchant's contact information.
+                    address1:
+                      type: string
+                      maxLength: 60
+                      description: First line of merchant's address.
+            paymentInformation:
+              type: object
+              properties:
+                card:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      maxLength: 3
+                      description: 'Three-digit value that indicates the card type.
+
+                        '
+                    number:
+                      type: string
+                      maxLength: 20
+                      description: 'The customer''s payment card number, also known as the Primary Account Number (PAN).
+
+                        '
+                    expirationMonth:
+                      type: string
+                      maxLength: 2
+                      description: 'Two-digit month in which the payment card expires. Format: MM.
+
+                        '
+                    expirationYear:
+                      type: string
+                      maxLength: 4
+                      description: 'Four-digit year in which the payment card expires. Format: YYYY.
+
+                        '
+                    securityCode:
+                      type: string
+                      maxLength: 4
+                      description: 'Card Verification Number.
+
+                        '
+                customer:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      maxLength: 32
+                      description: 'Unique identifier for the Customer token used in the transaction.
+
+                        '
+                paymentInstrument:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      maxLength: 32
+                      description: 'Unique identifier for the Payment Instrument token used in the transaction.
+
+                        '
+                instrumentIdentifier:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      maxLength: 32
+                      description: 'Unique identifier for the Instrument Identifier token used in the transaction.
+
+                        '
+            pointOfServiceInformation:
+              type: object
+              properties:
+                emv:
+                  type: object
+                  properties:
+                    cardSequenceNumber:
+                      x-nullable: true
+                      type: string
+                      maxLength: 3
+                      description: 'Number assigned to a specific card when two or more cards are associated with the same primary account number.
+
+
+                        This value enables issuers to distinguish among multiple cards that are linked to the same account.
+
+
+                        This value can also act as a tracking tool when reissuing cards.
+
+
+                        When this value is available, it is provided by the chip reader.
+
+
+                        When the chip reader does not provide this value, do not include this field in your request.
+
+
+                        When sequence number is not provided via this API field, the value is extracted from EMV tag 5F34 for Mastercard transactions. To enable this feature please call support.
+
+
+                        Note Card present information about EMV applies only to credit card processing and PIN debit processing.
+
+
+                        All other card present information applies only to credit card processing.
+
+                        '
+          example:
+            orderInformation:
+              amountDetails:
+                totalAmount: '124.05'
+                currency: USD
+            processingInformation:
+              businessApplicationId: AA
+              payoutsOptions:
+                sourceAmount: '100'
+                sourceCurrency: USD
+              reconciliationId: '123456789'
+            paymentInformation:
+              card:
+                type: '001'
+                securityCode: '123'
+                number: '4111111111111111'
+                expirationMonth: '12'
+                expirationYear: '2035'
+            recipientInformation:
+              paymentInformation:
+                card:
+                  type: '001'
+                  securityCode: '123'
+                  number: '4111111111111111'
+                  expirationMonth: '12'
+                  expirationYear: '2035'
+              locality: Atlanta
+              address1: 1200 Peachtree Street
+              buildingNumber: '1200'
+              country: US
+              firstName: John
+              lastName: Doe
+              middleInitial: D
+              middleName: Dan
+              postalCode: '12345'
+              administrativeArea: GA
+              streetName: Peachtree Street
+            senderInformation:
+              account:
+                fundsSource: '05'
+                number: '4104920120500002'
+              address1: 123 Street
+              address2: '123'
+              buildingNumber: '123'
+              country: US
+              firstName: Jane
+              lastName: Doe
+              middleInitial: N
+              middleName: Nancy
+              postalCode: '54321'
+              administrativeArea: CA
+              streetName: Street
+              referenceNumber: '1231823'
+            merchantInformation:
+              merchantDescriptor:
+                name: Sending Company Name
+                postalCode: '94440'
+                address1: Paseo Padre Boulevard
+                locality: Foster City
+                administrativeArea: CA
+                country: US
+                contact: '65045550556'
+      - name: Content-Type
+        in: header
+        type: string
+        required: true
+      - name: x-requestid
+        in: header
+        type: string
+        required: true
+      - name: v-c-merchant-id
+        in: header
+        type: string
+        required: true
+      - name: v-c-permissions
+        in: header
+        type: string
+        required: true
+      - name: v-c-correlation-id
+        in: header
+        type: string
+        required: true
+      - name: v-c-organization-id
+        in: header
+        type: string
+        required: true
+      responses:
+        '201':
+          description: Successful response.
+          schema:
+            title: pushFunds201Response
+            type: object
+            properties:
+              id:
+                type: string
+                maxLength: 26
+                description: 'A unique identification number to identify the submitted request. It is also appended to the endpoint of the resource.
+
+                  '
+              submitTimeUtc:
+                type: string
+                maxLength: 20
+                minLength: 20
+                description: 'Time of request in UTC.
+
+                  Format: `YYYY-MM-DDThh:mm:ssZ`
+
+
+                  **Example**
+
+                  `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time.
+
+                  The `Z` indicates UTC.
+
+                  '
+              status:
+                type: string
+                maxLength: 18
+                description: 'The status of the submitted transaction.
+
+
+                  Possible values:
+
+                  - AUTHORIZED
+
+                  - DECLINED
+
+                  - SERVER_ERROR
+
+                  - INVALID_REQUEST
+
+                  - PARTIAL_AUTHORIZED
+
+                  '
+              reconciliationId:
+                type: string
+                maxLength: 25
+                description: 'Cybersource or merchant generated transaction reference number. This is sent to the processor and is echoed back in the response to the merchant. This is This value is used for reconciliation purposes.
+
+                  '
+              clientReferenceInformation:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    maxLength: 50
+                    description: 'Merchant-generated order reference or tracking number. It is recommended that you send a unique value for each transaction so that you can perform meaningful searches for the transaction.
+
+                      '
+                  submitLocalDateTime:
+                    type: string
+                    maxLength: 14
+                    minLength: 14
+                    description: 'Date and time at your physical location.
+
+
+                      Format: YYYYMMDDhhmmss, where YYYY = year, MM = month, DD = day, hh = hour, mm = minutes ss = seconds
+
+                      '
+              recipientInformation:
+                type: object
+                properties:
+                  card:
+                    type: object
+                    properties:
+                      balance:
+                        type: string
+                        maxLength: 12
+                        description: 'This field shows the available balance in the prepaid account. Acquirers always receive the available balance in the transaction currency.
+
+                          '
+                      currency:
+                        type: string
+                        maxLength: 3
+                        description: 'This is a multicurrency-only field. It contains a 3-digit numeric code that identifies the currency used by the issuer.
+
+                          '
+                  email:
+                    type: string
+                    maxLength: 255
+                    description: 'Customer''s email address, including the full domain name.
+
+                      '
+              merchantInformation:
+                type: object
+                properties:
+                  merchantDescriptor:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        maxLength: 23
+                        description: 'Your merchant name.
+
+
+                          Note For Chase Paymentech, the maximum data length is 22.
+
+                          '
+                      locality:
+                        type: string
+                        maxLength: 13
+                        description: 'Merchant''s City.
+
+                          '
+                      country:
+                        type: string
+                        maxLength: 2
+                        description: 'Merchant''s country.
+
+                          Country code for your business location.
+
+
+                          ISO Standard Alpha Country Code.
+
+
+                          https://developer.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf
+
+                          '
+              errorInformation:
+                type: object
+                properties:
+                  reason:
+                    type: string
+                    maxLength: 31
+                    description: 'The reason of the status.
+
+
+                      Possible values:
+
+
+                      - CONTACT_PROCESSOR
+
+                      - INVALID_MERCHANT_CONFIGURATION
+
+                      - STOLEN_LOST_CARD
+
+                      - PROCESSOR_DECLINED
+
+                      - PARTIAL_APPROVAL
+
+                      - PAYMENT_REFUSED
+
+                      - INVALID_ACCOUNT
+
+                      - ISSUER_UNAVAILABLE
+
+                      - INSUFFICIENT_FUND
+
+                      - EXPIRED_CARD
+
+                      - INVALID_PIN
+
+                      - UNAUTHORIZED_CARD
+
+                      - EXCEEDS_CREDIT_LIMIT
+
+                      - DEBIT_CARD_USAGE_LIMIT_EXCEEDED
+
+                      - CVN_NOT_MATCH
+
+                      - DUPLICATE_REQUEST
+
+                      - GENERAL_DECLINE
+
+                      - BLACKLISTED_CUSTOMER
+
+                      - GATEWAY_TIMEOUT
+
+                      - INVALID_DATA
+
+                      - SYSTEM_ERROR
+
+                      - SERVICE_UNAVAILABLE
+
+                      - GATEWAY_TIMEOUT
+
+                      - DAGGREJECTED
+
+                      - DAGGDENIED
+
+                      - DSYSREJECTED
+
+                      '
+                  message:
+                    type: string
+                    maxLength: 256
+                    description: 'The detail message related to the status and reason listed above.
+
+                      '
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          maxLength: 256
+                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                            '
+                        reason:
+                          type: string
+                          maxLength: 31
+                          description: 'Possible reasons for the status
+
+
+                            Possible values:
+
+
+                            - MISSING_FIELD
+
+                            - INVALID_DATA
+
+                            '
+              processorInformation:
+                type: object
+                properties:
+                  transactionId:
+                    type: integer
+                    maxLength: 40
+                    description: 'Network transaction identifier (TID). This value can be used to identify a specific transaction when you are discussing the transaction with your processor.
+
+                      '
+                  responseCode:
+                    type: string
+                    maxLength: 1
+                    description: 'Transaction status from the processor.
+
+                      '
+                  systemTraceAuditNumber:
+                    type: string
+                    maxLength: 6
+                    description: 'This field is returned by authorization and incremental authorization services.
+
+                      System trace number that must be printed on the customer''s receipt.
+
+                      '
+                  retrievalReferenceNumber:
+                    type: string
+                    maxLength: 12
+                    description: 'This field contains a number that is used with other data elements as a key to identify and track all messages related to a given cardholder transaction; that is, to a given transaction set.
+
+
+                      Recommended format: ydddhhnnnnnn
+
+
+                      Positions 1-4: The yddd equivalent of the date, where y = 0-9 and ddd = 001 – 366. Positions 5-12: A unique identification number generated by the merchant or assigned by Cybersource.
+
+                      '
+                  actionCode:
+                    type: string
+                    maxLength: 2
+                    description: 'The results of the transaction request
+
+
+                      Note: The VisaNet Response Code for the transaction
+
+                      '
+                  approvalCode:
+                    type: string
+                    x-nullable: true
+                    maxLength: 6
+                    description: 'Issuer-generated approval code for the transaction.
+
+                      '
+                  feeProgramIndicator:
+                    type: string
+                    maxLength: 3
+                    description: 'This field identifies the interchange fee program applicable to each financial transaction. Fee program indicator (FPI) values correspond to the fee descriptor and rate for each existing fee program.
+
+                      '
+                  name:
+                    type: string
+                    maxLength: 30
+                    description: 'Name of the processor.
+
+                      '
+                  routing:
+                    type: object
+                    properties:
+                      network:
+                        type: string
+                        maxLength: 4
+                        description: 'Contains the ID of the debit network to which the transaction was routed.
+
+
+                          Code: Network
+
+
+                          0000 : Priority Routing or Generic File Update
+
+
+                          0002: Visa programs, Private Label and non-Visa Authorization Gateway Services
+
+
+                          0003: Interlink
+
+
+                          0004: Plus
+
+
+                          0008: Star
+
+
+                          0009: Pulse
+
+
+                          0010: Star
+
+
+                          0011: Star
+
+
+                          0012: Star (primary network ID)
+
+
+                          0013: AFFN
+
+
+                          0015: Star
+
+
+                          0016: Maestro
+
+
+                          0017: Pulse (primary network ID)
+
+
+                          0018: NYCE (primary network ID)
+
+
+                          0019: Pulse
+
+
+                          0020: Accel
+
+
+                          0023: NETS
+
+
+                          0024: CU24
+
+
+                          0025: Alaska Option
+
+
+                          0027: NYCE
+
+
+                          0028: Shazam
+
+
+                          0029: EBT POS
+
+                          '
+                  settlement:
+                    type: object
+                    properties:
+                      responsibilityFlag:
+                        type: boolean
+                        description: 'Settlement Responsibility Flag: VisaNet sets this flag.
+
+
+                          This flag is set to true to indicate that VisaNet has settlement responsibility for this transaction. This flag does not indicate the transaction will be settled.
+
+                          '
+                      serviceFlag:
+                        type: string
+                        maxLength: 24
+                        description: "Settlement Service for the transaction.\n\nValues:\n\nVIP: V.I.P. to decide; or not applicable\n\nINTERNATIONAL_SETTLEMENT: International \n\nNATIONAL_NET_SETTLEMENT: National Net Settlement\n"
+                  merchantAdvice:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        maxLength: 2
+                        description: "Reason why transaction was declined. \n\n#### Possible values:\n| Card Type   | Advice Code   |  Description                                |\n| ----------- | ------------- | ------------------------------------------- |\n| VISA        | 1             | Issuer never approves                       |\n| VISA        | 2             | Issuer cannot approve at this time          |\n| VISA        | 3             | Data quality/revalidate payment information |\n| MasterCard  | 01            | New account information available           |\n| MasterCard  | 02            | Try Again Later                             |\n| MasterCard  | 03            | Do Not Try Again                            |\n| MasterCard  | 04            | Token not supported                         |\n| MasterCard  | 21            | Do not honor                                |\n| MasterCard  | 22            | Merchant does not qualify for product code  |\n| MasterCard  | 24            | Retry after 1 hour                          |\n| MasterCard  | 25            | Retry after 24 hours                        |\n| MasterCard  | 26            | Retry after 2 days                          |\n| MasterCard  | 27            | Retry after 4 days                          |\n| MasterCard  | 28            | Retry after 6 days                          |\n| MasterCard  | 29            | Retry after 8 days                          |\n| MasterCard  | 30            | Retry after 10 days                         |\n| MasterCard  | 40            | Consumer non-reloadable prepaid card        |\n| MasterCard  | 41            | Consumer single-use virtual card number     |\n| MasterCard  | 42            | Sanctions score exceeds threshold value     |\n| MasterCard  | 99            | Do Not Try Again                            |\n"
+                      codeRaw:
+                        type: string
+                        maxLength: 4
+                        description: Raw merchant advice code from processor.
+                  avs:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        maxLength: 1
+                        description: "AVS result code.\n\nCode\tDescription\n- 'Y' Full Match\n- 'A' Partial Match (street address only)\n- 'Z' Partial Match (postal/zip only)\n- 'N' Non-Match\n- 'U' Unable to Verify\n- 'R' Indeterminate Outcome (Retry)\n"
+                  customer:
+                    type: object
+                    properties:
+                      personalIdResult:
+                        type: string
+                        maxLength: 1
+                        description: 'Personal identifier validation result.
+
+
+                          Valid values:
+
+                          - ''1'': Verified
+
+                          - ''2'': Failed
+
+                          - ''3'': Not performed
+
+                          - ''4'': Issuer does not support id verification
+
+                          '
+                  electronicVerificationResults:
+                    type: object
+                    properties:
+                      emailRaw:
+                        type: string
+                        maxLength: 1
+                        description: 'Raw Electronic Verification response code from the processor for the customer''s email address.
+
+
+                          Valid values:
+
+                          - ''1'': Verified
+
+                          - ''2'': Failed
+
+                          - ''3'': Not performed
+
+                          '
+                      firstNameRaw:
+                        type: string
+                        maxLength: 2
+                        description: 'Raw electronic verification response code from the processor for the customer''s first name.
+
+
+                          Valid values:
+
+                          - ''01'': Match
+
+                          - ''50'': Partial Match
+
+                          - ''99'': No Match
+
+                          '
+                      lastNameRaw:
+                        type: string
+                        maxLength: 2
+                        description: 'Raw electronic verification response code from the processor for the customer''s last name.
+
+
+                          Valid values:
+
+                          - ''01'': Match
+
+                          - ''50'': Partial Match
+
+                          - ''99'': No Match
+
+                          '
+                      middleNameRaw:
+                        type: string
+                        maxLength: 2
+                        description: 'Raw electronic verification response code from the processor for the customer''s middle name.
+
+
+                          Valid values:
+
+                          - ''01'': Match
+
+                          - ''50'': Partial Match
+
+                          - ''99'': No Match
+
+                          '
+                      nameRaw:
+                        type: string
+                        maxLength: 2
+                        description: 'Raw Electronic Verification response code from the processor for the customer''s name.
+
+
+                          Valid values:
+
+                          - ''01'': Match
+
+                          - ''50'': Partial Match
+
+                          - ''99'': No Match
+
+                          '
+                      phoneNumberRaw:
+                        type: string
+                        maxLength: 1
+                        description: 'Raw Electronic Verification response code from the processor for the customer''s phone number.
+
+
+                          Valid values:
+
+                          - ''1'': Verified
+
+                          - ''2'': Failed
+
+                          - ''3'': Not performed
+
+                          '
+                  cardVerification:
+                    type: object
+                    properties:
+                      resultCode:
+                        type: string
+                        maxLength: 1
+                        description: 'CVN result code.
+
+                          '
+                      resultCodeRaw:
+                        type: string
+                        maxLength: 10
+                        description: 'CVN result code sent directly from the processor. Returned only when the processor returns this value.
+
+
+                          **Important** Do not use this field to evaluate the result of card verification. Use for debugging purposes only.
+
+                          '
+              orderInformation:
+                type: object
+                properties:
+                  amountDetails:
+                    type: object
+                    required:
+                    - currency
+                    properties:
+                      totalAmount:
+                        type: string
+                        minLength: 1
+                        maxLength: 19
+                        description: 'Grand total for the order. This value cannot be negative. You can include a decimal point (.), but no other special characters. CyberSource truncates the amount to the correct number of decimal places.
+
+                          '
+                      currency:
+                        type: string
+                        maxLength: 3
+                        description: 'Currency used for the order. Use the three-character ISO Standard Currency Codes
+
+                          '
+                      settlementAmount:
+                        type: string
+                        maxLength: 12
+                        description: 'This is a multicurrency field. It contains the transaction amount (field 4), converted to the Currency used to bill the cardholder''s account. This field is returned for OCT transactions.
+
+                          '
+                      settlementCurrency:
+                        type: string
+                        maxLength: 3
+                        description: 'This is a multicurrency-only field. It contains a 3-digit numeric code that identifies the currency used by the issuer to bill the cardholder''s account. This field is returned for OCT transactions.
+
+                          '
+              paymentInformation:
+                type: object
+                properties:
+                  tokenizedCard:
+                    type: object
+                    properties:
+                      assuranceMethod:
+                        type: string
+                        pattern: ^(\s{0,2}|.{2})$
+                        description: 'Confidence level of the tokenization. This value is assigned by the token service provider.
+
+
+                          Valid Values:
+
+
+                          Spaces (No value set)
+
+
+                          00 = No issuer ID&V
+
+
+                          10 = Card issuer account verification
+
+
+                          11 = Card issuer interactive cardholder authentication - 1 factor
+
+
+                          12 = Card issuer interactive cardholder authentication - 2 factor
+
+
+                          13 = Card issuer risk oriented non-interactive cardholder authentication
+
+
+                          14 = Card issuer asserted authentication
+
+                          '
+              processingInformation:
+                type: object
+                properties:
+                  domesticNationalNet:
+                    type: object
+                    description: 'Settlement Service Data object for additional transaction requirements when the transaction indicates domestic national settlement.
+
+                      '
+                    properties:
+                      reimbursementFeeBaseAmount:
+                        type: string
+                        maxLength: 12
+                        description: 'National Net Interchange Reimbursement Fee (IRF) calculation base amount. This must be less than the transaction amount.
+
+
+                          Format:
+
+
+                          Minimum Value: 0
+
+
+                          Maximum value: 999999999.99
+
+
+                          Allowed fractional digits: 3.
+
+
+                          Note: If a currency has three decimal places, the last digit of this field must be zero.
+
+
+                          Required for Columbia National Net Settlement Service (NNSS) transactions.
+
+                          '
+              issuerInformation:
+                type: object
+                properties:
+                  octDomesticParticipantIndicator:
+                    type: boolean
+                    description: "Domestic indicator for Push funds (OCT). If no Funds Transfer Attributes Inquiry data is available\nfor this card account, the field is omitted. \n\nSupported for Visa Direct.\n"
+                  octCrossBorderParticipantIndicator:
+                    type: boolean
+                    description: "Cross-border indicator for push funds (OCT). If no Funds Transfer Attributes Inquiry data is available\nfor this card account, the field is omitted. \n\nSupported for Visa Direct.\n"
+                  octMoneyTransferDomesticIndicator:
+                    type: boolean
+                    description: "Indicates whether domestic money transfer OCTs (push funds) are allowed. If no Funds Transfer Attributes\nInquiry data is available for this card account, the field is omitted.\n      \nSupported for Visa Direct.\n"
+                  octMoneyTransferCrossBorderIndicator:
+                    type: boolean
+                    description: "Indicates whether cross-border money transfer OCTs (push funds) are allowed. If no Funds Transfer Attributes\nInquiry data is available for this card account, the field is omitted. \n\nSupported for Visa Direct.\n"
+                  octMoneyTransferFastFundsDomesticIndicator:
+                    type: boolean
+                    description: "Indicates whether domestic money transfer OCTs (fast push funds) are allowed. If no Funds Transfer Attributes\nInquiry data is available for this card account, the field is omitted. \n\nSupported for Visa Direct.\n"
+                  octMoneyTransferFastFundsCrossBorderIndicator:
+                    type: boolean
+                    description: "Indicates whether cross-border money transfer OCTs (fast push funds) are allowed. If no Funds Transfer Attributes\nInquiry data is available for this card account, the field is omitted. \n\nSupported for Visa Direct.\n"
+                  octMoneyTransferMerchantCountryRestricted:
+                    type: boolean
+                    description: "This field indicates if the recipient issuer can accept push funds (OCT) transactions from the merchant country. \nIf no Funds Transfer Attributes Inquiry data is available for this card account, the field is omitted. \n\nSupported for Visa Direct.\n"
+                  octNonMoneyTransferDomesticIndicator:
+                    type: boolean
+                    description: "Indicates whether domestic non-money transfer OCTs (push funds) are allowed. If no Funds Transfer Attributes\nInquiry data is available for this card account, the field is omitted. \n\nSupported for Visa Direct.\n"
+                  octNonMoneyTransferCrossBorderIndicator:
+                    type: boolean
+                    description: "Indicates whether cross-border non-money transfer OCTs (push funds) are allowed. If no Funds Transfer Attributes\nInquiry data is available for this card account, the field is omitted. \n\nSupported for Visa Direct.\n"
+                  octNonMoneyTransferFastFundsDomesticIndicator:
+                    type: boolean
+                    description: "Indicates whether domestic non-money transfer OCTs (fast push funds) are allowed. If no Funds Transfer Attributes\nInquiry data is available for this card account, the field is omitted. \n\nSupported for Visa Direct.\n"
+                  octNonMoneyTransferFastFundsCrossBorderIndicator:
+                    type: boolean
+                    description: "Indicates whether cross-border non-money transfer OCTs (fast push funds) are allowed. If no Funds Transfer\nAttributes Inquiry data is available for this card account, the field is omitted. \n\nSupported for Visa Direct.\n"
+                  octOnlineGamblingDomesticIndicator:
+                    type: boolean
+                    description: "Indicates whether domestic gambling OCTs (push funds) are allowed. If no Funds Transfer Attributes Inquiry\ndata is available for this card account, the field is omitted. \n\nSupported for Visa Direct.\n"
+                  octOnlineGamblingCrossBorderIndicator:
+                    type: boolean
+                    description: "Indicates whether cross-border gambling OCTs (push funds) are allowed. If no Funds Transfer Attributes Inquiry\ndata is available for this card account, the field is omitted. \n\nSupported for Visa Direct.\n"
+                  octOnlineGamblingFastFundsDomesticIndicator:
+                    type: boolean
+                    description: "Indicates whether domestic gambling OCTs (fast push funds) are allowed. If no Funds Transfer Attributes Inquiry\ndata is available for this card account, the field is omitted. \n\nSupported for Visa Direct.\n"
+                  octOnlineGamblingFastFundsCrossBorderIndicator:
+                    type: boolean
+                    description: "Indicates whether cross-border gambling OCTs (fast push funds) are allowed. If no Funds Transfer Attributes\nInquiry data is available for this card account, the field is omitted. \n\nSupported for Visa Direct.\n"
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                        description: This is the endpoint of the resource that was created by the successful request.
+                      method:
+                        type: string
+                        description: '`method` refers to the HTTP method that you can send to the `self` endpoint to retrieve details of the resource.'
+                    description: A GET link to the OCT
+                  customer:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                        description: This is the endpoint of the resource that was created by the successful request.
+                      method:
+                        type: string
+                        description: '`method` refers to the HTTP method that you can send to the `self` endpoint to retrieve details of the resource.'
+                    description: A GET link to the customer supplied in the OCT
+                  paymentInstrument:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                        description: This is the endpoint of the resource that was created by the successful request.
+                      method:
+                        type: string
+                        description: '`method` refers to the HTTP method that you can send to the `self` endpoint to retrieve details of the resource.'
+                    description: A GET link to the payment instrument supplied in the OCT
+                  instrumentIdentifier:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                        description: This is the endpoint of the resource that was created by the successful request.
+                      method:
+                        type: string
+                        description: '`method` refers to the HTTP method that you can send to the `self` endpoint to retrieve details of the resource.'
+                    description: A GET link to the instrument identifier used in the OCT
+            example:
+              processorInformation:
+                routing:
+                  network: '1234'
+                approvalCode: 98765X
+                feeProgramIndicator: A
+                transactionId: '187470320952493'
+                systemTraceAuditNumber: '512807'
+                retrievalReferenceNumber: '418420512807'
+                settlement:
+                  responsibilityFlag: true
+                  serviceFlag: INTERNATIONAL_SETTLEMENT
+                responseCode: '5'
+                name: vdcpromerica
+                merchantAdvice:
+                  code: '02'
+                  codeRaw: '1234'
+              id: '7199515124531234567890'
+              _links:
+                self:
+                  method: GET
+                  href: /pts/v1/push-funds-transfer/7199515124531234567890
+              paymentInformation:
+                tokenizedCard:
+                  assuranceMethod: a1
+              issuerInformation:
+                octDomesticParticipantIndicator: true
+                octCrossBorderParticipantIndicator: true
+                octMoneyTransferDomesticIndicator: true
+                octMoneyTransferCrossBorderIndicator: true
+                octMoneyTransferFastFundsDomesticIndicator: true
+                octMoneyTransferFastFundsCrossBorderIndicator: false
+                octNonMoneyTransferDomesticIndicator: true
+                octNonMoneyTransferCrossBorderIndicator: false
+                octNonMoneyTransferFastFundsDomesticIndicator: true
+                octNonMoneyTransferFastFundsCrossBorderIndicator: false
+                octOnlineGamblingDomesticIndicator: false
+                octOnlineGamblingCrossBorderIndicator: false
+                octOnlineGamblingFastFundsDomesticIndicator: false
+                octOnlineGamblingFastFundsCrossBorderIndicator: false
+                octMoneyTransferMerchantCountryRestricted: false
+              status: AUTHORIZED
+              submitTimeUtc: '2023-09-15T19:31:08Z'
+        '400':
+          description: Invalid request.
+          schema:
+            title: pushFunds400Response
+            type: object
+            properties:
+              id:
+                type: string
+                maxLength: 26
+                description: 'A unique identification number to identify the submitted request. It is also appended to the endpoint of the resource.
+
+                  '
+              submitTimeUtc:
+                type: string
+                maxLength: 20
+                minLength: 20
+                description: 'Time of request in UTC.
+
+                  Format: `YYYY-MM-DDThh:mm:ssZ`
+
+
+                  **Example**
+
+                  `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time.
+
+                  The `Z` indicates UTC.
+
+                  '
+              status:
+                type: string
+                description: 'Possible values:
+
+                  - INVALID_REQUEST
+
+                  '
+              reason:
+                type: string
+                description: 'The reason of the status.
+
+
+                  Possible values:
+
+                  - INVALID_DATA
+
+                  - MISSING_FIELD
+
+                  - INVALID_MERCHANT_CONFIGURATION
+
+                  - INVALID_REQUEST
+
+                  - INVALID_PAYMENT_ID
+
+                  '
+              message:
+                type: string
+                description: 'The detail message related to the status and reason listed above.
+
+
+                  Possible values:
+
+                  - One or more fields in the request contains invalid data.
+
+                  - The request is missing one or more required fields.
+
+                  - Declined - There is a problem with your CyberSource merchant configuration.
+
+                  '
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                        '
+                    reason:
+                      type: string
+                      description: 'Possible reasons for the error.
+
+
+                        Possible values:
+
+                        - MISSING_FIELD
+
+                        - INVALID_DATA
+
+                        '
+        '401':
+          description: Unauthorized.
+          schema:
+            title: pushFunds401Response
+            type: object
+            properties:
+              id:
+                type: string
+                maxLength: 26
+                description: 'A unique identification number to identify the submitted request. It is also appended to the endpoint of the resource.
+
+                  '
+              submitTimeUtc:
+                type: string
+                maxLength: 20
+                minLength: 20
+                description: 'Time of request in UTC.
+
+                  Format: `YYYY-MM-DDThh:mm:ssZ`
+
+
+                  **Example**
+
+                  `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time.
+
+                  The `Z` indicates UTC.
+
+                  '
+              reason:
+                type: string
+                description: 'The reason of the status.
+
+
+                  Possible values:
+
+                  - UNAUTHORIZED
+
+                  '
+              message:
+                type: string
+                description: 'The detail message related to the status and reason listed above.
+
+
+                  Possible values:
+
+                  - Authentication Failed
+
+                  '
+        '404':
+          description: Not Found.
+          schema:
+            title: pushFunds404Response
+            type: object
+            properties:
+              id:
+                type: string
+                maxLength: 26
+                description: 'A unique identification number to identify the submitted request. It is also appended to the endpoint of the resource.
+
+                  '
+              submitTimeUtc:
+                type: string
+                maxLength: 20
+                minLength: 20
+                description: 'Time of request in UTC.
+
+                  Format: `YYYY-MM-DDThh:mm:ssZ`
+
+
+                  **Example**
+
+                  `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time.
+
+                  The `Z` indicates UTC.
+
+                  '
+              reason:
+                type: string
+                description: 'The reason of the status.
+
+
+                  Possible values:
+
+                  - NOT_FOUND
+
+                  '
+              message:
+                type: string
+                description: 'The detail message related to the status and reason listed above.
+
+
+                  Possible values:
+
+                  - The requested resource does not exist
+
+                  '
+        '502':
+          description: Unexpected system error or system timeout.
+          schema:
+            title: pushFunds502Response
+            type: object
+            properties:
+              id:
+                type: string
+                maxLength: 26
+                description: 'A unique identification number to identify the submitted request. It is also appended to the endpoint of the resource.
+
+                  '
+              submitTimeUtc:
+                type: string
+                maxLength: 20
+                minLength: 20
+                description: 'Time of request in UTC.
+
+                  Format: `YYYY-MM-DDThh:mm:ssZ`
+
+
+                  **Example**
+
+                  `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time.
+
+                  The `Z` indicates UTC.
+
+                  '
+              status:
+                type: string
+                description: 'Possible values:
+
+                  - SERVER_ERROR
+
+                  '
+              reason:
+                type: string
+                description: 'The reason of the status.
+
+
+                  Possible values:
+
+                  - SYSTEM_ERROR
+
+                  - SERVICE_TIMEOUT
+
+                  '
+              message:
+                type: string
+                description: 'The detail message related to the status and reason listed above.
+
+
+                  Possible values:
+
+                  - Error - General system failure.
+
+                  - The request was received, but a service did not finish running in time.
+
+                  '
+      x-example:
+        example0:
+          summary: Payout (Card not Token)
+          sample-name: Process Payout Card
+          value:
+            clientReferenceInformation:
+              code: '33557799'
+              applicationName: EXAMPLE API
+              applicationVersion: V1
+              applicationUser: example_user
+            orderInformation:
+              amountDetails:
+                totalAmount: '53.00'
+                currency: USD
+                settlementCurrency: USD
+            processingInformation:
+              businessApplicationId: FT
+            recipientInformation:
+              paymentInformation:
+                card:
+                  type: '001'
+                  securityCode: '123'
+                  number: '4111111111111111'
+                  expirationMonth: '12'
+                  expirationYear: '2035'
+              address1: 8310 Capital of Texas Highwas North
+              address2: Bluffstone Drive
+              locality: Austin
+              postalCode: '78731'
+              administrativeArea: CA
+              country: USA
+              firstName: Jennifer
+              lastName: Doe
+              middleName: A
+              personalIdentification:
+                id: '123132456'
+                type: EIDN
+            senderInformation:
+              firstName: John
+              lastName: Doe
+              middleName: A
+              postalCode: '94440'
+              address1: Paseo Padre Boulevard
+              address2: Bluffstone Drive
+              locality: Foster City
+              administrativeArea: CA
+              country: US
+              referenceNumber: '1234567890'
+              paymentInformation:
+                card:
+                  sourceAccountType: SA
+                  type: '001'
+                  securityCode: '932'
+                  number: '4111111111111111'
+                  expirationMonth: '12'
+                  expirationYear: '2035'
+              personalIdentification:
+                id: '123132456'
+                type: CUID
+              account:
+                fundsSource: '02'
+x-devcenter-metaData:
+  categoryTagArray:
+  - name: Payments
+    description: For more information about Payments transactions, see the [Payments Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/payments/developer/ctv/rest/payments/payments-intro.html).
+  - name: Transaction_Batches
+    description: For more information about Transaction Batches, see the [Transaction Batches Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-transaction-batch-api/txn_batch_api_intro.html).
+  - name: eCheck_AVS
+    description: For more information about eCheck Account Validation, see the [Account Validation Developer Guides Page](https://...).
+  - name: Token_Management
+    description: For more information about the Token Management Service (TMS) see the [Token Management Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms/tms-overview.html)
+  - name: Flex_Microform
+    description: Microform Integration is a lightweight acceptance solution designed to safely and securely accept payment information within your web page.  Microform is designed to a be embedded seamlessly within your existing webpage experience, blending in with your existing acceptance form.  This solution allows for the replacement of sensitive payment date with a transient token (a short lived reference to the sensitive payment data).  For more information about Flex Microform transactions, see the [Flex Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-flex/SAFlexibleToken.html). For examples on how to integrate Flex Microform within your webpage please see our [GitHub Flex Samples](https://github.com/CyberSource?q=flex&type=&language=)
+  - name: Flex_API
+    description: For more information about Flex API, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/da-flex-api-intro.html).
+  - name: Risk_Management
+  - name: Payouts
+    description: 'For more information about Payouts, see the [Payouts Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-payouts/Introduction.html).
+
+      '
+  - name: Installments
+    description: For more information about Installment contact Cybersource Support. For Visa installments contact VISthroughCYBS@visa.com
+  - name: Recurring_Billing_Subscriptions
+    description: For more information about Recurring Billing, see the [Recurring Billing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-developer/recur-bill-services-intro.html).
+  - name: BIN_Lookup
+    description: 'The BIN Lookup Service is a versatile business tool that provides card network agnostic solution designed to ensure frictionless transaction experience by utilizing up-to-date Bank Identification Number (BIN) attributes sourced from multiple global and regional data sources.
+
+      This service helps to improve authorization rates by helping to route transactions to the best-suited card network, minimizes fraud through card detail verification and aids in regulatory compliance by identifying card properties. The service is flexible and provides businesses with a flexible choice of inputs such as primary account number (PAN), network token from major networks (such as Visa, American Express, Discover and regional networks) which includes device PAN (DPAN), and all types of tokens generated via CyberSource Token Management Service (TMS).
+
+      Currently, the range of available credentials is contingent on the networks enabled for the business entity. Therefore, the network information specified in this documentation is illustrative and subject to personalized offerings for each reseller or merchant.
+
+      '
+  - name: Transaction_Details
+    description: For more information about Transaction Details, see the [Transaction Details Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_details_api.html).
+  - name: Transaction_Search
+    description: For more information about Transaction Search, see the [Transaction Search Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_search_api.html).
+  - name: Reporting
+    description: 'For more information about Reporting, see the [Reporting Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-reporting-rest-api-dev-guide-102718/reporting_api.html).
+
+      '
+  - name: Secure_File_Share
+    description: For more information about Secure File Share, see the [Secure File Share Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-secure-file-share-api-102718/secure_file_share_api_intro.html).
+  - name: Invoices
+    description: For more information about Invoicing, see the [Invoicing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing/Introduction.html).
+  - name: Pay_By_Link
+    description: For more information about PayByLink, see the [PBL Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/boarding/user/all/rest/boarding/templates-matrix-intro/templates-matrix-pay-by-link.html).
+  - name: User_Management
+    description: For more information about User Management, see the [User Managment Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-user-management-api-102718/user_management_api_intro.html).
+  - name: Value_Added_Service
+  - name: Fee Service
+  - name: Merchant_Boarding
+    description: For more information about Merchant Boarding, please see [Developer Guides Page](https://developer.cybersource.com/api/developer-guides/Merchant-Boarding-API_ditamap/Merchant-Boarding-API.html).
+  - name: Webhooks
+    description: For more information about Webhooks, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/webhooks/implementation/all/rest/webhooks/wh-fg-intro.html).
+  - name: Unified_Checkout
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-intro.html).
+  - name: Unified_Checkoutv1
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-about-guide.html).
+  - name: Account_Updater
+    description: For more information about Account Updater, see the [Account Updater Developer Guides Page:](https://developer.cybersource.com/library/documentation/dev_guides/Account_Updater_UG/html/index.html).
+  - name: Visa_Bank_Account_Validation
+    description: 'The Visa Bank Account Validation Service is a new standalone product designed to validate customer''s routing and bank account number combination for ACH transactions. Merchant''s can use this standalone product to validate their customer''s account prior to processing an ACH transaction against the customer''s account to comply with Nacha''s account validation mandate for Web-debit transactions.
+
+      '
+  - name: Currency Conversion
+    description: 'Empower global transactions with transparency and choice. Our Dynamic Currency Conversion API lets merchants offer customers the option to pay in their home currency at checkout, delivering real-time exchange rates and clear cost disclosure.
+
+
+      **Key Benefits:**
+
+      - **Enhanced Customer Experience:** Provide clarity and convenience for international shoppers.
+
+      - **Real-Time Rates:** Accurate currency conversion with all the data required for acquirers and their merchants to maintain compliance with card network rules.
+
+      - **Seamless Integration:** Flexible API endpoints for rate lookup, authorization, and capture.
+
+      - **Regulatory Compliance:** Provides the data required for acquirers and merchants to meet and maintain card scheme requirements for disclosure and consent.
+
+
+      Ideal for merchants and payment partners seeking to boost trust and conversion in cross-border commerce.
+
+
+      **Key Features:**
+
+      - **Rate Lookup:** Retrieves the most up-to-date exchange rate for eligible cards before authorization.
+
+      - **Currency Choice:** Enables the merchant to offer customers the option to select between the merchant''s local currency and their card''s billing currency.
+
+      - **Compliance:** Ensures merchants have the data required to adhere to card network regulations; exchange rates, markups, etc.
+
+
+      **Supported Scenarios:**
+
+      - Dynamic Currency Conversion when cardholder''s billing currency differs from merchant''s pricing currency.
+
+      - Merchant and acquirer must support the cardholder''s billing currency.
+
+
+      **Core API Endpoints:**
+
+
+      **Currency Conversion API**
+
+      Returns eligibility and exchange rate details, including:
+
+      - exchangeRate
+
+      - marginRate
+
+      - reconciliationId and Id (for subsequent payment requests)
+
+
+      **Payment Authorization with DCC***
+
+      POST /pts/v2/payments
+
+      Required fields include:
+
+      - orderInformation.amountDetails.currency
+
+      - orderInformation.amountDetails.originalCurrency
+
+      - orderInformation.amountDetails.originalAmount
+
+      - orderInformation.amountDetails.exchangeRate
+
+      - currencyConversion.indicator (e.g., 1 = Converted, 2 = Nonconvertible, 3 = Declined)
+
+
+      **Capture with DCC***
+
+      POST /pts/v2/payments/{id}/captures
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      **Refund with DCC***
+
+      POST /pts/v2/captures/{id}/refunds
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      *Note: DCC is only supported on select processors. Contact your acquirer or account manager for more information.
+
+
+      **Compliance & Disclosure:**
+
+
+      Merchants must:
+
+      - Adhere to card network rules for Dynamic Currency Conversion (DCC) transactions.
+
+      - Display the converted amount, exchange rate, and markup percentage and other required disclosures.
+
+      - Obtain explicit cardholder consent before applying DCC.
+
+      - Work with your acquirer to obtain full set of compliance requirements.
+
+
+      For more information, see the [Currency Conversion Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/currency-conversion/developer/all/rest/currency-conversion/cc-intro.html).
+
+      '
+  - name: Intelligent_Commerce_Connect
+    description: For more information about Intelligent Commerce Cross Network Service API, please see [Developer Guides](https://developer.cybersource.com/docs/cybs/en-us/intelligent-commerce/developer/all/rest/intelligent-commerce/intelligent-commerce-about-guide.html).

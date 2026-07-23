@@ -1,0 +1,2025 @@
+swagger: '2.0'
+info:
+  description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
+  version: 0.0.1
+  title: CyberSource Merged Spec bankAccountValidation Plans API
+host: apitest.cybersource.com
+basePath: /
+schemes:
+- https
+consumes:
+- application/json;charset=utf-8
+produces:
+- application/hal+json;charset=utf-8
+tags:
+- name: Plans
+  description: 'Create and manage Plans for subscriptions.
+
+    '
+paths:
+  /rbs/v1/plans:
+    post:
+      summary: Create a Plan
+      description: 'The recurring billing service enables you to manage payment plans and subscriptions for recurring payment schedules. It securely stores your customer''s payment information and personal data within secure Visa data centers, reducing storage risks and PCI DSS scope through the use of *Token Management* (*TMS*).
+
+
+        The three key elements of *Cybersource* Recurring Billing are:
+
+
+        -  **Token**: stores customer billing, shipping, and payment details.
+
+
+        -  **Plan**: stores the billing schedule.
+
+
+        -  **Subscription**: combines the token and plan, and defines the subscription start date, name, and description.
+
+
+        The APIs in this section demonstrate the management of the Plans and Subscriptions. For Tokens please refer to [Token Management](#token-management)
+
+        The availability of API features for a merchant can depend on the portfolio configuration and may need to be enabled at the portfolio level before they can be added to merchant accounts.
+
+        '
+      tags:
+      - Plans
+      operationId: createPlan
+      x-devcenter-metaData:
+        categoryTag: Recurring_Billing_Subscriptions
+        developerGuides: https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-dev/recur-bill-dev-intro.html
+        disableProcessorDropDown: true
+        mleForRequest: optional
+        mleForResponse: optional
+      consumes:
+      - application/json;charset=utf-8
+      produces:
+      - application/json
+      - application/hal+json
+      - application/json;charset=utf-8
+      - application/hal+json;charset=utf-8
+      parameters:
+      - name: createPlanRequest
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            planInformation:
+              type: object
+              required:
+              - name
+              - billingPeriod
+              properties:
+                code:
+                  type: string
+                  maxLength: 10
+                  description: 'Plan code is an optional field, If not provided system generates and assign one
+
+                    '
+                name:
+                  type: string
+                  maxLength: 100
+                  description: 'Plan name
+
+                    '
+                description:
+                  type: string
+                  maxLength: 255
+                  description: 'Plan description
+
+                    '
+                status:
+                  type: string
+                  description: "Plan Status:\n - `DRAFT`\n - `ACTIVE` (default)\n"
+                billingPeriod:
+                  type: object
+                  description: 'Billing Frequency
+
+                    '
+                  properties:
+                    length:
+                      type: string
+                      description: 'Example:
+
+                        - If length=1 & unit=month then charge every month
+
+                        - If length=7 & unit=day then charge every 7th day
+
+                        '
+                    unit:
+                      type: string
+                      description: "Calendar unit values.\n  possible values:\n  - `D` - day\n  - `M` - month\n  - `W` - week\n  - `Y` - year\n"
+                billingCycles:
+                  type: object
+                  description: 'Number of times customer is going to be billed
+
+                    '
+                  properties:
+                    total:
+                      type: string
+                      description: 'Describe total number of billing cycles
+
+                        '
+            orderInformation:
+              type: object
+              properties:
+                amountDetails:
+                  type: object
+                  required:
+                  - currency
+                  - billingAmount
+                  properties:
+                    currency:
+                      type: string
+                      maxLength: 3
+                      description: 'Currency used for the order. Use the three-character [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)
+
+
+                        #### Used by
+
+                        **Authorization**
+
+                        Required field.
+
+
+                        **Authorization Reversal**
+
+                        For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.
+
+
+                        #### PIN Debit
+
+                        Currency for the amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+
+                        Returned by PIN debit purchase.
+
+
+                        For PIN debit reversal requests, you must use the same currency that was used for the PIN debit purchase or PIN debit credit that you are reversing.
+
+                        For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+
+
+                        Required field for PIN Debit purchase and PIN Debit credit requests.
+
+                        Optional field for PIN Debit reversal requests.
+
+
+                        #### GPX
+
+                        This field is optional for reversing an authorization or credit.
+
+
+                        #### DCC for First Data
+
+                        Your local currency.
+
+
+                        #### Tax Calculation
+
+                        Required for international tax and value added tax only.
+
+                        Optional for U.S. and Canadian taxes.
+
+                        Your local currency.
+
+                        '
+                    billingAmount:
+                      type: string
+                      maxLength: 19
+                      description: 'Billing amount for the billing period.
+
+                        '
+                    setupFee:
+                      type: string
+                      maxLength: 19
+                      description: 'Subscription setup fee
+
+                        '
+          example:
+            planInformation:
+              name: Gold Plan
+              description: New Gold Plan
+              billingPeriod:
+                length: '1'
+                unit: M
+              billingCycles:
+                total: '12'
+            orderInformation:
+              amountDetails:
+                currency: USD
+                billingAmount: '10'
+                setupFee: '2'
+      responses:
+        '201':
+          description: Successful response.
+          schema:
+            title: createPlanResponse
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                        description: This is the endpoint of the resource that was created by the successful request.
+                      method:
+                        type: string
+                        description: '`method` refers to the HTTP method that you can send to the `self` endpoint to retrieve details of the resource.'
+              id:
+                type: string
+                maxLength: 26
+                description: 'An unique identification number generated by Cybersource to identify the submitted request. Returned by all services.
+
+                  It is also appended to the endpoint of the resource.
+
+                  On incremental authorizations, this value with be the same as the identification number returned in the original authorization response.
+
+                  '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - COMPLETED\n"
+              planInformation:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    maxLength: 10
+                    description: 'Plan code
+
+                      '
+                  status:
+                    type: string
+                    description: "Plan Status:\n - `DRAFT`\n - `ACTIVE`\n"
+            example:
+              _links:
+                self:
+                  href: rbs/v1/plans/4963015972176007901546
+                  method: GET
+              id: '4963015972176007901546'
+              submitTimeUtc: '2020-06-28T19:48:06Z'
+              status: COMPLETED
+              planInformation:
+                code: PLN1
+                status: DRAFT
+        '400':
+          description: Invalid request.
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - INVALID_REQUEST\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n - DUPLICATE_REQUEST\n - INVALID_MERCHANT_CONFIGURATION\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: This is the flattened JSON object field name/path that is either missing or invalid.
+                    reason:
+                      type: string
+                      description: "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n"
+        '502':
+          description: Unexpected system error or system timeout.
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - SERVER_ERROR\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - SYSTEM_ERROR\n - SERVER_TIMEOUT\n - SERVICE_TIMEOUT\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+      x-example:
+        example0:
+          summary: Create Plan
+          sample-name: Create Plan
+          value:
+            planInformation:
+              name: Gold Plan
+              description: New Gold Plan
+              billingPeriod:
+                length: '1'
+                unit: M
+              billingCycles:
+                total: '12'
+            orderInformation:
+              amountDetails:
+                currency: USD
+                billingAmount: '10'
+                setupFee: '2'
+    get:
+      summary: Get a List of Plans
+      description: 'Retrieve Plans by Plan Code & Plan Status.
+
+        '
+      tags:
+      - Plans
+      operationId: getPlans
+      x-devcenter-metaData:
+        categoryTag: Recurring_Billing_Subscriptions
+        developerGuides: https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-dev/recur-bill-dev-intro.html
+        disableProcessorDropDown: true
+      consumes:
+      - application/json;charset=utf-8
+      produces:
+      - application/json
+      - application/hal+json
+      - application/json;charset=utf-8
+      - application/hal+json;charset=utf-8
+      parameters:
+      - name: offset
+        in: query
+        type: integer
+        required: false
+        description: Page offset number.
+      - name: limit
+        in: query
+        type: integer
+        required: false
+        description: 'Number of items to be returned. Default - `20`, Max - `100`
+
+          '
+      - name: code
+        in: query
+        type: string
+        required: false
+        description: Filter by Plan Code
+      - name: status
+        in: query
+        type: string
+        required: false
+        description: Filter by Plan Status
+      - name: name
+        in: query
+        type: string
+        required: false
+        description: 'Filter by Plan Name. (First sub string or full string) **[Not Recommended]**
+
+          '
+      responses:
+        '200':
+          description: Successful response.
+          schema:
+            title: getAllPlansResponse
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                        description: This is the endpoint of the resource that was created by the successful request.
+                      method:
+                        type: string
+                        description: '`method` refers to the HTTP method that you can send to the `self` endpoint to retrieve details of the resource.'
+                  next:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                        description: This is the endpoint of the resource that was created by the successful request.
+                      method:
+                        type: string
+                        description: '`method` refers to the HTTP method that you can send to the `self` endpoint to retrieve details of the resource.'
+                  previous:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                        description: This is the endpoint of the resource that was created by the successful request.
+                      method:
+                        type: string
+                        description: '`method` refers to the HTTP method that you can send to the `self` endpoint to retrieve details of the resource.'
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              totalCount:
+                type: integer
+                description: total number of plans created
+              plans:
+                type: array
+                items:
+                  type: object
+                  description: Plan list.
+                  properties:
+                    _links:
+                      type: object
+                      properties:
+                        self:
+                          type: object
+                          properties:
+                            href:
+                              type: string
+                              description: This is the endpoint of the resource that was created by the successful request.
+                            method:
+                              type: string
+                              description: '`method` refers to the HTTP method that you can send to the `self` endpoint to retrieve details of the resource.'
+                    id:
+                      type: string
+                      maxLength: 26
+                      description: 'An unique identification number generated by Cybersource to identify the submitted request. Returned by all services.
+
+                        It is also appended to the endpoint of the resource.
+
+                        On incremental authorizations, this value with be the same as the identification number returned in the original authorization response.
+
+                        '
+                    planInformation:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          maxLength: 10
+                          description: 'Plan code
+
+                            '
+                        status:
+                          type: string
+                          description: "Plan Status:\n - `DRAFT`\n - `ACTIVE`\n - `INACTIVE`\n"
+                        name:
+                          type: string
+                          maxLength: 100
+                          description: 'Plan name
+
+                            '
+                        description:
+                          type: string
+                          maxLength: 255
+                          description: 'Plan description
+
+                            '
+                        billingPeriod:
+                          type: object
+                          description: 'Billing Frequency
+
+                            '
+                          properties:
+                            length:
+                              type: string
+                              description: 'Example:
+
+                                - If length=1 & unit=month then charge every month
+
+                                - If length=7 & unit=day then charge every 7th day
+
+                                '
+                            unit:
+                              type: string
+                              description: "Calendar unit values.\n  possible values:\n  - `D` - day\n  - `M` - month\n  - `W` - week\n  - `Y` - year\n"
+                        billingCycles:
+                          type: object
+                          properties:
+                            total:
+                              type: string
+                              description: 'Describe total number of billing cycles
+
+                                '
+                    orderInformation:
+                      type: object
+                      properties:
+                        amountDetails:
+                          type: object
+                          properties:
+                            currency:
+                              type: string
+                              maxLength: 3
+                              description: 'Currency used for the order. Use the three-character [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)
+
+
+                                #### Used by
+
+                                **Authorization**
+
+                                Required field.
+
+
+                                **Authorization Reversal**
+
+                                For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.
+
+
+                                #### PIN Debit
+
+                                Currency for the amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+
+                                Returned by PIN debit purchase.
+
+
+                                For PIN debit reversal requests, you must use the same currency that was used for the PIN debit purchase or PIN debit credit that you are reversing.
+
+                                For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+
+
+                                Required field for PIN Debit purchase and PIN Debit credit requests.
+
+                                Optional field for PIN Debit reversal requests.
+
+
+                                #### GPX
+
+                                This field is optional for reversing an authorization or credit.
+
+
+                                #### DCC for First Data
+
+                                Your local currency.
+
+
+                                #### Tax Calculation
+
+                                Required for international tax and value added tax only.
+
+                                Optional for U.S. and Canadian taxes.
+
+                                Your local currency.
+
+                                '
+                            billingAmount:
+                              type: string
+                              maxLength: 19
+                              description: 'Billing amount for the billing period.
+
+                                '
+                            setupFee:
+                              type: string
+                              maxLength: 19
+                              description: 'Subscription setup fee
+
+                                '
+        '400':
+          description: Invalid request.
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - INVALID_REQUEST\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n - DUPLICATE_REQUEST\n - INVALID_MERCHANT_CONFIGURATION\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: This is the flattened JSON object field name/path that is either missing or invalid.
+                    reason:
+                      type: string
+                      description: "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n"
+        '502':
+          description: Unexpected system error or system timeout.
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - SERVER_ERROR\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - SYSTEM_ERROR\n - SERVER_TIMEOUT\n - SERVICE_TIMEOUT\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+  /rbs/v1/plans/{id}:
+    get:
+      summary: Get a Plan
+      description: Retrieve a Plan details by Plan Id.
+      tags:
+      - Plans
+      operationId: getPlan
+      x-devcenter-metaData:
+        categoryTag: Recurring_Billing_Subscriptions
+        developerGuides: https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-dev/recur-bill-dev-intro.html
+        disableProcessorDropDown: true
+      consumes:
+      - application/json;charset=utf-8
+      produces:
+      - application/json
+      - application/hal+json
+      - application/json;charset=utf-8
+      - application/hal+json;charset=utf-8
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+        description: Plan Id
+      responses:
+        '200':
+          description: Successful response.
+          schema:
+            title: getPlanResponse
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                        description: This is the endpoint of the resource that was created by the successful request.
+                      method:
+                        type: string
+                        description: '`method` refers to the HTTP method that you can send to the `self` endpoint to retrieve details of the resource.'
+              id:
+                type: string
+                maxLength: 26
+                description: 'An unique identification number generated by Cybersource to identify the submitted request. Returned by all services.
+
+                  It is also appended to the endpoint of the resource.
+
+                  On incremental authorizations, this value with be the same as the identification number returned in the original authorization response.
+
+                  '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              planInformation:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    maxLength: 10
+                    description: 'Plan code
+
+                      '
+                  status:
+                    type: string
+                    description: "Plan Status:\n - `DRAFT`\n - `ACTIVE`\n - `INACTIVE`\n"
+                  name:
+                    type: string
+                    maxLength: 100
+                    description: 'Plan name
+
+                      '
+                  description:
+                    type: string
+                    maxLength: 255
+                    description: 'Plan description
+
+                      '
+                  billingPeriod:
+                    type: object
+                    description: 'Billing Frequency
+
+                      '
+                    properties:
+                      length:
+                        type: string
+                        description: 'Example:
+
+                          - If length=1 & unit=month then charge every month
+
+                          - If length=7 & unit=day then charge every 7th day
+
+                          '
+                      unit:
+                        type: string
+                        description: "Calendar unit values.\n  possible values:\n  - `D` - day\n  - `M` - month\n  - `W` - week\n  - `Y` - year\n"
+                  billingCycles:
+                    type: object
+                    properties:
+                      total:
+                        type: string
+                        description: 'Describe total number of billing cycles
+
+                          '
+              orderInformation:
+                type: object
+                properties:
+                  amountDetails:
+                    type: object
+                    properties:
+                      currency:
+                        type: string
+                        maxLength: 3
+                        description: 'Currency used for the order. Use the three-character [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)
+
+
+                          #### Used by
+
+                          **Authorization**
+
+                          Required field.
+
+
+                          **Authorization Reversal**
+
+                          For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.
+
+
+                          #### PIN Debit
+
+                          Currency for the amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+
+                          Returned by PIN debit purchase.
+
+
+                          For PIN debit reversal requests, you must use the same currency that was used for the PIN debit purchase or PIN debit credit that you are reversing.
+
+                          For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+
+
+                          Required field for PIN Debit purchase and PIN Debit credit requests.
+
+                          Optional field for PIN Debit reversal requests.
+
+
+                          #### GPX
+
+                          This field is optional for reversing an authorization or credit.
+
+
+                          #### DCC for First Data
+
+                          Your local currency.
+
+
+                          #### Tax Calculation
+
+                          Required for international tax and value added tax only.
+
+                          Optional for U.S. and Canadian taxes.
+
+                          Your local currency.
+
+                          '
+                      billingAmount:
+                        type: string
+                        maxLength: 19
+                        description: 'Billing amount for the billing period.
+
+                          '
+                      setupFee:
+                        type: string
+                        maxLength: 19
+                        description: 'Subscription setup fee
+
+                          '
+        '400':
+          description: Invalid request.
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - INVALID_REQUEST\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n - DUPLICATE_REQUEST\n - INVALID_MERCHANT_CONFIGURATION\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: This is the flattened JSON object field name/path that is either missing or invalid.
+                    reason:
+                      type: string
+                      description: "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n"
+        '404':
+          description: Not found.
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - NOT_FOUND\n"
+        '502':
+          description: Unexpected system error or system timeout.
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - SERVER_ERROR\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - SYSTEM_ERROR\n - SERVER_TIMEOUT\n - SERVICE_TIMEOUT\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+    patch:
+      summary: Update a Plan
+      description: 'Update a Plan
+
+
+        Plan in `DRAFT` status
+
+        - All updates are allowed on Plan with `DRAFT` status
+
+
+        Plan in `ACTIVE` status [Following fields are **Not Updatable**]
+
+        - `planInformation.billingPeriod`
+
+        - `planInformation.billingCycles` [Update is only allowed to **increase** billingCycles]
+
+        - `orderInformation.amountDetails.currency`
+
+        '
+      tags:
+      - Plans
+      operationId: updatePlan
+      x-devcenter-metaData:
+        categoryTag: Recurring_Billing_Subscriptions
+        developerGuides: https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-dev/recur-bill-dev-intro.html
+        disableProcessorDropDown: true
+      consumes:
+      - application/json;charset=utf-8
+      produces:
+      - application/json
+      - application/hal+json
+      - application/json;charset=utf-8
+      - application/hal+json;charset=utf-8
+      parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+        description: Plan Id
+      - name: updatePlanRequest
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            planInformation:
+              type: object
+              properties:
+                code:
+                  type: string
+                  maxLength: 10
+                  description: 'Plan code is an optional field, If not provided system generates and assign one
+
+                    '
+                name:
+                  type: string
+                  maxLength: 100
+                  description: 'Plan name
+
+                    '
+                description:
+                  type: string
+                  maxLength: 255
+                  description: 'Plan description
+
+                    '
+                status:
+                  type: string
+                  description: "Updating to `DRAFT` is not allowed from `ACTIVE` and `INACTIVE` status.\n\nPlan Status:\n - `DRAFT`\n - `ACTIVE`\n - `INACTIVE`\n"
+                billingPeriod:
+                  type: object
+                  description: 'Billing Frequency
+
+                    '
+                  properties:
+                    length:
+                      type: string
+                      description: 'Example:
+
+                        - If length=1 & unit=month then charge every month
+
+                        - If length=7 & unit=day then charge every 7th day
+
+                        '
+                    unit:
+                      type: string
+                      description: "Calendar unit values.\n  possible values:\n  - `D` - day\n  - `M` - month\n  - `W` - week\n  - `Y` - year\n"
+                billingCycles:
+                  type: object
+                  description: 'Number of times customer is going to be billed
+
+                    '
+                  properties:
+                    total:
+                      type: string
+                      description: 'Describe total number of billing cycles
+
+                        '
+            processingInformation:
+              type: object
+              properties:
+                subscriptionBillingOptions:
+                  type: object
+                  properties:
+                    applyTo:
+                      type: string
+                      description: 'Valid Values:
+
+                        - `ALL` - Change applied to all Subscriptions (Existing + New)
+
+                        - `NEW` - Change applied to New Subsciptions only
+
+                        '
+            orderInformation:
+              type: object
+              properties:
+                amountDetails:
+                  type: object
+                  properties:
+                    currency:
+                      type: string
+                      maxLength: 3
+                      description: 'Currency used for the order. Use the three-character [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)
+
+
+                        #### Used by
+
+                        **Authorization**
+
+                        Required field.
+
+
+                        **Authorization Reversal**
+
+                        For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.
+
+
+                        #### PIN Debit
+
+                        Currency for the amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+
+                        Returned by PIN debit purchase.
+
+
+                        For PIN debit reversal requests, you must use the same currency that was used for the PIN debit purchase or PIN debit credit that you are reversing.
+
+                        For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+
+
+                        Required field for PIN Debit purchase and PIN Debit credit requests.
+
+                        Optional field for PIN Debit reversal requests.
+
+
+                        #### GPX
+
+                        This field is optional for reversing an authorization or credit.
+
+
+                        #### DCC for First Data
+
+                        Your local currency.
+
+
+                        #### Tax Calculation
+
+                        Required for international tax and value added tax only.
+
+                        Optional for U.S. and Canadian taxes.
+
+                        Your local currency.
+
+                        '
+                    billingAmount:
+                      type: string
+                      maxLength: 19
+                      description: 'Billing amount for the billing period.
+
+                        '
+                    setupFee:
+                      type: string
+                      maxLength: 19
+                      description: 'Subscription setup fee
+
+                        '
+          example:
+            planInformation:
+              name: Gold Plan NA
+              description: Updated Gold Plan
+              billingPeriod:
+                length: '2'
+                unit: W
+              billingCycles:
+                total: '11'
+            processingInformation:
+              subscriptionBillingOptions:
+                applyTo: ALL
+            orderInformation:
+              amountDetails:
+                currency: USD
+                billingAmount: '11'
+                setupFee: '2'
+      responses:
+        '200':
+          description: Successful response.
+          schema:
+            title: updatePlanResponse
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                        description: This is the endpoint of the resource that was created by the successful request.
+                      method:
+                        type: string
+                        description: '`method` refers to the HTTP method that you can send to the `self` endpoint to retrieve details of the resource.'
+              id:
+                type: string
+                maxLength: 26
+                description: 'An unique identification number generated by Cybersource to identify the submitted request. Returned by all services.
+
+                  It is also appended to the endpoint of the resource.
+
+                  On incremental authorizations, this value with be the same as the identification number returned in the original authorization response.
+
+                  '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - COMPLETED\n"
+              planInformation:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    maxLength: 10
+                    description: 'Plan code
+
+                      '
+                  status:
+                    type: string
+                    description: "Plan Status:\n - `DRAFT`\n - `ACTIVE`\n - `INACTIVE`\n"
+            example:
+              _links:
+                self:
+                  href: rbs/v1/plans/4963015972176007901546
+                  method: GET
+              id: '4963015972176007901546'
+              submitTimeUtc: '2020-06-30T19:48:06Z'
+              status: COMPLETED
+              planInformation:
+                code: PLAN1
+                status: ACTIVE
+        '400':
+          description: Invalid request.
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - INVALID_REQUEST\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n - DUPLICATE_REQUEST\n - INVALID_MERCHANT_CONFIGURATION\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: This is the flattened JSON object field name/path that is either missing or invalid.
+                    reason:
+                      type: string
+                      description: "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n"
+        '502':
+          description: Unexpected system error or system timeout.
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - SERVER_ERROR\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - SYSTEM_ERROR\n - SERVER_TIMEOUT\n - SERVICE_TIMEOUT\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+      x-example:
+        example0:
+          summary: Update Plan
+          sample-name: Update Plan
+          value:
+            planInformation:
+              name: Gold Plan NA
+              description: Updated Gold Plan
+              billingPeriod:
+                length: '2'
+                unit: W
+              billingCycles:
+                total: '11'
+            processingInformation:
+              subscriptionBillingOptions:
+                applyTo: ALL
+            orderInformation:
+              amountDetails:
+                currency: USD
+                billingAmount: '11'
+                setupFee: '2'
+    delete:
+      summary: Delete a Plan
+      tags:
+      - Plans
+      description: 'Delete a Plan is only allowed:
+
+        - plan status is in `DRAFT`
+
+        - plan status is in `ACTIVE`, and `INACTIVE` only allowed when no subscriptions attached to a plan in the lifetime of a plan
+
+        '
+      operationId: deletePlan
+      x-devcenter-metaData:
+        categoryTag: Recurring_Billing_Subscriptions
+        developerGuides: https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-dev/recur-bill-dev-intro.html
+        disableProcessorDropDown: true
+      consumes:
+      - application/json;charset=utf-8
+      produces:
+      - application/json
+      - application/hal+json
+      - application/json;charset=utf-8
+      - application/hal+json;charset=utf-8
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+        description: Plan Id
+      responses:
+        '200':
+          description: Successful response.
+          schema:
+            title: deletePlanResponse
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - COMPLETED\n"
+        '400':
+          description: Invalid request.
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - INVALID_REQUEST\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n - DUPLICATE_REQUEST\n - INVALID_MERCHANT_CONFIGURATION\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: This is the flattened JSON object field name/path that is either missing or invalid.
+                    reason:
+                      type: string
+                      description: "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n"
+        '404':
+          description: Not found.
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - NOT_FOUND\n"
+        '502':
+          description: Unexpected system error or system timeout.
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - SERVER_ERROR\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - SYSTEM_ERROR\n - SERVER_TIMEOUT\n - SERVICE_TIMEOUT\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+  /rbs/v1/plans/{id}/activate:
+    post:
+      summary: Activate a Plan
+      description: Activate a Plan
+      tags:
+      - Plans
+      operationId: activatePlan
+      x-devcenter-metaData:
+        categoryTag: Recurring_Billing_Subscriptions
+        developerGuides: https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-dev/recur-bill-dev-intro.html
+        disableProcessorDropDown: true
+      consumes:
+      - application/json;charset=utf-8
+      produces:
+      - application/json
+      - application/hal+json
+      - application/json;charset=utf-8
+      - application/hal+json;charset=utf-8
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+        description: Plan Id
+      responses:
+        '200':
+          description: Successful response.
+          schema:
+            title: activateDeactivatePlanResponse
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                        description: This is the endpoint of the resource that was created by the successful request.
+                      method:
+                        type: string
+                        description: '`method` refers to the HTTP method that you can send to the `self` endpoint to retrieve details of the resource.'
+              id:
+                type: string
+                maxLength: 26
+                description: 'An unique identification number generated by Cybersource to identify the submitted request. Returned by all services.
+
+                  It is also appended to the endpoint of the resource.
+
+                  On incremental authorizations, this value with be the same as the identification number returned in the original authorization response.
+
+                  '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - COMPLETED\n"
+              planInformation:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    maxLength: 10
+                    description: 'Plan code
+
+                      '
+                  status:
+                    type: string
+                    description: "Plan Status:\n - `DRAFT`\n - `ACTIVE`\n - `INACTIVE`\n"
+        '400':
+          description: Invalid request.
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - INVALID_REQUEST\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n - DUPLICATE_REQUEST\n - INVALID_MERCHANT_CONFIGURATION\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: This is the flattened JSON object field name/path that is either missing or invalid.
+                    reason:
+                      type: string
+                      description: "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n"
+        '404':
+          description: Not found.
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - NOT_FOUND\n"
+        '502':
+          description: Unexpected system error or system timeout.
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - SERVER_ERROR\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - SYSTEM_ERROR\n - SERVER_TIMEOUT\n - SERVICE_TIMEOUT\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+  /rbs/v1/plans/{id}/deactivate:
+    post:
+      summary: Deactivate a Plan
+      description: Deactivate a Plan
+      tags:
+      - Plans
+      operationId: deactivatePlan
+      x-devcenter-metaData:
+        categoryTag: Recurring_Billing_Subscriptions
+        developerGuides: https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-dev/recur-bill-dev-intro.html
+        disableProcessorDropDown: true
+      consumes:
+      - application/json;charset=utf-8
+      produces:
+      - application/json
+      - application/hal+json
+      - application/json;charset=utf-8
+      - application/hal+json;charset=utf-8
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+        description: Plan Id
+      responses:
+        '200':
+          description: Successful response.
+          schema:
+            title: activateDeactivatePlanResponse
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                        description: This is the endpoint of the resource that was created by the successful request.
+                      method:
+                        type: string
+                        description: '`method` refers to the HTTP method that you can send to the `self` endpoint to retrieve details of the resource.'
+              id:
+                type: string
+                maxLength: 26
+                description: 'An unique identification number generated by Cybersource to identify the submitted request. Returned by all services.
+
+                  It is also appended to the endpoint of the resource.
+
+                  On incremental authorizations, this value with be the same as the identification number returned in the original authorization response.
+
+                  '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - COMPLETED\n"
+              planInformation:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    maxLength: 10
+                    description: 'Plan code
+
+                      '
+                  status:
+                    type: string
+                    description: "Plan Status:\n - `DRAFT`\n - `ACTIVE`\n - `INACTIVE`\n"
+        '400':
+          description: Invalid request.
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - INVALID_REQUEST\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n - DUPLICATE_REQUEST\n - INVALID_MERCHANT_CONFIGURATION\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: This is the flattened JSON object field name/path that is either missing or invalid.
+                    reason:
+                      type: string
+                      description: "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n"
+        '404':
+          description: Not found.
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - NOT_FOUND\n"
+        '502':
+          description: Unexpected system error or system timeout.
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - SERVER_ERROR\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - SYSTEM_ERROR\n - SERVER_TIMEOUT\n - SERVICE_TIMEOUT\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+  /rbs/v1/plans/code:
+    get:
+      summary: Get a Plan Code
+      description: Get a Unique Plan Code
+      tags:
+      - Plans
+      operationId: getPlanCode
+      x-devcenter-metaData:
+        categoryTag: Recurring_Billing_Subscriptions
+        developerGuides: https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-dev/recur-bill-dev-intro.html
+        disableProcessorDropDown: true
+      consumes:
+      - application/json;charset=utf-8
+      produces:
+      - application/json
+      - application/hal+json
+      - application/json;charset=utf-8
+      - application/hal+json;charset=utf-8
+      responses:
+        '200':
+          description: Successful response.
+          schema:
+            title: getPlanCodeResponse
+            type: object
+            properties:
+              code:
+                type: string
+                maxLength: 10
+                description: 'Plan code
+
+                  '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+        '400':
+          description: Invalid request.
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - INVALID_REQUEST\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n - DUPLICATE_REQUEST\n - INVALID_MERCHANT_CONFIGURATION\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: This is the flattened JSON object field name/path that is either missing or invalid.
+                    reason:
+                      type: string
+                      description: "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n"
+        '502':
+          description: Unexpected system error or system timeout.
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - SERVER_ERROR\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - SYSTEM_ERROR\n - SERVER_TIMEOUT\n - SERVICE_TIMEOUT\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+x-devcenter-metaData:
+  categoryTagArray:
+  - name: Payments
+    description: For more information about Payments transactions, see the [Payments Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/payments/developer/ctv/rest/payments/payments-intro.html).
+  - name: Transaction_Batches
+    description: For more information about Transaction Batches, see the [Transaction Batches Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-transaction-batch-api/txn_batch_api_intro.html).
+  - name: eCheck_AVS
+    description: For more information about eCheck Account Validation, see the [Account Validation Developer Guides Page](https://...).
+  - name: Token_Management
+    description: For more information about the Token Management Service (TMS) see the [Token Management Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms/tms-overview.html)
+  - name: Flex_Microform
+    description: Microform Integration is a lightweight acceptance solution designed to safely and securely accept payment information within your web page.  Microform is designed to a be embedded seamlessly within your existing webpage experience, blending in with your existing acceptance form.  This solution allows for the replacement of sensitive payment date with a transient token (a short lived reference to the sensitive payment data).  For more information about Flex Microform transactions, see the [Flex Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-flex/SAFlexibleToken.html). For examples on how to integrate Flex Microform within your webpage please see our [GitHub Flex Samples](https://github.com/CyberSource?q=flex&type=&language=)
+  - name: Flex_API
+    description: For more information about Flex API, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/da-flex-api-intro.html).
+  - name: Risk_Management
+  - name: Payouts
+    description: 'For more information about Payouts, see the [Payouts Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-payouts/Introduction.html).
+
+      '
+  - name: Installments
+    description: For more information about Installment contact Cybersource Support. For Visa installments contact VISthroughCYBS@visa.com
+  - name: Recurring_Billing_Subscriptions
+    description: For more information about Recurring Billing, see the [Recurring Billing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-developer/recur-bill-services-intro.html).
+  - name: BIN_Lookup
+    description: 'The BIN Lookup Service is a versatile business tool that provides card network agnostic solution designed to ensure frictionless transaction experience by utilizing up-to-date Bank Identification Number (BIN) attributes sourced from multiple global and regional data sources.
+
+      This service helps to improve authorization rates by helping to route transactions to the best-suited card network, minimizes fraud through card detail verification and aids in regulatory compliance by identifying card properties. The service is flexible and provides businesses with a flexible choice of inputs such as primary account number (PAN), network token from major networks (such as Visa, American Express, Discover and regional networks) which includes device PAN (DPAN), and all types of tokens generated via CyberSource Token Management Service (TMS).
+
+      Currently, the range of available credentials is contingent on the networks enabled for the business entity. Therefore, the network information specified in this documentation is illustrative and subject to personalized offerings for each reseller or merchant.
+
+      '
+  - name: Transaction_Details
+    description: For more information about Transaction Details, see the [Transaction Details Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_details_api.html).
+  - name: Transaction_Search
+    description: For more information about Transaction Search, see the [Transaction Search Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_search_api.html).
+  - name: Reporting
+    description: 'For more information about Reporting, see the [Reporting Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-reporting-rest-api-dev-guide-102718/reporting_api.html).
+
+      '
+  - name: Secure_File_Share
+    description: For more information about Secure File Share, see the [Secure File Share Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-secure-file-share-api-102718/secure_file_share_api_intro.html).
+  - name: Invoices
+    description: For more information about Invoicing, see the [Invoicing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing/Introduction.html).
+  - name: Pay_By_Link
+    description: For more information about PayByLink, see the [PBL Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/boarding/user/all/rest/boarding/templates-matrix-intro/templates-matrix-pay-by-link.html).
+  - name: User_Management
+    description: For more information about User Management, see the [User Managment Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-user-management-api-102718/user_management_api_intro.html).
+  - name: Value_Added_Service
+  - name: Fee Service
+  - name: Merchant_Boarding
+    description: For more information about Merchant Boarding, please see [Developer Guides Page](https://developer.cybersource.com/api/developer-guides/Merchant-Boarding-API_ditamap/Merchant-Boarding-API.html).
+  - name: Webhooks
+    description: For more information about Webhooks, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/webhooks/implementation/all/rest/webhooks/wh-fg-intro.html).
+  - name: Unified_Checkout
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-intro.html).
+  - name: Unified_Checkoutv1
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-about-guide.html).
+  - name: Account_Updater
+    description: For more information about Account Updater, see the [Account Updater Developer Guides Page:](https://developer.cybersource.com/library/documentation/dev_guides/Account_Updater_UG/html/index.html).
+  - name: Visa_Bank_Account_Validation
+    description: 'The Visa Bank Account Validation Service is a new standalone product designed to validate customer''s routing and bank account number combination for ACH transactions. Merchant''s can use this standalone product to validate their customer''s account prior to processing an ACH transaction against the customer''s account to comply with Nacha''s account validation mandate for Web-debit transactions.
+
+      '
+  - name: Currency Conversion
+    description: 'Empower global transactions with transparency and choice. Our Dynamic Currency Conversion API lets merchants offer customers the option to pay in their home currency at checkout, delivering real-time exchange rates and clear cost disclosure.
+
+
+      **Key Benefits:**
+
+      - **Enhanced Customer Experience:** Provide clarity and convenience for international shoppers.
+
+      - **Real-Time Rates:** Accurate currency conversion with all the data required for acquirers and their merchants to maintain compliance with card network rules.
+
+      - **Seamless Integration:** Flexible API endpoints for rate lookup, authorization, and capture.
+
+      - **Regulatory Compliance:** Provides the data required for acquirers and merchants to meet and maintain card scheme requirements for disclosure and consent.
+
+
+      Ideal for merchants and payment partners seeking to boost trust and conversion in cross-border commerce.
+
+
+      **Key Features:**
+
+      - **Rate Lookup:** Retrieves the most up-to-date exchange rate for eligible cards before authorization.
+
+      - **Currency Choice:** Enables the merchant to offer customers the option to select between the merchant''s local currency and their card''s billing currency.
+
+      - **Compliance:** Ensures merchants have the data required to adhere to card network regulations; exchange rates, markups, etc.
+
+
+      **Supported Scenarios:**
+
+      - Dynamic Currency Conversion when cardholder''s billing currency differs from merchant''s pricing currency.
+
+      - Merchant and acquirer must support the cardholder''s billing currency.
+
+
+      **Core API Endpoints:**
+
+
+      **Currency Conversion API**
+
+      Returns eligibility and exchange rate details, including:
+
+      - exchangeRate
+
+      - marginRate
+
+      - reconciliationId and Id (for subsequent payment requests)
+
+
+      **Payment Authorization with DCC***
+
+      POST /pts/v2/payments
+
+      Required fields include:
+
+      - orderInformation.amountDetails.currency
+
+      - orderInformation.amountDetails.originalCurrency
+
+      - orderInformation.amountDetails.originalAmount
+
+      - orderInformation.amountDetails.exchangeRate
+
+      - currencyConversion.indicator (e.g., 1 = Converted, 2 = Nonconvertible, 3 = Declined)
+
+
+      **Capture with DCC***
+
+      POST /pts/v2/payments/{id}/captures
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      **Refund with DCC***
+
+      POST /pts/v2/captures/{id}/refunds
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      *Note: DCC is only supported on select processors. Contact your acquirer or account manager for more information.
+
+
+      **Compliance & Disclosure:**
+
+
+      Merchants must:
+
+      - Adhere to card network rules for Dynamic Currency Conversion (DCC) transactions.
+
+      - Display the converted amount, exchange rate, and markup percentage and other required disclosures.
+
+      - Obtain explicit cardholder consent before applying DCC.
+
+      - Work with your acquirer to obtain full set of compliance requirements.
+
+
+      For more information, see the [Currency Conversion Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/currency-conversion/developer/all/rest/currency-conversion/cc-intro.html).
+
+      '
+  - name: Intelligent_Commerce_Connect
+    description: For more information about Intelligent Commerce Cross Network Service API, please see [Developer Guides](https://developer.cybersource.com/docs/cybs/en-us/intelligent-commerce/developer/all/rest/intelligent-commerce/intelligent-commerce-about-guide.html).

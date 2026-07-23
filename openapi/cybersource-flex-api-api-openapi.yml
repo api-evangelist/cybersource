@@ -1,0 +1,635 @@
+swagger: '2.0'
+info:
+  description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
+  version: 0.0.1
+  title: CyberSource Merged Spec bankAccountValidation Flex API API
+host: apitest.cybersource.com
+basePath: /
+schemes:
+- https
+consumes:
+- application/json;charset=utf-8
+produces:
+- application/hal+json;charset=utf-8
+tags:
+- name: Flex API
+  description: 'The Flex API enables merchants to securely accept customer payment information captured within a server-side application using a set of APIs.
+
+    These APIs protect your customer''s primary account number (PAN), card verification number (CVN), and other payment information by embedding it within a transient token.
+
+    This allows payment data to be stored and transported and complies with the Payment Card Industry Data Security Standard (PCI DSS) policies and procedures. These transient tokens can be validated by the receiver to ensure the data integrity and protect against data injection attacks.
+
+
+    **Warning:** Flex API is intended for server-side applications only.  Do not use the Flex API in client-side applications.  To add secure payments directly into client-side code, use Unified Checkout.
+
+
+    **How It Works**<br>
+
+    Follow these steps to capture payments using the Flex API:
+
+    * Establish a payment session with a predefined customer context.
+
+    * Validate the JSON Web Token.
+
+    * Populate the JSON Web Token with customer information.
+
+
+    **Customer Context**<br>
+
+    An important benefit of the Flex API is managing Personal Identifiable Information (PII). You can set up your customer context to include all PII associated with transactions, protecting this information from third parties.
+
+    '
+paths:
+  /flex/v2/sessions:
+    post:
+      summary: Establish a Payment Session with a Capture Context
+      description: "To establish a payment session, include the API fields you plan to use in that session in the body of the request.  The system then returns a JSON Web Token (JWT) that includes the capture context.  \nTo determine which fields to include in your capture context, identify the personal information that you wish to isolate from the payment session.\n\n**Capture Context Fields**<br>\nWhen making a session request, any fields that you request to be added to the capture context are required by default. \nHowever, you can choose to make a field optional by setting the required parameter to false.\n"
+      parameters:
+      - in: body
+        name: generateFlexAPICaptureContextRequest
+        required: true
+        schema:
+          type: object
+          properties:
+            fields:
+              type: object
+              properties:
+                orderInformation:
+                  type: object
+                  properties:
+                    amountDetails:
+                      type: object
+                      properties:
+                        totalAmount:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        currency:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                    billTo:
+                      type: object
+                      properties:
+                        address1:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        address2:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        administrativeArea:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        buildingNumber:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        country:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        district:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        locality:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        postalCode:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        email:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        firstName:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        lastName:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        phoneNumber:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        company:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                    shipTo:
+                      type: object
+                      properties:
+                        address1:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        address2:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        administrativeArea:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        buildingNumber:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        country:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        district:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        locality:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        postalCode:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        firstName:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        lastName:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        company:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                paymentInformation:
+                  type: object
+                  properties:
+                    card:
+                      type: object
+                      properties:
+                        number:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        type:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        securityCode:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        expirationMonth:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+                        expirationYear:
+                          type: object
+                          properties:
+                            required:
+                              type: boolean
+      tags:
+      - Flex API
+      operationId: generateFlexAPICaptureContext
+      x-devcenter-metaData:
+        categoryTag: Flex_API
+        firstLevelApiLifeCycle: hidden
+        secondLevelApiLifeCycle: hidden
+        apiLifeCycle: hidden
+        developerGuides: https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/da-flex-api-intro.html
+        disableProcessorDropDown: true
+      produces:
+      - application/jwt
+      x-example:
+        example0:
+          summary: Generate Capture Context specifying the set of fields to be provided in JWE sent to /v2/tokens endpoint.
+          value:
+            fields:
+              orderInformation:
+                amountDetails:
+                  totalAmount:
+                    required: true
+                  currency:
+                    required: true
+                billTo:
+                  address1:
+                    required: true
+                  address2:
+                    required: false
+                  administrativeArea:
+                    required: true
+                  buildingNumber:
+                    required: true
+                  country:
+                    required: true
+                  district:
+                    required: false
+                  locality:
+                    required: true
+                  postalCode:
+                    required: true
+                  email:
+                    required: true
+                  firstName:
+                    required: true
+                  lastName:
+                    required: true
+                  phoneNumber:
+                    required: true
+                  company:
+                    required: false
+                shipTo:
+                  address1:
+                    required: true
+                  address2:
+                    required: false
+                  administrativeArea:
+                    required: false
+                  buildingNumber:
+                    required: true
+                  country:
+                    required: true
+                  district:
+                    required: false
+                  locality:
+                    required: true
+                  postalCode:
+                    required: true
+                  email:
+                    required: true
+                  firstName:
+                    required: true
+                  lastName:
+                    required: true
+                  phoneNumber:
+                    required: true
+                  company:
+                    required: false
+              paymentInformation:
+                card:
+                  number:
+                    required: true
+                  type:
+                    required: true
+                  securityCode:
+                    required: false
+                  expirationMonth:
+                    required: true
+                  expirationYear:
+                    required: true
+        example1:
+          summary: Generate Capture Context (Simple)
+          value:
+            fields:
+              paymentInformation:
+                card:
+                  number:
+                    required: true
+                  type:
+                    required: true
+                  securityCode:
+                    required: false
+                  expirationMonth:
+                    required: true
+                  expirationYear:
+                    required: true
+      responses:
+        '201':
+          description: Capture Context Created
+          examples:
+            application/jwt: eyJraWQiOiJ6dSIsImFsZyI6IlJTMjU2In0.eyJmbHgiOnsicGF0aCI6Ii9mbGV4L3YyL3Rva2VucyIsImRhdGEiOiJaNHVqZEZ3S1dsVWlGUTFWQWtydmF4QUFFQzdTOGJOVWs2ZWgzbXVXZm51U0dxM2FHdEdTUUsrS1dXMlNtaVg5RlBMWE5sc3VjbXV2SHk3R1A5eFR1Q3hXRXFlU3ZIWHMrYkhhWUhMcGhaVnZpb0lcdTAwM2QiLCJvcmlnaW4iOiJodHRwczovL3Rlc3RmbGV4LmN5YmVyc291cmNlLmNvbSIsImp3ayI6eyJrdHkiOiJSU0EiLCJlIjoiQVFBQiIsInVzZSI6ImVuYyIsIm4iOiJpMHZtSDBmQTNVaTZWN0NvbmhvVHdwV01PeFhWdk5aUlVpWWFZSjktR0hKbmZlMUdYVERTLXk5bG1ibVFVUGZpMlVRakNoU3EyclNrZ2pxTExtRzFsRkZ5TjFINVFLSkVlUzhXWEdmeWdVNDBPc05YdDd2X1g0Mmo0a0RXVmNuV0xucGlsYndYZjhwRTh4NmUyWHBoVG5tRmZMR1phbGtUN21PYXVPdmNwdFlXUVZlVGU3bmZrWlZYZTFFN0ZmZ2taNXFkMnY1OVJ2Z1NhQmhkMko4ankyUVZidE5RNTZxMTlfc2h3bEJIYWc3dFdxbzg2S1Iwd0V3dkQyWmNENTFvZGtteFdudFVJaU1tT3VXUUFGTmVaQXBDYklySlc1SFVSdTNHM1g4M2pLM3h1NHZVQjI0WGRIdlExS215dW13RlJJWFRLZFB1TmtTOUtWRHMyemZvaVEiLCJraWQiOiIwOHhzd05TV2xDUnVzeWFHQklJRkVSOEN5M0JTNXB6ZCJ9fSwiY3R4IjpbeyJkYXRhIjp7ImFsbG93ZWRQYXltZW50VHlwZXMiOlt7InBhZ2UiOjEsInR5cGUiOiJQQU5FTlRSWSJ9LHsicGFnZSI6MiwidHlwZSI6IlNSQ1ZJU0EifSx7InBhZ2UiOjMsInR5cGUiOiJTUkNNQVNURVJDQVJEIn1dLCJwYXltZW50Q29uZmlndXJhdGlvbnMiOnsiU1JDVklTQSI6eyJvcmlnaW4iOiJodHRwczovL3NhbmRib3gtYXNzZXRzLnNlY3VyZS5jaGVja291dC52aXNhLmNvbSIsInBhdGgiOiIvY2hlY2tvdXQtd2lkZ2V0L3Jlc291cmNlcy9qcy9zcmMtaS1hZGFwdGVyL3Zpc2FTZGsuanMiLCJwYW5FbmNyeXB0aW9uS2V5Ijp7ImtpZCI6IlY2WVBMMERGSjJWNTZISUg2UTNGMTMzZmJaV3lBeUlIaldWU2VjeDZLTUY2aVRIR00iLCJlIjoiQVFBQiIsIm4iOiJzWlBJdXNEZjd5UW5uaEJrVTltdTE0Vk9PM0NydWkzYjdyQWYyS1llb2JVUm1YQTE3YjFKWDlqZzBDZC12Z3BtdXlUcnhCVVNjLTRiMC1VUGdTd0dGcVBXVXB4MDhFeHFyd1BET3ZGb2pCb3Uyd2x5cThiY3kwVXMtQmZlQ3pTRTVsTVZkU1hUWFhYY05xdS1xYjIyakNDQ0pBTHB4c0Fyc2JvTU9Yc0xlZGgzTTRYTlE1WEdBdFJmN2ItLXVUWTVEcjlLTFl5VXZaS0FuWTA0TUtKUEVPNTRZaUlGTTVEVEFoTk9tczA4OWpkTWR4LVVSSUtKalBVMi1ScEhHMXU4TENHMDI4UlRJcFBzTmJSYW51UzVUQVlfemx4RGdiMWhLSjM2WWJaRU5ITGc5UFhUQmhkT01sVTkwRFRMbGZjYkxUYS1EN0RnbGpBYVdDdXZ6TFBhR3cifSwicGFyYW1ldGVycyI6eyJzcmNJbml0aWF0b3JJZCI6IkpGQ1o4UVZPSkE3Nk5YWjY4RlpEMjFSWUl4ajN5UFpkaVV4a2ROdWliQmx4Z3dhUDQiLCJzcmNpRHBhSWQiOiJiOTIyY2VmMC0yOGQ5LTQ3OWUtYWFhZi0wOGI2MWYzM2VlN2IiLCJzcmNpVHJhbnNhY3Rpb25JZCI6ImJjOWZmNzgyLTM3NTctNDEyMS1hNGM4LTdkMDhkOGY3ZGQ4NiIsImRwYVRyYW5zYWN0aW9uT3B0aW9ucyI6eyJkcGFMb2NhbGUiOiJlbl9VUyIsInBheWxvYWRUeXBlSW5kaWNhdG9yIjoiRlVMTCIsInJldmlld0FjdGlvbiI6ImNvbnRpbnVlIiwiZHBhQWNjZXB0ZWRCaWxsaW5nQ291bnRyaWVzIjpbXSwiZHBhQWNjZXB0ZWRTaGlwcGluZ0NvdW50cmllcyI6WyJVUyIsIkdCIl0sImRwYUJpbGxpbmdQcmVmZXJlbmNlIjoiQUxMIiwiZHBhU2hpcHBpbmdQcmVmZXJlbmNlIjoiQUxMIiwiY29uc3VtZXJOYW1lUmVxdWVzdGVkIjp0cnVlLCJjb25zdW1lckVtYWlsQWRkcmVzc1JlcXVlc3RlZCI6dHJ1ZSwiY29uc3VtZXJQaG9uZU51bWJlclJlcXVlc3RlZCI6dHJ1ZSwidHJhbnNhY3Rpb25BbW91bnQiOnsidHJhbnNhY3Rpb25BbW91bnQiOiIyMS4wMCIsInRyYW5zYWN0aW9uQ3VycmVuY3lDb2RlIjoiVVNEIn0sInBheW1lbnRPcHRpb25zIjp7ImRwYVBhblJlcXVlc3RlZCI6dHJ1ZX19fX0sIlNSQ01BU1RFUkNBUkQiOnsib3JpZ2luIjoiaHR0cHM6Ly9zYW5kYm94LnNyYy5tYXN0ZXJjYXJkLmNvbSIsInBhdGgiOiIvc2RrL3NyY3Nkay5tYXN0ZXJjYXJkLmpzIiwicGFuRW5jcnlwdGlvbktleSI6eyJrdHkiOiJSU0EiLCJlIjoiQVFBQiIsInVzZSI6ImVuYyIsImtpZCI6IjE0OTEyMy1zcmMtZnBhbi1lbmNyeXB0aW9uIiwia2V5X29wcyI6WyJ3cmFwS2V5IiwiZW5jcnlwdCJdLCJhbGciOiJSU0EtT0FFUC0yNTYiLCJuIjoidnQ0bkRTUFN0VGxNMU5OY3ljdklxVWY0eDE0STRqaVRxTVRLUGpHdGF5MHlmYTF2QnlOQ2htdXBwRHdFVDVnR0dscEw4Y2NqM1lWc0JpOV9iV29lX2FwcGtQd2h4ZDd3UjlSeXdWM3ptV3VNSWhNd2xrMGxuSEFNTDY1bnNIVk0zb0VwRXZDZkFQczFOWGx0VHlmam5rZ0ZFTkkzdEhxdHdkdE04ZVAwMnBwMGp2VzY5ZnlidnlWaEx6WHdTT2dKbnRqdGpSVjdoUXI1bGVkX2pXYjV6elhJNDhPVlRUX0Y5aWluRGR0WDV5M0UtaWY1V3RHWlVGRVRiX3RaRlpZbk1MYUxsSHd2YjZaa3I4NFJTd3dzTWYybkFMXzR6UDJVYWhNd3phbWhCb09TYXF5eEd4RXE2N0hyMVU4ekFDNWhsOUQ4TmJnU3dwV3hzT0RVckh4OXJ3In0sInBhcmFtZXRlcnMiOnsic3JjaVRyYW5zYWN0aW9uSWQiOiJiYzlmZjc4Mi0zNzU3LTQxMjEtYTRjOC03ZDA4ZDhmN2RkODYiLCJzcmNpRHBhSWQiOiJiOTIyY2VmMC0yOGQ5LTQ3OWUtYWFhZi0wOGI2MWYzM2VlN2IiLCJzcmNJbml0aWF0b3JJZCI6Ijg0NGY3ZTNkLTA3ZjAtNDRiMS1hMjM3LWU2NDI0NDRlMDUxMiIsImRwYVRyYW5zYWN0aW9uT3B0aW9ucyI6eyJ0cmFuc2FjdGlvblR5cGUiOiJQVVJDSEFTRSIsImRwYUxvY2FsZSI6ImVuX1VTIiwiZHBhQWNjZXB0ZWRTaGlwcGluZ0NvdW50cmllcyI6WyJVUyIsIkdCIl0sImNvbnN1bWVyRW1haWxBZGRyZXNzUmVxdWVzdGVkIjp0cnVlLCJjb25zdW1lclBob25lTnVtYmVyUmVxdWVzdGVkIjp0cnVlLCJ0cmFuc2FjdGlvbkFtb3VudCI6eyJ0cmFuc2FjdGlvbkFtb3VudCI6IjIxLjAwIiwidHJhbnNhY3Rpb25DdXJyZW5jeUNvZGUiOiJVU0QifSwiZHBhQWNjZXB0ZWRCaWxsaW5nQ291bnRyaWVzIjpbXSwiZHBhQmlsbGluZ1ByZWZlcmVuY2UiOiJGVUxMIiwiZHBhU2hpcHBpbmdQcmVmZXJlbmNlIjoiRlVMTCIsImNvbnN1bWVyTmFtZVJlcXVlc3RlZCI6dHJ1ZSwicGF5bG9hZFR5cGVJbmRpY2F0b3IiOiJGVUxMIn19fX0sImNhcHR1cmVNYW5kYXRlIjp7ImJpbGxpbmdUeXBlIjoiRlVMTCIsInJlcXVlc3RFbWFpbCI6dHJ1ZSwicmVxdWVzdFBob25lIjp0cnVlLCJyZXF1ZXN0U2hpcHBpbmciOnRydWUsInNoaXBUb0NvdW50cmllcyI6WyJVUyIsIkdCIl0sInNob3dBY2NlcHRlZE5ldHdvcmtJY29ucyI6dHJ1ZX0sIm9yZGVySW5mb3JtYXRpb24iOnsiYW1vdW50RGV0YWlscyI6eyJ0b3RhbEFtb3VudCI6IjIxLjAwIiwiY3VycmVuY3kiOiJVU0QifSwiYmlsbFRvIjp7ImFkZHJlc3MxIjoiMjc3IFBhcmsgQXZlbnVlIiwiYWRkcmVzczIiOiI1MHRoIEZsb29yIiwiYWRkcmVzczMiOiJEZXNrIE5ZLTUwMTEwIiwiYWRkcmVzczQiOiJhZGRyZXNzNCIsImFkbWluaXN0cmF0aXZlQXJlYSI6Ik5ZIiwiYnVpbGRpbmdOdW1iZXIiOiJidWlsZGluZ051bWJlciIsImNvdW50cnkiOiJVUyIsImRpc3RyaWN0IjoiZGlzdHJpY3QiLCJsb2NhbGl0eSI6Ik5ldyBZb3JrIiwicG9zdGFsQ29kZSI6IjEwMTcyIiwiY29tcGFueSI6eyJhZGRyZXNzMSI6IjkwMCBNZXRybyBDZW50ZXIgQmx2ZCIsImFkZHJlc3MyIjoiYWRkcmVzczIiLCJhZGRyZXNzMyI6ImFkZHJlc3MzIiwiYWRkcmVzczQiOiJhZGRyZXNzNCIsImFkbWluaXN0cmF0aXZlQXJlYSI6IkNBIiwiYnVpbGRpbmdOdW1iZXIiOiIxIiwiY291bnRyeSI6IlVTIiwiZGlzdHJpY3QiOiJkaXN0cmljdCIsImxvY2FsaXR5IjoiRm9zdGVyIENpdHkiLCJwb3N0YWxDb2RlIjoiOTQ0MDQiLCJuYW1lIjoiVmlzYSBJbmMifSwiZW1haWwiOiJqb2huLmRvZUB2aXNhLmNvbSIsImZpcnN0TmFtZSI6IkpvaG4iLCJsYXN0TmFtZSI6IkRvZSIsIm1pZGRsZU5hbWUiOiJGIiwibmFtZVN1ZmZpeCI6IkpyIiwidGl0bGUiOiJNciIsInBob25lTnVtYmVyIjoiMTIzNDU2Nzg5MCIsInBob25lVHlwZSI6InBob25lVHlwZSJ9LCJzaGlwVG8iOnsiYWRkcmVzczEiOiJDeWJlclNvdXJjZSIsImFkZHJlc3MyIjoiVmljdG9yaWEgSG91c2UiLCJhZGRyZXNzMyI6IjE1LTE3IEdsb3VjZXN0ZXIgU3RyZWV0IiwiYWRkcmVzczQiOiJzdHJpbmciLCJhZG1pbmlzdHJhdGl2ZUFyZWEiOiJDQSIsImJ1aWxkaW5nTnVtYmVyIjoic3RyaW5nIiwiY291bnRyeSI6IkdCIiwiZGlzdHJpY3QiOiJzdHJpbmciLCJsb2NhbGl0eSI6IkJlbGZhc3QiLCJwb3N0YWxDb2RlIjoiQlQxIDRMUyIsImZpcnN0TmFtZSI6IkpvZSIsImxhc3ROYW1lIjoiU29hcCJ9fSwidGFyZ2V0T3JpZ2lucyI6WyJodHRwczovL3RoZS11cC1kZW1vLmFwcHNwb3QuY29tIl0sImlmcmFtZXMiOnsibWNlIjoiL21jZS9pZnJhbWUuaHRtbCIsImJ1dHRvbnMiOiIvYnV0dG9ubGlzdC9pZnJhbWUuaHRtbCIsInNyYyI6Ii9zZWN1cmUtcmVtb3RlLWNvbW1lcmNlL3NyYy5odG1sIiwiZ29vZ2xlcGF5IjoiL2dvb2dsZXBheS9nb29nbGVwYXkuaHRtbCJ9LCJjbGllbnRWZXJzaW9uIjoiMC4xMSIsImNvdW50cnkiOiJVUyIsImxvY2FsZSI6ImVuX1VTIiwiYWxsb3dlZENhcmROZXR3b3JrcyI6WyJWSVNBIiwiTUFTVEVSQ0FSRCIsIkFNRVgiXSwiY3IiOiJaX1c0NldGZlNqWXFZY3FCb19sZGVnQ0Z4RUpnUzlKNWJZT2c2cmtZd2VkaEhpV3M2elowaFZEbU5mMmgxVUQ0eWx6OWJsOThUb0c1SC10bFZjQm54YnZZc0dBSVRDT0g5LTNNZHYyc1g0X3ZFMVY2eFpCeVU5SVcwaFEiLCJzZXJ2aWNlT3JpZ2luIjoiaHR0cHM6Ly9hcGl0ZXN0LmN5YmVyc291cmNlLmNvbSIsImNsaWVudExpYnJhcnkiOiJodHRwczovL2FwaXRlc3QuY3liZXJzb3VyY2UuY29tL3VwL3YxL2Fzc2V0cy8wLjExLjAvU2VjdXJlQWNjZXB0YW5jZS5qcyIsImFzc2V0c1BhdGgiOiIvdXAvdjEvYXNzZXRzLzAuMTEuMCIsImNsaWVudExpYnJhcnlJbnRlZ3JpdHkiOiJzaGEyNTYtSm1SY1QxVFpPaThpWlRTMEZWSFdOanR2REorN1ZsdnNPTXRTZ0tMZUtLTVx1MDAzZCJ9LCJ0eXBlIjoiZ2RhLTAuNy4wIn1dLCJpc3MiOiJGbGV4IEFQSSIsImV4cCI6MTY1OTEyMTk2MSwiaWF0IjoxNjU5MTIxMDYxLCJqdGkiOiJjZ0dBaG9hSFBhbWsxM2d3In0.GSYHGM3941-HLPFjSQT2m6Zus19L4H7tSJIHLuFCKRH_bY1bxFIZRGaI-994BdmhKgzlcE6XK8HQd2lJaD7JnJXAHkmjitg0XV0NVYGbrK7V4cOvT8VKWbMV794NWAAY26_UTjLAR5PGOvyTVOyRuHsItmVMgZ0TFc7x6LeWmjyveN1VeeRemkZHh02nETXh2NpqMk_5a_vXOgoOr56MClo4OqqvSHinXZhxNjIH4h6QwksmuIHKpvoXMWsghozn3va4VEXjp4OJ96NvHkcXGAWcPpLUQOAMks4fd7EoQz4-aFOcrqnV9Ut9p82CmoclWGhvjrakB_MUAabykcmXDA
+          schema:
+            type: string
+        '400':
+          description: 'Bad Request: e.g. Merchant APIKey is invalid.'
+          examples:
+            application/json:
+              correlationId: 08b69ffe-f79b-4e09-991f-b030058e21f4
+              details:
+                location: ''
+                message: ''
+              informationLink: https://vdp.visa.com/docs/errors/invalid_merchant_configuration
+              message: Merchant APIKEY is invalid
+              reason: INVALID_APIKEY
+          schema:
+            properties:
+              correlationId:
+                type: string
+              details:
+                items:
+                  properties:
+                    location:
+                      type: string
+                    message:
+                      type: string
+                  type: object
+                type: array
+              informationLink:
+                type: string
+              message:
+                type: string
+              reason:
+                type: string
+                description: 'Possible values:
+
+                  - INVALID_APIKEY
+
+                  - INVALID_SHIPPING_INPUT_PARAMS
+
+                  - CAPTURE_CONTEXT_INVALID
+
+                  - CAPTURE_CONTEXT_EXPIRED
+
+                  - SDK_XHR_ERROR
+
+                  - UNIFIEDPAYMENTS_VALIDATION_PARAMS
+
+                  - UNIFIEDPAYMENTS_VALIDATION_FIELDS
+
+                  - UNIFIEDPAYMENT_PAYMENT_PARAMITERS
+
+                  - CREATE_TOKEN_TIMEOUT
+
+                  - CREATE_TOKEN_XHR_ERROR
+
+                  - SHOW_LOAD_CONTAINER_SELECTOR
+
+                  - SHOW_LOAD_INVALID_CONTAINER
+
+                  - SHOW_TOKEN_TIMEOUT
+
+                  - SHOW_TOKEN_XHR_ERROR
+
+                  - SHOW_PAYMENT_TIMEOUT'
+            required:
+            - message
+            - reason
+            type: object
+        '500':
+          description: Internal error.
+          examples:
+            application/json:
+              correlationId: 08b69ffe-f79b-4e09-991f-b030058e21f4
+              details:
+                location: ''
+                message: ''
+              informationLink: null
+              message: The capture context has expired
+              reason: CAPTURE_CONTEXT_EXPIRED
+          schema:
+            properties:
+              correlationId:
+                type: string
+              details:
+                items:
+                  properties:
+                    location:
+                      type: string
+                    message:
+                      type: string
+                  type: object
+                type: array
+              informationLink:
+                type: string
+              message:
+                type: string
+              reason:
+                type: string
+                description: 'Possible values:
+
+                  - INVALID_APIKEY
+
+                  - INVALID_SHIPPING_INPUT_PARAMS
+
+                  - CAPTURE_CONTEXT_INVALID
+
+                  - CAPTURE_CONTEXT_EXPIRED
+
+                  - SDK_XHR_ERROR
+
+                  - UNIFIEDPAYMENTS_VALIDATION_PARAMS
+
+                  - UNIFIEDPAYMENTS_VALIDATION_FIELDS
+
+                  - UNIFIEDPAYMENT_PAYMENT_PARAMITERS
+
+                  - CREATE_TOKEN_TIMEOUT
+
+                  - CREATE_TOKEN_XHR_ERROR
+
+                  - SHOW_LOAD_CONTAINER_SELECTOR
+
+                  - SHOW_LOAD_INVALID_CONTAINER
+
+                  - SHOW_TOKEN_TIMEOUT
+
+                  - SHOW_TOKEN_XHR_ERROR
+
+                  - SHOW_PAYMENT_TIMEOUT'
+            required:
+            - message
+            - reason
+            type: object
+x-devcenter-metaData:
+  categoryTagArray:
+  - name: Payments
+    description: For more information about Payments transactions, see the [Payments Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/payments/developer/ctv/rest/payments/payments-intro.html).
+  - name: Transaction_Batches
+    description: For more information about Transaction Batches, see the [Transaction Batches Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-transaction-batch-api/txn_batch_api_intro.html).
+  - name: eCheck_AVS
+    description: For more information about eCheck Account Validation, see the [Account Validation Developer Guides Page](https://...).
+  - name: Token_Management
+    description: For more information about the Token Management Service (TMS) see the [Token Management Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms/tms-overview.html)
+  - name: Flex_Microform
+    description: Microform Integration is a lightweight acceptance solution designed to safely and securely accept payment information within your web page.  Microform is designed to a be embedded seamlessly within your existing webpage experience, blending in with your existing acceptance form.  This solution allows for the replacement of sensitive payment date with a transient token (a short lived reference to the sensitive payment data).  For more information about Flex Microform transactions, see the [Flex Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-flex/SAFlexibleToken.html). For examples on how to integrate Flex Microform within your webpage please see our [GitHub Flex Samples](https://github.com/CyberSource?q=flex&type=&language=)
+  - name: Flex_API
+    description: For more information about Flex API, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/da-flex-api-intro.html).
+  - name: Risk_Management
+  - name: Payouts
+    description: 'For more information about Payouts, see the [Payouts Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-payouts/Introduction.html).
+
+      '
+  - name: Installments
+    description: For more information about Installment contact Cybersource Support. For Visa installments contact VISthroughCYBS@visa.com
+  - name: Recurring_Billing_Subscriptions
+    description: For more information about Recurring Billing, see the [Recurring Billing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-developer/recur-bill-services-intro.html).
+  - name: BIN_Lookup
+    description: 'The BIN Lookup Service is a versatile business tool that provides card network agnostic solution designed to ensure frictionless transaction experience by utilizing up-to-date Bank Identification Number (BIN) attributes sourced from multiple global and regional data sources.
+
+      This service helps to improve authorization rates by helping to route transactions to the best-suited card network, minimizes fraud through card detail verification and aids in regulatory compliance by identifying card properties. The service is flexible and provides businesses with a flexible choice of inputs such as primary account number (PAN), network token from major networks (such as Visa, American Express, Discover and regional networks) which includes device PAN (DPAN), and all types of tokens generated via CyberSource Token Management Service (TMS).
+
+      Currently, the range of available credentials is contingent on the networks enabled for the business entity. Therefore, the network information specified in this documentation is illustrative and subject to personalized offerings for each reseller or merchant.
+
+      '
+  - name: Transaction_Details
+    description: For more information about Transaction Details, see the [Transaction Details Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_details_api.html).
+  - name: Transaction_Search
+    description: For more information about Transaction Search, see the [Transaction Search Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_search_api.html).
+  - name: Reporting
+    description: 'For more information about Reporting, see the [Reporting Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-reporting-rest-api-dev-guide-102718/reporting_api.html).
+
+      '
+  - name: Secure_File_Share
+    description: For more information about Secure File Share, see the [Secure File Share Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-secure-file-share-api-102718/secure_file_share_api_intro.html).
+  - name: Invoices
+    description: For more information about Invoicing, see the [Invoicing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing/Introduction.html).
+  - name: Pay_By_Link
+    description: For more information about PayByLink, see the [PBL Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/boarding/user/all/rest/boarding/templates-matrix-intro/templates-matrix-pay-by-link.html).
+  - name: User_Management
+    description: For more information about User Management, see the [User Managment Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-user-management-api-102718/user_management_api_intro.html).
+  - name: Value_Added_Service
+  - name: Fee Service
+  - name: Merchant_Boarding
+    description: For more information about Merchant Boarding, please see [Developer Guides Page](https://developer.cybersource.com/api/developer-guides/Merchant-Boarding-API_ditamap/Merchant-Boarding-API.html).
+  - name: Webhooks
+    description: For more information about Webhooks, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/webhooks/implementation/all/rest/webhooks/wh-fg-intro.html).
+  - name: Unified_Checkout
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-intro.html).
+  - name: Unified_Checkoutv1
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-about-guide.html).
+  - name: Account_Updater
+    description: For more information about Account Updater, see the [Account Updater Developer Guides Page:](https://developer.cybersource.com/library/documentation/dev_guides/Account_Updater_UG/html/index.html).
+  - name: Visa_Bank_Account_Validation
+    description: 'The Visa Bank Account Validation Service is a new standalone product designed to validate customer''s routing and bank account number combination for ACH transactions. Merchant''s can use this standalone product to validate their customer''s account prior to processing an ACH transaction against the customer''s account to comply with Nacha''s account validation mandate for Web-debit transactions.
+
+      '
+  - name: Currency Conversion
+    description: 'Empower global transactions with transparency and choice. Our Dynamic Currency Conversion API lets merchants offer customers the option to pay in their home currency at checkout, delivering real-time exchange rates and clear cost disclosure.
+
+
+      **Key Benefits:**
+
+      - **Enhanced Customer Experience:** Provide clarity and convenience for international shoppers.
+
+      - **Real-Time Rates:** Accurate currency conversion with all the data required for acquirers and their merchants to maintain compliance with card network rules.
+
+      - **Seamless Integration:** Flexible API endpoints for rate lookup, authorization, and capture.
+
+      - **Regulatory Compliance:** Provides the data required for acquirers and merchants to meet and maintain card scheme requirements for disclosure and consent.
+
+
+      Ideal for merchants and payment partners seeking to boost trust and conversion in cross-border commerce.
+
+
+      **Key Features:**
+
+      - **Rate Lookup:** Retrieves the most up-to-date exchange rate for eligible cards before authorization.
+
+      - **Currency Choice:** Enables the merchant to offer customers the option to select between the merchant''s local currency and their card''s billing currency.
+
+      - **Compliance:** Ensures merchants have the data required to adhere to card network regulations; exchange rates, markups, etc.
+
+
+      **Supported Scenarios:**
+
+      - Dynamic Currency Conversion when cardholder''s billing currency differs from merchant''s pricing currency.
+
+      - Merchant and acquirer must support the cardholder''s billing currency.
+
+
+      **Core API Endpoints:**
+
+
+      **Currency Conversion API**
+
+      Returns eligibility and exchange rate details, including:
+
+      - exchangeRate
+
+      - marginRate
+
+      - reconciliationId and Id (for subsequent payment requests)
+
+
+      **Payment Authorization with DCC***
+
+      POST /pts/v2/payments
+
+      Required fields include:
+
+      - orderInformation.amountDetails.currency
+
+      - orderInformation.amountDetails.originalCurrency
+
+      - orderInformation.amountDetails.originalAmount
+
+      - orderInformation.amountDetails.exchangeRate
+
+      - currencyConversion.indicator (e.g., 1 = Converted, 2 = Nonconvertible, 3 = Declined)
+
+
+      **Capture with DCC***
+
+      POST /pts/v2/payments/{id}/captures
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      **Refund with DCC***
+
+      POST /pts/v2/captures/{id}/refunds
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      *Note: DCC is only supported on select processors. Contact your acquirer or account manager for more information.
+
+
+      **Compliance & Disclosure:**
+
+
+      Merchants must:
+
+      - Adhere to card network rules for Dynamic Currency Conversion (DCC) transactions.
+
+      - Display the converted amount, exchange rate, and markup percentage and other required disclosures.
+
+      - Obtain explicit cardholder consent before applying DCC.
+
+      - Work with your acquirer to obtain full set of compliance requirements.
+
+
+      For more information, see the [Currency Conversion Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/currency-conversion/developer/all/rest/currency-conversion/cc-intro.html).
+
+      '
+  - name: Intelligent_Commerce_Connect
+    description: For more information about Intelligent Commerce Cross Network Service API, please see [Developer Guides](https://developer.cybersource.com/docs/cybs/en-us/intelligent-commerce/developer/all/rest/intelligent-commerce/intelligent-commerce-about-guide.html).

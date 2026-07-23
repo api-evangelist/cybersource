@@ -1,0 +1,762 @@
+swagger: '2.0'
+info:
+  description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
+  version: 0.0.1
+  title: CyberSource Merged Spec bankAccountValidation Report Definitions API
+host: apitest.cybersource.com
+basePath: /
+schemes:
+- https
+consumes:
+- application/json;charset=utf-8
+produces:
+- application/hal+json;charset=utf-8
+tags:
+- name: Report Definitions
+  description: Get report definition information
+paths:
+  /reporting/v3/report-definitions/{reportDefinitionName}:
+    get:
+      tags:
+      - Report Definitions
+      summary: Get Report Definition
+      description: 'View the attributes of an individual report type. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation/)
+
+        '
+      operationId: getResourceInfoByReportDefinition
+      x-devcenter-metaData:
+        categoryTag: Reporting
+      x-queryParameterDefaults:
+        organizationId: testrest
+      produces:
+      - application/hal+json
+      parameters:
+      - name: reportDefinitionName
+        in: path
+        description: Name of the Report definition to retrieve
+        required: true
+        type: string
+      - name: subscriptionType
+        in: query
+        description: 'The subscription type for which report definition is required. By default the type will be CUSTOM.
+
+          Valid Values:
+
+          - CLASSIC
+
+          - CUSTOM
+
+          - STANDARD
+
+          '
+        required: false
+        type: string
+      - name: reportMimeType
+        in: query
+        description: 'The format for which the report definition is required. By default the value will be CSV.
+
+          Valid Values:
+
+          - application/xml
+
+          - text/csv
+
+          '
+        required: false
+        type: string
+      - name: organizationId
+        in: query
+        description: Valid Organization Id
+        pattern: '[a-zA-Z0-9-_]+'
+        required: false
+        type: string
+        minLength: 1
+        maxLength: 32
+      responses:
+        '200':
+          description: Ok
+          schema:
+            title: reportingV3ReportDefinitionsNameGet200Response
+            type: object
+            properties:
+              type:
+                type: string
+              reportDefinitionId:
+                type: integer
+                format: int32
+              reportDefintionName:
+                type: string
+              attributes:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    filterType:
+                      type: string
+                      description: Attribute Filter Type.
+                      example: MULTI
+                    default:
+                      type: boolean
+                    required:
+                      type: boolean
+                    supportedType:
+                      type: string
+                      description: Valid values for the filter.
+                      example:
+                      - ics_score
+                      - ics_ap_auth
+                      - ics_ap_auth_reversal
+                      - ics_ap_billing_agreement
+                      - ics_ap_cancel
+                      - ics_ap_capture
+                      - ics_ap_initiate
+                      - ics_ap_options
+                      - ics_ap_order
+                      - ics_ap_refund
+                      - ics_ap_sale
+                      - ics_ap_sessions
+                      - ics_ap_check_status
+                      - ics_auto_auth_reversal
+                      - ics_bank_transfer
+                      - ics_bank_transfer_real_time
+                      - ics_bank_transfer_refund
+                      - ics_bin_lookup
+                      - ics_boleto_payment
+                      - ics_cm_action
+                      - ics_china_payment
+                      - ics_china_refund
+                      - ics_auth
+                      - ics_auto_full_auth_reversal
+                      - ics_auth_refresh
+                      - ics_auth_reversal
+                      - ics_credit
+                      - ics_bill
+                      - ics_risk_update
+                      - ics_dcc
+                      - ics_dcc_update
+                      - ics_decision
+                      - ics_dm_event
+                      - ics_direct_debit
+                      - ics_direct_debit_mandate
+                      - ics_direct_debit_refund
+                      - ics_direct_debit_validate
+                      - ics_ecp_authenticate
+                      - ics_ecp_credit
+                      - ics_ecp_debit
+                      - ics_get_masterpass_data
+                      - ics_get_visa_checkout_data
+                      - ics_create_isv
+                      - ics_get_isv_history
+                      - ics_add_value_to_isv
+                      - ics_get_isv_info
+                      - ics_modify_isv
+                      - ics_get_isv_profiles
+                      - ics_redeem_isv
+                      - ics_ifs_setup
+                      - ics_ifs_update
+                      - ics_ipgeo
+                      - ics_oct
+                      - ics_pa_enroll
+                      - ics_pa_validate
+                      - paypal_mip_agreement_ipn
+                      - ics_paypal_button_create
+                      - ics_paypal_credit
+                      - ics_paypal_authorization
+                      - ics_paypal_create_agreement
+                      - ics_paypal_update_agreement
+                      - ics_paypal_ec_order_setup
+                      - ics_paypal_auth_reversal
+                      - ics_paypal_ec_do_payment
+                      - ics_paypal_do_ref_transaction
+                      - ics_paypal_refund
+                      - ics_paypal_do_capture
+                      - paypal_ipn
+                      - ics_paypal_preapproved_payment
+                      - ics_pinless_debit
+                      - ics_pinless_debit_validate
+                      - ics_pinless_debit_reversal
+                      - ics_export
+                      - ics_service_fee_auth
+                      - ics_service_fee_auth_reversal
+                      - ics_service_fee_bill
+                      - ics_service_fee_credit
+                      - ics_service_fee_ecp_credit
+                      - ics_service_fee_ecp_debit
+                      - ics_pay_subscription_create
+                      - ics_pay_subscription_create_dup
+                      - ics_pay_subscription_delete
+                      - ics_pay_subscription_update
+                      - ics_dav
+                      - ics_download
+                      - ics_tax
+                      - ics_timeout_auth_reversal
+                      - ics_timeout_oct_reversal
+                      - ics_void
+                      - ics_pin_debit_purchase
+                      - ics_pin_debit_credit
+                      - ics_pin_debit_reversal
+                      - ics_timeout_pin_debit_reversal
+                      - ics_gift_card_activation
+                      - ics_gift_card_balance_inquiry
+                      - ics_gift_card_redemption
+                      - ics_gift_card_refund
+                      - ics_gift_card_reload
+                      - ics_gift_card_void
+                      - ics_gift_card_reversal
+              supportedFormats:
+                type: array
+                uniqueItems: true
+                items:
+                  type: string
+                  description: 'Valid values:
+
+                    - application/xml
+
+                    - text/csv
+
+                    '
+              description:
+                type: string
+              defaultSettings:
+                type: object
+                properties:
+                  reportMimeType:
+                    type: string
+                    example: application/xml
+                    description: "Report Format\nValid values:\n  - application/xml\n  - text/csv\n"
+                  reportFrequency:
+                    type: string
+                    example: DAILY
+                    description: "Report Frequency Value\nValid Values:\n  - DAILY\n  - WEEKLY\n  - MONTHLY\n  - ADHOC\n"
+                  reportName:
+                    type: string
+                    description: Report Name
+                    example: My Transaction Request Detail Report
+                  timezone:
+                    type: string
+                    description: Time Zone
+                    example: America/Chicago
+                  startTime:
+                    type: string
+                    description: Start Time
+                    example: '0000'
+                  startDay:
+                    type: integer
+                    format: int32
+                    description: Start Day
+                    example: 1
+                  reportFilters:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                    description: List of filters to apply
+                    example:
+                      Application.Name:
+                      - ics_auth
+                      - ics_bill
+                  reportPreferences:
+                    type: object
+                    description: Report Preferences
+                    properties:
+                      signedAmounts:
+                        type: boolean
+                        description: Indicator to determine whether negative sign infront of amount for all refunded transaction
+                      fieldNameConvention:
+                        type: string
+                        description: 'Specify the field naming convention to be followed in reports (applicable to only csv report formats)
+
+
+                          Valid values:
+
+                          - SOAPI
+
+                          - SCMP
+
+                          '
+              subscriptionType:
+                type: string
+                example: CLASSIC
+                description: '''The subscription type for which report definition is required. By default the type will be CUSTOM.''
+
+                  Valid Values:
+
+                  - ''CLASSIC''
+
+                  - ''CUSTOM''
+
+                  - ''STANDARD''
+
+                  '
+        '400':
+          description: Invalid request
+          schema:
+            title: reportingV3ReportDefinitionsNameGet400Response
+            type: object
+            required:
+            - submitTimeUtc
+            - reason
+            - message
+            - details
+            properties:
+              submitTimeUtc:
+                type: string
+                format: date-time
+                description: "Time of request in UTC. \n"
+                example: '2016-08-11T22:47:57Z'
+              reason:
+                type: string
+                description: 'Documented reason code
+
+                  '
+                example: INVALID_DATA
+              message:
+                type: string
+                description: 'Short descriptive message to the user.
+
+                  '
+                example: One or more fields contains invalid data
+              details:
+                type: array
+                description: 'Error field list
+
+                  '
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: 'Field in request that caused an error
+
+                        '
+                    reason:
+                      type: string
+                      description: 'Documented reason code
+
+                        '
+                  description: 'Provides failed validation input field detail
+
+                    '
+            description: HTTP status code for client application
+        '404':
+          description: Report not found
+  /reporting/v3/report-definitions:
+    get:
+      tags:
+      - Report Definitions
+      summary: Get Reporting Resource Information
+      description: 'View a list of supported reports and their attributes before subscribing to them.
+
+        '
+      operationId: getResourceV2Info
+      x-devcenter-metaData:
+        categoryTag: Reporting
+      x-queryParameterDefaults:
+        organizationId: testrest
+      produces:
+      - application/hal+json
+      parameters:
+      - in: query
+        name: subscriptionType
+        required: false
+        type: string
+        description: 'Valid Values:
+
+          - CLASSIC
+
+          - CUSTOM
+
+          - STANDARD
+
+          '
+      - name: organizationId
+        in: query
+        description: Valid Organization Id
+        pattern: '[a-zA-Z0-9-_]+'
+        required: false
+        type: string
+        minLength: 1
+        maxLength: 32
+      responses:
+        '200':
+          description: Ok
+          schema:
+            title: reportingV3ReportDefinitionsGet200Response
+            type: object
+            properties:
+              reportDefinitions:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                    reportDefinitionId:
+                      type: integer
+                      format: int32
+                      description: '| Id  |         Definition Class          |
+
+                        | --- | --------------------------------- |
+
+                        | 210 | TransactionRequestClass           |
+
+                        | 211 | PaymentBatchDetailClass           |
+
+                        | 212 | ExceptionDetailClass              |
+
+                        | 213 | ProcessorSettlementDetailClass    |
+
+                        | 214 | ProcessorEventsDetailClass        |
+
+                        | 215 | FundingDetailClass                |
+
+                        | 216 | AgingDetailClass                  |
+
+                        | 217 | ChargebackAndRetrievalDetailClass |
+
+                        | 218 | DepositDetailClass                |
+
+                        | 219 | FeeDetailClass                    |
+
+                        | 220 | InvoiceSummaryClass               |
+
+                        | 221 | PayerAuthDetailClass              |
+
+                        | 222 | ConversionDetailClass             |
+
+                        | 225 | BillableTransactionsDetailClass   |
+
+                        | 270 | JPTransactionDetailClass          |
+
+                        | 271 | ServiceFeeDetailClass             |
+
+                        | 310 | GatewayTransactionRequestClass    |
+
+                        | 400 | DecisionManagerEventDetailClass   |
+
+                        | 401 | DecisionManagerDetailClass        |
+
+                        | 410 | FeeSummaryClass                   |
+
+                        | 420 | TaxCalculationClass               |
+
+                        | 520 | POSTerminalExceptionClass         |
+
+                        | 620 | SubscriptionDetailClass           |
+
+                        | 630 | StandardBillingDataPackageClass   |
+
+                        | 706 | StandardMonthlyFeeClass           |
+
+                        '
+                    reportDefintionName:
+                      type: string
+                    supportedFormats:
+                      type: array
+                      uniqueItems: true
+                      items:
+                        type: string
+                        description: 'Valid values:
+
+                          - application/xml
+
+                          - text/csv
+
+                          '
+                    description:
+                      type: string
+                    defaultSettings:
+                      type: object
+                      properties:
+                        reportMimeType:
+                          type: string
+                          example: application/xml
+                          description: "Report Format\nValid values:\n  - application/xml\n  - text/csv\n"
+                        reportFrequency:
+                          type: string
+                          example: DAILY
+                          description: "Report Frequency Value\nValid Values:\n  - DAILY\n  - WEEKLY\n  - MONTHLY\n  - ADHOC\n"
+                        reportName:
+                          type: string
+                          description: Report Name
+                          example: My Transaction Request Detail Report
+                        timezone:
+                          type: string
+                          description: Time Zone
+                          example: America/Chicago
+                        startTime:
+                          type: string
+                          description: Start Time
+                          example: '0000'
+                        startDay:
+                          type: integer
+                          format: int32
+                          description: Start Day
+                          example: 1
+                        reportFilters:
+                          type: object
+                          additionalProperties:
+                            type: array
+                            items:
+                              type: string
+                          description: List of filters to apply
+                          example:
+                            Application.Name:
+                            - ics_auth
+                            - ics_bill
+                        reportPreferences:
+                          type: object
+                          description: Report Preferences
+                          properties:
+                            signedAmounts:
+                              type: boolean
+                              description: Indicator to determine whether negative sign infront of amount for all refunded transaction
+                            fieldNameConvention:
+                              type: string
+                              description: 'Specify the field naming convention to be followed in reports (applicable to only csv report formats)
+
+
+                                Valid values:
+
+                                - SOAPI
+
+                                - SCMP
+
+                                '
+                    subscriptionType:
+                      type: string
+                      example: CLASSIC
+                      description: '''The subscription type for which report definition is required. By default the type will be CUSTOM.''
+
+                        Valid Values:
+
+                        - CLASSIC
+
+                        - CUSTOM
+
+                        - STANDARD
+
+                        '
+        '400':
+          description: Invalid request
+          schema:
+            title: reportingV3ReportDefinitionsGet400Response
+            type: object
+            required:
+            - submitTimeUtc
+            - reason
+            - message
+            - details
+            properties:
+              submitTimeUtc:
+                type: string
+                format: date-time
+                description: "Time of request in UTC. \n"
+                example: '2016-08-11T22:47:57Z'
+              reason:
+                type: string
+                description: 'Documented reason code
+
+                  '
+                example: INVALID_DATA
+              message:
+                type: string
+                description: 'Short descriptive message to the user.
+
+                  '
+                example: One or more fields contains invalid data
+              details:
+                type: array
+                description: 'Error field list
+
+                  '
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: 'Field in request that caused an error
+
+                        '
+                    reason:
+                      type: string
+                      description: 'Documented reason code
+
+                        '
+                  description: 'Provides failed validation input field detail
+
+                    '
+            description: HTTP status code for client application
+        '404':
+          description: Report not found
+x-devcenter-metaData:
+  categoryTagArray:
+  - name: Payments
+    description: For more information about Payments transactions, see the [Payments Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/payments/developer/ctv/rest/payments/payments-intro.html).
+  - name: Transaction_Batches
+    description: For more information about Transaction Batches, see the [Transaction Batches Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-transaction-batch-api/txn_batch_api_intro.html).
+  - name: eCheck_AVS
+    description: For more information about eCheck Account Validation, see the [Account Validation Developer Guides Page](https://...).
+  - name: Token_Management
+    description: For more information about the Token Management Service (TMS) see the [Token Management Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms/tms-overview.html)
+  - name: Flex_Microform
+    description: Microform Integration is a lightweight acceptance solution designed to safely and securely accept payment information within your web page.  Microform is designed to a be embedded seamlessly within your existing webpage experience, blending in with your existing acceptance form.  This solution allows for the replacement of sensitive payment date with a transient token (a short lived reference to the sensitive payment data).  For more information about Flex Microform transactions, see the [Flex Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-flex/SAFlexibleToken.html). For examples on how to integrate Flex Microform within your webpage please see our [GitHub Flex Samples](https://github.com/CyberSource?q=flex&type=&language=)
+  - name: Flex_API
+    description: For more information about Flex API, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/da-flex-api-intro.html).
+  - name: Risk_Management
+  - name: Payouts
+    description: 'For more information about Payouts, see the [Payouts Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-payouts/Introduction.html).
+
+      '
+  - name: Installments
+    description: For more information about Installment contact Cybersource Support. For Visa installments contact VISthroughCYBS@visa.com
+  - name: Recurring_Billing_Subscriptions
+    description: For more information about Recurring Billing, see the [Recurring Billing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-developer/recur-bill-services-intro.html).
+  - name: BIN_Lookup
+    description: 'The BIN Lookup Service is a versatile business tool that provides card network agnostic solution designed to ensure frictionless transaction experience by utilizing up-to-date Bank Identification Number (BIN) attributes sourced from multiple global and regional data sources.
+
+      This service helps to improve authorization rates by helping to route transactions to the best-suited card network, minimizes fraud through card detail verification and aids in regulatory compliance by identifying card properties. The service is flexible and provides businesses with a flexible choice of inputs such as primary account number (PAN), network token from major networks (such as Visa, American Express, Discover and regional networks) which includes device PAN (DPAN), and all types of tokens generated via CyberSource Token Management Service (TMS).
+
+      Currently, the range of available credentials is contingent on the networks enabled for the business entity. Therefore, the network information specified in this documentation is illustrative and subject to personalized offerings for each reseller or merchant.
+
+      '
+  - name: Transaction_Details
+    description: For more information about Transaction Details, see the [Transaction Details Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_details_api.html).
+  - name: Transaction_Search
+    description: For more information about Transaction Search, see the [Transaction Search Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_search_api.html).
+  - name: Reporting
+    description: 'For more information about Reporting, see the [Reporting Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-reporting-rest-api-dev-guide-102718/reporting_api.html).
+
+      '
+  - name: Secure_File_Share
+    description: For more information about Secure File Share, see the [Secure File Share Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-secure-file-share-api-102718/secure_file_share_api_intro.html).
+  - name: Invoices
+    description: For more information about Invoicing, see the [Invoicing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing/Introduction.html).
+  - name: Pay_By_Link
+    description: For more information about PayByLink, see the [PBL Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/boarding/user/all/rest/boarding/templates-matrix-intro/templates-matrix-pay-by-link.html).
+  - name: User_Management
+    description: For more information about User Management, see the [User Managment Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-user-management-api-102718/user_management_api_intro.html).
+  - name: Value_Added_Service
+  - name: Fee Service
+  - name: Merchant_Boarding
+    description: For more information about Merchant Boarding, please see [Developer Guides Page](https://developer.cybersource.com/api/developer-guides/Merchant-Boarding-API_ditamap/Merchant-Boarding-API.html).
+  - name: Webhooks
+    description: For more information about Webhooks, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/webhooks/implementation/all/rest/webhooks/wh-fg-intro.html).
+  - name: Unified_Checkout
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-intro.html).
+  - name: Unified_Checkoutv1
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-about-guide.html).
+  - name: Account_Updater
+    description: For more information about Account Updater, see the [Account Updater Developer Guides Page:](https://developer.cybersource.com/library/documentation/dev_guides/Account_Updater_UG/html/index.html).
+  - name: Visa_Bank_Account_Validation
+    description: 'The Visa Bank Account Validation Service is a new standalone product designed to validate customer''s routing and bank account number combination for ACH transactions. Merchant''s can use this standalone product to validate their customer''s account prior to processing an ACH transaction against the customer''s account to comply with Nacha''s account validation mandate for Web-debit transactions.
+
+      '
+  - name: Currency Conversion
+    description: 'Empower global transactions with transparency and choice. Our Dynamic Currency Conversion API lets merchants offer customers the option to pay in their home currency at checkout, delivering real-time exchange rates and clear cost disclosure.
+
+
+      **Key Benefits:**
+
+      - **Enhanced Customer Experience:** Provide clarity and convenience for international shoppers.
+
+      - **Real-Time Rates:** Accurate currency conversion with all the data required for acquirers and their merchants to maintain compliance with card network rules.
+
+      - **Seamless Integration:** Flexible API endpoints for rate lookup, authorization, and capture.
+
+      - **Regulatory Compliance:** Provides the data required for acquirers and merchants to meet and maintain card scheme requirements for disclosure and consent.
+
+
+      Ideal for merchants and payment partners seeking to boost trust and conversion in cross-border commerce.
+
+
+      **Key Features:**
+
+      - **Rate Lookup:** Retrieves the most up-to-date exchange rate for eligible cards before authorization.
+
+      - **Currency Choice:** Enables the merchant to offer customers the option to select between the merchant''s local currency and their card''s billing currency.
+
+      - **Compliance:** Ensures merchants have the data required to adhere to card network regulations; exchange rates, markups, etc.
+
+
+      **Supported Scenarios:**
+
+      - Dynamic Currency Conversion when cardholder''s billing currency differs from merchant''s pricing currency.
+
+      - Merchant and acquirer must support the cardholder''s billing currency.
+
+
+      **Core API Endpoints:**
+
+
+      **Currency Conversion API**
+
+      Returns eligibility and exchange rate details, including:
+
+      - exchangeRate
+
+      - marginRate
+
+      - reconciliationId and Id (for subsequent payment requests)
+
+
+      **Payment Authorization with DCC***
+
+      POST /pts/v2/payments
+
+      Required fields include:
+
+      - orderInformation.amountDetails.currency
+
+      - orderInformation.amountDetails.originalCurrency
+
+      - orderInformation.amountDetails.originalAmount
+
+      - orderInformation.amountDetails.exchangeRate
+
+      - currencyConversion.indicator (e.g., 1 = Converted, 2 = Nonconvertible, 3 = Declined)
+
+
+      **Capture with DCC***
+
+      POST /pts/v2/payments/{id}/captures
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      **Refund with DCC***
+
+      POST /pts/v2/captures/{id}/refunds
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      *Note: DCC is only supported on select processors. Contact your acquirer or account manager for more information.
+
+
+      **Compliance & Disclosure:**
+
+
+      Merchants must:
+
+      - Adhere to card network rules for Dynamic Currency Conversion (DCC) transactions.
+
+      - Display the converted amount, exchange rate, and markup percentage and other required disclosures.
+
+      - Obtain explicit cardholder consent before applying DCC.
+
+      - Work with your acquirer to obtain full set of compliance requirements.
+
+
+      For more information, see the [Currency Conversion Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/currency-conversion/developer/all/rest/currency-conversion/cc-intro.html).
+
+      '
+  - name: Intelligent_Commerce_Connect
+    description: For more information about Intelligent Commerce Cross Network Service API, please see [Developer Guides](https://developer.cybersource.com/docs/cybs/en-us/intelligent-commerce/developer/all/rest/intelligent-commerce/intelligent-commerce-about-guide.html).

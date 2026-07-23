@@ -1,0 +1,2964 @@
+swagger: '2.0'
+info:
+  description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
+  version: 0.0.1
+  title: CyberSource Merged Spec bankAccountValidation Verification API
+host: apitest.cybersource.com
+basePath: /
+schemes:
+- https
+consumes:
+- application/json;charset=utf-8
+produces:
+- application/hal+json;charset=utf-8
+tags:
+- name: Verification
+paths:
+  /risk/v1/address-verifications:
+    post:
+      summary: Verify customer address
+      description: This call verifies that the customer address submitted is valid.
+      operationId: verifyCustomerAddress
+      tags:
+      - Verification
+      x-devcenter-metaData:
+        categoryTag: Risk_Management
+      parameters:
+      - name: verifyCustomerAddressRequest
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            clientReferenceInformation:
+              type: object
+              properties:
+                code:
+                  type: string
+                  maxLength: 59
+                  description: 'Merchant-generated order reference or tracking number. It is recommended that you send a unique value for each
+
+                    transaction so that you can perform meaningful searches for the transaction.
+
+
+                    #### Used by
+
+                    **Authorization**
+
+                    Required field.
+
+
+                    #### PIN Debit
+
+                    Requests for PIN debit reversals need to use the same merchant reference number that was used in the transaction that is being
+
+                    reversed.
+
+
+                    Required field for all PIN Debit requests (purchase, credit, and reversal).
+
+
+                    #### FDC Nashville Global
+
+                    Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports.
+
+                    '
+                comments:
+                  type: string
+                  maxLength: 255
+                  description: 'Brief description of the order or any comment you wish to add to the order.
+
+                    '
+                partner:
+                  type: object
+                  properties:
+                    developerId:
+                      type: string
+                      maxLength: 8
+                      description: 'Identifier for the developer that helped integrate a partner solution to CyberSource.
+
+
+                        Send this value in all requests that are sent through the partner solutions built by that developer.
+
+                        CyberSource assigns the ID to the developer.
+
+
+                        **Note** When you see a developer ID of 999 in reports, the developer ID that was submitted is incorrect.
+
+                        '
+                    solutionId:
+                      type: string
+                      maxLength: 8
+                      description: 'Identifier for the partner that is integrated to CyberSource.
+
+
+                        Send this value in all requests that are sent through the partner solution. CyberSource assigns the ID to the partner.
+
+
+                        **Note** When you see a solutionId of 999 in reports, the solutionId that was submitted is incorrect.
+
+                        '
+            orderInformation:
+              type: object
+              properties:
+                billTo:
+                  type: object
+                  required:
+                  - address1
+                  - locality
+                  - country
+                  - postalCode
+                  properties:
+                    address1:
+                      type: string
+                      maxLength: 60
+                      description: 'Payment card billing street address as it appears on the credit card issuer''s records.
+
+
+                        #### SEPA
+
+                        Required for Create Mandate and Import Mandate
+
+
+                        #### Atos
+
+                        This field must not contain colons (:).
+
+
+                        #### CyberSource through VisaNet
+
+                        **Important** When you populate orderInformation.billTo.address1 and orderInformation.billTo.address2,
+
+                        CyberSource through VisaNet concatenates the two values. If the concatenated value exceeds 40 characters,
+
+                        CyberSource through VisaNet truncates the value at 40 characters before sending it to Visa and the issuing bank.
+
+                        Truncating this value affects AVS results and therefore might also affect risk decisions and chargebacks.
+
+                        Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet
+
+                        accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations
+
+                        of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the
+
+                        credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless
+
+                        ASCII characters for transmission to the credit card networks.
+
+
+                        #### FDMS Nashville
+
+                        When the street name is numeric, it must be sent in numeric format. For example, if the address is _One First Street_,
+
+                        it must be sent as _1 1st Street_.
+
+
+                        Required if keyed; not used if swiped.
+
+
+                        String (20)
+
+
+                        #### TSYS Acquiring Solutions
+
+                        Required when `processingInformation.billPaymentOptions.billPayment=true` and `pointOfSaleInformation.entryMode=keyed`.
+
+
+                        #### All other processors:
+
+                        Optional.
+
+                        String (60)
+
+
+                        #### For Payouts
+
+                        This field may be sent only for FDC Compass.
+
+
+                        **Important** It is your responsibility to determine whether a field is required for the transaction you are requesting.
+
+                        '
+                    address2:
+                      type: string
+                      maxLength: 60
+                      description: 'Used for additional address information. For example: _Attention: Accounts Payable_
+
+                        Optional field.
+
+
+                        For Payouts: This field may be sent only for FDC Compass.
+
+
+                        #### Atos
+
+                        This field must not contain colons (:).
+
+
+                        #### CyberSource through VisaNet
+
+                        **Important** When you populate `orderInformation.billTo.address1` and `orderInformation.billTo.address2`,
+
+                        CyberSource through VisaNet concatenates the two values. If the concatenated value exceeds 40 characters,
+
+                        CyberSource through VisaNet truncates the value at 40 characters before sending it to Visa and the issuing bank.
+
+                        Truncating this value affects AVS results and therefore might also affect risk decisions and chargebacks.
+
+                        Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet
+
+                        accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations
+
+                        of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the
+
+                        credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless
+
+                        ASCII characters for transmission to the credit card networks.
+
+
+                        #### Chase Paymentech Solutions, FDC Compass, and TSYS Acquiring Solutions
+
+                        This value is used for AVS.
+
+
+                        #### FDMS Nashville
+
+                        `orderInformation.billTo.address1` and `orderInformation.billTo.address2` together cannot exceed 20 characters.
+
+                        String (20)
+
+
+                        #### All Other Processors
+
+                        String (60)
+
+                        '
+                    address3:
+                      type: string
+                      maxLength: 60
+                      description: 'Additional address information (third line of the billing address)
+
+                        '
+                    address4:
+                      type: string
+                      maxLength: 60
+                      description: 'Additional address information (fourth line of the billing address)
+
+                        '
+                    administrativeArea:
+                      type: string
+                      maxLength: 50
+                      description: 'State or province of the billing address. Use the [State, Province, and Territory Codes for the United States and Canada](https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf).
+
+
+                        For Payouts: This field may be sent only for FDC Compass.
+
+
+                        ##### CyberSource through VisaNet
+
+                        Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet
+
+                        accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations
+
+                        of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the
+
+                        credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless
+
+                        ASCII characters for transmission to the credit card networks.
+
+
+                        **Important** It is your responsibility to determine whether a field is required for the transaction you are requesting.
+
+
+                        #### Chase Paymentech Solutions
+
+                        Optional field.
+
+
+                        ####  Credit Mutuel-CIC
+
+                        Optional field.
+
+
+                        #### OmniPay Direct
+
+                        Optional field.
+
+
+                        #### SIX
+
+                        Optional field.
+
+
+                        #### TSYS Acquiring Solutions
+
+                        Required when `processingInformation.billPaymentOptions.billPayment=true` and `pointOfSaleInformation.entryMode=keyed`.
+
+
+                        #### Worldpay VAP
+
+                        Optional field.
+
+
+                        #### All other processors
+
+                        Not used.
+
+                        '
+                    country:
+                      type: string
+                      maxLength: 3
+                      description: 'Payment card billing country. Use the two-character [ISO Standard Country Codes](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf).
+
+
+                        #### SEPA/BACS
+
+                        Required for Create Mandate and Import Mandate
+
+
+                        #### CyberSource through VisaNet
+
+                        Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet
+
+                        accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations
+
+                        of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the
+
+                        credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless ASCII
+
+                        characters for transmission to the credit card networks.
+
+
+                        **Important** It is your responsibility to determine whether a field is required for the transaction you are requesting.
+
+
+                        #### Chase Paymentech Solutions
+
+                        Optional field.
+
+
+                        ####  Credit Mutuel-CIC
+
+                        Optional field.
+
+
+                        #### OmniPay Direct
+
+                        Optional field.
+
+
+                        #### SIX
+
+                        Optional field.
+
+
+                        #### TSYS Acquiring Solutions
+
+                        Required when `processingInformation.billPaymentOptions.billPayment=true` and `pointOfSaleInformation.entryMode=keyed`.
+
+
+                        #### Worldpay VAP
+
+                        Optional field.
+
+
+                        #### All other processors
+
+                        Not used.
+
+                        '
+                    locality:
+                      type: string
+                      maxLength: 50
+                      description: 'Payment card billing city.
+
+
+                        #### SEPA
+
+                        Required for Create Mandate and Import Mandate
+
+
+                        #### Atos
+
+                        This field must not contain colons (:).
+
+
+                        #### CyberSource through VisaNet
+
+                        Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless ASCII characters for transmission to the credit card networks.
+
+
+                        #### For Payouts:
+
+                        This field may be sent only for FDC Compass.
+
+
+                        #### Chase Paymentech Solutions
+
+                        Optional field.
+
+
+                        ####  Credit Mutuel-CIC
+
+                        Optional field.
+
+
+                        #### OmniPay Direct
+
+                        Optional field.
+
+
+                        #### SIX
+
+                        Optional field.
+
+
+                        #### TSYS Acquiring Solutions
+
+                        Required when `processingInformation.billPaymentOptions.billPayment=true` and `pointOfSaleInformation.entryMode=keyed`.
+
+
+                        #### Worldpay VAP
+
+                        Optional field.
+
+
+                        #### All other processors
+
+                        Not used.
+
+                        '
+                    postalCode:
+                      type: string
+                      maxLength: 10
+                      description: "Postal code for the billing address. The postal code must consist of 5 to 9 digits.\n\nWhen the billing country is the U.S., the 9-digit postal code must follow this format:\n[5 digits][dash][4 digits]\n\n**Example** `12345-6789`\n\nWhen the billing country is Canada, the 6-digit postal code must follow this format:\n[alpha][numeric][alpha][space][numeric][alpha][numeric]\n\n**Example** `A1B 2C3`\n\n**Important** It is your responsibility to determine whether a field is required for the transaction you are requesting.\n\n#### SEPA\nRequired for Create Mandate and Import Mandate\n\n#### For Payouts:\n This field may be sent only for FDC Compass.\n\n#### American Express Direct\nBefore sending the postal code to the processor, CyberSource removes all nonalphanumeric characters and, if the remaining value is longer than nine characters, truncates the value starting from the right side.\n\n#### Atos\nThis field must not contain colons (:).\n\n#### CyberSource through VisaNet\nCredit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet\naccepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations\nof the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the\ncredit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless ASCII\ncharacters for transmission to the credit card networks.\n\n#### FDMS Nashville\nRequired if `pointOfSaleInformation.entryMode=keyed` and the address is in the U.S. or Canada.\nOptional if `pointOfSaleInformation.entryMode=keyed` and the address is **not** in the U.S. or Canada.\nNot used if swiped.\n\n#### RBS WorldPay Atlanta:\nFor best card-present keyed rates, send the postal code if `pointOfSaleInformation.entryMode=keyed`.\n\n#### TSYS Acquiring Solutions\nRequired when `processingInformation.billPaymentOptions.billPayment=true` and `pointOfSaleInformation.entryMode=keyed`.\n\n#### All other processors:\nOptional field.\n"
+                shipTo:
+                  type: object
+                  required:
+                  - address1
+                  - country
+                  properties:
+                    address1:
+                      type: string
+                      maxLength: 60
+                      description: 'First line of the shipping address.
+
+
+                        Required field for authorization if any shipping address information is included in the request; otherwise, optional.
+
+
+                        #### Tax Calculation
+
+                        Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                        Billing address objects will be used to determine the cardholder''s location when shipTo objects are not present.
+
+                        '
+                    address2:
+                      type: string
+                      maxLength: 60
+                      description: 'Second line of the shipping address.
+
+
+                        Optional field.
+
+
+                        #### Tax Calculation
+
+                        Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                        Billing address objects will be used to determine the cardholder''s location when shipTo objects are not present.
+
+                        '
+                    address3:
+                      type: string
+                      maxLength: 60
+                      description: 'Third line of the shipping address.
+
+
+                        #### Tax Calculation
+
+                        Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                        Billing address objects will be used to determine the cardholder''s location when shipTo objects are not present.
+
+                        '
+                    address4:
+                      type: string
+                      maxLength: 60
+                      description: Fourth line of the shipping address.
+                    administrativeArea:
+                      type: string
+                      maxLength: 50
+                      description: "State or province of the shipping address. Use the [State, Province, and Territory Codes for the United States and Canada](https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf) (maximum length: 2) \n\nRequired field for authorization if any shipping address information is included in the request and shipping to the U.S.\nor Canada; otherwise, optional.\n\n#### Tax Calculation\nOptional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.\nBilling address objects will be used to determine the cardholder's location when shipTo objects are not present.\n"
+                    country:
+                      type: string
+                      description: 'Country of the shipping address. Use the two-character [ISO Standard Country Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf)
+
+
+                        Required field for authorization if any shipping address information is included in the request; otherwise, optional.
+
+
+                        #### Tax Calculation
+
+                        Optional field for U.S., Canadian, international tax, and value added taxes.
+
+                        Billing address objects will be used to determine the cardholder''s location when shipTo objects are not present.
+
+                        '
+                      maxLength: 3
+                    locality:
+                      type: string
+                      maxLength: 50
+                      description: 'City of the shipping address.
+
+
+                        Required field for authorization if any shipping address information is included in the request and shipping to the U.S. or
+
+                        Canada; otherwise, optional.
+
+
+                        #### Tax Calculation
+
+                        Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                        Billing address objects will be used to determine the cardholder''s location when shipTo objects are not present.
+
+                        '
+                    postalCode:
+                      type: string
+                      maxLength: 32
+                      description: 'Postal code for the shipping address. The postal code must consist of 5 to 9 digits.
+
+
+                        Required field for authorization if any shipping address information is included in the request and
+
+                        shipping to the U.S. or Canada; otherwise, optional.
+
+
+                        When the billing country is the U.S., the 9-digit postal code must follow this format:
+
+                        [5 digits][dash][4 digits]
+
+
+                        Example 12345-6789
+
+
+                        When the billing country is Canada, the 6-digit postal code must follow this format:
+
+                        [alpha][numeric][alpha][space][numeric][alpha][numeric]
+
+
+                        Example A1B 2C3
+
+
+                        #### American Express Direct
+
+                        Before sending the postal code to the processor, all nonalphanumeric characters are removed and, if the
+
+                        remaining value is longer than nine characters, the value is truncated starting from the right side.
+
+                        #### Tax Calculation
+
+                        Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                        Billing address objects will be used to determine the cardholder''s location when shipTo objects are not present.
+
+                        '
+                lineItems:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      unitPrice:
+                        type: string
+                        maxLength: 15
+                        description: 'Per-item price of the product. If line items are present in the request, the unit price is a mandatory field.
+
+                          '
+                      quantity:
+                        type: integer
+                        minimum: 1
+                        maximum: 999999999
+                        default: 1
+                        description: 'Number of units for this order. Must be a non-negative integer.
+
+
+                          The default is `1`. For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`),
+
+                          this field is required when `orderInformation.lineItems[].productCode` is not `default` or one of the other values
+
+                          related to shipping and/or handling.
+
+
+                          #### Tax Calculation
+
+                          Optional field for U.S., Canadian, international tax, and value added taxes.
+
+                          '
+                      productSKU:
+                        type: string
+                        maxLength: 255
+                        description: 'Product identifier code. Also known as the Stock Keeping Unit (SKU) code for the product.
+
+
+                          For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`), this field is required when `orderInformation.lineItems[].productCode` is not set to **default** or one of the other values that are related to shipping and/or handling.
+
+
+                          #### Tax Calculation
+
+                          Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                          For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`), this field is
+
+                          required when `orderInformation.lineItems[].productCode` is not `default` or one of the values related to shipping and/or handling.
+
+                          '
+                      productRisk:
+                        type: string
+                        maxLength: 6
+                        description: 'Indicates the level of risk for the product. This field can contain one of the following values:
+
+                          - `low`: The product is associated with few chargebacks.
+
+                          - `normal`: The product is associated with a normal number of chargebacks.
+
+                          - `high`: The product is associated with many chargebacks.
+
+                          '
+                      productName:
+                        type: string
+                        maxLength: 255
+                        description: 'For an authorization or capture transaction (`processingOptions.capture` is `true` or `false`),
+
+                          this field is required when `orderInformation.lineItems[].productCode` is not `default` or one of
+
+                          the other values that are related to shipping and/or handling.
+
+
+                          #### Tax Calculation
+
+                          Optional field for U.S., Canadian, international tax, and value added taxes.
+
+                          '
+                      productCode:
+                        type: string
+                        maxLength: 255
+                        description: 'Type of product. The value for this field is used to identify the product category (electronic, handling, physical,
+
+                          service, or shipping). The default value is `default`.
+
+
+                          If you are performing an authorization transaction (`processingOptions.capture` is set to `false`), and you set
+
+                          this field to a value other than `default` or one of the values related to shipping and/or handling, then
+
+                          `orderInformation.lineItems[].quantity`, `orderInformation.lineItems[].productName`, and
+
+                          `orderInformation.lineItems[].productSku` fields are required.
+
+
+                          Optional field.
+
+
+                          #### Tax Calculation
+
+                          Optional field for U.S., Canadian, international tax, and value added taxes.
+
+
+                          The Product Codes for the tax service are located in the Cybersource Tax Codes guide. Contact Customer Support to request the guide. If you don''t send a tax service Product Code in your tax request, product-based rules or exemptions will not be applied and the transaction will default to fully taxable in the locations where you''ve indicated you need to collect tax [by way of nexus, no nexus, or seller registration number fields].
+
+                          '
+            buyerInformation:
+              type: object
+              properties:
+                merchantCustomerId:
+                  type: string
+                  maxLength: 100
+                  description: 'Optional customer''s account ID, tracking number, reward number, or other unique number
+
+                    that you assign to the customer for the purpose that you choose
+
+                    '
+      responses:
+        '201':
+          description: Successful response
+          schema:
+            title: riskV1AddressVerificationsPost201Response
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                        description: This is the endpoint of the resource that was created by the successful request.
+                      method:
+                        type: string
+                        description: '`method` refers to the HTTP method that you can send to the `self` endpoint to retrieve details of the resource.'
+              id:
+                type: string
+                maxLength: 26
+                description: 'An unique identification number generated by Cybersource to identify the submitted request. Returned by all services.
+
+                  It is also appended to the endpoint of the resource.
+
+                  On incremental authorizations, this value with be the same as the identification number returned in the original authorization response.
+
+                  '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              submitTimeLocal:
+                type: string
+                description: Time that the transaction was submitted in local time. Generated by Cybersource.
+              status:
+                type: string
+                description: 'The status for the call can be:
+
+                  - COMPLETED
+
+                  - INVALID_REQUEST
+
+                  - DECLINED
+
+                  '
+              message:
+                type: string
+                description: "The message describing the reason of the status. Value can be\n  - Apartment number missing or not found.\n  - Insufficient address information.\n  - House/Box number not found on street.\n  - Multiple address matches were found.\n  - P.O. Box identifier not found or out of range.\n  - Route service identifier not found or out of range.\n  - Street name not found in Postal code.\n  - Postal code not found in database.\n  - Unable to verify or correct address.\n  - Multiple addres matches were found (international)\n  - Address match not found (no reason given)\n  - Unsupported character set\n"
+              clientReferenceInformation:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    maxLength: 59
+                    description: 'Merchant-generated order reference or tracking number. It is recommended that you send a unique value for each
+
+                      transaction so that you can perform meaningful searches for the transaction.
+
+
+                      #### Used by
+
+                      **Authorization**
+
+                      Required field.
+
+
+                      #### PIN Debit
+
+                      Requests for PIN debit reversals need to use the same merchant reference number that was used in the transaction that is being
+
+                      reversed.
+
+
+                      Required field for all PIN Debit requests (purchase, credit, and reversal).
+
+
+                      #### FDC Nashville Global
+
+                      Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports.
+
+                      '
+                  comments:
+                    type: string
+                    maxLength: 255
+                    description: 'Brief description of the order or any comment you wish to add to the order.
+
+                      '
+                  partner:
+                    type: object
+                    properties:
+                      developerId:
+                        type: string
+                        maxLength: 8
+                        description: 'Identifier for the developer that helped integrate a partner solution to CyberSource.
+
+
+                          Send this value in all requests that are sent through the partner solutions built by that developer.
+
+                          CyberSource assigns the ID to the developer.
+
+
+                          **Note** When you see a developer ID of 999 in reports, the developer ID that was submitted is incorrect.
+
+                          '
+                      solutionId:
+                        type: string
+                        maxLength: 8
+                        description: 'Identifier for the partner that is integrated to CyberSource.
+
+
+                          Send this value in all requests that are sent through the partner solution. CyberSource assigns the ID to the partner.
+
+
+                          **Note** When you see a solutionId of 999 in reports, the solutionId that was submitted is incorrect.
+
+                          '
+              addressVerificationInformation:
+                type: object
+                properties:
+                  addressType:
+                    type: string
+                    maxLength: 255
+                    description: "Contains the record type of the postal code with which the address was matched.\n\n#### U.S. Addresses\nDepending on the quantity and quality of the address information provided,\nthis field contains one or two characters:\n\n- One character: sufficient correct information was provided to result in accurate matching.\n- Two characters: standardization would provide a better address if more or better\ninput address information were available. The second character is D (default).\n\nBlank fields are unassigned. When an address cannot be standardized, how the input\ndata was parsed determines the address type. In this case, standardization may indicate a street, rural route,\nhighway contract, general delivery, or PO box. \n\n#### All Other Countries\nThis field contains one of the following values:\n- P: Post.\n- S: Street.\n- x: Unknown.\n"
+                  barCode:
+                    type: object
+                    properties:
+                      value:
+                        type: string
+                        maxLength: 255
+                        description: Delivery point bar code determined from the input address.
+                      checkDigit:
+                        type: number
+                        maxLength: 1
+                        description: Check digit for the 11-digit delivery point bar code.
+                  applicableRegion:
+                    type: string
+                    maxLength: 255
+                    description: 'Value can be
+
+                      - Canada
+
+                      - US
+
+                      - International
+
+                      The values of errorCode and statusCode mean different things depending on the applicable region.
+
+                      Refer to the guide for more info.
+
+                      '
+                  errorCode:
+                    type: string
+                    maxLength: 255
+                    description: 'Four-character error code returned for Canadian, US and international addresses.
+
+                      For possible values, see Verification Services guide.
+
+                      The meaning of the errorCode depends on value of applicableRegion.
+
+                      '
+                  statusCode:
+                    type: string
+                    maxLength: 255
+                    description: 'Four-to-ten character status code returned for Canadian, US and international addresses.
+
+                      For possible values, see Verification Services guide.
+
+                      The meaning of the errorCode depends on value of applicableRegion.
+
+                      '
+                  careOf:
+                    type: string
+                    maxLength: 255
+                    description: Care of data dropped from the standard address.
+                  matchScore:
+                    type: integer
+                    maxLength: 1
+                    description: 'Indicates the probable correctness of the address match. Returned for U.S. and Canadian addresses.
+
+                      Returns a value from 0-9, where 0 is most likely to be correct and 9 is least
+
+                      likely to be correct, or -1 if there is no address match.
+
+                      '
+                  standardAddress:
+                    type: object
+                    properties:
+                      address1:
+                        type: object
+                        properties:
+                          withApartment:
+                            type: string
+                            maxLength: 255
+                            description: First line of the standardized address, including apartment information.
+                          withoutApartment:
+                            type: string
+                            maxLength: 255
+                            description: 'First line of the standardized address, without apartment information.
+
+                              Returned for U.S. and Canadian addresses.
+
+                              '
+                      address2:
+                        type: string
+                        maxLength: 255
+                        description: Second line of the standardized address.
+                      address3:
+                        type: string
+                        maxLength: 255
+                        description: Third line of the standardized address.
+                      address4:
+                        type: string
+                        maxLength: 255
+                        description: Fourth line of the standardized address.
+                      locality:
+                        type: string
+                        maxLength: 255
+                        description: Standardized city name.
+                      county:
+                        type: string
+                        maxLength: 255
+                        description: U.S. county if available.
+                      country:
+                        type: string
+                        maxLength: 255
+                        description: Standardized country name.
+                      csz:
+                        type: string
+                        maxLength: 255
+                        description: Standardized city, state or province, and ZIP +4 code or postal code line.
+                      isoCountry:
+                        type: string
+                        maxLength: 255
+                        description: Standardized two-character ISO country code.
+                      administrativeArea:
+                        type: string
+                        maxLength: 255
+                        description: U.S.P.S. standardized state or province abbreviation.
+                      postalCode:
+                        type: string
+                        maxLength: 255
+                        description: Standardized U.S. ZIP + 4 postal code.
+              errorInformation:
+                type: object
+                properties:
+                  reason:
+                    type: string
+                    description: "The reason of the status. Value can be\n  - `APARTMENT_NUMBER_NOT_FOUND`\n  - `INSUFFICIENT_ADDRESS_INFORMATION`\n  - `HOUSE_OR_BOX_NUMBER_NOT_FOUND`\n  - `MULTIPLE_ADDRESS_MATCHES`\n  - `BOX_NUMBER_NOT_FOUND`\n  - `ROUTE_SERVICE_NOT_FOUND`\n  - `STREET_NAME_NOT_FOUND`\n  - `POSTAL_CODE_NOT_FOUND`\n  - `UNVERIFIABLE_ADDRESS`\n  - `MULTIPLE_ADDRESS_MATCHES_INTERNATIONAL`\n  - `ADDRESS_MATCH_NOT_FOUND`\n  - `UNSUPPORTED_CHARACTER_SET`\n  - `INVALID_MERCHANT_CONFIGURATION`\n"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: This is the flattened JSON object field name/path that is either missing or invalid.
+                        reason:
+                          type: string
+                          description: "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n"
+        '400':
+          description: Invalid request
+          schema:
+            title: riskV1AddressVerificationsPost400Response
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - INVALID_REQUEST\n"
+              reason:
+                type: string
+                description: 'The reason of the status.
+
+
+                  Possible Values:
+
+                  - `MISSING_FIELD`
+
+                  - `INVALID_DATA`
+
+                  '
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: This is the flattened JSON object field name/path that is either missing or invalid.
+                    reason:
+                      type: string
+                      description: "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n"
+        '502':
+          description: Unexpected system error or system timeout.
+          schema:
+            title: riskV1AddressVerificationsPost502Response
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - SERVER_ERROR\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - SYSTEM_ERROR\n - SERVER_TIMEOUT\n - SERVICE_TIMEOUT\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+      x-example:
+        example0:
+          summary: Verbose Request with all fields
+          value:
+            clientReferenceInformation:
+              code: addressEg
+              comments: dav-All fields
+              partner:
+                developerId: '7891234'
+                solutionId: '89012345'
+            orderInformation:
+              billTo:
+                address1: 12301 research st
+                address2: '1'
+                address3: '2'
+                address4: '3'
+                locality: Austin
+                country: US
+                administrativeArea: TX
+                postalCode: '78759'
+              shipTo:
+                address1: '1715 oaks apt # 7'
+                address2: ' '
+                address3: ''
+                address4: ''
+                locality: SUPERIOR
+                country: US
+                administrativeArea: WI
+                postalCode: '29681'
+              lineItems:
+              - unitPrice: '120.50'
+                productSKU: '9966223'
+                productCode: electronic
+                productName: headset
+                quantity: '3'
+                passenger:
+                  firstname: ABCD
+                  lastname: DEF
+            buyerInformation:
+              merchantCustomerId: ABCD
+          responseValue:
+            addressVerificationInformation:
+              matchScore: '0'
+              standardAddress:
+                country: US
+                address1:
+                  withoutApartment: 1715 Oakes Ave
+                  withApartment: 1715 Oakes Ave Apt 7
+                postalCode: 54880-2466
+                county: Douglas
+                locality: Superior
+                csz: Superior WI  54880-2466
+                administrativeArea: WI
+                isoCountry: US
+              addressType: H
+              barCode:
+                checkDigit: '0'
+                value: '246607'
+              statusCode: S99000
+            clientReferenceInformation:
+              code: addressEg
+              comments: dav-All fields
+              partner:
+                developerId: '7891234'
+                solutionId: '89012345'
+            id: '5574744400096019003092'
+            status: COMPLETED
+            submitTimeUtc: '2019-05-10T07:47:20Z'
+        example1:
+          summary: Shipping Details not US or Canada
+          value:
+            clientReferenceInformation:
+              code: addressEg
+              comments: dav-All fields
+            orderInformation:
+              billTo:
+                address1: 12301 research st
+                address2: '1'
+                address3: '2'
+                address4: '3'
+                locality: Austin
+                country: US
+                administrativeArea: TX
+                postalCode: '78759'
+              shipTo:
+                address1: 4R.ILHA TERCEIRA,232-R/C-ESQ
+                address2: ' '
+                address3: ''
+                address4: ''
+                locality: Carcavelos
+                country: PT
+                administrativeArea: WI
+                postalCode: '29681'
+              lineItems:
+              - unitPrice: '120.50'
+                productSKU: '9966223'
+                productCode: electronic
+                productName: headset
+                quantity: '3'
+                passenger:
+                  firstname: ABCD
+                  lastname: DEF
+            buyerInformation:
+              merchantCustomerId: ABCD
+          responseValue:
+            addressVerificationInformation:
+              matchScore: '6'
+              standardAddress:
+                country: Portugal
+                address2: C Esq - R
+                address1:
+                  withApartment: R Ilha Terceira 232 - C Esq - R
+                postalCode: 2775-796
+                locality: Carcavelos
+                administrativeArea: Lisboa
+                isoCountry: PT
+              addressType: S
+              statusCode: SE600
+            clientReferenceInformation:
+              code: addressEg
+            id: '5574744458726021803092'
+            status: COMPLETED
+            submitTimeUtc: '2019-05-10T07:47:26Z'
+        example2:
+          summary: Canadian Billing Details
+          value:
+            clientReferenceInformation:
+              code: addressEg
+              comments: dav-All fields
+            orderInformation:
+              billTo:
+                address1: 1650 Burton Ave
+                address2: ''
+                address3: ''
+                address4: ''
+                locality: VICTORIA
+                country: CA
+                administrativeArea: BC
+                postalCode: V8T 2N6
+              lineItems:
+              - unitPrice: '120.50'
+                productSKU: '9966223'
+                productCode: electronic
+                productName: headset
+                quantity: '3'
+                passenger:
+                  firstname: ABCD
+                  lastname: DEF
+            buyerInformation:
+              merchantCustomerId: ABCD
+          responseValue:
+            addressVerificationInformation:
+              matchScore: '0'
+              standardAddress:
+                country: CA
+                address1:
+                  withoutApartment: 1650 Burton Ave
+                  withApartment: 1650 Burton Ave
+                postalCode: V8T2N6
+                locality: Victoria
+                csz: Victoria BC  V8T 2N6
+                administrativeArea: BC
+                isoCountry: CA
+              addressType: S
+              statusCode: S0000
+            clientReferenceInformation:
+              code: addressEg
+            id: '5574744407796019403092'
+            status: COMPLETED
+            submitTimeUtc: '2019-05-10T07:47:20Z'
+        example3:
+          summary: Multiple Line Items
+          value:
+            clientReferenceInformation:
+              code: addressEg
+              comments: dav-All fields
+            orderInformation:
+              billTo:
+                address1: 12301 research st
+                address2: '1'
+                address3: '2'
+                address4: '3'
+                locality: Austin
+                country: US
+                administrativeArea: TX
+                postalCode: '78759'
+              shipTo:
+                address1: PO Box 9088
+                address2: ''
+                address3: ''
+                address4: ''
+                locality: San Jose
+                country: US
+                administrativeArea: CA
+                postalCode: '95132'
+              lineItems:
+              - unitPrice: '120.50'
+                productSKU: '9966223'
+                productCode: electronix
+                productName: headset
+                quantity: '3'
+              - unitPrice: '10.50'
+                productSKU: '9966226'
+                productCode: electronic
+                productName: wwrdf
+                quantity: '2'
+            buyerInformation:
+              merchantCustomerId: QWERTY
+          responseValue:
+            addressVerificationInformation:
+              matchScore: '0'
+              standardAddress:
+                country: US
+                address1:
+                  withoutApartment: PO Box 9088
+                  withApartment: PO Box 9088
+                postalCode: 95157-0088
+                county: Santa Clara
+                locality: San Jose
+                csz: San Jose CA  95157-0088
+                administrativeArea: CA
+                isoCountry: US
+              addressType: P
+              barCode:
+                checkDigit: '1'
+                value: 008888
+              statusCode: S90000
+            clientReferenceInformation:
+              code: addressEg
+            id: '5574744469676022203092'
+            status: COMPLETED
+            submitTimeUtc: '2019-05-10T07:47:27Z'
+        example4:
+          summary: Apartment Number Missing or Not Found
+          value:
+            clientReferenceInformation:
+              code: addressEg
+              comments: dav-error response check
+            orderInformation:
+              billTo:
+                address1: 6th 4th ave
+                address2: ''
+                locality: rensslaer
+                country: US
+                administrativeArea: NY
+                postalCode: '12144'
+              lineItems:
+              - unitPrice: '120.50'
+                productSKU: '996633'
+                productCode: handling
+                productName: qwerty
+                quantity: '3'
+          responseValue:
+            addressVerificationInformation:
+              errorCode: E420
+              statusCode: S20000
+            clientReferenceInformation:
+              code: addressEg
+            errorInformation:
+              reason: APARTMENT_NUMBER_NOT_FOUND
+              message: Apartment number missing or not found.
+            id: '5574744502546023003092'
+            status: DECLINED
+            submitTimeUtc: '2019-05-10T07:47:30Z'
+        example5:
+          summary: Address Match Not Found
+          value:
+            clientReferenceInformation:
+              code: addressEg
+              comments: dav-error response check
+            orderInformation:
+              billTo:
+                address1: 'Apt C '
+                address2: ''
+                locality: Glendale
+                country: US
+                administrativeArea: CA
+                postalCode: '91204'
+          responseValue:
+            addressVerificationInformation:
+              errorCode: E302
+              statusCode: S00000
+            clientReferenceInformation:
+              code: addressEg
+            errorInformation:
+              reason: ADDRESS_MATCH_NOT_FOUND
+              message: Address match not found.
+            id: '5574744508936023403092'
+            status: DECLINED
+            submitTimeUtc: '2019-05-10T07:47:31Z'
+  /risk/v1/export-compliance-inquiries:
+    post:
+      summary: Validate export compliance
+      description: 'This call checks customer data against specified watch lists to ensure export compliance.
+
+        '
+      operationId: validateExportCompliance
+      tags:
+      - Verification
+      x-devcenter-metaData:
+        categoryTag: Risk_Management
+      parameters:
+      - name: validateExportComplianceRequest
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            clientReferenceInformation:
+              type: object
+              properties:
+                code:
+                  type: string
+                  maxLength: 59
+                  description: 'Merchant-generated order reference or tracking number. It is recommended that you send a unique value for each
+
+                    transaction so that you can perform meaningful searches for the transaction.
+
+
+                    #### Used by
+
+                    **Authorization**
+
+                    Required field.
+
+
+                    #### PIN Debit
+
+                    Requests for PIN debit reversals need to use the same merchant reference number that was used in the transaction that is being
+
+                    reversed.
+
+
+                    Required field for all PIN Debit requests (purchase, credit, and reversal).
+
+
+                    #### FDC Nashville Global
+
+                    Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports.
+
+                    '
+                comments:
+                  type: string
+                  maxLength: 255
+                  description: 'Brief description of the order or any comment you wish to add to the order.
+
+                    '
+                partner:
+                  type: object
+                  properties:
+                    developerId:
+                      type: string
+                      maxLength: 8
+                      description: 'Identifier for the developer that helped integrate a partner solution to CyberSource.
+
+
+                        Send this value in all requests that are sent through the partner solutions built by that developer.
+
+                        CyberSource assigns the ID to the developer.
+
+
+                        **Note** When you see a developer ID of 999 in reports, the developer ID that was submitted is incorrect.
+
+                        '
+                    solutionId:
+                      type: string
+                      maxLength: 8
+                      description: 'Identifier for the partner that is integrated to CyberSource.
+
+
+                        Send this value in all requests that are sent through the partner solution. CyberSource assigns the ID to the partner.
+
+
+                        **Note** When you see a solutionId of 999 in reports, the solutionId that was submitted is incorrect.
+
+                        '
+            orderInformation:
+              type: object
+              properties:
+                billTo:
+                  type: object
+                  required:
+                  - address1
+                  - locality
+                  - country
+                  - postalCode
+                  - email
+                  properties:
+                    address1:
+                      type: string
+                      maxLength: 60
+                      description: 'Payment card billing street address as it appears on the credit card issuer''s records.
+
+
+                        #### SEPA
+
+                        Required for Create Mandate and Import Mandate
+
+
+                        #### Atos
+
+                        This field must not contain colons (:).
+
+
+                        #### CyberSource through VisaNet
+
+                        **Important** When you populate orderInformation.billTo.address1 and orderInformation.billTo.address2,
+
+                        CyberSource through VisaNet concatenates the two values. If the concatenated value exceeds 40 characters,
+
+                        CyberSource through VisaNet truncates the value at 40 characters before sending it to Visa and the issuing bank.
+
+                        Truncating this value affects AVS results and therefore might also affect risk decisions and chargebacks.
+
+                        Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet
+
+                        accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations
+
+                        of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the
+
+                        credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless
+
+                        ASCII characters for transmission to the credit card networks.
+
+
+                        #### FDMS Nashville
+
+                        When the street name is numeric, it must be sent in numeric format. For example, if the address is _One First Street_,
+
+                        it must be sent as _1 1st Street_.
+
+
+                        Required if keyed; not used if swiped.
+
+
+                        String (20)
+
+
+                        #### TSYS Acquiring Solutions
+
+                        Required when `processingInformation.billPaymentOptions.billPayment=true` and `pointOfSaleInformation.entryMode=keyed`.
+
+
+                        #### All other processors:
+
+                        Optional.
+
+                        String (60)
+
+
+                        #### For Payouts
+
+                        This field may be sent only for FDC Compass.
+
+
+                        **Important** It is your responsibility to determine whether a field is required for the transaction you are requesting.
+
+                        '
+                    address2:
+                      type: string
+                      maxLength: 60
+                      description: 'Used for additional address information. For example: _Attention: Accounts Payable_
+
+                        Optional field.
+
+
+                        For Payouts: This field may be sent only for FDC Compass.
+
+
+                        #### Atos
+
+                        This field must not contain colons (:).
+
+
+                        #### CyberSource through VisaNet
+
+                        **Important** When you populate `orderInformation.billTo.address1` and `orderInformation.billTo.address2`,
+
+                        CyberSource through VisaNet concatenates the two values. If the concatenated value exceeds 40 characters,
+
+                        CyberSource through VisaNet truncates the value at 40 characters before sending it to Visa and the issuing bank.
+
+                        Truncating this value affects AVS results and therefore might also affect risk decisions and chargebacks.
+
+                        Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet
+
+                        accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations
+
+                        of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the
+
+                        credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless
+
+                        ASCII characters for transmission to the credit card networks.
+
+
+                        #### Chase Paymentech Solutions, FDC Compass, and TSYS Acquiring Solutions
+
+                        This value is used for AVS.
+
+
+                        #### FDMS Nashville
+
+                        `orderInformation.billTo.address1` and `orderInformation.billTo.address2` together cannot exceed 20 characters.
+
+                        String (20)
+
+
+                        #### All Other Processors
+
+                        String (60)
+
+                        '
+                    address3:
+                      type: string
+                      maxLength: 60
+                      description: 'Additional address information (third line of the billing address)
+
+                        '
+                    address4:
+                      type: string
+                      maxLength: 60
+                      description: 'Additional address information (fourth line of the billing address)
+
+                        '
+                    administrativeArea:
+                      type: string
+                      maxLength: 50
+                      description: 'State or province of the billing address. Use the [State, Province, and Territory Codes for the United States and Canada](https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf).
+
+
+                        For Payouts: This field may be sent only for FDC Compass.
+
+
+                        ##### CyberSource through VisaNet
+
+                        Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet
+
+                        accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations
+
+                        of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the
+
+                        credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless
+
+                        ASCII characters for transmission to the credit card networks.
+
+
+                        **Important** It is your responsibility to determine whether a field is required for the transaction you are requesting.
+
+
+                        #### Chase Paymentech Solutions
+
+                        Optional field.
+
+
+                        ####  Credit Mutuel-CIC
+
+                        Optional field.
+
+
+                        #### OmniPay Direct
+
+                        Optional field.
+
+
+                        #### SIX
+
+                        Optional field.
+
+
+                        #### TSYS Acquiring Solutions
+
+                        Required when `processingInformation.billPaymentOptions.billPayment=true` and `pointOfSaleInformation.entryMode=keyed`.
+
+
+                        #### Worldpay VAP
+
+                        Optional field.
+
+
+                        #### All other processors
+
+                        Not used.
+
+                        '
+                    country:
+                      type: string
+                      maxLength: 3
+                      description: 'Payment card billing country. Use the two-character [ISO Standard Country Codes](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf).
+
+
+                        #### SEPA/BACS
+
+                        Required for Create Mandate and Import Mandate
+
+
+                        #### CyberSource through VisaNet
+
+                        Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet
+
+                        accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations
+
+                        of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the
+
+                        credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless ASCII
+
+                        characters for transmission to the credit card networks.
+
+
+                        **Important** It is your responsibility to determine whether a field is required for the transaction you are requesting.
+
+
+                        #### Chase Paymentech Solutions
+
+                        Optional field.
+
+
+                        ####  Credit Mutuel-CIC
+
+                        Optional field.
+
+
+                        #### OmniPay Direct
+
+                        Optional field.
+
+
+                        #### SIX
+
+                        Optional field.
+
+
+                        #### TSYS Acquiring Solutions
+
+                        Required when `processingInformation.billPaymentOptions.billPayment=true` and `pointOfSaleInformation.entryMode=keyed`.
+
+
+                        #### Worldpay VAP
+
+                        Optional field.
+
+
+                        #### All other processors
+
+                        Not used.
+
+                        '
+                    locality:
+                      type: string
+                      maxLength: 50
+                      description: 'Payment card billing city.
+
+
+                        #### SEPA
+
+                        Required for Create Mandate and Import Mandate
+
+
+                        #### Atos
+
+                        This field must not contain colons (:).
+
+
+                        #### CyberSource through VisaNet
+
+                        Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless ASCII characters for transmission to the credit card networks.
+
+
+                        #### For Payouts:
+
+                        This field may be sent only for FDC Compass.
+
+
+                        #### Chase Paymentech Solutions
+
+                        Optional field.
+
+
+                        ####  Credit Mutuel-CIC
+
+                        Optional field.
+
+
+                        #### OmniPay Direct
+
+                        Optional field.
+
+
+                        #### SIX
+
+                        Optional field.
+
+
+                        #### TSYS Acquiring Solutions
+
+                        Required when `processingInformation.billPaymentOptions.billPayment=true` and `pointOfSaleInformation.entryMode=keyed`.
+
+
+                        #### Worldpay VAP
+
+                        Optional field.
+
+
+                        #### All other processors
+
+                        Not used.
+
+                        '
+                    postalCode:
+                      type: string
+                      maxLength: 10
+                      description: "Postal code for the billing address. The postal code must consist of 5 to 9 digits.\n\nWhen the billing country is the U.S., the 9-digit postal code must follow this format:\n[5 digits][dash][4 digits]\n\n**Example** `12345-6789`\n\nWhen the billing country is Canada, the 6-digit postal code must follow this format:\n[alpha][numeric][alpha][space][numeric][alpha][numeric]\n\n**Example** `A1B 2C3`\n\n**Important** It is your responsibility to determine whether a field is required for the transaction you are requesting.\n\n#### SEPA\nRequired for Create Mandate and Import Mandate\n\n#### For Payouts:\n This field may be sent only for FDC Compass.\n\n#### American Express Direct\nBefore sending the postal code to the processor, CyberSource removes all nonalphanumeric characters and, if the remaining value is longer than nine characters, truncates the value starting from the right side.\n\n#### Atos\nThis field must not contain colons (:).\n\n#### CyberSource through VisaNet\nCredit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet\naccepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations\nof the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the\ncredit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless ASCII\ncharacters for transmission to the credit card networks.\n\n#### FDMS Nashville\nRequired if `pointOfSaleInformation.entryMode=keyed` and the address is in the U.S. or Canada.\nOptional if `pointOfSaleInformation.entryMode=keyed` and the address is **not** in the U.S. or Canada.\nNot used if swiped.\n\n#### RBS WorldPay Atlanta:\nFor best card-present keyed rates, send the postal code if `pointOfSaleInformation.entryMode=keyed`.\n\n#### TSYS Acquiring Solutions\nRequired when `processingInformation.billPaymentOptions.billPayment=true` and `pointOfSaleInformation.entryMode=keyed`.\n\n#### All other processors:\nOptional field.\n"
+                    company:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          maxLength: 60
+                          description: 'Company name of person buying the product.
+
+                            Important: This field or billTo.firstName and billTo.lastName must be present. Else, your request will fail.
+
+                            '
+                    firstName:
+                      type: string
+                      maxLength: 60
+                      description: 'Customer''s first name. This name must be the same as the name on the card.
+
+
+                        **Important** It is your responsibility to determine whether a field is required for the transaction you are requesting.
+
+
+                        #### SEPA
+
+                        Required for Create Mandate and Import Mandate
+
+                        #### BACS
+
+                        Required for Import Mandate
+
+
+                        #### CyberSource Latin American Processing
+
+                        **Important** For an authorization request, CyberSource Latin American Processing concatenates `orderInformation.billTo.firstName` and `orderInformation.billTo.lastName`. If the concatenated value exceeds 30 characters, CyberSource Latin American Processing declines the authorization request.\
+
+                        **Note** CyberSource Latin American Processing is the name of a specific processing connection that CyberSource supports. In the CyberSource API documentation, CyberSource Latin American Processing does not refer to the general topic of processing in Latin America. The information in this field description is for the specific processing connection called _CyberSource Latin American Processing_. It is not for any other Latin American processors that CyberSource supports.
+
+
+                        #### CyberSource through VisaNet
+
+                        Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless ASCII characters for transmission to the credit card networks.
+
+
+                        #### For Payouts:
+
+                        This field may be sent only for FDC Compass.
+
+
+                        #### Chase Paymentech Solutions
+
+                        Optional field.
+
+
+                        ####  Credit Mutuel-CIC
+
+                        Optional field.
+
+
+                        #### OmniPay Direct
+
+                        Optional field.
+
+
+                        #### SIX
+
+                        Optional field.
+
+
+                        #### TSYS Acquiring Solutions
+
+                        Required when `processingInformation.billPaymentOptions.billPayment=true` and `pointOfSaleInformation.entryMode=keyed`.
+
+
+                        #### Worldpay VAP
+
+                        Optional field.
+
+
+                        #### All other processors
+
+                        Not used.
+
+                        '
+                    lastName:
+                      type: string
+                      maxLength: 60
+                      description: 'Customer''s last name. This name must be the same as the name on the card.
+
+
+                        **Important** It is your responsibility to determine whether a field is required for the transaction you are requesting.
+
+
+                        #### SEPA
+
+                        Required for Create Mandate and Import Mandate
+
+                        #### BACS
+
+                        Required for Import Mandate
+
+                        #### Chase Paymentech Solutions
+
+                        Optional field.
+
+
+                        ####  Credit Mutuel-CIC
+
+                        Optional field.
+
+
+                        #### CyberSource Latin American Processing
+
+                        **Important** For an authorization request, CyberSource Latin American Processing concatenates `orderInformation.billTo.firstName` and `orderInformation.billTo.lastName`. If the concatenated value exceeds 30 characters, CyberSource Latin American Processing declines the authorization request.\
+
+                        **Note** CyberSource Latin American Processing is the name of a specific processing connection that CyberSource supports. In the CyberSource API documentation, CyberSource Latin American Processing does not refer to the general topic of processing in Latin America. The information in this field description is for the specific processing connection called CyberSource Latin American Processing. It is not for any other Latin American processors that CyberSource supports.
+
+
+                        #### CyberSource through VisaNet
+
+                        Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless ASCII characters for transmission to the credit card networks.
+
+
+                        #### For Payouts:
+
+                        This field may be sent only for FDC Compass.
+
+
+                        #### OmniPay Direct
+
+                        Optional field.
+
+
+                        #### RBS WorldPay Atlanta
+
+                        Optional field.
+
+
+                        #### SIX
+
+                        Optional field.
+
+
+                        #### TSYS Acquiring Solutions
+
+                        Required when `processingInformation.billPaymentOptions.billPayment=true` and `pointOfSaleInformation.entryMode=keyed`.
+
+
+                        #### Worldpay VAP
+
+                        Optional field.
+
+
+                        #### All other processors
+
+                        Not used.
+
+                        '
+                    email:
+                      type: string
+                      maxLength: 255
+                      description: 'Customer''s email address, including the full domain name.
+
+
+                        #### CyberSource through VisaNet
+
+                        Credit card networks cannot process transactions that contain non-ASCII characters. CyberSource through VisaNet accepts and stores non-ASCII characters correctly and displays them correctly in reports. However, the limitations of the credit card networks prevent CyberSource through VisaNet from transmitting non-ASCII characters to the credit card networks. Therefore, CyberSource through VisaNet replaces non-ASCII characters with meaningless ASCII characters for transmission to the credit card networks.
+
+
+                        **Important** It is your responsibility to determine whether a field is required for the transaction you are requesting.
+
+
+                        #### Invoicing
+
+                        Email address for the customer for sending the invoice. If the invoice is in SENT status and email is updated, the old email customer payment link won''t work and you must resend the invoice with the new payment link.
+
+
+                        #### Chase Paymentech Solutions
+
+                        Optional field.
+
+
+                        ####  Credit Mutuel-CIC
+
+                        Optional field.
+
+
+                        #### OmniPay Direct
+
+                        Optional field.
+
+
+                        #### SIX
+
+                        Optional field.
+
+
+                        #### TSYS Acquiring Solutions
+
+                        Required when `processingInformation.billPaymentOptions.billPayment=true` and `pointOfSaleInformation.entryMode=keyed`.
+
+
+                        #### Worldpay VAP
+
+                        Optional field.
+
+
+                        #### All other processors
+
+                        Not used.
+
+                        '
+                shipTo:
+                  type: object
+                  properties:
+                    country:
+                      type: string
+                      description: 'Country of the shipping address. Use the two-character [ISO Standard Country Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf)
+
+
+                        Required field for authorization if any shipping address information is included in the request; otherwise, optional.
+
+
+                        #### Tax Calculation
+
+                        Optional field for U.S., Canadian, international tax, and value added taxes.
+
+                        Billing address objects will be used to determine the cardholder''s location when shipTo objects are not present.
+
+                        '
+                      maxLength: 3
+                    firstName:
+                      type: string
+                      maxLength: 60
+                      description: 'First name of the recipient.
+
+
+                        #### Litle
+
+                        Maximum length: 25
+
+
+                        #### All other processors
+
+                        Maximum length: 60
+
+
+                        Optional field.
+
+                        '
+                    lastName:
+                      type: string
+                      maxLength: 60
+                      description: 'Last name of the recipient.
+
+
+                        #### Litle
+
+                        Maximum length: 25
+
+
+                        #### All other processors
+
+                        Maximum length: 60
+
+
+                        Optional field.
+
+                        '
+                lineItems:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      unitPrice:
+                        type: string
+                        maxLength: 15
+                        description: 'Per-item price of the product. If line items are present in the request, the unit price is a mandatory field.
+
+                          '
+                      allowedExportCountries:
+                        type: array
+                        items:
+                          type: string
+                          description: 'Comma-separated list of ISO country codes for countries to which the product can be exported.
+
+
+                            If country codes are not specified, or if this field is not included, the U.S. government''s country
+
+                            code list is used.
+
+
+                            **Note** The default list of countries restricted by the U.S. always applies. Any country not
+
+                            specifically added to the export field is considered restricted.
+
+                            '
+                      restrictedExportCountries:
+                        type: array
+                        items:
+                          type: string
+                          description: 'Comma-separated list of ISO country codes for countries to which the product cannot be exported.
+
+
+                            **Note** If the export field is also present, the content of the `restrictedExportCountries`
+
+                            field overrides the content of export.
+
+                            '
+                      quantity:
+                        type: integer
+                        minimum: 1
+                        maximum: 999999999
+                        default: 1
+                        description: 'Number of units for this order. Must be a non-negative integer.
+
+
+                          The default is `1`. For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`),
+
+                          this field is required when `orderInformation.lineItems[].productCode` is not `default` or one of the other values
+
+                          related to shipping and/or handling.
+
+
+                          #### Tax Calculation
+
+                          Optional field for U.S., Canadian, international tax, and value added taxes.
+
+                          '
+                      productSKU:
+                        type: string
+                        maxLength: 255
+                        description: 'Product identifier code. Also known as the Stock Keeping Unit (SKU) code for the product.
+
+
+                          For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`), this field is required when `orderInformation.lineItems[].productCode` is not set to **default** or one of the other values that are related to shipping and/or handling.
+
+
+                          #### Tax Calculation
+
+                          Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                          For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`), this field is
+
+                          required when `orderInformation.lineItems[].productCode` is not `default` or one of the values related to shipping and/or handling.
+
+                          '
+                      productRisk:
+                        type: string
+                        maxLength: 6
+                        description: 'Indicates the level of risk for the product. This field can contain one of the following values:
+
+                          - `low`: The product is associated with few chargebacks.
+
+                          - `normal`: The product is associated with a normal number of chargebacks.
+
+                          - `high`: The product is associated with many chargebacks.
+
+                          '
+                      productName:
+                        type: string
+                        maxLength: 255
+                        description: 'For an authorization or capture transaction (`processingOptions.capture` is `true` or `false`),
+
+                          this field is required when `orderInformation.lineItems[].productCode` is not `default` or one of
+
+                          the other values that are related to shipping and/or handling.
+
+
+                          #### Tax Calculation
+
+                          Optional field for U.S., Canadian, international tax, and value added taxes.
+
+                          '
+                      productCode:
+                        type: string
+                        maxLength: 255
+                        description: 'Type of product. The value for this field is used to identify the product category (electronic, handling, physical,
+
+                          service, or shipping). The default value is `default`.
+
+
+                          If you are performing an authorization transaction (`processingOptions.capture` is set to `false`), and you set
+
+                          this field to a value other than `default` or one of the values related to shipping and/or handling, then
+
+                          `orderInformation.lineItems[].quantity`, `orderInformation.lineItems[].productName`, and
+
+                          `orderInformation.lineItems[].productSku` fields are required.
+
+
+                          Optional field.
+
+
+                          #### Tax Calculation
+
+                          Optional field for U.S., Canadian, international tax, and value added taxes.
+
+
+                          The Product Codes for the tax service are located in the Cybersource Tax Codes guide. Contact Customer Support to request the guide. If you don''t send a tax service Product Code in your tax request, product-based rules or exemptions will not be applied and the transaction will default to fully taxable in the locations where you''ve indicated you need to collect tax [by way of nexus, no nexus, or seller registration number fields].
+
+                          '
+            buyerInformation:
+              type: object
+              properties:
+                merchantCustomerId:
+                  type: string
+                  maxLength: 100
+                  description: 'Optional customer''s account ID, tracking number, reward number, or other unique number
+
+                    that you assign to the customer for the purpose that you choose
+
+                    '
+            deviceInformation:
+              type: object
+              properties:
+                ipAddress:
+                  type: string
+                  maxLength: 45
+                  description: 'IP address of the customer.
+
+
+                    #### Used by
+
+                    **Authorization, Capture, and Credit**
+
+                    Optional field.
+
+                    '
+                hostName:
+                  type: string
+                  maxLength: 60
+                  description: DNS resolved hostname from `ipAddress`.
+            exportComplianceInformation:
+              type: object
+              properties:
+                addressOperator:
+                  type: string
+                  description: 'Parts of the customer''s information that must match with an entry in the DPL (denied parties list)
+
+                    before a match occurs. This field can contain one of the following values:
+
+                    - AND: (default) The customer''s name or company and the customer''s address must appear in the database.
+
+                    - OR: The customer''s name must appear in the database.
+
+                    - IGNORE: You want the service to detect a match only of the customer''s name or company but not of the address.
+
+                    '
+                weights:
+                  type: object
+                  properties:
+                    address:
+                      type: string
+                      maxLength: 6
+                      description: 'Degree of correlation between a customer''s address and an entry in the DPL
+
+                        before a match occurs. This field can contain one of the following values:
+
+                        - exact: The address must be identical to the entry in the DPL.
+
+                        - high: (default) The address cannot differ significantly from the entry in the DPL.
+
+                        - medium: The address can differ slightly more from the entry in the DPL.
+
+                        - low: The address can differ significantly from the entry in the DPL.
+
+                        '
+                    company:
+                      type: string
+                      maxLength: 6
+                      description: 'Degree of correlation between a company address and an entry in the DPL
+
+                        before a match occurs. This field can contain one of the following values:
+
+                        - exact: The company name must be identical to the entry in the DPL.
+
+                        - high: (default) The company name cannot differ significantly from the entry in the DPL.
+
+                        - medium: The company name can differ slightly more from the entry in the DPL.
+
+                        - low: The company name can differ significantly from the entry in the DPL.
+
+                        '
+                    name:
+                      type: string
+                      maxLength: 6
+                      description: 'Degree of correlation between a customer''s name and an entry in the DPL
+
+                        before a match occurs. This field can contain one of the following values:
+
+                        - exact: The name must be identical to the entry in the DPL.
+
+                        - high: (default) The name cannot differ significantly from the entry in the DPL.
+
+                        - medium: The name can differ slightly more from the entry in the DPL.
+
+                        - low: The name can differ significantly the entry in the DPL.
+
+                        '
+                sanctionLists:
+                  type: array
+                  items:
+                    type: string
+                    maxLength: 255
+                  description: 'Use this field to specify which list(s) you want checked with the request.
+
+                    The reply will include the list name as well as the response data.
+
+                    To check against multiple lists, enter multiple list codes separated by a caret (^).
+
+                    For more information, see "Restricted and Denied Parties List," page 68.
+
+                    '
+      responses:
+        '201':
+          description: Successful response
+          schema:
+            title: riskV1ExportComplianceInquiriesPost201Response
+            type: object
+            properties:
+              _links:
+                type: object
+                properties:
+                  self:
+                    type: object
+                    properties:
+                      href:
+                        type: string
+                        description: This is the endpoint of the resource that was created by the successful request.
+                      method:
+                        type: string
+                        description: '`method` refers to the HTTP method that you can send to the `self` endpoint to retrieve details of the resource.'
+              id:
+                type: string
+                maxLength: 26
+                description: 'An unique identification number generated by Cybersource to identify the submitted request. Returned by all services.
+
+                  It is also appended to the endpoint of the resource.
+
+                  On incremental authorizations, this value with be the same as the identification number returned in the original authorization response.
+
+                  '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              submitTimeLocal:
+                type: string
+                description: Time that the transaction was submitted in local time. Generated by Cybersource.
+              status:
+                type: string
+                description: 'The status for the call can be:
+
+                  - COMPLETED
+
+                  - INVALID_REQUEST
+
+                  - DECLINED
+
+                  '
+              message:
+                type: string
+                description: "The message describing the reason of the status. Value can be\n  - The customer matched the Denied Parties List\n  - The Export bill_country/ship_country  match\n  - Export email_country match\n  - Export hostname_country/ip_country match\n"
+              clientReferenceInformation:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    maxLength: 59
+                    description: 'Merchant-generated order reference or tracking number. It is recommended that you send a unique value for each
+
+                      transaction so that you can perform meaningful searches for the transaction.
+
+
+                      #### Used by
+
+                      **Authorization**
+
+                      Required field.
+
+
+                      #### PIN Debit
+
+                      Requests for PIN debit reversals need to use the same merchant reference number that was used in the transaction that is being
+
+                      reversed.
+
+
+                      Required field for all PIN Debit requests (purchase, credit, and reversal).
+
+
+                      #### FDC Nashville Global
+
+                      Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports.
+
+                      '
+                  comments:
+                    type: string
+                    maxLength: 255
+                    description: 'Brief description of the order or any comment you wish to add to the order.
+
+                      '
+                  partner:
+                    type: object
+                    properties:
+                      developerId:
+                        type: string
+                        maxLength: 8
+                        description: 'Identifier for the developer that helped integrate a partner solution to CyberSource.
+
+
+                          Send this value in all requests that are sent through the partner solutions built by that developer.
+
+                          CyberSource assigns the ID to the developer.
+
+
+                          **Note** When you see a developer ID of 999 in reports, the developer ID that was submitted is incorrect.
+
+                          '
+                      solutionId:
+                        type: string
+                        maxLength: 8
+                        description: 'Identifier for the partner that is integrated to CyberSource.
+
+
+                          Send this value in all requests that are sent through the partner solution. CyberSource assigns the ID to the partner.
+
+
+                          **Note** When you see a solutionId of 999 in reports, the solutionId that was submitted is incorrect.
+
+                          '
+              exportComplianceInformation:
+                type: object
+                properties:
+                  ipCountryConfidence:
+                    type: integer
+                    minimum: -1
+                    maximum: 100
+                    description: 'Likelihood that the country associated with the customer''s IP address was identified correctly.
+
+                      Returns a value from 1–100, where 100 indicates the highest likelihood.
+
+                      If the country cannot be determined, the value is –1.
+
+                      '
+                  infoCodes:
+                    type: array
+                    items:
+                      type: string
+                      maxLength: 255
+                    description: 'Returned when the Denied Parties List check (first two codes) or the export service (all others) would have
+
+                      declined the transaction. This field can contain one or more of these values:
+
+                      - `MATCH-DPC`: Denied Parties List match.
+
+                      - `UNV-DPC`: Denied Parties List unavailable.
+
+                      - `MATCH-BCO`: Billing country restricted.
+
+                      - `MATCH-EMCO`: Email country restricted.
+
+                      - `MATCH-HCO`: Host name country restricted.
+
+                      - `MATCH-IPCO`: IP country restricted.
+
+                      - `MATCH-SCO`: Shipping country restricted.
+
+                      '
+                  watchList:
+                    type: object
+                    properties:
+                      matches:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            addresses:
+                              type: array
+                              items:
+                                type: string
+                                maxLength: 255
+                              description: 'Address found on the list specified in export_matchN_list
+
+                                for the entity (name and address) in the request.
+
+                                '
+                            sanctionList:
+                              type: string
+                              maxLength: 255
+                              description: 'List on which the first Denied Parties List check match appears.
+
+                                For a list of codes, see "Denied Parties List Check Codes," page 56.
+
+                                '
+                            aliases:
+                              type: array
+                              items:
+                                type: string
+                                maxLength: 255
+                              description: 'Name found on the list specified in export_matchN_list for the entity (name and address) in the request.
+
+                                '
+                            programs:
+                              type: array
+                              items:
+                                type: string
+                                maxLength: 255
+                              description: Sub-lists matched by the order data. List members are separated by carets (^).
+              errorInformation:
+                type: object
+                properties:
+                  reason:
+                    type: string
+                    description: "The reason of the status. Value can be\n  - `CUSTOMER_WATCHLIST_MATCH`\n  - `ADDRESS_COUNTRY_WATCHLIST_MATCH`\n  - `EMAIL_COUNTRY_WATCHLIST_MATCH`\n  - `IP_COUNTRY_WATCHLIST_MATCH`\n  - `INVALID_MERCHANT_CONFIGURATION`\n"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: This is the flattened JSON object field name/path that is either missing or invalid.
+                        reason:
+                          type: string
+                          description: "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n"
+        '400':
+          description: Invalid request.
+          schema:
+            title: riskV1ExportComplianceInquiriesPost400Response
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - INVALID_REQUEST\n"
+              reason:
+                type: string
+                description: 'The reason of the status.
+
+
+                  Possible Values:
+
+                  - `MISSING_FIELD`
+
+                  - `INVALID_DATA`
+
+                  '
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: This is the flattened JSON object field name/path that is either missing or invalid.
+                    reason:
+                      type: string
+                      description: "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n"
+        '502':
+          description: Unexpected system error or system timeout.
+          schema:
+            title: riskV1ExportComplianceInquiriesPost502Response
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - SERVER_ERROR\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - SYSTEM_ERROR\n - SERVER_TIMEOUT\n - SERVICE_TIMEOUT\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+      x-example:
+        example0:
+          summary: Customer Match Denied Parties List
+          value:
+            clientReferenceInformation:
+              code: verification example
+              comments: Export-basic
+              partner:
+                developerId: '7891234'
+                solutionId: '89012345'
+            orderInformation:
+              billTo:
+                address1: 901 Metro Centre Blvd
+                locality: Foster City
+                country: US
+                administrativeArea: CA
+                postalCode: '94404'
+                email: test@domain.com
+                firstName: ANDREE
+                lastName: AGNESE
+                company:
+                  name: A & C International Trade, Inc
+              shipTo:
+                address1: 114B
+                address2: Grifendor House
+                locality: Hogward University
+                country: IN
+                firstName: DumbelDore
+                lastName: Albus
+              lineItems:
+              - unitPrice: '120.50'
+                productSKU: '123456'
+                productCode: physical_software
+                productName: Qwe
+                quantity: '3'
+          responseValue:
+            clientReferenceInformation:
+              code: verification example
+              comments: Export-basic
+              partner:
+                developerId: '7891234'
+                solutionId: '89012345'
+            errorInformation:
+              reason: CUSTOMER_WATCHLIST_MATCH
+              message: The customer matched the Denied Parties List
+            exportComplianceInformation:
+              infoCodes:
+              - MATCH-DPC
+            id: '5585068111056392703092'
+            status: DECLINED
+            submitTimeUtc: '2019-05-22T06:33:31Z'
+        example1:
+          summary: Export Compliance Information Provided
+          value:
+            clientReferenceInformation:
+              code: verification example
+              comments: Export -fields
+            orderInformation:
+              billTo:
+                address1: 901 Metro Centre Blvd
+                locality: Foster City
+                country: US
+                administrativeArea: CA
+                postalCode: '94404'
+                email: test@domain.com
+                firstName: ANDREE
+                lastName: AGNESE
+                company:
+                  name: A & C International Trade, Inc
+              shipTo:
+                address1: 114B
+                address2: Grifendor House
+                locality: Hogward University
+                country: IN
+                firstName: DumbelDore
+                lastName: Albus
+              lineItems:
+              - unitPrice: '120.50'
+                productSKU: '123456'
+                productCode: physical_software
+                productName: Qwe
+                quantity: '3'
+            exportComplianceInformation:
+              addressOperator: and
+              weights:
+                address: low
+                company: exact
+                name: exact
+              sanctionLists:
+              - Bureau Of Industry and Security
+          responseValue:
+            clientReferenceInformation:
+              code: verification example
+            errorInformation:
+              reason: CUSTOMER_WATCHLIST_MATCH
+              message: The customer matched the Denied Parties List
+            exportComplianceInformation:
+              infoCodes:
+              - MATCH-DPC
+            id: '5585070617626392903092'
+            status: DECLINED
+            submitTimeUtc: '2019-05-22T06:37:42Z'
+        example2:
+          summary: Compliance Status Completed
+          value:
+            clientReferenceInformation:
+              code: verification example
+            orderInformation:
+              billTo:
+                firstName: Suman
+                lastName: Kumar
+                address1: 901 Metro Centre Blvd
+                address2: '2'
+                locality: Foster City
+                country: US
+                administrativeArea: CA
+                postalCode: '94404'
+                email: donewithhorizon@test.com
+              lineItems:
+              - unitPrice: '19.00'
+              shipTo:
+                address1: 26 JALAN MT. ERSKINE
+                address2: Grifendor House
+                locality: PENANG
+                country: be
+                firstName: DumbelDore
+                lastName: Albus
+                phoneNumber: '54871425369'
+                administrativeArea: NH
+                postalCode: '2176001'
+                method: lowcost
+            buyerInformation:
+              merchantCustomerId: '87789'
+            exportComplianceInformation:
+              addressOperator: and
+              weights:
+                address: abc
+                company: def
+                name: adb
+              sanctionLists:
+              - abc
+              - acc
+              - bac
+          responseValue:
+            clientReferenceInformation:
+              code: verification example
+            exportComplianceInformation:
+              ipCountryConfidence: '-1'
+            id: '5585073068196393103092'
+            status: COMPLETED
+            submitTimeUtc: '2019-05-22T06:41:48Z'
+        example3:
+          summary: Multiple Sanction Lists
+          value:
+            clientReferenceInformation:
+              code: verification example
+              comments: All fields
+            orderInformation:
+              billTo:
+                address1: 901 Metro Centre Blvd
+                address2: ' '
+                address3: ''
+                address4: Foster City
+                locality: CA
+                country: US
+                administrativeArea: NH
+                postalCode: '03055'
+                email: test@domain.com
+                firstName: Suman
+                lastName: Kumar
+                company:
+                  name: A & C International Trade, Inc.
+              shipTo:
+                address1: 114B
+                address2: Grifendor House
+                locality: Hogward University
+                country: IN
+                destinationCode: ASD
+                firstName: DumbelDore
+                lastName: Albus
+              lineItems:
+              - unitPrice: '120.50'
+                productSKU: '610009'
+                productCode: physical_software
+                productName: Xer
+                quantity: '3'
+            exportComplianceInformation:
+              addressOperator: and
+              weights:
+                address: low
+                company: exact
+                name: exact
+              sanctionLists:
+              - Bureau Of Industry and Security
+              - DOS_DTC
+              - AUSTRALIA
+            deviceInformation:
+              hostName: www.cybersource.ir
+              ipAddress: 127.0.0.1
+            buyerInformation:
+              merchantCustomerId: Export1
+          responseValue:
+            clientReferenceInformation:
+              code: verification example
+            errorInformation:
+              reason: CUSTOMER_WATCHLIST_MATCH
+              message: The customer matched the Denied Parties List
+            exportComplianceInformation:
+              infoCodes:
+              - MATCH-DPC
+            id: '5574745444896030103092'
+            status: DECLINED
+            submitTimeUtc: '2019-05-10T07:49:06Z'
+        example4:
+          summary: No Company Name
+          value:
+            clientReferenceInformation:
+              code: verification example
+            orderInformation:
+              billTo:
+                firstName: Suman
+                lastName: Kumar
+                address1: 901 Metro Centre Blvd
+                address2: '2'
+                locality: Foster City
+                country: US
+                administrativeArea: CA
+                postalCode: '94404'
+                email: donewithhorizon@test.com
+              lineItems:
+              - unitPrice: '19.00'
+              shipTo:
+                address1: 26 JALAN MT. ERSKINE
+                address2: Grifendor House
+                locality: PENANG
+                country: be
+                firstName: DumbelDore
+                lastName: Albus
+                phoneNumber: '54871425369'
+                administrativeArea: NH
+                postalCode: '2176001'
+                method: lowcost
+            buyerInformation:
+              merchantCustomerId: '87789'
+          responseValue:
+            clientReferenceInformation:
+              code: verification example
+            exportComplianceInformation:
+              ipCountryConfidence: '-1'
+            id: '5585076921686393803092'
+            status: COMPLETED
+            submitTimeUtc: '2019-05-22T06:48:14Z'
+x-devcenter-metaData:
+  categoryTagArray:
+  - name: Payments
+    description: For more information about Payments transactions, see the [Payments Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/payments/developer/ctv/rest/payments/payments-intro.html).
+  - name: Transaction_Batches
+    description: For more information about Transaction Batches, see the [Transaction Batches Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-transaction-batch-api/txn_batch_api_intro.html).
+  - name: eCheck_AVS
+    description: For more information about eCheck Account Validation, see the [Account Validation Developer Guides Page](https://...).
+  - name: Token_Management
+    description: For more information about the Token Management Service (TMS) see the [Token Management Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms/tms-overview.html)
+  - name: Flex_Microform
+    description: Microform Integration is a lightweight acceptance solution designed to safely and securely accept payment information within your web page.  Microform is designed to a be embedded seamlessly within your existing webpage experience, blending in with your existing acceptance form.  This solution allows for the replacement of sensitive payment date with a transient token (a short lived reference to the sensitive payment data).  For more information about Flex Microform transactions, see the [Flex Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-flex/SAFlexibleToken.html). For examples on how to integrate Flex Microform within your webpage please see our [GitHub Flex Samples](https://github.com/CyberSource?q=flex&type=&language=)
+  - name: Flex_API
+    description: For more information about Flex API, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/da-flex-api-intro.html).
+  - name: Risk_Management
+  - name: Payouts
+    description: 'For more information about Payouts, see the [Payouts Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-payouts/Introduction.html).
+
+      '
+  - name: Installments
+    description: For more information about Installment contact Cybersource Support. For Visa installments contact VISthroughCYBS@visa.com
+  - name: Recurring_Billing_Subscriptions
+    description: For more information about Recurring Billing, see the [Recurring Billing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-developer/recur-bill-services-intro.html).
+  - name: BIN_Lookup
+    description: 'The BIN Lookup Service is a versatile business tool that provides card network agnostic solution designed to ensure frictionless transaction experience by utilizing up-to-date Bank Identification Number (BIN) attributes sourced from multiple global and regional data sources.
+
+      This service helps to improve authorization rates by helping to route transactions to the best-suited card network, minimizes fraud through card detail verification and aids in regulatory compliance by identifying card properties. The service is flexible and provides businesses with a flexible choice of inputs such as primary account number (PAN), network token from major networks (such as Visa, American Express, Discover and regional networks) which includes device PAN (DPAN), and all types of tokens generated via CyberSource Token Management Service (TMS).
+
+      Currently, the range of available credentials is contingent on the networks enabled for the business entity. Therefore, the network information specified in this documentation is illustrative and subject to personalized offerings for each reseller or merchant.
+
+      '
+  - name: Transaction_Details
+    description: For more information about Transaction Details, see the [Transaction Details Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_details_api.html).
+  - name: Transaction_Search
+    description: For more information about Transaction Search, see the [Transaction Search Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_search_api.html).
+  - name: Reporting
+    description: 'For more information about Reporting, see the [Reporting Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-reporting-rest-api-dev-guide-102718/reporting_api.html).
+
+      '
+  - name: Secure_File_Share
+    description: For more information about Secure File Share, see the [Secure File Share Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-secure-file-share-api-102718/secure_file_share_api_intro.html).
+  - name: Invoices
+    description: For more information about Invoicing, see the [Invoicing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing/Introduction.html).
+  - name: Pay_By_Link
+    description: For more information about PayByLink, see the [PBL Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/boarding/user/all/rest/boarding/templates-matrix-intro/templates-matrix-pay-by-link.html).
+  - name: User_Management
+    description: For more information about User Management, see the [User Managment Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-user-management-api-102718/user_management_api_intro.html).
+  - name: Value_Added_Service
+  - name: Fee Service
+  - name: Merchant_Boarding
+    description: For more information about Merchant Boarding, please see [Developer Guides Page](https://developer.cybersource.com/api/developer-guides/Merchant-Boarding-API_ditamap/Merchant-Boarding-API.html).
+  - name: Webhooks
+    description: For more information about Webhooks, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/webhooks/implementation/all/rest/webhooks/wh-fg-intro.html).
+  - name: Unified_Checkout
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-intro.html).
+  - name: Unified_Checkoutv1
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-about-guide.html).
+  - name: Account_Updater
+    description: For more information about Account Updater, see the [Account Updater Developer Guides Page:](https://developer.cybersource.com/library/documentation/dev_guides/Account_Updater_UG/html/index.html).
+  - name: Visa_Bank_Account_Validation
+    description: 'The Visa Bank Account Validation Service is a new standalone product designed to validate customer''s routing and bank account number combination for ACH transactions. Merchant''s can use this standalone product to validate their customer''s account prior to processing an ACH transaction against the customer''s account to comply with Nacha''s account validation mandate for Web-debit transactions.
+
+      '
+  - name: Currency Conversion
+    description: 'Empower global transactions with transparency and choice. Our Dynamic Currency Conversion API lets merchants offer customers the option to pay in their home currency at checkout, delivering real-time exchange rates and clear cost disclosure.
+
+
+      **Key Benefits:**
+
+      - **Enhanced Customer Experience:** Provide clarity and convenience for international shoppers.
+
+      - **Real-Time Rates:** Accurate currency conversion with all the data required for acquirers and their merchants to maintain compliance with card network rules.
+
+      - **Seamless Integration:** Flexible API endpoints for rate lookup, authorization, and capture.
+
+      - **Regulatory Compliance:** Provides the data required for acquirers and merchants to meet and maintain card scheme requirements for disclosure and consent.
+
+
+      Ideal for merchants and payment partners seeking to boost trust and conversion in cross-border commerce.
+
+
+      **Key Features:**
+
+      - **Rate Lookup:** Retrieves the most up-to-date exchange rate for eligible cards before authorization.
+
+      - **Currency Choice:** Enables the merchant to offer customers the option to select between the merchant''s local currency and their card''s billing currency.
+
+      - **Compliance:** Ensures merchants have the data required to adhere to card network regulations; exchange rates, markups, etc.
+
+
+      **Supported Scenarios:**
+
+      - Dynamic Currency Conversion when cardholder''s billing currency differs from merchant''s pricing currency.
+
+      - Merchant and acquirer must support the cardholder''s billing currency.
+
+
+      **Core API Endpoints:**
+
+
+      **Currency Conversion API**
+
+      Returns eligibility and exchange rate details, including:
+
+      - exchangeRate
+
+      - marginRate
+
+      - reconciliationId and Id (for subsequent payment requests)
+
+
+      **Payment Authorization with DCC***
+
+      POST /pts/v2/payments
+
+      Required fields include:
+
+      - orderInformation.amountDetails.currency
+
+      - orderInformation.amountDetails.originalCurrency
+
+      - orderInformation.amountDetails.originalAmount
+
+      - orderInformation.amountDetails.exchangeRate
+
+      - currencyConversion.indicator (e.g., 1 = Converted, 2 = Nonconvertible, 3 = Declined)
+
+
+      **Capture with DCC***
+
+      POST /pts/v2/payments/{id}/captures
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      **Refund with DCC***
+
+      POST /pts/v2/captures/{id}/refunds
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      *Note: DCC is only supported on select processors. Contact your acquirer or account manager for more information.
+
+
+      **Compliance & Disclosure:**
+
+
+      Merchants must:
+
+      - Adhere to card network rules for Dynamic Currency Conversion (DCC) transactions.
+
+      - Display the converted amount, exchange rate, and markup percentage and other required disclosures.
+
+      - Obtain explicit cardholder consent before applying DCC.
+
+      - Work with your acquirer to obtain full set of compliance requirements.
+
+
+      For more information, see the [Currency Conversion Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/currency-conversion/developer/all/rest/currency-conversion/cc-intro.html).
+
+      '
+  - name: Intelligent_Commerce_Connect
+    description: For more information about Intelligent Commerce Cross Network Service API, please see [Developer Guides](https://developer.cybersource.com/docs/cybs/en-us/intelligent-commerce/developer/all/rest/intelligent-commerce/intelligent-commerce-about-guide.html).

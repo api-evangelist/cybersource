@@ -1,0 +1,710 @@
+swagger: '2.0'
+info:
+  description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
+  version: 0.0.1
+  title: CyberSource Merged Spec bankAccountValidation Device Search API
+host: apitest.cybersource.com
+basePath: /
+schemes:
+- https
+consumes:
+- application/json;charset=utf-8
+produces:
+- application/hal+json;charset=utf-8
+tags:
+- name: Device Search
+  description: Search and Retrieve Devices.
+paths:
+  /dms/v2/devices/search:
+    post:
+      summary: Retrieve List of Devices for a given search query V2
+      description: Retrieves list of terminals in paginated format.
+      parameters:
+      - name: postDeviceSearchRequest
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            query:
+              type: string
+              description: The Search Query to retrieve the Terminals(Example :- terminalSerialNumber:12345678 AND readerId:66c395ca-4f20-4b40-acac-5ff4c772d5f9 AND terminalId:T9KN88RTPE). Empty Query returns everything for the given organization.
+            sort:
+              type: string
+              description: The Sort Query to order the Terminals by. By Default, It is in ascending order of last update of a device.
+            offset:
+              type: integer
+              format: int64
+              description: The offset or page number.
+            limit:
+              type: integer
+              format: int64
+              description: Number of devices to retrieve in one request.
+      tags:
+      - Device Search
+      operationId: postSearchQuery
+      x-devcenter-metaData:
+        categoryTag: Device_Management
+        firstLevelApiLifeCycle: hidden
+        secondLevelApiLifeCycle: hidden
+        apiLifeCycle: hidden
+      consumes:
+      - application/json;charset=UTF-8
+      produces:
+      - application/json;charset=UTF-8
+      responses:
+        '200':
+          description: Retrieved all Devices matched by the search query
+          schema:
+            type: object
+            properties:
+              totalCount:
+                type: integer
+                description: Total number of results.
+              offset:
+                type: integer
+                description: 'Controls the starting point within the collection of results, which defaults to 0. The first item in the collection is retrieved by setting a zero offset.
+
+
+                  For example, if you have a collection of 15 items to be retrieved from a resource and you specify limit=5, you can retrieve the entire set of results in 3 successive requests by varying the offset value like this:
+
+
+                  `offset=0`
+
+                  `offset=5`
+
+                  `offset=10`
+
+
+                  **Note:** If an offset larger than the number of results is provided, this will result in no embedded object being returned.
+
+                  '
+              limit:
+                type: integer
+                description: 'Controls the maximum number of items that may be returned for a single request. The default is 20, the maximum is 2500.
+
+                  '
+              sort:
+                type: string
+                description: 'A comma separated list of the following form:
+
+
+                  `submitTimeUtc:desc`
+
+                  '
+              count:
+                type: integer
+                description: Results for this page, this could be below the limit.
+              devices:
+                type: array
+                description: A collection of devices
+                items:
+                  type: object
+                  properties:
+                    readerId:
+                      type: string
+                      maxLength: 36
+                    terminalSerialNumber:
+                      type: string
+                      maxLength: 256
+                      pattern: '[0-9a-zA-Z][0-9a-zA-Z-]*'
+                    terminalId:
+                      type: string
+                      maxLength: 256
+                    model:
+                      type: string
+                      maxLength: 256
+                      pattern: ^[0-9a-zA-Z_ ]*$
+                    make:
+                      type: string
+                      maxLength: 100
+                      pattern: ^[0-9a-zA-Z_ ]*$
+                    hardwareRevision:
+                      type: string
+                      maxLength: 256
+                      pattern: ^[0-9a-zA-Z][0-9a-zA-Z-/_.]*$
+                    status:
+                      type: string
+                      description: "Status of the device.\nPossible Values:\n  - 'ACTIVE'\n  - 'INACTIVE'\n"
+                    creationDate:
+                      type: string
+                      maxLength: 20
+                      pattern: YYYY-MM-DDThh:mm:ssZ
+                    pin:
+                      type: string
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: "The status of the submitted request. \nPossible values:\n- BAD_REQUEST"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              code:
+                type: string
+                description: An optional short string which identifies the exact error.
+              details:
+                type: array
+                description: An optional array which provides more details of the error.
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: This is the flattened JSON object field name/path that is either missing or invalid.
+                    reason:
+                      type: string
+                      description: 'Possible reasons for the error.
+
+                        '
+                    code:
+                      type: string
+                      description: An optional short string which identifies the exact field error.
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+
+
+                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+
+                  time. The Z indicates UTC.
+
+                  '
+        '401':
+          description: Unauthorized
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: "The status of the submitted request.\n \nPossible values:\n- UNAUTHORIZED"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              code:
+                type: string
+                description: An optional short string which identifies the exact error.
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+
+
+                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+
+                  time. The Z indicates UTC.
+
+                  '
+        '403':
+          description: Forbidden
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: "The status of the submitted request.\n \nPossible values:\n- FORBIDDEN"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              code:
+                type: string
+                description: An optional short string which identifies the exact error.
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+
+
+                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+
+                  time. The Z indicates UTC.
+
+                  '
+        '404':
+          description: Not Found
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: "The status of the submitted request.\n \nPossible values:\n- NOT_FOUND"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              code:
+                type: string
+                description: An optional short string which identifies the exact error.
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+
+
+                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+
+                  time. The Z indicates UTC.
+
+                  '
+        '500':
+          description: Unexpected system error or system timeout.
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: "The status of the submitted request.\n \nPossible values:\n- INTERNAL_SERVER_ERROR"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              code:
+                type: string
+                description: An optional short string which identifies the exact error.
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+
+
+                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+
+                  time. The Z indicates UTC.
+
+                  '
+  /dms/v3/devices/search:
+    post:
+      summary: Retrieve List of Devices for a given search query
+      description: 'Search for devices matching a given search query.
+
+
+        The search query supports serialNumber, readerId, terminalId, status, statusChangeReason or organizationId
+
+
+        Matching results are paginated.
+
+        '
+      parameters:
+      - name: postDeviceSearchRequestV3
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            query:
+              type: string
+              description: The Search Query to retrieve the Terminals.(Example :- serialNumber:456345234 AND readerId:509353f0-86ca-4af4-a1c9-c2702bfd7431  AND terminalId:7854922 AND status:Inactive AND statusChangeReason:Other AND organizationId:London Store)
+            sort:
+              type: string
+              description: terminalCreationDate:desc (default) or serialNumber or terminalUpdationDate
+            offset:
+              type: integer
+              format: int64
+              description: The offset or page number.
+            limit:
+              type: integer
+              format: int64
+              description: Number of devices to retrieve in one request.
+      tags:
+      - Device Search
+      operationId: postSearchQueryV3
+      x-devcenter-metaData:
+        categoryTag: Device_Management
+      consumes:
+      - application/json;charset=UTF-8
+      produces:
+      - application/json;charset=UTF-8
+      responses:
+        '200':
+          description: Retrieved all Devices matched by the search query
+          schema:
+            type: object
+            properties:
+              totalCount:
+                type: integer
+                description: Total number of results.
+              offset:
+                type: integer
+                description: 'Controls the starting point within the collection of results, which defaults to 0. The first item in the collection is retrieved by setting a zero offset.
+
+
+                  For example, if you have a collection of 15 items to be retrieved from a resource and you specify limit=5, you can retrieve the entire set of results in 3 successive requests by varying the offset value like this:
+
+
+                  `offset=0`
+
+                  `offset=5`
+
+                  `offset=10`
+
+
+                  **Note:** If an offset larger than the number of results is provided, this will result in no embedded object being returned.
+
+                  '
+              limit:
+                type: integer
+                description: 'Controls the maximum number of items that may be returned for a single request. The default is 20, the maximum is 2500.
+
+                  '
+              sort:
+                type: string
+                description: 'A comma separated list of the following form:
+
+
+                  `terminalCreationDate:desc or serialNumber or terminalUpdationDate`
+
+                  '
+              count:
+                type: integer
+                description: Results for this page, this could be below the limit.
+              devices:
+                type: array
+                description: A collection of devices
+                items:
+                  type: object
+                  properties:
+                    readerId:
+                      type: string
+                      maxLength: 36
+                    serialNumber:
+                      type: string
+                      maxLength: 256
+                      pattern: '[0-9a-zA-Z][0-9a-zA-Z-]*'
+                    model:
+                      type: string
+                      maxLength: 256
+                      pattern: ^[0-9a-zA-Z_ ]*$
+                    make:
+                      type: string
+                      maxLength: 100
+                      pattern: ^[0-9a-zA-Z_ ]*$
+                    hardwareRevision:
+                      type: string
+                      maxLength: 256
+                      pattern: ^[0-9a-zA-Z][0-9a-zA-Z-/_.]*$
+                    status:
+                      type: string
+                      description: "Status of the device.\nPossible Values:\n  - 'ACTIVE'\n  - 'INACTIVE'\n"
+                    statusChangeReason:
+                      type: string
+                      description: Reason for change in status.
+                    merchantId:
+                      type: string
+                      description: ID of the merchant to whom this device is assigned.
+                    accountId:
+                      type: string
+                      description: ID of the account to whom the device assigned.
+                    terminalCreationDate:
+                      type: string
+                      format: date-time
+                      description: Timestamp in which the device was created.
+                    terminalUpdationDate:
+                      type: string
+                      format: date-time
+                      description: Timestamp in which the device was updated/modified.
+                    paymentProcessorToTerminalMap:
+                      type: object
+                      description: Mapping between processor and Terminal.
+                      properties:
+                        processor:
+                          type: string
+                        terminalId:
+                          type: string
+        '400':
+          description: Bad Request
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: "The status of the submitted request. \nPossible values:\n- BAD_REQUEST"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              code:
+                type: string
+                description: An optional short string which identifies the exact error.
+              details:
+                type: array
+                description: An optional array which provides more details of the error.
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: This is the flattened JSON object field name/path that is either missing or invalid.
+                    reason:
+                      type: string
+                      description: 'Possible reasons for the error.
+
+                        '
+                    code:
+                      type: string
+                      description: An optional short string which identifies the exact field error.
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+
+
+                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+
+                  time. The Z indicates UTC.
+
+                  '
+        '401':
+          description: Unauthorized
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: "The status of the submitted request.\n \nPossible values:\n- UNAUTHORIZED"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              code:
+                type: string
+                description: An optional short string which identifies the exact error.
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+
+
+                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+
+                  time. The Z indicates UTC.
+
+                  '
+        '403':
+          description: Forbidden
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: "The status of the submitted request.\n \nPossible values:\n- FORBIDDEN"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              code:
+                type: string
+                description: An optional short string which identifies the exact error.
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+
+
+                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+
+                  time. The Z indicates UTC.
+
+                  '
+        '404':
+          description: Not Found
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: "The status of the submitted request.\n \nPossible values:\n- NOT_FOUND"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              code:
+                type: string
+                description: An optional short string which identifies the exact error.
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+
+
+                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+
+                  time. The Z indicates UTC.
+
+                  '
+        '500':
+          description: Unexpected system error or system timeout.
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: "The status of the submitted request.\n \nPossible values:\n- INTERNAL_SERVER_ERROR"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              code:
+                type: string
+                description: An optional short string which identifies the exact error.
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+
+
+                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+
+                  time. The Z indicates UTC.
+
+                  '
+x-devcenter-metaData:
+  categoryTagArray:
+  - name: Payments
+    description: For more information about Payments transactions, see the [Payments Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/payments/developer/ctv/rest/payments/payments-intro.html).
+  - name: Transaction_Batches
+    description: For more information about Transaction Batches, see the [Transaction Batches Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-transaction-batch-api/txn_batch_api_intro.html).
+  - name: eCheck_AVS
+    description: For more information about eCheck Account Validation, see the [Account Validation Developer Guides Page](https://...).
+  - name: Token_Management
+    description: For more information about the Token Management Service (TMS) see the [Token Management Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms/tms-overview.html)
+  - name: Flex_Microform
+    description: Microform Integration is a lightweight acceptance solution designed to safely and securely accept payment information within your web page.  Microform is designed to a be embedded seamlessly within your existing webpage experience, blending in with your existing acceptance form.  This solution allows for the replacement of sensitive payment date with a transient token (a short lived reference to the sensitive payment data).  For more information about Flex Microform transactions, see the [Flex Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-flex/SAFlexibleToken.html). For examples on how to integrate Flex Microform within your webpage please see our [GitHub Flex Samples](https://github.com/CyberSource?q=flex&type=&language=)
+  - name: Flex_API
+    description: For more information about Flex API, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/da-flex-api-intro.html).
+  - name: Risk_Management
+  - name: Payouts
+    description: 'For more information about Payouts, see the [Payouts Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-payouts/Introduction.html).
+
+      '
+  - name: Installments
+    description: For more information about Installment contact Cybersource Support. For Visa installments contact VISthroughCYBS@visa.com
+  - name: Recurring_Billing_Subscriptions
+    description: For more information about Recurring Billing, see the [Recurring Billing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-developer/recur-bill-services-intro.html).
+  - name: BIN_Lookup
+    description: 'The BIN Lookup Service is a versatile business tool that provides card network agnostic solution designed to ensure frictionless transaction experience by utilizing up-to-date Bank Identification Number (BIN) attributes sourced from multiple global and regional data sources.
+
+      This service helps to improve authorization rates by helping to route transactions to the best-suited card network, minimizes fraud through card detail verification and aids in regulatory compliance by identifying card properties. The service is flexible and provides businesses with a flexible choice of inputs such as primary account number (PAN), network token from major networks (such as Visa, American Express, Discover and regional networks) which includes device PAN (DPAN), and all types of tokens generated via CyberSource Token Management Service (TMS).
+
+      Currently, the range of available credentials is contingent on the networks enabled for the business entity. Therefore, the network information specified in this documentation is illustrative and subject to personalized offerings for each reseller or merchant.
+
+      '
+  - name: Transaction_Details
+    description: For more information about Transaction Details, see the [Transaction Details Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_details_api.html).
+  - name: Transaction_Search
+    description: For more information about Transaction Search, see the [Transaction Search Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_search_api.html).
+  - name: Reporting
+    description: 'For more information about Reporting, see the [Reporting Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-reporting-rest-api-dev-guide-102718/reporting_api.html).
+
+      '
+  - name: Secure_File_Share
+    description: For more information about Secure File Share, see the [Secure File Share Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-secure-file-share-api-102718/secure_file_share_api_intro.html).
+  - name: Invoices
+    description: For more information about Invoicing, see the [Invoicing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing/Introduction.html).
+  - name: Pay_By_Link
+    description: For more information about PayByLink, see the [PBL Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/boarding/user/all/rest/boarding/templates-matrix-intro/templates-matrix-pay-by-link.html).
+  - name: User_Management
+    description: For more information about User Management, see the [User Managment Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-user-management-api-102718/user_management_api_intro.html).
+  - name: Value_Added_Service
+  - name: Fee Service
+  - name: Merchant_Boarding
+    description: For more information about Merchant Boarding, please see [Developer Guides Page](https://developer.cybersource.com/api/developer-guides/Merchant-Boarding-API_ditamap/Merchant-Boarding-API.html).
+  - name: Webhooks
+    description: For more information about Webhooks, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/webhooks/implementation/all/rest/webhooks/wh-fg-intro.html).
+  - name: Unified_Checkout
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-intro.html).
+  - name: Unified_Checkoutv1
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-about-guide.html).
+  - name: Account_Updater
+    description: For more information about Account Updater, see the [Account Updater Developer Guides Page:](https://developer.cybersource.com/library/documentation/dev_guides/Account_Updater_UG/html/index.html).
+  - name: Visa_Bank_Account_Validation
+    description: 'The Visa Bank Account Validation Service is a new standalone product designed to validate customer''s routing and bank account number combination for ACH transactions. Merchant''s can use this standalone product to validate their customer''s account prior to processing an ACH transaction against the customer''s account to comply with Nacha''s account validation mandate for Web-debit transactions.
+
+      '
+  - name: Currency Conversion
+    description: 'Empower global transactions with transparency and choice. Our Dynamic Currency Conversion API lets merchants offer customers the option to pay in their home currency at checkout, delivering real-time exchange rates and clear cost disclosure.
+
+
+      **Key Benefits:**
+
+      - **Enhanced Customer Experience:** Provide clarity and convenience for international shoppers.
+
+      - **Real-Time Rates:** Accurate currency conversion with all the data required for acquirers and their merchants to maintain compliance with card network rules.
+
+      - **Seamless Integration:** Flexible API endpoints for rate lookup, authorization, and capture.
+
+      - **Regulatory Compliance:** Provides the data required for acquirers and merchants to meet and maintain card scheme requirements for disclosure and consent.
+
+
+      Ideal for merchants and payment partners seeking to boost trust and conversion in cross-border commerce.
+
+
+      **Key Features:**
+
+      - **Rate Lookup:** Retrieves the most up-to-date exchange rate for eligible cards before authorization.
+
+      - **Currency Choice:** Enables the merchant to offer customers the option to select between the merchant''s local currency and their card''s billing currency.
+
+      - **Compliance:** Ensures merchants have the data required to adhere to card network regulations; exchange rates, markups, etc.
+
+
+      **Supported Scenarios:**
+
+      - Dynamic Currency Conversion when cardholder''s billing currency differs from merchant''s pricing currency.
+
+      - Merchant and acquirer must support the cardholder''s billing currency.
+
+
+      **Core API Endpoints:**
+
+
+      **Currency Conversion API**
+
+      Returns eligibility and exchange rate details, including:
+
+      - exchangeRate
+
+      - marginRate
+
+      - reconciliationId and Id (for subsequent payment requests)
+
+
+      **Payment Authorization with DCC***
+
+      POST /pts/v2/payments
+
+      Required fields include:
+
+      - orderInformation.amountDetails.currency
+
+      - orderInformation.amountDetails.originalCurrency
+
+      - orderInformation.amountDetails.originalAmount
+
+      - orderInformation.amountDetails.exchangeRate
+
+      - currencyConversion.indicator (e.g., 1 = Converted, 2 = Nonconvertible, 3 = Declined)
+
+
+      **Capture with DCC***
+
+      POST /pts/v2/payments/{id}/captures
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      **Refund with DCC***
+
+      POST /pts/v2/captures/{id}/refunds
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      *Note: DCC is only supported on select processors. Contact your acquirer or account manager for more information.
+
+
+      **Compliance & Disclosure:**
+
+
+      Merchants must:
+
+      - Adhere to card network rules for Dynamic Currency Conversion (DCC) transactions.
+
+      - Display the converted amount, exchange rate, and markup percentage and other required disclosures.
+
+      - Obtain explicit cardholder consent before applying DCC.
+
+      - Work with your acquirer to obtain full set of compliance requirements.
+
+
+      For more information, see the [Currency Conversion Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/currency-conversion/developer/all/rest/currency-conversion/cc-intro.html).
+
+      '
+  - name: Intelligent_Commerce_Connect
+    description: For more information about Intelligent Commerce Cross Network Service API, please see [Developer Guides](https://developer.cybersource.com/docs/cybs/en-us/intelligent-commerce/developer/all/rest/intelligent-commerce/intelligent-commerce-about-guide.html).

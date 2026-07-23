@@ -1,0 +1,1224 @@
+swagger: '2.0'
+info:
+  description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
+  version: 0.0.1
+  title: CyberSource Merged Spec bankAccountValidation Bin Lookup API
+host: apitest.cybersource.com
+basePath: /
+schemes:
+- https
+consumes:
+- application/json;charset=utf-8
+produces:
+- application/hal+json;charset=utf-8
+tags:
+- name: Bin Lookup
+paths:
+  /bin/v1/binlookup:
+    post:
+      summary: BIN Lookup API
+      description: 'The BIN Lookup Service is a versatile business tool that provides card network agnostic solution designed to ensure frictionless transaction experience by utilizing up-to-date Bank Identification Number (BIN) attributes sourced from multiple global and regional data sources.
+
+        This service helps to improve authorization rates by helping to route transactions to the best-suited card network, minimizes fraud through card detail verification and aids in regulatory compliance by identifying card properties. The service is flexible and provides businesses with a flexible choice of inputs such as primary account number (PAN), network token from major networks (such as Visa, American Express, Discover and several regional networks) which includes device PAN (DPAN), and all types of tokens generated via CyberSource Token Management Service (TMS).
+
+        Currently, the range of available credentials is contingent on the networks enabled for the business entity. Therefore, the network information specified in this documentation is illustrative and subject to personalized offerings for each reseller or merchant.
+
+        '
+      tags:
+      - Bin Lookup
+      operationId: getAccountInfo
+      x-devcenter-metaData:
+        categoryTag: Bin_Lookup
+        developerGuides: https://developer.cybersource.com/docs/cybs/en-us/bin-lookup/developer/all/rest/bin-lookup/bin-lookup-intro.html
+        firstLevelApiLifeCycle: beta
+        secondLevelApiLifeCycle: beta
+        apiLifeCycle: beta
+        disableProcessorDropDown: true
+        SDK_ONLY_AddDisclaimer: true
+      consumes:
+      - application/json;charset=utf-8
+      produces:
+      - application/json;charset=utf-8
+      parameters:
+      - name: createBinLookupRequest
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            clientReferenceInformation:
+              type: object
+              properties:
+                partner:
+                  type: object
+                  properties:
+                    developerId:
+                      type: string
+                      maxLength: 8
+                      description: 'Identifier for the developer that helped integrate a partner solution to CyberSource.
+
+
+                        Send this value in all requests that are sent through the partner solutions built by that developer.
+
+                        CyberSource assigns the ID to the developer.
+
+
+                        **Note** When you see a developer ID of 999 in reports, the developer ID that was submitted is incorrect.
+
+                        '
+                    solutionId:
+                      type: string
+                      maxLength: 8
+                      description: 'Identifier for the partner that is integrated to CyberSource.
+
+
+                        Send this value in all requests that are sent through the partner solution. CyberSource assigns the ID to the partner.
+
+
+                        **Note** When you see a solutionId of 999 in reports, the solutionId that was submitted is incorrect.
+
+                        '
+                applicationName:
+                  type: string
+                  description: 'The name of the Connection Method client (such as Virtual Terminal or SOAP Toolkit API) that the merchant uses to send a transaction request to CyberSource.
+
+                    '
+                applicationVersion:
+                  type: string
+                  description: 'Version of the CyberSource application or integration used for a transaction.
+
+                    '
+                applicationUser:
+                  type: string
+                  description: 'The entity that is responsible for running the transaction and submitting the processing request to CyberSource. This could be a person, a system, or a connection method.
+
+                    '
+            paymentInformation:
+              type: object
+              properties:
+                card:
+                  type: object
+                  properties:
+                    number:
+                      type: string
+                      maxLength: 20
+                      description: 'The customer''s payment card number, also known as the Primary Account Number (PAN). You can also use this field
+
+                        for encoded account numbers.
+
+
+                        #### FDMS Nashville
+
+                        Required. String (19)
+
+
+                        #### GPX
+
+                        Required if `pointOfSaleInformation.entryMode=keyed`. However, this field is optional if your account is configured
+
+                        for relaxed requirements for address data and expiration date. **Important** It is your responsibility to determine
+
+                        whether a field is required for the transaction you are requesting.
+
+
+                        #### All other processors
+
+                        Required if `pointOfSaleInformation.entryMode=keyed`. However, this field is optional if your account is configured
+
+                        for relaxed requirements for address data and expiration date. **Important** It is your responsibility to determine
+
+                        whether a field is required for the transaction you are requesting.
+
+                        '
+                customer:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: 'Unique identifier for the Customer token used in the transaction.
+
+                        When you include this value in your request, many of the fields that are normally required for an authorization or credit
+
+                        become optional.
+
+                        '
+                      minLength: 1
+                      maxLength: 32
+                paymentInstrument:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: 'Unique identifier for the Payment Instrument token used in the transaction.
+
+                        When you include this value in your request, many of the fields that are normally required for an authorization or credit
+
+                        become optional.
+
+                        '
+                      minLength: 1
+                      maxLength: 32
+                instrumentIdentifier:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: 'Unique identifier for the Instrument Identifier token used in the transaction.
+
+                        When you include this value in your request, many of the fields that can be supplied for an authorization or credit
+
+                        become optional.
+
+                        '
+                      minLength: 12
+                      maxLength: 32
+            tokenInformation:
+              type: object
+              properties:
+                jti:
+                  type: string
+                  maxLength: 64
+                  description: 'TMS Transient Token, 64 hexadecimal id value representing captured payment credentials (including Sensitive Authentication Data, e.g. CVV).
+
+                    '
+                transientTokenJwt:
+                  type: string
+                  description: 'Flex API Transient Token encoded as JWT (JSON Web Token), e.g. Flex microform or Unified Payment checkout result.
+
+                    '
+            processingInformation:
+              type: object
+              properties:
+                binSource:
+                  type: string
+                  description: 'Bin Source File Identifier.
+
+
+                    Possible values:
+
+                    - itmx
+
+                    - rupay
+
+                    '
+                payoutOptions:
+                  type: object
+                  description: 'Payout fields request parameters
+
+                    '
+                  properties:
+                    payoutInquiry:
+                      type: boolean
+                      description: 'If `true` then provide attributes related to fund transfer/payouts. If payout information not found then response will have standard account lookup.
+
+
+                        Possible values:
+
+                        - true
+
+                        - false
+
+                        '
+                    networkId:
+                      type: string
+                      description: "The networks specified in this field must be a subset of the information provided during program enrollment\n  \nPossible values:\n- 0020 : Accel/Exchange\n- 0024 : CU24\n- 0003 : Interlink\n- 0016 : Maestro\n- 0018 : NYCE\n- 0027 : NYCE\n- 0009 : Pulse\n- 0017 : Pulse\n- 0019 : Pulse\n- 0008 : Star\n- 0010 : Star\n- 0011 : Star\n- 0012 : Star\n- 0015 : Star\n- 0002 : Visa/PLUS\n"
+                    acquirerBin:
+                      type: string
+                      description: 'BIN under which the Funds Transfer application is registered. This must match the information provided during enrollment.
+
+                        '
+      responses:
+        '201':
+          description: Successful response.
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                maxLength: 26
+                description: 'An unique identification number generated by Cybersource to identify the submitted request. Returned by all services.
+
+                  It is also appended to the endpoint of the resource.
+
+                  On incremental authorizations, this value with be the same as the identification number returned in the original authorization response.
+
+                  '
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - COMPLETED\n - MULTIPLE\n - NO MATCH\n"
+              paymentAccountInformation:
+                type: object
+                properties:
+                  card:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        maxLength: 3
+                        description: 'This field contains a 3-digit numeric value that indicates the card type within Cybersource eco-system.
+
+                          Possible values from BIN Lookup Service (based on availability and enablement):
+
+                          - `000`: Unsupported Card Type
+
+                          - `001`: Visa
+
+                          - `002`: Mastercard
+
+                          - `003`: American Express
+
+                          - `004`: Discover
+
+                          - `005`: Diners Club
+
+                          - `007`: JCB
+
+                          - `036`: Cartes Bancaire
+
+                          - `042`: Maestro
+
+                          - `054`: Elo
+
+                          - `058`: Carnet
+
+                          - `060`: MADA
+
+                          - `061`: RuPay
+
+                          - `062`: China UnionPay
+
+                          - `064`: Prompt Card
+
+                          - `067`: Meeza
+
+                          - `068`: PayPak
+
+                          - `070`: EFTPOS
+
+                          - `081`: Jaywan
+
+                          - `082`: TPN
+
+
+                          Glossary of possible values in the payments ecosystem:
+
+                          - `001`: Visa
+
+                          - `002`: Mastercard
+
+                          - `003`: American Express
+
+                          - `004`: Discover
+
+                          - `005`: Diners Club
+
+                          - `006`: Carte Blanche
+
+                          - `007`: JCB
+
+                          - `008`: Optima
+
+                          - `009`: GE Private Label
+
+                          - `010`: Beneficial Private Label
+
+                          - `011`: Twinpay Credit Card
+
+                          - `012`: Twinpay Debit Card
+
+                          - `013`: Walmart
+
+                          - `014`: EnRoute
+
+                          - `015`: Lowe''s Consumer
+
+                          - `016`: Home Depot Consumer
+
+                          - `017`: MBNA
+
+                          - `018`: Dick''s Sportwear
+
+                          - `019`: Casual Corner
+
+                          - `020`: Sears
+
+                          - `021`: JAL
+
+                          - `023`: Disney Card
+
+                          - `024`: Switch/Solo
+
+                          - `025`: Sam''s Club Consumer
+
+                          - `026`: Sam''s Club Business
+
+                          - `027`: Nico''s
+
+                          - `028`: Paymentech Bill Me Later
+
+                          - `029`: Bebe
+
+                          - `030`: Restoration Hardware
+
+                          - `031`: Delta Online
+
+                          - `032`: Solo
+
+                          - `033`: Visa Electron
+
+                          - `034`: Dankort
+
+                          - `035`: Laser
+
+                          - `036`: Cartes Bancaire
+
+                          - `037`: Carta Si
+
+                          - `040`: UATP
+
+                          - `041`: HOUSEHOLD
+
+                          - `042`: Maestro
+
+                          - `043`: GE MONEY
+
+                          - `044`: Korean Cards
+
+                          - `045`: Style Cards
+
+                          - `046`: J.Crew
+
+                          - `047`: Payeasecn eWallet
+
+                          - `048`: Payeasecn Bank Transfer
+
+                          - `049`: Meijer
+
+                          - `050`: Hipercard
+
+                          - `051`: Aura
+
+                          - `052`: Redecard
+
+                          - `053`: Orico Card
+
+                          - `054`: Elo
+
+                          - `055`: Capital One Private Label
+
+                          - `057`: Costco Private Label
+
+                          - `058`: Carnet
+
+                          - `059`: ValueLink
+
+                          - `060`: MADA
+
+                          - `061`: RuPay
+
+                          - `062`: China UnionPay
+
+                          - `063`: Falabella Private Label
+
+                          - `064`: Prompt Card
+
+                          - `065`: Korean Domestic
+
+                          - `066`: Banricompras
+
+                          - `067`: Meeza
+
+                          - `068`: PayPak
+
+                          - `070`: EFTPOS
+
+                          - `071`: Codensa
+
+                          - `072`: Olimpica
+
+                          - `073`: Colsubsidio
+
+                          - `074`: Tuya
+
+                          - `075`: Sodexo
+
+                          - `076`: Naranja
+
+                          - `077`: Cabal
+
+                          - `078`: DINELCO
+
+                          - `079`: PANAL
+
+                          - `080`: EPM
+
+                          - `081`: Jaywan
+
+                          - `082`: TPN
+
+                          '
+                      brandName:
+                        type: string
+                        maxLength: 20
+                        description: "This field contains the card brand name. \n\nSome of the possible values (not an exhaustive list) are -\n\n  - VISA\n  - MASTERCARD\n  - AMERICAN EXPRESS\n  - DISCOVER\n  - DINERS CLUB\n  - CARTE BLANCHE\n  - JCB\n  - OPTIMA\n  - TWINPAY CREDIT CARD\n  - TWINPAY DEBIT CARD\n  - WALMART\n  - ENROUTE\n  - LOWES CONSUMER\n  - HOME DEPOT CONSUMER\n  - MBNA\n  - DICKS SPORTWEAR\n  - CASUAL CORNER\n  - SEARS\n  - JAL\n  - DISNEY CARD\n  - SWITCH/SOLO\n  - SAMS CLUB CONSUMER\n  - SAMS CLUB BUSINESS\n  - NICOS HOUSE CARD\n  - BEBE\n  - RESTORATION HARDWARE\n  - DELTA ONLINE\n  - SOLO\n  - VISA ELECTRON\n  - DANKORT\n  - LASER\n  - CARTE BANCAIRE\n  - CARTA SI\n  - ENCODED ACCOUNT\n  - UATP\n  - HOUSEHOLD\n  - MAESTRO\n  - GE CAPITAL\n  - KOREAN CARDS\n  - STYLE CARDS\n  - JCREW\n  - MEIJER\n  - HIPERCARD\n  - AURA\n  - REDECARD\n  - ORICO HOUSE CARD\n  - MADA\n  - ELO\n  - CAPITAL ONE PRIVATE LABEL\n  - CARNET\n  - RUPAY\n  - CHINA UNION PAY\n  - FALABELLA PRIVATE LABEL\n  - PROMPTCARD\n  - KOREAN DOMESTIC\n  - BANRICOMPRAS\n  - MEEZA\n  - PAYPAK\n  - JAYWAN\n  - TPN\n"
+                      currency:
+                        type: string
+                        maxLength: 3
+                        description: 'This field indicates the 3-letter [ISO Standard Currency Codes](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf) for the card currency.
+
+                          '
+                      maxLength:
+                        type: string
+                        maxLength: 2
+                        description: 'This field contains the max length of the card.
+
+                          '
+                      credentialType:
+                        type: string
+                        maxLength: 5
+                        description: "This field contains the type of the payment credential.\nPossible values:\n  - PAN\n  - TOKEN \n"
+                      brands:
+                        description: Array of brands
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              maxLength: 3
+                              description: 'This field contains a 3-digit numeric value that indicates the card type within Cybersource eco-system.
+
+                                Possible values from BIN Lookup Service (based on availability and enablement):
+
+                                - `000`: Unsupported Card Type
+
+                                - `001`: Visa
+
+                                - `002`: Mastercard
+
+                                - `003`: American Express
+
+                                - `004`: Discover
+
+                                - `005`: Diners Club
+
+                                - `007`: JCB
+
+                                - `036`: Cartes Bancaire
+
+                                - `042`: Maestro
+
+                                - `054`: Elo
+
+                                - `058`: Carnet
+
+                                - `060`: MADA
+
+                                - `061`: RuPay
+
+                                - `062`: China UnionPay
+
+                                - `064`: Prompt Card
+
+                                - `067`: Meeza
+
+                                - `068`: PayPak
+
+                                - `070`: EFTPOS
+
+                                - `081`: Jaywan
+
+                                - `082`: TPN
+
+
+                                Glossary of possible values in the payments ecosystem:
+
+                                - `001`: Visa
+
+                                - `002`: Mastercard
+
+                                - `003`: American Express
+
+                                - `004`: Discover
+
+                                - `005`: Diners Club
+
+                                - `006`: Carte Blanche
+
+                                - `007`: JCB
+
+                                - `008`: Optima
+
+                                - `009`: GE Private Label
+
+                                - `010`: Beneficial Private Label
+
+                                - `011`: Twinpay Credit Card
+
+                                - `012`: Twinpay Debit Card
+
+                                - `013`: Walmart
+
+                                - `014`: EnRoute
+
+                                - `015`: Lowe''s Consumer
+
+                                - `016`: Home Depot Consumer
+
+                                - `017`: MBNA
+
+                                - `018`: Dick''s Sportwear
+
+                                - `019`: Casual Corner
+
+                                - `020`: Sears
+
+                                - `021`: JAL
+
+                                - `023`: Disney Card
+
+                                - `024`: Switch/Solo
+
+                                - `025`: Sam''s Club Consumer
+
+                                - `026`: Sam''s Club Business
+
+                                - `027`: Nico''s
+
+                                - `028`: Paymentech Bill Me Later
+
+                                - `029`: Bebe
+
+                                - `030`: Restoration Hardware
+
+                                - `031`: Delta Online
+
+                                - `032`: Solo
+
+                                - `033`: Visa Electron
+
+                                - `034`: Dankort
+
+                                - `035`: Laser
+
+                                - `036`: Cartes Bancaire
+
+                                - `037`: Carta Si
+
+                                - `040`: UATP
+
+                                - `041`: HOUSEHOLD
+
+                                - `042`: Maestro
+
+                                - `043`: GE MONEY
+
+                                - `044`: Korean Cards
+
+                                - `045`: Style Cards
+
+                                - `046`: J.Crew
+
+                                - `047`: Payeasecn eWallet
+
+                                - `048`: Payeasecn Bank Transfer
+
+                                - `049`: Meijer
+
+                                - `050`: Hipercard
+
+                                - `051`: Aura
+
+                                - `052`: Redecard
+
+                                - `053`: Orico Card
+
+                                - `054`: Elo
+
+                                - `055`: Capital One Private Label
+
+                                - `057`: Costco Private Label
+
+                                - `058`: Carnet
+
+                                - `059`: ValueLink
+
+                                - `060`: MADA
+
+                                - `061`: RuPay
+
+                                - `062`: China UnionPay
+
+                                - `063`: Falabella Private Label
+
+                                - `064`: Prompt Card
+
+                                - `065`: Korean Domestic
+
+                                - `066`: Banricompras
+
+                                - `067`: Meeza
+
+                                - `068`: PayPak
+
+                                - `070`: EFTPOS
+
+                                - `071`: Codensa
+
+                                - `072`: Olimpica
+
+                                - `073`: Colsubsidio
+
+                                - `074`: Tuya
+
+                                - `075`: Sodexo
+
+                                - `076`: Naranja
+
+                                - `077`: Cabal
+
+                                - `078`: DINELCO
+
+                                - `079`: PANAL
+
+                                - `080`: EPM
+
+                                - `081`: Jaywan
+
+                                - `082`: TPN
+
+                                '
+                            brandName:
+                              type: string
+                              maxLength: 20
+                              description: "This field contains the card brand name. \n\nSome of the possible values (not an exhaustive list) are -\n\n  - VISA\n  - MASTERCARD\n  - AMERICAN EXPRESS\n  - DISCOVER\n  - DINERS CLUB\n  - CARTE BLANCHE\n  - JCB\n  - OPTIMA\n  - TWINPAY CREDIT CARD\n  - TWINPAY DEBIT CARD\n  - WALMART\n  - ENROUTE\n  - LOWES CONSUMER\n  - HOME DEPOT CONSUMER\n  - MBNA\n  - DICKS SPORTWEAR\n  - CASUAL CORNER\n  - SEARS\n  - JAL\n  - DISNEY CARD\n  - SWITCH/SOLO\n  - SAMS CLUB CONSUMER\n  - SAMS CLUB BUSINESS\n  - NICOS HOUSE CARD\n  - BEBE\n  - RESTORATION HARDWARE\n  - DELTA ONLINE\n  - SOLO\n  - VISA ELECTRON\n  - DANKORT\n  - LASER\n  - CARTE BANCAIRE\n  - CARTA SI\n  - ENCODED ACCOUNT\n  - UATP\n  - HOUSEHOLD\n  - MAESTRO\n  - GE CAPITAL\n  - KOREAN CARDS\n  - STYLE CARDS\n  - JCREW\n  - MEIJER\n  - HIPERCARD\n  - AURA\n  - REDECARD\n  - ORICO HOUSE CARD\n  - MADA\n  - ELO\n  - CAPITAL ONE PRIVATE LABEL\n  - CARNET\n  - RUPAY\n  - CHINA UNION PAY\n  - FALABELLA PRIVATE LABEL\n  - PROMPTCARD\n  - KOREAN DOMESTIC\n  - BANRICOMPRAS\n  - MEEZA\n  - PAYPAK\n  - JAYWAN\n  - TPN\n"
+                  features:
+                    type: object
+                    properties:
+                      accountFundingSource:
+                        type: string
+                        maxLength: 20
+                        description: "This field contains the account funding source.\nPossible values:\n  - `CREDIT`\n  - `DEBIT`\n  - `PREPAID`\n  - `DEFERRED DEBIT`\n  - `CHARGE`\n"
+                      accountFundingSourceSubType:
+                        type: string
+                        maxLength: 20
+                        description: "This field contains the type of prepaid card.\nPossible values:\n  - `Reloadable`\n  - `Non-reloadable`\n"
+                      cardProduct:
+                        type: string
+                        maxLength: 50
+                        description: "This field contains the type of issuer product.\nExample values:\n  - Visa Classic\n  - Visa Signature\n  - Visa Infinite\n"
+                      messageType:
+                        type: string
+                        maxLength: 1
+                        description: "This field contains the type of BIN based authentication.\nPossible values:\n  - `S`: Single Message\n  - `D`: Dual Message\n"
+                      acceptanceLevel:
+                        type: string
+                        maxLength: 2
+                        description: "This field contains the acceptance level of the PAN.\nPossible values:\n  - `0` : Normal\n  - `1` : Monitor\n  - `2` : Refuse\n  - `3` : Not Allowed\n  - `4` : Private\n  - `5` : Test\n"
+                      cardPlatform:
+                        type: string
+                        maxLength: 20
+                        description: "This field contains the type of card platform.\nPossible values:\n  - `BUSINESS`\n  - `CONSUMER`\n  - `CORPORATE`\n  - `COMMERCIAL`\n  - `GOVERNMENT`\n"
+                      comboCard:
+                        type: string
+                        maxLength: 1
+                        description: "This field indicates the type of combo card.\nPossible values:\n  - 0 (Not a combo card)\n  - 1 (Credit and Prepaid Combo card)\n  - 2 (Credit and Debit Combo card)\n  - 3 (Prepaid Credit and Prepaid Debit combo card)\n"
+                      corporatePurchase:
+                        type: boolean
+                        description: "This field indicates if the instrument can be used for corporate purchasing. This field is only applicable for American Express cards.\nPossible values:\n  - `true`\n  - `false`\n"
+                      healthCard:
+                        type: boolean
+                        description: "This field indicates if the BIN is for healthcare (HSA/FSA). Currently, this field is only supported for Visa BINs.\nPossible values:\n    - `true`\n    - `false`\n"
+                      sharedBIN:
+                        type: boolean
+                        description: "This field indicates if the BIN is shared by multiple issuers\nPossible values:\n    - `true`\n    - `false`\n"
+                      posDomesticOnly:
+                        type: boolean
+                        description: "This field indicates if the BIN is valid only for POS domestic usage.\nPossible values:\n    - `true`\n    - `false`\n"
+                      gamblingAllowed:
+                        type: boolean
+                        description: "This field indicates if gambling transactions are allowed on the BIN.\nPossible values:\n    - `true`\n    - `false`\n"
+                      commercialCardLevel2:
+                        type: boolean
+                        description: "This field indicates if a transaction on the instrument qualifies for level 2 interchange rates.\nPossible values:\n    - `true`\n    - `false`\n"
+                      commercialCardLevel3:
+                        type: boolean
+                        description: "This field indicates if a transaction on the instrument qualifies for level 3 interchange rates.\nPossible values:\n    - `true`\n    - `false`\n"
+                      exemptBIN:
+                        type: boolean
+                        description: "This field indicates if a transaction on the instrument qualifies for government exempt interchange fee.\nPossible values:\n    - `true`\n    - `false`\n"
+                      accountLevelManagement:
+                        type: boolean
+                        description: "This field indicates if the BIN participates in Account Level Management (ALM).\nPossible values:\n    - `true`\n    - `false`\n"
+                      onlineGamblingBlock:
+                        type: boolean
+                        description: "This field indicates if online gambling is blocked on the BIN.\nPossible values:\n    - `true`\n    - `false`\n"
+                      autoSubstantiation:
+                        type: boolean
+                        description: "This field indicates if auto-substantiation is enabled on the BIN.\nPossible values:\n    - `true`\n    - `false`\n"
+                      flexCredential:
+                        type: boolean
+                        description: "This field indicates if the instrument is a flex credential.\nPossible values:\n    - `true`\n    - `false`\n"
+                      productId:
+                        type: string
+                        description: "This field contains the Visa-assigned product identifier associated with the BIN. This field is only supported for Visa BINs.\nExample values:\n  - Q4\n  - P\n  - AX\n"
+                      productIdSubtype:
+                        type: string
+                        description: "This field contains the Visa-assigned product subtype identifier associated with the BIN. This field is only supported for Visa BINs.\nExample values:\n  - BB\n  - EX\n  - L2\n  - C2\n"
+                      threeDSSupport:
+                        type: boolean
+                        description: "This field indicates if the payment instrument supports 3D Secure authentication.\nPossible values:\n    - `true`\n    - `false`\n"
+                      siEligible:
+                        type: boolean
+                        description: "This field indicates if the payment instrument is eligible for Standing Instructions (recurring payments).\nPossible values:\n    - `true`\n    - `false`\n"
+                      emiEligible:
+                        type: boolean
+                        description: "This field indicates if the payment instrument is eligible for Equated Monthly Installments (EMI).\nPossible values:\n    - `true`\n    - `false`\n"
+                      fleetCard:
+                        type: boolean
+                        description: "This field indicates if the BIN is designated for fuel/fleet usage. These specialized BINs support additional Level2/Level 3 transaction data.\nPossible values:\n    - `true`\n    - `false`\n"
+                      atmEnabled:
+                        type: boolean
+                        description: "This field indicates if the payment instrument is enabled for ATM usage.\nPossible values:\n    - `true`\n    - `false`\n"
+                      posEnabled:
+                        type: boolean
+                        description: "This field indicates if the payment instrument is enabled for POS usage.\nPossible values:\n    - `true`\n    - `false`\n"
+                      ecomEnabled:
+                        type: boolean
+                        description: "This field indicates if the payment instrument is enabled for ECOM usage.\nPossible values:\n    - `true`\n    - `false`\n"
+                  network:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: 'This field contains a code that identifies the network.
+
+                          [List of Network ID and Sharing Group Code](https://developer.visa.com/request_response_codes#network_id_and_sharing_group_code)
+
+                          '
+              issuerInformation:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    maxLength: 200
+                    description: 'This field contains the issuer name.
+
+                      '
+                  country:
+                    type: string
+                    maxLength: 2
+                    description: 'This field contains [2-character ISO Country Codes](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf) for the issuer.
+
+                      '
+                  binLength:
+                    type: string
+                    maxLength: 2
+                    description: 'This field contains the length of the BIN. In some cases, this field may be absent if we do not receive accurate information from the network source.
+
+                      '
+                  accountPrefix:
+                    type: string
+                    maxLength: 8
+                    description: 'This field contains the first 6 to 8 digits of a primary account number (PAN). The length of the field is determined by [PCI-DSS standards for truncation](https://pcissc.secure.force.com/faq/articles/Frequently_Asked_Question/What-are-acceptable-formats-for-truncation-of-primary-account-numbers).In case the input is not the full intrument (PAN or TOKEN), this field may be truncated.
+
+                      '
+                  phoneNumber:
+                    type: string
+                    maxLength: 50
+                    description: 'This field contains the customer service phone number for the issuer.
+
+                      '
+              payoutInformation:
+                type: object
+                properties:
+                  pushFunds:
+                    type: object
+                    properties:
+                      moneyTransferFastFundsCrossBorder:
+                        type: string
+                        maxLength: 1
+                        description: "This field indicates if cross-border money transfer OCTs (fast push funds) are allowed.\nPossible values:\n  - `Y`\n  - `N`\n"
+                      moneyTransferFastFundsDomestic:
+                        type: string
+                        maxLength: 1
+                        description: "This field indicates if domestic money transfer OCTs (fast push funds) are allowed.\nPossible values:\n  - `Y`\n  - `N`\n"
+                      moneyTransferCrossBorder:
+                        type: string
+                        maxLength: 1
+                        description: "This field indicates if cross-border money transfer OCTs (push funds) are allowed.\nPossible values:\n  - `Y`\n  - `N`\n"
+                      moneyTransferDomestic:
+                        type: string
+                        maxLength: 1
+                        description: "This field indicates if domestic money transfer OCTs (push funds) are allowed.\nPossible values:\n  - `Y`\n  - `N`\n"
+                      nonMoneyTransferFastFundsCrossBorder:
+                        type: string
+                        maxLength: 1
+                        description: "This field indicates if cross-border non-money transfer OCTs (fast push funds) are allowed.\nPossible values:\n  - `Y`\n  - `N`\n"
+                      nonMoneyTransferFastFundsDomestic:
+                        type: string
+                        maxLength: 1
+                        description: "This field indicates if domestic non-money transfer OCTs (fast push funds) are allowed.\nPossible values:\n  - `Y`\n  - `N`\n"
+                      nonMoneyTransferCrossBorder:
+                        type: string
+                        maxLength: 1
+                        description: "This field indicates if cross-border non-money transfer OCTs (push funds) are allowed.\nPossible values:\n  - `Y`\n  - `N`\n"
+                      nonMoneyTransferDomestic:
+                        type: string
+                        maxLength: 1
+                        description: "This field indicates if domestic non-money transfer OCTs (push funds) are allowed.\nPossible values:\n  - `Y`\n  - `N`\n"
+                      onlineGamblingFastFundsCrossBorder:
+                        type: string
+                        maxLength: 1
+                        description: "This field indicates if cross-border gambling OCTs (fast push funds) are allowed.\nPossible values:\n  - `Y`\n  - `N`\n"
+                      onlineGamblingFastFundsDomestic:
+                        type: string
+                        maxLength: 1
+                        description: "This field indicates if domestic gambling OCTs (fast push funds) are allowed.\nPossible values:\n  - `Y`\n  - `N`\n"
+                      onlineGamblingCrossBorder:
+                        type: string
+                        maxLength: 1
+                        description: "This field indicates if cross-border gambling OCTs (push funds) are allowed.\nPossible values:\n  - `Y`\n  - `N`\n"
+                      onlineGamblingDomestic:
+                        type: string
+                        maxLength: 1
+                        description: "This field indicates if domestic gambling OCTs (push funds) are allowed.\nPossible values:\n  - `Y`\n  - `N`\n"
+                      domesticParticipant:
+                        type: string
+                        maxLength: 5
+                        description: "This field indicates if domestic OCTs (push funds) are allowed.\nPossible values:\n  - `true`\n  - `false`\n"
+                      crossBorderParticipant:
+                        type: string
+                        maxLength: 5
+                        description: "This field indicates if cross-border OCTs (push funds) are allowed.\nPossible values:\n  - `true`\n  - `false`\n"
+                  pullFunds:
+                    type: object
+                    properties:
+                      domesticParticipant:
+                        type: string
+                        maxLength: 5
+                        description: "This field indicates if domestic AFTs (pull funds) are allowed.\nPossible values:\n  - `true`\n  - `false`\n"
+                      crossBorderParticipant:
+                        type: string
+                        maxLength: 5
+                        description: "This field indicates if cross-border AFTs (pull funds) are allowed.\nPossible values:\n  - `true`\n  - `false`\n"
+                  geoRestrictionIndicator:
+                    type: string
+                    maxLength: 1
+                    description: "This field indicates if the recipient issuer can accept transactions from the originator country.\nPossible values:\n  - `Y`\n  - `N`\n"
+        '400':
+          description: Invalid request.
+          schema:
+            type: object
+            title: binLookupv400Response
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - INVALID_REQUEST\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n - INVALID_CARD\n - INVALID_MERCHANT_CONFIGURATION\n - INVALID_REQUEST\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: This is the flattened JSON object field name/path that is either missing or invalid.
+                    reason:
+                      type: string
+                      description: "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n"
+        '403':
+          description: Forbidden access. The request was rejected due to access restrictions on the account or resource.
+          schema:
+            type: object
+            title: binLookup403Response
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - FORBIDDEN_ACCESS\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - FORBIDDEN_ACCESS\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+        '502':
+          description: Unexpected system error or system timeout.
+          schema:
+            type: object
+            properties:
+              submitTimeUtc:
+                type: string
+                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                  The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                  Returned by Cybersource for all services.
+
+                  '
+              status:
+                type: string
+                description: "The status of the submitted transaction.\n\nPossible values:\n - SERVER_ERROR\n"
+              reason:
+                type: string
+                description: "The reason of the status.\n\nPossible values:\n - SYSTEM_ERROR\n - SERVER_TIMEOUT\n - SERVICE_TIMEOUT\n"
+              message:
+                type: string
+                description: The detail message related to the status and reason listed above.
+      x-example:
+        example0:
+          summary: BIN Lookup with Card
+          value:
+            clientReferenceInformation:
+              code: TC50171_100
+            paymentInformation:
+              card:
+                number: '4111111111111111'
+        example1:
+          summary: BIN Lookup with Healthcare Card
+          value:
+            paymentInformation:
+              card:
+                number: '4288900100000'
+        example2:
+          summary: BIN Lookup with Network Token
+          value:
+            paymentInformation:
+              card:
+                number: '4895370016313691'
+        example3:
+          summary: BIN Lookup with TMS Customer ID
+          value:
+            paymentInformation:
+              customer:
+                id: E5426CFDE77F7390E053A2598D0A925D
+        example4:
+          summary: BIN Lookup with TMS Payment Instrument
+          value:
+            paymentInformation:
+              paymentInstrument:
+                id: E5427539180789D0E053A2598D0AF053
+        example5:
+          summary: BIN Lookup with TMS Instrument Identifier
+          value:
+            paymentInformation:
+              instrumentIdentifier:
+                id: '7010000000016241111'
+        example6:
+          summary: BIN Lookup with TMS jti Transient Token
+          value:
+            tokenInformation:
+              jti: 1E0WC1GO87JG1BDP0CQ8SCR1TTK86U9N98H3WH8IFM9MVEWTIYFI62F4941E7A92
+        example7:
+          summary: BIN Lookup with TMS JWT Transient Token
+          value:
+            tokenInformation:
+              transientTokenJwt: eyJraWQiOiIwODd0bk1DNU04bXJHR3JHMVJQTkwzZ2VyRUh5VWV1ciIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJGbGV4LzA4IiwiZXhwIjoxNjYwMTk1ODcwLCJ0eXBlIjoiYXBpLTAuMS4wIiwiaWF0IjoxNjYwMTk0OTcwLCJqdGkiOiIxRTBXQzFHTzg3SkcxQkRQMENROFNDUjFUVEs4NlU5Tjk4SDNXSDhJRk05TVZFV1RJWUZJNjJGNDk0MUU3QTkyIiwiY29udGVudCI6eyJwYXltZW50SW5mb3JtYXRpb24iOnsiY2FyZCI6eyJudW1iZXIiOnsibWFza2VkVmFsdWUiOiJYWFhYWFhYWFhYWFgxMTExIiwiYmluIjoiNDExMTExIn0sInR5cGUiOnsidmFsdWUiOiIwMDEifX19fX0.MkCLbyvufN4prGRvHJcqCu1WceDVlgubZVpShNWQVjpuFQUuqwrKg284sC7ucVKuIsOU0DTN8_OoxDLduvZhS7X_5TnO0QjyA_aFxbRBvU_bEz1l9V99VPADG89T-fox_L6sLUaoTJ8T4PyD7rkPHEA0nmXbqQCVqw4Czc5TqlKCwmL-Fe0NBR2HlOFI1PrSXT-7_wI-JTgXI0dQzb8Ub20erHwOLwu3oni4_ZmS3rGI_gxq2MHi8pO-ZOgA597be4WfVFAx1wnMbareqR72a0QM4DefeoltrpNqXSaASVyb5G0zuqg-BOjWJbawmg2QgcZ_vE3rJ6PDgWROvp9Tbw
+x-devcenter-metaData:
+  categoryTagArray:
+  - name: Payments
+    description: For more information about Payments transactions, see the [Payments Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/payments/developer/ctv/rest/payments/payments-intro.html).
+  - name: Transaction_Batches
+    description: For more information about Transaction Batches, see the [Transaction Batches Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-transaction-batch-api/txn_batch_api_intro.html).
+  - name: eCheck_AVS
+    description: For more information about eCheck Account Validation, see the [Account Validation Developer Guides Page](https://...).
+  - name: Token_Management
+    description: For more information about the Token Management Service (TMS) see the [Token Management Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms/tms-overview.html)
+  - name: Flex_Microform
+    description: Microform Integration is a lightweight acceptance solution designed to safely and securely accept payment information within your web page.  Microform is designed to a be embedded seamlessly within your existing webpage experience, blending in with your existing acceptance form.  This solution allows for the replacement of sensitive payment date with a transient token (a short lived reference to the sensitive payment data).  For more information about Flex Microform transactions, see the [Flex Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-flex/SAFlexibleToken.html). For examples on how to integrate Flex Microform within your webpage please see our [GitHub Flex Samples](https://github.com/CyberSource?q=flex&type=&language=)
+  - name: Flex_API
+    description: For more information about Flex API, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/da-flex-api-intro.html).
+  - name: Risk_Management
+  - name: Payouts
+    description: 'For more information about Payouts, see the [Payouts Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-payouts/Introduction.html).
+
+      '
+  - name: Installments
+    description: For more information about Installment contact Cybersource Support. For Visa installments contact VISthroughCYBS@visa.com
+  - name: Recurring_Billing_Subscriptions
+    description: For more information about Recurring Billing, see the [Recurring Billing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-developer/recur-bill-services-intro.html).
+  - name: BIN_Lookup
+    description: 'The BIN Lookup Service is a versatile business tool that provides card network agnostic solution designed to ensure frictionless transaction experience by utilizing up-to-date Bank Identification Number (BIN) attributes sourced from multiple global and regional data sources.
+
+      This service helps to improve authorization rates by helping to route transactions to the best-suited card network, minimizes fraud through card detail verification and aids in regulatory compliance by identifying card properties. The service is flexible and provides businesses with a flexible choice of inputs such as primary account number (PAN), network token from major networks (such as Visa, American Express, Discover and regional networks) which includes device PAN (DPAN), and all types of tokens generated via CyberSource Token Management Service (TMS).
+
+      Currently, the range of available credentials is contingent on the networks enabled for the business entity. Therefore, the network information specified in this documentation is illustrative and subject to personalized offerings for each reseller or merchant.
+
+      '
+  - name: Transaction_Details
+    description: For more information about Transaction Details, see the [Transaction Details Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_details_api.html).
+  - name: Transaction_Search
+    description: For more information about Transaction Search, see the [Transaction Search Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_search_api.html).
+  - name: Reporting
+    description: 'For more information about Reporting, see the [Reporting Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-reporting-rest-api-dev-guide-102718/reporting_api.html).
+
+      '
+  - name: Secure_File_Share
+    description: For more information about Secure File Share, see the [Secure File Share Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-secure-file-share-api-102718/secure_file_share_api_intro.html).
+  - name: Invoices
+    description: For more information about Invoicing, see the [Invoicing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing/Introduction.html).
+  - name: Pay_By_Link
+    description: For more information about PayByLink, see the [PBL Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/boarding/user/all/rest/boarding/templates-matrix-intro/templates-matrix-pay-by-link.html).
+  - name: User_Management
+    description: For more information about User Management, see the [User Managment Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-user-management-api-102718/user_management_api_intro.html).
+  - name: Value_Added_Service
+  - name: Fee Service
+  - name: Merchant_Boarding
+    description: For more information about Merchant Boarding, please see [Developer Guides Page](https://developer.cybersource.com/api/developer-guides/Merchant-Boarding-API_ditamap/Merchant-Boarding-API.html).
+  - name: Webhooks
+    description: For more information about Webhooks, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/webhooks/implementation/all/rest/webhooks/wh-fg-intro.html).
+  - name: Unified_Checkout
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-intro.html).
+  - name: Unified_Checkoutv1
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-about-guide.html).
+  - name: Account_Updater
+    description: For more information about Account Updater, see the [Account Updater Developer Guides Page:](https://developer.cybersource.com/library/documentation/dev_guides/Account_Updater_UG/html/index.html).
+  - name: Visa_Bank_Account_Validation
+    description: 'The Visa Bank Account Validation Service is a new standalone product designed to validate customer''s routing and bank account number combination for ACH transactions. Merchant''s can use this standalone product to validate their customer''s account prior to processing an ACH transaction against the customer''s account to comply with Nacha''s account validation mandate for Web-debit transactions.
+
+      '
+  - name: Currency Conversion
+    description: 'Empower global transactions with transparency and choice. Our Dynamic Currency Conversion API lets merchants offer customers the option to pay in their home currency at checkout, delivering real-time exchange rates and clear cost disclosure.
+
+
+      **Key Benefits:**
+
+      - **Enhanced Customer Experience:** Provide clarity and convenience for international shoppers.
+
+      - **Real-Time Rates:** Accurate currency conversion with all the data required for acquirers and their merchants to maintain compliance with card network rules.
+
+      - **Seamless Integration:** Flexible API endpoints for rate lookup, authorization, and capture.
+
+      - **Regulatory Compliance:** Provides the data required for acquirers and merchants to meet and maintain card scheme requirements for disclosure and consent.
+
+
+      Ideal for merchants and payment partners seeking to boost trust and conversion in cross-border commerce.
+
+
+      **Key Features:**
+
+      - **Rate Lookup:** Retrieves the most up-to-date exchange rate for eligible cards before authorization.
+
+      - **Currency Choice:** Enables the merchant to offer customers the option to select between the merchant''s local currency and their card''s billing currency.
+
+      - **Compliance:** Ensures merchants have the data required to adhere to card network regulations; exchange rates, markups, etc.
+
+
+      **Supported Scenarios:**
+
+      - Dynamic Currency Conversion when cardholder''s billing currency differs from merchant''s pricing currency.
+
+      - Merchant and acquirer must support the cardholder''s billing currency.
+
+
+      **Core API Endpoints:**
+
+
+      **Currency Conversion API**
+
+      Returns eligibility and exchange rate details, including:
+
+      - exchangeRate
+
+      - marginRate
+
+      - reconciliationId and Id (for subsequent payment requests)
+
+
+      **Payment Authorization with DCC***
+
+      POST /pts/v2/payments
+
+      Required fields include:
+
+      - orderInformation.amountDetails.currency
+
+      - orderInformation.amountDetails.originalCurrency
+
+      - orderInformation.amountDetails.originalAmount
+
+      - orderInformation.amountDetails.exchangeRate
+
+      - currencyConversion.indicator (e.g., 1 = Converted, 2 = Nonconvertible, 3 = Declined)
+
+
+      **Capture with DCC***
+
+      POST /pts/v2/payments/{id}/captures
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      **Refund with DCC***
+
+      POST /pts/v2/captures/{id}/refunds
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      *Note: DCC is only supported on select processors. Contact your acquirer or account manager for more information.
+
+
+      **Compliance & Disclosure:**
+
+
+      Merchants must:
+
+      - Adhere to card network rules for Dynamic Currency Conversion (DCC) transactions.
+
+      - Display the converted amount, exchange rate, and markup percentage and other required disclosures.
+
+      - Obtain explicit cardholder consent before applying DCC.
+
+      - Work with your acquirer to obtain full set of compliance requirements.
+
+
+      For more information, see the [Currency Conversion Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/currency-conversion/developer/all/rest/currency-conversion/cc-intro.html).
+
+      '
+  - name: Intelligent_Commerce_Connect
+    description: For more information about Intelligent Commerce Cross Network Service API, please see [Developer Guides](https://developer.cybersource.com/docs/cybs/en-us/intelligent-commerce/developer/all/rest/intelligent-commerce/intelligent-commerce-about-guide.html).

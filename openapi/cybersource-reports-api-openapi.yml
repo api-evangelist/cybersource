@@ -1,0 +1,1439 @@
+swagger: '2.0'
+info:
+  description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
+  version: 0.0.1
+  title: CyberSource Merged Spec bankAccountValidation Reports API
+host: apitest.cybersource.com
+basePath: /
+schemes:
+- https
+consumes:
+- application/json;charset=utf-8
+produces:
+- application/hal+json;charset=utf-8
+tags:
+- name: Reports
+  description: API for creation and retrieval of Reports
+paths:
+  /reporting/v3/reports:
+    get:
+      tags:
+      - Reports
+      summary: Retrieve Available Reports
+      description: 'Retrieve a list of the available reports to which you are subscribed. This will also give you the reportId value, which you can also use to download a report.
+
+        '
+      operationId: searchReports
+      x-devcenter-metaData:
+        categoryTag: Reporting
+      x-queryParameterDefaults:
+        startTime: '2019-10-01T00:00:00Z'
+        endTime: '2019-10-30T23:59:59Z'
+        timeQueryType: executedTime
+        reportMimeType: application/xml
+      produces:
+      - application/hal+json
+      parameters:
+      - name: organizationId
+        in: query
+        description: Valid Organization Id
+        pattern: '[a-zA-Z0-9-_]+'
+        required: false
+        type: string
+        minLength: 1
+        maxLength: 32
+      - name: startTime
+        in: query
+        description: "Valid report Start Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n**Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)\n"
+        required: true
+        type: string
+        format: date-time
+      - name: endTime
+        in: query
+        description: "Valid report End Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n**Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)\n"
+        required: true
+        type: string
+        format: date-time
+      - name: timeQueryType
+        in: query
+        description: 'Specify time you would like to search
+
+
+          Valid values:
+
+          - reportTimeFrame
+
+          - executedTime
+
+          '
+        required: true
+        type: string
+      - name: reportMimeType
+        in: query
+        description: 'Valid Report Format
+
+
+          Valid values:
+
+          - application/xml
+
+          - text/csv
+
+          '
+        required: false
+        type: string
+      - name: reportFrequency
+        in: query
+        description: 'Valid Report Frequency
+
+
+          Valid values:
+
+          - DAILY
+
+          - WEEKLY
+
+          - MONTHLY
+
+          - USER_DEFINED
+
+          - ADHOC
+
+          '
+        required: false
+        type: string
+      - name: reportName
+        in: query
+        description: Valid Report Name
+        required: false
+        type: string
+      - name: reportDefinitionId
+        in: query
+        description: Valid Report Definition Id
+        required: false
+        type: integer
+        format: int32
+      - name: reportStatus
+        in: query
+        description: 'Valid Report Status
+
+
+          Valid values:
+
+          - COMPLETED
+
+          - PENDING
+
+          - QUEUED
+
+          - RUNNING
+
+          - ERROR
+
+          - NO_DATA
+
+          '
+        required: false
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            title: reportingV3ReportsGet200Response
+            type: object
+            properties:
+              reportSearchResults:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _link:
+                      type: object
+                      properties:
+                        reportDownload:
+                          type: object
+                          properties:
+                            href:
+                              type: string
+                              example: /reporting/v3/report-downloads?reportDate=2017-10-02&reportName=MyTransactionRequestDetailReport&reportTime=10:00:00+05:00
+                            method:
+                              type: string
+                              example: GET
+                    reportDefinitionId:
+                      type: string
+                      description: Unique Report Identifier of each report type
+                      example: '210'
+                    reportName:
+                      type: string
+                      description: Name of the report specified by merchant while creating the report
+                      example: MyTransactionRequestDetailReport
+                    reportMimeType:
+                      type: string
+                      example: application/xml
+                      description: 'Format of the report to get generated
+
+                        Valid Values:
+
+                        - application/xml
+
+                        - text/csv
+
+                        '
+                    reportFrequency:
+                      type: string
+                      example: DAILY
+                      description: 'Frequency of the report to get generated
+
+                        Valid Values:
+
+                        - DAILY
+
+                        - WEEKLY
+
+                        - MONTHLY
+
+                        - ADHOC
+
+                        '
+                    status:
+                      type: string
+                      description: 'Status of the report
+
+                        Valid Values:
+
+                        - COMPLETED
+
+                        - PENDING
+
+                        - QUEUED
+
+                        - RUNNING
+
+                        - ERROR
+
+                        - NO_DATA
+
+                        '
+                    reportStartTime:
+                      type: string
+                      format: date-time
+                      example: '2017-10-01T10:00:00+05:00'
+                      description: Specifies the report start time in ISO 8601 format
+                    reportEndTime:
+                      type: string
+                      format: date-time
+                      example: '2017-10-02T10:00:00+05:00'
+                      description: Specifies the report end time in ISO 8601 format
+                    timezone:
+                      type: string
+                      example: America/Chicago
+                      description: Time Zone
+                    reportId:
+                      type: string
+                      example: 6d9cb5b6-0e97-2d03-e053-7cb8d30af52e
+                      description: Unique identifier generated for every reports
+                    organizationId:
+                      type: string
+                      example: Test_MerchantId
+                      description: CyberSource Merchant Id
+                    queuedTime:
+                      type: string
+                      format: date-time
+                      example: '2017-10-03T10:00:00+05:00'
+                      description: Specifies the time of the report in queued  in ISO 8601 format
+                    reportGeneratingTime:
+                      type: string
+                      format: date-time
+                      example: '2017-10-03T10:00:00+05:00'
+                      description: Specifies the time of the report started to generate  in ISO 8601 format
+                    reportCompletedTime:
+                      type: string
+                      format: date-time
+                      example: '2017-10-03T10:10:00+05:00'
+                      description: Specifies the time of the report completed the generation  in ISO 8601 format
+                    subscriptionType:
+                      type: string
+                      example: CUSTOM
+                      description: 'Specifies whether the subscription created is either Custom, Standard or Classic
+
+                        '
+                    groupId:
+                      type: string
+                      example: '12345'
+                      description: Id for selected group.
+                  description: Report Search Result Bean
+        '400':
+          description: Invalid Request
+          schema:
+            title: reportingV3ReportsGet400Response
+            type: object
+            required:
+            - submitTimeUtc
+            - reason
+            - message
+            - details
+            properties:
+              submitTimeUtc:
+                type: string
+                format: date-time
+                description: "Time of request in UTC. \n"
+                example: '2016-08-11T22:47:57Z'
+              reason:
+                type: string
+                description: 'Documented reason code
+
+                  '
+                example: INVALID_DATA
+              message:
+                type: string
+                description: 'Short descriptive message to the user.
+
+                  '
+                example: One or more fields contains invalid data
+              details:
+                type: array
+                description: 'Error field list
+
+                  '
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: 'Field in request that caused an error
+
+                        '
+                    reason:
+                      type: string
+                      description: 'Documented reason code
+
+                        '
+                  description: 'Provides failed validation input field detail
+
+                    '
+            description: HTTP status code for client application
+        '404':
+          description: No Reports Found
+    post:
+      tags:
+      - Reports
+      summary: Create Adhoc Report
+      description: 'Create a one-time report. You must specify the type of report in reportDefinitionName. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation)
+
+        '
+      operationId: createReport
+      x-devcenter-metaData:
+        categoryTag: Reporting
+      x-queryParameterDefaults:
+        organizationId: testrest
+      consumes:
+      - application/json
+      produces:
+      - application/hal+json
+      parameters:
+      - name: organizationId
+        in: query
+        description: Valid Organization Id
+        pattern: '[a-zA-Z0-9-_]+'
+        required: false
+        type: string
+        minLength: 1
+        maxLength: 32
+      - in: body
+        name: createAdhocReportRequest
+        description: Report subscription request payload
+        required: true
+        schema:
+          type: object
+          properties:
+            organizationId:
+              type: string
+              description: Valid CyberSource Organization Id
+              pattern: '[a-zA-Z0-9-_]+'
+              example: Test_Merchatnt_id
+            reportDefinitionName:
+              type: string
+              minLength: 1
+              maxLength: 80
+              pattern: '[a-zA-Z0-9-]+'
+              example: TransactionRequestClass
+            reportFields:
+              type: array
+              items:
+                type: string
+              description: List of fields which needs to get included in a report
+              example:
+              - Request.RequestID
+              - Request.TransactionDate
+              - Request.MerchantID
+            reportMimeType:
+              type: string
+              description: "'Format of the report'\n                \nValid values:\n- application/xml\n- text/csv\n"
+              example: application/xml
+            reportName:
+              type: string
+              minLength: 1
+              maxLength: 128
+              pattern: '[a-zA-Z0-9-_ ]+'
+              description: Name of the report
+              example: My Transaction Request report
+            timezone:
+              type: string
+              description: Timezone of the report
+              example: America/Chicago
+            reportStartTime:
+              type: string
+              format: date-time
+              description: Start time of the report
+              example: '2017-10-01T10:10:10+05:00'
+            reportEndTime:
+              type: string
+              format: date-time
+              description: End time of the report
+              example: '2017-10-02T10:10:10+05:00'
+            reportFilters:
+              type: object
+              properties:
+                Application.Name:
+                  type: array
+                  items:
+                    type: string
+                    description: Specifies filter criteria by list of application names separated by comma
+                    example: ics_auth
+                firstName:
+                  type: array
+                  items:
+                    type: string
+                    description: Specifies filter criteria by list of first names separated by comma
+                    example: Johny
+                lastName:
+                  type: array
+                  items:
+                    type: string
+                    description: Specifies filter criteria by list of last names separated by comma
+                    example: Danny
+                email:
+                  type: array
+                  items:
+                    type: string
+                    description: Specifies filter criteria by list of email addresses separated by comma
+                    example: example@visa.com
+            reportPreferences:
+              type: object
+              description: Report Preferences
+              properties:
+                signedAmounts:
+                  type: boolean
+                  description: Indicator to determine whether negative sign infront of amount for all refunded transaction
+                fieldNameConvention:
+                  type: string
+                  description: 'Specify the field naming convention to be followed in reports (applicable to only csv report formats)
+
+
+                    Valid values:
+
+                    - SOAPI
+
+                    - SCMP
+
+                    '
+            groupName:
+              type: string
+              pattern: '[0-9]*'
+              description: Specifies the group name
+              example: myGroup
+      responses:
+        '201':
+          description: Created
+        '304':
+          description: Not Modified
+        '400':
+          description: Invalid request
+          schema:
+            title: reportingV3ReportsPost400Response
+            type: object
+            required:
+            - submitTimeUtc
+            - reason
+            - message
+            - details
+            properties:
+              submitTimeUtc:
+                type: string
+                format: date-time
+                description: "Time of request in UTC. \n"
+                example: '2016-08-11T22:47:57Z'
+              reason:
+                type: string
+                description: 'Documented reason code
+
+                  '
+                example: INVALID_DATA
+              message:
+                type: string
+                description: 'Short descriptive message to the user.
+
+                  '
+                example: One or more fields contains invalid data
+              details:
+                type: array
+                description: 'Error field list
+
+                  '
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: 'Field in request that caused an error
+
+                        '
+                    reason:
+                      type: string
+                      description: 'Documented reason code
+
+                        '
+                  description: 'Provides failed validation input field detail
+
+                    '
+            description: HTTP status code for client application
+      x-example:
+        example0:
+          summary: Create Adhoc Report
+          value:
+            reportDefinitionName: TransactionRequestClass
+            reportFields:
+            - Request.RequestID
+            - Request.TransactionDate
+            - Request.MerchantID
+            - Request.MerchantReferenceNumber
+            - AFSFields.IPAddress
+            - AFSFields.IPCountry
+            - AFSFields.IPRoutingMethod
+            - AFSFields.IPState
+            - Application.Name
+            - BankInfo.Address
+            - BankInfo.BranchCode
+            - BankInfo.City
+            - BankInfo.Country
+            - BankInfo.Name
+            - BankInfo.SwiftCode
+            - BillTo.Address1
+            - BillTo.Address2
+            - BillTo.City
+            - BillTo.CompanyName
+            - BillTo.CompanyTaxID
+            - BillTo.Country
+            - BillTo.Email
+            - BillTo.FirstName
+            - BillTo.LastName
+            - BillTo.MiddleName
+            - BillTo.NameSuffix
+            - BillTo.PersonalID
+            - BillTo.Phone
+            - BillTo.State
+            - BillTo.Title
+            - BillTo.Zip
+            - ChargebackAndRetrieval.AdjustmentAmount
+            - ChargebackAndRetrieval.AdjustmentCurrency
+            - ChargebackAndRetrieval.ARN
+            - ChargebackAndRetrieval.CaseIdentifier
+            - ChargebackAndRetrieval.CaseNumber
+            - ChargebackAndRetrieval.CaseTime
+            - ChargebackAndRetrieval.CaseType
+            - ChargebackAndRetrieval.ChargebackAmount
+            - ChargebackAndRetrieval.ChargebackCurrency
+            - ChargebackAndRetrieval.ChargebackMessage
+            - ChargebackAndRetrieval.ChargebackReasonCode
+            - ChargebackAndRetrieval.ChargebackReasonCodeDescription
+            - ChargebackAndRetrieval.ChargebackTime
+            - ChargebackAndRetrieval.DocumentIndicator
+            - ChargebackAndRetrieval.FeeAmount
+            - ChargebackAndRetrieval.FeeCurrency
+            - ChargebackAndRetrieval.FinancialImpact
+            - ChargebackAndRetrieval.FinancialImpactType
+            - ChargebackAndRetrieval.MerchantCategoryCode
+            - ChargebackAndRetrieval.PartialIndicator
+            - ChargebackAndRetrieval.ResolutionTime
+            - ChargebackAndRetrieval.ResolvedToIndicator
+            - ChargebackAndRetrieval.RespondByDate
+            - ChargebackAndRetrieval.TransactionType
+            - Check.AccountEncoderID
+            - Check.BankTransitNumber
+            - Check.SecCode
+            - CustomerFields.BillingAddress1
+            - CustomerFields.BillingAddress2
+            - CustomerFields.BillingCity
+            - CustomerFields.BillingCompanyName
+            - CustomerFields.BillingCountry
+            - CustomerFields.BillingEmail
+            - CustomerFields.BillingFirstName
+            - CustomerFields.BillingLastName
+            - CustomerFields.BillingPhone
+            - CustomerFields.BillingPostalCode
+            - CustomerFields.BillingState
+            - CustomerFields.CustomerID
+            - CustomerFields.CustomerUserName
+            - CustomerFields.PersonalId(CPF/CNPJ)
+            - CustomerFields.ShippingAddress1
+            - CustomerFields.ShippingAddress2
+            - CustomerFields.ShippingCity
+            - CustomerFields.ShippingCompanyName
+            - CustomerFields.ShippingCountry
+            - CustomerFields.ShippingFirstName
+            - CustomerFields.ShippingLastName
+            - CustomerFields.ShippingPhone
+            - CustomerFields.ShippingPostalCode
+            - CustomerFields.ShippingState
+            - DecisionManagerEvents.EventPolicy
+            - DecisionManagerEvents.TypeofEvent
+            - Device.DeviceID
+            - DeviceFingerprintFields.abcd
+            - DeviceFingerprintFields.BrowserLanguage
+            - DeviceFingerprintFields.DeviceLatitude
+            - DeviceFingerprintFields.DeviceLongitude
+            - DeviceFingerprintFields.displayNameFinalCheck
+            - DeviceFingerprintFields.DMESignOffFieldEdit
+            - DeviceFingerprintFields.Fingerprint/DeviceFingerprint
+            - DeviceFingerprintFields.FlashEnabled
+            - DeviceFingerprintFields.FlashOperatingSystem
+            - DeviceFingerprintFields.FlashVersion
+            - DeviceFingerprintFields.GPSAccuracy
+            - DeviceFingerprintFields.ImagesEnabled
+            - DeviceFingerprintFields.Jailbreak/RootPrivileges
+            - DeviceFingerprintFields.JavaScriptEnabled
+            - DeviceFingerprintFields.ProfiledURL
+            - DeviceFingerprintFields.ProxyIPAddress
+            - DeviceFingerprintFields.ProxyIPAddressActivities
+            - DeviceFingerprintFields.ProxyServerType
+            - DeviceFingerprintFields.ScreenResolution
+            - DeviceFingerprintFields.SignOffFieldDMEEditNewOne
+            - DeviceFingerprintFields.SmartID
+            - DeviceFingerprintFields.SmartIDConfidenceLevel
+            - DeviceFingerprintFields.TimeOnPage
+            - DeviceFingerprintFields.TrueIPAddress
+            - DeviceFingerprintFields.TrueIPAddressActivities
+            - DeviceFingerprintFields.TrueIPAddressAttributes
+            - DeviceFingerprintFields.txdea1
+            - DeviceFingerprintFields.txdesv
+            - EmailageFields.FraudType
+            - EmailageFields.IP Postal
+            - EmailageFields.IPCity
+            - EmailageFields.IPCountry
+            - EmailageFields.IPRegion
+            - EmailageFields.SourceIndustry
+            - Event.Amount
+            - Event.CurrencyCode
+            - Event.Event
+            - Event.EventDate
+            - Event.ProcessorMessage
+            - Exception.Action
+            - Exception.CYBSExceptionID
+            - Exception.DccLookupStatus
+            - Exception.ExceptionAmount
+            - Exception.ExceptionAmountCurrency
+            - Exception.ExceptionCategory
+            - Exception.ExceptionDate
+            - Exception.ExceptionDescription
+            - Exception.ExceptionDeviceHardwareRevision
+            - Exception.ExceptionDeviceID
+            - Exception.ExceptionDeviceOS
+            - Exception.ExceptionDeviceOSVersion
+            - Exception.ExceptionDeviceTerminalID
+            - Exception.ExceptionMessage
+            - Exception.ExceptionReasonDescription
+            - Exception.ExceptionStatus
+            - Exception.ExceptionStatusCode
+            - Exception.ExceptionType
+            - Exception.FinancialStatus
+            - Exception.LastActionDate
+            - Exception.NextActionDate
+            - Exception.OriginalTransactionSubmissionDate
+            - Exception.PaymentNumber
+            - Exception.ProcessorCaseID
+            - Exception.ProcessorResponseCode
+            - Exception.ReasonCode
+            - Exception.RetryCount
+            - Fee.AssessmentAmount
+            - Fee.AssessmentCurrency
+            - Fee.BillingCycle
+            - Fee.BillingType
+            - Fee.ClearedInterchangeLevel
+            - Fee.DiscountAmount
+            - Fee.DiscountCurrency
+            - Fee.DiscountRate
+            - Fee.DowngradeReasonCode
+            - Fee.InterchangeAmount
+            - Fee.InterchangeCurrency
+            - Fee.InterchangeRate
+            - Fee.PerItemFeeAmount
+            - Fee.PerItemFeeCurrency
+            - Fee.PricedInterchangeLevel
+            - Fee.ServiceFeeAmount
+            - Fee.ServiceFeeAmountCcy
+            - Fee.ServiceFeeFixedAmount
+            - Fee.ServiceFeeFixedAmountCcy
+            - Fee.ServiceFeeRate
+            - Fee.SettlementAmount
+            - Fee.SettlementCurrency
+            - Fee.SettlementTime
+            - Fee.SettlementTimeZone
+            - Fee.SourceDescriptor
+            - Fee.TotalFeeAmount
+            - Fee.TotalFeeCurrency
+            - Funding.AdjustmentAmount
+            - Funding.AdjustmentCurrency
+            - Funding.AdjustmentDescription
+            - Funding.AdjustmentType
+            - FundTransfer.BankCheckDigit
+            - FundTransfer.IbanIndicator
+            - Invoice.BillingGroupDescription
+            - Invoice.NotProcessed
+            - Invoice.OrganizationID
+            - Invoice.PerformedServices
+            - Invoice.Processed
+            - Invoice.ProductCode
+            - Invoice.ProductDescription
+            - Invoice.Total
+            - Invoice.ServiceName
+            - JP.Amount
+            - JP.AuthForward
+            - JP.AuthorizationCode
+            - JP.CardSuffix
+            - JP.Currency
+            - JP.CustomerFirstName
+            - JP.CustomerLastName
+            - JP.Date
+            - JP.Gateway
+            - JP.JPOInstallmentMethod
+            - JP.JPOPaymentMethod
+            - JP.MerchantID
+            - JP.MerchantReferenceNumber
+            - JP.PaymentMethod
+            - JP.RequestID
+            - JP.SubscriptionID
+            - JP.Time
+            - JP.TransactionReferenceNumber
+            - JP.TransactionType
+            - LineItems.FulfillmentType
+            - LineItems.InvoiceNumber
+            - LineItems.MerchantProductSku
+            - LineItems.ProductCode
+            - LineItems.ProductName
+            - LineItems.Quantity
+            - LineItems.TaxAmount
+            - LineItems.UnitPrice
+            - MarkAsSuspectFields.MarkingDate
+            - MarkAsSuspectFields.MarkingNotes
+            - MarkAsSuspectFields.MarkingReason
+            - MarkAsSuspectFields.MarkingUserName
+            - Merchant-DefinedDataFields.MerchantDefinedData1
+            - Merchant-DefinedDataFields.MerchantDefinedData10
+            - Merchant-DefinedDataFields.MerchantDefinedData100
+            - Merchant-DefinedDataFields.MerchantDefinedData11
+            - Merchant-DefinedDataFields.MerchantDefinedData12
+            - Merchant-DefinedDataFields.MerchantDefinedData13
+            - Merchant-DefinedDataFields.MerchantDefinedData14
+            - Merchant-DefinedDataFields.MerchantDefinedData15
+            - Merchant-DefinedDataFields.MerchantDefinedData16
+            - Merchant-DefinedDataFields.MerchantDefinedData17
+            - Merchant-DefinedDataFields.MerchantDefinedData18
+            - Merchant-DefinedDataFields.MerchantDefinedData19
+            - Merchant-DefinedDataFields.MerchantDefinedData2
+            - Merchant-DefinedDataFields.MerchantDefinedData20
+            - Merchant-DefinedDataFields.MerchantDefinedData21
+            - Merchant-DefinedDataFields.MerchantDefinedData22
+            - Merchant-DefinedDataFields.MerchantDefinedData23
+            - Merchant-DefinedDataFields.MerchantDefinedData24
+            - Merchant-DefinedDataFields.MerchantDefinedData25
+            - Merchant-DefinedDataFields.MerchantDefinedData26
+            - Merchant-DefinedDataFields.MerchantDefinedData27
+            - Merchant-DefinedDataFields.MerchantDefinedData28
+            - Merchant-DefinedDataFields.MerchantDefinedData29
+            - Merchant-DefinedDataFields.MerchantDefinedData3
+            - Merchant-DefinedDataFields.MerchantDefinedData30
+            - Merchant-DefinedDataFields.MerchantDefinedData31
+            - Merchant-DefinedDataFields.MerchantDefinedData32
+            - Merchant-DefinedDataFields.MerchantDefinedData34
+            - Merchant-DefinedDataFields.MerchantDefinedData35
+            - Merchant-DefinedDataFields.MerchantDefinedData36
+            - Merchant-DefinedDataFields.MerchantDefinedData37
+            - Merchant-DefinedDataFields.MerchantDefinedData39
+            - Merchant-DefinedDataFields.MerchantDefinedData4
+            - Merchant-DefinedDataFields.MerchantDefinedData40
+            - Merchant-DefinedDataFields.MerchantDefinedData41
+            - Merchant-DefinedDataFields.MerchantDefinedData43
+            - Merchant-DefinedDataFields.MerchantDefinedData44
+            - Merchant-DefinedDataFields.MerchantDefinedData45
+            - Merchant-DefinedDataFields.MerchantDefinedData46
+            - Merchant-DefinedDataFields.MerchantDefinedData48
+            - Merchant-DefinedDataFields.MerchantDefinedData49
+            - Merchant-DefinedDataFields.MerchantDefinedData5
+            - Merchant-DefinedDataFields.MerchantDefinedData50
+            - Merchant-DefinedDataFields.MerchantDefinedData52
+            - Merchant-DefinedDataFields.MerchantDefinedData53
+            - Merchant-DefinedDataFields.MerchantDefinedData54
+            - Merchant-DefinedDataFields.MerchantDefinedData56
+            - Merchant-DefinedDataFields.MerchantDefinedData57
+            - Merchant-DefinedDataFields.MerchantDefinedData58
+            - Merchant-DefinedDataFields.MerchantDefinedData59
+            - Merchant-DefinedDataFields.MerchantDefinedData6
+            - Merchant-DefinedDataFields.MerchantDefinedData61
+            - Merchant-DefinedDataFields.MerchantDefinedData62
+            - Merchant-DefinedDataFields.MerchantDefinedData63
+            - Merchant-DefinedDataFields.MerchantDefinedData65
+            - Merchant-DefinedDataFields.MerchantDefinedData66
+            - Merchant-DefinedDataFields.MerchantDefinedData67
+            - Merchant-DefinedDataFields.MerchantDefinedData68
+            - Merchant-DefinedDataFields.MerchantDefinedData7
+            - Merchant-DefinedDataFields.MerchantDefinedData70
+            - Merchant-DefinedDataFields.MerchantDefinedData71
+            - Merchant-DefinedDataFields.MerchantDefinedData72
+            - Merchant-DefinedDataFields.MerchantDefinedData73
+            - Merchant-DefinedDataFields.MerchantDefinedData74
+            - Merchant-DefinedDataFields.MerchantDefinedData75
+            - Merchant-DefinedDataFields.MerchantDefinedData76
+            - Merchant-DefinedDataFields.MerchantDefinedData77
+            - Merchant-DefinedDataFields.MerchantDefinedData78
+            - Merchant-DefinedDataFields.MerchantDefinedData79
+            - Merchant-DefinedDataFields.MerchantDefinedData8
+            - Merchant-DefinedDataFields.MerchantDefinedData80
+            - Merchant-DefinedDataFields.MerchantDefinedData81
+            - Merchant-DefinedDataFields.MerchantDefinedData82
+            - Merchant-DefinedDataFields.MerchantDefinedData83
+            - Merchant-DefinedDataFields.MerchantDefinedData84
+            - Merchant-DefinedDataFields.MerchantDefinedData85
+            - Merchant-DefinedDataFields.MerchantDefinedData86
+            - Merchant-DefinedDataFields.MerchantDefinedData87
+            - Merchant-DefinedDataFields.MerchantDefinedData88
+            - Merchant-DefinedDataFields.MerchantDefinedData89
+            - Merchant-DefinedDataFields.MerchantDefinedData9
+            - Merchant-DefinedDataFields.MerchantDefinedData90
+            - Merchant-DefinedDataFields.MerchantDefinedData91
+            - Merchant-DefinedDataFields.MerchantDefinedData92
+            - Merchant-DefinedDataFields.MerchantDefinedData93
+            - Merchant-DefinedDataFields.MerchantDefinedData94
+            - Merchant-DefinedDataFields.MerchantDefinedData95
+            - Merchant-DefinedDataFields.MerchantDefinedData96
+            - Merchant-DefinedDataFields.MerchantDefinedData97
+            - Merchant-DefinedDataFields.MerchantDefinedData98
+            - Merchant-DefinedDataFields.MerchantDefinedData99
+            - OctSummary.AccountId
+            - OctSummary.ResellerId
+            - OctSummary.SettlementAmountCurrency
+            - OctSummary.SettlementDate
+            - OctSummary.TransactionAmountCurrency
+            - OrderFields.ConnectionMethod
+            - OrderFields.MerchantID
+            - OrderFields.MerchantReferenceNumber
+            - OrderFields.ReasonCode
+            - OrderFields.ReplyCode
+            - OrderFields.ReplyFlag
+            - OrderFields.ReplyMessage
+            - OrderFields.RequestID
+            - OrderFields.ShippingMethod
+            - OrderFields.TransactionDate
+            - PayerAuth.RequestID
+            - PayerAuth.TransactionType
+            - PaymentData.ACHVerificationResult
+            - PaymentData.ACHVerificationResultMapped
+            - PaymentData.AcquirerMerchantID
+            - PaymentData.AuthIndicator
+            - PaymentData.AuthorizationCode
+            - PaymentData.AuthorizationType
+            - PaymentData.AuthReversalAmount
+            - PaymentData.AuthReversalResult
+            - PaymentData.AVSResult
+            - PaymentData.AVSResultMapped
+            - PaymentData.BalanceAmount
+            - PaymentData.BalanceCurrencyCode
+            - PaymentData.BinNumber
+            - PaymentData.CardCategory
+            - PaymentData.CardCategoryCode
+            - PaymentData.CardPresent
+            - PaymentData.CurrencyCode
+            - PaymentData.CVResult
+            - PaymentData.DCCIndicator
+            - PaymentData.EMVRequestFallBack
+            - PaymentData.EVEmail
+            - PaymentData.EVEmailRaw
+            - PaymentData.EVName
+            - PaymentData.EVNameRaw
+            - PaymentData.EVPhoneNumber
+            - PaymentData.EVPhoneNumberRaw
+            - PaymentData.EVPostalCode
+            - PaymentData.EVPostalCodeRaw
+            - PaymentData.EVStreet
+            - PaymentData.EVStreetRaw
+            - PaymentData.ExchangeRate
+            - PaymentData.ExchangeRateDate
+            - PaymentData.MandateReferenceNumber
+            - PaymentData.NetworkCode
+            - PaymentData.NetworkTransactionID
+            - PaymentData.NumberOfInstallments
+            - PaymentData.OriginalAmount
+            - PaymentData.OriginalCurrency
+            - PaymentData.PaymentProductCode
+            - PaymentData.PaymentProcessor
+            - PaymentData.POSEntryMode
+            - PaymentData.ProcessorMID
+            - PaymentData.ProcessorResponseCode
+            - PaymentData.ProcessorResponseID
+            - PaymentData.ProcessorTID
+            - PaymentData.ProcessorTransactionID
+            - PaymentData.RequestedAmount
+            - PaymentData.RequestedAmountCurrencyCode
+            - PaymentData.SubMerchantCity
+            - PaymentData.SubMerchantCountry
+            - PaymentData.SubMerchantEmail
+            - PaymentData.SubMerchantID
+            - PaymentData.SubMerchantName
+            - PaymentData.SubMerchantPhone
+            - PaymentData.SubMerchantPostalCode
+            - PaymentData.SubMerchantState
+            - PaymentData.SubMerchantStreet
+            - PaymentData.TargetAmount
+            - PaymentData.TargetCurrency
+            - PaymentFields.AccountSuffix
+            - PaymentFields.CardBIN
+            - PaymentFields.CardBINCountry
+            - PaymentFields.CardIssuer
+            - PaymentFields.CardScheme
+            - PaymentFields.CardType
+            - PaymentFields.CardVerificationResult
+            - PaymentMethod.AccountSuffix
+            - PaymentMethod.AdditionalCardType
+            - PaymentMethod.BankAccountName
+            - PaymentMethod.BankCode
+            - PaymentMethod.BoletoBarCodeNumber
+            - PaymentMethod.BoletoNumber
+            - PaymentMethod.CardType
+            - PaymentMethod.CheckNumber
+            - PaymentMethod.ExpirationMonth
+            - PaymentMethod.ExpirationYear
+            - PaymentMethod.IssueNumber
+            - PaymentMethod.MandateId
+            - PaymentMethod.StartMonth
+            - PaymentMethod.StartYear
+            - PaymentMethod.WalletType
+            - POSTerminalExceptions.AccountSuffix
+            - POSTerminalExceptions.CurrencyCode
+            - POSTerminalExceptions.ExpirationMO
+            - POSTerminalExceptions.ExpirationYR
+            - POSTerminalExceptions.LastName
+            - POSTerminalExceptions.MerchantID
+            - Recipient.RecipientBillingAmount
+            - Recipient.RecipientBillingCurrency
+            - Recipient.ReferenceNumber
+            - Request.PartnerOriginalTransactionID
+            - Request.Quantity
+            - Sender.Address
+            - Sender.City
+            - Sender.Country
+            - Sender.DOB
+            - Sender.FirstName
+            - Sender.LastName
+            - Sender.MiddleInitial
+            - Sender.PhoneNumber
+            - Sender.PostalCode
+            - Sender.SenderReferenceNumber
+            - Sender.SourceOfFunds
+            - Sender.State
+            - ShipTo.CompanyName
+            - StandardBilling.AcquirerMerchantID
+            - StandardBilling.AmountSign
+            - StandardBilling.CardAcceptorID
+            - StandardBilling.CardScheme
+            - StandardBilling.CardType
+            - StandardBilling.ClientReference
+            - StandardBilling.Count
+            - StandardBilling.CurrencyCode
+            - StandardBilling.DomesticOrInternationalIndicator
+            - StandardBilling.ProductCode
+            - StandardBilling.StatisticType
+            - StandardBilling.TotalAmount
+            - StandardBilling.TransactionDate
+            - StandardMonthlyFee.AcquirerMerchantID
+            - StandardMonthlyFee.ActualFee
+            - StandardMonthlyFee.AmountSign
+            - StandardMonthlyFee.ClientReference
+            - StandardMonthlyFee.CurrencyCode
+            - StandardMonthlyFee.FeeType
+            - StandardMonthlyFee.OrganizationType
+            - StandardMonthlyFee.ProductCode
+            - StandardMonthlyFee.Quantity
+            - StandardMonthlyFee.Tax
+            - StandardMonthlyFee.TotalFee
+            - Subscriptions.Applications
+            - Subscriptions.AuthAVSResults
+            - Subscriptions.AuthCardVerificationResult
+            - Subscriptions.AuthCode
+            - Subscriptions.AuthRCode
+            - Subscriptions.AuthResponseCode
+            - Subscriptions.AuthType
+            - Subscriptions.BillToAddress1
+            - Subscriptions.BillToAddress2
+            - Subscriptions.BillToCity
+            - Subscriptions.BillToCompanyName
+            - Subscriptions.BillToCountry
+            - Subscriptions.BillToEmail
+            - Subscriptions.BillToFirstName
+            - Subscriptions.BillToLastName
+            - Subscriptions.BillToState
+            - Subscriptions.BillToZip
+            - Subscriptions.CardType
+            - Subscriptions.Comments
+            - Subscriptions.ConsumerPhone
+            - Subscriptions.CurrencyCode
+            - Subscriptions.CustomerCCAccountSuffix
+            - Subscriptions.CustomerCCExpiryMonth
+            - Subscriptions.CustomerCCExpiryYear
+            - Subscriptions.CustomerCCIssueNo
+            - Subscriptions.CustomerCCRoutingNumber
+            - Subscriptions.CustomerCCStartMonth
+            - Subscriptions.CustomerCCStartYear
+            - Subscriptions.CustomerCCSubTypeDescription
+            - Subscriptions.EcommerceIndicator
+            - Subscriptions.IPAddress
+            - Subscriptions.MerchantDefinedData1
+            - Subscriptions.MerchantDefinedData2
+            - Subscriptions.MerchantDefinedData3
+            - Subscriptions.MerchantDefinedData4
+            - Subscriptions.MerchantRefNo
+            - Subscriptions.MerchantSecureData1
+            - Subscriptions.MerchantSecureData2
+            - Subscriptions.MerchantSecureData3
+            - Subscriptions.MerchantSecureData4
+            - Subscriptions.PaymentProcessor
+            - Subscriptions.PaymentsSuccess
+            - Subscriptions.RCode
+            - Subscriptions.ReasonCode
+            - Subscriptions.RequestID
+            - Subscriptions.RequestToken
+            - Subscriptions.RFlag
+            - Subscriptions.RMsg
+            - Subscriptions.ShipToAddress1
+            - Subscriptions.ShipToAddress2
+            - Subscriptions.ShipToCity
+            - Subscriptions.ShipToCompanyName
+            - Subscriptions.ShipToCountry
+            - Subscriptions.ShipToFirstName
+            - Subscriptions.ShipToLastName
+            - Subscriptions.ShipToState
+            - Subscriptions.ShipToZip
+            - Subscriptions.SubscriptionID
+            - Subscriptions.TaxAmount
+            - Subscriptions.TransactionDate
+            - Subscriptions.TransRefNo
+            - TaxCalculation.Status
+            - Token.NetworkTokenTransType
+            - Token.TokenCode
+            - TransactionDetails.MerchantId
+            - TransactionDetails.PaymentMethodDesc
+            - TransactionDetails.PaymentMethodType
+            - TransactionDetails.RequestId
+            - TravelFields.DepartureTime
+            - VelocityMorphing.FieldName
+            - VelocityMorphing.InfoCode
+            - WhitepagesProFields.EmailDomainCreationDate
+            reportMimeType: application/xml
+            reportName: testrest_v2
+            timezone: GMT
+            reportStartTime: '2020-03-01T12:00:00Z'
+            reportEndTime: '2020-03-02T12:00:00Z'
+            reportPreferences:
+              signedAmounts: 'true'
+              fieldNameConvention: SOAPI
+  /reporting/v3/reports/{reportId}:
+    get:
+      tags:
+      - Reports
+      summary: Get Report Based on Report Id
+      description: 'Download a report using the reportId value. If you don''t already know this value, you can obtain it using the Retrieve available reports call.
+
+        '
+      operationId: getReportByReportId
+      x-devcenter-metaData:
+        categoryTag: Reporting
+        enableDownload: true
+        x-custom-headers:
+          accept:
+          - application/hal+json
+          - application/xml
+      x-queryParameterDefaults:
+        organizationId: testrest
+      x-depends:
+        example:
+          path: /reporting/v3/reports
+          verb: get
+          exampleId: Retrieve available reports
+        fieldMapping:
+        - sourceField: reportSearchResults[0].reportId
+          destinationField: reportId
+          fieldTypeInDestination: path
+      produces:
+      - application/hal+json
+      - application/xml
+      parameters:
+      - name: reportId
+        in: path
+        description: Valid Report Id
+        required: true
+        type: string
+      - name: organizationId
+        in: query
+        description: Valid Organization Id
+        pattern: '[a-zA-Z0-9-_]+'
+        required: false
+        type: string
+        minLength: 1
+        maxLength: 32
+      responses:
+        '200':
+          description: OK
+          schema:
+            title: reportingV3ReportsIdGet200Response
+            type: object
+            properties:
+              organizationId:
+                type: string
+                description: CyberSource merchant id
+                example: myMerchantId
+              reportId:
+                type: string
+                description: Report ID Value
+                example: 6da01922-bb8e-a1fb-e053-7cb8d30ade29
+              reportDefinitionId:
+                type: string
+                description: Report definition Id
+                example: '210'
+              reportName:
+                type: string
+                description: Report Name
+                example: My Transaction Request report
+              reportMimeType:
+                type: string
+                example: application/xml
+                description: 'Report Format
+
+
+                  Valid values:
+
+                  - application/xml
+
+                  - text/csv
+
+                  '
+              reportFrequency:
+                type: string
+                example: DAILY
+                description: 'Report Frequency Value
+
+
+                  Valid values:
+
+                  - DAILY
+
+                  - WEEKLY
+
+                  - MONTHLY
+
+                  - ADHOC
+
+                  '
+              reportFields:
+                type: array
+                description: List of Integer Values
+                items:
+                  type: string
+                example:
+                - Request.RequestID
+                - Request.TransactionDate
+                - Request.MerchantID
+              reportStatus:
+                type: string
+                description: 'Report Status Value
+
+
+                  Valid values:
+
+                  - COMPLETED
+
+                  - PENDING
+
+                  - QUEUED
+
+                  - RUNNING
+
+                  - ERROR
+
+                  - NO_DATA
+
+                  - RERUN
+
+                  '
+              reportStartTime:
+                type: string
+                format: date-time
+                example: '2017-10-01T10:10:10+05:00'
+                description: Report Start Time Value
+              reportEndTime:
+                type: string
+                format: date-time
+                example: '2017-10-02T10:10:10+05:00'
+                description: Report End Time Value
+              timezone:
+                type: string
+                description: Time Zone Value
+                example: America/Chicago
+              reportFilters:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+                description: List of filters to apply
+                example:
+                  Application.Name:
+                  - ics_auth
+                  - ics_bill
+              reportPreferences:
+                type: object
+                description: Report Preferences
+                properties:
+                  signedAmounts:
+                    type: boolean
+                    description: Indicator to determine whether negative sign infront of amount for all refunded transaction
+                  fieldNameConvention:
+                    type: string
+                    description: 'Specify the field naming convention to be followed in reports (applicable to only csv report formats)
+
+
+                      Valid values:
+
+                      - SOAPI
+
+                      - SCMP
+
+                      '
+              groupId:
+                type: string
+                description: Id for selected group.
+                example: '12345'
+            description: Report Log
+        '400':
+          description: Invalid Request
+          schema:
+            title: reportingV3ReportsIdPost400Response
+            type: object
+            required:
+            - submitTimeUtc
+            - reason
+            - message
+            - details
+            properties:
+              submitTimeUtc:
+                type: string
+                format: date-time
+                description: "Time of request in UTC. \n"
+                example: '2016-08-11T22:47:57Z'
+              reason:
+                type: string
+                description: 'Documented reason code
+
+                  '
+                example: INVALID_DATA
+              message:
+                type: string
+                description: 'Short descriptive message to the user.
+
+                  '
+                example: One or more fields contains invalid data
+              details:
+                type: array
+                description: 'Error field list
+
+                  '
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: 'Field in request that caused an error
+
+                        '
+                    reason:
+                      type: string
+                      description: 'Documented reason code
+
+                        '
+                  description: 'Provides failed validation input field detail
+
+                    '
+            description: HTTP status code for client application
+        '404':
+          description: No Reports Found
+x-devcenter-metaData:
+  categoryTagArray:
+  - name: Payments
+    description: For more information about Payments transactions, see the [Payments Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/payments/developer/ctv/rest/payments/payments-intro.html).
+  - name: Transaction_Batches
+    description: For more information about Transaction Batches, see the [Transaction Batches Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-transaction-batch-api/txn_batch_api_intro.html).
+  - name: eCheck_AVS
+    description: For more information about eCheck Account Validation, see the [Account Validation Developer Guides Page](https://...).
+  - name: Token_Management
+    description: For more information about the Token Management Service (TMS) see the [Token Management Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms/tms-overview.html)
+  - name: Flex_Microform
+    description: Microform Integration is a lightweight acceptance solution designed to safely and securely accept payment information within your web page.  Microform is designed to a be embedded seamlessly within your existing webpage experience, blending in with your existing acceptance form.  This solution allows for the replacement of sensitive payment date with a transient token (a short lived reference to the sensitive payment data).  For more information about Flex Microform transactions, see the [Flex Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-flex/SAFlexibleToken.html). For examples on how to integrate Flex Microform within your webpage please see our [GitHub Flex Samples](https://github.com/CyberSource?q=flex&type=&language=)
+  - name: Flex_API
+    description: For more information about Flex API, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/da-flex-api-intro.html).
+  - name: Risk_Management
+  - name: Payouts
+    description: 'For more information about Payouts, see the [Payouts Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-payouts/Introduction.html).
+
+      '
+  - name: Installments
+    description: For more information about Installment contact Cybersource Support. For Visa installments contact VISthroughCYBS@visa.com
+  - name: Recurring_Billing_Subscriptions
+    description: For more information about Recurring Billing, see the [Recurring Billing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-developer/recur-bill-services-intro.html).
+  - name: BIN_Lookup
+    description: 'The BIN Lookup Service is a versatile business tool that provides card network agnostic solution designed to ensure frictionless transaction experience by utilizing up-to-date Bank Identification Number (BIN) attributes sourced from multiple global and regional data sources.
+
+      This service helps to improve authorization rates by helping to route transactions to the best-suited card network, minimizes fraud through card detail verification and aids in regulatory compliance by identifying card properties. The service is flexible and provides businesses with a flexible choice of inputs such as primary account number (PAN), network token from major networks (such as Visa, American Express, Discover and regional networks) which includes device PAN (DPAN), and all types of tokens generated via CyberSource Token Management Service (TMS).
+
+      Currently, the range of available credentials is contingent on the networks enabled for the business entity. Therefore, the network information specified in this documentation is illustrative and subject to personalized offerings for each reseller or merchant.
+
+      '
+  - name: Transaction_Details
+    description: For more information about Transaction Details, see the [Transaction Details Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_details_api.html).
+  - name: Transaction_Search
+    description: For more information about Transaction Search, see the [Transaction Search Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_search_api.html).
+  - name: Reporting
+    description: 'For more information about Reporting, see the [Reporting Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-reporting-rest-api-dev-guide-102718/reporting_api.html).
+
+      '
+  - name: Secure_File_Share
+    description: For more information about Secure File Share, see the [Secure File Share Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-secure-file-share-api-102718/secure_file_share_api_intro.html).
+  - name: Invoices
+    description: For more information about Invoicing, see the [Invoicing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing/Introduction.html).
+  - name: Pay_By_Link
+    description: For more information about PayByLink, see the [PBL Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/boarding/user/all/rest/boarding/templates-matrix-intro/templates-matrix-pay-by-link.html).
+  - name: User_Management
+    description: For more information about User Management, see the [User Managment Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-user-management-api-102718/user_management_api_intro.html).
+  - name: Value_Added_Service
+  - name: Fee Service
+  - name: Merchant_Boarding
+    description: For more information about Merchant Boarding, please see [Developer Guides Page](https://developer.cybersource.com/api/developer-guides/Merchant-Boarding-API_ditamap/Merchant-Boarding-API.html).
+  - name: Webhooks
+    description: For more information about Webhooks, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/webhooks/implementation/all/rest/webhooks/wh-fg-intro.html).
+  - name: Unified_Checkout
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-intro.html).
+  - name: Unified_Checkoutv1
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-about-guide.html).
+  - name: Account_Updater
+    description: For more information about Account Updater, see the [Account Updater Developer Guides Page:](https://developer.cybersource.com/library/documentation/dev_guides/Account_Updater_UG/html/index.html).
+  - name: Visa_Bank_Account_Validation
+    description: 'The Visa Bank Account Validation Service is a new standalone product designed to validate customer''s routing and bank account number combination for ACH transactions. Merchant''s can use this standalone product to validate their customer''s account prior to processing an ACH transaction against the customer''s account to comply with Nacha''s account validation mandate for Web-debit transactions.
+
+      '
+  - name: Currency Conversion
+    description: 'Empower global transactions with transparency and choice. Our Dynamic Currency Conversion API lets merchants offer customers the option to pay in their home currency at checkout, delivering real-time exchange rates and clear cost disclosure.
+
+
+      **Key Benefits:**
+
+      - **Enhanced Customer Experience:** Provide clarity and convenience for international shoppers.
+
+      - **Real-Time Rates:** Accurate currency conversion with all the data required for acquirers and their merchants to maintain compliance with card network rules.
+
+      - **Seamless Integration:** Flexible API endpoints for rate lookup, authorization, and capture.
+
+      - **Regulatory Compliance:** Provides the data required for acquirers and merchants to meet and maintain card scheme requirements for disclosure and consent.
+
+
+      Ideal for merchants and payment partners seeking to boost trust and conversion in cross-border commerce.
+
+
+      **Key Features:**
+
+      - **Rate Lookup:** Retrieves the most up-to-date exchange rate for eligible cards before authorization.
+
+      - **Currency Choice:** Enables the merchant to offer customers the option to select between the merchant''s local currency and their card''s billing currency.
+
+      - **Compliance:** Ensures merchants have the data required to adhere to card network regulations; exchange rates, markups, etc.
+
+
+      **Supported Scenarios:**
+
+      - Dynamic Currency Conversion when cardholder''s billing currency differs from merchant''s pricing currency.
+
+      - Merchant and acquirer must support the cardholder''s billing currency.
+
+
+      **Core API Endpoints:**
+
+
+      **Currency Conversion API**
+
+      Returns eligibility and exchange rate details, including:
+
+      - exchangeRate
+
+      - marginRate
+
+      - reconciliationId and Id (for subsequent payment requests)
+
+
+      **Payment Authorization with DCC***
+
+      POST /pts/v2/payments
+
+      Required fields include:
+
+      - orderInformation.amountDetails.currency
+
+      - orderInformation.amountDetails.originalCurrency
+
+      - orderInformation.amountDetails.originalAmount
+
+      - orderInformation.amountDetails.exchangeRate
+
+      - currencyConversion.indicator (e.g., 1 = Converted, 2 = Nonconvertible, 3 = Declined)
+
+
+      **Capture with DCC***
+
+      POST /pts/v2/payments/{id}/captures
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      **Refund with DCC***
+
+      POST /pts/v2/captures/{id}/refunds
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      *Note: DCC is only supported on select processors. Contact your acquirer or account manager for more information.
+
+
+      **Compliance & Disclosure:**
+
+
+      Merchants must:
+
+      - Adhere to card network rules for Dynamic Currency Conversion (DCC) transactions.
+
+      - Display the converted amount, exchange rate, and markup percentage and other required disclosures.
+
+      - Obtain explicit cardholder consent before applying DCC.
+
+      - Work with your acquirer to obtain full set of compliance requirements.
+
+
+      For more information, see the [Currency Conversion Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/currency-conversion/developer/all/rest/currency-conversion/cc-intro.html).
+
+      '
+  - name: Intelligent_Commerce_Connect
+    description: For more information about Intelligent Commerce Cross Network Service API, please see [Developer Guides](https://developer.cybersource.com/docs/cybs/en-us/intelligent-commerce/developer/all/rest/intelligent-commerce/intelligent-commerce-about-guide.html).

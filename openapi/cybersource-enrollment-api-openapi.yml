@@ -1,0 +1,948 @@
+swagger: '2.0'
+info:
+  description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
+  version: 0.0.1
+  title: CyberSource Merged Spec bankAccountValidation Enrollment API
+host: apitest.cybersource.com
+basePath: /
+schemes:
+- https
+consumes:
+- application/json;charset=utf-8
+produces:
+- application/hal+json;charset=utf-8
+tags:
+- name: Enrollment
+  description: Card enrollment and tokenization for agentic payments. Use these APIs to register a consumer's payment card, creating a tokenized reference that can be used in subsequent purchase instructions and payment credential retrieval. Supports Visa, Mastercard, and American Express networks.
+paths:
+  /acp/v1/tokens:
+    post:
+      tags:
+      - Enrollment
+      summary: Enroll a card
+      description: Enroll a payment card for agentic or e-commerce transactions. This is typically the first step in the Intelligent Commerce payment lifecycle — the agent calls this endpoint to register a consumer's card, creating a tokenized reference that can be used in subsequent purchase instructions and payment credential retrieval. Requires device information, consumer identity, billing details, and payment instrument references. Returns a status of ACTIVE (HTTP 200) if enrollment completes immediately, or PENDING (HTTP 202) with pendingEvents if cardholder authentication is required. Call this endpoint when a consumer wants to add a new payment card or when setting up a card for agentic payment flows.
+      operationId: enrollCard
+      x-devcenter-metaData:
+        categoryTag: Intelligent_Commerce_Connect
+        developerGuides: https://developer.cybersource.com/docs/cybs/en-us/intelligent-commerce/developer/all/rest/intelligent-commerce/intelligent-commerce-enroll-card-intro.html
+        mleForRequest: mandatory
+        mleForResponse: mandatory
+        disableProcessorDropDown: true
+        disableDefaultMerchantCreds: false
+        authorizationType:
+        - Json Web Token
+        overrideMerchantCredential: agentic_mid_091225001
+      parameters:
+      - in: body
+        name: agenticCardEnrollmentRequest
+        required: true
+        schema:
+          required:
+          - billTo
+          - clientCorrelationId
+          - consumerIdentity
+          - deviceInformation
+          - paymentInformation
+          - buyerInformation
+          type: object
+          properties:
+            clientCorrelationId:
+              type: string
+              pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.*$
+              minLength: 0
+              maxLength: 255
+              description: Client Correlation Id used during the tokenization or during FIDO assertion.
+            deviceInformation:
+              type: object
+              description: Device and Application instance data. Identifies the device and application from which the consumer is making the payment request.
+              required:
+              - applicationName
+              - deviceData
+              - ipAddress
+              - fingerprintSessionId
+              properties:
+                userAgent:
+                  type: string
+                  pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.*$
+                  minLength: 0
+                  maxLength: 2048
+                  description: "Base64 Encoded userAgent string of the connecting client application, with no padding.  \nUser agent string of the connecting client application.  \nConditionality:  \n- Required for browsers\n- Optional for non-browsers\n"
+                applicationName:
+                  type: string
+                  pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.*$
+                  minLength: 0
+                  maxLength: 255
+                  description: Name of the connecting client application.
+                fingerprintSessionId:
+                  type: string
+                  pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.*$
+                  minLength: 0
+                  maxLength: 255
+                  description: Device Fingerprinting Session identifier.
+                country:
+                  type: string
+                  pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.+$
+                  minLength: 2
+                  maxLength: 2
+                  format: ISO 3166-1-alpha2
+                  description: ISO 3166-1 alpha-2 country code. The country where the Consumer is accessing the service from.
+                deviceData:
+                  type: object
+                  description: Device data.
+                  required:
+                  - type
+                  - brand
+                  properties:
+                    type:
+                      type: string
+                      pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.*$
+                      minLength: 0
+                      maxLength: 255
+                      description: "Type of device being used.  \nExample values are:  \n- Mobile Phone\n- Tablet\n- Tablet\n- Laptop\n- Personal Assistant\n- Connected Auto\n- Home Appliance\n- Wearable\n- Stationary Computer\n- E-Reader\n- Handheld Gaming Devices\n- Other\n"
+                    manufacturer:
+                      type: string
+                      pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.*$
+                      minLength: 0
+                      maxLength: 255
+                      description: Manufacturer of the device.
+                    brand:
+                      type: string
+                      pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.*$
+                      minLength: 0
+                      maxLength: 255
+                      description: Brand name of the device.
+                    model:
+                      type: string
+                      pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.*$
+                      minLength: 0
+                      maxLength: 255
+                      description: Specific model of the device.
+                ipAddress:
+                  type: string
+                  pattern: ^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(?:[^0-9]*(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))*$
+                  minLength: 0
+                  maxLength: 255
+                  description: IP address of the consumer's device.
+                clientDeviceId:
+                  type: string
+                  pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.*$
+                  minLength: 0
+                  maxLength: 255
+                  description: Unique identifier of the consumer's device.
+            buyerInformation:
+              type: object
+              description: Buyer Information data. Contains consumer identification and preference details.
+              properties:
+                merchantCustomerId:
+                  type: string
+                  pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.*$
+                  minLength: 0
+                  maxLength: 255
+                  description: Reference identifier of the Consumer.
+                personalIdentification:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        description: The type of the identification
+                      id:
+                        type: string
+                        description: The value of the identification type
+                      issueBy:
+                        type: string
+                        description: 'The government agency that issued the driver''s license or passport.
+
+
+                          If `**type** = DRIVER_LICENSE`, this is the State or province where the customer''s driver''s license was issued.
+
+
+                          If `**type** = PASSPORT`, this is the Issuing country for the cardholder''s passport.
+
+                          '
+                language:
+                  type: string
+                  description: (Required) Consumer-provided language choice. ISO 639-1 Code
+            billTo:
+              required:
+              - country
+              - countryCallingCode
+              - phoneNumber
+              type: object
+              description: Consumer billing information.  Required during card enrollment to identify the cardholder.
+              properties:
+                firstName:
+                  type: string
+                  pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.*$
+                  minLength: 0
+                  maxLength: 50
+                  description: Consumer-provided first name.
+                lastName:
+                  type: string
+                  pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.*$
+                  minLength: 0
+                  maxLength: 50
+                  description: Consumer-provided last name.
+                fullName:
+                  type: string
+                  pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.*$
+                  minLength: 0
+                  maxLength: 100
+                  description: Consumer-provided full name.
+                email:
+                  type: string
+                  pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.*$
+                  minLength: 0
+                  maxLength: 255
+                  description: Consumer-provided email address.
+                countryCallingCode:
+                  type: string
+                  pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.*$
+                  minLength: 1
+                  maxLength: 4
+                  description: Phone number country code as defined by the International Telecommunication Union.
+                phoneNumber:
+                  type: string
+                  pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.*$
+                  minLength: 4
+                  maxLength: 14
+                  description: Phone number without country code.
+                numberIsVoiceOnly:
+                  type: boolean
+                  description: Indicates that the phone number provided is not capable of receiving text messages.
+                country:
+                  type: string
+                  pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.*$
+                  minLength: 2
+                  maxLength: 2
+                  description: Consumer-provided country code. ISO 3166-1 alpha-2 country code.
+            consumerIdentity:
+              required:
+              - identityType
+              - identityValue
+              type: object
+              description: Consumer Identity data. Identifies the consumer using an email address or phone number.
+              properties:
+                identityType:
+                  type: string
+                  description: "Type of Consumer Identity transmitted or collected.  \nPossible values:  \n  - `EMAIL_ADDRESS`\n  - `MOBILE_PHONE_NUMBER`\n"
+                identityValue:
+                  type: string
+                  pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.*$
+                  minLength: 1
+                  maxLength: 255
+                  description: Consumer Identity value that corresponds to the Consumer Identity Type.
+                identityProvider:
+                  type: string
+                  description: "Identity provider of the Consumer Identity.  \nPossible values:  \n  - `VISA`\n  - `PARTNER` (Default)\n"
+                identityProviderUrl:
+                  type: string
+                  pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.*$
+                  minLength: 0
+                  maxLength: 255
+                  description: Domain Name/URL(iss) of the Identity provider of the Consumer Identity.
+            paymentInformation:
+              required:
+              - instrumentIdentifier
+              type: object
+              description: Payment Information data. References the tokenized payment card to use for this transaction. At least one of customer, paymentInstrument, or instrumentIdentifier must be provided. The instrumentIdentifier is the most commonly used reference. If you have a TMS instrument identifier, provide it in instrumentIdentifier.id.
+              properties:
+                customer:
+                  type: object
+                  description: Customer data.
+                  properties:
+                    id:
+                      type: string
+                      description: Unique identifier for the Customer token used in the transaction.
+                      minLength: 1
+                      maxLength: 32
+                paymentInstrument:
+                  type: object
+                  description: Payment Instrument data.
+                  properties:
+                    id:
+                      type: string
+                      description: Unique identifier for the Payment Instrument token used in the transaction.
+                      minLength: 1
+                      maxLength: 32
+                instrumentIdentifier:
+                  required:
+                  - id
+                  type: object
+                  description: Instrument Identifier data.
+                  properties:
+                    id:
+                      type: string
+                      description: Unique identifier for the Instrument Identifier token used in the transaction.
+                      minLength: 12
+                      maxLength: 32
+            enrollmentReferenceData:
+              required:
+              - enrollmentReferenceType
+              type: object
+              description: Enrollment Reference Data. Links the enrollment to an existing token reference.
+              properties:
+                enrollmentReferenceType:
+                  type: string
+                  description: Type of Enrollment Reference Data.
+                enrollmentReferenceProvider:
+                  type: string
+                  description: Provider of Enrollment Reference Data.
+            assuranceData:
+              type: array
+              description: Assurance data.
+              items:
+                required:
+                - verificationMethod
+                - verificationResults
+                - verificationTimestamp
+                type: object
+                description: Assurance data. Contains identity verification details that prove the consumer or device has been authenticated before the payment operation.
+                properties:
+                  verificationType:
+                    type: string
+                    description: "Optional. Type of the verification data.  \nPossible values:\n  - `CARDHOLDER` (Default)\n  - `DEVICE`\n"
+                  verificationEntity:
+                    type: string
+                    description: "Optional. Entity performing the verification.  \nPossible value:  \n  - `10` - VISA (Default)\n"
+                  verificationEvents:
+                    type: array
+                    items:
+                      type: string
+                    description: "Optional. Event where the verification occurred.  \nPossible values:  \n  - `01` - Payment transaction\n  - `02` - Add card/Card enrollment\n  - `03` - Profile access\n  - `04` - Account verification\n"
+                  verificationMethod:
+                    type: string
+                    description: "Required. Method of the verification.  \nPossible values:  \n  - `02` - App-based authentication\n  - `04` - One-time passcode\n  - `21` - Visa Token Service step-up: Device binding\n  - `22` - Visa Token Service step-up: Cardholder verification\n  - `23` - FIDO2\n"
+                  verificationResults:
+                    type: string
+                    description: "Required. Result of the verification.  \nPossible values:  \n  - `01` - Verified\n  - `02` - Not Verified\n  - `03` - Not performed\n  - `04` - Not required\n  - `21` - Not allowed\n"
+                  verificationTimestamp:
+                    type: string
+                    pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.+$
+                    minLength: 1
+                    maxLength: 12
+                    description: Required. Date and time the verification occurred. UTC time in Unix epoch format.
+                  authenticationContext:
+                    type: object
+                    description: Authentication Context data. Describes the authentication action performed.
+                    properties:
+                      action:
+                        type: string
+                        description: Authentication Context action.
+                  authenticatedIdentities:
+                    required:
+                    - id
+                    type: object
+                    description: Authenticated Identities data. Contains the identity assertion from the authentication provider.
+                    properties:
+                      data:
+                        type: string
+                        description: Data related to the authenticated identity.
+                      provider:
+                        type: string
+                        description: Provider of the authenticated identity.
+                      id:
+                        type: string
+                        pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.+$
+                        minLength: 1
+                        maxLength: 50
+                        description: "This is a distinctive and non-transparent identifier provided by VISA for correlation purposes in the previous, related API.  \nField Mapping when authenticationMethodType is 'FIDO2':  \n  - On Success: FidoResponse.identifier\n  - On Error: AuthContext.identifier\n"
+                  additionalData:
+                    type: string
+                    description: Additional data related to assurance.
+            consentData:
+              type: array
+              description: Consent data.
+              items:
+                required:
+                - acceptedTime
+                - effectiveUntil
+                - id
+                - source
+                - type
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Unique identifier for the consent.
+                  type:
+                    type: string
+                    description: "Type of the consent.  \nPossible value:  \n  - `PERSONALIZATION`\n"
+                  source:
+                    type: string
+                    description: Source of the consent.
+                  acceptedTime:
+                    type: string
+                    pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.*$
+                    minLength: 0
+                    maxLength: 12
+                    description: Date and time when the consent was accepted by the consumer. UTC time in Unix epoch format.
+                  effectiveUntil:
+                    type: string
+                    pattern: (?!^[*.,'#_/-]+$)(?!.*\./.*)^.*$
+                    minLength: 0
+                    maxLength: 12
+                    description: Date and time until which the consent remains effective. UTC time in Unix epoch format.
+          example:
+            clientCorrelationId: 3e1b7943-6567-4965-a32b-5aa93d057d35
+            deviceInformation:
+              userAgent: SampleUserAgent
+              applicationName: My Magic App
+              fingerprintSessionId: finSessionId
+              country: US
+              deviceData:
+                type: Mobile
+                manufacturer: Apple
+                brand: Apple
+                model: iPhone 16 Pro Max
+              ipAddress: 192.168.0.100
+              clientDeviceId: 000b2767814e4416999f4ee2b099491d2087
+            buyerInformation:
+              merchantCustomerId: 3e1b7943-6567-4965-a32b-5aa93d057d35
+              personalIdentification:
+              - type: The identification type
+                id: '1'
+                issuedBy: The government agency that issued the driver's license or passport
+              language: en
+            billTo:
+              firstName: John
+              lastName: Doe
+              fullName: John Michael Doe
+              email: john.doe@example.com
+              countryCallingCode: '1'
+              phoneNumber: '5551234567'
+              numberIsVoiceOnly: false
+              country: US
+            consumerIdentity:
+              identityType: EMAIL_ADDRESS
+              identityValue: john.doe@example.com
+              identityProvider: PARTNER
+              identityProviderUrl: https://identity.partner.com
+            paymentInformation:
+              customer:
+                id: ''
+              paymentInstrument:
+                id: ''
+              instrumentIdentifier:
+                id: 458CC7D865E5024FE063AF598E0AA950
+            enrollmentReferenceData:
+              enrollmentReferenceType: TOKEN_REFERENCE_ID
+              enrollmentReferenceProvider: VTS
+            assuranceData:
+            - verificationType: DEVICE
+              verificationEntity: '10'
+              verificationEvents:
+              - '01'
+              verificationMethod: '02'
+              verificationResults: '01'
+              verificationTimestamp: '1735690745'
+              authenticationContext:
+                action: AUTHENTICATE
+              authenticatedIdentities:
+                data: ezAwMX06AAM1NkHcRqXxoy3kt-vNTLdJ7Zg8PVKSr_7bwd1EfMs4MWlmLeFGIhSONwer8hF1yWPs7b7-g1lYrOeNwUuCg9dsCrnKI0-A9BvrwMemw6K05reS2kUVkfu7KbwtLSzcF9BLUcGsrbtE-alrZ4MzRCGSMvJP6PVo-H_dKowL5DfNvt9ZElB9cWpaPkHo8Cvu4WvLaz42XSFK2fBfuKpCiCTIokEEuqjZrSANKeJGFzp3uqzDGn-X-_a8Gq0DcA-d7-p_9nyi5VMRv9TLjzVh5BFXfLJ_3Jz8N2CwpphgZXd9kfuQO5vhqOKKqnyXP6-qEVb1JM48-YNvOKhIDGKkdpYEv6UxHaOUVCfw6H5mnh5Cry_YU62-EWVvwqdc6YKCMWr6QOPMMxo0-SFG0zK3SVNnY5uE7tKiuP-J2n2i_8Wlj1-qFgjMlY1qaRe8LWLvKsQMu-CKov0BGiqtH681rTjnZijj75xTYJ1xyhJv7uYf8r2O2KO9lHD-JHZYBxSY5XCgS0IYW7y8h52ehO9lShwJZ9nVVrEvaK0mek49jFXXAdjgOHHmdbnLh7PJUsTU4RepHB-SaRBS1iclx4WaXcVzjsU6AtET3NCwSysEMvEKHkuHgEOcAHxSiztIsPA_lScSLajFPxjJIGsVONnX9612hT8HC2XvTXcIciEaBqdRMwSeoibsUznduV4QoDRXJQceRUa3oAbyv7c3EzYGjnKPbsJQb2SL5GOZISmTAg8luE6IQpfeFYMjCO72I68S8lmFrTgKqdcOmwGzzTuZTSe_DhQU7xqhAbkL19_wShGsWBktOhOX75V8mpz3EqM15TBBcuHyUDeEmSd7aTLrB2E84rFD7PebluV9GEoUL2I1LMV58HXRhtFpnFcm2NWy6sGnNFLN7fzUzqJbQrobEGB3b6T8xHLUfkl3luOw1xpg5ewyWUaVFl5yiNVnYsskitv6gcQhLaw4b2u44A2iO-4L_18WDoZgMURt-vDoYw
+                provider: VISA_PAYMENT_PASSKEY
+                id: f48ac10b-58cc-4372-a567-0e02b2c3d489
+              additionalData: ''
+            consentData:
+            - id: 550e8400-e29b-41d4-a716-446655440000
+              type: PERSONALIZATION
+              source: CLIENT
+              acceptedTime: '1719169800'
+              effectiveUntil: '1750705800'
+      responses:
+        '200':
+          description: OK
+          schema:
+            title: agenticCardEnrollmentResponse200
+            type: object
+            required:
+            - clientCorrelationId
+            properties:
+              clientCorrelationId:
+                type: string
+                description: Client Correlation Id used during the tokenization or during FIDO assertion.
+              status:
+                type: string
+                description: Enrollment status.
+          examples:
+            application/json:
+              clientCorrelationId: 3e1b7943-6567-4965-a32b-5aa93d057d35
+              status: ACTIVE
+        '202':
+          description: OK
+          schema:
+            title: agenticCardEnrollmentResponse202
+            required:
+            - clientCorrelationId
+            type: object
+            properties:
+              clientCorrelationId:
+                type: string
+                description: Client Correlation Id used during the tokenization or during FIDO assertion.
+              status:
+                type: string
+                description: Enrollment status.
+              pendingEvents:
+                type: array
+                description: Set of events that are pending completion.
+                items:
+                  type: string
+          examples:
+            application/json:
+              clientCorrelationId: 3e1b7943-6567-4965-a32b-5aa93d057d35
+              status: PENDING
+              pendingEvents:
+              - PENDING_CARDHOLDER_AUTHENTICATION
+        '400':
+          description: Bad Request
+          schema:
+            title: agenticCardEnrollmentBadRequestResponse400
+            type: object
+            properties:
+              error:
+                type: object
+                description: Error response object.
+                required:
+                - status
+                - reason
+                - message
+                properties:
+                  status:
+                    type: string
+                    description: HTTP status code to categorize the errors.
+                  reason:
+                    type: string
+                    description: Error reason as associated with the HTTP status code
+                  message:
+                    type: string
+                    description: Error message as associated with the HTTP status code.
+                  detail:
+                    type: object
+                    description: Additional details about the error.
+                    properties:
+                      reason:
+                        type: string
+                        description: Detailed reason for the error.
+                      source:
+                        type: string
+                        description: Source for the error
+                      sourceType:
+                        type: string
+                        description: Detail about source for the error
+                      message:
+                        type: string
+                        description: Detailed message for the error
+          examples:
+            application/json:
+              error:
+                status: '400'
+                reason: INVALID_ARGUMENT
+                message: Requested CVM method is not available at this time.
+                detail:
+                  reason: ''
+                  message: ''
+        '401':
+          description: Unauthorized
+          schema:
+            title: agenticCardEnrollmentUnauthorizedResponse401
+            type: object
+            properties:
+              error:
+                type: object
+                description: Error response object.
+                required:
+                - status
+                - reason
+                - message
+                properties:
+                  status:
+                    type: string
+                    description: HTTP status code to categorize the errors.
+                  reason:
+                    type: string
+                    description: Error reason as associated with the HTTP status code
+                  message:
+                    type: string
+                    description: Error message as associated with the HTTP status code.
+                  detail:
+                    type: object
+                    description: Additional details about the error.
+                    properties:
+                      reason:
+                        type: string
+                        description: Detailed reason for the error.
+                      source:
+                        type: string
+                        description: Source for the error
+                      sourceType:
+                        type: string
+                        description: Detail about source for the error
+                      message:
+                        type: string
+                        description: Detailed message for the error
+          examples:
+            application/json:
+              error:
+                status: '401'
+                reason: UNAUTHENTICATED
+                message: Requested CVM method is not available at this time.
+                detail:
+                  reason: ''
+                  message: ''
+        '403':
+          description: Forbidden
+          schema:
+            title: agenticCardEnrollmentForbiddenResponse403
+            type: object
+            properties:
+              error:
+                type: object
+                description: Error response object.
+                required:
+                - status
+                - reason
+                - message
+                properties:
+                  status:
+                    type: string
+                    description: HTTP status code to categorize the errors.
+                  reason:
+                    type: string
+                    description: Error reason as associated with the HTTP status code
+                  message:
+                    type: string
+                    description: Error message as associated with the HTTP status code.
+                  detail:
+                    type: object
+                    description: Additional details about the error.
+                    properties:
+                      reason:
+                        type: string
+                        description: Detailed reason for the error.
+                      source:
+                        type: string
+                        description: Source for the error
+                      sourceType:
+                        type: string
+                        description: Detail about source for the error
+                      message:
+                        type: string
+                        description: Detailed message for the error
+          examples:
+            application/json:
+              error:
+                status: '403'
+                reason: FORBIDDEN
+                message: Requested CVM method is not available at this time.
+                detail:
+                  reason: ''
+                  message: ''
+        '404':
+          description: Not Found
+          schema:
+            title: agenticCardEnrollmentNotFoundResponse404
+            type: object
+            properties:
+              error:
+                type: object
+                description: Error response object.
+                required:
+                - status
+                - reason
+                - message
+                properties:
+                  status:
+                    type: string
+                    description: HTTP status code to categorize the errors.
+                  reason:
+                    type: string
+                    description: Error reason as associated with the HTTP status code
+                  message:
+                    type: string
+                    description: Error message as associated with the HTTP status code.
+                  detail:
+                    type: object
+                    description: Additional details about the error.
+                    properties:
+                      reason:
+                        type: string
+                        description: Detailed reason for the error.
+                      source:
+                        type: string
+                        description: Source for the error
+                      sourceType:
+                        type: string
+                        description: Detail about source for the error
+                      message:
+                        type: string
+                        description: Detailed message for the error
+          examples:
+            application/json:
+              error:
+                status: '404'
+                reason: NOT_FOUND
+                message: Requested CVM method is not available at this time.
+                detail:
+                  reason: ''
+                  message: ''
+        '409':
+          description: Conflict
+          schema:
+            title: agenticCardEnrollmentConflictResponse409
+            type: object
+            properties:
+              error:
+                type: object
+                description: Error response object.
+                required:
+                - status
+                - reason
+                - message
+                properties:
+                  status:
+                    type: string
+                    description: HTTP status code to categorize the errors.
+                  reason:
+                    type: string
+                    description: Error reason as associated with the HTTP status code
+                  message:
+                    type: string
+                    description: Error message as associated with the HTTP status code.
+                  detail:
+                    type: object
+                    description: Additional details about the error.
+                    properties:
+                      reason:
+                        type: string
+                        description: Detailed reason for the error.
+                      source:
+                        type: string
+                        description: Source for the error
+                      sourceType:
+                        type: string
+                        description: Detail about source for the error
+                      message:
+                        type: string
+                        description: Detailed message for the error
+          examples:
+            application/json:
+              error:
+                status: '409'
+                reason: UNAVAILABLE
+                message: Requested CVM method is not available at this time.
+                detail:
+                  reason: ''
+                  message: ''
+        '500':
+          description: Internal Server Error
+          schema:
+            title: agenticCardEnrollmentInternalServerErrorResponse500
+            type: object
+            properties:
+              error:
+                type: object
+                description: Error response object.
+                required:
+                - status
+                - reason
+                - message
+                properties:
+                  status:
+                    type: string
+                    description: HTTP status code to categorize the errors.
+                  reason:
+                    type: string
+                    description: Error reason as associated with the HTTP status code
+                  message:
+                    type: string
+                    description: Error message as associated with the HTTP status code.
+                  detail:
+                    type: object
+                    description: Additional details about the error.
+                    properties:
+                      reason:
+                        type: string
+                        description: Detailed reason for the error.
+                      source:
+                        type: string
+                        description: Source for the error
+                      sourceType:
+                        type: string
+                        description: Detail about source for the error
+                      message:
+                        type: string
+                        description: Detailed message for the error
+          examples:
+            application/json:
+              error:
+                status: '500'
+                reason: INTERNAL_SERVER_ERROR
+                message: Requested CVM method is not available at this time.
+                detail:
+                  reason: ''
+                  message: ''
+x-devcenter-metaData:
+  categoryTagArray:
+  - name: Payments
+    description: For more information about Payments transactions, see the [Payments Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/payments/developer/ctv/rest/payments/payments-intro.html).
+  - name: Transaction_Batches
+    description: For more information about Transaction Batches, see the [Transaction Batches Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-transaction-batch-api/txn_batch_api_intro.html).
+  - name: eCheck_AVS
+    description: For more information about eCheck Account Validation, see the [Account Validation Developer Guides Page](https://...).
+  - name: Token_Management
+    description: For more information about the Token Management Service (TMS) see the [Token Management Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms/tms-overview.html)
+  - name: Flex_Microform
+    description: Microform Integration is a lightweight acceptance solution designed to safely and securely accept payment information within your web page.  Microform is designed to a be embedded seamlessly within your existing webpage experience, blending in with your existing acceptance form.  This solution allows for the replacement of sensitive payment date with a transient token (a short lived reference to the sensitive payment data).  For more information about Flex Microform transactions, see the [Flex Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-flex/SAFlexibleToken.html). For examples on how to integrate Flex Microform within your webpage please see our [GitHub Flex Samples](https://github.com/CyberSource?q=flex&type=&language=)
+  - name: Flex_API
+    description: For more information about Flex API, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/da-flex-api-intro.html).
+  - name: Risk_Management
+  - name: Payouts
+    description: 'For more information about Payouts, see the [Payouts Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-payouts/Introduction.html).
+
+      '
+  - name: Installments
+    description: For more information about Installment contact Cybersource Support. For Visa installments contact VISthroughCYBS@visa.com
+  - name: Recurring_Billing_Subscriptions
+    description: For more information about Recurring Billing, see the [Recurring Billing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-developer/recur-bill-services-intro.html).
+  - name: BIN_Lookup
+    description: 'The BIN Lookup Service is a versatile business tool that provides card network agnostic solution designed to ensure frictionless transaction experience by utilizing up-to-date Bank Identification Number (BIN) attributes sourced from multiple global and regional data sources.
+
+      This service helps to improve authorization rates by helping to route transactions to the best-suited card network, minimizes fraud through card detail verification and aids in regulatory compliance by identifying card properties. The service is flexible and provides businesses with a flexible choice of inputs such as primary account number (PAN), network token from major networks (such as Visa, American Express, Discover and regional networks) which includes device PAN (DPAN), and all types of tokens generated via CyberSource Token Management Service (TMS).
+
+      Currently, the range of available credentials is contingent on the networks enabled for the business entity. Therefore, the network information specified in this documentation is illustrative and subject to personalized offerings for each reseller or merchant.
+
+      '
+  - name: Transaction_Details
+    description: For more information about Transaction Details, see the [Transaction Details Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_details_api.html).
+  - name: Transaction_Search
+    description: For more information about Transaction Search, see the [Transaction Search Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_search_api.html).
+  - name: Reporting
+    description: 'For more information about Reporting, see the [Reporting Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-reporting-rest-api-dev-guide-102718/reporting_api.html).
+
+      '
+  - name: Secure_File_Share
+    description: For more information about Secure File Share, see the [Secure File Share Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-secure-file-share-api-102718/secure_file_share_api_intro.html).
+  - name: Invoices
+    description: For more information about Invoicing, see the [Invoicing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing/Introduction.html).
+  - name: Pay_By_Link
+    description: For more information about PayByLink, see the [PBL Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/boarding/user/all/rest/boarding/templates-matrix-intro/templates-matrix-pay-by-link.html).
+  - name: User_Management
+    description: For more information about User Management, see the [User Managment Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-user-management-api-102718/user_management_api_intro.html).
+  - name: Value_Added_Service
+  - name: Fee Service
+  - name: Merchant_Boarding
+    description: For more information about Merchant Boarding, please see [Developer Guides Page](https://developer.cybersource.com/api/developer-guides/Merchant-Boarding-API_ditamap/Merchant-Boarding-API.html).
+  - name: Webhooks
+    description: For more information about Webhooks, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/webhooks/implementation/all/rest/webhooks/wh-fg-intro.html).
+  - name: Unified_Checkout
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-intro.html).
+  - name: Unified_Checkoutv1
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-about-guide.html).
+  - name: Account_Updater
+    description: For more information about Account Updater, see the [Account Updater Developer Guides Page:](https://developer.cybersource.com/library/documentation/dev_guides/Account_Updater_UG/html/index.html).
+  - name: Visa_Bank_Account_Validation
+    description: 'The Visa Bank Account Validation Service is a new standalone product designed to validate customer''s routing and bank account number combination for ACH transactions. Merchant''s can use this standalone product to validate their customer''s account prior to processing an ACH transaction against the customer''s account to comply with Nacha''s account validation mandate for Web-debit transactions.
+
+      '
+  - name: Currency Conversion
+    description: 'Empower global transactions with transparency and choice. Our Dynamic Currency Conversion API lets merchants offer customers the option to pay in their home currency at checkout, delivering real-time exchange rates and clear cost disclosure.
+
+
+      **Key Benefits:**
+
+      - **Enhanced Customer Experience:** Provide clarity and convenience for international shoppers.
+
+      - **Real-Time Rates:** Accurate currency conversion with all the data required for acquirers and their merchants to maintain compliance with card network rules.
+
+      - **Seamless Integration:** Flexible API endpoints for rate lookup, authorization, and capture.
+
+      - **Regulatory Compliance:** Provides the data required for acquirers and merchants to meet and maintain card scheme requirements for disclosure and consent.
+
+
+      Ideal for merchants and payment partners seeking to boost trust and conversion in cross-border commerce.
+
+
+      **Key Features:**
+
+      - **Rate Lookup:** Retrieves the most up-to-date exchange rate for eligible cards before authorization.
+
+      - **Currency Choice:** Enables the merchant to offer customers the option to select between the merchant''s local currency and their card''s billing currency.
+
+      - **Compliance:** Ensures merchants have the data required to adhere to card network regulations; exchange rates, markups, etc.
+
+
+      **Supported Scenarios:**
+
+      - Dynamic Currency Conversion when cardholder''s billing currency differs from merchant''s pricing currency.
+
+      - Merchant and acquirer must support the cardholder''s billing currency.
+
+
+      **Core API Endpoints:**
+
+
+      **Currency Conversion API**
+
+      Returns eligibility and exchange rate details, including:
+
+      - exchangeRate
+
+      - marginRate
+
+      - reconciliationId and Id (for subsequent payment requests)
+
+
+      **Payment Authorization with DCC***
+
+      POST /pts/v2/payments
+
+      Required fields include:
+
+      - orderInformation.amountDetails.currency
+
+      - orderInformation.amountDetails.originalCurrency
+
+      - orderInformation.amountDetails.originalAmount
+
+      - orderInformation.amountDetails.exchangeRate
+
+      - currencyConversion.indicator (e.g., 1 = Converted, 2 = Nonconvertible, 3 = Declined)
+
+
+      **Capture with DCC***
+
+      POST /pts/v2/payments/{id}/captures
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      **Refund with DCC***
+
+      POST /pts/v2/captures/{id}/refunds
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      *Note: DCC is only supported on select processors. Contact your acquirer or account manager for more information.
+
+
+      **Compliance & Disclosure:**
+
+
+      Merchants must:
+
+      - Adhere to card network rules for Dynamic Currency Conversion (DCC) transactions.
+
+      - Display the converted amount, exchange rate, and markup percentage and other required disclosures.
+
+      - Obtain explicit cardholder consent before applying DCC.
+
+      - Work with your acquirer to obtain full set of compliance requirements.
+
+
+      For more information, see the [Currency Conversion Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/currency-conversion/developer/all/rest/currency-conversion/cc-intro.html).
+
+      '
+  - name: Intelligent_Commerce_Connect
+    description: For more information about Intelligent Commerce Cross Network Service API, please see [Developer Guides](https://developer.cybersource.com/docs/cybs/en-us/intelligent-commerce/developer/all/rest/intelligent-commerce/intelligent-commerce-about-guide.html).

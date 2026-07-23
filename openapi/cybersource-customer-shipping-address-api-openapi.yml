@@ -1,0 +1,2600 @@
+swagger: '2.0'
+info:
+  description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
+  version: 0.0.1
+  title: CyberSource Merged Spec bankAccountValidation Customer Shipping Address API
+host: apitest.cybersource.com
+basePath: /
+schemes:
+- https
+consumes:
+- application/json;charset=utf-8
+produces:
+- application/hal+json;charset=utf-8
+tags:
+- name: Customer Shipping Address
+  description: 'A Customer Shipping Address is linked to a Customer.
+
+    It stores shipping information in relation to the Customer.
+
+    '
+paths:
+  /tms/v2/customers/{customerId}/shipping-addresses:
+    post:
+      summary: Create a Customer Shipping Address
+      description: '|  |  |  |
+
+        | --- | --- | --- |
+
+        |**Customer Shipping Address**<br>A Customer Shipping Address represents tokenized customer shipping information.<br>A [Customer](#token-management_customer_create-a-customer) can have [one or more Shipping Addresses](#token-management_customer-shipping-address_list-shipping-addresses-for-a-customer), with one allocated as the Customers default for use in payments.|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|**Creating a Customer Shipping Address**<br>Your system can use this API to create an existing Customers default or non default Shipping Address.<br>You can also create additional Customer Shipping Addresses via the [Payments API](#payments_payments_process-a-payment_samplerequests-dropdown_authorization-with-token-create_authorization-create-default-payment-instrument-shipping-address-for-existing-customer_liveconsole-tab-request-body).
+
+        '
+      parameters:
+      - name: profile-id
+        in: header
+        description: The Id of a profile containing user specific TMS configuration.
+        required: false
+        type: string
+        minLength: 36
+        maxLength: 36
+        x-hide-field: true
+      - name: customerId
+        in: path
+        description: The Id of a Customer.
+        required: true
+        type: string
+        minLength: 1
+        maxLength: 32
+      - name: postCustomerShippingAddressRequest
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            _links:
+              type: object
+              readOnly: true
+              properties:
+                self:
+                  type: object
+                  readOnly: true
+                  properties:
+                    href:
+                      type: string
+                      readOnly: true
+                      description: 'Link to the Customers Shipping Address
+
+                        '
+                      example: /tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3/shipping-addresses/D9F3439F0448C901E053A2598D0AA1CC
+                customer:
+                  type: object
+                  readOnly: true
+                  properties:
+                    href:
+                      type: string
+                      readOnly: true
+                      description: 'Link to the Customer
+
+                        '
+                      example: /tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3
+            id:
+              type: string
+              minLength: 1
+              maxLength: 32
+              description: The Id of the Shipping Address Token.
+            default:
+              type: boolean
+              description: "Flag that indicates whether customer shipping address is the dafault.\nPossible Values:\n - `true`: Shipping Address is customer's default.\n - `false`: Shipping Address is not customer's default.\n"
+            shipTo:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                  maxLength: 60
+                  description: 'First name of the recipient.
+
+                    '
+                lastName:
+                  type: string
+                  maxLength: 60
+                  description: 'Last name of the recipient.
+
+                    '
+                company:
+                  type: string
+                  maxLength: 60
+                  description: 'Company associated with the shipping address.
+
+                    '
+                address1:
+                  type: string
+                  maxLength: 60
+                  description: 'First line of the shipping address.
+
+                    '
+                address2:
+                  type: string
+                  maxLength: 60
+                  description: 'Second line of the shipping address.
+
+                    '
+                locality:
+                  type: string
+                  maxLength: 50
+                  description: 'City of the shipping address.
+
+                    '
+                administrativeArea:
+                  type: string
+                  maxLength: 20
+                  description: 'State or province of the shipping address. Use 2 character the State,
+
+                    Province, and Territory Codes for the United States and Canada.
+
+                    '
+                postalCode:
+                  type: string
+                  maxLength: 10
+                  description: 'Postal code for the shipping address. The postal code must consist of 5 to 9 digits.
+
+
+                    When the billing country is the U.S., the 9-digit postal code must follow this format:
+
+                    [5 digits][dash][4 digits]
+
+
+                    Example 12345-6789
+
+
+                    When the billing country is Canada, the 6-digit postal code must follow this format:
+
+                    [alpha][numeric][alpha][space][numeric][alpha][numeric]
+
+
+                    Example A1B 2C3
+
+
+                    **American Express Direct**\
+
+                    Before sending the postal code to the processor, all nonalphanumeric characters are removed and, if the
+
+                    remaining value is longer than nine characters, truncates the value starting from the right side.
+
+                    '
+                country:
+                  type: string
+                  description: 'Country of the shipping address. Use the two-character ISO Standard Country Codes.
+
+                    '
+                  maxLength: 2
+                email:
+                  type: string
+                  maxLength: 320
+                  description: 'Email associated with the shipping address.
+
+                    '
+                phoneNumber:
+                  type: string
+                  maxLength: 15
+                  description: 'Phone number associated with the shipping address.
+
+                    '
+            metadata:
+              type: object
+              readOnly: true
+              properties:
+                creator:
+                  type: string
+                  readOnly: true
+                  description: The creator of the Shipping Address.
+      tags:
+      - Customer Shipping Address
+      operationId: postCustomerShippingAddress
+      x-devcenter-metaData:
+        categoryTag: Token_Management
+        developerGuides: https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms/tms-cust-tkn/tms-ship-tkn/tms-ship-addr-tkn-create-intro.html
+        mleForRequest: optional
+      consumes:
+      - application/json;charset=utf-8
+      produces:
+      - application/json;charset=utf-8
+      x-depends:
+        example:
+          path: /tms/v2/customers/{customerId}
+          verb: post
+          exampleId: example0
+        fieldMapping:
+        - sourceField: id
+          destinationField: customerId
+          fieldTypeInDestination: path
+      responses:
+        '201':
+          description: A new Shipping Address has been created.
+          headers:
+            Location:
+              description: Location of the Shipping Address.
+              type: string
+            ETag:
+              description: An ETag is an identifier assigned to a specific version of a resource.
+              type: string
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally-unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                readOnly: true
+                properties:
+                  self:
+                    type: object
+                    readOnly: true
+                    properties:
+                      href:
+                        type: string
+                        readOnly: true
+                        description: 'Link to the Customers Shipping Address
+
+                          '
+                        example: /tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3/shipping-addresses/D9F3439F0448C901E053A2598D0AA1CC
+                  customer:
+                    type: object
+                    readOnly: true
+                    properties:
+                      href:
+                        type: string
+                        readOnly: true
+                        description: 'Link to the Customer
+
+                          '
+                        example: /tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3
+              id:
+                type: string
+                minLength: 1
+                maxLength: 32
+                description: The Id of the Shipping Address Token.
+              default:
+                type: boolean
+                description: "Flag that indicates whether customer shipping address is the dafault.\nPossible Values:\n - `true`: Shipping Address is customer's default.\n - `false`: Shipping Address is not customer's default.\n"
+              shipTo:
+                type: object
+                properties:
+                  firstName:
+                    type: string
+                    maxLength: 60
+                    description: 'First name of the recipient.
+
+                      '
+                  lastName:
+                    type: string
+                    maxLength: 60
+                    description: 'Last name of the recipient.
+
+                      '
+                  company:
+                    type: string
+                    maxLength: 60
+                    description: 'Company associated with the shipping address.
+
+                      '
+                  address1:
+                    type: string
+                    maxLength: 60
+                    description: 'First line of the shipping address.
+
+                      '
+                  address2:
+                    type: string
+                    maxLength: 60
+                    description: 'Second line of the shipping address.
+
+                      '
+                  locality:
+                    type: string
+                    maxLength: 50
+                    description: 'City of the shipping address.
+
+                      '
+                  administrativeArea:
+                    type: string
+                    maxLength: 20
+                    description: 'State or province of the shipping address. Use 2 character the State,
+
+                      Province, and Territory Codes for the United States and Canada.
+
+                      '
+                  postalCode:
+                    type: string
+                    maxLength: 10
+                    description: 'Postal code for the shipping address. The postal code must consist of 5 to 9 digits.
+
+
+                      When the billing country is the U.S., the 9-digit postal code must follow this format:
+
+                      [5 digits][dash][4 digits]
+
+
+                      Example 12345-6789
+
+
+                      When the billing country is Canada, the 6-digit postal code must follow this format:
+
+                      [alpha][numeric][alpha][space][numeric][alpha][numeric]
+
+
+                      Example A1B 2C3
+
+
+                      **American Express Direct**\
+
+                      Before sending the postal code to the processor, all nonalphanumeric characters are removed and, if the
+
+                      remaining value is longer than nine characters, truncates the value starting from the right side.
+
+                      '
+                  country:
+                    type: string
+                    description: 'Country of the shipping address. Use the two-character ISO Standard Country Codes.
+
+                      '
+                    maxLength: 2
+                  email:
+                    type: string
+                    maxLength: 320
+                    description: 'Email associated with the shipping address.
+
+                      '
+                  phoneNumber:
+                    type: string
+                    maxLength: 15
+                    description: 'Phone number associated with the shipping address.
+
+                      '
+              metadata:
+                type: object
+                readOnly: true
+                properties:
+                  creator:
+                    type: string
+                    readOnly: true
+                    description: The creator of the Shipping Address.
+        '400':
+          description: 'Bad Request: e.g. A required header value could be missing.'
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - invalidHeaders\n  - missingHeaders\n  - invalidFields\n  - missingFields\n  - unsupportedPaymentMethodModification\n  - invalidCombination\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+                    details:
+                      type: array
+                      readOnly: true
+                      items:
+                        type: object
+                        readOnly: true
+                        properties:
+                          name:
+                            type: string
+                            readOnly: true
+                            description: The name of the field that caused the error.
+                          location:
+                            type: string
+                            readOnly: true
+                            description: The location of the field that caused the error.
+          examples:
+            Invalid Customer request body:
+              errors:
+              - type: invalidRequest
+                message: Invalid HTTP Body
+        '403':
+          description: 'Forbidden: e.g. The profile might not have permission to perform the operation.'
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - forbidden\n  - declined\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+          examples:
+            application/json:
+              errors:
+              - type: forbidden
+                message: Request not permitted
+        '409':
+          description: Conflict. The token is linked to a Payment Instrument.
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - instrumentIdentifierDeletionError\n  - tokenIdConflict\n  - conflict\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+          examples:
+            application/json:
+              errors:
+              - type: conflict
+                message: Action cannot be performed as the PaymentInstrument is the customers default
+        '424':
+          description: 'Failed Dependency: e.g. The profile represented by the profile-id may not exist or the profile-id was entered incorrectly.'
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - notFound\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+          examples:
+            application/json:
+              errors:
+              - type: notFound
+                message: Profile not found
+        '500':
+          description: Unexpected error.
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          examples:
+            application/json:
+              errors:
+              - type: serverError
+                message: Internal server error
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - internalError\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+      x-example:
+        example0:
+          summary: Create Customer Default Shipping Address
+          value:
+            default: 'true'
+            shipTo:
+              firstName: John
+              lastName: Doe
+              company: CyberSource
+              address1: 1 Market St
+              locality: San Francisco
+              administrativeArea: CA
+              postalCode: '94105'
+              country: US
+              email: test@cybs.com
+              phoneNumber: '4158880000'
+        example1:
+          summary: Create Customer Non-Default Shipping Address
+          value:
+            default: 'false'
+            shipTo:
+              firstName: John
+              lastName: Doe
+              company: CyberSource
+              address1: 1 Market St
+              locality: San Francisco
+              administrativeArea: CA
+              postalCode: '94105'
+              country: US
+              email: test@cybs.com
+              phoneNumber: '4158880000'
+    get:
+      summary: List Shipping Addresses for a Customer
+      description: '|  |  |  |
+
+        | --- | --- | --- |
+
+        |**Customer Shipping Address**<br>A Customer Shipping Address represents tokenized customer shipping information.<br>A [Customer](#token-management_customer_create-a-customer) can have [one or more Shipping Addresses](#token-management_customer-shipping-address_list-shipping-addresses-for-a-customer), with one allocated as the Customers default for use in payments.|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|**Retrieving all Customer Shipping Addresses**<br>Your system can use this API to retrieve all existing Shipping Addresses for a Customer.
+
+        '
+      parameters:
+      - name: profile-id
+        in: header
+        description: The Id of a profile containing user specific TMS configuration.
+        required: false
+        type: string
+        minLength: 36
+        maxLength: 36
+        x-hide-field: true
+      - name: customerId
+        in: path
+        description: The Id of a Customer.
+        required: true
+        type: string
+        minLength: 1
+        maxLength: 32
+      - name: offset
+        in: query
+        description: Starting record in zero-based dataset that should be returned as the first object in the array. Default is 0.
+        required: false
+        type: integer
+        format: int64
+        default: 0
+        minimum: 0
+      - name: limit
+        in: query
+        description: The maximum number that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100.
+        required: false
+        type: integer
+        format: int64
+        default: 20
+        minimum: 1
+        maximum: 100
+      tags:
+      - Customer Shipping Address
+      operationId: getCustomerShippingAddressesList
+      x-devcenter-metaData:
+        categoryTag: Token_Management
+        developerGuides: https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms/tms-cust-tkn/tms-ship-tkn/tms-ship-addr-tkn-retrieve-all-intro.html
+      produces:
+      - application/json;charset=utf-8
+      x-depends:
+        example:
+          path: /tms/v2/customers/{customerId}
+          verb: post
+          exampleId: example0
+        fieldMapping:
+        - sourceField: id
+          destinationField: customerId
+          fieldTypeInDestination: path
+      responses:
+        '200':
+          description: Returns all existing Shipping Addresses associated with the supplied Id.
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally-unique Id associated with your request.
+              type: string
+            X-Total-Count:
+              description: The total number of Shipping Addresses associated with the Customer.
+              type: string
+          schema:
+            title: ShippingAddressListForCustomer
+            type: object
+            readOnly: true
+            description: 'A paginated container of Shipping Addresses.
+
+              '
+            properties:
+              _links:
+                type: object
+                readOnly: true
+                properties:
+                  self:
+                    type: object
+                    readOnly: true
+                    properties:
+                      href:
+                        type: string
+                        readOnly: true
+                        description: 'Link to the current page.
+
+                          '
+                        example: /tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3/shipping-addresses?offset=0&limit=1
+                  first:
+                    type: object
+                    readOnly: true
+                    properties:
+                      href:
+                        type: string
+                        readOnly: true
+                        description: 'Link to the first page.
+
+                          '
+                        example: /tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3/shipping-addresses?offset=0&limit=1
+                  prev:
+                    type: object
+                    readOnly: true
+                    properties:
+                      href:
+                        type: string
+                        readOnly: true
+                        description: 'Link to the previous page.
+
+                          '
+                        example: /tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3/shipping-addresses?offset=0&limit=1
+                  next:
+                    type: object
+                    readOnly: true
+                    properties:
+                      href:
+                        type: string
+                        readOnly: true
+                        description: 'Link to the next page.
+
+                          '
+                        example: /tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3/shipping-addresses?offset=0&limit=1
+                  last:
+                    type: object
+                    readOnly: true
+                    properties:
+                      href:
+                        type: string
+                        readOnly: true
+                        description: 'Link to the last page.
+
+                          '
+                        example: /tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3/shipping-addresses?offset=0&limit=1
+              offset:
+                type: integer
+                readOnly: true
+                default: 0
+                example: 0
+                description: The offset parameter supplied in the request.
+              limit:
+                type: integer
+                readOnly: true
+                default: 20
+                example: 20
+                description: The limit parameter supplied in the request.
+              count:
+                type: integer
+                readOnly: true
+                example: 1
+                description: The number of Shipping Addresses returned in the array.
+              total:
+                type: integer
+                readOnly: true
+                example: 1
+                description: The total number of Shipping Addresses associated with the Customer.
+              _embedded:
+                type: object
+                readOnly: true
+                description: 'Shipping Address Resources.
+
+                  '
+                properties:
+                  shippingAddresses:
+                    type: array
+                    readOnly: true
+                    items:
+                      type: object
+                      properties:
+                        _links:
+                          type: object
+                          readOnly: true
+                          properties:
+                            self:
+                              type: object
+                              readOnly: true
+                              properties:
+                                href:
+                                  type: string
+                                  readOnly: true
+                                  description: 'Link to the Customers Shipping Address
+
+                                    '
+                                  example: /tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3/shipping-addresses/D9F3439F0448C901E053A2598D0AA1CC
+                            customer:
+                              type: object
+                              readOnly: true
+                              properties:
+                                href:
+                                  type: string
+                                  readOnly: true
+                                  description: 'Link to the Customer
+
+                                    '
+                                  example: /tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3
+                        id:
+                          type: string
+                          minLength: 1
+                          maxLength: 32
+                          description: The Id of the Shipping Address Token.
+                        default:
+                          type: boolean
+                          description: "Flag that indicates whether customer shipping address is the dafault.\nPossible Values:\n - `true`: Shipping Address is customer's default.\n - `false`: Shipping Address is not customer's default.\n"
+                        shipTo:
+                          type: object
+                          properties:
+                            firstName:
+                              type: string
+                              maxLength: 60
+                              description: 'First name of the recipient.
+
+                                '
+                            lastName:
+                              type: string
+                              maxLength: 60
+                              description: 'Last name of the recipient.
+
+                                '
+                            company:
+                              type: string
+                              maxLength: 60
+                              description: 'Company associated with the shipping address.
+
+                                '
+                            address1:
+                              type: string
+                              maxLength: 60
+                              description: 'First line of the shipping address.
+
+                                '
+                            address2:
+                              type: string
+                              maxLength: 60
+                              description: 'Second line of the shipping address.
+
+                                '
+                            locality:
+                              type: string
+                              maxLength: 50
+                              description: 'City of the shipping address.
+
+                                '
+                            administrativeArea:
+                              type: string
+                              maxLength: 20
+                              description: 'State or province of the shipping address. Use 2 character the State,
+
+                                Province, and Territory Codes for the United States and Canada.
+
+                                '
+                            postalCode:
+                              type: string
+                              maxLength: 10
+                              description: 'Postal code for the shipping address. The postal code must consist of 5 to 9 digits.
+
+
+                                When the billing country is the U.S., the 9-digit postal code must follow this format:
+
+                                [5 digits][dash][4 digits]
+
+
+                                Example 12345-6789
+
+
+                                When the billing country is Canada, the 6-digit postal code must follow this format:
+
+                                [alpha][numeric][alpha][space][numeric][alpha][numeric]
+
+
+                                Example A1B 2C3
+
+
+                                **American Express Direct**\
+
+                                Before sending the postal code to the processor, all nonalphanumeric characters are removed and, if the
+
+                                remaining value is longer than nine characters, truncates the value starting from the right side.
+
+                                '
+                            country:
+                              type: string
+                              description: 'Country of the shipping address. Use the two-character ISO Standard Country Codes.
+
+                                '
+                              maxLength: 2
+                            email:
+                              type: string
+                              maxLength: 320
+                              description: 'Email associated with the shipping address.
+
+                                '
+                            phoneNumber:
+                              type: string
+                              maxLength: 15
+                              description: 'Phone number associated with the shipping address.
+
+                                '
+                        metadata:
+                          type: object
+                          readOnly: true
+                          properties:
+                            creator:
+                              type: string
+                              readOnly: true
+                              description: The creator of the Shipping Address.
+        '400':
+          description: 'Bad Request: e.g. A required header value could be missing.'
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - invalidHeaders\n  - missingHeaders\n  - invalidFields\n  - missingFields\n  - unsupportedPaymentMethodModification\n  - invalidCombination\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+                    details:
+                      type: array
+                      readOnly: true
+                      items:
+                        type: object
+                        readOnly: true
+                        properties:
+                          name:
+                            type: string
+                            readOnly: true
+                            description: The name of the field that caused the error.
+                          location:
+                            type: string
+                            readOnly: true
+                            description: The location of the field that caused the error.
+          examples:
+            Invalid Customer request body:
+              errors:
+              - type: invalidRequest
+                message: Invalid HTTP Body
+        '403':
+          description: 'Forbidden: e.g. The profile might not have permission to perform the operation.'
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - forbidden\n  - declined\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+          examples:
+            application/json:
+              errors:
+              - type: forbidden
+                message: Request not permitted
+        '404':
+          description: Token Not Found. The Id may not exist or was entered incorrectly.
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - notFound\n  - subscriptionNotFound\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+          examples:
+            application/json:
+              errors:
+              - type: notFound
+                message: Token not found
+        '410':
+          description: Token Not Available. The token has been deleted.
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - notAvailable\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+          examples:
+            application/json:
+              errors:
+              - type: notAvailable
+                message: Token not available.
+        '424':
+          description: 'Failed Dependency: e.g. The profile represented by the profile-id may not exist or the profile-id was entered incorrectly.'
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - notFound\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+          examples:
+            application/json:
+              errors:
+              - type: notFound
+                message: Profile not found
+        '500':
+          description: Unexpected error.
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          examples:
+            application/json:
+              errors:
+              - type: serverError
+                message: Internal server error
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - internalError\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+  /tms/v2/customers/{customerId}/shipping-addresses/{shippingAddressId}:
+    get:
+      summary: Retrieve a Customer Shipping Address
+      description: '|  |  |  |
+
+        | --- | --- | --- |
+
+        |**Customer Shipping Address**<br>A Customer Shipping Address represents tokenized customer shipping information.<br>A [Customer](#token-management_customer_create-a-customer) can have [one or more Shipping Addresses](#token-management_customer-shipping-address_list-shipping-addresses-for-a-customer), with one allocated as the Customers default for use in payments.|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|**Retrieving a Customer Shipping Address**<br>Your system can use this API to retrieve an existing Shipping Address for a Customer.<br>To perform a payment with a particular Shipping Address simply specify the [Shipping Address Id in the payments request](#payments_payments_process-a-payment_samplerequests-dropdown_authorization-using-tokens_authorization-with-customer-payment-instrument-and-shipping-address-token-id_liveconsole-tab-request-body).
+
+        '
+      parameters:
+      - name: profile-id
+        in: header
+        description: The Id of a profile containing user specific TMS configuration.
+        required: false
+        type: string
+        minLength: 36
+        maxLength: 36
+        x-hide-field: true
+      - name: customerId
+        in: path
+        description: The Id of a Customer.
+        required: true
+        type: string
+        minLength: 1
+        maxLength: 32
+      - name: shippingAddressId
+        in: path
+        description: The Id of a shipping address.
+        required: true
+        type: string
+        minLength: 1
+        maxLength: 32
+      tags:
+      - Customer Shipping Address
+      operationId: getCustomerShippingAddress
+      x-devcenter-metaData:
+        categoryTag: Token_Management
+        developerGuides: https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms/tms-cust-tkn/tms-ship-tkn/tms-ship-addr-tkn-retrieve-intro.html
+      produces:
+      - application/json;charset=utf-8
+      x-depends:
+        example:
+          path: /tms/v2/customers/{customerId}/shipping-addresses
+          verb: post
+          exampleId: example0
+        fieldMapping:
+        - sourceField: id
+          destinationField: shippingAddressId
+          fieldTypeInDestination: path
+      responses:
+        '200':
+          description: Returns an existing Shipping Address associated with the supplied Id.
+          headers:
+            ETag:
+              description: An ETag is an identifier assigned to a specific version of a resource.
+              type: string
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally-unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                readOnly: true
+                properties:
+                  self:
+                    type: object
+                    readOnly: true
+                    properties:
+                      href:
+                        type: string
+                        readOnly: true
+                        description: 'Link to the Customers Shipping Address
+
+                          '
+                        example: /tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3/shipping-addresses/D9F3439F0448C901E053A2598D0AA1CC
+                  customer:
+                    type: object
+                    readOnly: true
+                    properties:
+                      href:
+                        type: string
+                        readOnly: true
+                        description: 'Link to the Customer
+
+                          '
+                        example: /tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3
+              id:
+                type: string
+                minLength: 1
+                maxLength: 32
+                description: The Id of the Shipping Address Token.
+              default:
+                type: boolean
+                description: "Flag that indicates whether customer shipping address is the dafault.\nPossible Values:\n - `true`: Shipping Address is customer's default.\n - `false`: Shipping Address is not customer's default.\n"
+              shipTo:
+                type: object
+                properties:
+                  firstName:
+                    type: string
+                    maxLength: 60
+                    description: 'First name of the recipient.
+
+                      '
+                  lastName:
+                    type: string
+                    maxLength: 60
+                    description: 'Last name of the recipient.
+
+                      '
+                  company:
+                    type: string
+                    maxLength: 60
+                    description: 'Company associated with the shipping address.
+
+                      '
+                  address1:
+                    type: string
+                    maxLength: 60
+                    description: 'First line of the shipping address.
+
+                      '
+                  address2:
+                    type: string
+                    maxLength: 60
+                    description: 'Second line of the shipping address.
+
+                      '
+                  locality:
+                    type: string
+                    maxLength: 50
+                    description: 'City of the shipping address.
+
+                      '
+                  administrativeArea:
+                    type: string
+                    maxLength: 20
+                    description: 'State or province of the shipping address. Use 2 character the State,
+
+                      Province, and Territory Codes for the United States and Canada.
+
+                      '
+                  postalCode:
+                    type: string
+                    maxLength: 10
+                    description: 'Postal code for the shipping address. The postal code must consist of 5 to 9 digits.
+
+
+                      When the billing country is the U.S., the 9-digit postal code must follow this format:
+
+                      [5 digits][dash][4 digits]
+
+
+                      Example 12345-6789
+
+
+                      When the billing country is Canada, the 6-digit postal code must follow this format:
+
+                      [alpha][numeric][alpha][space][numeric][alpha][numeric]
+
+
+                      Example A1B 2C3
+
+
+                      **American Express Direct**\
+
+                      Before sending the postal code to the processor, all nonalphanumeric characters are removed and, if the
+
+                      remaining value is longer than nine characters, truncates the value starting from the right side.
+
+                      '
+                  country:
+                    type: string
+                    description: 'Country of the shipping address. Use the two-character ISO Standard Country Codes.
+
+                      '
+                    maxLength: 2
+                  email:
+                    type: string
+                    maxLength: 320
+                    description: 'Email associated with the shipping address.
+
+                      '
+                  phoneNumber:
+                    type: string
+                    maxLength: 15
+                    description: 'Phone number associated with the shipping address.
+
+                      '
+              metadata:
+                type: object
+                readOnly: true
+                properties:
+                  creator:
+                    type: string
+                    readOnly: true
+                    description: The creator of the Shipping Address.
+        '400':
+          description: 'Bad Request: e.g. A required header value could be missing.'
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - invalidHeaders\n  - missingHeaders\n  - invalidFields\n  - missingFields\n  - unsupportedPaymentMethodModification\n  - invalidCombination\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+                    details:
+                      type: array
+                      readOnly: true
+                      items:
+                        type: object
+                        readOnly: true
+                        properties:
+                          name:
+                            type: string
+                            readOnly: true
+                            description: The name of the field that caused the error.
+                          location:
+                            type: string
+                            readOnly: true
+                            description: The location of the field that caused the error.
+          examples:
+            Invalid Customer request body:
+              errors:
+              - type: invalidRequest
+                message: Invalid HTTP Body
+        '403':
+          description: 'Forbidden: e.g. The profile might not have permission to perform the operation.'
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - forbidden\n  - declined\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+          examples:
+            application/json:
+              errors:
+              - type: forbidden
+                message: Request not permitted
+        '404':
+          description: Token Not Found. The Id may not exist or was entered incorrectly.
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - notFound\n  - subscriptionNotFound\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+          examples:
+            application/json:
+              errors:
+              - type: notFound
+                message: Token not found
+        '410':
+          description: Token Not Available. The token has been deleted.
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - notAvailable\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+          examples:
+            application/json:
+              errors:
+              - type: notAvailable
+                message: Token not available.
+        '424':
+          description: 'Failed Dependency: e.g. The profile represented by the profile-id may not exist or the profile-id was entered incorrectly.'
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - notFound\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+          examples:
+            application/json:
+              errors:
+              - type: notFound
+                message: Profile not found
+        '500':
+          description: Unexpected error.
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          examples:
+            application/json:
+              errors:
+              - type: serverError
+                message: Internal server error
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - internalError\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+    patch:
+      summary: Update a Customer Shipping Address
+      description: '|  |  |  |
+
+        | --- | --- | --- |
+
+        |**Customer Shipping Address**<br>A Customer Shipping Address represents tokenized customer shipping information.<br>A [Customer](#token-management_customer_create-a-customer) can have [one or more Shipping Addresses](#token-management_customer-shipping-address_list-shipping-addresses-for-a-customer), with one allocated as the Customers default for use in payments.|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|**Updating a Customers Shipping Address**<br>Your system can use this API to update an existing Shipping Addresses for a Customer, including selecting a [default Shipping Address](#token-management_customer-shipping-address_update-a-customer-shipping-address_samplerequests-dropdown_make-customer-shipping-address-the-default_liveconsole-tab-request-body) for use in payments.
+
+        '
+      parameters:
+      - name: profile-id
+        in: header
+        description: The Id of a profile containing user specific TMS configuration.
+        required: false
+        type: string
+        minLength: 36
+        maxLength: 36
+        x-hide-field: true
+      - name: customerId
+        in: path
+        description: The Id of a Customer.
+        required: true
+        type: string
+        minLength: 1
+        maxLength: 32
+      - name: shippingAddressId
+        in: path
+        description: The Id of a shipping address.
+        required: true
+        type: string
+        minLength: 1
+        maxLength: 32
+      - name: if-match
+        in: header
+        description: Contains an ETag value from a GET request to make the request conditional.
+        required: false
+        type: string
+        minLength: 1
+        maxLength: 32
+      - name: patchCustomerShippingAddressRequest
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            _links:
+              type: object
+              readOnly: true
+              properties:
+                self:
+                  type: object
+                  readOnly: true
+                  properties:
+                    href:
+                      type: string
+                      readOnly: true
+                      description: 'Link to the Customers Shipping Address
+
+                        '
+                      example: /tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3/shipping-addresses/D9F3439F0448C901E053A2598D0AA1CC
+                customer:
+                  type: object
+                  readOnly: true
+                  properties:
+                    href:
+                      type: string
+                      readOnly: true
+                      description: 'Link to the Customer
+
+                        '
+                      example: /tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3
+            id:
+              type: string
+              minLength: 1
+              maxLength: 32
+              description: The Id of the Shipping Address Token.
+            default:
+              type: boolean
+              description: "Flag that indicates whether customer shipping address is the dafault.\nPossible Values:\n - `true`: Shipping Address is customer's default.\n - `false`: Shipping Address is not customer's default.\n"
+            shipTo:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                  maxLength: 60
+                  description: 'First name of the recipient.
+
+                    '
+                lastName:
+                  type: string
+                  maxLength: 60
+                  description: 'Last name of the recipient.
+
+                    '
+                company:
+                  type: string
+                  maxLength: 60
+                  description: 'Company associated with the shipping address.
+
+                    '
+                address1:
+                  type: string
+                  maxLength: 60
+                  description: 'First line of the shipping address.
+
+                    '
+                address2:
+                  type: string
+                  maxLength: 60
+                  description: 'Second line of the shipping address.
+
+                    '
+                locality:
+                  type: string
+                  maxLength: 50
+                  description: 'City of the shipping address.
+
+                    '
+                administrativeArea:
+                  type: string
+                  maxLength: 20
+                  description: 'State or province of the shipping address. Use 2 character the State,
+
+                    Province, and Territory Codes for the United States and Canada.
+
+                    '
+                postalCode:
+                  type: string
+                  maxLength: 10
+                  description: 'Postal code for the shipping address. The postal code must consist of 5 to 9 digits.
+
+
+                    When the billing country is the U.S., the 9-digit postal code must follow this format:
+
+                    [5 digits][dash][4 digits]
+
+
+                    Example 12345-6789
+
+
+                    When the billing country is Canada, the 6-digit postal code must follow this format:
+
+                    [alpha][numeric][alpha][space][numeric][alpha][numeric]
+
+
+                    Example A1B 2C3
+
+
+                    **American Express Direct**\
+
+                    Before sending the postal code to the processor, all nonalphanumeric characters are removed and, if the
+
+                    remaining value is longer than nine characters, truncates the value starting from the right side.
+
+                    '
+                country:
+                  type: string
+                  description: 'Country of the shipping address. Use the two-character ISO Standard Country Codes.
+
+                    '
+                  maxLength: 2
+                email:
+                  type: string
+                  maxLength: 320
+                  description: 'Email associated with the shipping address.
+
+                    '
+                phoneNumber:
+                  type: string
+                  maxLength: 15
+                  description: 'Phone number associated with the shipping address.
+
+                    '
+            metadata:
+              type: object
+              readOnly: true
+              properties:
+                creator:
+                  type: string
+                  readOnly: true
+                  description: The creator of the Shipping Address.
+      tags:
+      - Customer Shipping Address
+      operationId: patchCustomersShippingAddress
+      x-devcenter-metaData:
+        categoryTag: Token_Management
+        developerGuides: https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms/tms-cust-tkn/tms-ship-tkn/tms-ship-addr-tkn-update-intro.html
+        mleForRequest: optional
+      consumes:
+      - application/json;charset=utf-8
+      produces:
+      - application/json;charset=utf-8
+      x-example:
+        example0:
+          summary: Update Customer Shipping Address
+          value:
+            shipTo:
+              firstName: John
+              lastName: Doe
+              company: CyberSource
+              address1: 1 Market St
+              locality: San Francisco
+              administrativeArea: CA
+              postalCode: '94105'
+              country: US
+              email: test@cybs.com
+              phoneNumber: '4158880000'
+        example1:
+          summary: Make Customer Shipping Address the default
+          value:
+            default: 'true'
+      x-depends:
+        example:
+          path: /tms/v2/customers/{customerId}/shipping-addresses
+          verb: post
+          exampleId: example0
+        fieldMapping:
+        - sourceField: id
+          destinationField: shippingAddressId
+          fieldTypeInDestination: path
+      responses:
+        '200':
+          description: Returns an existing Shipping Address associated with the supplied Id.
+          headers:
+            ETag:
+              description: An ETag is an identifier assigned to a specific version of a resource.
+              type: string
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally-unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            properties:
+              _links:
+                type: object
+                readOnly: true
+                properties:
+                  self:
+                    type: object
+                    readOnly: true
+                    properties:
+                      href:
+                        type: string
+                        readOnly: true
+                        description: 'Link to the Customers Shipping Address
+
+                          '
+                        example: /tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3/shipping-addresses/D9F3439F0448C901E053A2598D0AA1CC
+                  customer:
+                    type: object
+                    readOnly: true
+                    properties:
+                      href:
+                        type: string
+                        readOnly: true
+                        description: 'Link to the Customer
+
+                          '
+                        example: /tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3
+              id:
+                type: string
+                minLength: 1
+                maxLength: 32
+                description: The Id of the Shipping Address Token.
+              default:
+                type: boolean
+                description: "Flag that indicates whether customer shipping address is the dafault.\nPossible Values:\n - `true`: Shipping Address is customer's default.\n - `false`: Shipping Address is not customer's default.\n"
+              shipTo:
+                type: object
+                properties:
+                  firstName:
+                    type: string
+                    maxLength: 60
+                    description: 'First name of the recipient.
+
+                      '
+                  lastName:
+                    type: string
+                    maxLength: 60
+                    description: 'Last name of the recipient.
+
+                      '
+                  company:
+                    type: string
+                    maxLength: 60
+                    description: 'Company associated with the shipping address.
+
+                      '
+                  address1:
+                    type: string
+                    maxLength: 60
+                    description: 'First line of the shipping address.
+
+                      '
+                  address2:
+                    type: string
+                    maxLength: 60
+                    description: 'Second line of the shipping address.
+
+                      '
+                  locality:
+                    type: string
+                    maxLength: 50
+                    description: 'City of the shipping address.
+
+                      '
+                  administrativeArea:
+                    type: string
+                    maxLength: 20
+                    description: 'State or province of the shipping address. Use 2 character the State,
+
+                      Province, and Territory Codes for the United States and Canada.
+
+                      '
+                  postalCode:
+                    type: string
+                    maxLength: 10
+                    description: 'Postal code for the shipping address. The postal code must consist of 5 to 9 digits.
+
+
+                      When the billing country is the U.S., the 9-digit postal code must follow this format:
+
+                      [5 digits][dash][4 digits]
+
+
+                      Example 12345-6789
+
+
+                      When the billing country is Canada, the 6-digit postal code must follow this format:
+
+                      [alpha][numeric][alpha][space][numeric][alpha][numeric]
+
+
+                      Example A1B 2C3
+
+
+                      **American Express Direct**\
+
+                      Before sending the postal code to the processor, all nonalphanumeric characters are removed and, if the
+
+                      remaining value is longer than nine characters, truncates the value starting from the right side.
+
+                      '
+                  country:
+                    type: string
+                    description: 'Country of the shipping address. Use the two-character ISO Standard Country Codes.
+
+                      '
+                    maxLength: 2
+                  email:
+                    type: string
+                    maxLength: 320
+                    description: 'Email associated with the shipping address.
+
+                      '
+                  phoneNumber:
+                    type: string
+                    maxLength: 15
+                    description: 'Phone number associated with the shipping address.
+
+                      '
+              metadata:
+                type: object
+                readOnly: true
+                properties:
+                  creator:
+                    type: string
+                    readOnly: true
+                    description: The creator of the Shipping Address.
+        '400':
+          description: 'Bad Request: e.g. A required header value could be missing.'
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - invalidHeaders\n  - missingHeaders\n  - invalidFields\n  - missingFields\n  - unsupportedPaymentMethodModification\n  - invalidCombination\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+                    details:
+                      type: array
+                      readOnly: true
+                      items:
+                        type: object
+                        readOnly: true
+                        properties:
+                          name:
+                            type: string
+                            readOnly: true
+                            description: The name of the field that caused the error.
+                          location:
+                            type: string
+                            readOnly: true
+                            description: The location of the field that caused the error.
+          examples:
+            Invalid Customer request body:
+              errors:
+              - type: invalidRequest
+                message: Invalid HTTP Body
+        '403':
+          description: 'Forbidden: e.g. The profile might not have permission to perform the operation.'
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - forbidden\n  - declined\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+          examples:
+            application/json:
+              errors:
+              - type: forbidden
+                message: Request not permitted
+        '404':
+          description: Token Not Found. The Id may not exist or was entered incorrectly.
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - notFound\n  - subscriptionNotFound\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+          examples:
+            application/json:
+              errors:
+              - type: notFound
+                message: Token not found
+        '410':
+          description: Token Not Available. The token has been deleted.
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - notAvailable\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+          examples:
+            application/json:
+              errors:
+              - type: notAvailable
+                message: Token not available.
+        '412':
+          description: 'Precondition Failed: The If-Match request header value does not match the current resources ETag'
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - conflict\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+          examples:
+            application/json:
+              errors:
+              - type: conflict
+                message: Action cannot be performed as the if-match header value does not match the token etag
+        '424':
+          description: 'Failed Dependency: e.g. The profile represented by the profile-id may not exist or the profile-id was entered incorrectly.'
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - notFound\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+          examples:
+            application/json:
+              errors:
+              - type: notFound
+                message: Profile not found
+        '500':
+          description: Unexpected error.
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          examples:
+            application/json:
+              errors:
+              - type: serverError
+                message: Internal server error
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - internalError\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+    delete:
+      summary: Delete a Customer Shipping Address
+      description: '|  |  |  |
+
+        | --- | --- | --- |
+
+        |**Customer Shipping Address**<br>A Customer Shipping Address represents tokenized customer shipping information.<br>A [Customer](#token-management_customer_create-a-customer) can have [one or more Shipping Addresses](#token-management_customer-shipping-address_list-shipping-addresses-for-a-customer), with one allocated as the Customers default for use in payments.|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|**Deleting a Customers Shipping Address**<br>Your system can use this API to delete an existing Shipping Address for a Customer.<br>If a customer has more than one Shipping Address then the default Shipping Address cannot be deleted without first selecting a [new default Shipping Address](#token-management_customer-shipping-address_update-a-customer-shipping-address_samplerequests-dropdown_make-customer-shipping-address-the-default_liveconsole-tab-request-body).
+
+        '
+      parameters:
+      - name: profile-id
+        in: header
+        description: The Id of a profile containing user specific TMS configuration.
+        required: false
+        type: string
+        minLength: 36
+        maxLength: 36
+        x-hide-field: true
+      - name: customerId
+        in: path
+        description: The Id of a Customer.
+        required: true
+        type: string
+        minLength: 1
+        maxLength: 32
+      - name: shippingAddressId
+        in: path
+        description: The Id of a shipping address.
+        required: true
+        type: string
+        minLength: 1
+        maxLength: 32
+      tags:
+      - Customer Shipping Address
+      operationId: deleteCustomerShippingAddress
+      x-devcenter-metaData:
+        categoryTag: Token_Management
+        developerGuides: https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms/tms-cust-tkn/tms-ship-tkn/tms-ship-addr-tkn-delete-intro.html
+      produces:
+      - application/json;charset=utf-8
+      x-depends:
+        example:
+          path: /tms/v2/customers/{customerId}/shipping-addresses
+          verb: post
+          exampleId: example0
+        fieldMapping:
+        - sourceField: id
+          destinationField: shippingAddressId
+          fieldTypeInDestination: path
+      responses:
+        '204':
+          description: The request is fulfilled but does not need to return a body
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+        '400':
+          description: 'Bad Request: e.g. A required header value could be missing.'
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - invalidHeaders\n  - missingHeaders\n  - invalidFields\n  - missingFields\n  - unsupportedPaymentMethodModification\n  - invalidCombination\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+                    details:
+                      type: array
+                      readOnly: true
+                      items:
+                        type: object
+                        readOnly: true
+                        properties:
+                          name:
+                            type: string
+                            readOnly: true
+                            description: The name of the field that caused the error.
+                          location:
+                            type: string
+                            readOnly: true
+                            description: The location of the field that caused the error.
+          examples:
+            Invalid Customer request body:
+              errors:
+              - type: invalidRequest
+                message: Invalid HTTP Body
+        '403':
+          description: 'Forbidden: e.g. The profile might not have permission to perform the operation.'
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - forbidden\n  - declined\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+          examples:
+            application/json:
+              errors:
+              - type: forbidden
+                message: Request not permitted
+        '404':
+          description: Token Not Found. The Id may not exist or was entered incorrectly.
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - notFound\n  - subscriptionNotFound\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+          examples:
+            application/json:
+              errors:
+              - type: notFound
+                message: Token not found
+        '409':
+          description: Conflict. The token is linked to a Payment Instrument.
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - instrumentIdentifierDeletionError\n  - tokenIdConflict\n  - conflict\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+          examples:
+            application/json:
+              errors:
+              - type: conflict
+                message: Action cannot be performed as the PaymentInstrument is the customers default
+        '410':
+          description: Token Not Available. The token has been deleted.
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - notAvailable\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+          examples:
+            application/json:
+              errors:
+              - type: notAvailable
+                message: Token not available.
+        '424':
+          description: 'Failed Dependency: e.g. The profile represented by the profile-id may not exist or the profile-id was entered incorrectly.'
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - notFound\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+          examples:
+            application/json:
+              errors:
+              - type: notFound
+                message: Profile not found
+        '500':
+          description: Unexpected error.
+          headers:
+            v-c-correlation-id:
+              description: The mandatory correlation Id passed by upstream (calling) system.
+              type: string
+            uniqueTransactionID:
+              description: A globally unique Id associated with your request.
+              type: string
+          examples:
+            application/json:
+              errors:
+              - type: serverError
+                message: Internal server error
+          schema:
+            type: object
+            readOnly: true
+            properties:
+              errors:
+                type: array
+                readOnly: true
+                items:
+                  type: object
+                  readOnly: true
+                  properties:
+                    type:
+                      type: string
+                      readOnly: true
+                      description: "The type of error.\n\nPossible Values:\n  - internalError\n"
+                    message:
+                      type: string
+                      readOnly: true
+                      description: The detailed message related to the type.
+x-devcenter-metaData:
+  categoryTagArray:
+  - name: Payments
+    description: For more information about Payments transactions, see the [Payments Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/payments/developer/ctv/rest/payments/payments-intro.html).
+  - name: Transaction_Batches
+    description: For more information about Transaction Batches, see the [Transaction Batches Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-transaction-batch-api/txn_batch_api_intro.html).
+  - name: eCheck_AVS
+    description: For more information about eCheck Account Validation, see the [Account Validation Developer Guides Page](https://...).
+  - name: Token_Management
+    description: For more information about the Token Management Service (TMS) see the [Token Management Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms/tms-overview.html)
+  - name: Flex_Microform
+    description: Microform Integration is a lightweight acceptance solution designed to safely and securely accept payment information within your web page.  Microform is designed to a be embedded seamlessly within your existing webpage experience, blending in with your existing acceptance form.  This solution allows for the replacement of sensitive payment date with a transient token (a short lived reference to the sensitive payment data).  For more information about Flex Microform transactions, see the [Flex Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-flex/SAFlexibleToken.html). For examples on how to integrate Flex Microform within your webpage please see our [GitHub Flex Samples](https://github.com/CyberSource?q=flex&type=&language=)
+  - name: Flex_API
+    description: For more information about Flex API, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/da-flex-api-intro.html).
+  - name: Risk_Management
+  - name: Payouts
+    description: 'For more information about Payouts, see the [Payouts Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-payouts/Introduction.html).
+
+      '
+  - name: Installments
+    description: For more information about Installment contact Cybersource Support. For Visa installments contact VISthroughCYBS@visa.com
+  - name: Recurring_Billing_Subscriptions
+    description: For more information about Recurring Billing, see the [Recurring Billing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-developer/recur-bill-services-intro.html).
+  - name: BIN_Lookup
+    description: 'The BIN Lookup Service is a versatile business tool that provides card network agnostic solution designed to ensure frictionless transaction experience by utilizing up-to-date Bank Identification Number (BIN) attributes sourced from multiple global and regional data sources.
+
+      This service helps to improve authorization rates by helping to route transactions to the best-suited card network, minimizes fraud through card detail verification and aids in regulatory compliance by identifying card properties. The service is flexible and provides businesses with a flexible choice of inputs such as primary account number (PAN), network token from major networks (such as Visa, American Express, Discover and regional networks) which includes device PAN (DPAN), and all types of tokens generated via CyberSource Token Management Service (TMS).
+
+      Currently, the range of available credentials is contingent on the networks enabled for the business entity. Therefore, the network information specified in this documentation is illustrative and subject to personalized offerings for each reseller or merchant.
+
+      '
+  - name: Transaction_Details
+    description: For more information about Transaction Details, see the [Transaction Details Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_details_api.html).
+  - name: Transaction_Search
+    description: For more information about Transaction Search, see the [Transaction Search Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-txn-search-details-rest-api-dev-guide-102718/txn_search_api.html).
+  - name: Reporting
+    description: 'For more information about Reporting, see the [Reporting Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-reporting-rest-api-dev-guide-102718/reporting_api.html).
+
+      '
+  - name: Secure_File_Share
+    description: For more information about Secure File Share, see the [Secure File Share Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-secure-file-share-api-102718/secure_file_share_api_intro.html).
+  - name: Invoices
+    description: For more information about Invoicing, see the [Invoicing Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing/Introduction.html).
+  - name: Pay_By_Link
+    description: For more information about PayByLink, see the [PBL Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/boarding/user/all/rest/boarding/templates-matrix-intro/templates-matrix-pay-by-link.html).
+  - name: User_Management
+    description: For more information about User Management, see the [User Managment Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-user-management-api-102718/user_management_api_intro.html).
+  - name: Value_Added_Service
+  - name: Fee Service
+  - name: Merchant_Boarding
+    description: For more information about Merchant Boarding, please see [Developer Guides Page](https://developer.cybersource.com/api/developer-guides/Merchant-Boarding-API_ditamap/Merchant-Boarding-API.html).
+  - name: Webhooks
+    description: For more information about Webhooks, please see [Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/webhooks/implementation/all/rest/webhooks/wh-fg-intro.html).
+  - name: Unified_Checkout
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-intro.html).
+  - name: Unified_Checkoutv1
+    description: For more information about Unified Checkout, see the [Unified Checkout Developer Guides Page](https://developer.cybersource.com/docs/cybs/en-us/unified-checkout/developer/all/rest/unified-checkout/uc-about-guide.html).
+  - name: Account_Updater
+    description: For more information about Account Updater, see the [Account Updater Developer Guides Page:](https://developer.cybersource.com/library/documentation/dev_guides/Account_Updater_UG/html/index.html).
+  - name: Visa_Bank_Account_Validation
+    description: 'The Visa Bank Account Validation Service is a new standalone product designed to validate customer''s routing and bank account number combination for ACH transactions. Merchant''s can use this standalone product to validate their customer''s account prior to processing an ACH transaction against the customer''s account to comply with Nacha''s account validation mandate for Web-debit transactions.
+
+      '
+  - name: Currency Conversion
+    description: 'Empower global transactions with transparency and choice. Our Dynamic Currency Conversion API lets merchants offer customers the option to pay in their home currency at checkout, delivering real-time exchange rates and clear cost disclosure.
+
+
+      **Key Benefits:**
+
+      - **Enhanced Customer Experience:** Provide clarity and convenience for international shoppers.
+
+      - **Real-Time Rates:** Accurate currency conversion with all the data required for acquirers and their merchants to maintain compliance with card network rules.
+
+      - **Seamless Integration:** Flexible API endpoints for rate lookup, authorization, and capture.
+
+      - **Regulatory Compliance:** Provides the data required for acquirers and merchants to meet and maintain card scheme requirements for disclosure and consent.
+
+
+      Ideal for merchants and payment partners seeking to boost trust and conversion in cross-border commerce.
+
+
+      **Key Features:**
+
+      - **Rate Lookup:** Retrieves the most up-to-date exchange rate for eligible cards before authorization.
+
+      - **Currency Choice:** Enables the merchant to offer customers the option to select between the merchant''s local currency and their card''s billing currency.
+
+      - **Compliance:** Ensures merchants have the data required to adhere to card network regulations; exchange rates, markups, etc.
+
+
+      **Supported Scenarios:**
+
+      - Dynamic Currency Conversion when cardholder''s billing currency differs from merchant''s pricing currency.
+
+      - Merchant and acquirer must support the cardholder''s billing currency.
+
+
+      **Core API Endpoints:**
+
+
+      **Currency Conversion API**
+
+      Returns eligibility and exchange rate details, including:
+
+      - exchangeRate
+
+      - marginRate
+
+      - reconciliationId and Id (for subsequent payment requests)
+
+
+      **Payment Authorization with DCC***
+
+      POST /pts/v2/payments
+
+      Required fields include:
+
+      - orderInformation.amountDetails.currency
+
+      - orderInformation.amountDetails.originalCurrency
+
+      - orderInformation.amountDetails.originalAmount
+
+      - orderInformation.amountDetails.exchangeRate
+
+      - currencyConversion.indicator (e.g., 1 = Converted, 2 = Nonconvertible, 3 = Declined)
+
+
+      **Capture with DCC***
+
+      POST /pts/v2/payments/{id}/captures
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      **Refund with DCC***
+
+      POST /pts/v2/captures/{id}/refunds
+
+      Maps from original authorization and includes original and converted amounts.
+
+
+      *Note: DCC is only supported on select processors. Contact your acquirer or account manager for more information.
+
+
+      **Compliance & Disclosure:**
+
+
+      Merchants must:
+
+      - Adhere to card network rules for Dynamic Currency Conversion (DCC) transactions.
+
+      - Display the converted amount, exchange rate, and markup percentage and other required disclosures.
+
+      - Obtain explicit cardholder consent before applying DCC.
+
+      - Work with your acquirer to obtain full set of compliance requirements.
+
+
+      For more information, see the [Currency Conversion Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/currency-conversion/developer/all/rest/currency-conversion/cc-intro.html).
+
+      '
+  - name: Intelligent_Commerce_Connect
+    description: For more information about Intelligent Commerce Cross Network Service API, please see [Developer Guides](https://developer.cybersource.com/docs/cybs/en-us/intelligent-commerce/developer/all/rest/intelligent-commerce/intelligent-commerce-about-guide.html).
