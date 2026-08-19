@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Create New Webhooks API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Create New Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Webhook Security Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/kms/egress/v2/keys-sym",
+            "headers": [
+              {
+                "name": "v-c-correlation-id",
+                "value": ""
+              },
+              {
+                "name": "v-c-sender-organization-id",
+                "value": ""
+              },
+              {
+                "name": "v-c-permissions",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Create security keys that CyberSource will use internally to connect to your servers and validate messages using a digital signature.\n\nSelect the CREATE example for CyberSource to generate the key on our server and maintain it for you as well. Remember to save the key in the API response, so that you can use it to validate messages later.\n"
+        },
+        {
+          "info": {
+            "name": "Find Products You Can Subscribe To",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/notification-subscriptions/v2/products/:organizationId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The Organization Identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of products and event types that your account is eligible for. These products and events are the ones that you may subscribe to in the next step of creating webhooks."
+        },
+        {
+          "info": {
+            "name": "Create a New Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/notification-subscriptions/v2/webhooks"
+          },
+          "docs": "Create a new webhook subscription. Before creating a webhook, ensure that a signature key has been created.\n\nFor the example \"Create Webhook using oAuth with Client Credentials\" - for clients who have more than one oAuth Provider and have different client secrets that they would like to config for a given webhook, they may do so by overriding the keyId inside security config of webhook subscription.\nSee the Developer Center examples section titled \"Webhook Security - Create or Store Egress Symme"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

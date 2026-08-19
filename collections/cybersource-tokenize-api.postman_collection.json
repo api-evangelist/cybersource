@@ -1,0 +1,403 @@
+{
+  "item": [
+    {
+      "id": "7db13a37-285f-4986-bdcf-f4ead699a84c",
+      "name": "Tokenize",
+      "description": {
+        "content": "An orchestration resource used to combine multiple API calls into a single request.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "77a56c66-ced2-4fb9-895b-62effa3f1504",
+          "name": "Tokenize",
+          "request": {
+            "name": "Tokenize",
+            "description": {
+              "content": "|  |  |  |  \n| --- | --- | --- |\n|The **Tokenize API** endpoint facilitates the creation of various TMS tokens such as Customers, Payment Instruments, Shipping Addresses, and Instrument Identifiers in a single operation. The request includes a processingInformation object, which specifies **\"TOKEN_CREATE\"** and the types of tokens to be created. The **tokenInformation** section of the request includes detailed information relevant to each token type. This includes attributes for Customers, Payment Instruments, Shipping Addresses, Instrument Identifiers and Transient Token data. The payload is flexible, allowing for different combinations of tokens to be created in a single request.|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|The **API response** includes a responses array, which details the outcome of the tokenization process for each requested resource type, such as Customer, Payment Instrument, Shipping Address, and Instrument Identifier. Each entry in this array provides an HTTP status code such as **201/200 for successful creations**, and a unique identifier for the newly created token.<br>In cases where token creation encounters issues, the response includes a **non-2XX** status code and an errors array for the affected resource. Each error object in the array details the **error type and a descriptive message** providing insight into why a particular token creation was not attempted or failed.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tms",
+                "v2",
+                "tokenize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The Id of a profile containing user specific TMS configuration.",
+                "key": "profile-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"processingInformation\": {\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"actionTokenTypes\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"tokenInformation\": {\n    \"jti\": \"<string>\",\n    \"transientTokenJwt\": \"<string>\",\n    \"customer\": {\n      \"id\": \"<string>\",\n      \"objectInformation\": {\n        \"title\": \"<string>\",\n        \"comment\": \"<string>\"\n      },\n      \"buyerInformation\": {\n        \"merchantCustomerID\": \"<string>\",\n        \"email\": \"<string>\"\n      },\n      \"clientReferenceInformation\": {\n        \"code\": \"<string>\"\n      },\n      \"merchantDefinedInformation\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"defaultPaymentInstrument\": {\n        \"id\": \"<string>\"\n      },\n      \"defaultShippingAddress\": {\n        \"id\": \"<string>\"\n      }\n    },\n    \"shippingAddress\": {\n      \"id\": \"<string>\",\n      \"default\": \"<boolean>\",\n      \"shipTo\": {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"company\": \"<string>\",\n        \"address1\": \"<string>\",\n        \"address2\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"administrativeArea\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phoneNumber\": \"<string>\"\n      }\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\",\n      \"default\": \"<boolean>\",\n      \"bankAccount\": {\n        \"type\": \"<string>\"\n      },\n      \"card\": {\n        \"expirationMonth\": \"<string>\",\n        \"expirationYear\": \"<string>\",\n        \"type\": \"<string>\",\n        \"issueNumber\": \"<string>\",\n        \"startMonth\": \"<string>\",\n        \"startYear\": \"<string>\",\n        \"useAs\": \"<string>\",\n        \"tokenizedInformation\": {\n          \"requestorID\": \"<string>\",\n          \"transactionType\": \"<string>\"\n        }\n      },\n      \"buyerInformation\": {\n        \"companyTaxID\": \"<string>\",\n        \"currency\": \"<string>\",\n        \"dateOfBirth\": \"<date>\",\n        \"personalIdentification\": [\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\",\n            \"issuedBy\": {\n              \"administrativeArea\": \"<string>\"\n            }\n          },\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\",\n            \"issuedBy\": {\n              \"administrativeArea\": \"<string>\"\n            }\n          }\n        ]\n      },\n      \"billTo\": {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"company\": \"<string>\",\n        \"address1\": \"<string>\",\n        \"address2\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"administrativeArea\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phoneNumber\": \"<string>\"\n      },\n      \"processingInformation\": {\n        \"billPaymentProgramEnabled\": \"<boolean>\",\n        \"bankTransferOptions\": {\n          \"SECCode\": \"<string>\"\n        }\n      },\n      \"merchantInformation\": {\n        \"merchantDescriptor\": {\n          \"alternateName\": \"<string>\"\n        }\n      },\n      \"instrumentIdentifier\": {\n        \"id\": \"<string>\"\n      }\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"source\": \"<string>\",\n      \"tokenProvisioningInformation\": {\n        \"consumerConsentObtained\": \"<boolean>\",\n        \"multiFactorAuthenticated\": \"<boolean>\"\n      },\n      \"card\": {\n        \"number\": \"<string>\",\n        \"expirationMonth\": \"<string>\",\n        \"expirationYear\": \"<string>\",\n        \"securityCode\": \"<string>\"\n      },\n      \"pointOfSaleInformation\": {\n        \"emvTags\": [\n          {\n            \"tag\": \"<string>\",\n            \"value\": \"<string>\",\n            \"source\": \"<string>\"\n          }\n        ]\n      },\n      \"bankAccount\": {\n        \"number\": \"<string>\",\n        \"routingNumber\": \"<string>\"\n      },\n      \"tokenizedCard\": {\n        \"source\": \"<string>\",\n        \"type\": \"<string>\",\n        \"card\": {\n          \"number\": \"<string>\",\n          \"expirationMonth\": \"<string>\",\n          \"expirationYear\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        \"metadata\": {}\n      },\n      \"processingInformation\": {\n        \"authorizationOptions\": {\n          \"initiator\": {\n            \"merchantInitiatedTransaction\": {\n              \"previousTransactionId\": \"<string>\",\n              \"originalAuthorizedAmount\": \"<string>\"\n            }\n          }\n        }\n      },\n      \"billTo\": {\n        \"address1\": \"<string>\",\n        \"address2\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"administrativeArea\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"email\": \"<string>\"\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "03fb1620-aa76-49ea-bf9a-336548072a64",
+              "name": "Returns the responses from the orchestrated API requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"processingInformation\": {\n    \"actionList\": [\n      \"TOKEN_CREATE\"\n    ],\n    \"actionTokenTypes\": [\n      \"customer\",\n      \"paymentInstrument\",\n      \"shippingAddress\",\n      \"instrumentIdentifier\"\n    ]\n  },\n  \"tokenInformation\": {\n    \"jti\": \"<string>\",\n    \"transientTokenJwt\": \"<string>\",\n    \"customer\": {\n      \"id\": \"<string>\",\n      \"objectInformation\": {\n        \"title\": \"<string>\",\n        \"comment\": \"<string>\"\n      },\n      \"buyerInformation\": {\n        \"merchantCustomerID\": \"<string>\",\n        \"email\": \"<string>\"\n      },\n      \"clientReferenceInformation\": {\n        \"code\": \"<string>\"\n      },\n      \"merchantDefinedInformation\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"defaultPaymentInstrument\": {\n        \"id\": \"<string>\"\n      },\n      \"defaultShippingAddress\": {\n        \"id\": \"<string>\"\n      }\n    },\n    \"shippingAddress\": {\n      \"id\": \"<string>\",\n      \"default\": \"<boolean>\",\n      \"shipTo\": {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"company\": \"<string>\",\n        \"address1\": \"<string>\",\n        \"address2\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"administrativeArea\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phoneNumber\": \"<string>\"\n      }\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\",\n      \"default\": \"<boolean>\",\n      \"bankAccount\": {\n        \"type\": \"<string>\"\n      },\n      \"card\": {\n        \"expirationMonth\": \"<string>\",\n        \"expirationYear\": \"<string>\",\n        \"type\": \"<string>\",\n        \"issueNumber\": \"<string>\",\n        \"startMonth\": \"<string>\",\n        \"startYear\": \"<string>\",\n        \"useAs\": \"pinless debit\",\n        \"tokenizedInformation\": {\n          \"requestorID\": \"<string>\",\n          \"transactionType\": \"<string>\"\n        }\n      },\n      \"buyerInformation\": {\n        \"companyTaxID\": \"<string>\",\n        \"currency\": \"<string>\",\n        \"dateOfBirth\": \"1960-12-30\",\n        \"personalIdentification\": [\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\",\n            \"issuedBy\": {\n              \"administrativeArea\": \"<string>\"\n            }\n          },\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\",\n            \"issuedBy\": {\n              \"administrativeArea\": \"<string>\"\n            }\n          }\n        ]\n      },\n      \"billTo\": {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"company\": \"<string>\",\n        \"address1\": \"<string>\",\n        \"address2\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"administrativeArea\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phoneNumber\": \"<string>\"\n      },\n      \"processingInformation\": {\n        \"billPaymentProgramEnabled\": \"<boolean>\",\n        \"bankTransferOptions\": {\n          \"SECCode\": \"<string>\"\n        }\n      },\n      \"merchantInformation\": {\n        \"merchantDescriptor\": {\n          \"alternateName\": \"<string>\"\n        }\n      },\n      \"instrumentIdentifier\": {\n        \"id\": \"<string>\"\n      }\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"source\": \"<string>\",\n      \"tokenProvisioningInformation\": {\n        \"consumerConsentObtained\": \"<boolean>\",\n        \"multiFactorAuthenticated\": \"<boolean>\"\n      },\n      \"card\": {\n        \"number\": \"<string>\",\n        \"expirationMonth\": \"<string>\",\n        \"expirationYear\": \"<string>\",\n        \"securityCode\": \"<string>\"\n      },\n      \"pointOfSaleInformation\": {\n        \"emvTags\": [\n          {\n            \"tag\": \"5A\",\n            \"value\": \"4111111111111111\",\n            \"source\": \"CARD\"\n          }\n        ]\n      },\n      \"bankAccount\": {\n        \"number\": \"<string>\",\n        \"routingNumber\": \"<string>\"\n      },\n      \"tokenizedCard\": {\n        \"source\": \"<string>\",\n        \"type\": \"<string>\",\n        \"card\": {\n          \"number\": \"<string>\",\n          \"expirationMonth\": \"<string>\",\n          \"expirationYear\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        \"metadata\": {}\n      },\n      \"processingInformation\": {\n        \"authorizationOptions\": {\n          \"initiator\": {\n            \"merchantInitiatedTransaction\": {\n              \"previousTransactionId\": \"<string>\",\n              \"originalAuthorizedAmount\": \"<string>\"\n            }\n          }\n        }\n      },\n      \"billTo\": {\n        \"address1\": \"<string>\",\n        \"address2\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"administrativeArea\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"email\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally-unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"responses\": [\n    {\n      \"resource\": \"customer\",\n      \"httpStatus\": 201,\n      \"id\": \"351A67733325454AE0633F36CF0A9420\",\n      \"errors\": [\n        {\n          \"type\": \"notAttempted\",\n          \"message\": \"Creation not attempted due to customer token creation failure\",\n          \"details\": [\n            {\n              \"name\": \"address1\",\n              \"location\": \"billTo\"\n            },\n            {\n              \"name\": \"address1\",\n              \"location\": \"billTo\"\n            }\n          ]\n        },\n        {\n          \"type\": \"notAttempted\",\n          \"message\": \"Creation not attempted due to customer token creation failure\",\n          \"details\": [\n            {\n              \"name\": \"address1\",\n              \"location\": \"billTo\"\n            },\n            {\n              \"name\": \"address1\",\n              \"location\": \"billTo\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"resource\": \"customer\",\n      \"httpStatus\": 201,\n      \"id\": \"351A67733325454AE0633F36CF0A9420\",\n      \"errors\": [\n        {\n          \"type\": \"notAttempted\",\n          \"message\": \"Creation not attempted due to customer token creation failure\",\n          \"details\": [\n            {\n              \"name\": \"address1\",\n              \"location\": \"billTo\"\n            },\n            {\n              \"name\": \"address1\",\n              \"location\": \"billTo\"\n            }\n          ]\n        },\n        {\n          \"type\": \"notAttempted\",\n          \"message\": \"Creation not attempted due to customer token creation failure\",\n          \"details\": [\n            {\n              \"name\": \"address1\",\n              \"location\": \"billTo\"\n            },\n            {\n              \"name\": \"address1\",\n              \"location\": \"billTo\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1ed4544-2486-48c1-b927-88d2f314024b",
+              "name": "Bad Request: e.g. A required header value could be missing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"processingInformation\": {\n    \"actionList\": [\n      \"TOKEN_CREATE\"\n    ],\n    \"actionTokenTypes\": [\n      \"customer\",\n      \"paymentInstrument\",\n      \"shippingAddress\",\n      \"instrumentIdentifier\"\n    ]\n  },\n  \"tokenInformation\": {\n    \"jti\": \"<string>\",\n    \"transientTokenJwt\": \"<string>\",\n    \"customer\": {\n      \"id\": \"<string>\",\n      \"objectInformation\": {\n        \"title\": \"<string>\",\n        \"comment\": \"<string>\"\n      },\n      \"buyerInformation\": {\n        \"merchantCustomerID\": \"<string>\",\n        \"email\": \"<string>\"\n      },\n      \"clientReferenceInformation\": {\n        \"code\": \"<string>\"\n      },\n      \"merchantDefinedInformation\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"defaultPaymentInstrument\": {\n        \"id\": \"<string>\"\n      },\n      \"defaultShippingAddress\": {\n        \"id\": \"<string>\"\n      }\n    },\n    \"shippingAddress\": {\n      \"id\": \"<string>\",\n      \"default\": \"<boolean>\",\n      \"shipTo\": {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"company\": \"<string>\",\n        \"address1\": \"<string>\",\n        \"address2\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"administrativeArea\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phoneNumber\": \"<string>\"\n      }\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\",\n      \"default\": \"<boolean>\",\n      \"bankAccount\": {\n        \"type\": \"<string>\"\n      },\n      \"card\": {\n        \"expirationMonth\": \"<string>\",\n        \"expirationYear\": \"<string>\",\n        \"type\": \"<string>\",\n        \"issueNumber\": \"<string>\",\n        \"startMonth\": \"<string>\",\n        \"startYear\": \"<string>\",\n        \"useAs\": \"pinless debit\",\n        \"tokenizedInformation\": {\n          \"requestorID\": \"<string>\",\n          \"transactionType\": \"<string>\"\n        }\n      },\n      \"buyerInformation\": {\n        \"companyTaxID\": \"<string>\",\n        \"currency\": \"<string>\",\n        \"dateOfBirth\": \"1960-12-30\",\n        \"personalIdentification\": [\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\",\n            \"issuedBy\": {\n              \"administrativeArea\": \"<string>\"\n            }\n          },\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\",\n            \"issuedBy\": {\n              \"administrativeArea\": \"<string>\"\n            }\n          }\n        ]\n      },\n      \"billTo\": {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"company\": \"<string>\",\n        \"address1\": \"<string>\",\n        \"address2\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"administrativeArea\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phoneNumber\": \"<string>\"\n      },\n      \"processingInformation\": {\n        \"billPaymentProgramEnabled\": \"<boolean>\",\n        \"bankTransferOptions\": {\n          \"SECCode\": \"<string>\"\n        }\n      },\n      \"merchantInformation\": {\n        \"merchantDescriptor\": {\n          \"alternateName\": \"<string>\"\n        }\n      },\n      \"instrumentIdentifier\": {\n        \"id\": \"<string>\"\n      }\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"source\": \"<string>\",\n      \"tokenProvisioningInformation\": {\n        \"consumerConsentObtained\": \"<boolean>\",\n        \"multiFactorAuthenticated\": \"<boolean>\"\n      },\n      \"card\": {\n        \"number\": \"<string>\",\n        \"expirationMonth\": \"<string>\",\n        \"expirationYear\": \"<string>\",\n        \"securityCode\": \"<string>\"\n      },\n      \"pointOfSaleInformation\": {\n        \"emvTags\": [\n          {\n            \"tag\": \"5A\",\n            \"value\": \"4111111111111111\",\n            \"source\": \"CARD\"\n          }\n        ]\n      },\n      \"bankAccount\": {\n        \"number\": \"<string>\",\n        \"routingNumber\": \"<string>\"\n      },\n      \"tokenizedCard\": {\n        \"source\": \"<string>\",\n        \"type\": \"<string>\",\n        \"card\": {\n          \"number\": \"<string>\",\n          \"expirationMonth\": \"<string>\",\n          \"expirationYear\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        \"metadata\": {}\n      },\n      \"processingInformation\": {\n        \"authorizationOptions\": {\n          \"initiator\": {\n            \"merchantInitiatedTransaction\": {\n              \"previousTransactionId\": \"<string>\",\n              \"originalAuthorizedAmount\": \"<string>\"\n            }\n          }\n        }\n      },\n      \"billTo\": {\n        \"address1\": \"<string>\",\n        \"address2\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"administrativeArea\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"email\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\",\n      \"details\": [\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        }\n      ]\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\",\n      \"details\": [\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7c369b0-facf-4bc4-a44a-be071bce956e",
+              "name": "Forbidden: e.g. The profile might not have permission to perform the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"processingInformation\": {\n    \"actionList\": [\n      \"TOKEN_CREATE\"\n    ],\n    \"actionTokenTypes\": [\n      \"customer\",\n      \"paymentInstrument\",\n      \"shippingAddress\",\n      \"instrumentIdentifier\"\n    ]\n  },\n  \"tokenInformation\": {\n    \"jti\": \"<string>\",\n    \"transientTokenJwt\": \"<string>\",\n    \"customer\": {\n      \"id\": \"<string>\",\n      \"objectInformation\": {\n        \"title\": \"<string>\",\n        \"comment\": \"<string>\"\n      },\n      \"buyerInformation\": {\n        \"merchantCustomerID\": \"<string>\",\n        \"email\": \"<string>\"\n      },\n      \"clientReferenceInformation\": {\n        \"code\": \"<string>\"\n      },\n      \"merchantDefinedInformation\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"defaultPaymentInstrument\": {\n        \"id\": \"<string>\"\n      },\n      \"defaultShippingAddress\": {\n        \"id\": \"<string>\"\n      }\n    },\n    \"shippingAddress\": {\n      \"id\": \"<string>\",\n      \"default\": \"<boolean>\",\n      \"shipTo\": {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"company\": \"<string>\",\n        \"address1\": \"<string>\",\n        \"address2\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"administrativeArea\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phoneNumber\": \"<string>\"\n      }\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\",\n      \"default\": \"<boolean>\",\n      \"bankAccount\": {\n        \"type\": \"<string>\"\n      },\n      \"card\": {\n        \"expirationMonth\": \"<string>\",\n        \"expirationYear\": \"<string>\",\n        \"type\": \"<string>\",\n        \"issueNumber\": \"<string>\",\n        \"startMonth\": \"<string>\",\n        \"startYear\": \"<string>\",\n        \"useAs\": \"pinless debit\",\n        \"tokenizedInformation\": {\n          \"requestorID\": \"<string>\",\n          \"transactionType\": \"<string>\"\n        }\n      },\n      \"buyerInformation\": {\n        \"companyTaxID\": \"<string>\",\n        \"currency\": \"<string>\",\n        \"dateOfBirth\": \"1960-12-30\",\n        \"personalIdentification\": [\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\",\n            \"issuedBy\": {\n              \"administrativeArea\": \"<string>\"\n            }\n          },\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\",\n            \"issuedBy\": {\n              \"administrativeArea\": \"<string>\"\n            }\n          }\n        ]\n      },\n      \"billTo\": {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"company\": \"<string>\",\n        \"address1\": \"<string>\",\n        \"address2\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"administrativeArea\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phoneNumber\": \"<string>\"\n      },\n      \"processingInformation\": {\n        \"billPaymentProgramEnabled\": \"<boolean>\",\n        \"bankTransferOptions\": {\n          \"SECCode\": \"<string>\"\n        }\n      },\n      \"merchantInformation\": {\n        \"merchantDescriptor\": {\n          \"alternateName\": \"<string>\"\n        }\n      },\n      \"instrumentIdentifier\": {\n        \"id\": \"<string>\"\n      }\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"source\": \"<string>\",\n      \"tokenProvisioningInformation\": {\n        \"consumerConsentObtained\": \"<boolean>\",\n        \"multiFactorAuthenticated\": \"<boolean>\"\n      },\n      \"card\": {\n        \"number\": \"<string>\",\n        \"expirationMonth\": \"<string>\",\n        \"expirationYear\": \"<string>\",\n        \"securityCode\": \"<string>\"\n      },\n      \"pointOfSaleInformation\": {\n        \"emvTags\": [\n          {\n            \"tag\": \"5A\",\n            \"value\": \"4111111111111111\",\n            \"source\": \"CARD\"\n          }\n        ]\n      },\n      \"bankAccount\": {\n        \"number\": \"<string>\",\n        \"routingNumber\": \"<string>\"\n      },\n      \"tokenizedCard\": {\n        \"source\": \"<string>\",\n        \"type\": \"<string>\",\n        \"card\": {\n          \"number\": \"<string>\",\n          \"expirationMonth\": \"<string>\",\n          \"expirationYear\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        \"metadata\": {}\n      },\n      \"processingInformation\": {\n        \"authorizationOptions\": {\n          \"initiator\": {\n            \"merchantInitiatedTransaction\": {\n              \"previousTransactionId\": \"<string>\",\n              \"originalAuthorizedAmount\": \"<string>\"\n            }\n          }\n        }\n      },\n      \"billTo\": {\n        \"address1\": \"<string>\",\n        \"address2\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"administrativeArea\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"email\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3aa0fc33-32b9-4260-8461-0707ce8a39a4",
+              "name": "Failed Dependency: e.g. The profile represented by the profile-id may not exist or the profile-id was entered incorrectly.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"processingInformation\": {\n    \"actionList\": [\n      \"TOKEN_CREATE\"\n    ],\n    \"actionTokenTypes\": [\n      \"customer\",\n      \"paymentInstrument\",\n      \"shippingAddress\",\n      \"instrumentIdentifier\"\n    ]\n  },\n  \"tokenInformation\": {\n    \"jti\": \"<string>\",\n    \"transientTokenJwt\": \"<string>\",\n    \"customer\": {\n      \"id\": \"<string>\",\n      \"objectInformation\": {\n        \"title\": \"<string>\",\n        \"comment\": \"<string>\"\n      },\n      \"buyerInformation\": {\n        \"merchantCustomerID\": \"<string>\",\n        \"email\": \"<string>\"\n      },\n      \"clientReferenceInformation\": {\n        \"code\": \"<string>\"\n      },\n      \"merchantDefinedInformation\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"defaultPaymentInstrument\": {\n        \"id\": \"<string>\"\n      },\n      \"defaultShippingAddress\": {\n        \"id\": \"<string>\"\n      }\n    },\n    \"shippingAddress\": {\n      \"id\": \"<string>\",\n      \"default\": \"<boolean>\",\n      \"shipTo\": {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"company\": \"<string>\",\n        \"address1\": \"<string>\",\n        \"address2\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"administrativeArea\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phoneNumber\": \"<string>\"\n      }\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\",\n      \"default\": \"<boolean>\",\n      \"bankAccount\": {\n        \"type\": \"<string>\"\n      },\n      \"card\": {\n        \"expirationMonth\": \"<string>\",\n        \"expirationYear\": \"<string>\",\n        \"type\": \"<string>\",\n        \"issueNumber\": \"<string>\",\n        \"startMonth\": \"<string>\",\n        \"startYear\": \"<string>\",\n        \"useAs\": \"pinless debit\",\n        \"tokenizedInformation\": {\n          \"requestorID\": \"<string>\",\n          \"transactionType\": \"<string>\"\n        }\n      },\n      \"buyerInformation\": {\n        \"companyTaxID\": \"<string>\",\n        \"currency\": \"<string>\",\n        \"dateOfBirth\": \"1960-12-30\",\n        \"personalIdentification\": [\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\",\n            \"issuedBy\": {\n              \"administrativeArea\": \"<string>\"\n            }\n          },\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\",\n            \"issuedBy\": {\n              \"administrativeArea\": \"<string>\"\n            }\n          }\n        ]\n      },\n      \"billTo\": {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"company\": \"<string>\",\n        \"address1\": \"<string>\",\n        \"address2\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"administrativeArea\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phoneNumber\": \"<string>\"\n      },\n      \"processingInformation\": {\n        \"billPaymentProgramEnabled\": \"<boolean>\",\n        \"bankTransferOptions\": {\n          \"SECCode\": \"<string>\"\n        }\n      },\n      \"merchantInformation\": {\n        \"merchantDescriptor\": {\n          \"alternateName\": \"<string>\"\n        }\n      },\n      \"instrumentIdentifier\": {\n        \"id\": \"<string>\"\n      }\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"source\": \"<string>\",\n      \"tokenProvisioningInformation\": {\n        \"consumerConsentObtained\": \"<boolean>\",\n        \"multiFactorAuthenticated\": \"<boolean>\"\n      },\n      \"card\": {\n        \"number\": \"<string>\",\n        \"expirationMonth\": \"<string>\",\n        \"expirationYear\": \"<string>\",\n        \"securityCode\": \"<string>\"\n      },\n      \"pointOfSaleInformation\": {\n        \"emvTags\": [\n          {\n            \"tag\": \"5A\",\n            \"value\": \"4111111111111111\",\n            \"source\": \"CARD\"\n          }\n        ]\n      },\n      \"bankAccount\": {\n        \"number\": \"<string>\",\n        \"routingNumber\": \"<string>\"\n      },\n      \"tokenizedCard\": {\n        \"source\": \"<string>\",\n        \"type\": \"<string>\",\n        \"card\": {\n          \"number\": \"<string>\",\n          \"expirationMonth\": \"<string>\",\n          \"expirationYear\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        \"metadata\": {}\n      },\n      \"processingInformation\": {\n        \"authorizationOptions\": {\n          \"initiator\": {\n            \"merchantInitiatedTransaction\": {\n              \"previousTransactionId\": \"<string>\",\n              \"originalAuthorizedAmount\": \"<string>\"\n            }\n          }\n        }\n      },\n      \"billTo\": {\n        \"address1\": \"<string>\",\n        \"address2\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"administrativeArea\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"email\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80516319-3247-48fe-8f5e-4125c0575f27",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"processingInformation\": {\n    \"actionList\": [\n      \"TOKEN_CREATE\"\n    ],\n    \"actionTokenTypes\": [\n      \"customer\",\n      \"paymentInstrument\",\n      \"shippingAddress\",\n      \"instrumentIdentifier\"\n    ]\n  },\n  \"tokenInformation\": {\n    \"jti\": \"<string>\",\n    \"transientTokenJwt\": \"<string>\",\n    \"customer\": {\n      \"id\": \"<string>\",\n      \"objectInformation\": {\n        \"title\": \"<string>\",\n        \"comment\": \"<string>\"\n      },\n      \"buyerInformation\": {\n        \"merchantCustomerID\": \"<string>\",\n        \"email\": \"<string>\"\n      },\n      \"clientReferenceInformation\": {\n        \"code\": \"<string>\"\n      },\n      \"merchantDefinedInformation\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"defaultPaymentInstrument\": {\n        \"id\": \"<string>\"\n      },\n      \"defaultShippingAddress\": {\n        \"id\": \"<string>\"\n      }\n    },\n    \"shippingAddress\": {\n      \"id\": \"<string>\",\n      \"default\": \"<boolean>\",\n      \"shipTo\": {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"company\": \"<string>\",\n        \"address1\": \"<string>\",\n        \"address2\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"administrativeArea\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phoneNumber\": \"<string>\"\n      }\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\",\n      \"default\": \"<boolean>\",\n      \"bankAccount\": {\n        \"type\": \"<string>\"\n      },\n      \"card\": {\n        \"expirationMonth\": \"<string>\",\n        \"expirationYear\": \"<string>\",\n        \"type\": \"<string>\",\n        \"issueNumber\": \"<string>\",\n        \"startMonth\": \"<string>\",\n        \"startYear\": \"<string>\",\n        \"useAs\": \"pinless debit\",\n        \"tokenizedInformation\": {\n          \"requestorID\": \"<string>\",\n          \"transactionType\": \"<string>\"\n        }\n      },\n      \"buyerInformation\": {\n        \"companyTaxID\": \"<string>\",\n        \"currency\": \"<string>\",\n        \"dateOfBirth\": \"1960-12-30\",\n        \"personalIdentification\": [\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\",\n            \"issuedBy\": {\n              \"administrativeArea\": \"<string>\"\n            }\n          },\n          {\n            \"id\": \"<string>\",\n            \"type\": \"<string>\",\n            \"issuedBy\": {\n              \"administrativeArea\": \"<string>\"\n            }\n          }\n        ]\n      },\n      \"billTo\": {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\",\n        \"company\": \"<string>\",\n        \"address1\": \"<string>\",\n        \"address2\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"administrativeArea\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phoneNumber\": \"<string>\"\n      },\n      \"processingInformation\": {\n        \"billPaymentProgramEnabled\": \"<boolean>\",\n        \"bankTransferOptions\": {\n          \"SECCode\": \"<string>\"\n        }\n      },\n      \"merchantInformation\": {\n        \"merchantDescriptor\": {\n          \"alternateName\": \"<string>\"\n        }\n      },\n      \"instrumentIdentifier\": {\n        \"id\": \"<string>\"\n      }\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"source\": \"<string>\",\n      \"tokenProvisioningInformation\": {\n        \"consumerConsentObtained\": \"<boolean>\",\n        \"multiFactorAuthenticated\": \"<boolean>\"\n      },\n      \"card\": {\n        \"number\": \"<string>\",\n        \"expirationMonth\": \"<string>\",\n        \"expirationYear\": \"<string>\",\n        \"securityCode\": \"<string>\"\n      },\n      \"pointOfSaleInformation\": {\n        \"emvTags\": [\n          {\n            \"tag\": \"5A\",\n            \"value\": \"4111111111111111\",\n            \"source\": \"CARD\"\n          }\n        ]\n      },\n      \"bankAccount\": {\n        \"number\": \"<string>\",\n        \"routingNumber\": \"<string>\"\n      },\n      \"tokenizedCard\": {\n        \"source\": \"<string>\",\n        \"type\": \"<string>\",\n        \"card\": {\n          \"number\": \"<string>\",\n          \"expirationMonth\": \"<string>\",\n          \"expirationYear\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        \"metadata\": {}\n      },\n      \"processingInformation\": {\n        \"authorizationOptions\": {\n          \"initiator\": {\n            \"merchantInitiatedTransaction\": {\n              \"previousTransactionId\": \"<string>\",\n              \"originalAuthorizedAmount\": \"<string>\"\n            }\n          }\n        }\n      },\n      \"billTo\": {\n        \"address1\": \"<string>\",\n        \"address2\": \"<string>\",\n        \"locality\": \"<string>\",\n        \"administrativeArea\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"email\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8d504dc0-8861-4a8d-89ff-0255a16f8af2",
+    "name": "CyberSource Merged Spec bankAccountValidation Tokenize API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Notification Of Changes API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Notification Of Changes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Notification of Changes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reporting/v3/notification-of-changes",
+            "params": [
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "Valid report Start Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n**Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)\n"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "Valid report End Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n**Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)\n"
+              }
+            ]
+          },
+          "docs": "Download the Notification of Change report. This report shows eCheck-related fields updated as a result of a response to an eCheck settlement transaction.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

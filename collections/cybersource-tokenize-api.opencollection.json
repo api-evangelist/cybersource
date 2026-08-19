@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Tokenize API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tokenize",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tokenize",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tms/v2/tokenize",
+            "headers": [
+              {
+                "name": "profile-id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "|  |  |  |  \n| --- | --- | --- |\n|The **Tokenize API** endpoint facilitates the creation of various TMS tokens such as Customers, Payment Instruments, Shipping Addresses, and Instrument Identifiers in a single operation. The request includes a processingInformation object, which specifies **\"TOKEN_CREATE\"** and the types of tokens to be created. The **tokenInformation** section of the request includes detailed information relevant to each token type. This includes attributes for Customers, Payme"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

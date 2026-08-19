@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Device Search API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Device Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve List of Devices for a given search query V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/dms/v2/devices/search"
+          },
+          "docs": "Retrieves list of terminals in paginated format."
+        },
+        {
+          "info": {
+            "name": "Retrieve List of Devices for a given search query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/dms/v3/devices/search"
+          },
+          "docs": "Search for devices matching a given search query.\n\nThe search query supports serialNumber, readerId, terminalId, status, statusChangeReason or organizationId\n\nMatching results are paginated.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

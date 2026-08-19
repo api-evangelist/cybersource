@@ -1,0 +1,1023 @@
+{
+  "item": [
+    {
+      "id": "c47122ca-6558-4f7e-a656-e940ae068b2b",
+      "name": "Payment Links",
+      "description": {
+        "content": "Offer your customers a simple, convenient, and fast way to pay with the new online pay by link tool.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b7d526ce-958a-42b4-a640-3458384f387f",
+          "name": "Create a Payment Link",
+          "request": {
+            "name": "Create a Payment Link",
+            "description": {
+              "content": "Pay by Link is an easy and fast way to securely sell products or receive\ndonations online. This solution is ideal for distributing the same\npayment link to multiple customers. \n\nLinks for making purchases are referred to as fixed-price links, and\nlinks for making donations are referred to as customer-set price links.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ipl",
+                "v2",
+                "payment-links"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"processingInformation\": {\n    \"linkType\": \"<string>\",\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"purchaseInformation\": {\n    \"purchaseNumber\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"totalAmount\": \"<string>\",\n      \"maxAmount\": \"<string>\",\n      \"minAmount\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"productName\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"discountAmount\": \"<string>\",\n        \"discountPercent\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\"\n      },\n      {\n        \"productName\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"discountAmount\": \"<string>\",\n        \"discountPercent\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\"\n      }\n    ]\n  },\n  \"clientReferenceInformation\": {\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1370e0c5-fe67-4830-bd12-749e3b3ff169",
+              "name": "Created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ipl",
+                    "v2",
+                    "payment-links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"processingInformation\": {\n    \"linkType\": \"<string>\",\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"purchaseInformation\": {\n    \"purchaseNumber\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"totalAmount\": \"<string>\",\n      \"maxAmount\": \"<string>\",\n      \"minAmount\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"productName\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"5.25\",\n        \"taxAmount\": \"10.50\",\n        \"taxRate\": \"21.00\"\n      },\n      {\n        \"productName\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"5.25\",\n        \"taxAmount\": \"10.50\",\n        \"taxRate\": \"21.00\"\n      }\n    ]\n  },\n  \"clientReferenceInformation\": {\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"update\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"processingInformation\": {\n    \"linkType\": \"string\",\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"purchaseInformation\": {\n    \"purchaseNumber\": \"string\",\n    \"createdDate\": \"string\",\n    \"paymentLink\": \"string\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"string\",\n      \"currency\": \"str\",\n      \"maxAmount\": \"string\",\n      \"minAmount\": \"string\"\n    },\n    \"lineItems\": [\n      {\n        \"productName\": \"string\",\n        \"productSku\": \"string\",\n        \"quantity\": 1,\n        \"unitPrice\": \"string\",\n        \"productDescription\": \"string\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"5.25\",\n        \"taxAmount\": \"10.50\",\n        \"taxRate\": \"21.00\"\n      },\n      {\n        \"productName\": \"string\",\n        \"productSku\": \"string\",\n        \"quantity\": 1,\n        \"unitPrice\": \"string\",\n        \"productDescription\": \"string\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"5.25\",\n        \"taxAmount\": \"10.50\",\n        \"taxRate\": \"21.00\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5009db0d-9d38-4529-9b5c-ba4f4240c08d",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ipl",
+                    "v2",
+                    "payment-links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"processingInformation\": {\n    \"linkType\": \"<string>\",\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"purchaseInformation\": {\n    \"purchaseNumber\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"totalAmount\": \"<string>\",\n      \"maxAmount\": \"<string>\",\n      \"minAmount\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"productName\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"5.25\",\n        \"taxAmount\": \"10.50\",\n        \"taxRate\": \"21.00\"\n      },\n      {\n        \"productName\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"5.25\",\n        \"taxAmount\": \"10.50\",\n        \"taxRate\": \"21.00\"\n      }\n    ]\n  },\n  \"clientReferenceInformation\": {\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:40:10Z\",\n  \"status\": \"BADREQUEST\",\n  \"reason\": \"VALIDATION_ERROR\",\n  \"message\": \"Field validation errors.\",\n  \"details\": [\n    {\n      \"field\": \"processingInformation.linkType\",\n      \"reason\": \"Invalid linkType\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b8b051c-8dc9-480d-88ef-ea8907c0f349",
+              "name": "The specified resource is not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ipl",
+                    "v2",
+                    "payment-links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"processingInformation\": {\n    \"linkType\": \"<string>\",\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"purchaseInformation\": {\n    \"purchaseNumber\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"totalAmount\": \"<string>\",\n      \"maxAmount\": \"<string>\",\n      \"minAmount\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"productName\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"5.25\",\n        \"taxAmount\": \"10.50\",\n        \"taxRate\": \"21.00\"\n      },\n      {\n        \"productName\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"5.25\",\n        \"taxAmount\": \"10.50\",\n        \"taxRate\": \"21.00\"\n      }\n    ]\n  },\n  \"clientReferenceInformation\": {\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:36:29Z\",\n  \"status\": \"NOTFOUND\",\n  \"reason\": \"NOT_FOUND\",\n  \"message\": \"Purchase or donation link does not exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47c7a6ed-cce6-445d-adaf-fc97e63b07f2",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ipl",
+                    "v2",
+                    "payment-links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"processingInformation\": {\n    \"linkType\": \"<string>\",\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"purchaseInformation\": {\n    \"purchaseNumber\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"totalAmount\": \"<string>\",\n      \"maxAmount\": \"<string>\",\n      \"minAmount\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"productName\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"5.25\",\n        \"taxAmount\": \"10.50\",\n        \"taxRate\": \"21.00\"\n      },\n      {\n        \"productName\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"5.25\",\n        \"taxAmount\": \"10.50\",\n        \"taxRate\": \"21.00\"\n      }\n    ]\n  },\n  \"clientReferenceInformation\": {\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2018-06-12T09:27:20Z\",\n  \"status\": \"SERVER_ERROR\",\n  \"reason\": \"SERVER_ERROR\",\n  \"message\": \"Error - General system failure.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98476761-d077-47b1-94c0-d61a73ffcc82",
+          "name": "Get a List of Payment Links",
+          "request": {
+            "name": "Get a List of Payment Links",
+            "description": {
+              "content": "Provides a (filtered) list of payment links that have been created in your account.\nYou can filter the list based on the following status types:\n - ACTIVE\n - INACTIVE\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ipl",
+                "v2",
+                "payment-links"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "(Required) Page offset number."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "(Required) Maximum number of items you would like returned. \n\nMaximum limit: 1000\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "The status of the purchase or donation link.\n\nPossible values:\n  - ACTIVE\n  - INACTIVE\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6bce8cd2-9cf1-46bb-9e5b-cc29532083bb",
+              "name": "OK.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ipl",
+                    "v2",
+                    "payment-links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"next\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"previous\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"submitTimeUtc\": \"string\",\n  \"totalLinks\": 9271,\n  \"links\": [\n    {\n      \"_links\": {\n        \"self\": {\n          \"href\": \"string\",\n          \"method\": \"string\"\n        },\n        \"next\": {\n          \"href\": \"string\",\n          \"method\": \"string\"\n        },\n        \"previous\": {\n          \"href\": \"string\",\n          \"method\": \"string\"\n        }\n      },\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"createdDate\": \"string\",\n      \"processingInformation\": {\n        \"linkType\": \"string\"\n      },\n      \"purchaseInformation\": {\n        \"purchaseNumber\": \"string\",\n        \"paymentLink\": \"string\"\n      },\n      \"orderInformation\": {\n        \"amountDetails\": {\n          \"totalAmount\": \"string\",\n          \"currency\": \"str\",\n          \"maxAmount\": \"string\",\n          \"minAmount\": \"string\"\n        },\n        \"lineItems\": [\n          {\n            \"productName\": \"string\",\n            \"unitPrice\": \"string\",\n            \"productDescription\": \"string\"\n          },\n          {\n            \"productName\": \"string\",\n            \"unitPrice\": \"string\",\n            \"productDescription\": \"string\"\n          }\n        ]\n      }\n    },\n    {\n      \"_links\": {\n        \"self\": {\n          \"href\": \"string\",\n          \"method\": \"string\"\n        },\n        \"next\": {\n          \"href\": \"string\",\n          \"method\": \"string\"\n        },\n        \"previous\": {\n          \"href\": \"string\",\n          \"method\": \"string\"\n        }\n      },\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"createdDate\": \"string\",\n      \"processingInformation\": {\n        \"linkType\": \"string\"\n      },\n      \"purchaseInformation\": {\n        \"purchaseNumber\": \"string\",\n        \"paymentLink\": \"string\"\n      },\n      \"orderInformation\": {\n        \"amountDetails\": {\n          \"totalAmount\": \"string\",\n          \"currency\": \"str\",\n          \"maxAmount\": \"string\",\n          \"minAmount\": \"string\"\n        },\n        \"lineItems\": [\n          {\n            \"productName\": \"string\",\n            \"unitPrice\": \"string\",\n            \"productDescription\": \"string\"\n          },\n          {\n            \"productName\": \"string\",\n            \"unitPrice\": \"string\",\n            \"productDescription\": \"string\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ef786fc-db86-468e-844a-e06788862be5",
+              "name": "Invalid purchase or donation link status. The status should be one of: `ACTIVE` or `INACTIVE`.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ipl",
+                    "v2",
+                    "payment-links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:40:10Z\",\n  \"status\": \"BADREQUEST\",\n  \"reason\": \"VALIDATION_ERROR\",\n  \"message\": \"Field validation errors.\",\n  \"details\": [\n    {\n      \"field\": \"processingInformation.linkType\",\n      \"reason\": \"Invalid linkType\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d926cb45-c90a-4902-9145-424a0b351f08",
+              "name": "No purchase or donation link found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ipl",
+                    "v2",
+                    "payment-links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:36:29Z\",\n  \"status\": \"NOTFOUND\",\n  \"reason\": \"NOT_FOUND\",\n  \"message\": \"Purchase or donation link does not exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88ba3339-91e6-424e-9521-7d35a4cebc96",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ipl",
+                    "v2",
+                    "payment-links"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2018-06-12T09:27:20Z\",\n  \"status\": \"SERVER_ERROR\",\n  \"reason\": \"SERVER_ERROR\",\n  \"message\": \"Error - General system failure.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0b43d5e-189b-429a-87ec-5b70813cde03",
+          "name": "Get Payment Link Details",
+          "request": {
+            "name": "Get Payment Link Details",
+            "description": {
+              "content": "You can retrieve details of a specific payment link. For each payment transaction you can use the Transaction Details API to get more details on the payment transaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ipl",
+                "v2",
+                "payment-links",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The purchase number."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6ccfb753-a97a-4537-aebf-24d0545210df",
+              "name": "OK.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ipl",
+                    "v2",
+                    "payment-links",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The purchase number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"update\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"processingInformation\": {\n    \"linkType\": \"string\",\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"purchaseInformation\": {\n    \"purchaseNumber\": \"string\",\n    \"createdDate\": \"string\",\n    \"paymentLink\": \"string\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"string\",\n      \"currency\": \"str\",\n      \"maxAmount\": \"string\",\n      \"minAmount\": \"string\"\n    },\n    \"lineItems\": [\n      {\n        \"productName\": \"string\",\n        \"productSku\": \"string\",\n        \"quantity\": 1,\n        \"unitPrice\": \"string\",\n        \"productDescription\": \"string\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"5.25\",\n        \"taxAmount\": \"10.50\",\n        \"taxRate\": \"21.00\"\n      },\n      {\n        \"productName\": \"string\",\n        \"productSku\": \"string\",\n        \"quantity\": 1,\n        \"unitPrice\": \"string\",\n        \"productDescription\": \"string\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"5.25\",\n        \"taxAmount\": \"10.50\",\n        \"taxRate\": \"21.00\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2be961c7-de11-412c-9f95-d772e10e1469",
+              "name": "Pay-by-link service is not enabled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ipl",
+                    "v2",
+                    "payment-links",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The purchase number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:40:10Z\",\n  \"status\": \"BADREQUEST\",\n  \"reason\": \"VALIDATION_ERROR\",\n  \"message\": \"Field validation errors.\",\n  \"details\": [\n    {\n      \"field\": \"processingInformation.linkType\",\n      \"reason\": \"Invalid linkType\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67d7717b-d619-45dc-8220-9841da1546d1",
+              "name": "PaymentLink does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ipl",
+                    "v2",
+                    "payment-links",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The purchase number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:36:29Z\",\n  \"status\": \"NOTFOUND\",\n  \"reason\": \"NOT_FOUND\",\n  \"message\": \"Purchase or donation link does not exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "424a993f-1e27-4efe-b17f-959886806db9",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ipl",
+                    "v2",
+                    "payment-links",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The purchase number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2018-06-12T09:27:20Z\",\n  \"status\": \"SERVER_ERROR\",\n  \"reason\": \"SERVER_ERROR\",\n  \"message\": \"Error - General system failure.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6cae741e-436c-4202-82cb-793617ffd7f2",
+          "name": "Update a Payment Link",
+          "request": {
+            "name": "Update a Payment Link",
+            "description": {
+              "content": "You can update all information except the payment link number for a\npayment link. Changes made to amount/price will apply to new payments\nmade using the payment link.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ipl",
+                "v2",
+                "payment-links",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The purchase number."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\",\n  \"clientReferenceInformation\": {\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"processingInformation\": {\n    \"linkType\": \"<string>\",\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"purchaseInformation\": {\n    \"purchaseNumber\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"lineItems\": [\n      {\n        \"productName\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"discountAmount\": \"<string>\",\n        \"discountPercent\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\"\n      },\n      {\n        \"productName\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"discountAmount\": \"<string>\",\n        \"discountPercent\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\"\n      }\n    ],\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"maxAmount\": \"<string>\",\n      \"minAmount\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cd9fff7d-244c-4df8-8951-8271c3d67ceb",
+              "name": "OK.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ipl",
+                    "v2",
+                    "payment-links",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The purchase number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"clientReferenceInformation\": {\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"processingInformation\": {\n    \"linkType\": \"<string>\",\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"purchaseInformation\": {\n    \"purchaseNumber\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"lineItems\": [\n      {\n        \"productName\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"5.25\",\n        \"taxAmount\": \"10.50\",\n        \"taxRate\": \"21.00\"\n      },\n      {\n        \"productName\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"5.25\",\n        \"taxAmount\": \"10.50\",\n        \"taxRate\": \"21.00\"\n      }\n    ],\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"maxAmount\": \"<string>\",\n      \"minAmount\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"update\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"processingInformation\": {\n    \"linkType\": \"string\",\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"purchaseInformation\": {\n    \"purchaseNumber\": \"string\",\n    \"createdDate\": \"string\",\n    \"paymentLink\": \"string\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"string\",\n      \"currency\": \"str\",\n      \"maxAmount\": \"string\",\n      \"minAmount\": \"string\"\n    },\n    \"lineItems\": [\n      {\n        \"productName\": \"string\",\n        \"productSku\": \"string\",\n        \"quantity\": 1,\n        \"unitPrice\": \"string\",\n        \"productDescription\": \"string\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"5.25\",\n        \"taxAmount\": \"10.50\",\n        \"taxRate\": \"21.00\"\n      },\n      {\n        \"productName\": \"string\",\n        \"productSku\": \"string\",\n        \"quantity\": 1,\n        \"unitPrice\": \"string\",\n        \"productDescription\": \"string\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"5.25\",\n        \"taxAmount\": \"10.50\",\n        \"taxRate\": \"21.00\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "964e102a-6aaf-4ac8-8638-c6fbeaf45f0c",
+              "name": "Field validation errors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ipl",
+                    "v2",
+                    "payment-links",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The purchase number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"clientReferenceInformation\": {\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"processingInformation\": {\n    \"linkType\": \"<string>\",\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"purchaseInformation\": {\n    \"purchaseNumber\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"lineItems\": [\n      {\n        \"productName\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"5.25\",\n        \"taxAmount\": \"10.50\",\n        \"taxRate\": \"21.00\"\n      },\n      {\n        \"productName\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"5.25\",\n        \"taxAmount\": \"10.50\",\n        \"taxRate\": \"21.00\"\n      }\n    ],\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"maxAmount\": \"<string>\",\n      \"minAmount\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:40:10Z\",\n  \"status\": \"BADREQUEST\",\n  \"reason\": \"VALIDATION_ERROR\",\n  \"message\": \"Field validation errors.\",\n  \"details\": [\n    {\n      \"field\": \"processingInformation.linkType\",\n      \"reason\": \"Invalid linkType\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d70ba252-1366-46ac-a8ad-b612679fb61b",
+              "name": "Purchase or donation link does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ipl",
+                    "v2",
+                    "payment-links",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The purchase number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"clientReferenceInformation\": {\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"processingInformation\": {\n    \"linkType\": \"<string>\",\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"purchaseInformation\": {\n    \"purchaseNumber\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"lineItems\": [\n      {\n        \"productName\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"5.25\",\n        \"taxAmount\": \"10.50\",\n        \"taxRate\": \"21.00\"\n      },\n      {\n        \"productName\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"5.25\",\n        \"taxAmount\": \"10.50\",\n        \"taxRate\": \"21.00\"\n      }\n    ],\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"maxAmount\": \"<string>\",\n      \"minAmount\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:36:29Z\",\n  \"status\": \"NOTFOUND\",\n  \"reason\": \"NOT_FOUND\",\n  \"message\": \"Purchase or donation link does not exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a97a6fcd-3953-47ff-9fd5-ade16a7505d7",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ipl",
+                    "v2",
+                    "payment-links",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The purchase number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"clientReferenceInformation\": {\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"processingInformation\": {\n    \"linkType\": \"<string>\",\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"purchaseInformation\": {\n    \"purchaseNumber\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"lineItems\": [\n      {\n        \"productName\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"5.25\",\n        \"taxAmount\": \"10.50\",\n        \"taxRate\": \"21.00\"\n      },\n      {\n        \"productName\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"5.25\",\n        \"taxAmount\": \"10.50\",\n        \"taxRate\": \"21.00\"\n      }\n    ],\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"maxAmount\": \"<string>\",\n      \"minAmount\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2018-06-12T09:27:20Z\",\n  \"status\": \"SERVER_ERROR\",\n  \"reason\": \"SERVER_ERROR\",\n  \"message\": \"Error - General system failure.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0e74bb95-57b7-40cf-b504-6d050fe310ab",
+    "name": "CyberSource Merged Spec bankAccountValidation Payment Links API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,450 @@
+{
+  "item": [
+    {
+      "id": "15c08522-0538-42a4-aca6-e1a0732562c9",
+      "name": "Report Definitions",
+      "description": {
+        "content": "Get report definition information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5b9b81f8-888e-4dd9-b3bb-44a7f1ab6672",
+          "name": "Get Report Definition",
+          "request": {
+            "name": "Get Report Definition",
+            "description": {
+              "content": "View the attributes of an individual report type. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation/)\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "v3",
+                "report-definitions",
+                ":reportDefinitionName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "subscriptionType",
+                  "value": "<string>",
+                  "description": "The subscription type for which report definition is required. By default the type will be CUSTOM.\nValid Values:\n- CLASSIC\n- CUSTOM\n- STANDARD\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "reportMimeType",
+                  "value": "<string>",
+                  "description": "The format for which the report definition is required. By default the value will be CSV.\nValid Values:\n- application/xml\n- text/csv\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "organizationId",
+                  "value": "<string>",
+                  "description": "Valid Organization Id"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportDefinitionName",
+                  "description": "(Required) Name of the Report definition to retrieve"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9eacbfc7-8c1a-4a40-b9b7-cd4dd4bac61c",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "report-definitions",
+                    ":reportDefinitionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "subscriptionType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reportMimeType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportDefinitionName",
+                      "description": "(Required) Name of the Report definition to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"reportDefinitionId\": 8284,\n  \"reportDefintionName\": \"string\",\n  \"attributes\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"filterType\": \"MULTI\",\n      \"default\": false,\n      \"required\": true,\n      \"supportedType\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"filterType\": \"MULTI\",\n      \"default\": true,\n      \"required\": true,\n      \"supportedType\": \"string\"\n    }\n  ],\n  \"supportedFormats\": [\n    \"string\"\n  ],\n  \"description\": \"string\",\n  \"defaultSettings\": {\n    \"reportMimeType\": \"application/xml\",\n    \"reportFrequency\": \"DAILY\",\n    \"reportName\": \"My Transaction Request Detail Report\",\n    \"timezone\": \"America/Chicago\",\n    \"startTime\": \"0000\",\n    \"startDay\": 1,\n    \"reportFilters\": {\n      \"Application.Name\": [\n        \"ics_auth\",\n        \"ics_bill\"\n      ]\n    },\n    \"reportPreferences\": {\n      \"signedAmounts\": false,\n      \"fieldNameConvention\": \"string\"\n    }\n  },\n  \"subscriptionType\": \"CLASSIC\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54c0d8a1-8755-462c-83c1-ed4d1478b8c5",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "report-definitions",
+                    ":reportDefinitionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "subscriptionType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reportMimeType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportDefinitionName",
+                      "description": "(Required) Name of the Report definition to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2016-08-11T22:47:57Z\",\n  \"reason\": \"INVALID_DATA\",\n  \"message\": \"One or more fields contains invalid data\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26878e56-50d2-47a3-a1c4-130b061c4975",
+              "name": "Report not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "report-definitions",
+                    ":reportDefinitionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "subscriptionType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reportMimeType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportDefinitionName",
+                      "description": "(Required) Name of the Report definition to retrieve"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "320c09a4-8fc9-429f-8da4-3169c1e15fcd",
+          "name": "Get Reporting Resource Information",
+          "request": {
+            "name": "Get Reporting Resource Information",
+            "description": {
+              "content": "View a list of supported reports and their attributes before subscribing to them.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "v3",
+                "report-definitions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "subscriptionType",
+                  "value": "<string>",
+                  "description": "Valid Values:\n- CLASSIC\n- CUSTOM\n- STANDARD\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "organizationId",
+                  "value": "<string>",
+                  "description": "Valid Organization Id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "27568abf-e0d8-4d88-873b-c3d2bdc6f40d",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "report-definitions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "subscriptionType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"reportDefinitions\": [\n    {\n      \"type\": \"string\",\n      \"reportDefinitionId\": 3298,\n      \"reportDefintionName\": \"string\",\n      \"supportedFormats\": [\n        \"string\"\n      ],\n      \"description\": \"string\",\n      \"defaultSettings\": {\n        \"reportMimeType\": \"application/xml\",\n        \"reportFrequency\": \"DAILY\",\n        \"reportName\": \"My Transaction Request Detail Report\",\n        \"timezone\": \"America/Chicago\",\n        \"startTime\": \"0000\",\n        \"startDay\": 1,\n        \"reportFilters\": {\n          \"Application.Name\": [\n            \"ics_auth\",\n            \"ics_bill\"\n          ]\n        },\n        \"reportPreferences\": {\n          \"signedAmounts\": true,\n          \"fieldNameConvention\": \"string\"\n        }\n      },\n      \"subscriptionType\": \"CLASSIC\"\n    },\n    {\n      \"type\": \"string\",\n      \"reportDefinitionId\": 6387,\n      \"reportDefintionName\": \"string\",\n      \"supportedFormats\": [\n        \"string\"\n      ],\n      \"description\": \"string\",\n      \"defaultSettings\": {\n        \"reportMimeType\": \"application/xml\",\n        \"reportFrequency\": \"DAILY\",\n        \"reportName\": \"My Transaction Request Detail Report\",\n        \"timezone\": \"America/Chicago\",\n        \"startTime\": \"0000\",\n        \"startDay\": 1,\n        \"reportFilters\": {\n          \"Application.Name\": [\n            \"ics_auth\",\n            \"ics_bill\"\n          ]\n        },\n        \"reportPreferences\": {\n          \"signedAmounts\": false,\n          \"fieldNameConvention\": \"string\"\n        }\n      },\n      \"subscriptionType\": \"CLASSIC\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0d19d27-2bbe-4566-8cf8-4648f774e4e2",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "report-definitions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "subscriptionType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2016-08-11T22:47:57Z\",\n  \"reason\": \"INVALID_DATA\",\n  \"message\": \"One or more fields contains invalid data\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4fe9627-0c5e-42e0-8e55-18a7c7e02f16",
+              "name": "Report not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "report-definitions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "subscriptionType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "da7be941-120a-4df0-bbff-2e1890528670",
+    "name": "CyberSource Merged Spec bankAccountValidation Report Definitions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

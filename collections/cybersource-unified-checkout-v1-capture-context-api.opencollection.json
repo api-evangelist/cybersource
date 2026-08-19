@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Unified Checkout V1 Capture Context API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Unified Checkout V1 Capture Context",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate Unified Checkout V1 Capture Context",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/uc/v1/sessions"
+          },
+          "docs": "Unified Checkout is a powerful product within the Digital Acceptance Suite. Unified Checkout is designed to assist merchants with the adoption and inclusion of digital payments within their payment acceptance page. With Unified Checkout Integration you can add digital payment methods to create familiar, convenient and seamless payment experiences that are designed to reduce checkout friction and increase conversions.\nClick to Pay Drop-in UI is built on the Unified Checkout platform.\nFor more inf"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

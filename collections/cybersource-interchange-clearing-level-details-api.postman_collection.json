@@ -1,0 +1,138 @@
+{
+  "item": [
+    {
+      "id": "20ac8819-02e8-40c5-b533-664842b9db49",
+      "name": "Interchange Clearing Level Details",
+      "description": {
+        "content": "API for requesting Interchange Clearing Level data for an account or a merchant.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c4ea24b3-0fd5-40e1-94b8-c98aeaa52842",
+          "name": "Interchange Clearing Level data for an account or a merchant",
+          "request": {
+            "name": "Interchange Clearing Level data for an account or a merchant",
+            "description": {
+              "content": "Interchange Clearing Level data for an account or a merchant",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "v3",
+                "interchange-clearing-level-details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) Valid report Start Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n**Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) Valid report End Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n**Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "organizationId",
+                  "value": "<string>",
+                  "description": "Valid Organization Id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5422d7d3-6063-4cec-b994-8393f0e9bd92",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "interchange-clearing-level-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"startDate\": \"2017-10-01T10:10:10+05:00\",\n  \"endDate\": \"2017-10-01T10:10:10+05:00\",\n  \"interchangeClearingLevelDetails\": [\n    {\n      \"requestId\": \"5166566062346232701541\",\n      \"organizationId\": \"testrest\",\n      \"accountId\": \"testrest_acct\",\n      \"processorMerchantId\": \"174180221999\",\n      \"transactionReferenceNumber\": \"21339480\",\n      \"merchantReferenceNumber\": \"33557799\",\n      \"accountSuffix\": \"2393\",\n      \"paymentSubType\": \"VI\",\n      \"paymentSubTypeDescription\": \"Visa\",\n      \"transactionTime\": \"2017-10-01T10:10:10+05:00\",\n      \"processedTime\": \"2017-10-01T10:10:10+05:00\",\n      \"transactionType\": \"Sale\",\n      \"amount\": \"90.50\",\n      \"currencyCode\": \"USD\",\n      \"priceType\": \"077\",\n      \"priceAmountOne\": \"0.018\",\n      \"priceAmountTwo\": \"0.1\",\n      \"reClass\": \"0\",\n      \"settlementTime\": \"2017-10-01T10:10:10+05:00\",\n      \"settlementProcessor\": \"fdiglobal\",\n      \"merchantBatchNumber\": \"string\",\n      \"clearedLevel\": \"REG\",\n      \"billbackReasonCode\": \"VI\",\n      \"billbackReasonDescription\": \"B278-TRANSACTION CLEARED AS REGULATED\",\n      \"merchantPricedLevel\": \"1.72\",\n      \"discountRate\": \"0.0\",\n      \"discountAmount\": \"0.0\",\n      \"clearingRateAmountOne\": \"0.005\",\n      \"clearingRateAmountTwo\": \"0.22\",\n      \"clearingRateAmountThree\": \"0.0\",\n      \"clearingRateCurrencyCode\": \"USD\",\n      \"interchangeAmount\": \"0.27\",\n      \"billbackAmount\": \"-1.46\",\n      \"settlementAmount\": \"1.23\",\n      \"settlementCurrencyCode\": \"USD\",\n      \"conversionRate\": \"1.0\",\n      \"deltaCost\": \"5.0\",\n      \"surchargeAmount\": \"5.0\",\n      \"percentRateCharged\": \"5.5\",\n      \"perTransactionCharged\": \"5.0\",\n      \"downgradeReasonCode\": \"1\",\n      \"processTime\": \"2017-10-01T10:10:10+05:00\",\n      \"authCode\": \"string\",\n      \"batchTime\": \"2017-10-01T10:10:10+05:00\",\n      \"processorBatchNumber\": \"00001\",\n      \"cardIndicator\": \"P\",\n      \"minimumUnit\": 1,\n      \"minimumUnitCurrencyCode\": \"USD\",\n      \"creditDeltaIndicator\": \"N\",\n      \"feeCategory\": \"A\",\n      \"applicationName\": \"ics_auth\"\n    },\n    {\n      \"requestId\": \"5166566062346232701541\",\n      \"organizationId\": \"testrest\",\n      \"accountId\": \"testrest_acct\",\n      \"processorMerchantId\": \"174180221999\",\n      \"transactionReferenceNumber\": \"21339480\",\n      \"merchantReferenceNumber\": \"33557799\",\n      \"accountSuffix\": \"2393\",\n      \"paymentSubType\": \"VI\",\n      \"paymentSubTypeDescription\": \"Visa\",\n      \"transactionTime\": \"2017-10-01T10:10:10+05:00\",\n      \"processedTime\": \"2017-10-01T10:10:10+05:00\",\n      \"transactionType\": \"Sale\",\n      \"amount\": \"90.50\",\n      \"currencyCode\": \"USD\",\n      \"priceType\": \"077\",\n      \"priceAmountOne\": \"0.018\",\n      \"priceAmountTwo\": \"0.1\",\n      \"reClass\": \"0\",\n      \"settlementTime\": \"2017-10-01T10:10:10+05:00\",\n      \"settlementProcessor\": \"fdiglobal\",\n      \"merchantBatchNumber\": \"string\",\n      \"clearedLevel\": \"REG\",\n      \"billbackReasonCode\": \"VI\",\n      \"billbackReasonDescription\": \"B278-TRANSACTION CLEARED AS REGULATED\",\n      \"merchantPricedLevel\": \"1.72\",\n      \"discountRate\": \"0.0\",\n      \"discountAmount\": \"0.0\",\n      \"clearingRateAmountOne\": \"0.005\",\n      \"clearingRateAmountTwo\": \"0.22\",\n      \"clearingRateAmountThree\": \"0.0\",\n      \"clearingRateCurrencyCode\": \"USD\",\n      \"interchangeAmount\": \"0.27\",\n      \"billbackAmount\": \"-1.46\",\n      \"settlementAmount\": \"1.23\",\n      \"settlementCurrencyCode\": \"USD\",\n      \"conversionRate\": \"1.0\",\n      \"deltaCost\": \"5.0\",\n      \"surchargeAmount\": \"5.0\",\n      \"percentRateCharged\": \"5.5\",\n      \"perTransactionCharged\": \"5.0\",\n      \"downgradeReasonCode\": \"1\",\n      \"processTime\": \"2017-10-01T10:10:10+05:00\",\n      \"authCode\": \"string\",\n      \"batchTime\": \"2017-10-01T10:10:10+05:00\",\n      \"processorBatchNumber\": \"00001\",\n      \"cardIndicator\": \"P\",\n      \"minimumUnit\": 1,\n      \"minimumUnitCurrencyCode\": \"USD\",\n      \"creditDeltaIndicator\": \"N\",\n      \"feeCategory\": \"A\",\n      \"applicationName\": \"ics_auth\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e3811b28-fc6b-4856-b88a-7f440dc3db40",
+    "name": "CyberSource Merged Spec bankAccountValidation Interchange Clearing Level Details API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

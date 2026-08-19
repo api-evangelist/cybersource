@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Invoice Settings API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Invoice Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Invoice Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/invoicing/v2/invoiceSettings",
+            "params": [
+              {
+                "name": "productType",
+                "value": "",
+                "type": "query",
+                "description": "Allows you to choose which product type settings you want to update."
+              }
+            ]
+          },
+          "docs": "Allows you to retrieve the invoice settings for the payment page."
+        },
+        {
+          "info": {
+            "name": "Update Invoice Settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/invoicing/v2/invoiceSettings",
+            "params": [
+              {
+                "name": "productType",
+                "value": "",
+                "type": "query",
+                "description": "Allows you to choose which product type settings you want to update."
+              }
+            ]
+          },
+          "docs": "Allows you to customize the payment page, the checkout experience, email communication and payer authentication. You can customize the invoice to match your brand with your business name, logo and brand colors, and a VAT Tax number. You can choose to capture the payers shipping details, phone number and email during the checkout process. You can add a custom message to all invoice emails and enable or disable payer authentication for invoice payments."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

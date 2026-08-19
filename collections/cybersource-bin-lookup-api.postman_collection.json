@@ -1,0 +1,262 @@
+{
+  "item": [
+    {
+      "id": "6cd41ff3-5d93-4983-9e95-e05802a863b7",
+      "name": "Bin Lookup",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9791280f-490f-4060-aeb7-c991537cea03",
+          "name": "BIN Lookup API",
+          "request": {
+            "name": "BIN Lookup API",
+            "description": {
+              "content": "The BIN Lookup Service is a versatile business tool that provides card network agnostic solution designed to ensure frictionless transaction experience by utilizing up-to-date Bank Identification Number (BIN) attributes sourced from multiple global and regional data sources.\nThis service helps to improve authorization rates by helping to route transactions to the best-suited card network, minimizes fraud through card detail verification and aids in regulatory compliance by identifying card properties. The service is flexible and provides businesses with a flexible choice of inputs such as primary account number (PAN), network token from major networks (such as Visa, American Express, Discover and several regional networks) which includes device PAN (DPAN), and all types of tokens generated via CyberSource Token Management Service (TMS).\nCurrently, the range of available credentials is contingent on the networks enabled for the business entity. Therefore, the network information specified in this documentation is illustrative and subject to personalized offerings for each reseller or merchant.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bin",
+                "v1",
+                "binlookup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientReferenceInformation\": {\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    },\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"number\": \"<string>\"\n    },\n    \"customer\": {\n      \"id\": \"<string>\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\"\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"tokenInformation\": {\n    \"jti\": \"<string>\",\n    \"transientTokenJwt\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"binSource\": \"<string>\",\n    \"payoutOptions\": {\n      \"payoutInquiry\": \"<boolean>\",\n      \"networkId\": \"<string>\",\n      \"acquirerBin\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "62cecfd6-0678-4eb7-825e-f08fae8319b5",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bin",
+                    "v1",
+                    "binlookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    },\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"number\": \"<string>\"\n    },\n    \"customer\": {\n      \"id\": \"<string>\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\"\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"tokenInformation\": {\n    \"jti\": \"<string>\",\n    \"transientTokenJwt\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"binSource\": \"<string>\",\n    \"payoutOptions\": {\n      \"payoutInquiry\": \"<boolean>\",\n      \"networkId\": \"<string>\",\n      \"acquirerBin\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"paymentAccountInformation\": {\n    \"card\": {\n      \"type\": \"str\",\n      \"brandName\": \"string\",\n      \"currency\": \"str\",\n      \"maxLength\": \"st\",\n      \"credentialType\": \"strin\",\n      \"brands\": [\n        {\n          \"type\": \"str\",\n          \"brandName\": \"string\"\n        },\n        {\n          \"type\": \"str\",\n          \"brandName\": \"string\"\n        }\n      ]\n    },\n    \"features\": {\n      \"accountFundingSource\": \"string\",\n      \"accountFundingSourceSubType\": \"string\",\n      \"cardProduct\": \"string\",\n      \"messageType\": \"s\",\n      \"acceptanceLevel\": \"st\",\n      \"cardPlatform\": \"string\",\n      \"comboCard\": \"s\",\n      \"corporatePurchase\": false,\n      \"healthCard\": false,\n      \"sharedBIN\": true,\n      \"posDomesticOnly\": true,\n      \"gamblingAllowed\": true,\n      \"commercialCardLevel2\": false,\n      \"commercialCardLevel3\": true,\n      \"exemptBIN\": false,\n      \"accountLevelManagement\": true,\n      \"onlineGamblingBlock\": false,\n      \"autoSubstantiation\": true,\n      \"flexCredential\": true,\n      \"productId\": \"string\",\n      \"productIdSubtype\": \"string\",\n      \"threeDSSupport\": true,\n      \"siEligible\": true,\n      \"emiEligible\": false,\n      \"fleetCard\": false,\n      \"atmEnabled\": true,\n      \"posEnabled\": true,\n      \"ecomEnabled\": true\n    },\n    \"network\": {\n      \"id\": \"string\"\n    }\n  },\n  \"issuerInformation\": {\n    \"name\": \"string\",\n    \"country\": \"st\",\n    \"binLength\": \"st\",\n    \"accountPrefix\": \"string\",\n    \"phoneNumber\": \"string\"\n  },\n  \"payoutInformation\": {\n    \"pushFunds\": {\n      \"moneyTransferFastFundsCrossBorder\": \"s\",\n      \"moneyTransferFastFundsDomestic\": \"s\",\n      \"moneyTransferCrossBorder\": \"s\",\n      \"moneyTransferDomestic\": \"s\",\n      \"nonMoneyTransferFastFundsCrossBorder\": \"s\",\n      \"nonMoneyTransferFastFundsDomestic\": \"s\",\n      \"nonMoneyTransferCrossBorder\": \"s\",\n      \"nonMoneyTransferDomestic\": \"s\",\n      \"onlineGamblingFastFundsCrossBorder\": \"s\",\n      \"onlineGamblingFastFundsDomestic\": \"s\",\n      \"onlineGamblingCrossBorder\": \"s\",\n      \"onlineGamblingDomestic\": \"s\",\n      \"domesticParticipant\": \"strin\",\n      \"crossBorderParticipant\": \"strin\"\n    },\n    \"pullFunds\": {\n      \"domesticParticipant\": \"strin\",\n      \"crossBorderParticipant\": \"strin\"\n    },\n    \"geoRestrictionIndicator\": \"s\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5ea5239-220a-4fd7-b943-396719db0c3c",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bin",
+                    "v1",
+                    "binlookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    },\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"number\": \"<string>\"\n    },\n    \"customer\": {\n      \"id\": \"<string>\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\"\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"tokenInformation\": {\n    \"jti\": \"<string>\",\n    \"transientTokenJwt\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"binSource\": \"<string>\",\n    \"payoutOptions\": {\n      \"payoutInquiry\": \"<boolean>\",\n      \"networkId\": \"<string>\",\n      \"acquirerBin\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe2b7c5b-d202-4cf6-b7cf-f67adc32871e",
+              "name": "Forbidden access. The request was rejected due to access restrictions on the account or resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bin",
+                    "v1",
+                    "binlookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    },\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"number\": \"<string>\"\n    },\n    \"customer\": {\n      \"id\": \"<string>\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\"\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"tokenInformation\": {\n    \"jti\": \"<string>\",\n    \"transientTokenJwt\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"binSource\": \"<string>\",\n    \"payoutOptions\": {\n      \"payoutInquiry\": \"<boolean>\",\n      \"networkId\": \"<string>\",\n      \"acquirerBin\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6ff631d-a31d-4571-92d4-6de4ea3ce2c7",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bin",
+                    "v1",
+                    "binlookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    },\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"number\": \"<string>\"\n    },\n    \"customer\": {\n      \"id\": \"<string>\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\"\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"tokenInformation\": {\n    \"jti\": \"<string>\",\n    \"transientTokenJwt\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"binSource\": \"<string>\",\n    \"payoutOptions\": {\n      \"payoutInquiry\": \"<boolean>\",\n      \"networkId\": \"<string>\",\n      \"acquirerBin\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "611bc1ed-aa5d-4142-87a6-f90eedd209b4",
+    "name": "CyberSource Merged Spec bankAccountValidation Bin Lookup API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

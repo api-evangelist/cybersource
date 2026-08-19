@@ -1,0 +1,169 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Manage Webhooks API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Manage Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Details On All Created Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/notification-subscriptions/v2/webhooks",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "query",
+                "description": "The Organization Identifier."
+              },
+              {
+                "name": "productId",
+                "value": "",
+                "type": "query",
+                "description": "The Product Identifier."
+              },
+              {
+                "name": "eventType",
+                "value": "",
+                "type": "query",
+                "description": "The Event Type."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all previously created webhooks."
+        },
+        {
+          "info": {
+            "name": "Get Details On a Single Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/notification-subscriptions/v2/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The webhook Identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the details of a specific webhook by supplying the webhook ID in the path."
+        },
+        {
+          "info": {
+            "name": "Update a Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/notification-subscriptions/v2/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The Webhook Identifier."
+              }
+            ]
+          },
+          "docs": "Update a Webhook Subscription."
+        },
+        {
+          "info": {
+            "name": "Delete a Webhook Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/notification-subscriptions/v2/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The webhook identifier."
+              }
+            ]
+          },
+          "docs": "Delete the webhook. Please note that deleting a particular webhook does not delete the history of the webhook notifications."
+        },
+        {
+          "info": {
+            "name": "Test a Webhook Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/notification-subscriptions/v1/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The Webhook Identifier."
+              }
+            ]
+          },
+          "docs": "Test the webhook configuration by sending a sample webhook. Calling this endpoint sends a sample webhook to the endpoint identified in the user's subscription. \n\nIt will contain sample values for the product & eventType based on values present in your subscription along with a sample message in the payload. \n\nBased on the webhook response users can make any necessary modifications or rest assured knowing their setup is configured correctly.\n"
+        },
+        {
+          "info": {
+            "name": "Update a Webhook Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/notification-subscriptions/v2/webhooks/:webhookId/status",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The Webhook Identifier."
+              }
+            ]
+          },
+          "docs": "Users can update the status of a webhook subscription by calling this endpoint. \n\nThe webhookId parameter in the URL path identifies the specific webhook subscription to be updated. The request body accepts the values ACTIVE or INACTIVE. If the subscription is set to INACTIVE, webhooks will not be delivered until the subscription is activated again.\n"
+        },
+        {
+          "info": {
+            "name": "Message Level Encryption",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/kms/egress/v2/keys-asym",
+            "headers": [
+              {
+                "name": "v-c-correlation-id",
+                "value": ""
+              },
+              {
+                "name": "v-c-sender-organization-id",
+                "value": ""
+              },
+              {
+                "name": "v-c-permissions",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Store and manage certificates that will be used to preform Message Level Encryption (MLE).\nEach new webhook will need its own unique asymmetric certificate.\nYou can either use a digital certificate issued/signed by a CA or self-sign your own using the documentation available on the Developer Guide.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "bankAccountValidation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Visa Bank Account Validation Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/bavs/v1/account-validations"
+          },
+          "docs": "The Visa Bank Account Validation Service is a new standalone product designed to validate customer's routing and bank account number combination for ACH transactions. Merchant's can use this standalone product to validate their customer's account prior to processing an ACH transaction against the customer's account to comply with Nacha's account validation mandate for Web-debit transactions.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

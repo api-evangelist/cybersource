@@ -1,0 +1,492 @@
+{
+  "item": [
+    {
+      "id": "92dfd7f3-7ab3-4e89-bee3-3eac34f88cb2",
+      "name": "Subscriptions Follow-Ons",
+      "description": {
+        "content": "Create a Follow-On Subscription from an already existing successful Transaction.\n\nYou have option to link subscription to plan or create independent subscriptions.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6a7a232e-39d9-4e81-8e02-d1142709b7c2",
+          "name": "Get a Follow-On Subscription",
+          "request": {
+            "name": "Get a Follow-On Subscription",
+            "description": {
+              "content": "Get details of the Subscription being created based on the Request Id of an existing successful Transaction.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rbs",
+                "v1",
+                "subscriptions",
+                "follow-ons",
+                ":requestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) Request Id of an existing successful Transaction"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3e0cdf3c-084e-4fe3-8769-0e22891afc03",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    "follow-ons",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) Request Id of an existing successful Transaction"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"create\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerID\": \"string\",\n    \"email\": \"string\"\n  },\n  \"paymentInstrument\": {\n    \"id\": \"string\",\n    \"bankAccount\": {\n      \"type\": \"string\",\n      \"number\": \"string\",\n      \"routingNumber\": \"string\"\n    },\n    \"card\": {\n      \"number\": \"stringstring\",\n      \"expirationMonth\": \"st\",\n      \"expirationYear\": \"stri\",\n      \"type\": \"string\"\n    },\n    \"billTo\": {\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"company\": \"string\",\n      \"address1\": \"string\",\n      \"address2\": \"string\",\n      \"locality\": \"string\",\n      \"administrativeArea\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"st\",\n      \"email\": \"string\",\n      \"phoneNumber\": \"string\"\n    },\n    \"buyerInformation\": {\n      \"companyTaxID\": \"string\",\n      \"currency\": \"str\",\n      \"dateOfBirth\": \"1960-12-30\",\n      \"personalIdentification\": [\n        {\n          \"id\": \"string\",\n          \"type\": \"string\",\n          \"issuedBy\": {\n            \"administrativeArea\": \"string\"\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"type\": \"string\",\n          \"issuedBy\": {\n            \"administrativeArea\": \"string\"\n          }\n        }\n      ]\n    }\n  },\n  \"shippingAddress\": {\n    \"id\": \"string\",\n    \"shipTo\": {\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"company\": \"string\",\n      \"address1\": \"string\",\n      \"address2\": \"string\",\n      \"locality\": \"string\",\n      \"administrativeArea\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"st\",\n      \"email\": \"string\",\n      \"phoneNumber\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45724609-8efc-48a7-933e-822476672d66",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    "follow-ons",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) Request Id of an existing successful Transaction"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83357887-0357-40eb-9cd4-fc6bdd2138de",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    "follow-ons",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) Request Id of an existing successful Transaction"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09c2bd18-6e89-4e78-887b-3a6ac65044c3",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    "follow-ons",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) Request Id of an existing successful Transaction"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99ab7346-bb60-4490-8bc6-31e9594c4a60",
+          "name": "Create a Follow-On Subscription",
+          "request": {
+            "name": "Create a Follow-On Subscription",
+            "description": {
+              "content": "Create a new Subscription based on the Request Id of an existing successful Transaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rbs",
+                "v1",
+                "subscriptions",
+                "follow-ons",
+                ":requestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) Request Id of an existing successful Transaction"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"<string>\",\n    \"authorizationOptions\": {\n      \"initiator\": {\n        \"type\": \"<string>\"\n      }\n    }\n  },\n  \"planInformation\": {\n    \"billingPeriod\": {\n      \"length\": \"<string>\",\n      \"unit\": \"<string>\"\n    },\n    \"billingCycles\": {\n      \"total\": \"<string>\"\n    }\n  },\n  \"subscriptionInformation\": {\n    \"name\": \"<string>\",\n    \"startDate\": \"<string>\",\n    \"code\": \"<string>\",\n    \"planId\": \"<string>\",\n    \"originalTransactionId\": \"<string>\",\n    \"originalTransactionAuthorizedAmount\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"billingAmount\": \"<string>\",\n      \"setupFee\": \"<string>\",\n      \"surcharge\": {\n        \"amount\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dddae317-fbad-4414-83ec-3d2dae3a81b1",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    "follow-ons",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) Request Id of an existing successful Transaction"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"FollowOn from 7216512479796378604957\"\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"recurring\",\n    \"authorizationOptions\": {\n      \"initiator\": {\n        \"type\": \"merchant\"\n      }\n    }\n  },\n  \"subscriptionInformation\": {\n    \"planId\": \"6868912495476705603955\",\n    \"name\": \"Subscription with PlanId\",\n    \"startDate\": \"2024-08-01\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"/rbs/v1/subscriptions/4567000000000123456789\",\n      \"method\": \"GET\"\n    },\n    \"update\": {\n      \"href\": \"/rbs/v1/subscriptions/4567000000000123456789\",\n      \"method\": \"PATCH\"\n    },\n    \"cancel\": {\n      \"href\": \"/rbs/v1/subscriptions/4567000000000123456789/cancel\",\n      \"method\": \"POST\"\n    },\n    \"suspend\": {\n      \"href\": \"/rbs/v1/subscriptions/4567000000000123456789/suspend\",\n      \"method\": \"POST\"\n    },\n    \"activate\": {\n      \"href\": \"/rbs/v1/subscriptions/4567000000000123456789/activate\",\n      \"method\": \"POST\"\n    }\n  },\n  \"submitTimeUtc\": \"2020-11-01T071957Z\",\n  \"status\": \"COMPLETED\",\n  \"subscriptionInformation\": {\n    \"code\": \"SUB1\",\n    \"status\": \"ACTIVE\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ace24800-627a-4839-81cf-2f4fb62a2d39",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    "follow-ons",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) Request Id of an existing successful Transaction"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"FollowOn from 7216512479796378604957\"\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"recurring\",\n    \"authorizationOptions\": {\n      \"initiator\": {\n        \"type\": \"merchant\"\n      }\n    }\n  },\n  \"subscriptionInformation\": {\n    \"planId\": \"6868912495476705603955\",\n    \"name\": \"Subscription with PlanId\",\n    \"startDate\": \"2024-08-01\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f353d52-5236-460a-b99d-656843c3539f",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    "follow-ons",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) Request Id of an existing successful Transaction"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"FollowOn from 7216512479796378604957\"\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"recurring\",\n    \"authorizationOptions\": {\n      \"initiator\": {\n        \"type\": \"merchant\"\n      }\n    }\n  },\n  \"subscriptionInformation\": {\n    \"planId\": \"6868912495476705603955\",\n    \"name\": \"Subscription with PlanId\",\n    \"startDate\": \"2024-08-01\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "47c0603e-40a5-4fc0-bcc2-299831eb2d11",
+    "name": "CyberSource Merged Spec bankAccountValidation Subscriptions Follow-Ons API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

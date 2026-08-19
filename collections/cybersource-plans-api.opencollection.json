@@ -1,0 +1,178 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Plans API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a List of Plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rbs/v1/plans",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset number."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to be returned. Default - `20`, Max - `100`\n"
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Plan Code"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Plan Status"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Plan Name. (First sub string or full string) **[Not Recommended]**\n"
+              }
+            ]
+          },
+          "docs": "Retrieve Plans by Plan Code & Plan Status.\n"
+        },
+        {
+          "info": {
+            "name": "Create a Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/rbs/v1/plans"
+          },
+          "docs": "The recurring billing service enables you to manage payment plans and subscriptions for recurring payment schedules. It securely stores your customer's payment information and personal data within secure Visa data centers, reducing storage risks and PCI DSS scope through the use of *Token Management* (*TMS*).\n\nThe three key elements of *Cybersource* Recurring Billing are:\n\n-  **Token**: stores customer billing, shipping, and payment details.\n\n-  **Plan**: stores the billing schedule.\n\n-  **Subsc"
+        },
+        {
+          "info": {
+            "name": "Get a Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rbs/v1/plans/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Plan Id"
+              }
+            ]
+          },
+          "docs": "Retrieve a Plan details by Plan Id."
+        },
+        {
+          "info": {
+            "name": "Update a Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/rbs/v1/plans/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Plan Id"
+              }
+            ]
+          },
+          "docs": "Update a Plan\n\nPlan in `DRAFT` status\n- All updates are allowed on Plan with `DRAFT` status\n\nPlan in `ACTIVE` status [Following fields are **Not Updatable**]\n- `planInformation.billingPeriod`\n- `planInformation.billingCycles` [Update is only allowed to **increase** billingCycles]\n- `orderInformation.amountDetails.currency`\n"
+        },
+        {
+          "info": {
+            "name": "Delete a Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/rbs/v1/plans/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Plan Id"
+              }
+            ]
+          },
+          "docs": "Delete a Plan is only allowed:\n- plan status is in `DRAFT`\n- plan status is in `ACTIVE`, and `INACTIVE` only allowed when no subscriptions attached to a plan in the lifetime of a plan\n"
+        },
+        {
+          "info": {
+            "name": "Activate a Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/rbs/v1/plans/:id/activate",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Plan Id"
+              }
+            ]
+          },
+          "docs": "Activate a Plan"
+        },
+        {
+          "info": {
+            "name": "Deactivate a Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/rbs/v1/plans/:id/deactivate",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Plan Id"
+              }
+            ]
+          },
+          "docs": "Deactivate a Plan"
+        },
+        {
+          "info": {
+            "name": "Get a Plan Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rbs/v1/plans/code"
+          },
+          "docs": "Get a Unique Plan Code"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

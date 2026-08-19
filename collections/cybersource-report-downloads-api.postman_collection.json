@@ -1,0 +1,226 @@
+{
+  "item": [
+    {
+      "id": "e112bb5a-8009-4e02-93ee-078af8c86ff7",
+      "name": "Report Downloads",
+      "description": {
+        "content": "API for creation and retrieval of Reports",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f4020a57-328f-4f0e-adb5-1ff2d796f26d",
+          "name": "Download a Report",
+          "request": {
+            "name": "Download a Report",
+            "description": {
+              "content": "Download a report using the unique report name and date.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "v3",
+                "report-downloads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "organizationId",
+                  "value": "<string>",
+                  "description": "Valid Organization Id"
+                },
+                {
+                  "disabled": false,
+                  "key": "reportDate",
+                  "value": "<date>",
+                  "description": "(Required) Valid date on which to download the report in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n**Example date format:**\n yyyy-mm-dd\nFor reports that span multiple days, this value would be the end date of the report in the time zone of the report subscription.\nExample 1: If your report start date is 2020-03-06 and the end date is 2020-03-09, the reportDate passed in the query is 2020-03-09.\nExample 2: If your report runs from midnight to midnight on 2020-03-09, the reportDate passed in the query is 2020-03-10\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "reportName",
+                  "value": "<string>",
+                  "description": "(Required) Name of the report to download"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b7495511-863c-44bb-aa01-3405d8d9ac5b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "report-downloads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reportDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "reportName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "214e56b8-3090-4b68-9814-a467b11cb51f",
+              "name": "Invalid Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "report-downloads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reportDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "reportName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <submitTimeUtc>2016-08-11T22:47:57Z</submitTimeUtc>\n  <reason>INVALID_DATA</reason>\n  <message>One or more fields contains invalid data</message>\n  <details>\n    <field>(string)</field>\n    <reason>(string)</reason>\n  </details>\n  <details>\n    <field>(string)</field>\n    <reason>(string)</reason>\n  </details>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "a547a539-e2ba-4f4e-9cff-6329d1d842ba",
+              "name": "No Reports Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "report-downloads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reportDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "reportName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d52976c5-b5e7-4437-bf35-cc65e104ebaa",
+    "name": "CyberSource Merged Spec bankAccountValidation Report Downloads API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

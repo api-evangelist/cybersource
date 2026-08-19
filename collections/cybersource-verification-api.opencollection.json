@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Verification API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Verification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Verify customer address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/risk/v1/address-verifications"
+          },
+          "docs": "This call verifies that the customer address submitted is valid."
+        },
+        {
+          "info": {
+            "name": "Validate export compliance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/risk/v1/export-compliance-inquiries"
+          },
+          "docs": "This call checks customer data against specified watch lists to ensure export compliance.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

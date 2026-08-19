@@ -1,0 +1,382 @@
+{
+  "item": [
+    {
+      "id": "881a2cbd-b836-41d8-b479-bad4a1d7c573",
+      "name": "bankAccountValidation",
+      "description": {
+        "content": "The Visa Bank Account Validation Service is a new standalone product designed to validate customer's routing and bank account number combination for ACH transactions. Merchant's can use this standalone product to validate their customer's account prior to processing an ACH transaction against the customer's account to comply with Nacha's account validation mandate for Web-debit transactions.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4153b6cf-003b-40c2-beba-9d13dc695610",
+          "name": "Visa Bank Account Validation Service",
+          "request": {
+            "name": "Visa Bank Account Validation Service",
+            "description": {
+              "content": "The Visa Bank Account Validation Service is a new standalone product designed to validate customer's routing and bank account number combination for ACH transactions. Merchant's can use this standalone product to validate their customer's account prior to processing an ACH transaction against the customer's account to comply with Nacha's account validation mandate for Web-debit transactions.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bavs",
+                "v1",
+                "account-validations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"processingInformation\": {\n    \"validationLevel\": \"<integer>\"\n  },\n  \"paymentInformation\": {\n    \"customer\": {\n      \"id\": \"<string>\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\"\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\"\n    },\n    \"bank\": {\n      \"routingNumber\": \"<string>\",\n      \"account\": {\n        \"number\": \"<string>\"\n      }\n    }\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\"\n  },\n  \"tokenInformation\": {\n    \"jti\": \"<string>\",\n    \"transientTokenJwt\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d4731c4f-9077-41e0-b025-81bd27cd8654",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bavs",
+                    "v1",
+                    "account-validations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"processingInformation\": {\n    \"validationLevel\": \"<integer>\"\n  },\n  \"paymentInformation\": {\n    \"customer\": {\n      \"id\": \"AB12C34D56E78F90\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"7010000000000001234\"\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"7010000000000001111\"\n    },\n    \"bank\": {\n      \"routingNumber\": \"123456789\",\n      \"account\": {\n        \"number\": \"12345678901234577\"\n      }\n    }\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"TC50171_3\"\n  },\n  \"tokenInformation\": {\n    \"jti\": \"1A2B3C4D5E6F7890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890\",\n    \"transientTokenJwt\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"TC50171_3\"\n  },\n  \"requestId\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"bankAccountValidation\": {\n    \"rawValidationCode\": 211,\n    \"resultCode\": 1807,\n    \"resultMessage\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03fd8213-d566-4338-8b68-466beca2193e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bavs",
+                    "v1",
+                    "account-validations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"processingInformation\": {\n    \"validationLevel\": \"<integer>\"\n  },\n  \"paymentInformation\": {\n    \"customer\": {\n      \"id\": \"AB12C34D56E78F90\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"7010000000000001234\"\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"7010000000000001111\"\n    },\n    \"bank\": {\n      \"routingNumber\": \"123456789\",\n      \"account\": {\n        \"number\": \"12345678901234577\"\n      }\n    }\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"TC50171_3\"\n  },\n  \"tokenInformation\": {\n    \"jti\": \"1A2B3C4D5E6F7890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890\",\n    \"transientTokenJwt\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique identifier for this request",
+                  "key": "v-c-correlationid",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"reason\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29d2a524-b34f-43e6-b314-9244a4d207a2",
+              "name": "Authorization failure.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bavs",
+                    "v1",
+                    "account-validations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"processingInformation\": {\n    \"validationLevel\": \"<integer>\"\n  },\n  \"paymentInformation\": {\n    \"customer\": {\n      \"id\": \"AB12C34D56E78F90\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"7010000000000001234\"\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"7010000000000001111\"\n    },\n    \"bank\": {\n      \"routingNumber\": \"123456789\",\n      \"account\": {\n        \"number\": \"12345678901234577\"\n      }\n    }\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"TC50171_3\"\n  },\n  \"tokenInformation\": {\n    \"jti\": \"1A2B3C4D5E6F7890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890\",\n    \"transientTokenJwt\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique identifier for this request",
+                  "key": "v-c-correlationid",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8524d204-d3a0-45f5-be8e-0a300715e8ab",
+              "name": "Resource Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bavs",
+                    "v1",
+                    "account-validations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"processingInformation\": {\n    \"validationLevel\": \"<integer>\"\n  },\n  \"paymentInformation\": {\n    \"customer\": {\n      \"id\": \"AB12C34D56E78F90\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"7010000000000001234\"\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"7010000000000001111\"\n    },\n    \"bank\": {\n      \"routingNumber\": \"123456789\",\n      \"account\": {\n        \"number\": \"12345678901234577\"\n      }\n    }\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"TC50171_3\"\n  },\n  \"tokenInformation\": {\n    \"jti\": \"1A2B3C4D5E6F7890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890\",\n    \"transientTokenJwt\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique identifier for this request",
+                  "key": "v-c-correlationid",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "afce600d-0816-4d26-a7e7-fd466dae636b",
+              "name": "Unprocessable Entity.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bavs",
+                    "v1",
+                    "account-validations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"processingInformation\": {\n    \"validationLevel\": \"<integer>\"\n  },\n  \"paymentInformation\": {\n    \"customer\": {\n      \"id\": \"AB12C34D56E78F90\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"7010000000000001234\"\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"7010000000000001111\"\n    },\n    \"bank\": {\n      \"routingNumber\": \"123456789\",\n      \"account\": {\n        \"number\": \"12345678901234577\"\n      }\n    }\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"TC50171_3\"\n  },\n  \"tokenInformation\": {\n    \"jti\": \"1A2B3C4D5E6F7890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890\",\n    \"transientTokenJwt\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique identifier for this request",
+                  "key": "v-c-correlationid",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63164a89-9f88-4185-8cfa-150dbc7bd0a3",
+              "name": "Internal Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bavs",
+                    "v1",
+                    "account-validations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"processingInformation\": {\n    \"validationLevel\": \"<integer>\"\n  },\n  \"paymentInformation\": {\n    \"customer\": {\n      \"id\": \"AB12C34D56E78F90\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"7010000000000001234\"\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"7010000000000001111\"\n    },\n    \"bank\": {\n      \"routingNumber\": \"123456789\",\n      \"account\": {\n        \"number\": \"12345678901234577\"\n      }\n    }\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"TC50171_3\"\n  },\n  \"tokenInformation\": {\n    \"jti\": \"1A2B3C4D5E6F7890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890\",\n    \"transientTokenJwt\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique identifier for this request",
+                  "key": "v-c-correlationid",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"reason\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "16900ea9-cbc6-451d-a22b-79d10f452fc7",
+    "name": "CyberSource Merged Spec bankAccountValidation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

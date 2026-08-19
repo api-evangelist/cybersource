@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Download XSD API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Download XSD",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download XSD for Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reporting/v3/xsds/:reportDefinitionNameVersion",
+            "params": [
+              {
+                "name": "reportDefinitionNameVersion",
+                "value": "",
+                "type": "path",
+                "description": "Name and version of XSD file to download. Some XSDs only have one version. In that case version name is not needed. Some example values are DecisionManagerDetailReport, DecisionManagerTypes"
+              }
+            ]
+          },
+          "docs": "Used to download XSDs for reports on no-auth."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

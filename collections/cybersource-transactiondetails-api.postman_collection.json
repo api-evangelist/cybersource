@@ -1,0 +1,204 @@
+{
+  "item": [
+    {
+      "id": "c8d3b5dd-b350-4a44-83a0-4e6282d823ad",
+      "name": "TransactionDetails",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3b0932e1-2248-4b5b-bdaa-3952c61f862d",
+          "name": "Retrieve a Transaction",
+          "request": {
+            "name": "Retrieve a Transaction",
+            "description": {
+              "content": "Include the Request ID in the GET request to retrieve the transaction details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tss",
+                "v2",
+                "transactions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Request ID.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "73046af6-4bf4-4a33-8868-e04095e34b64",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tss",
+                    "v2",
+                    "transactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Request ID.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"rootId\": \"string\",\n  \"reconciliationId\": \"string\",\n  \"merchantId\": \"string\",\n  \"submitTimeUTC\": \"string\",\n  \"status\": \"string\",\n  \"applicationInformation\": {\n    \"status\": \"string\",\n    \"reasonCode\": \"string\",\n    \"rCode\": \"string\",\n    \"rFlag\": \"string\",\n    \"applications\": [\n      {\n        \"name\": \"string\",\n        \"status\": \"string\",\n        \"reasonCode\": \"string\",\n        \"rCode\": \"string\",\n        \"rFlag\": \"string\",\n        \"reconciliationId\": \"string\",\n        \"rMessage\": \"string\",\n        \"returnCode\": 891\n      },\n      {\n        \"name\": \"string\",\n        \"status\": \"string\",\n        \"reasonCode\": \"string\",\n        \"rCode\": \"string\",\n        \"rFlag\": \"string\",\n        \"reconciliationId\": \"string\",\n        \"rMessage\": \"string\",\n        \"returnCode\": 7698\n      }\n    ]\n  },\n  \"bankAccountValidation\": {\n    \"rawValidationCode\": 3607,\n    \"resultCode\": 8588,\n    \"resultMessage\": \"string\"\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"string\",\n    \"hashedPassword\": \"string\"\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"string\",\n    \"applicationVersion\": \"string\",\n    \"applicationName\": \"string\",\n    \"applicationUser\": \"string\",\n    \"partner\": {\n      \"solutionId\": \"string\",\n      \"thirdPartyCertificationNumber\": \"string\"\n    },\n    \"comments\": \"string\"\n  },\n  \"consumerAuthenticationInformation\": {\n    \"eciRaw\": \"st\",\n    \"cavv\": \"string\",\n    \"xid\": \"string\",\n    \"transactionId\": \"string\",\n    \"strongAuthentication\": {\n      \"lowValueExemptionIndicator\": \"s\",\n      \"riskAnalysisExemptionIndicator\": \"s\",\n      \"trustedMerchantExemptionIndicator\": \"s\",\n      \"secureCorporatePaymentIndicator\": \"s\",\n      \"delegatedAuthenticationExemptionIndicator\": \"s\"\n    }\n  },\n  \"deviceInformation\": {\n    \"ipAddress\": \"string\",\n    \"hostName\": \"string\",\n    \"cookiesAccepted\": \"string\"\n  },\n  \"errorInformation\": {\n    \"reason\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"reason\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"reason\": \"string\"\n      }\n    ]\n  },\n  \"installmentInformation\": {\n    \"numberOfInstallments\": \"string\",\n    \"identifier\": \"string\"\n  },\n  \"fraudMarkingInformation\": {\n    \"reason\": \"string\"\n  },\n  \"healthCareInformation\": {\n    \"amountDetails\": [\n      {\n        \"amountType\": \"string\",\n        \"amount\": \"string\"\n      },\n      {\n        \"amountType\": \"string\",\n        \"amount\": \"string\"\n      }\n    ]\n  },\n  \"merchantDefinedInformation\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"name\": \"string\"\n    }\n  },\n  \"orderInformation\": {\n    \"billTo\": {\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"middleName\": \"string\",\n      \"nameSuffix\": \"string\",\n      \"address1\": \"string\",\n      \"address2\": \"string\",\n      \"locality\": \"string\",\n      \"administrativeArea\": \"string\",\n      \"postalCode\": \"string\",\n      \"company\": \"string\",\n      \"email\": \"string\",\n      \"country\": \"str\",\n      \"title\": \"string\",\n      \"phoneNumber\": \"string\"\n    },\n    \"shipTo\": {\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"address1\": \"string\",\n      \"address2\": \"string\",\n      \"locality\": \"string\",\n      \"administrativeArea\": \"string\",\n      \"postalCode\": \"string\",\n      \"company\": \"string\",\n      \"country\": \"str\",\n      \"phoneNumber\": \"string\"\n    },\n    \"lineItems\": [\n      {\n        \"productCode\": \"string\",\n        \"productName\": \"string\",\n        \"productSku\": \"string\",\n        \"taxAmount\": \"string\",\n        \"quantity\": 1,\n        \"unitPrice\": \"string\",\n        \"fulfillmentType\": \"string\"\n      },\n      {\n        \"productCode\": \"string\",\n        \"productName\": \"string\",\n        \"productSku\": \"string\",\n        \"taxAmount\": \"string\",\n        \"quantity\": 1,\n        \"unitPrice\": \"string\",\n        \"fulfillmentType\": \"string\"\n      }\n    ],\n    \"amountDetails\": {\n      \"totalAmount\": \"string\",\n      \"currency\": \"str\",\n      \"taxAmount\": \"string\",\n      \"authorizedAmount\": \"string\",\n      \"settlementAmount\": \"string\",\n      \"settlementCurrency\": \"str\",\n      \"refundBalance\": \"string\",\n      \"surcharge\": {\n        \"amount\": \"string\"\n      }\n    },\n    \"shippingDetails\": {\n      \"giftWrap\": false,\n      \"shippingMethod\": \"string\"\n    },\n    \"invoiceDetails\": {\n      \"salesSlipNumber\": 67268\n    }\n  },\n  \"paymentInformation\": {\n    \"paymentType\": {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"method\": \"string\"\n    },\n    \"eWallet\": {\n      \"name\": \"string\",\n      \"fundingSource\": \"string\"\n    },\n    \"customer\": {\n      \"customerId\": \"string\",\n      \"id\": \"strin\"\n    },\n    \"card\": {\n      \"suffix\": \"string\",\n      \"prefix\": \"string\",\n      \"expirationMonth\": \"st\",\n      \"expirationYear\": \"stri\",\n      \"startMonth\": \"st\",\n      \"startYear\": \"stri\",\n      \"issueNumber\": \"strin\",\n      \"type\": \"string\",\n      \"brandName\": \"string\",\n      \"currency\": \"str\",\n      \"accountEncoderId\": \"str\",\n      \"useAs\": \"string\"\n    },\n    \"brands\": [\n      {\n        \"type\": \"string\",\n        \"brandName\": \"string\"\n      },\n      {\n        \"type\": \"string\",\n        \"brandName\": \"string\"\n      }\n    ],\n    \"features\": {\n      \"accountFundingSource\": \"string\",\n      \"accountFundingSourceSubType\": \"string\",\n      \"cardProduct\": \"string\",\n      \"messageType\": \"s\",\n      \"acceptanceLevel\": \"st\",\n      \"cardPlatform\": \"string\",\n      \"comboCard\": \"s\"\n    },\n    \"invoice\": {\n      \"number\": \"string\",\n      \"barcodeNumber\": \"string\",\n      \"expirationDate\": \"string\"\n    },\n    \"network\": {\n      \"id\": \"strin\"\n    },\n    \"issuerInformation\": {\n      \"name\": \"string\",\n      \"country\": \"st\",\n      \"binLength\": \"st\",\n      \"phoneNumber\": \"string\",\n      \"transactionInformation\": \"string\"\n    },\n    \"bank\": {\n      \"routingNumber\": \"string\",\n      \"branchCode\": \"string\",\n      \"swiftCode\": \"string\",\n      \"bankCode\": \"string\",\n      \"iban\": \"string\",\n      \"account\": {\n        \"suffix\": \"string\",\n        \"prefix\": \"string\",\n        \"checkNumber\": \"string\",\n        \"type\": \"s\",\n        \"name\": \"string\",\n        \"checkDigit\": \"string\",\n        \"encoderId\": \"str\"\n      },\n      \"mandate\": {\n        \"referenceNumber\": \"string\",\n        \"recurringType\": \"string\",\n        \"id\": \"string\"\n      }\n    },\n    \"accountFeatures\": {\n      \"balanceAmount\": \"string\",\n      \"previousBalanceAmount\": \"string\",\n      \"currency\": \"strin\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"string\"\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"stringstring\"\n    },\n    \"shippingAddress\": {\n      \"id\": \"string\"\n    },\n    \"fluidData\": {\n      \"descriptor\": \"string\"\n    }\n  },\n  \"paymentInsightsInformation\": {\n    \"responseInsights\": {\n      \"category\": \"string\",\n      \"categoryCode\": \"st\",\n      \"processorRawName\": \"string\"\n    },\n    \"orchestration\": {\n      \"infoCodes\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"payoutOptions\": {\n    \"payoutInquiry\": \"strin\"\n  },\n  \"unscheduledPaymentInformation\": {\n    \"type\": \"s\"\n  },\n  \"processingInformation\": {\n    \"binSource\": \"string\",\n    \"industryDataType\": \"string\",\n    \"paymentSolution\": \"string\",\n    \"commerceIndicator\": \"string\",\n    \"commerceIndicatorLabel\": \"string\",\n    \"businessApplicationId\": \"string\",\n    \"authorizationOptions\": {\n      \"authType\": \"string\",\n      \"authIndicator\": \"s\",\n      \"extendAuthIndicator\": \"strin\",\n      \"cardVerificationIndicator\": false,\n      \"initiator\": {\n        \"type\": \"string\",\n        \"credentialStoredOnFile\": \"string\",\n        \"storedCredentialUsed\": \"string\",\n        \"merchantInitiatedTransaction\": {\n          \"reason\": \"s\",\n          \"previousTransactionId\": \"string\",\n          \"originalAuthorizedAmount\": \"string\",\n          \"agreementId\": \"string\"\n        }\n      }\n    },\n    \"bankTransferOptions\": {\n      \"secCode\": \"string\"\n    },\n    \"captureOptions\": {\n      \"totalCaptureCount\": 43,\n      \"captureSequenceNumber\": 30\n    },\n    \"reconciliationId\": \"string\",\n    \"japanPaymentOptions\": {\n      \"paymentMethod\": \"st\",\n      \"terminalId\": \"string\",\n      \"businessName\": \"string\",\n      \"businessNameKatakana\": \"string\",\n      \"businessNameEnglish\": \"string\",\n      \"bonuses\": [\n        {\n          \"month\": \"st\",\n          \"amount\": \"string\"\n        },\n        {\n          \"month\": \"st\",\n          \"amount\": \"string\"\n        }\n      ],\n      \"firstBillingMonth\": \"st\",\n      \"numberOfInstallments\": \"string\",\n      \"preApprovalType\": \"s\"\n    },\n    \"validationLevel\": 6448\n  },\n  \"processorInformation\": {\n    \"processor\": {\n      \"name\": \"string\"\n    },\n    \"multiProcessorRouting\": [\n      {\n        \"name\": \"string\",\n        \"responseCode\": \"string\",\n        \"reasonCode\": \"string\",\n        \"sequence\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"responseCode\": \"string\",\n        \"reasonCode\": \"string\",\n        \"sequence\": \"string\"\n      }\n    ],\n    \"transactionId\": \"string\",\n    \"networkTransactionId\": \"string\",\n    \"retrievalReferenceNumber\": \"string\",\n    \"responseId\": \"string\",\n    \"approvalCode\": \"string\",\n    \"responseCode\": \"string\",\n    \"avs\": {\n      \"code\": \"s\",\n      \"codeRaw\": \"string\"\n    },\n    \"cardVerification\": {\n      \"resultCode\": \"s\"\n    },\n    \"achVerification\": {\n      \"resultCode\": \"st\",\n      \"resultCodeRaw\": \"string\"\n    },\n    \"electronicVerificationResults\": {\n      \"email\": \"s\",\n      \"emailRaw\": \"s\",\n      \"name\": \"string\",\n      \"nameRaw\": \"string\",\n      \"phoneNumber\": \"s\",\n      \"phoneNumberRaw\": \"s\",\n      \"street\": \"s\",\n      \"streetRaw\": \"s\",\n      \"postalCode\": \"s\",\n      \"postalCodeRaw\": \"s\"\n    },\n    \"issuerInformation\": {\n      \"name\": \"string\",\n      \"code\": \"string\"\n    },\n    \"eventStatus\": \"string\",\n    \"systemTraceAuditNumber\": \"string\",\n    \"responseCodeSource\": \"s\",\n    \"paymentAccountReferenceNumber\": \"string\",\n    \"responseDetails\": \"string\",\n    \"rawResponseLocal\": \"string\",\n    \"rawResponse\": \"string\",\n    \"routing\": {\n      \"network\": \"stri\",\n      \"networkName\": \"string\",\n      \"customerSignatureRequired\": \"s\"\n    }\n  },\n  \"recurringPaymentInformation\": {\n    \"amountType\": \"s\"\n  },\n  \"pointOfSaleInformation\": {\n    \"terminalId\": \"string\",\n    \"entryMode\": \"string\",\n    \"terminalCapability\": 4,\n    \"cardholderVerificationMethodUsed\": 1889,\n    \"emv\": {\n      \"tags\": \"string\"\n    }\n  },\n  \"riskInformation\": {\n    \"profile\": {\n      \"name\": \"string\",\n      \"decision\": \"string\"\n    },\n    \"rules\": [\n      {\n        \"name\": \"string\",\n        \"decision\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"decision\": \"string\"\n      }\n    ],\n    \"passiveProfile\": {\n      \"name\": \"string\",\n      \"decision\": \"string\"\n    },\n    \"passiveRules\": [\n      {\n        \"name\": \"string\",\n        \"decision\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"decision\": \"string\"\n      }\n    ],\n    \"score\": {\n      \"factorCodes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"result\": 3142\n    },\n    \"localTime\": \"string\"\n  },\n  \"senderInformation\": {\n    \"referenceNumber\": \"string\"\n  },\n  \"tokenInformation\": {\n    \"customer\": {\n      \"id\": \"string\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"string\"\n    },\n    \"shippingAddress\": {\n      \"id\": \"string\"\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"stringstring\"\n    },\n    \"jti\": \"string\",\n    \"transientTokenJwt\": \"string\"\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"relatedTransactions\": [\n      {\n        \"href\": \"string\",\n        \"method\": \"string\"\n      },\n      {\n        \"href\": \"string\",\n        \"method\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1831942f-7793-4e56-a278-09730a6a308d",
+              "name": "The specified resource not found in the system.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tss",
+                    "v2",
+                    "transactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Request ID.\n"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "311bc018-4783-4802-8f47-fafd2a09b238",
+              "name": "Unexpected server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tss",
+                    "v2",
+                    "transactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Request ID.\n"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a7b9f623-9ec7-4dd2-8efe-3fbc04a4b8d9",
+    "name": "CyberSource Merged Spec bankAccountValidation TransactionDetails API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

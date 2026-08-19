@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Pull Funds API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pull Funds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Process a Pull Funds Transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/pts/v1/pull-funds-transfer",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "x-requestid",
+                "value": ""
+              },
+              {
+                "name": "v-c-merchant-id",
+                "value": ""
+              },
+              {
+                "name": "v-c-permissions",
+                "value": ""
+              },
+              {
+                "name": "v-c-correlation-id",
+                "value": ""
+              },
+              {
+                "name": "v-c-organization-id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Receive funds using an Account Funding Transaction (AFT).\n"
+        },
+        {
+          "info": {
+            "name": "Process a Pull Funds Reversal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/pts/v1/pull-funds-transfer/:id/reversal",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "x-requestid",
+                "value": ""
+              },
+              {
+                "name": "v-c-merchant-id",
+                "value": ""
+              },
+              {
+                "name": "v-c-permissions",
+                "value": ""
+              },
+              {
+                "name": "v-c-correlation-id",
+                "value": ""
+              },
+              {
+                "name": "v-c-organization-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The transaction id of a previous Account Funding Transaction.\n"
+              }
+            ]
+          },
+          "docs": "Reverse an Account Funding Transaction (AFT).\n"
+        },
+        {
+          "info": {
+            "name": "Process a Pull Funds Refund",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/pts/v1/pull-funds-transfer/:id/refund",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "x-requestid",
+                "value": ""
+              },
+              {
+                "name": "v-c-merchant-id",
+                "value": ""
+              },
+              {
+                "name": "v-c-permissions",
+                "value": ""
+              },
+              {
+                "name": "v-c-correlation-id",
+                "value": ""
+              },
+              {
+                "name": "v-c-organization-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The transaction id of a previous Account Funding Transaction.\n"
+              }
+            ]
+          },
+          "docs": "Refund an Account Funding Transaction (AFT).\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

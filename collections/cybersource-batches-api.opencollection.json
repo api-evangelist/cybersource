@@ -1,0 +1,104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Batches API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Batches",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Batches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/accountupdater/v1/batches",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting record in zero-based dataset that should be returned as the first object in the array."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number that can be returned in the array starting from the offset record in zero-based dataset."
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query",
+                "description": "ISO-8601 format: yyyyMMddTHHmmssZ"
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query",
+                "description": "ISO-8601 format: yyyyMMddTHHmmssZ"
+              }
+            ]
+          },
+          "docs": "**List Batches**<br>This resource accepts a optional date range, record offset and limit, returning a paginated response of batches containing:\n- The batch id.\n- The batch status.\n- The batch created / modified dates.\n- The total number of accepted, rejected, updated records.\n- The total number of card association responses.\n"
+        },
+        {
+          "info": {
+            "name": "Create a Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/accountupdater/v1/batches"
+          },
+          "docs": "**Create a Batch**<br>This resource accepts TMS tokens ids of a Customer, Payment Instrument or Instrument Identifier. <br> The card numbers for the supplied tokens ids are then sent to the relevant card associations to check for updates.<br>The following type of batches can be submitted:\n-  **oneOff** batch containing tokens id for Visa or MasterCard card numbers.\n- **amexRegistration** batch containing tokens id for Amex card numbers.\n\nA batch id will be returned on a successful response which"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Batch Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/accountupdater/v1/batches/:batchId/status",
+            "params": [
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identification number assigned to the submitted request."
+              }
+            ]
+          },
+          "docs": "**Get Batch Status**<br>This resource accepts a batch id and returns:\n- The batch status.\n- The total number of accepted, rejected, updated records.\n- The total number of card association responses.\n- The billable quantities of:\n  - New Account Numbers (NAN)\n  - New Expiry Dates (NED)\n  - Account Closures (ACL)\n  - Contact Card Holders (CCH)\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Batch Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/accountupdater/v1/batches/:batchId/report",
+            "params": [
+              {
+                "name": "batchId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identification number assigned to the submitted request."
+              }
+            ]
+          },
+          "docs": "**Get Batch Report**<br>This resource accepts a batch id and returns:\n- The batch status.\n- The total number of accepted, rejected, updated records.\n- The total number of card association responses.\n- The billable quantities of:\n  - New Account Numbers (NAN)\n  - New Expiry Dates (NED)\n  - Account Closures (ACL)\n  - Contact Card Holders (CCH)\n- Source record information including token ids, masked card number, expiration dates & card type.\n- Response record information including response code, re"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

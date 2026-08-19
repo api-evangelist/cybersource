@@ -1,0 +1,468 @@
+{
+  "item": [
+    {
+      "id": "6de09899-06fd-4ba5-bcbe-4031e631442d",
+      "name": "Purchase And Refund Details",
+      "description": {
+        "content": "API for Purchase and Refund Details",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b3b22884-1c10-49d9-ac70-e09d12e18f01",
+          "name": "Get Purchase and Refund Details",
+          "request": {
+            "name": "Get Purchase and Refund Details",
+            "description": {
+              "content": "Download the Purchase and Refund Details report. This report report includes all purchases and refund transactions, as well as all activities related to transactions resulting in an adjustment to the net proceeds.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "v3",
+                "purchase-refund-details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) Valid report Start Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n**Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) Valid report End Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n**Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "organizationId",
+                  "value": "<string>",
+                  "description": "Valid Organization Id"
+                },
+                {
+                  "disabled": false,
+                  "key": "paymentSubtype",
+                  "value": "ALL",
+                  "description": "Payment Subtypes.\n  - **ALL**:  All Payment Subtypes\n  - **VI** :  Visa\n  - **MC** :  Master Card\n  - **AX** :  American Express\n  - **DI** :  Discover\n  - **DP** :  Pinless Debit\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "viewBy",
+                  "value": "requestDate",
+                  "description": "View results by Request Date or Submission Date.\n  - **requestDate** : Request Date\n  - **submissionDate**: Submission Date\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "groupName",
+                  "value": "<string>",
+                  "description": "Valid CyberSource Group Name.User can define groups using CBAPI and Group Management Module in EBC2. Groups are collection of organizationIds"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset of the Purchase and Refund Results."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "2000",
+                  "description": "Results count per page. Range(1-2000)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d69bfdb8-89bb-4f04-8232-ef032631253d",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "purchase-refund-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "paymentSubtype",
+                      "value": "ALL"
+                    },
+                    {
+                      "key": "viewBy",
+                      "value": "requestDate"
+                    },
+                    {
+                      "key": "groupName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "2000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"offset\": 2230,\n  \"limit\": 644,\n  \"pageResults\": 3405,\n  \"requestDetails\": [\n    {\n      \"requestId\": \"12345678901234567890123456\",\n      \"cybersourceMerchantId\": \"Cybersource Merchant Id\",\n      \"processorMerchantId\": \"Processor Merchant Id\",\n      \"groupName\": \"996411990498708810001\",\n      \"transactionReferenceNumber\": \"RZ3J9WCS9J33\",\n      \"merchantReferenceNumber\": \"47882339\"\n    },\n    {\n      \"requestId\": \"12345678901234567890123456\",\n      \"cybersourceMerchantId\": \"Cybersource Merchant Id\",\n      \"processorMerchantId\": \"Processor Merchant Id\",\n      \"groupName\": \"996411990498708810001\",\n      \"transactionReferenceNumber\": \"RZ3J9WCS9J33\",\n      \"merchantReferenceNumber\": \"47882339\"\n    }\n  ],\n  \"settlements\": [\n    {\n      \"requestId\": \"12345678901234567890123456\",\n      \"transactionType\": \"Purchases\",\n      \"submissionTime\": \"2017-10-01T10:10:10+05:00\",\n      \"amount\": \"23.00\",\n      \"currencyCode\": \"USD\",\n      \"paymentMethod\": \"VISA\",\n      \"walletType\": \"V.me\",\n      \"paymentType\": \"credit card\",\n      \"accountSuffix\": \"0004\",\n      \"cybersourceBatchTime\": \"2017-10-01T10:10:10+05:00\",\n      \"cybersourceBatchId\": \"123123123123123\",\n      \"cardType\": \"null\",\n      \"debitNetwork\": \"\"\n    },\n    {\n      \"requestId\": \"12345678901234567890123456\",\n      \"transactionType\": \"Purchases\",\n      \"submissionTime\": \"2017-10-01T10:10:10+05:00\",\n      \"amount\": \"23.00\",\n      \"currencyCode\": \"USD\",\n      \"paymentMethod\": \"VISA\",\n      \"walletType\": \"V.me\",\n      \"paymentType\": \"credit card\",\n      \"accountSuffix\": \"0004\",\n      \"cybersourceBatchTime\": \"2017-10-01T10:10:10+05:00\",\n      \"cybersourceBatchId\": \"123123123123123\",\n      \"cardType\": \"null\",\n      \"debitNetwork\": \"\"\n    }\n  ],\n  \"authorizations\": [\n    {\n      \"requestId\": \"12345678901234567890123456\",\n      \"transactionReferenceNumber\": \"RZ3J9WCS9J27\",\n      \"time\": \"2017-10-01T10:10:10+05:00\",\n      \"authorizationRequestId\": \"12345678901234567890123459\",\n      \"amount\": \"2.50\",\n      \"currencyCode\": \"USD\",\n      \"code\": \"160780\",\n      \"rcode\": \"1\"\n    },\n    {\n      \"requestId\": \"12345678901234567890123456\",\n      \"transactionReferenceNumber\": \"RZ3J9WCS9J27\",\n      \"time\": \"2017-10-01T10:10:10+05:00\",\n      \"authorizationRequestId\": \"12345678901234567890123459\",\n      \"amount\": \"2.50\",\n      \"currencyCode\": \"USD\",\n      \"code\": \"160780\",\n      \"rcode\": \"1\"\n    }\n  ],\n  \"feeAndFundingDetails\": [\n    {\n      \"requestId\": \"12345678901234567890123456\",\n      \"interchangePerItemFee\": \"2.7\",\n      \"interchangeDescription\": \"Visa International Assessments (Enhanced)\",\n      \"interchangePercentage\": \"0.25\",\n      \"interchangePercentageAmount\": \"-3.7500\",\n      \"discountPercentage\": \"2.39\",\n      \"discountAmount\": \"0.429\",\n      \"discountPerItemFee\": \"0.002\",\n      \"totalFee\": \"0.429\",\n      \"feeCurrency\": \"1\",\n      \"duesAssessments\": \"0\",\n      \"fundingAmount\": \"2.50\",\n      \"fundingCurrency\": \"USD\"\n    },\n    {\n      \"requestId\": \"12345678901234567890123456\",\n      \"interchangePerItemFee\": \"2.7\",\n      \"interchangeDescription\": \"Visa International Assessments (Enhanced)\",\n      \"interchangePercentage\": \"0.25\",\n      \"interchangePercentageAmount\": \"-3.7500\",\n      \"discountPercentage\": \"2.39\",\n      \"discountAmount\": \"0.429\",\n      \"discountPerItemFee\": \"0.002\",\n      \"totalFee\": \"0.429\",\n      \"feeCurrency\": \"1\",\n      \"duesAssessments\": \"0\",\n      \"fundingAmount\": \"2.50\",\n      \"fundingCurrency\": \"USD\"\n    }\n  ],\n  \"others\": [\n    {\n      \"requestId\": \"12345678901234567890123456\",\n      \"merchantData1\": \"Merchant Defined Data\",\n      \"merchantData2\": \"Merchant Defined Data\",\n      \"merchantData3\": \"Merchant Defined Data\",\n      \"merchantData4\": \"Merchant Defined Data\",\n      \"firstName\": \"First Name\",\n      \"lastName\": \"Last Name\"\n    },\n    {\n      \"requestId\": \"12345678901234567890123456\",\n      \"merchantData1\": \"Merchant Defined Data\",\n      \"merchantData2\": \"Merchant Defined Data\",\n      \"merchantData3\": \"Merchant Defined Data\",\n      \"merchantData4\": \"Merchant Defined Data\",\n      \"firstName\": \"First Name\",\n      \"lastName\": \"Last Name\"\n    }\n  ],\n  \"settlementStatuses\": [\n    {\n      \"requestId\": \"12345678901234567890123456\",\n      \"status\": \"Settlement Status\",\n      \"settlementTime\": \"2017-10-01T10:10:10+05:00\",\n      \"reasonCode\": \"reasonCode\",\n      \"errorText\": \"errorText\"\n    },\n    {\n      \"requestId\": \"12345678901234567890123456\",\n      \"status\": \"Settlement Status\",\n      \"settlementTime\": \"2017-10-01T10:10:10+05:00\",\n      \"reasonCode\": \"reasonCode\",\n      \"errorText\": \"errorText\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab60d0d7-ef40-4594-8efb-bb86413eafeb",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "purchase-refund-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "paymentSubtype",
+                      "value": "ALL"
+                    },
+                    {
+                      "key": "viewBy",
+                      "value": "requestDate"
+                    },
+                    {
+                      "key": "groupName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "2000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2016-08-11T22:47:57Z\",\n  \"reason\": \"INVALID_DATA\",\n  \"message\": \"One or more fields contains invalid data\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e9823cd-b401-4c46-9578-59d659cd368d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "purchase-refund-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "paymentSubtype",
+                      "value": "ALL"
+                    },
+                    {
+                      "key": "viewBy",
+                      "value": "requestDate"
+                    },
+                    {
+                      "key": "groupName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "2000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2016-08-11T22:47:57Z\",\n  \"reason\": \"INVALID_DATA\",\n  \"message\": \"One or more fields contains invalid data\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9997ed7d-e6fd-442b-aa23-59de3c3017ba",
+              "name": "Report not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "purchase-refund-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "paymentSubtype",
+                      "value": "ALL"
+                    },
+                    {
+                      "key": "viewBy",
+                      "value": "requestDate"
+                    },
+                    {
+                      "key": "groupName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "2000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2016-08-11T22:47:57Z\",\n  \"reason\": \"INVALID_DATA\",\n  \"message\": \"One or more fields contains invalid data\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f00756fa-cbc1-459a-9a60-39f5b951d67d",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "purchase-refund-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "paymentSubtype",
+                      "value": "ALL"
+                    },
+                    {
+                      "key": "viewBy",
+                      "value": "requestDate"
+                    },
+                    {
+                      "key": "groupName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "2000"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2016-08-11T22:47:57Z\",\n  \"reason\": \"INVALID_DATA\",\n  \"message\": \"One or more fields contains invalid data\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ed2c9bd8-d8cf-44c8-acc3-8957e31d853e",
+    "name": "CyberSource Merged Spec bankAccountValidation Purchase And Refund Details API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

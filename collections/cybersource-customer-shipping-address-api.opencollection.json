@@ -1,0 +1,177 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Customer Shipping Address API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customer Shipping Address",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Shipping Addresses for a Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tms/v2/customers/:customerId/shipping-addresses",
+            "headers": [
+              {
+                "name": "profile-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a Customer."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting record in zero-based dataset that should be returned as the first object in the array. Default is 0."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100."
+              }
+            ]
+          },
+          "docs": "|  |  |  |\n| --- | --- | --- |\n|**Customer Shipping Address**<br>A Customer Shipping Address represents tokenized customer shipping information.<br>A [Customer](#token-management_customer_create-a-customer) can have [one or more Shipping Addresses](#token-management_customer-shipping-address_list-shipping-addresses-for-a-customer), with one allocated as the Customers default for use in payments.|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|**Retrieving all Customer Shipping Addresses**<br>Your system ca"
+        },
+        {
+          "info": {
+            "name": "Create a Customer Shipping Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tms/v2/customers/:customerId/shipping-addresses",
+            "headers": [
+              {
+                "name": "profile-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a Customer."
+              }
+            ]
+          },
+          "docs": "|  |  |  |\n| --- | --- | --- |\n|**Customer Shipping Address**<br>A Customer Shipping Address represents tokenized customer shipping information.<br>A [Customer](#token-management_customer_create-a-customer) can have [one or more Shipping Addresses](#token-management_customer-shipping-address_list-shipping-addresses-for-a-customer), with one allocated as the Customers default for use in payments.|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|**Creating a Customer Shipping Address**<br>Your system can use "
+        },
+        {
+          "info": {
+            "name": "Retrieve a Customer Shipping Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tms/v2/customers/:customerId/shipping-addresses/:shippingAddressId",
+            "headers": [
+              {
+                "name": "profile-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a Customer."
+              },
+              {
+                "name": "shippingAddressId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a shipping address."
+              }
+            ]
+          },
+          "docs": "|  |  |  |\n| --- | --- | --- |\n|**Customer Shipping Address**<br>A Customer Shipping Address represents tokenized customer shipping information.<br>A [Customer](#token-management_customer_create-a-customer) can have [one or more Shipping Addresses](#token-management_customer-shipping-address_list-shipping-addresses-for-a-customer), with one allocated as the Customers default for use in payments.|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|**Retrieving a Customer Shipping Address**<br>Your system can us"
+        },
+        {
+          "info": {
+            "name": "Update a Customer Shipping Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/tms/v2/customers/:customerId/shipping-addresses/:shippingAddressId",
+            "headers": [
+              {
+                "name": "profile-id",
+                "value": ""
+              },
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a Customer."
+              },
+              {
+                "name": "shippingAddressId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a shipping address."
+              }
+            ]
+          },
+          "docs": "|  |  |  |\n| --- | --- | --- |\n|**Customer Shipping Address**<br>A Customer Shipping Address represents tokenized customer shipping information.<br>A [Customer](#token-management_customer_create-a-customer) can have [one or more Shipping Addresses](#token-management_customer-shipping-address_list-shipping-addresses-for-a-customer), with one allocated as the Customers default for use in payments.|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|**Updating a Customers Shipping Address**<br>Your system can use"
+        },
+        {
+          "info": {
+            "name": "Delete a Customer Shipping Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tms/v2/customers/:customerId/shipping-addresses/:shippingAddressId",
+            "headers": [
+              {
+                "name": "profile-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a Customer."
+              },
+              {
+                "name": "shippingAddressId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a shipping address."
+              }
+            ]
+          },
+          "docs": "|  |  |  |\n| --- | --- | --- |\n|**Customer Shipping Address**<br>A Customer Shipping Address represents tokenized customer shipping information.<br>A [Customer](#token-management_customer_create-a-customer) can have [one or more Shipping Addresses](#token-management_customer-shipping-address_list-shipping-addresses-for-a-customer), with one allocated as the Customers default for use in payments.|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|**Deleting a Customers Shipping Address**<br>Your system can use"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

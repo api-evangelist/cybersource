@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Payment Instrument API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payment Instrument",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Payment Instrument",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tms/v1/paymentinstruments",
+            "headers": [
+              {
+                "name": "profile-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "retrieveBinDetails",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve the Bin Details of PAN or network token"
+              }
+            ]
+          },
+          "docs": "|  |  |  |\n| --- | --- | --- |\n|**Standalone Payment Instruments**<br>A Payment Instrument represents tokenized payment information such as expiration date, billing address & card type.<br>A Payment Instrument token does not store the card number. A Payment Instrument is associated with an [Instrument Identifier](#token-management_instrument-identifier_create-an-instrument-identifier) that represents either a payment card number, or in the case of an ACH bank account, the routing and account num"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Payment Instrument",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tms/v1/paymentinstruments/:paymentInstrumentId",
+            "headers": [
+              {
+                "name": "profile-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "retrieveBinDetails",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve the Bin Details of PAN or network token"
+              },
+              {
+                "name": "paymentInstrumentId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a payment instrument."
+              }
+            ]
+          },
+          "docs": "|  |  |  |\n| --- | --- | --- |\n|**Standalone Payment Instruments**<br>A Payment Instrument represents tokenized payment information such as expiration date, billing address & card type.<br>A Payment Instrument token does not store the card number. A Payment Instrument is associated with an [Instrument Identifier](#token-management_instrument-identifier_create-an-instrument-identifier) that represents either a payment card number, or in the case of an ACH bank account, the routing and account num"
+        },
+        {
+          "info": {
+            "name": "Update a Payment Instrument",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/tms/v1/paymentinstruments/:paymentInstrumentId",
+            "headers": [
+              {
+                "name": "profile-id",
+                "value": ""
+              },
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "retrieveBinDetails",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve the Bin Details of PAN or network token"
+              },
+              {
+                "name": "paymentInstrumentId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a payment instrument."
+              }
+            ]
+          },
+          "docs": "|  |  |  |\n| --- | --- | --- |\n|**Standalone Payment Instruments**<br>A Payment Instrument represents tokenized payment information such as expiration date, billing address & card type.<br>A Payment Instrument token does not store the card number. A Payment Instrument is associated with an [Instrument Identifier](#token-management_instrument-identifier_create-an-instrument-identifier) that represents either a payment card number, or in the case of an ACH bank account, the routing and account num"
+        },
+        {
+          "info": {
+            "name": "Delete a Payment Instrument",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tms/v1/paymentinstruments/:paymentInstrumentId",
+            "headers": [
+              {
+                "name": "profile-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "paymentInstrumentId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a payment instrument."
+              }
+            ]
+          },
+          "docs": "|  |  |  |\n| --- | --- | --- |\n|**Standalone Payment Instruments**<br>A Payment Instrument represents tokenized payment information such as expiration date, billing address & card type.<br>A Payment Instrument token does not store the card number. A Payment Instrument is associated with an [Instrument Identifier](#token-management_instrument-identifier_create-an-instrument-identifier) that represents either a payment card number, or in the case of an ACH bank account, the routing and account num"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

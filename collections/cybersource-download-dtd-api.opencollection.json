@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Download DTD API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Download DTD",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download DTD for Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reporting/v3/dtds/:reportDefinitionNameVersion",
+            "params": [
+              {
+                "name": "reportDefinitionNameVersion",
+                "value": "",
+                "type": "path",
+                "description": "Name and version of DTD file to download. Some DTDs only have one version. In that case version name is not needed. Some example values are ctdr-1.0, tdr, pbdr-1.1"
+              }
+            ]
+          },
+          "docs": "Used to download DTDs for reports on no-auth."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

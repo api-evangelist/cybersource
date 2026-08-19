@@ -1,0 +1,250 @@
+{
+  "item": [
+    {
+      "id": "bddacf8e-6a5b-4846-9d70-9f8176e57d19",
+      "name": "UserManagement",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "42954202-e5cd-440c-9172-629aa155f16e",
+          "name": "Get User Information - Deprecated",
+          "request": {
+            "name": "Get User Information - Deprecated",
+            "description": {
+              "content": "This endpoint is deprecated. Please use the search end point.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ums",
+                "v1",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "organizationId",
+                  "value": "<string>",
+                  "description": "This is the orgId of the organization which the user belongs to."
+                },
+                {
+                  "disabled": false,
+                  "key": "userName",
+                  "value": "<string>",
+                  "description": "User ID of the user you want to get details on."
+                },
+                {
+                  "disabled": false,
+                  "key": "permissionId",
+                  "value": "<string>",
+                  "description": "permission that you are trying to search user on."
+                },
+                {
+                  "disabled": false,
+                  "key": "roleId",
+                  "value": "<string>",
+                  "description": "role of the user you are trying to search on."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4934a192-27af-4c0e-84ac-8d020cf0cd41",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ums",
+                    "v1",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "permissionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "roleId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"users\": [\n    {\n      \"accountInformation\": {\n        \"userName\": \"auto_nonmember\",\n        \"roleId\": \"admin\",\n        \"permissions\": [\n          \"ReportViewPermission\",\n          \"ReportGeneratePermission\"\n        ],\n        \"status\": \"active\",\n        \"createdTime\": \"2018-06-14T19:45:52.093Z\",\n        \"lastAccessTime\": \"2018-06-14T19:45:52.093Z\",\n        \"languagePreference\": \"en-US\",\n        \"timezone\": \"America/Los_Angeles\"\n      },\n      \"organizationInformation\": {\n        \"organizationId\": \"auto_nonmember\"\n      },\n      \"contactInformation\": {\n        \"email\": \"auto_nonmember@exchange.com\",\n        \"phoneNumber\": \"4445551234\",\n        \"firstName\": \"Zeta\",\n        \"lastName\": \"DMH\"\n      },\n      \"customFields\": {\n        \"employeeId\": \"12344\",\n        \"employeeName\": \"John Doe\",\n        \"employeeDesignation\": \"abc\",\n        \"zone\": \"NA\",\n        \"department\": \"map\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "187a2184-3ba8-472c-babf-5544787fa465",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ums",
+                    "v1",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "permissionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "roleId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "213b31bb-8400-4006-a0bd-22da79b4a244",
+              "name": "Unexpected server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ums",
+                    "v1",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "permissionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "roleId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e4c453d1-5411-48ed-ba08-c4618a0409e5",
+    "name": "CyberSource Merged Spec bankAccountValidation UserManagement API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

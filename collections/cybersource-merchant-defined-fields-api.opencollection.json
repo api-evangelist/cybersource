@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Merchant Defined Fields API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Merchant Defined Fields",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all merchant defined fields for a given reference type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/invoicing/v2/:referenceType/merchantDefinedFields",
+            "params": [
+              {
+                "name": "referenceType",
+                "value": "",
+                "type": "path",
+                "description": "The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation"
+              }
+            ]
+          },
+          "docs": "Get all merchant defined fields for a given reference type"
+        },
+        {
+          "info": {
+            "name": "Create merchant defined field for a given reference type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/invoicing/v2/:referenceType/merchantDefinedFields",
+            "params": [
+              {
+                "name": "referenceType",
+                "value": "",
+                "type": "path",
+                "description": "The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation"
+              }
+            ]
+          },
+          "docs": "Create merchant defined field for a given reference type"
+        },
+        {
+          "info": {
+            "name": "Update a MerchantDefinedField by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/invoicing/v2/:referenceType/merchantDefinedFields/:id",
+            "params": [
+              {
+                "name": "referenceType",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a MerchantDefinedField by ID"
+        },
+        {
+          "info": {
+            "name": "Delete a MerchantDefinedField by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/invoicing/v2/:referenceType/merchantDefinedFields/:id",
+            "params": [
+              {
+                "name": "referenceType",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a MerchantDefinedField by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

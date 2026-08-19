@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Payment Links API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payment Links",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a List of Payment Links",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ipl/v2/payment-links",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Page offset number."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items you would like returned. \n\nMaximum limit: 1000\n"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "The status of the purchase or donation link.\n\nPossible values:\n  - ACTIVE\n  - INACTIVE\n"
+              }
+            ]
+          },
+          "docs": "Provides a (filtered) list of payment links that have been created in your account.\nYou can filter the list based on the following status types:\n - ACTIVE\n - INACTIVE\n"
+        },
+        {
+          "info": {
+            "name": "Create a Payment Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ipl/v2/payment-links"
+          },
+          "docs": "Pay by Link is an easy and fast way to securely sell products or receive\ndonations online. This solution is ideal for distributing the same\npayment link to multiple customers. \n\nLinks for making purchases are referred to as fixed-price links, and\nlinks for making donations are referred to as customer-set price links.\n"
+        },
+        {
+          "info": {
+            "name": "Get Payment Link Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ipl/v2/payment-links/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The purchase number."
+              }
+            ]
+          },
+          "docs": "You can retrieve details of a specific payment link. For each payment transaction you can use the Transaction Details API to get more details on the payment transaction."
+        },
+        {
+          "info": {
+            "name": "Update a Payment Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/ipl/v2/payment-links/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The purchase number."
+              }
+            ]
+          },
+          "docs": "You can update all information except the payment link number for a\npayment link. Changes made to amount/price will apply to new payments\nmade using the payment link.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

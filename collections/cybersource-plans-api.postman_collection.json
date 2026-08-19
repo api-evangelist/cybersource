@@ -1,0 +1,1762 @@
+{
+  "item": [
+    {
+      "id": "ff136f45-9066-40ab-aa68-ac5173e4cc25",
+      "name": "Plans",
+      "description": {
+        "content": "Create and manage Plans for subscriptions.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6aadbcfc-e9c0-43b4-aa02-e81b9d015dab",
+          "name": "Create a Plan",
+          "request": {
+            "name": "Create a Plan",
+            "description": {
+              "content": "The recurring billing service enables you to manage payment plans and subscriptions for recurring payment schedules. It securely stores your customer's payment information and personal data within secure Visa data centers, reducing storage risks and PCI DSS scope through the use of *Token Management* (*TMS*).\n\nThe three key elements of *Cybersource* Recurring Billing are:\n\n-  **Token**: stores customer billing, shipping, and payment details.\n\n-  **Plan**: stores the billing schedule.\n\n-  **Subscription**: combines the token and plan, and defines the subscription start date, name, and description.\n\nThe APIs in this section demonstrate the management of the Plans and Subscriptions. For Tokens please refer to [Token Management](#token-management)\nThe availability of API features for a merchant can depend on the portfolio configuration and may need to be enabled at the portfolio level before they can be added to merchant accounts.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rbs",
+                "v1",
+                "plans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"planInformation\": {\n    \"name\": \"<string>\",\n    \"billingPeriod\": {\n      \"length\": \"<string>\",\n      \"unit\": \"<string>\"\n    },\n    \"code\": \"<string>\",\n    \"description\": \"<string>\",\n    \"status\": \"<string>\",\n    \"billingCycles\": {\n      \"total\": \"<string>\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"billingAmount\": \"<string>\",\n      \"setupFee\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "205a57ff-f5a7-4be1-a25e-53e7c8b2c397",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"planInformation\": {\n    \"name\": \"Gold Plan\",\n    \"description\": \"New Gold Plan\",\n    \"billingPeriod\": {\n      \"length\": \"1\",\n      \"unit\": \"M\"\n    },\n    \"billingCycles\": {\n      \"total\": \"12\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"USD\",\n      \"billingAmount\": \"10\",\n      \"setupFee\": \"2\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"rbs/v1/plans/4963015972176007901546\",\n      \"method\": \"GET\"\n    }\n  },\n  \"submitTimeUtc\": \"2020-06-28T19:48:06Z\",\n  \"status\": \"COMPLETED\",\n  \"planInformation\": {\n    \"code\": \"PLN1\",\n    \"status\": \"DRAFT\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14f011eb-2c26-4f4e-87da-efd70f2b9bea",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"planInformation\": {\n    \"name\": \"Gold Plan\",\n    \"description\": \"New Gold Plan\",\n    \"billingPeriod\": {\n      \"length\": \"1\",\n      \"unit\": \"M\"\n    },\n    \"billingCycles\": {\n      \"total\": \"12\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"USD\",\n      \"billingAmount\": \"10\",\n      \"setupFee\": \"2\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0b39dfb-30c4-48be-803b-b5b97a4304ca",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"planInformation\": {\n    \"name\": \"Gold Plan\",\n    \"description\": \"New Gold Plan\",\n    \"billingPeriod\": {\n      \"length\": \"1\",\n      \"unit\": \"M\"\n    },\n    \"billingCycles\": {\n      \"total\": \"12\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"USD\",\n      \"billingAmount\": \"10\",\n      \"setupFee\": \"2\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0060bde-f85b-42c8-9ead-d8376e35039a",
+          "name": "Get a List of Plans",
+          "request": {
+            "name": "Get a List of Plans",
+            "description": {
+              "content": "Retrieve Plans by Plan Code & Plan Status.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rbs",
+                "v1",
+                "plans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Page offset number."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of items to be returned. Default - `20`, Max - `100`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "code",
+                  "value": "<string>",
+                  "description": "Filter by Plan Code"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by Plan Status"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by Plan Name. (First sub string or full string) **[Not Recommended]**\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf2983d5-2720-4d33-a62c-7029b692bfea",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"next\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"previous\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"submitTimeUtc\": \"string\",\n  \"totalCount\": 3706,\n  \"plans\": [\n    {\n      \"_links\": {\n        \"self\": {\n          \"href\": \"string\",\n          \"method\": \"string\"\n        }\n      },\n      \"id\": \"string\",\n      \"planInformation\": {\n        \"code\": \"string\",\n        \"status\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"billingPeriod\": {\n          \"length\": \"string\",\n          \"unit\": \"string\"\n        },\n        \"billingCycles\": {\n          \"total\": \"string\"\n        }\n      },\n      \"orderInformation\": {\n        \"amountDetails\": {\n          \"currency\": \"str\",\n          \"billingAmount\": \"string\",\n          \"setupFee\": \"string\"\n        }\n      }\n    },\n    {\n      \"_links\": {\n        \"self\": {\n          \"href\": \"string\",\n          \"method\": \"string\"\n        }\n      },\n      \"id\": \"string\",\n      \"planInformation\": {\n        \"code\": \"string\",\n        \"status\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"billingPeriod\": {\n          \"length\": \"string\",\n          \"unit\": \"string\"\n        },\n        \"billingCycles\": {\n          \"total\": \"string\"\n        }\n      },\n      \"orderInformation\": {\n        \"amountDetails\": {\n          \"currency\": \"str\",\n          \"billingAmount\": \"string\",\n          \"setupFee\": \"string\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ec2763b-dbed-4394-8c8a-9b84176bb6c1",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5109fb2e-82f1-449f-8e45-e171786ac8a0",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7b43d9e1-2b98-4ddf-9ed0-f7cde7fd4a23",
+          "name": "Get a Plan",
+          "request": {
+            "name": "Get a Plan",
+            "description": {
+              "content": "Retrieve a Plan details by Plan Id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rbs",
+                "v1",
+                "plans",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Plan Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4c312059-bf8d-4d17-8f12-d33b77967bbc",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Plan Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"planInformation\": {\n    \"code\": \"string\",\n    \"status\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"billingPeriod\": {\n      \"length\": \"string\",\n      \"unit\": \"string\"\n    },\n    \"billingCycles\": {\n      \"total\": \"string\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"str\",\n      \"billingAmount\": \"string\",\n      \"setupFee\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90891641-7dfb-48ec-93f2-84588bb624d8",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Plan Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b3e7c72-46b9-4544-acf1-fd36ef6229bb",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Plan Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2be6e9d-4ce4-4c9c-a7ec-678490cb44bc",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Plan Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83c7a58a-8062-4006-89ee-6f347fce7119",
+          "name": "Update a Plan",
+          "request": {
+            "name": "Update a Plan",
+            "description": {
+              "content": "Update a Plan\n\nPlan in `DRAFT` status\n- All updates are allowed on Plan with `DRAFT` status\n\nPlan in `ACTIVE` status [Following fields are **Not Updatable**]\n- `planInformation.billingPeriod`\n- `planInformation.billingCycles` [Update is only allowed to **increase** billingCycles]\n- `orderInformation.amountDetails.currency`\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rbs",
+                "v1",
+                "plans",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Plan Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"planInformation\": {\n    \"code\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"status\": \"<string>\",\n    \"billingPeriod\": {\n      \"length\": \"<string>\",\n      \"unit\": \"<string>\"\n    },\n    \"billingCycles\": {\n      \"total\": \"<string>\"\n    }\n  },\n  \"processingInformation\": {\n    \"subscriptionBillingOptions\": {\n      \"applyTo\": \"<string>\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"billingAmount\": \"<string>\",\n      \"setupFee\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "151ab139-518d-43cf-bcc0-153dff04d2a5",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Plan Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"planInformation\": {\n    \"name\": \"Gold Plan NA\",\n    \"description\": \"Updated Gold Plan\",\n    \"billingPeriod\": {\n      \"length\": \"2\",\n      \"unit\": \"W\"\n    },\n    \"billingCycles\": {\n      \"total\": \"11\"\n    }\n  },\n  \"processingInformation\": {\n    \"subscriptionBillingOptions\": {\n      \"applyTo\": \"ALL\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"USD\",\n      \"billingAmount\": \"11\",\n      \"setupFee\": \"2\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"rbs/v1/plans/4963015972176007901546\",\n      \"method\": \"GET\"\n    }\n  },\n  \"submitTimeUtc\": \"2020-06-30T19:48:06Z\",\n  \"status\": \"COMPLETED\",\n  \"planInformation\": {\n    \"code\": \"PLAN1\",\n    \"status\": \"ACTIVE\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf4ac7bf-640c-48ae-8f49-9a791a55bf02",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Plan Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"planInformation\": {\n    \"name\": \"Gold Plan NA\",\n    \"description\": \"Updated Gold Plan\",\n    \"billingPeriod\": {\n      \"length\": \"2\",\n      \"unit\": \"W\"\n    },\n    \"billingCycles\": {\n      \"total\": \"11\"\n    }\n  },\n  \"processingInformation\": {\n    \"subscriptionBillingOptions\": {\n      \"applyTo\": \"ALL\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"USD\",\n      \"billingAmount\": \"11\",\n      \"setupFee\": \"2\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50f69c59-bdba-4bd9-bb2f-de1f22acd0de",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Plan Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"planInformation\": {\n    \"name\": \"Gold Plan NA\",\n    \"description\": \"Updated Gold Plan\",\n    \"billingPeriod\": {\n      \"length\": \"2\",\n      \"unit\": \"W\"\n    },\n    \"billingCycles\": {\n      \"total\": \"11\"\n    }\n  },\n  \"processingInformation\": {\n    \"subscriptionBillingOptions\": {\n      \"applyTo\": \"ALL\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"USD\",\n      \"billingAmount\": \"11\",\n      \"setupFee\": \"2\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17048c85-9940-4bc5-9a99-0ec01301a7cc",
+          "name": "Delete a Plan",
+          "request": {
+            "name": "Delete a Plan",
+            "description": {
+              "content": "Delete a Plan is only allowed:\n- plan status is in `DRAFT`\n- plan status is in `ACTIVE`, and `INACTIVE` only allowed when no subscriptions attached to a plan in the lifetime of a plan\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rbs",
+                "v1",
+                "plans",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Plan Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f365e8aa-f656-487a-9674-afa8366c4305",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Plan Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f0a30a9-5ba5-4f78-9288-cd173ee73c00",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Plan Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39a0c877-7b8c-49ed-afb6-ac668f6a6ba2",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Plan Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33119f10-f920-41ae-bdab-3ff1cfc27d61",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Plan Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8ed7c0e-5106-4c9e-9572-a91af32d0d17",
+          "name": "Activate a Plan",
+          "request": {
+            "name": "Activate a Plan",
+            "description": {
+              "content": "Activate a Plan",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rbs",
+                "v1",
+                "plans",
+                ":id",
+                "activate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Plan Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2ed2da6f-95a6-49e5-a01b-477895477a8c",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Plan Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"planInformation\": {\n    \"code\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90da16ad-9362-4060-b91a-42c70f312b38",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Plan Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a044193-77e3-408b-b49f-7a4bfd50b2da",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Plan Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29908650-cf1d-44a2-87b2-05f0ff7fb424",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Plan Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4adc52fd-41bb-43de-97bd-6c5ba093c708",
+          "name": "Deactivate a Plan",
+          "request": {
+            "name": "Deactivate a Plan",
+            "description": {
+              "content": "Deactivate a Plan",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rbs",
+                "v1",
+                "plans",
+                ":id",
+                "deactivate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Plan Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "69bde3e4-e04a-4902-a90c-acf1bc041bdd",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans",
+                    ":id",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Plan Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"planInformation\": {\n    \"code\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7284ff44-4e88-46db-b3a5-cfc01ac5d435",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans",
+                    ":id",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Plan Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31947545-bc45-4723-bfab-531046901e30",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans",
+                    ":id",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Plan Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4f752fb-eca2-4da0-9ab7-8df3c6da5c42",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans",
+                    ":id",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Plan Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "285c7c81-4eaa-4b18-a296-d5a8b99f2b9e",
+          "name": "Get a Plan Code",
+          "request": {
+            "name": "Get a Plan Code",
+            "description": {
+              "content": "Get a Unique Plan Code",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rbs",
+                "v1",
+                "plans",
+                "code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "997a6602-0709-4c8c-b685-e69609a38a39",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans",
+                    "code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a40a83a7-1973-4167-99f9-cec30fe2b41c",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans",
+                    "code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45b6143f-5d73-468c-9a9f-a3430c8b3e6f",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "plans",
+                    "code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fd613f74-85fc-4440-8f0f-1539265ea702",
+    "name": "CyberSource Merged Spec bankAccountValidation Plans API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,442 @@
+{
+  "item": [
+    {
+      "id": "93b18b08-0d00-4ef5-aa31-f015fe7b525c",
+      "name": "reversal",
+      "description": {
+        "content": "An authorization reversal releases the hold that the payment placed on the customer's funds.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b8cdc43e-12b0-4e00-b46f-fcf47a517017",
+          "name": "Process an Authorization Reversal",
+          "request": {
+            "name": "Process an Authorization Reversal",
+            "description": {
+              "content": "Include the payment ID in the POST request to reverse the payment amount.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pts",
+                "v2",
+                "payments",
+                ":id",
+                "reversals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The payment ID returned from a previous payment request."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"pausedRequestId\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\",\n      \"thirdPartyCertificationNumber\": \"<string>\"\n    },\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\",\n    \"reconciliationId\": \"<string>\",\n    \"transactionId\": \"<string>\"\n  },\n  \"reversalInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\"\n    },\n    \"reason\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"paymentSolution\": \"<string>\",\n    \"reconciliationId\": \"<string>\",\n    \"linkId\": \"<string>\",\n    \"reportGroup\": \"<string>\",\n    \"visaCheckoutId\": \"<string>\",\n    \"issuer\": {\n      \"discretionaryData\": \"<string>\"\n    },\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"transactionTypeIndicator\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"serviceFeeAmount\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\"\n      },\n      {\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\"\n      }\n    ]\n  },\n  \"pointOfSaleInformation\": {\n    \"emv\": {\n      \"tags\": \"<string>\"\n    }\n  },\n  \"paymentInformation\": {\n    \"paymentType\": {\n      \"method\": {\n        \"name\": \"<string>\"\n      }\n    },\n    \"merchantLimitedAcceptanceIndicator\": \"<string>\"\n  },\n  \"deviceInformation\": {\n    \"deviceType\": \"<string>\"\n  },\n  \"processorInformation\": {\n    \"preApprovalToken\": \"<string>\",\n    \"network\": {\n      \"economicallyRelatedTxnId\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "50b38f4a-018e-4a72-b4a5-ed254c03c658",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "payments",
+                    ":id",
+                    "reversals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The payment ID returned from a previous payment request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"TC50171_3\",\n    \"transactionId\": \"code\"\n  },\n  \"reversalInformation\": {\n    \"reason\": \"testing\",\n    \"amountDetails\": {\n      \"totalAmount\": \"102.21\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"/pts/v2/reversals/4963015523026180001545\",\n      \"method\": \"GET\"\n    }\n  },\n  \"submitTimeUtc\": \"2017-06-01T071912Z\",\n  \"status\": \"200\",\n  \"statusInformation\": {\n    \"reason\": \"SUCCESS\",\n    \"message\": \"Successful transaction.\"\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"TC50171_3\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"USD\"\n    }\n  },\n  \"processorInformation\": {\n    \"responseCode\": \"100\"\n  },\n  \"reversalAmountDetails\": {\n    \"reversedAmount\": \"102.21\",\n    \"currency\": \"USD\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f2ea1e8-0fa5-41f0-88a2-15217cd52641",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "payments",
+                    ":id",
+                    "reversals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The payment ID returned from a previous payment request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"TC50171_3\",\n    \"transactionId\": \"code\"\n  },\n  \"reversalInformation\": {\n    \"reason\": \"testing\",\n    \"amountDetails\": {\n      \"totalAmount\": \"102.21\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b89ce466-815a-4628-a275-feb37979bf48",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "payments",
+                    ":id",
+                    "reversals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The payment ID returned from a previous payment request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"TC50171_3\",\n    \"transactionId\": \"code\"\n  },\n  \"reversalInformation\": {\n    \"reason\": \"testing\",\n    \"amountDetails\": {\n      \"totalAmount\": \"102.21\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04ee9ad1-139c-455e-b266-9cd39acc279c",
+          "name": "Timeout Reversal",
+          "request": {
+            "name": "Timeout Reversal",
+            "description": {
+              "content": "This is to reverse a previous payment that merchant does not receive a reply(Mostly due to Timeout). To use this feature/API, make sure to pass unique value to field - clientReferenceInformation -> transactionId in [/pts/v2/payments](https://developer.cybersource.com/api-reference-assets/index.html#payments_payments) API call and use same transactionId in this API request payload to reverse the payment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pts",
+                "v2",
+                "reversals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"reconciliationId\": \"<string>\",\n    \"pausedRequestId\": \"<string>\",\n    \"transactionId\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"originalTransactionId\": \"<string>\",\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\",\n      \"thirdPartyCertificationNumber\": \"<string>\"\n    },\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  },\n  \"reversalInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\"\n    },\n    \"reason\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"paymentSolution\": \"<string>\",\n    \"reconciliationId\": \"<string>\",\n    \"linkId\": \"<string>\",\n    \"reportGroup\": \"<string>\",\n    \"visaCheckoutId\": \"<string>\",\n    \"issuer\": {\n      \"discretionaryData\": \"<string>\"\n    },\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"transactionTypeIndicator\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"serviceFeeAmount\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\"\n      },\n      {\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\"\n      }\n    ]\n  },\n  \"pointOfSaleInformation\": {\n    \"emv\": {\n      \"tags\": \"<string>\"\n    }\n  },\n  \"deviceInformation\": {\n    \"deviceType\": \"<string>\"\n  },\n  \"processorInformation\": {\n    \"network\": {\n      \"economicallyRelatedTxnId\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2f2a74b4-5570-4673-b1d3-4a6e6f3ad7a6",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "reversals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"transactionId\": \"\"\n  },\n  \"reversalInformation\": {\n    \"reason\": \"testing\",\n    \"amountDetails\": {\n      \"totalAmount\": \"102.21\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"/pts/v2/reversals/4963015523026180001545\",\n      \"method\": \"GET\"\n    }\n  },\n  \"submitTimeUtc\": \"2017-06-01T071912Z\",\n  \"status\": \"200\",\n  \"statusInformation\": {\n    \"reason\": \"SUCCESS\",\n    \"message\": \"Successful transaction.\"\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"TC50171_3\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"USD\"\n    }\n  },\n  \"processorInformation\": {\n    \"responseCode\": \"100\"\n  },\n  \"reversalAmountDetails\": {\n    \"reversedAmount\": \"102.21\",\n    \"currency\": \"USD\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3481cd1e-1570-4022-ba9d-31b52642c9da",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "reversals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"transactionId\": \"\"\n  },\n  \"reversalInformation\": {\n    \"reason\": \"testing\",\n    \"amountDetails\": {\n      \"totalAmount\": \"102.21\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "875b8056-7772-4e92-9c31-9cf6f24e8740",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "reversals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"transactionId\": \"\"\n  },\n  \"reversalInformation\": {\n    \"reason\": \"testing\",\n    \"amountDetails\": {\n      \"totalAmount\": \"102.21\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "89919d82-a0f7-4d70-b0c9-862bec1e6f38",
+    "name": "CyberSource Merged Spec bankAccountValidation reversal API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

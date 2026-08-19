@@ -1,0 +1,558 @@
+{
+  "item": [
+    {
+      "id": "b915023a-844b-41fc-850f-291f63d1cca3",
+      "name": "SecureFileShare",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c1f83df0-b553-48d8-a30d-6ad736ef27db",
+          "name": "Get List of Files",
+          "request": {
+            "name": "Get List of Files",
+            "description": {
+              "content": "Get list of files and it's information of them available inside the report directory",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sfs",
+                "v1",
+                "file-details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "(Required) Valid start date in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n **Example date format:**\n  - yyyy-MM-dd\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "(Required) Valid end date in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n **Example date format:**\n  - yyyy-MM-dd\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "organizationId",
+                  "value": "<string>",
+                  "description": "Valid Cybersource Organization Id"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "**Tailored to searches for specific files with in given Date range**\nexample : MyTransactionDetailreport.xml\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e26a6e58-bbb4-44a6-a71a-63717d3257a8",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sfs",
+                    "v1",
+                    "file-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"fileDetails\": [\n    {\n      \"fileId\": \"AC855F9F42C90361EC78202F47CDE98D70BEAA6FB00FB56AE83EE9A9DAEE077B\",\n      \"name\": \"MyTransactionDetailreport.xml\",\n      \"createdTime\": \"2017-10-01T00:00:00+05:00\",\n      \"lastModifiedTime\": \"2017-10-01T00:00:00+05:00\",\n      \"date\": \"2017-10-05\",\n      \"mimeType\": \"application/xml\",\n      \"size\": 2245397\n    },\n    {\n      \"fileId\": \"AC855F9F42C90361EC78202F47CDE98D70BEAA6FB00FB56AE83EE9A9DAEE077B\",\n      \"name\": \"MyTransactionDetailreport.xml\",\n      \"createdTime\": \"2017-10-01T00:00:00+05:00\",\n      \"lastModifiedTime\": \"2017-10-01T00:00:00+05:00\",\n      \"date\": \"2017-10-05\",\n      \"mimeType\": \"application/xml\",\n      \"size\": 2245397\n    }\n  ],\n  \"_links\": {\n    \"self\": {\n      \"href\": \"/sfs/v1/file-details?startDate=2018-01-01&endDate=2018-01-02\",\n      \"method\": \"GET\"\n    },\n    \"files\": [\n      {\n        \"fileId\": \"AC855F9F42C90361EC78202F47CDE98D70BEAA6FB00FB56AE83EE9A9DAEE077B\",\n        \"href\": \"/sfs/v1/files/AC855F9F42C90361EC78202F47CDE98D70BEAA6FB00FB56AE83EE9A9DAEE077B\",\n        \"method\": \"GET\"\n      },\n      {\n        \"fileId\": \"AC855F9F42C90361EC78202F47CDE98D70BEAA6FB00FB56AE83EE9A9DAEE077B\",\n        \"href\": \"/sfs/v1/files/AC855F9F42C90361EC78202F47CDE98D70BEAA6FB00FB56AE83EE9A9DAEE077B\",\n        \"method\": \"GET\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "141236bd-ec44-4638-9bcb-1a97e71e4dc4",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sfs",
+                    "v1",
+                    "file-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"localizationKey\": \"string\",\n  \"correlationId\": \"string\",\n  \"detail\": \"string\",\n  \"fields\": [\n    {\n      \"path\": \"string\",\n      \"message\": \"string\",\n      \"localizationKey\": \"string\"\n    },\n    {\n      \"path\": \"string\",\n      \"message\": \"string\",\n      \"localizationKey\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b3122a9-0ce4-40b1-9766-51626b9ada43",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sfs",
+                    "v1",
+                    "file-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"localizationKey\": \"string\",\n  \"correlationId\": \"string\",\n  \"detail\": \"string\",\n  \"fields\": [\n    {\n      \"path\": \"string\",\n      \"message\": \"string\",\n      \"localizationKey\": \"string\"\n    },\n    {\n      \"path\": \"string\",\n      \"message\": \"string\",\n      \"localizationKey\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ebf93303-6b52-4472-b725-597c4cd075a1",
+              "name": "Files Info not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sfs",
+                    "v1",
+                    "file-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"localizationKey\": \"string\",\n  \"correlationId\": \"string\",\n  \"detail\": \"string\",\n  \"fields\": [\n    {\n      \"path\": \"string\",\n      \"message\": \"string\",\n      \"localizationKey\": \"string\"\n    },\n    {\n      \"path\": \"string\",\n      \"message\": \"string\",\n      \"localizationKey\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "885991fc-90f7-4c28-85d7-ca6d45638f0b",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sfs",
+                    "v1",
+                    "file-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"localizationKey\": \"string\",\n  \"correlationId\": \"string\",\n  \"detail\": \"string\",\n  \"fields\": [\n    {\n      \"path\": \"string\",\n      \"message\": \"string\",\n      \"localizationKey\": \"string\"\n    },\n    {\n      \"path\": \"string\",\n      \"message\": \"string\",\n      \"localizationKey\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f20d8a40-1980-493f-a4f0-841d58a766b0",
+          "name": "Download a File with File Identifier",
+          "request": {
+            "name": "Download a File with File Identifier",
+            "description": {
+              "content": "Download a file for the given file identifier",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sfs",
+                "v1",
+                "files",
+                ":fileId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "organizationId",
+                  "value": "<string>",
+                  "description": "Valid Cybersource Organization Id"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fileId",
+                  "description": "(Required) Unique identifier for each file"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "56b8547c-77ca-4afa-8bbb-09292b0e7993",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sfs",
+                    "v1",
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fileId",
+                      "description": "(Required) Unique identifier for each file"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5d06fd84-90cf-4b5a-90f3-e538189a0b9c",
+              "name": "Invalid Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sfs",
+                    "v1",
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fileId",
+                      "description": "(Required) Unique identifier for each file"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <code>(string)</code>\n  <message>(string)</message>\n  <localizationKey>(string)</localizationKey>\n  <correlationId>(string)</correlationId>\n  <detail>(string)</detail>\n  <fields>\n    <path>(string)</path>\n    <message>(string)</message>\n    <localizationKey>(string)</localizationKey>\n  </fields>\n  <fields>\n    <path>(string)</path>\n    <message>(string)</message>\n    <localizationKey>(string)</localizationKey>\n  </fields>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "68627102-f519-4458-b69b-440193bf7400",
+              "name": "No Reports Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sfs",
+                    "v1",
+                    "files",
+                    ":fileId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fileId",
+                      "description": "(Required) Unique identifier for each file"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "765eb4b3-4fd3-4e29-acde-09d570fac531",
+    "name": "CyberSource Merged Spec bankAccountValidation SecureFileShare API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

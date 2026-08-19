@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Report Definitions API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Report Definitions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Report Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reporting/v3/report-definitions/:reportDefinitionName",
+            "params": [
+              {
+                "name": "reportDefinitionName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Report definition to retrieve"
+              },
+              {
+                "name": "subscriptionType",
+                "value": "",
+                "type": "query",
+                "description": "The subscription type for which report definition is required. By default the type will be CUSTOM.\nValid Values:\n- CLASSIC\n- CUSTOM\n- STANDARD\n"
+              },
+              {
+                "name": "reportMimeType",
+                "value": "",
+                "type": "query",
+                "description": "The format for which the report definition is required. By default the value will be CSV.\nValid Values:\n- application/xml\n- text/csv\n"
+              },
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "query",
+                "description": "Valid Organization Id"
+              }
+            ]
+          },
+          "docs": "View the attributes of an individual report type. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation/)\n"
+        },
+        {
+          "info": {
+            "name": "Get Reporting Resource Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reporting/v3/report-definitions",
+            "params": [
+              {
+                "name": "subscriptionType",
+                "value": "",
+                "type": "query",
+                "description": "Valid Values:\n- CLASSIC\n- CUSTOM\n- STANDARD\n"
+              },
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "query",
+                "description": "Valid Organization Id"
+              }
+            ]
+          },
+          "docs": "View a list of supported reports and their attributes before subscribing to them.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

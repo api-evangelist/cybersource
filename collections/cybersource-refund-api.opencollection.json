@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation refund API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "refund",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Refund a Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/pts/v2/payments/:id/refunds",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The payment ID. This ID is returned from a previous payment request."
+              }
+            ]
+          },
+          "docs": "Refund a Payment API is only used, if you have requested Authorization and Capture together in [/pts/v2/payments](https://developer.cybersource.com/api-reference-assets/index.html#payments_payments) API call. Include the payment ID in the POST request to refund the payment amount.\n"
+        },
+        {
+          "info": {
+            "name": "Refund a Capture",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/pts/v2/captures/:id/refunds",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The capture ID. This ID is returned from a previous capture request."
+              }
+            ]
+          },
+          "docs": "Refund a capture API is only used, if you have requested Capture independenlty using [/pts/v2/payments/{id}/captures](https://developer.cybersource.com/api-reference-assets/index.html#payments_capture) API call. Include the capture ID in the POST request to refund the captured amount.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

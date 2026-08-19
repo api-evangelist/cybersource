@@ -1,0 +1,517 @@
+{
+  "item": [
+    {
+      "id": "3769a4c7-9f5c-4cc4-ac10-cacdee968362",
+      "name": "Push Funds",
+      "description": {
+        "content": "A payout enables an originator to send funds on behalf of itself, merchants, or customers to credit card\naccounts using an Original Credit Transaction (OCT). An originator is a merchant, government entity, or\ncorporation with a merchant account from an acquiring bank.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fe3869dd-5673-4b9a-acda-03e1a5a6594f",
+          "name": "Process a Push Funds Transfer",
+          "request": {
+            "name": "Process a Push Funds Transfer",
+            "description": {
+              "content": "Receive funds using an Original Credit Transaction (OCT).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pts",
+                "v1",
+                "push-funds-transfer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-requestid",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "v-c-merchant-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "v-c-permissions",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "v-c-correlation-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "v-c-organization-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"sourceCurrency\": \"<string>\",\n      \"destinationCurrency\": \"<string>\",\n      \"surcharge\": {\n        \"amount\": \"<string>\"\n      }\n    }\n  },\n  \"aggregatorInformation\": {\n    \"aggregatorId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"independentSalesOrganizationID\": \"<string>\",\n    \"subMerchant\": {\n      \"id\": \"<string>\"\n    },\n    \"streetAddress\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"businessApplicationId\": \"<string>\",\n    \"payoutsOptions\": {\n      \"sourceCurrency\": \"<string>\",\n      \"destinationCurrency\": \"<string>\",\n      \"sourceAmount\": \"<string>\",\n      \"retrievalReferenceNumber\": \"<string>\",\n      \"accountFundingReferenceId\": \"<string>\"\n    },\n    \"feeProgramId\": \"<string>\",\n    \"networkPartnerId\": \"<string>\",\n    \"processingCode\": \"<string>\",\n    \"sharingGroupCode\": \"<string>\",\n    \"purposeOfPayment\": \"<string>\",\n    \"reconciliationId\": \"<string>\",\n    \"accountVerificationCode\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"recipientInformation\": {\n    \"paymentInformation\": {\n      \"card\": {\n        \"type\": \"<string>\",\n        \"securityCode\": \"<string>\",\n        \"number\": \"<string>\",\n        \"expirationMonth\": \"<string>\",\n        \"expirationYear\": \"<string>\",\n        \"customer\": {\n          \"id\": \"<string>\"\n        },\n        \"paymentInstrument\": {\n          \"id\": \"<string>\"\n        },\n        \"instrumentIdentifier\": {\n          \"id\": \"<string>\"\n        }\n      }\n    },\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"locality\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"administrativeArea\": \"<string>\",\n    \"country\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"middleName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"email\": \"<string>\",\n    \"personalIdentification\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"issuingCountry\": \"<string>\",\n      \"personalIdType\": \"<string>\"\n    },\n    \"buildingNumber\": \"<string>\",\n    \"streetName\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"senderInformation\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"middleName\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"buildingNumber\": \"<string>\",\n    \"streetName\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"locality\": \"<string>\",\n    \"administrativeArea\": \"<string>\",\n    \"country\": \"<string>\",\n    \"dateOfBirth\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"paymentInformation\": {\n      \"card\": {\n        \"type\": \"<string>\",\n        \"securityCode\": \"<string>\",\n        \"sourceAccountType\": \"<string>\",\n        \"number\": \"<string>\",\n        \"expirationMonth\": \"<string>\",\n        \"expirationYear\": \"<string>\"\n      }\n    },\n    \"referenceNumber\": \"<string>\",\n    \"account\": {\n      \"fundsSource\": \"<string>\",\n      \"number\": \"<string>\"\n    },\n    \"personalIdentification\": {\n      \"id\": \"<string>\",\n      \"personalIdType\": \"<string>\",\n      \"type\": \"<string>\",\n      \"issuingCountry\": \"<string>\"\n    },\n    \"type\": \"<string>\",\n    \"vatRegistrationNumber\": \"<string>\"\n  },\n  \"merchantInformation\": {\n    \"categoryCode\": \"<integer>\",\n    \"merchantDescriptor\": {\n      \"name\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"country\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"contact\": \"<string>\",\n      \"address1\": \"<string>\"\n    }\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"type\": \"<string>\",\n      \"number\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"securityCode\": \"<string>\"\n    },\n    \"customer\": {\n      \"id\": \"<string>\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\"\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"pointOfServiceInformation\": {\n    \"emv\": {\n      \"cardSequenceNumber\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d201e138-cd81-494f-9b52-f12bf29578a6",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v1",
+                    "push-funds-transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"124.05\",\n      \"currency\": \"USD\"\n    }\n  },\n  \"processingInformation\": {\n    \"businessApplicationId\": \"AA\",\n    \"payoutsOptions\": {\n      \"sourceAmount\": \"100\",\n      \"sourceCurrency\": \"USD\"\n    },\n    \"reconciliationId\": \"123456789\"\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"type\": \"001\",\n      \"securityCode\": \"123\",\n      \"number\": \"4111111111111111\",\n      \"expirationMonth\": \"12\",\n      \"expirationYear\": \"2035\"\n    }\n  },\n  \"recipientInformation\": {\n    \"paymentInformation\": {\n      \"card\": {\n        \"type\": \"001\",\n        \"securityCode\": \"123\",\n        \"number\": \"4111111111111111\",\n        \"expirationMonth\": \"12\",\n        \"expirationYear\": \"2035\"\n      }\n    },\n    \"locality\": \"Atlanta\",\n    \"address1\": \"1200 Peachtree Street\",\n    \"buildingNumber\": \"1200\",\n    \"country\": \"US\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"middleInitial\": \"D\",\n    \"middleName\": \"Dan\",\n    \"postalCode\": \"12345\",\n    \"administrativeArea\": \"GA\",\n    \"streetName\": \"Peachtree Street\"\n  },\n  \"senderInformation\": {\n    \"account\": {\n      \"fundsSource\": \"05\",\n      \"number\": \"4104920120500002\"\n    },\n    \"address1\": \"123 Street\",\n    \"address2\": \"123\",\n    \"buildingNumber\": \"123\",\n    \"country\": \"US\",\n    \"firstName\": \"Jane\",\n    \"lastName\": \"Doe\",\n    \"middleInitial\": \"N\",\n    \"middleName\": \"Nancy\",\n    \"postalCode\": \"54321\",\n    \"administrativeArea\": \"CA\",\n    \"streetName\": \"Street\",\n    \"referenceNumber\": \"1231823\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"name\": \"Sending Company Name\",\n      \"postalCode\": \"94440\",\n      \"address1\": \"Paseo Padre Boulevard\",\n      \"locality\": \"Foster City\",\n      \"administrativeArea\": \"CA\",\n      \"country\": \"US\",\n      \"contact\": \"65045550556\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"stringstringstringst\",\n  \"status\": \"string\",\n  \"reconciliationId\": \"string\",\n  \"clientReferenceInformation\": {\n    \"code\": \"string\",\n    \"submitLocalDateTime\": \"stringstringst\"\n  },\n  \"recipientInformation\": {\n    \"card\": {\n      \"balance\": \"string\",\n      \"currency\": \"str\"\n    },\n    \"email\": \"string\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"name\": \"string\",\n      \"locality\": \"string\",\n      \"country\": \"st\"\n    }\n  },\n  \"errorInformation\": {\n    \"reason\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"reason\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"reason\": \"string\"\n      }\n    ]\n  },\n  \"processorInformation\": {\n    \"transactionId\": 2551,\n    \"responseCode\": \"s\",\n    \"systemTraceAuditNumber\": \"string\",\n    \"retrievalReferenceNumber\": \"string\",\n    \"actionCode\": \"st\",\n    \"approvalCode\": \"string\",\n    \"feeProgramIndicator\": \"str\",\n    \"name\": \"string\",\n    \"routing\": {\n      \"network\": \"stri\"\n    },\n    \"settlement\": {\n      \"responsibilityFlag\": true,\n      \"serviceFlag\": \"string\"\n    },\n    \"merchantAdvice\": {\n      \"code\": \"st\",\n      \"codeRaw\": \"stri\"\n    },\n    \"avs\": {\n      \"code\": \"s\"\n    },\n    \"customer\": {\n      \"personalIdResult\": \"s\"\n    },\n    \"electronicVerificationResults\": {\n      \"emailRaw\": \"s\",\n      \"firstNameRaw\": \"st\",\n      \"lastNameRaw\": \"st\",\n      \"middleNameRaw\": \"st\",\n      \"nameRaw\": \"st\",\n      \"phoneNumberRaw\": \"s\"\n    },\n    \"cardVerification\": {\n      \"resultCode\": \"s\",\n      \"resultCodeRaw\": \"string\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"str\",\n      \"totalAmount\": \"string\",\n      \"settlementAmount\": \"string\",\n      \"settlementCurrency\": \"str\"\n    }\n  },\n  \"paymentInformation\": {\n    \"tokenizedCard\": {\n      \"assuranceMethod\": \"\\f \"\n    }\n  },\n  \"processingInformation\": {\n    \"domesticNationalNet\": {\n      \"reimbursementFeeBaseAmount\": \"string\"\n    }\n  },\n  \"issuerInformation\": {\n    \"octDomesticParticipantIndicator\": true,\n    \"octCrossBorderParticipantIndicator\": true,\n    \"octMoneyTransferDomesticIndicator\": false,\n    \"octMoneyTransferCrossBorderIndicator\": true,\n    \"octMoneyTransferFastFundsDomesticIndicator\": true,\n    \"octMoneyTransferFastFundsCrossBorderIndicator\": true,\n    \"octMoneyTransferMerchantCountryRestricted\": false,\n    \"octNonMoneyTransferDomesticIndicator\": true,\n    \"octNonMoneyTransferCrossBorderIndicator\": false,\n    \"octNonMoneyTransferFastFundsDomesticIndicator\": false,\n    \"octNonMoneyTransferFastFundsCrossBorderIndicator\": true,\n    \"octOnlineGamblingDomesticIndicator\": true,\n    \"octOnlineGamblingCrossBorderIndicator\": true,\n    \"octOnlineGamblingFastFundsDomesticIndicator\": true,\n    \"octOnlineGamblingFastFundsCrossBorderIndicator\": false\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"customer\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"paymentInstrument\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"instrumentIdentifier\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b1f0f33-f18f-4813-b654-8bcce0e85e18",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v1",
+                    "push-funds-transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"124.05\",\n      \"currency\": \"USD\"\n    }\n  },\n  \"processingInformation\": {\n    \"businessApplicationId\": \"AA\",\n    \"payoutsOptions\": {\n      \"sourceAmount\": \"100\",\n      \"sourceCurrency\": \"USD\"\n    },\n    \"reconciliationId\": \"123456789\"\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"type\": \"001\",\n      \"securityCode\": \"123\",\n      \"number\": \"4111111111111111\",\n      \"expirationMonth\": \"12\",\n      \"expirationYear\": \"2035\"\n    }\n  },\n  \"recipientInformation\": {\n    \"paymentInformation\": {\n      \"card\": {\n        \"type\": \"001\",\n        \"securityCode\": \"123\",\n        \"number\": \"4111111111111111\",\n        \"expirationMonth\": \"12\",\n        \"expirationYear\": \"2035\"\n      }\n    },\n    \"locality\": \"Atlanta\",\n    \"address1\": \"1200 Peachtree Street\",\n    \"buildingNumber\": \"1200\",\n    \"country\": \"US\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"middleInitial\": \"D\",\n    \"middleName\": \"Dan\",\n    \"postalCode\": \"12345\",\n    \"administrativeArea\": \"GA\",\n    \"streetName\": \"Peachtree Street\"\n  },\n  \"senderInformation\": {\n    \"account\": {\n      \"fundsSource\": \"05\",\n      \"number\": \"4104920120500002\"\n    },\n    \"address1\": \"123 Street\",\n    \"address2\": \"123\",\n    \"buildingNumber\": \"123\",\n    \"country\": \"US\",\n    \"firstName\": \"Jane\",\n    \"lastName\": \"Doe\",\n    \"middleInitial\": \"N\",\n    \"middleName\": \"Nancy\",\n    \"postalCode\": \"54321\",\n    \"administrativeArea\": \"CA\",\n    \"streetName\": \"Street\",\n    \"referenceNumber\": \"1231823\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"name\": \"Sending Company Name\",\n      \"postalCode\": \"94440\",\n      \"address1\": \"Paseo Padre Boulevard\",\n      \"locality\": \"Foster City\",\n      \"administrativeArea\": \"CA\",\n      \"country\": \"US\",\n      \"contact\": \"65045550556\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"stringstringstringst\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1b3a222-ca58-48ad-8702-04d8db1801db",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v1",
+                    "push-funds-transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"124.05\",\n      \"currency\": \"USD\"\n    }\n  },\n  \"processingInformation\": {\n    \"businessApplicationId\": \"AA\",\n    \"payoutsOptions\": {\n      \"sourceAmount\": \"100\",\n      \"sourceCurrency\": \"USD\"\n    },\n    \"reconciliationId\": \"123456789\"\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"type\": \"001\",\n      \"securityCode\": \"123\",\n      \"number\": \"4111111111111111\",\n      \"expirationMonth\": \"12\",\n      \"expirationYear\": \"2035\"\n    }\n  },\n  \"recipientInformation\": {\n    \"paymentInformation\": {\n      \"card\": {\n        \"type\": \"001\",\n        \"securityCode\": \"123\",\n        \"number\": \"4111111111111111\",\n        \"expirationMonth\": \"12\",\n        \"expirationYear\": \"2035\"\n      }\n    },\n    \"locality\": \"Atlanta\",\n    \"address1\": \"1200 Peachtree Street\",\n    \"buildingNumber\": \"1200\",\n    \"country\": \"US\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"middleInitial\": \"D\",\n    \"middleName\": \"Dan\",\n    \"postalCode\": \"12345\",\n    \"administrativeArea\": \"GA\",\n    \"streetName\": \"Peachtree Street\"\n  },\n  \"senderInformation\": {\n    \"account\": {\n      \"fundsSource\": \"05\",\n      \"number\": \"4104920120500002\"\n    },\n    \"address1\": \"123 Street\",\n    \"address2\": \"123\",\n    \"buildingNumber\": \"123\",\n    \"country\": \"US\",\n    \"firstName\": \"Jane\",\n    \"lastName\": \"Doe\",\n    \"middleInitial\": \"N\",\n    \"middleName\": \"Nancy\",\n    \"postalCode\": \"54321\",\n    \"administrativeArea\": \"CA\",\n    \"streetName\": \"Street\",\n    \"referenceNumber\": \"1231823\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"name\": \"Sending Company Name\",\n      \"postalCode\": \"94440\",\n      \"address1\": \"Paseo Padre Boulevard\",\n      \"locality\": \"Foster City\",\n      \"administrativeArea\": \"CA\",\n      \"country\": \"US\",\n      \"contact\": \"65045550556\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"stringstringstringst\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de323a2a-4306-404c-aab5-9d5159bfc5ac",
+              "name": "Not Found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v1",
+                    "push-funds-transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"124.05\",\n      \"currency\": \"USD\"\n    }\n  },\n  \"processingInformation\": {\n    \"businessApplicationId\": \"AA\",\n    \"payoutsOptions\": {\n      \"sourceAmount\": \"100\",\n      \"sourceCurrency\": \"USD\"\n    },\n    \"reconciliationId\": \"123456789\"\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"type\": \"001\",\n      \"securityCode\": \"123\",\n      \"number\": \"4111111111111111\",\n      \"expirationMonth\": \"12\",\n      \"expirationYear\": \"2035\"\n    }\n  },\n  \"recipientInformation\": {\n    \"paymentInformation\": {\n      \"card\": {\n        \"type\": \"001\",\n        \"securityCode\": \"123\",\n        \"number\": \"4111111111111111\",\n        \"expirationMonth\": \"12\",\n        \"expirationYear\": \"2035\"\n      }\n    },\n    \"locality\": \"Atlanta\",\n    \"address1\": \"1200 Peachtree Street\",\n    \"buildingNumber\": \"1200\",\n    \"country\": \"US\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"middleInitial\": \"D\",\n    \"middleName\": \"Dan\",\n    \"postalCode\": \"12345\",\n    \"administrativeArea\": \"GA\",\n    \"streetName\": \"Peachtree Street\"\n  },\n  \"senderInformation\": {\n    \"account\": {\n      \"fundsSource\": \"05\",\n      \"number\": \"4104920120500002\"\n    },\n    \"address1\": \"123 Street\",\n    \"address2\": \"123\",\n    \"buildingNumber\": \"123\",\n    \"country\": \"US\",\n    \"firstName\": \"Jane\",\n    \"lastName\": \"Doe\",\n    \"middleInitial\": \"N\",\n    \"middleName\": \"Nancy\",\n    \"postalCode\": \"54321\",\n    \"administrativeArea\": \"CA\",\n    \"streetName\": \"Street\",\n    \"referenceNumber\": \"1231823\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"name\": \"Sending Company Name\",\n      \"postalCode\": \"94440\",\n      \"address1\": \"Paseo Padre Boulevard\",\n      \"locality\": \"Foster City\",\n      \"administrativeArea\": \"CA\",\n      \"country\": \"US\",\n      \"contact\": \"65045550556\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"stringstringstringst\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52366c60-7e79-42d1-acaa-9e60c9b47451",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v1",
+                    "push-funds-transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"124.05\",\n      \"currency\": \"USD\"\n    }\n  },\n  \"processingInformation\": {\n    \"businessApplicationId\": \"AA\",\n    \"payoutsOptions\": {\n      \"sourceAmount\": \"100\",\n      \"sourceCurrency\": \"USD\"\n    },\n    \"reconciliationId\": \"123456789\"\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"type\": \"001\",\n      \"securityCode\": \"123\",\n      \"number\": \"4111111111111111\",\n      \"expirationMonth\": \"12\",\n      \"expirationYear\": \"2035\"\n    }\n  },\n  \"recipientInformation\": {\n    \"paymentInformation\": {\n      \"card\": {\n        \"type\": \"001\",\n        \"securityCode\": \"123\",\n        \"number\": \"4111111111111111\",\n        \"expirationMonth\": \"12\",\n        \"expirationYear\": \"2035\"\n      }\n    },\n    \"locality\": \"Atlanta\",\n    \"address1\": \"1200 Peachtree Street\",\n    \"buildingNumber\": \"1200\",\n    \"country\": \"US\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"middleInitial\": \"D\",\n    \"middleName\": \"Dan\",\n    \"postalCode\": \"12345\",\n    \"administrativeArea\": \"GA\",\n    \"streetName\": \"Peachtree Street\"\n  },\n  \"senderInformation\": {\n    \"account\": {\n      \"fundsSource\": \"05\",\n      \"number\": \"4104920120500002\"\n    },\n    \"address1\": \"123 Street\",\n    \"address2\": \"123\",\n    \"buildingNumber\": \"123\",\n    \"country\": \"US\",\n    \"firstName\": \"Jane\",\n    \"lastName\": \"Doe\",\n    \"middleInitial\": \"N\",\n    \"middleName\": \"Nancy\",\n    \"postalCode\": \"54321\",\n    \"administrativeArea\": \"CA\",\n    \"streetName\": \"Street\",\n    \"referenceNumber\": \"1231823\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"name\": \"Sending Company Name\",\n      \"postalCode\": \"94440\",\n      \"address1\": \"Paseo Padre Boulevard\",\n      \"locality\": \"Foster City\",\n      \"administrativeArea\": \"CA\",\n      \"country\": \"US\",\n      \"contact\": \"65045550556\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"stringstringstringst\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e7fb04cd-439f-417a-884f-eb051887bfc7",
+    "name": "CyberSource Merged Spec bankAccountValidation Push Funds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

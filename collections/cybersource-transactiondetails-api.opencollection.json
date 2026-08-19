@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation TransactionDetails API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "TransactionDetails",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tss/v2/transactions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Request ID.\n"
+              }
+            ]
+          },
+          "docs": "Include the Request ID in the GET request to retrieve the transaction details."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

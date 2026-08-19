@@ -1,0 +1,1447 @@
+{
+  "item": [
+    {
+      "id": "9a6ad879-c134-401f-8a13-34f6792b8f9e",
+      "name": "Decision Manager",
+      "description": {
+        "content": "REST API for the Decision Manager Service",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d0f74fd8-3820-45bf-8a11-38113e0db57f",
+          "name": "Create Decision Manager",
+          "request": {
+            "name": "Create Decision Manager",
+            "description": {
+              "content": "Decision Manager can help you automate and streamline your fraud operations. Decision Manager will return a decision based on the request values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "risk",
+                "v1",
+                "decisions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"totalAmount\": \"<string>\"\n    },\n    \"preOrder\": \"<string>\",\n    \"preOrderDate\": \"<string>\",\n    \"cutoffDateTime\": \"<string>\",\n    \"reordered\": \"<boolean>\",\n    \"shippingDetails\": {\n      \"giftWrap\": \"<boolean>\",\n      \"shippingMethod\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"address3\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"country\": \"<string>\",\n      \"destinationTypes\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"middleName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"destinationCode\": \"<integer>\",\n      \"method\": \"<string>\",\n      \"email\": \"<string>\",\n      \"company\": \"<string>\"\n    },\n    \"returnsAccepted\": \"<boolean>\",\n    \"lineItems\": [\n      {\n        \"totalAmount\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"quantity\": 1,\n        \"giftCardCurrency\": \"<integer>\",\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\",\n        \"gift\": \"<boolean>\",\n        \"distributorProductSku\": \"<string>\",\n        \"passenger\": {\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"id\": \"<string>\",\n          \"email\": \"<string>\",\n          \"nationality\": \"<string>\"\n        },\n        \"shippingDestinationTypes\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"allowedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"restrictedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"totalAmount\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"quantity\": 1,\n        \"giftCardCurrency\": \"<integer>\",\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\",\n        \"gift\": \"<boolean>\",\n        \"distributorProductSku\": \"<string>\",\n        \"passenger\": {\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"id\": \"<string>\",\n          \"email\": \"<string>\",\n          \"nationality\": \"<string>\"\n        },\n        \"shippingDestinationTypes\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"allowedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"restrictedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"country\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"email\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"totalOffersCount\": \"<string>\"\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"pausedRequestId\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"processorInformation\": {\n    \"avs\": {\n      \"code\": \"<string>\"\n    },\n    \"cardVerification\": {\n      \"resultCode\": \"<string>\"\n    }\n  },\n  \"processingInformation\": {\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\",\n      \"bin\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\"\n    },\n    \"tokenizedCard\": {\n      \"transactionType\": \"<string>\",\n      \"type\": \"<string>\",\n      \"number\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\"\n    },\n    \"customer\": {\n      \"customerId\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    \"bank\": {\n      \"account\": {\n        \"type\": \"<string>\",\n        \"number\": \"<string>\",\n        \"encoderId\": \"<string>\",\n        \"checkNumber\": \"<string>\",\n        \"checkImageReferenceNumber\": \"<string>\",\n        \"iban\": \"<string>\"\n      },\n      \"routingNumber\": \"<string>\",\n      \"iban\": \"<string>\",\n      \"swiftCode\": \"<string>\",\n      \"code\": \"<string>\",\n      \"accountAlias\": {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    },\n    \"method\": \"<string>\"\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\",\n    \"username\": \"<string>\",\n    \"hashedPassword\": \"<string>\",\n    \"dateOfBirth\": \"<string>\",\n    \"personalIdentification\": [\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issuedBy\": \"<string>\",\n        \"verificationResults\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issuedBy\": \"<string>\",\n        \"verificationResults\": \"<string>\"\n      }\n    ]\n  },\n  \"deviceInformation\": {\n    \"cookiesAccepted\": \"<string>\",\n    \"ipAddress\": \"<string>\",\n    \"hostName\": \"<string>\",\n    \"fingerprintSessionId\": \"<string>\",\n    \"useRawFingerprintSessionId\": \"<boolean>\",\n    \"httpBrowserEmail\": \"<string>\",\n    \"userAgent\": \"<string>\",\n    \"rawData\": [\n      {\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      {\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      }\n    ],\n    \"httpAcceptBrowserValue\": \"<string>\",\n    \"httpAcceptContent\": \"<string>\",\n    \"httpBrowserLanguage\": \"<string>\",\n    \"httpBrowserJavaEnabled\": \"<boolean>\",\n    \"httpBrowserJavaScriptEnabled\": \"<boolean>\",\n    \"httpBrowserColorDepth\": \"<string>\",\n    \"httpBrowserScreenHeight\": \"<string>\",\n    \"httpBrowserScreenWidth\": \"<string>\",\n    \"httpBrowserTimeDifference\": \"<string>\",\n    \"userAgentBrowserValue\": \"<string>\"\n  },\n  \"riskInformation\": {\n    \"profile\": {\n      \"name\": \"<string>\"\n    },\n    \"eventType\": \"<string>\",\n    \"buyerHistory\": {\n      \"customerAccount\": {\n        \"lastChangeDate\": \"<string>\",\n        \"creationHistory\": \"<string>\",\n        \"modificationHistory\": \"<string>\",\n        \"passwordHistory\": \"<string>\",\n        \"createDate\": \"<string>\",\n        \"passwordChangeDate\": \"<string>\"\n      },\n      \"accountHistory\": {\n        \"firstUseOfShippingAddress\": \"<boolean>\",\n        \"shippingAddressUsageDate\": \"<string>\"\n      },\n      \"accountPurchases\": \"<integer>\",\n      \"addCardAttempts\": \"<integer>\",\n      \"priorSuspiciousActivity\": \"<boolean>\",\n      \"paymentAccountHistory\": \"<string>\",\n      \"paymentAccountDate\": \"<integer>\",\n      \"transactionCountDay\": \"<integer>\",\n      \"transactionCountYear\": \"<integer>\"\n    },\n    \"auxiliaryData\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  },\n  \"travelInformation\": {\n    \"actualFinalDestination\": \"<string>\",\n    \"completeRoute\": \"<string>\",\n    \"departureTime\": \"<string>\",\n    \"journeyType\": \"<string>\",\n    \"legs\": [\n      {\n        \"origination\": \"<string>\",\n        \"destination\": \"<string>\",\n        \"carrierCode\": \"<string>\",\n        \"departureDate\": \"<string>\",\n        \"departureTime\": \"<integer>\"\n      },\n      {\n        \"origination\": \"<string>\",\n        \"destination\": \"<string>\",\n        \"carrierCode\": \"<string>\",\n        \"departureDate\": \"<string>\",\n        \"departureTime\": \"<integer>\"\n      }\n    ],\n    \"numberOfPassengers\": \"<integer>\",\n    \"passengers\": [\n      {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\"\n      },\n      {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\"\n      }\n    ]\n  },\n  \"merchantDefinedInformation\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    \"merchantName\": \"<string>\"\n  },\n  \"acquirerInformation\": {\n    \"acquirerBin\": \"<string>\",\n    \"country\": \"<string>\",\n    \"password\": \"<string>\",\n    \"merchantId\": \"<string>\"\n  },\n  \"recurringPaymentInformation\": {\n    \"frequency\": \"<integer>\",\n    \"endDate\": \"<string>\",\n    \"numberOfPayments\": \"<integer>\",\n    \"originalPurchaseDate\": \"<string>\",\n    \"sequenceNumber\": \"<integer>\",\n    \"type\": \"<string>\",\n    \"occurrence\": \"<string>\",\n    \"validationIndicator\": \"<string>\",\n    \"amountType\": \"<string>\",\n    \"maximumAmount\": \"<string>\",\n    \"referenceNumber\": \"<string>\"\n  },\n  \"consumerAuthenticationInformation\": {\n    \"deviceChannel\": \"<string>\",\n    \"strongAuthentication\": {\n      \"authenticationIndicator\": \"<string>\"\n    },\n    \"acsWindowSize\": \"<string>\",\n    \"alternateAuthenticationData\": \"<string>\",\n    \"alternateAuthenticationDate\": \"<string>\",\n    \"alternateAuthenticationMethod\": \"<string>\",\n    \"authenticationDate\": \"<string>\",\n    \"authenticationTransactionId\": \"<string>\",\n    \"transactionFlowIndicator\": \"<integer>\",\n    \"challengeCode\": \"<string>\",\n    \"challengeStatus\": \"<string>\",\n    \"customerCardAlias\": \"<string>\",\n    \"decoupledAuthenticationIndicator\": \"<string>\",\n    \"decoupledAuthenticationMaxTime\": \"<string>\",\n    \"defaultCard\": \"<boolean>\",\n    \"installmentTotalCount\": \"<integer>\",\n    \"merchantFraudRate\": \"<string>\",\n    \"marketingOptIn\": \"<boolean>\",\n    \"marketingSource\": \"<string>\",\n    \"mcc\": \"<string>\",\n    \"merchantScore\": \"<integer>\",\n    \"messageCategory\": \"<string>\",\n    \"npaCode\": \"<string>\",\n    \"overridePaymentMethod\": \"<string>\",\n    \"overrideCountryCode\": \"<string>\",\n    \"priorAuthenticationData\": \"<string>\",\n    \"priorAuthenticationMethod\": \"<string>\",\n    \"priorAuthenticationReferenceId\": \"<string>\",\n    \"priorAuthenticationTime\": \"<string>\",\n    \"productCode\": \"<string>\",\n    \"returnUrl\": \"<string>\",\n    \"requestorId\": \"<string>\",\n    \"requestorInitiatedAuthenticationIndicator\": \"<string>\",\n    \"requestorName\": \"<string>\",\n    \"referenceId\": \"<string>\",\n    \"sdkMaxTimeout\": \"<string>\",\n    \"secureCorporatePaymentIndicator\": \"<string>\",\n    \"transactionMode\": \"<string>\",\n    \"whiteListStatus\": \"<string>\",\n    \"scoreRequest\": \"<integer>\"\n  },\n  \"watchlistScreeningInformation\": {\n    \"addressOperator\": \"<string>\",\n    \"weights\": {\n      \"address\": \"<string>\",\n      \"company\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"sanctionLists\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"proceedOnMatch\": \"<boolean>\"\n  },\n  \"tokenInformation\": {\n    \"jti\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ee882d85-351f-4829-b838-50a47e07704b",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "decisions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"totalAmount\": \"<string>\"\n    },\n    \"preOrder\": \"<string>\",\n    \"preOrderDate\": \"<string>\",\n    \"cutoffDateTime\": \"<string>\",\n    \"reordered\": \"<boolean>\",\n    \"shippingDetails\": {\n      \"giftWrap\": \"<boolean>\",\n      \"shippingMethod\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"address3\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"country\": \"<string>\",\n      \"destinationTypes\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"middleName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"destinationCode\": \"<integer>\",\n      \"method\": \"<string>\",\n      \"email\": \"<string>\",\n      \"company\": \"<string>\"\n    },\n    \"returnsAccepted\": \"<boolean>\",\n    \"lineItems\": [\n      {\n        \"totalAmount\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"quantity\": 1,\n        \"giftCardCurrency\": \"<integer>\",\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\",\n        \"gift\": \"<boolean>\",\n        \"distributorProductSku\": \"<string>\",\n        \"passenger\": {\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"id\": \"<string>\",\n          \"email\": \"<string>\",\n          \"nationality\": \"<string>\"\n        },\n        \"shippingDestinationTypes\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"allowedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"restrictedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"totalAmount\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"quantity\": 1,\n        \"giftCardCurrency\": \"<integer>\",\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\",\n        \"gift\": \"<boolean>\",\n        \"distributorProductSku\": \"<string>\",\n        \"passenger\": {\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"id\": \"<string>\",\n          \"email\": \"<string>\",\n          \"nationality\": \"<string>\"\n        },\n        \"shippingDestinationTypes\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"allowedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"restrictedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"country\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"email\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"totalOffersCount\": \"<string>\"\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"pausedRequestId\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"processorInformation\": {\n    \"avs\": {\n      \"code\": \"<string>\"\n    },\n    \"cardVerification\": {\n      \"resultCode\": \"<string>\"\n    }\n  },\n  \"processingInformation\": {\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\",\n      \"bin\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\"\n    },\n    \"tokenizedCard\": {\n      \"transactionType\": \"<string>\",\n      \"type\": \"<string>\",\n      \"number\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\"\n    },\n    \"customer\": {\n      \"customerId\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    \"bank\": {\n      \"account\": {\n        \"type\": \"<string>\",\n        \"number\": \"<string>\",\n        \"encoderId\": \"<string>\",\n        \"checkNumber\": \"<string>\",\n        \"checkImageReferenceNumber\": \"<string>\",\n        \"iban\": \"<string>\"\n      },\n      \"routingNumber\": \"<string>\",\n      \"iban\": \"<string>\",\n      \"swiftCode\": \"<string>\",\n      \"code\": \"<string>\",\n      \"accountAlias\": {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    },\n    \"method\": \"<string>\"\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\",\n    \"username\": \"<string>\",\n    \"hashedPassword\": \"<string>\",\n    \"dateOfBirth\": \"<string>\",\n    \"personalIdentification\": [\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issuedBy\": \"<string>\",\n        \"verificationResults\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issuedBy\": \"<string>\",\n        \"verificationResults\": \"<string>\"\n      }\n    ]\n  },\n  \"deviceInformation\": {\n    \"cookiesAccepted\": \"<string>\",\n    \"ipAddress\": \"<string>\",\n    \"hostName\": \"<string>\",\n    \"fingerprintSessionId\": \"<string>\",\n    \"useRawFingerprintSessionId\": \"<boolean>\",\n    \"httpBrowserEmail\": \"<string>\",\n    \"userAgent\": \"<string>\",\n    \"rawData\": [\n      {\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      {\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      }\n    ],\n    \"httpAcceptBrowserValue\": \"<string>\",\n    \"httpAcceptContent\": \"<string>\",\n    \"httpBrowserLanguage\": \"<string>\",\n    \"httpBrowserJavaEnabled\": \"<boolean>\",\n    \"httpBrowserJavaScriptEnabled\": \"<boolean>\",\n    \"httpBrowserColorDepth\": \"<string>\",\n    \"httpBrowserScreenHeight\": \"<string>\",\n    \"httpBrowserScreenWidth\": \"<string>\",\n    \"httpBrowserTimeDifference\": \"<string>\",\n    \"userAgentBrowserValue\": \"<string>\"\n  },\n  \"riskInformation\": {\n    \"profile\": {\n      \"name\": \"<string>\"\n    },\n    \"eventType\": \"<string>\",\n    \"buyerHistory\": {\n      \"customerAccount\": {\n        \"lastChangeDate\": \"<string>\",\n        \"creationHistory\": \"<string>\",\n        \"modificationHistory\": \"<string>\",\n        \"passwordHistory\": \"<string>\",\n        \"createDate\": \"<string>\",\n        \"passwordChangeDate\": \"<string>\"\n      },\n      \"accountHistory\": {\n        \"firstUseOfShippingAddress\": \"<boolean>\",\n        \"shippingAddressUsageDate\": \"<string>\"\n      },\n      \"accountPurchases\": \"<integer>\",\n      \"addCardAttempts\": \"<integer>\",\n      \"priorSuspiciousActivity\": \"<boolean>\",\n      \"paymentAccountHistory\": \"<string>\",\n      \"paymentAccountDate\": \"<integer>\",\n      \"transactionCountDay\": \"<integer>\",\n      \"transactionCountYear\": \"<integer>\"\n    },\n    \"auxiliaryData\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  },\n  \"travelInformation\": {\n    \"actualFinalDestination\": \"<string>\",\n    \"completeRoute\": \"<string>\",\n    \"departureTime\": \"<string>\",\n    \"journeyType\": \"<string>\",\n    \"legs\": [\n      {\n        \"origination\": \"<string>\",\n        \"destination\": \"<string>\",\n        \"carrierCode\": \"<string>\",\n        \"departureDate\": \"<string>\",\n        \"departureTime\": \"<integer>\"\n      },\n      {\n        \"origination\": \"<string>\",\n        \"destination\": \"<string>\",\n        \"carrierCode\": \"<string>\",\n        \"departureDate\": \"<string>\",\n        \"departureTime\": \"<integer>\"\n      }\n    ],\n    \"numberOfPassengers\": \"<integer>\",\n    \"passengers\": [\n      {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\"\n      },\n      {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\"\n      }\n    ]\n  },\n  \"merchantDefinedInformation\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    \"merchantName\": \"<string>\"\n  },\n  \"acquirerInformation\": {\n    \"acquirerBin\": \"<string>\",\n    \"country\": \"<string>\",\n    \"password\": \"<string>\",\n    \"merchantId\": \"<string>\"\n  },\n  \"recurringPaymentInformation\": {\n    \"frequency\": \"<integer>\",\n    \"endDate\": \"<string>\",\n    \"numberOfPayments\": \"<integer>\",\n    \"originalPurchaseDate\": \"<string>\",\n    \"sequenceNumber\": \"<integer>\",\n    \"type\": \"<string>\",\n    \"occurrence\": \"<string>\",\n    \"validationIndicator\": \"<string>\",\n    \"amountType\": \"<string>\",\n    \"maximumAmount\": \"<string>\",\n    \"referenceNumber\": \"<string>\"\n  },\n  \"consumerAuthenticationInformation\": {\n    \"deviceChannel\": \"<string>\",\n    \"strongAuthentication\": {\n      \"authenticationIndicator\": \"<string>\"\n    },\n    \"acsWindowSize\": \"<string>\",\n    \"alternateAuthenticationData\": \"<string>\",\n    \"alternateAuthenticationDate\": \"<string>\",\n    \"alternateAuthenticationMethod\": \"<string>\",\n    \"authenticationDate\": \"<string>\",\n    \"authenticationTransactionId\": \"<string>\",\n    \"transactionFlowIndicator\": \"<integer>\",\n    \"challengeCode\": \"<string>\",\n    \"challengeStatus\": \"<string>\",\n    \"customerCardAlias\": \"<string>\",\n    \"decoupledAuthenticationIndicator\": \"<string>\",\n    \"decoupledAuthenticationMaxTime\": \"<string>\",\n    \"defaultCard\": \"<boolean>\",\n    \"installmentTotalCount\": \"<integer>\",\n    \"merchantFraudRate\": \"<string>\",\n    \"marketingOptIn\": \"<boolean>\",\n    \"marketingSource\": \"<string>\",\n    \"mcc\": \"<string>\",\n    \"merchantScore\": \"<integer>\",\n    \"messageCategory\": \"<string>\",\n    \"npaCode\": \"<string>\",\n    \"overridePaymentMethod\": \"<string>\",\n    \"overrideCountryCode\": \"<string>\",\n    \"priorAuthenticationData\": \"<string>\",\n    \"priorAuthenticationMethod\": \"<string>\",\n    \"priorAuthenticationReferenceId\": \"<string>\",\n    \"priorAuthenticationTime\": \"<string>\",\n    \"productCode\": \"<string>\",\n    \"returnUrl\": \"<string>\",\n    \"requestorId\": \"<string>\",\n    \"requestorInitiatedAuthenticationIndicator\": \"<string>\",\n    \"requestorName\": \"<string>\",\n    \"referenceId\": \"<string>\",\n    \"sdkMaxTimeout\": \"<string>\",\n    \"secureCorporatePaymentIndicator\": \"<string>\",\n    \"transactionMode\": \"<string>\",\n    \"whiteListStatus\": \"<string>\",\n    \"scoreRequest\": \"<integer>\"\n  },\n  \"watchlistScreeningInformation\": {\n    \"addressOperator\": \"<string>\",\n    \"weights\": {\n      \"address\": \"<string>\",\n      \"company\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"sanctionLists\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"proceedOnMatch\": \"<boolean>\"\n  },\n  \"tokenInformation\": {\n    \"jti\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"reversal\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"capture\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"customer\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"paymentInstrument\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"shippingAddress\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"instrumentIdentifier\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"submitTimeLocal\": \"string\",\n  \"status\": \"string\",\n  \"riskInformation\": {\n    \"profile\": {\n      \"name\": \"string\",\n      \"desinationQueue\": \"string\",\n      \"selectorRule\": \"string\"\n    },\n    \"rules\": [\n      {\n        \"name\": \"string\",\n        \"decision\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"decision\": \"string\"\n      }\n    ],\n    \"infoCodes\": {\n      \"velocity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"address\": [\n        \"string\",\n        \"string\"\n      ],\n      \"customerList\": [\n        \"string\",\n        \"string\"\n      ],\n      \"deviceBehavior\": [\n        \"string\",\n        \"string\"\n      ],\n      \"identityChange\": [\n        \"string\",\n        \"string\"\n      ],\n      \"internet\": [\n        \"string\",\n        \"string\"\n      ],\n      \"phone\": [\n        \"string\",\n        \"string\"\n      ],\n      \"suspicious\": [\n        \"string\",\n        \"string\"\n      ],\n      \"globalVelocity\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"velocity\": {\n      \"morphing\": [\n        {\n          \"count\": 3715,\n          \"fieldName\": \"string\",\n          \"informationCode\": \"string\"\n        },\n        {\n          \"count\": 9306,\n          \"fieldName\": \"string\",\n          \"informationCode\": \"string\"\n        }\n      ],\n      \"address\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"casePriority\": 8725,\n    \"localTime\": \"string\",\n    \"score\": {\n      \"factorCodes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"modelUsed\": \"string\",\n      \"result\": \"string\"\n    },\n    \"ipAddress\": {\n      \"anonymizerStatus\": \"string\",\n      \"locality\": \"string\",\n      \"country\": \"string\",\n      \"administrativeArea\": \"string\",\n      \"routingMethod\": \"string\",\n      \"carrier\": \"string\",\n      \"organization\": \"string\"\n    },\n    \"providers\": {\n      \"key_0\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"key_1\": {\n        \"key_0\": \"string\"\n      },\n      \"key_2\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    \"travel\": {\n      \"actualFinalDestination\": {\n        \"country\": \"string\",\n        \"locality\": \"string\",\n        \"latitude\": \"string\",\n        \"longitude\": \"string\"\n      },\n      \"firstDeparture\": {\n        \"country\": \"string\",\n        \"locality\": \"string\",\n        \"latitude\": \"string\",\n        \"longitude\": \"string\"\n      },\n      \"firstDestination\": {\n        \"country\": \"string\",\n        \"locality\": \"string\",\n        \"latitude\": \"string\",\n        \"longitude\": \"string\"\n      },\n      \"lastDestination\": {\n        \"country\": \"string\",\n        \"locality\": \"string\",\n        \"latitude\": \"string\",\n        \"longitude\": \"string\"\n      }\n    },\n    \"processorResults\": {\n      \"fraudDecision\": \"string\",\n      \"fraudDecisionReason\": \"string\"\n    }\n  },\n  \"paymentInformation\": {\n    \"binCountry\": \"string\",\n    \"accountType\": \"string\",\n    \"issuer\": \"string\",\n    \"scheme\": \"string\",\n    \"bin\": \"string\"\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"string\",\n    \"comments\": \"string\",\n    \"partner\": {\n      \"developerId\": \"string\",\n      \"solutionId\": \"string\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"str\"\n    }\n  },\n  \"consumerAuthenticationInformation\": {\n    \"accessToken\": \"string\",\n    \"acsRenderingType\": \"string\",\n    \"acsTransactionId\": \"string\",\n    \"acsUrl\": \"string\",\n    \"authenticationPath\": \"string\",\n    \"authorizationPayload\": \"string\",\n    \"authenticationType\": \"st\",\n    \"authenticationTransactionId\": \"string\",\n    \"authenticationTransactionContextId\": \"string\",\n    \"validityPeriod\": 6042,\n    \"cardholderMessage\": \"string\",\n    \"cavv\": \"string\",\n    \"cavvAlgorithm\": \"s\",\n    \"challengeCancelCode\": \"st\",\n    \"challengeRequired\": \"s\",\n    \"decoupledAuthenticationIndicator\": \"s\",\n    \"directoryServerErrorCode\": \"string\",\n    \"directoryServerErrorDescription\": \"string\",\n    \"ecommerceIndicator\": \"string\",\n    \"eci\": \"string\",\n    \"eciRaw\": \"string\",\n    \"effectiveAuthenticationType\": \"st\",\n    \"exemptionDataRaw\": \"stri\",\n    \"ivr\": {\n      \"enabledMessage\": true,\n      \"encryptionKey\": \"string\",\n      \"encryptionMandatory\": true,\n      \"encryptionType\": \"string\",\n      \"label\": \"string\",\n      \"prompt\": \"string\",\n      \"statusMessage\": \"string\"\n    },\n    \"networkScore\": \"st\",\n    \"pareq\": \"string\",\n    \"paresStatus\": \"string\",\n    \"proofXml\": \"string\",\n    \"proxyPan\": \"string\",\n    \"sdkTransactionId\": \"string\",\n    \"signedParesStatusReason\": \"st\",\n    \"specificationVersion\": \"string\",\n    \"stepUpUrl\": \"string\",\n    \"threeDSServerTransactionId\": \"string\",\n    \"ucafAuthenticationData\": \"string\",\n    \"ucafCollectionIndicator\": \"string\",\n    \"veresEnrolled\": \"string\",\n    \"whiteListStatusSource\": \"st\",\n    \"xid\": \"string\",\n    \"directoryServerTransactionId\": \"string\",\n    \"acsOperatorID\": \"string\",\n    \"acsReferenceNumber\": \"string\",\n    \"idciDecision\": \"string\",\n    \"idciReasonCode1\": \"string\",\n    \"idciReasonCode2\": \"string\",\n    \"idciScore\": 4448\n  },\n  \"watchlistScreeningInformation\": {\n    \"ipCountryConfidence\": 5,\n    \"infoCodes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"watchList\": {\n      \"matches\": [\n        {\n          \"addresses\": [\n            \"string\",\n            \"string\"\n          ],\n          \"sanctionList\": \"string\",\n          \"aliases\": [\n            \"string\",\n            \"string\"\n          ],\n          \"programs\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"addresses\": [\n            \"string\",\n            \"string\"\n          ],\n          \"sanctionList\": \"string\",\n          \"aliases\": [\n            \"string\",\n            \"string\"\n          ],\n          \"programs\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  },\n  \"errorInformation\": {\n    \"reason\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"reason\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"reason\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b337f669-bddf-40af-8302-7e6e5c612e81",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "decisions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"totalAmount\": \"<string>\"\n    },\n    \"preOrder\": \"<string>\",\n    \"preOrderDate\": \"<string>\",\n    \"cutoffDateTime\": \"<string>\",\n    \"reordered\": \"<boolean>\",\n    \"shippingDetails\": {\n      \"giftWrap\": \"<boolean>\",\n      \"shippingMethod\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"address3\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"country\": \"<string>\",\n      \"destinationTypes\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"middleName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"destinationCode\": \"<integer>\",\n      \"method\": \"<string>\",\n      \"email\": \"<string>\",\n      \"company\": \"<string>\"\n    },\n    \"returnsAccepted\": \"<boolean>\",\n    \"lineItems\": [\n      {\n        \"totalAmount\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"quantity\": 1,\n        \"giftCardCurrency\": \"<integer>\",\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\",\n        \"gift\": \"<boolean>\",\n        \"distributorProductSku\": \"<string>\",\n        \"passenger\": {\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"id\": \"<string>\",\n          \"email\": \"<string>\",\n          \"nationality\": \"<string>\"\n        },\n        \"shippingDestinationTypes\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"allowedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"restrictedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"totalAmount\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"quantity\": 1,\n        \"giftCardCurrency\": \"<integer>\",\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\",\n        \"gift\": \"<boolean>\",\n        \"distributorProductSku\": \"<string>\",\n        \"passenger\": {\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"id\": \"<string>\",\n          \"email\": \"<string>\",\n          \"nationality\": \"<string>\"\n        },\n        \"shippingDestinationTypes\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"allowedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"restrictedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"country\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"email\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"totalOffersCount\": \"<string>\"\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"pausedRequestId\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"processorInformation\": {\n    \"avs\": {\n      \"code\": \"<string>\"\n    },\n    \"cardVerification\": {\n      \"resultCode\": \"<string>\"\n    }\n  },\n  \"processingInformation\": {\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\",\n      \"bin\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\"\n    },\n    \"tokenizedCard\": {\n      \"transactionType\": \"<string>\",\n      \"type\": \"<string>\",\n      \"number\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\"\n    },\n    \"customer\": {\n      \"customerId\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    \"bank\": {\n      \"account\": {\n        \"type\": \"<string>\",\n        \"number\": \"<string>\",\n        \"encoderId\": \"<string>\",\n        \"checkNumber\": \"<string>\",\n        \"checkImageReferenceNumber\": \"<string>\",\n        \"iban\": \"<string>\"\n      },\n      \"routingNumber\": \"<string>\",\n      \"iban\": \"<string>\",\n      \"swiftCode\": \"<string>\",\n      \"code\": \"<string>\",\n      \"accountAlias\": {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    },\n    \"method\": \"<string>\"\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\",\n    \"username\": \"<string>\",\n    \"hashedPassword\": \"<string>\",\n    \"dateOfBirth\": \"<string>\",\n    \"personalIdentification\": [\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issuedBy\": \"<string>\",\n        \"verificationResults\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issuedBy\": \"<string>\",\n        \"verificationResults\": \"<string>\"\n      }\n    ]\n  },\n  \"deviceInformation\": {\n    \"cookiesAccepted\": \"<string>\",\n    \"ipAddress\": \"<string>\",\n    \"hostName\": \"<string>\",\n    \"fingerprintSessionId\": \"<string>\",\n    \"useRawFingerprintSessionId\": \"<boolean>\",\n    \"httpBrowserEmail\": \"<string>\",\n    \"userAgent\": \"<string>\",\n    \"rawData\": [\n      {\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      {\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      }\n    ],\n    \"httpAcceptBrowserValue\": \"<string>\",\n    \"httpAcceptContent\": \"<string>\",\n    \"httpBrowserLanguage\": \"<string>\",\n    \"httpBrowserJavaEnabled\": \"<boolean>\",\n    \"httpBrowserJavaScriptEnabled\": \"<boolean>\",\n    \"httpBrowserColorDepth\": \"<string>\",\n    \"httpBrowserScreenHeight\": \"<string>\",\n    \"httpBrowserScreenWidth\": \"<string>\",\n    \"httpBrowserTimeDifference\": \"<string>\",\n    \"userAgentBrowserValue\": \"<string>\"\n  },\n  \"riskInformation\": {\n    \"profile\": {\n      \"name\": \"<string>\"\n    },\n    \"eventType\": \"<string>\",\n    \"buyerHistory\": {\n      \"customerAccount\": {\n        \"lastChangeDate\": \"<string>\",\n        \"creationHistory\": \"<string>\",\n        \"modificationHistory\": \"<string>\",\n        \"passwordHistory\": \"<string>\",\n        \"createDate\": \"<string>\",\n        \"passwordChangeDate\": \"<string>\"\n      },\n      \"accountHistory\": {\n        \"firstUseOfShippingAddress\": \"<boolean>\",\n        \"shippingAddressUsageDate\": \"<string>\"\n      },\n      \"accountPurchases\": \"<integer>\",\n      \"addCardAttempts\": \"<integer>\",\n      \"priorSuspiciousActivity\": \"<boolean>\",\n      \"paymentAccountHistory\": \"<string>\",\n      \"paymentAccountDate\": \"<integer>\",\n      \"transactionCountDay\": \"<integer>\",\n      \"transactionCountYear\": \"<integer>\"\n    },\n    \"auxiliaryData\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  },\n  \"travelInformation\": {\n    \"actualFinalDestination\": \"<string>\",\n    \"completeRoute\": \"<string>\",\n    \"departureTime\": \"<string>\",\n    \"journeyType\": \"<string>\",\n    \"legs\": [\n      {\n        \"origination\": \"<string>\",\n        \"destination\": \"<string>\",\n        \"carrierCode\": \"<string>\",\n        \"departureDate\": \"<string>\",\n        \"departureTime\": \"<integer>\"\n      },\n      {\n        \"origination\": \"<string>\",\n        \"destination\": \"<string>\",\n        \"carrierCode\": \"<string>\",\n        \"departureDate\": \"<string>\",\n        \"departureTime\": \"<integer>\"\n      }\n    ],\n    \"numberOfPassengers\": \"<integer>\",\n    \"passengers\": [\n      {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\"\n      },\n      {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\"\n      }\n    ]\n  },\n  \"merchantDefinedInformation\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    \"merchantName\": \"<string>\"\n  },\n  \"acquirerInformation\": {\n    \"acquirerBin\": \"<string>\",\n    \"country\": \"<string>\",\n    \"password\": \"<string>\",\n    \"merchantId\": \"<string>\"\n  },\n  \"recurringPaymentInformation\": {\n    \"frequency\": \"<integer>\",\n    \"endDate\": \"<string>\",\n    \"numberOfPayments\": \"<integer>\",\n    \"originalPurchaseDate\": \"<string>\",\n    \"sequenceNumber\": \"<integer>\",\n    \"type\": \"<string>\",\n    \"occurrence\": \"<string>\",\n    \"validationIndicator\": \"<string>\",\n    \"amountType\": \"<string>\",\n    \"maximumAmount\": \"<string>\",\n    \"referenceNumber\": \"<string>\"\n  },\n  \"consumerAuthenticationInformation\": {\n    \"deviceChannel\": \"<string>\",\n    \"strongAuthentication\": {\n      \"authenticationIndicator\": \"<string>\"\n    },\n    \"acsWindowSize\": \"<string>\",\n    \"alternateAuthenticationData\": \"<string>\",\n    \"alternateAuthenticationDate\": \"<string>\",\n    \"alternateAuthenticationMethod\": \"<string>\",\n    \"authenticationDate\": \"<string>\",\n    \"authenticationTransactionId\": \"<string>\",\n    \"transactionFlowIndicator\": \"<integer>\",\n    \"challengeCode\": \"<string>\",\n    \"challengeStatus\": \"<string>\",\n    \"customerCardAlias\": \"<string>\",\n    \"decoupledAuthenticationIndicator\": \"<string>\",\n    \"decoupledAuthenticationMaxTime\": \"<string>\",\n    \"defaultCard\": \"<boolean>\",\n    \"installmentTotalCount\": \"<integer>\",\n    \"merchantFraudRate\": \"<string>\",\n    \"marketingOptIn\": \"<boolean>\",\n    \"marketingSource\": \"<string>\",\n    \"mcc\": \"<string>\",\n    \"merchantScore\": \"<integer>\",\n    \"messageCategory\": \"<string>\",\n    \"npaCode\": \"<string>\",\n    \"overridePaymentMethod\": \"<string>\",\n    \"overrideCountryCode\": \"<string>\",\n    \"priorAuthenticationData\": \"<string>\",\n    \"priorAuthenticationMethod\": \"<string>\",\n    \"priorAuthenticationReferenceId\": \"<string>\",\n    \"priorAuthenticationTime\": \"<string>\",\n    \"productCode\": \"<string>\",\n    \"returnUrl\": \"<string>\",\n    \"requestorId\": \"<string>\",\n    \"requestorInitiatedAuthenticationIndicator\": \"<string>\",\n    \"requestorName\": \"<string>\",\n    \"referenceId\": \"<string>\",\n    \"sdkMaxTimeout\": \"<string>\",\n    \"secureCorporatePaymentIndicator\": \"<string>\",\n    \"transactionMode\": \"<string>\",\n    \"whiteListStatus\": \"<string>\",\n    \"scoreRequest\": \"<integer>\"\n  },\n  \"watchlistScreeningInformation\": {\n    \"addressOperator\": \"<string>\",\n    \"weights\": {\n      \"address\": \"<string>\",\n      \"company\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"sanctionLists\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"proceedOnMatch\": \"<boolean>\"\n  },\n  \"tokenInformation\": {\n    \"jti\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2fbd6637-1403-49bd-a3a8-452b2a85ed77",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "decisions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"totalAmount\": \"<string>\"\n    },\n    \"preOrder\": \"<string>\",\n    \"preOrderDate\": \"<string>\",\n    \"cutoffDateTime\": \"<string>\",\n    \"reordered\": \"<boolean>\",\n    \"shippingDetails\": {\n      \"giftWrap\": \"<boolean>\",\n      \"shippingMethod\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"address3\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"country\": \"<string>\",\n      \"destinationTypes\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"middleName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"destinationCode\": \"<integer>\",\n      \"method\": \"<string>\",\n      \"email\": \"<string>\",\n      \"company\": \"<string>\"\n    },\n    \"returnsAccepted\": \"<boolean>\",\n    \"lineItems\": [\n      {\n        \"totalAmount\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"quantity\": 1,\n        \"giftCardCurrency\": \"<integer>\",\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\",\n        \"gift\": \"<boolean>\",\n        \"distributorProductSku\": \"<string>\",\n        \"passenger\": {\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"id\": \"<string>\",\n          \"email\": \"<string>\",\n          \"nationality\": \"<string>\"\n        },\n        \"shippingDestinationTypes\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"allowedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"restrictedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"totalAmount\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"quantity\": 1,\n        \"giftCardCurrency\": \"<integer>\",\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\",\n        \"gift\": \"<boolean>\",\n        \"distributorProductSku\": \"<string>\",\n        \"passenger\": {\n          \"type\": \"<string>\",\n          \"status\": \"<string>\",\n          \"phone\": \"<string>\",\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"id\": \"<string>\",\n          \"email\": \"<string>\",\n          \"nationality\": \"<string>\"\n        },\n        \"shippingDestinationTypes\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"allowedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"restrictedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"country\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"email\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"totalOffersCount\": \"<string>\"\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"pausedRequestId\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"processorInformation\": {\n    \"avs\": {\n      \"code\": \"<string>\"\n    },\n    \"cardVerification\": {\n      \"resultCode\": \"<string>\"\n    }\n  },\n  \"processingInformation\": {\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\",\n      \"bin\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\"\n    },\n    \"tokenizedCard\": {\n      \"transactionType\": \"<string>\",\n      \"type\": \"<string>\",\n      \"number\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\"\n    },\n    \"customer\": {\n      \"customerId\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    \"bank\": {\n      \"account\": {\n        \"type\": \"<string>\",\n        \"number\": \"<string>\",\n        \"encoderId\": \"<string>\",\n        \"checkNumber\": \"<string>\",\n        \"checkImageReferenceNumber\": \"<string>\",\n        \"iban\": \"<string>\"\n      },\n      \"routingNumber\": \"<string>\",\n      \"iban\": \"<string>\",\n      \"swiftCode\": \"<string>\",\n      \"code\": \"<string>\",\n      \"accountAlias\": {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    },\n    \"method\": \"<string>\"\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\",\n    \"username\": \"<string>\",\n    \"hashedPassword\": \"<string>\",\n    \"dateOfBirth\": \"<string>\",\n    \"personalIdentification\": [\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issuedBy\": \"<string>\",\n        \"verificationResults\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issuedBy\": \"<string>\",\n        \"verificationResults\": \"<string>\"\n      }\n    ]\n  },\n  \"deviceInformation\": {\n    \"cookiesAccepted\": \"<string>\",\n    \"ipAddress\": \"<string>\",\n    \"hostName\": \"<string>\",\n    \"fingerprintSessionId\": \"<string>\",\n    \"useRawFingerprintSessionId\": \"<boolean>\",\n    \"httpBrowserEmail\": \"<string>\",\n    \"userAgent\": \"<string>\",\n    \"rawData\": [\n      {\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      {\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      }\n    ],\n    \"httpAcceptBrowserValue\": \"<string>\",\n    \"httpAcceptContent\": \"<string>\",\n    \"httpBrowserLanguage\": \"<string>\",\n    \"httpBrowserJavaEnabled\": \"<boolean>\",\n    \"httpBrowserJavaScriptEnabled\": \"<boolean>\",\n    \"httpBrowserColorDepth\": \"<string>\",\n    \"httpBrowserScreenHeight\": \"<string>\",\n    \"httpBrowserScreenWidth\": \"<string>\",\n    \"httpBrowserTimeDifference\": \"<string>\",\n    \"userAgentBrowserValue\": \"<string>\"\n  },\n  \"riskInformation\": {\n    \"profile\": {\n      \"name\": \"<string>\"\n    },\n    \"eventType\": \"<string>\",\n    \"buyerHistory\": {\n      \"customerAccount\": {\n        \"lastChangeDate\": \"<string>\",\n        \"creationHistory\": \"<string>\",\n        \"modificationHistory\": \"<string>\",\n        \"passwordHistory\": \"<string>\",\n        \"createDate\": \"<string>\",\n        \"passwordChangeDate\": \"<string>\"\n      },\n      \"accountHistory\": {\n        \"firstUseOfShippingAddress\": \"<boolean>\",\n        \"shippingAddressUsageDate\": \"<string>\"\n      },\n      \"accountPurchases\": \"<integer>\",\n      \"addCardAttempts\": \"<integer>\",\n      \"priorSuspiciousActivity\": \"<boolean>\",\n      \"paymentAccountHistory\": \"<string>\",\n      \"paymentAccountDate\": \"<integer>\",\n      \"transactionCountDay\": \"<integer>\",\n      \"transactionCountYear\": \"<integer>\"\n    },\n    \"auxiliaryData\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  },\n  \"travelInformation\": {\n    \"actualFinalDestination\": \"<string>\",\n    \"completeRoute\": \"<string>\",\n    \"departureTime\": \"<string>\",\n    \"journeyType\": \"<string>\",\n    \"legs\": [\n      {\n        \"origination\": \"<string>\",\n        \"destination\": \"<string>\",\n        \"carrierCode\": \"<string>\",\n        \"departureDate\": \"<string>\",\n        \"departureTime\": \"<integer>\"\n      },\n      {\n        \"origination\": \"<string>\",\n        \"destination\": \"<string>\",\n        \"carrierCode\": \"<string>\",\n        \"departureDate\": \"<string>\",\n        \"departureTime\": \"<integer>\"\n      }\n    ],\n    \"numberOfPassengers\": \"<integer>\",\n    \"passengers\": [\n      {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\"\n      },\n      {\n        \"firstName\": \"<string>\",\n        \"lastName\": \"<string>\"\n      }\n    ]\n  },\n  \"merchantDefinedInformation\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    \"merchantName\": \"<string>\"\n  },\n  \"acquirerInformation\": {\n    \"acquirerBin\": \"<string>\",\n    \"country\": \"<string>\",\n    \"password\": \"<string>\",\n    \"merchantId\": \"<string>\"\n  },\n  \"recurringPaymentInformation\": {\n    \"frequency\": \"<integer>\",\n    \"endDate\": \"<string>\",\n    \"numberOfPayments\": \"<integer>\",\n    \"originalPurchaseDate\": \"<string>\",\n    \"sequenceNumber\": \"<integer>\",\n    \"type\": \"<string>\",\n    \"occurrence\": \"<string>\",\n    \"validationIndicator\": \"<string>\",\n    \"amountType\": \"<string>\",\n    \"maximumAmount\": \"<string>\",\n    \"referenceNumber\": \"<string>\"\n  },\n  \"consumerAuthenticationInformation\": {\n    \"deviceChannel\": \"<string>\",\n    \"strongAuthentication\": {\n      \"authenticationIndicator\": \"<string>\"\n    },\n    \"acsWindowSize\": \"<string>\",\n    \"alternateAuthenticationData\": \"<string>\",\n    \"alternateAuthenticationDate\": \"<string>\",\n    \"alternateAuthenticationMethod\": \"<string>\",\n    \"authenticationDate\": \"<string>\",\n    \"authenticationTransactionId\": \"<string>\",\n    \"transactionFlowIndicator\": \"<integer>\",\n    \"challengeCode\": \"<string>\",\n    \"challengeStatus\": \"<string>\",\n    \"customerCardAlias\": \"<string>\",\n    \"decoupledAuthenticationIndicator\": \"<string>\",\n    \"decoupledAuthenticationMaxTime\": \"<string>\",\n    \"defaultCard\": \"<boolean>\",\n    \"installmentTotalCount\": \"<integer>\",\n    \"merchantFraudRate\": \"<string>\",\n    \"marketingOptIn\": \"<boolean>\",\n    \"marketingSource\": \"<string>\",\n    \"mcc\": \"<string>\",\n    \"merchantScore\": \"<integer>\",\n    \"messageCategory\": \"<string>\",\n    \"npaCode\": \"<string>\",\n    \"overridePaymentMethod\": \"<string>\",\n    \"overrideCountryCode\": \"<string>\",\n    \"priorAuthenticationData\": \"<string>\",\n    \"priorAuthenticationMethod\": \"<string>\",\n    \"priorAuthenticationReferenceId\": \"<string>\",\n    \"priorAuthenticationTime\": \"<string>\",\n    \"productCode\": \"<string>\",\n    \"returnUrl\": \"<string>\",\n    \"requestorId\": \"<string>\",\n    \"requestorInitiatedAuthenticationIndicator\": \"<string>\",\n    \"requestorName\": \"<string>\",\n    \"referenceId\": \"<string>\",\n    \"sdkMaxTimeout\": \"<string>\",\n    \"secureCorporatePaymentIndicator\": \"<string>\",\n    \"transactionMode\": \"<string>\",\n    \"whiteListStatus\": \"<string>\",\n    \"scoreRequest\": \"<integer>\"\n  },\n  \"watchlistScreeningInformation\": {\n    \"addressOperator\": \"<string>\",\n    \"weights\": {\n      \"address\": \"<string>\",\n      \"company\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"sanctionLists\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"proceedOnMatch\": \"<boolean>\"\n  },\n  \"tokenInformation\": {\n    \"jti\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b132c4fe-91a3-4c8f-8060-0c89dc438f7a",
+          "name": "List Management",
+          "request": {
+            "name": "List Management",
+            "description": {
+              "content": "This call adds/deletes/converts the request information in the negative list.\n\nProvide the list to be updated as the path parameter. This value can be 'postiive', 'negative' or 'review'.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "risk",
+                "v1",
+                "lists",
+                ":type",
+                "entries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) The list to be updated. It can be 'positive', 'negative' or 'review'."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderInformation\": {\n    \"address\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"country\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"country\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"email\": \"<string>\",\n      \"emailDomain\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"country\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"unitPrice\": \"<string>\"\n      },\n      {\n        \"unitPrice\": \"<string>\"\n      }\n    ]\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\",\n      \"bin\": \"<string>\"\n    },\n    \"bank\": {\n      \"accountNumber\": \"<string>\",\n      \"code\": \"<string>\",\n      \"country\": \"<string>\",\n      \"iban\": \"<string>\"\n    }\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"deviceInformation\": {\n    \"ipAddress\": \"<string>\",\n    \"networkIpAddress\": \"<string>\"\n  },\n  \"riskInformation\": {\n    \"markingDetails\": {\n      \"notes\": \"<string>\",\n      \"reason\": \"<string>\",\n      \"recordName\": \"<string>\",\n      \"action\": \"<string>\"\n    }\n  },\n  \"buyerInformation\": {\n    \"personalIdentification\": [\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issuedBy\": \"<string>\",\n        \"verificationResults\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issuedBy\": \"<string>\",\n        \"verificationResults\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d2dbd0f2-9d24-4d30-8d2d-ad4c4b375cfc",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "lists",
+                    ":type",
+                    "entries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) The list to be updated. It can be 'positive', 'negative' or 'review'."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderInformation\": {\n    \"address\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"country\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"country\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"email\": \"<string>\",\n      \"emailDomain\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"country\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"unitPrice\": \"<string>\"\n      },\n      {\n        \"unitPrice\": \"<string>\"\n      }\n    ]\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\",\n      \"bin\": \"<string>\"\n    },\n    \"bank\": {\n      \"accountNumber\": \"<string>\",\n      \"code\": \"<string>\",\n      \"country\": \"<string>\",\n      \"iban\": \"<string>\"\n    }\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"deviceInformation\": {\n    \"ipAddress\": \"<string>\",\n    \"networkIpAddress\": \"<string>\"\n  },\n  \"riskInformation\": {\n    \"markingDetails\": {\n      \"notes\": \"<string>\",\n      \"reason\": \"<string>\",\n      \"recordName\": \"<string>\",\n      \"action\": \"<string>\"\n    }\n  },\n  \"buyerInformation\": {\n    \"personalIdentification\": [\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issuedBy\": \"<string>\",\n        \"verificationResults\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issuedBy\": \"<string>\",\n        \"verificationResults\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"clientReferenceInformaton\": {\n    \"code\": \"string\",\n    \"comments\": \"string\",\n    \"partner\": {\n      \"developerId\": \"string\",\n      \"solutionId\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95d9cdc0-7856-440a-9b50-3fdcc99c9188",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "lists",
+                    ":type",
+                    "entries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) The list to be updated. It can be 'positive', 'negative' or 'review'."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderInformation\": {\n    \"address\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"country\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"country\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"email\": \"<string>\",\n      \"emailDomain\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"country\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"unitPrice\": \"<string>\"\n      },\n      {\n        \"unitPrice\": \"<string>\"\n      }\n    ]\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"number\": \"<string>\",\n      \"type\": \"<string>\",\n      \"bin\": \"<string>\"\n    },\n    \"bank\": {\n      \"accountNumber\": \"<string>\",\n      \"code\": \"<string>\",\n      \"country\": \"<string>\",\n      \"iban\": \"<string>\"\n    }\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"deviceInformation\": {\n    \"ipAddress\": \"<string>\",\n    \"networkIpAddress\": \"<string>\"\n  },\n  \"riskInformation\": {\n    \"markingDetails\": {\n      \"notes\": \"<string>\",\n      \"reason\": \"<string>\",\n      \"recordName\": \"<string>\",\n      \"action\": \"<string>\"\n    }\n  },\n  \"buyerInformation\": {\n    \"personalIdentification\": [\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issuedBy\": \"<string>\",\n        \"verificationResults\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issuedBy\": \"<string>\",\n        \"verificationResults\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bcd2d0e0-dad9-4552-a98b-cbae1caa9863",
+          "name": "Take action on a DM post-transactional case",
+          "request": {
+            "name": "Take action on a DM post-transactional case",
+            "description": {
+              "content": "Take action on a DM post-transactional case",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "risk",
+                "v1",
+                "decisions",
+                ":id",
+                "actions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) An unique identification number generated by Cybersource to identify the submitted request."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"decisionInformation\": {\n    \"decision\": \"<string>\",\n    \"comments\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a4e8c7d1-1395-4d5d-a643-b6317278453c",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "decisions",
+                    ":id",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) An unique identification number generated by Cybersource to identify the submitted request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"decisionInformation\": {\n    \"decision\": \"<string>\",\n    \"comments\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"actionList\": [\n      \"CAPTURE\",\n      \"REVERSE\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"_embedded\": {\n    \"capture\": {\n      \"status\": \"PENDING\",\n      \"_links\": {\n        \"self\": {\n          \"href\": \"/pts/v2/captures/4963015972176007901546\",\n          \"method\": \"GET\"\n        }\n      }\n    },\n    \"reversal\": {\n      \"status\": \"REVERSED\",\n      \"_links\": {\n        \"self\": {\n          \"href\": \"/pts/v2/reversals/4963015972176007901547\",\n          \"method\": \"GET\"\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1ad7c65-0d6c-4512-adf3-d290ec2898f7",
+              "name": "Invalid Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "decisions",
+                    ":id",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) An unique identification number generated by Cybersource to identify the submitted request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"decisionInformation\": {\n    \"decision\": \"<string>\",\n    \"comments\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"actionList\": [\n      \"CAPTURE\",\n      \"REVERSE\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5414bf1-90ff-49f7-8305-874581324bca",
+              "name": "Access Denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "decisions",
+                    ":id",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) An unique identification number generated by Cybersource to identify the submitted request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"decisionInformation\": {\n    \"decision\": \"<string>\",\n    \"comments\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"actionList\": [\n      \"CAPTURE\",\n      \"REVERSE\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20b51f76-959b-4ff6-b71b-97ffb5057f09",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "decisions",
+                    ":id",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) An unique identification number generated by Cybersource to identify the submitted request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"decisionInformation\": {\n    \"decision\": \"<string>\",\n    \"comments\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"actionList\": [\n      \"CAPTURE\",\n      \"REVERSE\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0afdefec-7acd-4021-a339-b37718833c5e",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "decisions",
+                    ":id",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) An unique identification number generated by Cybersource to identify the submitted request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"decisionInformation\": {\n    \"decision\": \"<string>\",\n    \"comments\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"actionList\": [\n      \"CAPTURE\",\n      \"REVERSE\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fdbe3f8b-8f5a-4369-8372-0dd5bca1f9a0",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "decisions",
+                    ":id",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) An unique identification number generated by Cybersource to identify the submitted request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"decisionInformation\": {\n    \"decision\": \"<string>\",\n    \"comments\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"actionList\": [\n      \"CAPTURE\",\n      \"REVERSE\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca62e951-e453-421e-946c-9294286a8db9",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "decisions",
+                    ":id",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) An unique identification number generated by Cybersource to identify the submitted request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"decisionInformation\": {\n    \"decision\": \"<string>\",\n    \"comments\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"actionList\": [\n      \"CAPTURE\",\n      \"REVERSE\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23edc31c-0b4e-4fc2-91a5-c601171a67bf",
+          "name": "Add a comment to a DM post-transactional case",
+          "request": {
+            "name": "Add a comment to a DM post-transactional case",
+            "description": {
+              "content": "Add a comment to a DM post-transactional case",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "risk",
+                "v1",
+                "decisions",
+                ":id",
+                "comments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) An unique identification number generated by Cybersource to identify the submitted request."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"comments\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5a7345db-14b6-48f2-9d39-92e5656f1ced",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "decisions",
+                    ":id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) An unique identification number generated by Cybersource to identify the submitted request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comments\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55215ecd-7996-40fb-a7e7-74309bc67fcc",
+              "name": "Invalid Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "decisions",
+                    ":id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) An unique identification number generated by Cybersource to identify the submitted request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comments\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "613ac346-db76-48ce-becb-574f99b7a079",
+              "name": "Access Denied",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "decisions",
+                    ":id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) An unique identification number generated by Cybersource to identify the submitted request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comments\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f24a408-2bd1-4980-b644-911ecd3df1f9",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "decisions",
+                    ":id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) An unique identification number generated by Cybersource to identify the submitted request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comments\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45ceea50-34c7-44f5-87a3-231a318f6604",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "decisions",
+                    ":id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) An unique identification number generated by Cybersource to identify the submitted request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comments\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f0a7cf9-970d-471e-bc0a-49f1d2bfadc7",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "decisions",
+                    ":id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) An unique identification number generated by Cybersource to identify the submitted request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comments\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40158858-19c0-49c7-b826-c613dafc6f69",
+              "name": "Service Unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "decisions",
+                    ":id",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) An unique identification number generated by Cybersource to identify the submitted request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comments\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "580e1174-4045-416f-a604-19db43b39345",
+          "name": "Fraud Marking",
+          "request": {
+            "name": "Fraud Marking",
+            "description": {
+              "content": "This can be used to -\n1. Add known fraudulent data to the fraud history\n2. Remove data added to history with Transaction Marking Tool or by uploading chargeback files\n3. Remove chargeback data from history that was automatically added.\nFor detailed information, contact your Cybersource representative\n\nPlace the request ID of the transaction you want to mark as suspect (or remove from history) as the path parameter in this request.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "risk",
+                "v1",
+                "decisions",
+                ":id",
+                "marking"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Request ID of the transaction that you want to mark as suspect or remove from history."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"riskInformation\": {\n    \"markingDetails\": {\n      \"notes\": \"<string>\",\n      \"reason\": \"<string>\",\n      \"fieldsIncluded\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"action\": \"<string>\"\n    }\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "42678571-a627-4dfd-a1b8-085fb4cf18f1",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "decisions",
+                    ":id",
+                    "marking"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Request ID of the transaction that you want to mark as suspect or remove from history."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"riskInformation\": {\n    \"markingDetails\": {\n      \"notes\": \"<string>\",\n      \"reason\": \"<string>\",\n      \"fieldsIncluded\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"action\": \"<string>\"\n    }\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"clientReferenceInformaton\": {\n    \"code\": \"string\",\n    \"comments\": \"string\",\n    \"partner\": {\n      \"developerId\": \"string\",\n      \"solutionId\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c61d5786-c0eb-4813-8acd-284ded955a5a",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "decisions",
+                    ":id",
+                    "marking"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Request ID of the transaction that you want to mark as suspect or remove from history."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"riskInformation\": {\n    \"markingDetails\": {\n      \"notes\": \"<string>\",\n      \"reason\": \"<string>\",\n      \"fieldsIncluded\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"action\": \"<string>\"\n    }\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5d19e775-5364-497b-9bd1-2a659da6f701",
+    "name": "CyberSource Merged Spec bankAccountValidation Decision Manager API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,686 @@
+{
+  "item": [
+    {
+      "id": "a3ea8089-4416-4580-8e6b-585a866cc97a",
+      "name": "Device Search",
+      "description": {
+        "content": "Search and Retrieve Devices.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d8a018a7-e7f2-44f6-a26a-4f8003840bea",
+          "name": "Retrieve List of Devices for a given search query V2",
+          "request": {
+            "name": "Retrieve List of Devices for a given search query V2",
+            "description": {
+              "content": "Retrieves list of terminals in paginated format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dms",
+                "v2",
+                "devices",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"sort\": \"<string>\",\n  \"offset\": \"<long>\",\n  \"limit\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6be684a3-f84a-4fa1-9447-7936068f565b",
+              "name": "Retrieved all Devices matched by the search query",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v2",
+                    "devices",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"sort\": \"<string>\",\n  \"offset\": \"<long>\",\n  \"limit\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 8583,\n  \"offset\": 4412,\n  \"limit\": 4796,\n  \"sort\": \"string\",\n  \"count\": 6311,\n  \"devices\": [\n    {\n      \"readerId\": \"string\",\n      \"terminalSerialNumber\": \"GXyyLTSLDUb\",\n      \"terminalId\": \"string\",\n      \"model\": \"Q5k\",\n      \"make\": \"oKE\",\n      \"hardwareRevision\": \"FapL\",\n      \"status\": \"string\",\n      \"creationDate\": \"YYYY-MM-DDThh:mm:ssZ\",\n      \"pin\": \"string\"\n    },\n    {\n      \"readerId\": \"string\",\n      \"terminalSerialNumber\": \"aXguzQXC\",\n      \"terminalId\": \"string\",\n      \"model\": \"ALbhRjndJT\",\n      \"make\": \"Y6KQK\",\n      \"hardwareRevision\": \"Hufp/7l\",\n      \"status\": \"string\",\n      \"creationDate\": \"YYYY-MM-DDThh:mm:ssZ\",\n      \"pin\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08ac1b38-1f17-4e15-8d78-7f1ee553ec0c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v2",
+                    "devices",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"sort\": \"<string>\",\n  \"offset\": \"<long>\",\n  \"limit\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c50b1bd3-2691-4193-80ce-f6ab3849f63a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v2",
+                    "devices",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"sort\": \"<string>\",\n  \"offset\": \"<long>\",\n  \"limit\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80ac34f4-9ec3-4796-9e13-30c319e97fa8",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v2",
+                    "devices",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"sort\": \"<string>\",\n  \"offset\": \"<long>\",\n  \"limit\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "636d5e17-21d8-4a25-9981-62e725f11630",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v2",
+                    "devices",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"sort\": \"<string>\",\n  \"offset\": \"<long>\",\n  \"limit\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ed9a833-3e95-4229-af79-732e6ba42acd",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v2",
+                    "devices",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"sort\": \"<string>\",\n  \"offset\": \"<long>\",\n  \"limit\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c8b9e57-5916-49b2-bf04-f4b639d94148",
+          "name": "Retrieve List of Devices for a given search query",
+          "request": {
+            "name": "Retrieve List of Devices for a given search query",
+            "description": {
+              "content": "Search for devices matching a given search query.\n\nThe search query supports serialNumber, readerId, terminalId, status, statusChangeReason or organizationId\n\nMatching results are paginated.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dms",
+                "v3",
+                "devices",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"sort\": \"<string>\",\n  \"offset\": \"<long>\",\n  \"limit\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cb09376f-776a-4023-96d0-5c85669363cd",
+              "name": "Retrieved all Devices matched by the search query",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v3",
+                    "devices",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"sort\": \"<string>\",\n  \"offset\": \"<long>\",\n  \"limit\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 1731,\n  \"offset\": 2226,\n  \"limit\": 4975,\n  \"sort\": \"string\",\n  \"count\": 8024,\n  \"devices\": [\n    {\n      \"readerId\": \"string\",\n      \"serialNumber\": \"Xp2ObK\",\n      \"model\": \"Rksgr ERFE\",\n      \"make\": \"ztS6C21o8\",\n      \"hardwareRevision\": \"hePA6Nnm\",\n      \"status\": \"string\",\n      \"statusChangeReason\": \"string\",\n      \"merchantId\": \"string\",\n      \"accountId\": \"string\",\n      \"terminalCreationDate\": \"2002-06-24T23:37:33.503Z\",\n      \"terminalUpdationDate\": \"2022-12-20T06:35:49.004Z\",\n      \"paymentProcessorToTerminalMap\": {\n        \"processor\": \"string\",\n        \"terminalId\": \"string\"\n      }\n    },\n    {\n      \"readerId\": \"string\",\n      \"serialNumber\": \"nST0nTF-q\",\n      \"model\": \"0\",\n      \"make\": \"aezymdZPrG\",\n      \"hardwareRevision\": \"KV56PhK\",\n      \"status\": \"string\",\n      \"statusChangeReason\": \"string\",\n      \"merchantId\": \"string\",\n      \"accountId\": \"string\",\n      \"terminalCreationDate\": \"1965-07-21T15:39:58.799Z\",\n      \"terminalUpdationDate\": \"2011-03-24T11:23:56.300Z\",\n      \"paymentProcessorToTerminalMap\": {\n        \"processor\": \"string\",\n        \"terminalId\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11309b93-00c7-40ec-bb41-4b4432b6b13b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v3",
+                    "devices",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"sort\": \"<string>\",\n  \"offset\": \"<long>\",\n  \"limit\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3bdaa5e2-0a2e-4b1e-9363-5e89403adae1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v3",
+                    "devices",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"sort\": \"<string>\",\n  \"offset\": \"<long>\",\n  \"limit\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9642090-9a12-4143-8f8a-82b5414c8d7c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v3",
+                    "devices",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"sort\": \"<string>\",\n  \"offset\": \"<long>\",\n  \"limit\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "681e062a-1315-463c-843b-edd1ba0919ed",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v3",
+                    "devices",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"sort\": \"<string>\",\n  \"offset\": \"<long>\",\n  \"limit\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c45523c-0d6c-4785-a592-23d9f24814ac",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v3",
+                    "devices",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"sort\": \"<string>\",\n  \"offset\": \"<long>\",\n  \"limit\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a9fc8183-720f-4d88-ad0a-e83b9c13d55d",
+    "name": "CyberSource Merged Spec bankAccountValidation Device Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation taxes API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "taxes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Calculate Taxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/vas/v2/tax"
+          },
+          "docs": "The tax calculation service provides real-time sales tax and VAT calculations for orders placed with your business worldwide. \nIt enhances your ability to conduct business globally and enables you to avoid the risk and complexity of managing online tax calculation. \nThe service supports product-based tax rules and exemptions for goods and services. \nThe tax rates are updated twice a month and calculations include sub-level detail (rates per taxing jurisdiction, names and types of jurisdictions)."
+        },
+        {
+          "info": {
+            "name": "Void Taxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/vas/v2/tax/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The tax ID returned from a previous request."
+              }
+            ]
+          },
+          "docs": "Pass the Tax Request ID in the PATCH request to void the committed tax calculation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

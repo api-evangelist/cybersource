@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation credit API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "credit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Process a Credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/pts/v2/credits"
+          },
+          "docs": "POST to the credit resource to credit funds to a specified credit card."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

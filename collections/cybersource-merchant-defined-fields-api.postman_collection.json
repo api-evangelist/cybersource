@@ -1,0 +1,782 @@
+{
+  "item": [
+    {
+      "id": "2a46fde8-226e-495f-a8a2-3a71d2a2eeff",
+      "name": "Merchant Defined Fields",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bc2cebdd-e76d-459c-a290-c7d3a737c827",
+          "name": "Get all merchant defined fields for a given reference type",
+          "request": {
+            "name": "Get all merchant defined fields for a given reference type",
+            "description": {},
+            "url": {
+              "path": [
+                "invoicing",
+                "v2",
+                ":referenceType",
+                "merchantDefinedFields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "referenceType",
+                  "description": "(Required) The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "540e74dd-86c7-427f-a056-2c04b6ba6016",
+              "name": "Get all merchant defined fields for a given reference type",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    ":referenceType",
+                    "merchantDefinedFields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "referenceType",
+                      "description": "(Required) The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 3667,\n    \"fieldType\": \"string\",\n    \"label\": \"string\",\n    \"customerVisible\": false,\n    \"textMinLength\": 8995,\n    \"textMaxLength\": 5004,\n    \"possibleValues\": \"string\",\n    \"textDefaultValue\": \"string\",\n    \"merchantId\": \"string\",\n    \"referenceType\": \"string\",\n    \"readOnly\": true,\n    \"merchantDefinedDataIndex\": 6036\n  },\n  {\n    \"id\": 9967,\n    \"fieldType\": \"string\",\n    \"label\": \"string\",\n    \"customerVisible\": true,\n    \"textMinLength\": 9427,\n    \"textMaxLength\": 9848,\n    \"possibleValues\": \"string\",\n    \"textDefaultValue\": \"string\",\n    \"merchantId\": \"string\",\n    \"referenceType\": \"string\",\n    \"readOnly\": true,\n    \"merchantDefinedDataIndex\": 4080\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8de219d4-bc86-4c52-a826-09d06276c8ed",
+              "name": "Merchant defined fields not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    ":referenceType",
+                    "merchantDefinedFields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "referenceType",
+                      "description": "(Required) The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"correlationId\": \"08b69ffe-f79b-4e09-991f-b030058e21f4\",\n  \"status\": 400,\n  \"responseData\": {\n    \"submitTimeUtc\": \"2016-08-11T22:47:57Z\",\n    \"status\": 400,\n    \"reason\": \"MERCHANT_DEFINED_FIELD_ALREADY_UPDATED\",\n    \"message\": \"Merchant defined field already updated or does not exist\",\n    \"details\": [\n      {\n        \"field\": \"customerVisible readOnly\",\n        \"reason\": \"For 'Select' field type 'Read only' must be false and 'Customer Visible' true\"\n      },\n      {\n        \"field\": \"textMinLength\",\n        \"reason\": \"textMinLength is not allowed for field type Select\"\n      },\n      {\n        \"field\": \"textMaxLength\",\n        \"reason\": \"textMaxLength is not allowed for field type Select\"\n      },\n      {\n        \"field\": \"textDefaultValue\",\n        \"reason\": \"textDefaultValue is not allowed for field type Select\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible values cannot be empty for Select field type\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible value Best Dad in the world is too long\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible values must contain at least two values\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible values total length cannot exceed 4000 characters\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible value cannot be empty\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f864ad5c-accf-4946-89c4-987225669329",
+          "name": "Create merchant defined field for a given reference type",
+          "request": {
+            "name": "Create merchant defined field for a given reference type",
+            "description": {},
+            "url": {
+              "path": [
+                "invoicing",
+                "v2",
+                ":referenceType",
+                "merchantDefinedFields"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "referenceType",
+                  "description": "(Required) The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fieldType\": \"<string>\",\n  \"label\": \"<string>\",\n  \"merchantDefinedDataIndex\": \"<integer>\",\n  \"customerVisible\": false,\n  \"textMinLength\": 0,\n  \"textMaxLength\": 100,\n  \"textDefaultValue\": \"<string>\",\n  \"possibleValues\": \"<string>\",\n  \"readOnly\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "91e337f5-0802-4c5f-a848-189247080683",
+              "name": "Create merchant defined field for a given reference type",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    ":referenceType",
+                    "merchantDefinedFields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "referenceType",
+                      "description": "(Required) The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fieldType\": \"<string>\",\n  \"label\": \"<string>\",\n  \"merchantDefinedDataIndex\": \"<integer>\",\n  \"customerVisible\": false,\n  \"textMinLength\": 0,\n  \"textMaxLength\": 100,\n  \"textDefaultValue\": \"<string>\",\n  \"possibleValues\": \"<string>\",\n  \"readOnly\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 3667,\n    \"fieldType\": \"string\",\n    \"label\": \"string\",\n    \"customerVisible\": false,\n    \"textMinLength\": 8995,\n    \"textMaxLength\": 5004,\n    \"possibleValues\": \"string\",\n    \"textDefaultValue\": \"string\",\n    \"merchantId\": \"string\",\n    \"referenceType\": \"string\",\n    \"readOnly\": true,\n    \"merchantDefinedDataIndex\": 6036\n  },\n  {\n    \"id\": 9967,\n    \"fieldType\": \"string\",\n    \"label\": \"string\",\n    \"customerVisible\": true,\n    \"textMinLength\": 9427,\n    \"textMaxLength\": 9848,\n    \"possibleValues\": \"string\",\n    \"textDefaultValue\": \"string\",\n    \"merchantId\": \"string\",\n    \"referenceType\": \"string\",\n    \"readOnly\": true,\n    \"merchantDefinedDataIndex\": 4080\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6141df25-6360-4de6-8972-64e39541ee27",
+              "name": "MerchantDefinedData definition is already updated or Merchant Defined Data Index is already assigned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    ":referenceType",
+                    "merchantDefinedFields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "referenceType",
+                      "description": "(Required) The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fieldType\": \"<string>\",\n  \"label\": \"<string>\",\n  \"merchantDefinedDataIndex\": \"<integer>\",\n  \"customerVisible\": false,\n  \"textMinLength\": 0,\n  \"textMaxLength\": 100,\n  \"textDefaultValue\": \"<string>\",\n  \"possibleValues\": \"<string>\",\n  \"readOnly\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"correlationId\": \"08b69ffe-f79b-4e09-991f-b030058e21f4\",\n  \"status\": 400,\n  \"responseData\": {\n    \"submitTimeUtc\": \"2016-08-11T22:47:57Z\",\n    \"status\": 400,\n    \"reason\": \"MERCHANT_DEFINED_FIELD_ALREADY_UPDATED\",\n    \"message\": \"Merchant defined field already updated or does not exist\",\n    \"details\": [\n      {\n        \"field\": \"customerVisible readOnly\",\n        \"reason\": \"For 'Select' field type 'Read only' must be false and 'Customer Visible' true\"\n      },\n      {\n        \"field\": \"textMinLength\",\n        \"reason\": \"textMinLength is not allowed for field type Select\"\n      },\n      {\n        \"field\": \"textMaxLength\",\n        \"reason\": \"textMaxLength is not allowed for field type Select\"\n      },\n      {\n        \"field\": \"textDefaultValue\",\n        \"reason\": \"textDefaultValue is not allowed for field type Select\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible values cannot be empty for Select field type\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible value Best Dad in the world is too long\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible values must contain at least two values\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible values total length cannot exceed 4000 characters\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible value cannot be empty\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "715fd4ea-f0e7-4047-95bd-7267f64c4fbf",
+              "name": "MerchantDefinedData definition is already updated or Merchant Defined Data Index is already assigned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    ":referenceType",
+                    "merchantDefinedFields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "referenceType",
+                      "description": "(Required) The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fieldType\": \"<string>\",\n  \"label\": \"<string>\",\n  \"merchantDefinedDataIndex\": \"<integer>\",\n  \"customerVisible\": false,\n  \"textMinLength\": 0,\n  \"textMaxLength\": 100,\n  \"textDefaultValue\": \"<string>\",\n  \"possibleValues\": \"<string>\",\n  \"readOnly\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"correlationId\": \"08b69ffe-f79b-4e09-991f-b030058e21f4\",\n  \"status\": 400,\n  \"responseData\": {\n    \"submitTimeUtc\": \"2016-08-11T22:47:57Z\",\n    \"status\": 400,\n    \"reason\": \"MERCHANT_DEFINED_FIELD_ALREADY_UPDATED\",\n    \"message\": \"Merchant defined field already updated or does not exist\",\n    \"details\": [\n      {\n        \"field\": \"customerVisible readOnly\",\n        \"reason\": \"For 'Select' field type 'Read only' must be false and 'Customer Visible' true\"\n      },\n      {\n        \"field\": \"textMinLength\",\n        \"reason\": \"textMinLength is not allowed for field type Select\"\n      },\n      {\n        \"field\": \"textMaxLength\",\n        \"reason\": \"textMaxLength is not allowed for field type Select\"\n      },\n      {\n        \"field\": \"textDefaultValue\",\n        \"reason\": \"textDefaultValue is not allowed for field type Select\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible values cannot be empty for Select field type\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible value Best Dad in the world is too long\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible values must contain at least two values\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible values total length cannot exceed 4000 characters\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible value cannot be empty\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e72fc9dc-0cd9-4bbf-b160-ffc0835c39f0",
+              "name": "Merchant has exceeded limit for type {referenceType}",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    ":referenceType",
+                    "merchantDefinedFields"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "referenceType",
+                      "description": "(Required) The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fieldType\": \"<string>\",\n  \"label\": \"<string>\",\n  \"merchantDefinedDataIndex\": \"<integer>\",\n  \"customerVisible\": false,\n  \"textMinLength\": 0,\n  \"textMaxLength\": 100,\n  \"textDefaultValue\": \"<string>\",\n  \"possibleValues\": \"<string>\",\n  \"readOnly\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Failed",
+              "code": 412,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"correlationId\": \"08b69ffe-f79b-4e09-991f-b030058e21f4\",\n  \"status\": 400,\n  \"responseData\": {\n    \"submitTimeUtc\": \"2016-08-11T22:47:57Z\",\n    \"status\": 400,\n    \"reason\": \"MERCHANT_DEFINED_FIELD_ALREADY_UPDATED\",\n    \"message\": \"Merchant defined field already updated or does not exist\",\n    \"details\": [\n      {\n        \"field\": \"customerVisible readOnly\",\n        \"reason\": \"For 'Select' field type 'Read only' must be false and 'Customer Visible' true\"\n      },\n      {\n        \"field\": \"textMinLength\",\n        \"reason\": \"textMinLength is not allowed for field type Select\"\n      },\n      {\n        \"field\": \"textMaxLength\",\n        \"reason\": \"textMaxLength is not allowed for field type Select\"\n      },\n      {\n        \"field\": \"textDefaultValue\",\n        \"reason\": \"textDefaultValue is not allowed for field type Select\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible values cannot be empty for Select field type\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible value Best Dad in the world is too long\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible values must contain at least two values\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible values total length cannot exceed 4000 characters\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible value cannot be empty\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "625a3fa2-ce98-4a4d-bbb6-09b3948e9092",
+          "name": "Update a MerchantDefinedField by ID",
+          "request": {
+            "name": "Update a MerchantDefinedField by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "invoicing",
+                "v2",
+                ":referenceType",
+                "merchantDefinedFields",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "referenceType",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fieldType\": \"<string>\",\n  \"label\": \"<string>\",\n  \"merchantDefinedDataIndex\": \"<integer>\",\n  \"customerVisible\": false,\n  \"textMinLength\": 0,\n  \"textMaxLength\": 100,\n  \"textDefaultValue\": \"<string>\",\n  \"possibleValues\": \"<string>\",\n  \"readOnly\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "093c6f3a-d648-45c6-be94-a919a4b71164",
+              "name": "A list of MerchantDefinedField",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    ":referenceType",
+                    "merchantDefinedFields",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "referenceType",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fieldType\": \"<string>\",\n  \"label\": \"<string>\",\n  \"merchantDefinedDataIndex\": \"<integer>\",\n  \"customerVisible\": false,\n  \"textMinLength\": 0,\n  \"textMaxLength\": 100,\n  \"textDefaultValue\": \"<string>\",\n  \"possibleValues\": \"<string>\",\n  \"readOnly\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 3667,\n    \"fieldType\": \"string\",\n    \"label\": \"string\",\n    \"customerVisible\": false,\n    \"textMinLength\": 8995,\n    \"textMaxLength\": 5004,\n    \"possibleValues\": \"string\",\n    \"textDefaultValue\": \"string\",\n    \"merchantId\": \"string\",\n    \"referenceType\": \"string\",\n    \"readOnly\": true,\n    \"merchantDefinedDataIndex\": 6036\n  },\n  {\n    \"id\": 9967,\n    \"fieldType\": \"string\",\n    \"label\": \"string\",\n    \"customerVisible\": true,\n    \"textMinLength\": 9427,\n    \"textMaxLength\": 9848,\n    \"possibleValues\": \"string\",\n    \"textDefaultValue\": \"string\",\n    \"merchantId\": \"string\",\n    \"referenceType\": \"string\",\n    \"readOnly\": true,\n    \"merchantDefinedDataIndex\": 4080\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf98e1a0-39dd-4581-bc3f-701ab6ca5378",
+              "name": "Wrong referenceType in the path",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    ":referenceType",
+                    "merchantDefinedFields",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "referenceType",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fieldType\": \"<string>\",\n  \"label\": \"<string>\",\n  \"merchantDefinedDataIndex\": \"<integer>\",\n  \"customerVisible\": false,\n  \"textMinLength\": 0,\n  \"textMaxLength\": 100,\n  \"textDefaultValue\": \"<string>\",\n  \"possibleValues\": \"<string>\",\n  \"readOnly\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"correlationId\": \"08b69ffe-f79b-4e09-991f-b030058e21f4\",\n  \"status\": 400,\n  \"responseData\": {\n    \"submitTimeUtc\": \"2016-08-11T22:47:57Z\",\n    \"status\": 400,\n    \"reason\": \"MERCHANT_DEFINED_FIELD_ALREADY_UPDATED\",\n    \"message\": \"Merchant defined field already updated or does not exist\",\n    \"details\": [\n      {\n        \"field\": \"customerVisible readOnly\",\n        \"reason\": \"For 'Select' field type 'Read only' must be false and 'Customer Visible' true\"\n      },\n      {\n        \"field\": \"textMinLength\",\n        \"reason\": \"textMinLength is not allowed for field type Select\"\n      },\n      {\n        \"field\": \"textMaxLength\",\n        \"reason\": \"textMaxLength is not allowed for field type Select\"\n      },\n      {\n        \"field\": \"textDefaultValue\",\n        \"reason\": \"textDefaultValue is not allowed for field type Select\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible values cannot be empty for Select field type\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible value Best Dad in the world is too long\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible values must contain at least two values\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible values total length cannot exceed 4000 characters\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible value cannot be empty\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26f256b8-227f-4017-bcbb-b48789544675",
+              "name": "MerchantDefinedData definition is already updated or Merchant Defined Data Index is already assigned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    ":referenceType",
+                    "merchantDefinedFields",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "referenceType",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fieldType\": \"<string>\",\n  \"label\": \"<string>\",\n  \"merchantDefinedDataIndex\": \"<integer>\",\n  \"customerVisible\": false,\n  \"textMinLength\": 0,\n  \"textMaxLength\": 100,\n  \"textDefaultValue\": \"<string>\",\n  \"possibleValues\": \"<string>\",\n  \"readOnly\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"correlationId\": \"08b69ffe-f79b-4e09-991f-b030058e21f4\",\n  \"status\": 400,\n  \"responseData\": {\n    \"submitTimeUtc\": \"2016-08-11T22:47:57Z\",\n    \"status\": 400,\n    \"reason\": \"MERCHANT_DEFINED_FIELD_ALREADY_UPDATED\",\n    \"message\": \"Merchant defined field already updated or does not exist\",\n    \"details\": [\n      {\n        \"field\": \"customerVisible readOnly\",\n        \"reason\": \"For 'Select' field type 'Read only' must be false and 'Customer Visible' true\"\n      },\n      {\n        \"field\": \"textMinLength\",\n        \"reason\": \"textMinLength is not allowed for field type Select\"\n      },\n      {\n        \"field\": \"textMaxLength\",\n        \"reason\": \"textMaxLength is not allowed for field type Select\"\n      },\n      {\n        \"field\": \"textDefaultValue\",\n        \"reason\": \"textDefaultValue is not allowed for field type Select\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible values cannot be empty for Select field type\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible value Best Dad in the world is too long\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible values must contain at least two values\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible values total length cannot exceed 4000 characters\"\n      },\n      {\n        \"field\": \"possibleValues\",\n        \"reason\": \"Possible value cannot be empty\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a785306-1d0a-47f1-bef8-266510c69c91",
+          "name": "Delete a MerchantDefinedField by ID",
+          "request": {
+            "name": "Delete a MerchantDefinedField by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "invoicing",
+                "v2",
+                ":referenceType",
+                "merchantDefinedFields",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "referenceType",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3e1e1c75-a247-45eb-9148-027ba2ad1787",
+              "name": "MerchantDefinedField deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    ":referenceType",
+                    "merchantDefinedFields",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "referenceType",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a9a58538-f6fe-402c-aab2-832bde83c9a7",
+    "name": "CyberSource Merged Spec bankAccountValidation Merchant Defined Fields API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

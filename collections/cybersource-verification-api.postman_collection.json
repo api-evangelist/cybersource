@@ -1,0 +1,402 @@
+{
+  "item": [
+    {
+      "id": "1b24c5f1-50b7-4e04-a438-2e1a0ffcb8ad",
+      "name": "Verification",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "baed6888-72de-4436-9b2f-028e8d005e9e",
+          "name": "Verify customer address",
+          "request": {
+            "name": "Verify customer address",
+            "description": {
+              "content": "This call verifies that the customer address submitted is valid.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "risk",
+                "v1",
+                "address-verifications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"orderInformation\": {\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"country\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"address3\": \"<string>\",\n      \"address4\": \"<string>\",\n      \"administrativeArea\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"address1\": \"<string>\",\n      \"country\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"address3\": \"<string>\",\n      \"address4\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"unitPrice\": \"<string>\",\n        \"quantity\": 1,\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\"\n      },\n      {\n        \"unitPrice\": \"<string>\",\n        \"quantity\": 1,\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\"\n      }\n    ]\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c4f3fb95-dde8-44c2-8976-9864749c5ad9",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "address-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"orderInformation\": {\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"country\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"address3\": \"<string>\",\n      \"address4\": \"<string>\",\n      \"administrativeArea\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"address1\": \"<string>\",\n      \"country\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"address3\": \"<string>\",\n      \"address4\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"unitPrice\": \"<string>\",\n        \"quantity\": 1,\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\"\n      },\n      {\n        \"unitPrice\": \"<string>\",\n        \"quantity\": 1,\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\"\n      }\n    ]\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"submitTimeLocal\": \"string\",\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"clientReferenceInformation\": {\n    \"code\": \"string\",\n    \"comments\": \"string\",\n    \"partner\": {\n      \"developerId\": \"string\",\n      \"solutionId\": \"string\"\n    }\n  },\n  \"addressVerificationInformation\": {\n    \"addressType\": \"string\",\n    \"barCode\": {\n      \"value\": \"string\",\n      \"checkDigit\": 7553.436895173093\n    },\n    \"applicableRegion\": \"string\",\n    \"errorCode\": \"string\",\n    \"statusCode\": \"string\",\n    \"careOf\": \"string\",\n    \"matchScore\": 5592,\n    \"standardAddress\": {\n      \"address1\": {\n        \"withApartment\": \"string\",\n        \"withoutApartment\": \"string\"\n      },\n      \"address2\": \"string\",\n      \"address3\": \"string\",\n      \"address4\": \"string\",\n      \"locality\": \"string\",\n      \"county\": \"string\",\n      \"country\": \"string\",\n      \"csz\": \"string\",\n      \"isoCountry\": \"string\",\n      \"administrativeArea\": \"string\",\n      \"postalCode\": \"string\"\n    }\n  },\n  \"errorInformation\": {\n    \"reason\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"reason\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"reason\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "61b0ccbc-a819-4237-8959-d3cddc98f0ce",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "address-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"orderInformation\": {\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"country\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"address3\": \"<string>\",\n      \"address4\": \"<string>\",\n      \"administrativeArea\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"address1\": \"<string>\",\n      \"country\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"address3\": \"<string>\",\n      \"address4\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"unitPrice\": \"<string>\",\n        \"quantity\": 1,\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\"\n      },\n      {\n        \"unitPrice\": \"<string>\",\n        \"quantity\": 1,\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\"\n      }\n    ]\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22c5fbf4-e181-4051-9b5d-96114ed12be7",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "address-verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"orderInformation\": {\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"country\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"address3\": \"<string>\",\n      \"address4\": \"<string>\",\n      \"administrativeArea\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"address1\": \"<string>\",\n      \"country\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"address3\": \"<string>\",\n      \"address4\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"unitPrice\": \"<string>\",\n        \"quantity\": 1,\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\"\n      },\n      {\n        \"unitPrice\": \"<string>\",\n        \"quantity\": 1,\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\"\n      }\n    ]\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8d1ea8c-8a6c-45bd-8130-a3d39c677845",
+          "name": "Validate export compliance",
+          "request": {
+            "name": "Validate export compliance",
+            "description": {
+              "content": "This call checks customer data against specified watch lists to ensure export compliance.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "risk",
+                "v1",
+                "export-compliance-inquiries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"orderInformation\": {\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"country\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"address3\": \"<string>\",\n      \"address4\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"company\": {\n        \"name\": \"<string>\"\n      },\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"country\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"unitPrice\": \"<string>\",\n        \"allowedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"restrictedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"quantity\": 1,\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\"\n      },\n      {\n        \"unitPrice\": \"<string>\",\n        \"allowedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"restrictedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"quantity\": 1,\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\"\n      }\n    ]\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\"\n  },\n  \"deviceInformation\": {\n    \"ipAddress\": \"<string>\",\n    \"hostName\": \"<string>\"\n  },\n  \"exportComplianceInformation\": {\n    \"addressOperator\": \"<string>\",\n    \"weights\": {\n      \"address\": \"<string>\",\n      \"company\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"sanctionLists\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "862100da-4157-44f9-85c7-21cad1aab4c8",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "export-compliance-inquiries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"orderInformation\": {\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"country\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"address3\": \"<string>\",\n      \"address4\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"company\": {\n        \"name\": \"<string>\"\n      },\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"country\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"unitPrice\": \"<string>\",\n        \"allowedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"restrictedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"quantity\": 1,\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\"\n      },\n      {\n        \"unitPrice\": \"<string>\",\n        \"allowedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"restrictedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"quantity\": 1,\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\"\n      }\n    ]\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\"\n  },\n  \"deviceInformation\": {\n    \"ipAddress\": \"<string>\",\n    \"hostName\": \"<string>\"\n  },\n  \"exportComplianceInformation\": {\n    \"addressOperator\": \"<string>\",\n    \"weights\": {\n      \"address\": \"<string>\",\n      \"company\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"sanctionLists\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"submitTimeLocal\": \"string\",\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"clientReferenceInformation\": {\n    \"code\": \"string\",\n    \"comments\": \"string\",\n    \"partner\": {\n      \"developerId\": \"string\",\n      \"solutionId\": \"string\"\n    }\n  },\n  \"exportComplianceInformation\": {\n    \"ipCountryConfidence\": 84,\n    \"infoCodes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"watchList\": {\n      \"matches\": [\n        {\n          \"addresses\": [\n            \"string\",\n            \"string\"\n          ],\n          \"sanctionList\": \"string\",\n          \"aliases\": [\n            \"string\",\n            \"string\"\n          ],\n          \"programs\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"addresses\": [\n            \"string\",\n            \"string\"\n          ],\n          \"sanctionList\": \"string\",\n          \"aliases\": [\n            \"string\",\n            \"string\"\n          ],\n          \"programs\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  },\n  \"errorInformation\": {\n    \"reason\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"reason\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"reason\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab1e2d80-419f-44c5-85ec-681d1cb55ef2",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "export-compliance-inquiries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"orderInformation\": {\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"country\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"address3\": \"<string>\",\n      \"address4\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"company\": {\n        \"name\": \"<string>\"\n      },\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"country\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"unitPrice\": \"<string>\",\n        \"allowedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"restrictedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"quantity\": 1,\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\"\n      },\n      {\n        \"unitPrice\": \"<string>\",\n        \"allowedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"restrictedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"quantity\": 1,\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\"\n      }\n    ]\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\"\n  },\n  \"deviceInformation\": {\n    \"ipAddress\": \"<string>\",\n    \"hostName\": \"<string>\"\n  },\n  \"exportComplianceInformation\": {\n    \"addressOperator\": \"<string>\",\n    \"weights\": {\n      \"address\": \"<string>\",\n      \"company\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"sanctionLists\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53ca92eb-3b7f-412e-915b-a68a3112b4ae",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "risk",
+                    "v1",
+                    "export-compliance-inquiries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"orderInformation\": {\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"country\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"address3\": \"<string>\",\n      \"address4\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"company\": {\n        \"name\": \"<string>\"\n      },\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"country\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"unitPrice\": \"<string>\",\n        \"allowedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"restrictedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"quantity\": 1,\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\"\n      },\n      {\n        \"unitPrice\": \"<string>\",\n        \"allowedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"restrictedExportCountries\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"quantity\": 1,\n        \"productSKU\": \"<string>\",\n        \"productRisk\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"productCode\": \"<string>\"\n      }\n    ]\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\"\n  },\n  \"deviceInformation\": {\n    \"ipAddress\": \"<string>\",\n    \"hostName\": \"<string>\"\n  },\n  \"exportComplianceInformation\": {\n    \"addressOperator\": \"<string>\",\n    \"weights\": {\n      \"address\": \"<string>\",\n      \"company\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"sanctionLists\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6ef78d60-b847-481c-950a-45f4775e49da",
+    "name": "CyberSource Merged Spec bankAccountValidation Verification API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

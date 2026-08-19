@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation capture API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "capture",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Capture a Payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/pts/v2/payments/:id/captures",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The payment ID returned from a previous payment request. This ID links the capture to the payment.\n"
+              }
+            ]
+          },
+          "docs": "Include the payment ID in the POST request to capture the payment amount."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

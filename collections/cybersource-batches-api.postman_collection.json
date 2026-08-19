@@ -1,0 +1,813 @@
+{
+  "item": [
+    {
+      "id": "2b5971aa-9463-4a3b-bcc9-72818bcae142",
+      "name": "Batches",
+      "description": {
+        "content": "Once a batch is created its status can be checked using the status resource.\nWhen the batch status is COMPLETED its report can then be retrieved.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5181daec-1503-4606-bc2a-7e96984648b6",
+          "name": "Create a Batch",
+          "request": {
+            "name": "Create a Batch",
+            "description": {
+              "content": "**Create a Batch**<br>This resource accepts TMS tokens ids of a Customer, Payment Instrument or Instrument Identifier. <br> The card numbers for the supplied tokens ids are then sent to the relevant card associations to check for updates.<br>The following type of batches can be submitted:\n-  **oneOff** batch containing tokens id for Visa or MasterCard card numbers.\n- **amexRegistration** batch containing tokens id for Amex card numbers.\n\nA batch id will be returned on a successful response which can be used to get the batch status and the batch report.\nThe availability of API features for a merchant may depend on the portfolio configuration and may need to be enabled at the portfolio level before they can be added to merchant accounts.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accountupdater",
+                "v1",
+                "batches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"included\": {\n    \"tokens\": [\n      {\n        \"id\": \"<string>\",\n        \"expirationMonth\": \"<string>\",\n        \"expirationYear\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"expirationMonth\": \"<string>\",\n        \"expirationYear\": \"<string>\"\n      }\n    ]\n  },\n  \"notificationEmail\": \"<email>\",\n  \"type\": \"oneOff\",\n  \"merchantReference\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9daab2e5-e551-41db-85b0-5efc5800422c",
+              "name": "A new batch has been created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountupdater",
+                    "v1",
+                    "batches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"included\": {\n    \"tokens\": [\n      {\n        \"id\": \"7030000000000116236\",\n        \"expirationMonth\": \"12\",\n        \"expirationYear\": \"2020\"\n      },\n      {\n        \"id\": \"7030000000000116236\",\n        \"expirationMonth\": \"12\",\n        \"expirationYear\": \"2020\"\n      }\n    ]\n  },\n  \"notificationEmail\": \"test@cybs.com\",\n  \"type\": \"oneOff\",\n  \"merchantReference\": \"TC50171_3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.cybersource.com/accountupdater/v1/batches\"\n    },\n    \"status\": [\n      {\n        \"href\": \"https://api.cybersource.com/accountupdater/v1/batches/16188390061150001062041064/status\"\n      },\n      {\n        \"href\": \"https://api.cybersource.com/accountupdater/v1/batches/16188390061150001062041064/status\"\n      }\n    ]\n  },\n  \"batchId\": \"16188390061150001062041064\",\n  \"batchItemCount\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f763f033-9a52-4e6c-aafd-2ea7121653e3",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountupdater",
+                    "v1",
+                    "batches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"included\": {\n    \"tokens\": [\n      {\n        \"id\": \"7030000000000116236\",\n        \"expirationMonth\": \"12\",\n        \"expirationYear\": \"2020\"\n      },\n      {\n        \"id\": \"7030000000000116236\",\n        \"expirationMonth\": \"12\",\n        \"expirationYear\": \"2020\"\n      }\n    ]\n  },\n  \"notificationEmail\": \"test@cybs.com\",\n  \"type\": \"oneOff\",\n  \"merchantReference\": \"TC50171_3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.cybersource.com/accountupdater/v1/batches\"\n    }\n  },\n  \"code\": \"string\",\n  \"correlationId\": \"c7b74452a7314f9ca28197d1084447a5\",\n  \"detail\": \"One or more fields failed validation\",\n  \"fields\": [\n    {\n      \"path\": \"notificationEmail\",\n      \"message\": \"Email Address is invalid\",\n      \"localizationKey\": \"string\"\n    },\n    {\n      \"path\": \"notificationEmail\",\n      \"message\": \"Email Address is invalid\",\n      \"localizationKey\": \"string\"\n    }\n  ],\n  \"localizationKey\": \"string\",\n  \"message\": \"Field validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a090f6f7-b468-4e28-85dc-2e9ab19fbca9",
+              "name": "Not authorized to access resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountupdater",
+                    "v1",
+                    "batches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"included\": {\n    \"tokens\": [\n      {\n        \"id\": \"7030000000000116236\",\n        \"expirationMonth\": \"12\",\n        \"expirationYear\": \"2020\"\n      },\n      {\n        \"id\": \"7030000000000116236\",\n        \"expirationMonth\": \"12\",\n        \"expirationYear\": \"2020\"\n      }\n    ]\n  },\n  \"notificationEmail\": \"test@cybs.com\",\n  \"type\": \"oneOff\",\n  \"merchantReference\": \"TC50171_3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.cybersource.com/accountupdater/v1/batches\"\n    }\n  },\n  \"code\": \"string\",\n  \"correlationId\": \"c7b74452a7314f9ca28197d1084447a5\",\n  \"detail\": \"One or more fields failed validation\",\n  \"fields\": [\n    {\n      \"path\": \"notificationEmail\",\n      \"message\": \"Email Address is invalid\",\n      \"localizationKey\": \"string\"\n    },\n    {\n      \"path\": \"notificationEmail\",\n      \"message\": \"Email Address is invalid\",\n      \"localizationKey\": \"string\"\n    }\n  ],\n  \"localizationKey\": \"string\",\n  \"message\": \"Field validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e40ba32-63a2-44d2-8d3a-cd7151836775",
+              "name": "Unsupported media type provided.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountupdater",
+                    "v1",
+                    "batches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"included\": {\n    \"tokens\": [\n      {\n        \"id\": \"7030000000000116236\",\n        \"expirationMonth\": \"12\",\n        \"expirationYear\": \"2020\"\n      },\n      {\n        \"id\": \"7030000000000116236\",\n        \"expirationMonth\": \"12\",\n        \"expirationYear\": \"2020\"\n      }\n    ]\n  },\n  \"notificationEmail\": \"test@cybs.com\",\n  \"type\": \"oneOff\",\n  \"merchantReference\": \"TC50171_3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.cybersource.com/accountupdater/v1/batches\"\n    }\n  },\n  \"code\": \"string\",\n  \"correlationId\": \"c7b74452a7314f9ca28197d1084447a5\",\n  \"detail\": \"One or more fields failed validation\",\n  \"fields\": [\n    {\n      \"path\": \"notificationEmail\",\n      \"message\": \"Email Address is invalid\",\n      \"localizationKey\": \"string\"\n    },\n    {\n      \"path\": \"notificationEmail\",\n      \"message\": \"Email Address is invalid\",\n      \"localizationKey\": \"string\"\n    }\n  ],\n  \"localizationKey\": \"string\",\n  \"message\": \"Field validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "967c0ebd-98c6-4a9b-b393-ad3f43a690c7",
+              "name": "Failure to process request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountupdater",
+                    "v1",
+                    "batches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"included\": {\n    \"tokens\": [\n      {\n        \"id\": \"7030000000000116236\",\n        \"expirationMonth\": \"12\",\n        \"expirationYear\": \"2020\"\n      },\n      {\n        \"id\": \"7030000000000116236\",\n        \"expirationMonth\": \"12\",\n        \"expirationYear\": \"2020\"\n      }\n    ]\n  },\n  \"notificationEmail\": \"test@cybs.com\",\n  \"type\": \"oneOff\",\n  \"merchantReference\": \"TC50171_3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.cybersource.com/accountupdater/v1/batches\"\n    }\n  },\n  \"code\": \"string\",\n  \"correlationId\": \"c7b74452a7314f9ca28197d1084447a5\",\n  \"detail\": \"One or more fields failed validation\",\n  \"fields\": [\n    {\n      \"path\": \"notificationEmail\",\n      \"message\": \"Email Address is invalid\",\n      \"localizationKey\": \"string\"\n    },\n    {\n      \"path\": \"notificationEmail\",\n      \"message\": \"Email Address is invalid\",\n      \"localizationKey\": \"string\"\n    }\n  ],\n  \"localizationKey\": \"string\",\n  \"message\": \"Field validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c0b0f40-09cc-4e20-83c2-46a18bb33eb9",
+          "name": "List Batches",
+          "request": {
+            "name": "List Batches",
+            "description": {
+              "content": "**List Batches**<br>This resource accepts a optional date range, record offset and limit, returning a paginated response of batches containing:\n- The batch id.\n- The batch status.\n- The batch created / modified dates.\n- The total number of accepted, rejected, updated records.\n- The total number of card association responses.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accountupdater",
+                "v1",
+                "batches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Starting record in zero-based dataset that should be returned as the first object in the array."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "The maximum number that can be returned in the array starting from the offset record in zero-based dataset."
+                },
+                {
+                  "disabled": false,
+                  "key": "fromDate",
+                  "value": "<string>",
+                  "description": "ISO-8601 format: yyyyMMddTHHmmssZ"
+                },
+                {
+                  "disabled": false,
+                  "key": "toDate",
+                  "value": "<string>",
+                  "description": "ISO-8601 format: yyyyMMddTHHmmssZ"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a02d7d8f-a456-4ffa-8da9-96d6fb3c4fbf",
+              "name": "A list of batches have been returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountupdater",
+                    "v1",
+                    "batches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://api.cybersource.com/accountupdater/v1/batches?offset=0&limit=20\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://api.cybersource.com/accountupdater/v1/batches?offset=0&limit=20\"\n    }\n  ],\n  \"object\": \"collection\",\n  \"offset\": 0,\n  \"limit\": 20,\n  \"count\": 1,\n  \"total\": 1,\n  \"_embedded\": {\n    \"batches\": [\n      {\n        \"_links\": {\n          \"reports\": [\n            {\n              \"href\": \"https://api.cybersource.com/accountupdater/v1/batches/16188390061150001062041064/report\"\n            },\n            {\n              \"href\": \"https://api.cybersource.com/accountupdater/v1/batches/16188390061150001062041064/report\"\n            }\n          ]\n        },\n        \"batchId\": \"16188390061150001062041064\",\n        \"batchCreatedDate\": \"2018-05-22T14.38.57Z\",\n        \"batchModifiedDate\": \"2018-05-22T14.38.57Z\",\n        \"batchSource\": \"string\",\n        \"tokenSource\": \"string\",\n        \"merchantReference\": \"TC50171_3\",\n        \"batchCaEndpoints\": [\n          \"VISA\",\n          \"VISA\"\n        ],\n        \"status\": \"string\",\n        \"totals\": {\n          \"acceptedRecords\": 1,\n          \"rejectedRecords\": 1,\n          \"updatedRecords\": 1,\n          \"caResponses\": 1,\n          \"caResponsesOmitted\": 1\n        }\n      },\n      {\n        \"_links\": {\n          \"reports\": [\n            {\n              \"href\": \"https://api.cybersource.com/accountupdater/v1/batches/16188390061150001062041064/report\"\n            },\n            {\n              \"href\": \"https://api.cybersource.com/accountupdater/v1/batches/16188390061150001062041064/report\"\n            }\n          ]\n        },\n        \"batchId\": \"16188390061150001062041064\",\n        \"batchCreatedDate\": \"2018-05-22T14.38.57Z\",\n        \"batchModifiedDate\": \"2018-05-22T14.38.57Z\",\n        \"batchSource\": \"string\",\n        \"tokenSource\": \"string\",\n        \"merchantReference\": \"TC50171_3\",\n        \"batchCaEndpoints\": [\n          \"VISA\",\n          \"VISA\"\n        ],\n        \"status\": \"string\",\n        \"totals\": {\n          \"acceptedRecords\": 1,\n          \"rejectedRecords\": 1,\n          \"updatedRecords\": 1,\n          \"caResponses\": 1,\n          \"caResponsesOmitted\": 1\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e46cdc2e-de38-48cf-8241-55de8af81668",
+              "name": "Not authorized to access resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountupdater",
+                    "v1",
+                    "batches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.cybersource.com/accountupdater/v1/batches\"\n    }\n  },\n  \"code\": \"string\",\n  \"correlationId\": \"c7b74452a7314f9ca28197d1084447a5\",\n  \"detail\": \"One or more fields failed validation\",\n  \"fields\": [\n    {\n      \"path\": \"notificationEmail\",\n      \"message\": \"Email Address is invalid\",\n      \"localizationKey\": \"string\"\n    },\n    {\n      \"path\": \"notificationEmail\",\n      \"message\": \"Email Address is invalid\",\n      \"localizationKey\": \"string\"\n    }\n  ],\n  \"localizationKey\": \"string\",\n  \"message\": \"Field validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "869a7e81-acd2-4c9c-8809-fd2becb82eb8",
+              "name": "Failure to process request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountupdater",
+                    "v1",
+                    "batches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.cybersource.com/accountupdater/v1/batches\"\n    }\n  },\n  \"code\": \"string\",\n  \"correlationId\": \"c7b74452a7314f9ca28197d1084447a5\",\n  \"detail\": \"One or more fields failed validation\",\n  \"fields\": [\n    {\n      \"path\": \"notificationEmail\",\n      \"message\": \"Email Address is invalid\",\n      \"localizationKey\": \"string\"\n    },\n    {\n      \"path\": \"notificationEmail\",\n      \"message\": \"Email Address is invalid\",\n      \"localizationKey\": \"string\"\n    }\n  ],\n  \"localizationKey\": \"string\",\n  \"message\": \"Field validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "12f34cff-1c15-4e78-ab11-780f61851a6e",
+          "name": "Retrieve a Batch Status",
+          "request": {
+            "name": "Retrieve a Batch Status",
+            "description": {
+              "content": "**Get Batch Status**<br>This resource accepts a batch id and returns:\n- The batch status.\n- The total number of accepted, rejected, updated records.\n- The total number of card association responses.\n- The billable quantities of:\n  - New Account Numbers (NAN)\n  - New Expiry Dates (NED)\n  - Account Closures (ACL)\n  - Contact Card Holders (CCH)\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accountupdater",
+                "v1",
+                "batches",
+                ":batchId",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "batchId",
+                  "description": "(Required) Unique identification number assigned to the submitted request."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b17c0b22-d97d-40f2-ba62-994bcc0a3f08",
+              "name": "The status of a batch.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountupdater",
+                    "v1",
+                    "batches",
+                    ":batchId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batchId",
+                      "description": "(Required) Unique identification number assigned to the submitted request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.cybersource.com/accountupdater/v1/batches/16188390061150001062041064/status\"\n    },\n    \"report\": [\n      {\n        \"href\": \"https://apitest.cybersource.com/accountupdater/v1/batches/16188390061150001062041064/report\"\n      },\n      {\n        \"href\": \"https://apitest.cybersource.com/accountupdater/v1/batches/16188390061150001062041064/report\"\n      }\n    ]\n  },\n  \"batchId\": \"16188390061150001062041064\",\n  \"batchCreatedDate\": \"2018-05-22T14.38.57Z\",\n  \"batchSource\": \"string\",\n  \"merchantReference\": \"TC50171_3\",\n  \"batchCaEndpoints\": \"VISA,MASTERCARD\",\n  \"status\": \"string\",\n  \"totals\": {\n    \"acceptedRecords\": 1,\n    \"rejectedRecords\": 1,\n    \"updatedRecords\": 1,\n    \"caResponses\": 1,\n    \"caResponsesOmitted\": 1\n  },\n  \"billing\": {\n    \"nan\": 1,\n    \"ned\": 1,\n    \"acl\": 1,\n    \"cch\": 1\n  },\n  \"description\": \"Your batch has been received, and is being checked for errors.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3139f35e-4f04-4bcc-83b7-39c9c015102c",
+              "name": "Unable to perform action for supplied batch ID/merchant.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountupdater",
+                    "v1",
+                    "batches",
+                    ":batchId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batchId",
+                      "description": "(Required) Unique identification number assigned to the submitted request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.cybersource.com/accountupdater/v1/batches\"\n    }\n  },\n  \"code\": \"string\",\n  \"correlationId\": \"c7b74452a7314f9ca28197d1084447a5\",\n  \"detail\": \"One or more fields failed validation\",\n  \"fields\": [\n    {\n      \"path\": \"notificationEmail\",\n      \"message\": \"Email Address is invalid\",\n      \"localizationKey\": \"string\"\n    },\n    {\n      \"path\": \"notificationEmail\",\n      \"message\": \"Email Address is invalid\",\n      \"localizationKey\": \"string\"\n    }\n  ],\n  \"localizationKey\": \"string\",\n  \"message\": \"Field validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e19c40f-fcf2-4417-90cb-9c07f7f25901",
+          "name": "Retrieve a Batch Report",
+          "request": {
+            "name": "Retrieve a Batch Report",
+            "description": {
+              "content": "**Get Batch Report**<br>This resource accepts a batch id and returns:\n- The batch status.\n- The total number of accepted, rejected, updated records.\n- The total number of card association responses.\n- The billable quantities of:\n  - New Account Numbers (NAN)\n  - New Expiry Dates (NED)\n  - Account Closures (ACL)\n  - Contact Card Holders (CCH)\n- Source record information including token ids, masked card number, expiration dates & card type.\n- Response record information including response code, reason, token ids, masked card number, expiration dates & card type.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accountupdater",
+                "v1",
+                "batches",
+                ":batchId",
+                "report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "batchId",
+                  "description": "(Required) Unique identification number assigned to the submitted request."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a0fa7b66-c0c0-44fa-8045-06cb3d7be4fd",
+              "name": "The report for a batch.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountupdater",
+                    "v1",
+                    "batches",
+                    ":batchId",
+                    "report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batchId",
+                      "description": "(Required) Unique identification number assigned to the submitted request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"version\": \"1.0\",\n  \"reportCreatedDate\": \"2018-05-22T14.38.57Z\",\n  \"batchId\": \"16188390061150001062041064\",\n  \"batchSource\": \"string\",\n  \"batchCaEndpoints\": \"VISA,MASTERCARD\",\n  \"batchCreatedDate\": \"2018-05-22T14.38.57Z\",\n  \"merchantReference\": \"TC50171_3\",\n  \"totals\": {\n    \"acceptedRecords\": 1,\n    \"rejectedRecords\": 1,\n    \"updatedRecords\": 1,\n    \"caResponses\": 1,\n    \"caResponsesOmitted\": 1\n  },\n  \"billing\": {\n    \"nan\": 1,\n    \"ned\": 1,\n    \"acl\": 1,\n    \"cch\": 1\n  },\n  \"records\": [\n    {\n      \"id\": \"10000000\",\n      \"sourceRecord\": {\n        \"token\": \"C064DE56200B0DB0E053AF598E0A52AA\",\n        \"customerId\": \"C064DE56200B0DB0E053AF598E0A52AA\",\n        \"paymentInstrumentId\": \"C064DD33CBD30901E053AF598E0AC6CC\",\n        \"instrumentIdentifierId\": \"7030000000000116236\",\n        \"cardNumber\": \"511111XXXXXX6814\",\n        \"cardExpiryMonth\": \"12\",\n        \"cardExpiryYear\": \"2018\",\n        \"cardType\": \"002\"\n      },\n      \"responseRecord\": {\n        \"response\": \"string\",\n        \"reason\": \"800\",\n        \"token\": \"C064DE56200B0DB0E053AF598E0A52AA\",\n        \"instrumentIdentifierId\": \"7030000000000116236\",\n        \"instrumentIdentifierCreated\": \"string\",\n        \"cardNumber\": \"511111XXXXXX6814\",\n        \"cardExpiryMonth\": \"12\",\n        \"cardExpiryYear\": \"2018\",\n        \"cardType\": \"002\",\n        \"additionalUpdates\": [\n          {\n            \"customerId\": \"C064DE56213D0DB0E053AF598E0A52AA\",\n            \"paymentInstrumentId\": \"C064FBFEB64060AAE053AF598E0A3EE6\",\n            \"creator\": \"mid\",\n            \"state\": \"string\",\n            \"message\": \"This Payment Instrument contains the source card number, which is now closed. If required, you can update manually or through the AU REST API.\"\n          },\n          {\n            \"customerId\": \"C064DE56213D0DB0E053AF598E0A52AA\",\n            \"paymentInstrumentId\": \"C064FBFEB64060AAE053AF598E0A3EE6\",\n            \"creator\": \"mid\",\n            \"state\": \"string\",\n            \"message\": \"This Payment Instrument contains the source card number, which is now closed. If required, you can update manually or through the AU REST API.\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"10000000\",\n      \"sourceRecord\": {\n        \"token\": \"C064DE56200B0DB0E053AF598E0A52AA\",\n        \"customerId\": \"C064DE56200B0DB0E053AF598E0A52AA\",\n        \"paymentInstrumentId\": \"C064DD33CBD30901E053AF598E0AC6CC\",\n        \"instrumentIdentifierId\": \"7030000000000116236\",\n        \"cardNumber\": \"511111XXXXXX6814\",\n        \"cardExpiryMonth\": \"12\",\n        \"cardExpiryYear\": \"2018\",\n        \"cardType\": \"002\"\n      },\n      \"responseRecord\": {\n        \"response\": \"string\",\n        \"reason\": \"800\",\n        \"token\": \"C064DE56200B0DB0E053AF598E0A52AA\",\n        \"instrumentIdentifierId\": \"7030000000000116236\",\n        \"instrumentIdentifierCreated\": \"string\",\n        \"cardNumber\": \"511111XXXXXX6814\",\n        \"cardExpiryMonth\": \"12\",\n        \"cardExpiryYear\": \"2018\",\n        \"cardType\": \"002\",\n        \"additionalUpdates\": [\n          {\n            \"customerId\": \"C064DE56213D0DB0E053AF598E0A52AA\",\n            \"paymentInstrumentId\": \"C064FBFEB64060AAE053AF598E0A3EE6\",\n            \"creator\": \"mid\",\n            \"state\": \"string\",\n            \"message\": \"This Payment Instrument contains the source card number, which is now closed. If required, you can update manually or through the AU REST API.\"\n          },\n          {\n            \"customerId\": \"C064DE56213D0DB0E053AF598E0A52AA\",\n            \"paymentInstrumentId\": \"C064FBFEB64060AAE053AF598E0A3EE6\",\n            \"creator\": \"mid\",\n            \"state\": \"string\",\n            \"message\": \"This Payment Instrument contains the source card number, which is now closed. If required, you can update manually or through the AU REST API.\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98eee09a-3c6d-4030-a65a-8d7e4ce95b6e",
+              "name": "Unable to perform action for supplied batch ID/merchant.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accountupdater",
+                    "v1",
+                    "batches",
+                    ":batchId",
+                    "report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "batchId",
+                      "description": "(Required) Unique identification number assigned to the submitted request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"https://api.cybersource.com/accountupdater/v1/batches\"\n    }\n  },\n  \"code\": \"string\",\n  \"correlationId\": \"c7b74452a7314f9ca28197d1084447a5\",\n  \"detail\": \"One or more fields failed validation\",\n  \"fields\": [\n    {\n      \"path\": \"notificationEmail\",\n      \"message\": \"Email Address is invalid\",\n      \"localizationKey\": \"string\"\n    },\n    {\n      \"path\": \"notificationEmail\",\n      \"message\": \"Email Address is invalid\",\n      \"localizationKey\": \"string\"\n    }\n  ],\n  \"localizationKey\": \"string\",\n  \"message\": \"Field validation error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1e87f1bd-0e92-4d8b-94e9-a97eff553539",
+    "name": "CyberSource Merged Spec bankAccountValidation Batches API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,215 @@
+{
+  "item": [
+    {
+      "id": "0c092237-83cb-45cc-ba37-c62a387e6e4e",
+      "name": "UserManagementSearch",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "80e951cf-408d-44b2-a834-9ad583d1a482",
+          "name": "Search User Information",
+          "request": {
+            "name": "Search User Information",
+            "description": {
+              "content": "This endpoint is to get all the user information depending on the filter criteria passed in request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ums",
+                "v1",
+                "users",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"organizationId\": \"<string>\",\n  \"userName\": \"<string>\",\n  \"roleId\": \"<string>\",\n  \"permissionId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "04ecb4b7-b116-413e-ba7b-1d88dba5a028",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ums",
+                    "v1",
+                    "users",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organizationId\": \"merchantId\",\n  \"userName\": \"userName\",\n  \"role\": \"custom\",\n  \"permissionId\": \"CustomerProfileViewPermission\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"users\": [\n    {\n      \"accountInformation\": {\n        \"userName\": \"auto_nonmember\",\n        \"roleId\": \"admin\",\n        \"permissions\": [\n          \"ReportViewPermission\",\n          \"ReportGeneratePermission\"\n        ],\n        \"status\": \"active\",\n        \"createdTime\": \"2018-06-14T19:45:52.093Z\",\n        \"lastAccessTime\": \"2018-06-14T19:45:52.093Z\",\n        \"languagePreference\": \"en-US\",\n        \"timezone\": \"America/Los_Angeles\"\n      },\n      \"organizationInformation\": {\n        \"organizationId\": \"auto_nonmember\"\n      },\n      \"contactInformation\": {\n        \"email\": \"auto_nonmember@exchange.com\",\n        \"phoneNumber\": \"4445551234\",\n        \"firstName\": \"Zeta\",\n        \"lastName\": \"DMH\"\n      },\n      \"customFields\": {\n        \"employeeId\": \"12344\",\n        \"employeeName\": \"John Doe\",\n        \"employeeDesignation\": \"abc\",\n        \"zone\": \"NA\",\n        \"department\": \"map\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5371016d-f11d-4a76-946a-d169b9387c71",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ums",
+                    "v1",
+                    "users",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organizationId\": \"merchantId\",\n  \"userName\": \"userName\",\n  \"role\": \"custom\",\n  \"permissionId\": \"CustomerProfileViewPermission\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d81e5cad-bcb6-4457-958f-3237c2b760aa",
+              "name": "Unexpected server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ums",
+                    "v1",
+                    "users",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organizationId\": \"merchantId\",\n  \"userName\": \"userName\",\n  \"role\": \"custom\",\n  \"permissionId\": \"CustomerProfileViewPermission\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "17fc3f67-345f-4718-ba6d-2dacf0aa85e4",
+    "name": "CyberSource Merged Spec bankAccountValidation UserManagementSearch API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

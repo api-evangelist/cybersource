@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation billingAgreements API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "billingAgreements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Billing Agreement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/pts/v2/billing-agreements"
+          },
+          "docs": "#### Standing Instruction:\nStanding Instruction with or without Token. Transaction amount in case First payment is coming along with registration. Only 2 decimal places allowed\n\n#### Create Mandate:\nYou can create a mandate through the direct debit mandate flow.\nPossible create mandate status values:\n  - Pending—the create mandate request was successfully processed.\n  - Failed—the create mandate request was not accepted.\n\n#### Import Mandate:\nIn the Bacs scheme, a mandate is created with a statu"
+        },
+        {
+          "info": {
+            "name": "Modify a Billing Agreement",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/pts/v2/billing-agreements/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID for de-registration or cancellation of Billing Agreement"
+              }
+            ]
+          },
+          "docs": "#### Standing Instruction:\nStanding Instruction with or without Token.\n\n#### Revoke Mandate:\nWhen you revoke a mandate, any pending direct debits linked to that mandate are canceled. No notifications are sent.\nWhen you revoke a mandate with no pending direct debits, the Bacs scheme or customer's bank notify you of any subsequent direct debit events.\nWhen you revoke a mandate, you cannot send a direct debit request using the mandate ID. Customer payments cannot be made against a revoked mandate.\n"
+        },
+        {
+          "info": {
+            "name": "Standing Instruction intimation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/pts/v2/billing-agreements/:id/intimations",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID for intimation of Billing Agreement"
+              }
+            ]
+          },
+          "docs": "Standing Instruction with or without Token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

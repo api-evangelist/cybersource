@@ -1,0 +1,629 @@
+{
+  "item": [
+    {
+      "id": "69558243-1d9d-40a6-ad64-afc939d8cf5e",
+      "name": "Offers",
+      "description": {
+        "content": "Operations related to creating, retrieving, and updating offers.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3ace8714-c256-4c72-a9fc-8e65afad6a2d",
+          "name": "Create an Offer",
+          "request": {
+            "name": "Create an Offer",
+            "description": {
+              "content": "Empower global transactions with transparency and choice. Our Dynamic Currency Conversion API lets merchants offer customers the option to pay in their home currency at checkout, delivering real-time exchange rates.\n\n<div style=\"display: flex; gap: 2rem;\">\n<div style=\"flex: 1;\">\n\n**Key Benefits:**\n- **Enhanced Customer Experience:** Provide clarity and convenience for international shoppers.\n- **Real-Time Rates:** Accurate currency conversion with all the data required for acquirers and their merchants to maintain compliance with card network rules.\n- **Seamless Integration:** Flexible API endpoints for rate lookup, authorization, and capture.\n- **Regulatory Compliance:** Provides the data required for acquirers and merchants to meet and maintain card scheme requirements for disclosure and consent.\n\n<br>\n\nIdeal for merchants and payment partners seeking to boost trust and conversion in cross-border commerce.\n\n<br>\n\n**Key Features:**\n- **Rate Lookup:** Retrieves the most up-to-date exchange rate for eligible cards before authorization.\n- **Currency Choice:** Enables the merchant to offer customers the option to select between the merchant's local currency and their card's billing currency.\n- **Compliance:** Ensures merchants have the data required to adhere to card network regulations; exchange rates, markups, etc.\n\n<div style=\"margin-top: 1.5rem;\">\n\n**Supported Scenarios:**\n- Dynamic Currency Conversion when cardholder's billing currency differs from merchant's pricing currency.\n- Merchant and acquirer must support the cardholder's billing currency.\n</div>\n\n<div style=\"margin-top: 1.5rem;\">\n\n**Supported Processors:**\n- VPC\n- FDI Global\n</div>\n\n<div style=\"margin-top: 1.5rem;\">\n\n**Compliance & Disclosure:**\n\nMerchants must:\n- Adhere to card network rules for Dynamic Currency Conversion (DCC) transactions.\n- Display the converted amount, exchange rate, and markup percentage and other required disclosures.\n- Obtain explicit cardholder consent before applying DCC.\n- Work with your acquirer to obtain full set of compliance requirements.\n</div>\n\n</div>\n<div style=\"flex: 1;\">\n\n**Core API Endpoints:**\n\n**Currency Conversion API**\n\nReturns eligibility and exchange rate details, including:\n- exchangeRate\n- marginRate\n- reconciliationId and Id (for subsequent payment requests)\n\n<div style=\"margin-top: 1.5rem;\">\n\n**Payment Authorization with DCC***\n\nPOST /pts/v2/payments\n\nRequired fields include:\n- orderInformation.amountDetails.currency\n- orderInformation.amountDetails.originalCurrency\n- orderInformation.amountDetails.originalAmount\n- orderInformation.amountDetails.exchangeRate\n- currencyConversion.indicator (e.g., 1 = Converted, 2 = Nonconvertible, 3 = Declined)\n</div>\n\n<div style=\"margin-top: 1.5rem;\">\n\n**Capture with DCC***\n\nPOST /pts/v2/payments/{id}/captures\n\nMaps from original authorization and includes original and converted amounts.\n</div>\n\n<div style=\"margin-top: 1.5rem;\">\n\n**Refund with DCC***\n\nPOST /pts/v2/captures/{id}/refunds\n\nMaps from original authorization and includes original and converted amounts.\n\n*Note: DCC is only supported on select processors. Contact your acquirer or account manager for more information.*\n</div>\n\n</div>\n</div>\n\n<br>\n\nFor more information, see the [Currency Conversion Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/currency-conversion/developer/all/rest/currency-conversion/cc-intro.html).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vas",
+                "v1",
+                "currencyconversion"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-requestid",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "v-c-merchant-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "v-c-correlation-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "v-c-organization-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"number\": \"<string>\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"originalAmount\": \"<string>\",\n      \"originalCurrency\": \"<string>\"\n    },\n    \"currencyConversion\": {\n      \"type\": \"DCC\"\n    }\n  },\n  \"pointOfSaleInformation\": {\n    \"terminalId\": \"<string>\",\n    \"entryMode\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "47ba7604-f442-4889-bbfe-bc9d86a5cb93",
+              "name": "Request OK.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vas",
+                    "v1",
+                    "currencyconversion"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"REF-101-GBP-909\",\n    \"partner\": {\n      \"developerId\": \"123456\",\n      \"solutionId\": \"123456\"\n    },\n    \"applicationName\": \"REST API\",\n    \"applicationVersion\": \"1.23.44\",\n    \"applicationUser\": \"Bob\"\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"number\": \"41111111111\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"originalAmount\": \"100.00\",\n      \"originalCurrency\": \"GBP\"\n    },\n    \"currencyConversion\": {\n      \"type\": \"DCC\"\n    }\n  },\n  \"pointOfSaleInformation\": {\n    \"terminalId\": \"12345678\",\n    \"entryMode\": \"CONTACT\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"clientReferenceInformation\": {\n    \"code\": \"string\"\n  },\n  \"errorInformation\": {\n    \"reason\": \"string\",\n    \"message\": \"string\"\n  },\n  \"orderInformation\": {\n    \"currencyConversion\": {\n      \"reconciliationId\": \"string\",\n      \"type\": \"str\",\n      \"offer\": [\n        {\n          \"originalAmount\": \"string\",\n          \"originalCurrency\": \"str\",\n          \"amount\": \"string\",\n          \"currency\": \"str\",\n          \"exchangeRate\": \"string\",\n          \"exchangeRateInverted\": true,\n          \"marginRate\": \"string\",\n          \"rateSource\": \"string\",\n          \"exchangeRateTimeUtc\": \"string\",\n          \"exchangeRateExpirationTimeUtc\": \"string\",\n          \"rateId\": \"string\"\n        },\n        {\n          \"originalAmount\": \"string\",\n          \"originalCurrency\": \"str\",\n          \"amount\": \"string\",\n          \"currency\": \"str\",\n          \"exchangeRate\": \"string\",\n          \"exchangeRateInverted\": true,\n          \"marginRate\": \"string\",\n          \"rateSource\": \"string\",\n          \"exchangeRateTimeUtc\": \"string\",\n          \"exchangeRateExpirationTimeUtc\": \"string\",\n          \"rateId\": \"string\"\n        }\n      ],\n      \"disclaimer\": \"string\"\n    }\n  },\n  \"processorInformation\": {\n    \"responseCode\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e25983b-79d6-4737-9bc9-d7cdc6629b67",
+              "name": "Bad Request Data, e.g. missing field, field containing invalid data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vas",
+                    "v1",
+                    "currencyconversion"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"REF-101-GBP-909\",\n    \"partner\": {\n      \"developerId\": \"123456\",\n      \"solutionId\": \"123456\"\n    },\n    \"applicationName\": \"REST API\",\n    \"applicationVersion\": \"1.23.44\",\n    \"applicationUser\": \"Bob\"\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"number\": \"41111111111\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"originalAmount\": \"100.00\",\n      \"originalCurrency\": \"GBP\"\n    },\n    \"currencyConversion\": {\n      \"type\": \"DCC\"\n    }\n  },\n  \"pointOfSaleInformation\": {\n    \"terminalId\": \"12345678\",\n    \"entryMode\": \"CONTACT\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "379519bb-e6e0-4fb7-9fac-9d4783d6be22",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vas",
+                    "v1",
+                    "currencyconversion"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"REF-101-GBP-909\",\n    \"partner\": {\n      \"developerId\": \"123456\",\n      \"solutionId\": \"123456\"\n    },\n    \"applicationName\": \"REST API\",\n    \"applicationVersion\": \"1.23.44\",\n    \"applicationUser\": \"Bob\"\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"number\": \"41111111111\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"originalAmount\": \"100.00\",\n      \"originalCurrency\": \"GBP\"\n    },\n    \"currencyConversion\": {\n      \"type\": \"DCC\"\n    }\n  },\n  \"pointOfSaleInformation\": {\n    \"terminalId\": \"12345678\",\n    \"entryMode\": \"CONTACT\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2023-05-17T22:47:57Z\",\n  \"status\": \"SERVER_ERROR\",\n  \"reason\": \"SYSTEM_ERROR\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf197ec4-3030-4f26-965f-9b33650283ab",
+          "name": "Retrieve an Offer",
+          "request": {
+            "name": "Retrieve an Offer",
+            "description": {
+              "content": "Retrieves an offer record from the system.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vas",
+                "v1",
+                "currencyconversion",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Request ID generated by Cybersource. This was sent in the header on the request. Echo value from v-c-request-id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-requestid",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "v-c-merchant-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "v-c-correlation-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "v-c-organization-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fccc21f4-534a-4936-afd7-fae8338d6e07",
+              "name": "Request OK.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vas",
+                    "v1",
+                    "currencyconversion",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Request ID generated by Cybersource. This was sent in the header on the request. Echo value from v-c-request-id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"clientReferenceInformation\": {\n    \"code\": \"string\",\n    \"applicationName\": \"string\",\n    \"applicationVersion\": \"string\",\n    \"applicationUser\": \"string\",\n    \"partner\": {\n      \"developerId\": \"string\",\n      \"solutionId\": \"string\"\n    }\n  },\n  \"errorInformation\": {\n    \"reason\": \"string\",\n    \"message\": \"string\"\n  },\n  \"orderInformation\": {\n    \"currencyConversion\": {\n      \"reconciliationId\": \"string\",\n      \"type\": \"str\",\n      \"offer\": [\n        {\n          \"originalAmount\": \"string\",\n          \"originalCurrency\": \"str\",\n          \"amount\": \"string\",\n          \"currency\": \"str\",\n          \"exchangeRate\": \"string\",\n          \"exchangeRateInverted\": true,\n          \"marginRate\": \"string\",\n          \"rateSource\": \"string\",\n          \"exchangeRateTimeUtc\": \"string\",\n          \"exchangeRateExpirationTimeUtc\": \"string\",\n          \"rateId\": \"string\"\n        },\n        {\n          \"originalAmount\": \"string\",\n          \"originalCurrency\": \"str\",\n          \"amount\": \"string\",\n          \"currency\": \"str\",\n          \"exchangeRate\": \"string\",\n          \"exchangeRateInverted\": true,\n          \"marginRate\": \"string\",\n          \"rateSource\": \"string\",\n          \"exchangeRateTimeUtc\": \"string\",\n          \"exchangeRateExpirationTimeUtc\": \"string\",\n          \"rateId\": \"string\"\n        }\n      ],\n      \"disclaimer\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "416abd17-be3f-4f41-8336-f67aa329efb0",
+              "name": "Offer not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vas",
+                    "v1",
+                    "currencyconversion",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Request ID generated by Cybersource. This was sent in the header on the request. Echo value from v-c-request-id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd6df475-6fc0-40ce-ae22-28d3e7e85b27",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vas",
+                    "v1",
+                    "currencyconversion",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Request ID generated by Cybersource. This was sent in the header on the request. Echo value from v-c-request-id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2023-05-17T22:47:57Z\",\n  \"status\": \"SERVER_ERROR\",\n  \"reason\": \"SYSTEM_ERROR\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "49d53e12-f3a6-444a-a4e8-397ce8f86e43",
+    "name": "CyberSource Merged Spec bankAccountValidation Offers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

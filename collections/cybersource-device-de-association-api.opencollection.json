@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Device De-Association API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Device De-Association",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "De-associate a device from merchant or account V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/dms/v2/devices/deassociate"
+          },
+          "docs": "The current association of the device will be removed and will be assigned back to parent in the hierarchy based on internal logic"
+        },
+        {
+          "info": {
+            "name": "De-associate a device from merchant to account or reseller and from account to reseller",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/dms/v3/devices/deassociate"
+          },
+          "docs": "A device will be de-associated from its current organization and moved up in the hierarchy.\nThe device's new position will be determined by a specified destination, either an account or a portfolio. If no destination is provided, the device will default to the currently logged-in user.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

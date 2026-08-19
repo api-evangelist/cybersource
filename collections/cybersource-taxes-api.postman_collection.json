@@ -1,0 +1,438 @@
+{
+  "item": [
+    {
+      "id": "1ce83156-cd35-4ef3-be29-295929e70a40",
+      "name": "taxes",
+      "description": {
+        "content": "tax calculation service",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2ee195d7-08db-4b67-8a22-cdf05a217d86",
+          "name": "Calculate Taxes",
+          "request": {
+            "name": "Calculate Taxes",
+            "description": {
+              "content": "The tax calculation service provides real-time sales tax and VAT calculations for orders placed with your business worldwide. \nIt enhances your ability to conduct business globally and enables you to avoid the risk and complexity of managing online tax calculation. \nThe service supports product-based tax rules and exemptions for goods and services. \nThe tax rates are updated twice a month and calculations include sub-level detail (rates per taxing jurisdiction, names and types of jurisdictions).\nImplementation guidance, list of supported countries, and information on tax reporting are in the [Tax User Guide](https://developer.cybersource.com/docs/cybs/en-us/tax-calculation/developer/all/rest/tax-calculation/tax-overview.html).\nThe availability of API features for a merchant can depend on the portfolio configuration and may need to be enabled at the portfolio level before they can be added to merchant accounts.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vas",
+                "v2",
+                "tax"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    },\n    \"comments\": \"<string>\"\n  },\n  \"taxInformation\": {\n    \"reportingDate\": \"<string>\",\n    \"dateOverrideReason\": \"<string>\",\n    \"nexus\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"noNexus\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"showTaxPerLineItem\": \"<string>\",\n    \"commitIndicator\": \"<boolean>\",\n    \"refundIndicator\": \"<boolean>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\"\n    },\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"shippingDetails\": {\n      \"shipFromLocality\": \"<string>\",\n      \"shipFromCountry\": \"<string>\",\n      \"shipFromPostalCode\": \"<string>\",\n      \"shipFromAdministrativeArea\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"country\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"address3\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"productSKU\": \"<string>\",\n        \"productCode\": \"<string>\",\n        \"quantity\": 1,\n        \"productName\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"orderAcceptance\": {\n          \"locality\": \"<string>\",\n          \"administrativeArea\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        \"orderOrigin\": {\n          \"locality\": \"<string>\",\n          \"administrativeArea\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        \"shipFromCountry\": \"<string>\",\n        \"shipFromAdministrativeArea\": \"<string>\",\n        \"shipFromLocality\": \"<string>\",\n        \"shipFromPostalCode\": \"<string>\",\n        \"buyerVatRegistrationNumber\": \"<string>\",\n        \"sellerVatRegistrationNumber\": \"<string>\"\n      },\n      {\n        \"productSKU\": \"<string>\",\n        \"productCode\": \"<string>\",\n        \"quantity\": 1,\n        \"productName\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"orderAcceptance\": {\n          \"locality\": \"<string>\",\n          \"administrativeArea\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        \"orderOrigin\": {\n          \"locality\": \"<string>\",\n          \"administrativeArea\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        \"shipFromCountry\": \"<string>\",\n        \"shipFromAdministrativeArea\": \"<string>\",\n        \"shipFromLocality\": \"<string>\",\n        \"shipFromPostalCode\": \"<string>\",\n        \"buyerVatRegistrationNumber\": \"<string>\",\n        \"sellerVatRegistrationNumber\": \"<string>\"\n      }\n    ],\n    \"invoiceDetails\": {\n      \"invoiceDate\": \"<string>\"\n    },\n    \"orderAcceptance\": {\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"orderOrigin\": {\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  },\n  \"merchantInformation\": {\n    \"vatRegistrationNumber\": \"<string>\"\n  },\n  \"buyerInformation\": {\n    \"vatRegistrationNumber\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "37ff68b2-f72c-4d0b-9778-6c901425af07",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vas",
+                    "v2",
+                    "tax"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    },\n    \"comments\": \"<string>\"\n  },\n  \"taxInformation\": {\n    \"reportingDate\": \"<string>\",\n    \"dateOverrideReason\": \"<string>\",\n    \"nexus\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"noNexus\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"showTaxPerLineItem\": \"<string>\",\n    \"commitIndicator\": \"<boolean>\",\n    \"refundIndicator\": \"<boolean>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\"\n    },\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"shippingDetails\": {\n      \"shipFromLocality\": \"<string>\",\n      \"shipFromCountry\": \"<string>\",\n      \"shipFromPostalCode\": \"<string>\",\n      \"shipFromAdministrativeArea\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"country\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"address3\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"productSKU\": \"<string>\",\n        \"productCode\": \"<string>\",\n        \"quantity\": 1,\n        \"productName\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"orderAcceptance\": {\n          \"locality\": \"<string>\",\n          \"administrativeArea\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        \"orderOrigin\": {\n          \"locality\": \"<string>\",\n          \"administrativeArea\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        \"shipFromCountry\": \"<string>\",\n        \"shipFromAdministrativeArea\": \"<string>\",\n        \"shipFromLocality\": \"<string>\",\n        \"shipFromPostalCode\": \"<string>\",\n        \"buyerVatRegistrationNumber\": \"<string>\",\n        \"sellerVatRegistrationNumber\": \"<string>\"\n      },\n      {\n        \"productSKU\": \"<string>\",\n        \"productCode\": \"<string>\",\n        \"quantity\": 1,\n        \"productName\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"orderAcceptance\": {\n          \"locality\": \"<string>\",\n          \"administrativeArea\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        \"orderOrigin\": {\n          \"locality\": \"<string>\",\n          \"administrativeArea\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        \"shipFromCountry\": \"<string>\",\n        \"shipFromAdministrativeArea\": \"<string>\",\n        \"shipFromLocality\": \"<string>\",\n        \"shipFromPostalCode\": \"<string>\",\n        \"buyerVatRegistrationNumber\": \"<string>\",\n        \"sellerVatRegistrationNumber\": \"<string>\"\n      }\n    ],\n    \"invoiceDetails\": {\n      \"invoiceDate\": \"<string>\"\n    },\n    \"orderAcceptance\": {\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"orderOrigin\": {\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  },\n  \"merchantInformation\": {\n    \"vatRegistrationNumber\": \"<string>\"\n  },\n  \"buyerInformation\": {\n    \"vatRegistrationNumber\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"void\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"clientReferenceInformation\": {\n    \"code\": \"string\",\n    \"submitLocalDateTime\": \"string\",\n    \"ownerMerchantId\": \"string\"\n  },\n  \"taxInformation\": {\n    \"commitIndicator\": false,\n    \"refundIndicator\": true\n  },\n  \"orderInformation\": {\n    \"exemptAmount\": \"string\",\n    \"taxableAmount\": \"string\",\n    \"taxAmount\": \"string\",\n    \"lineItems\": [\n      {\n        \"taxDetails\": [\n          {\n            \"type\": \"string\",\n            \"amount\": \"string\"\n          },\n          {\n            \"type\": \"string\",\n            \"amount\": \"string\"\n          }\n        ],\n        \"jurisdiction\": [\n          {\n            \"type\": \"string\",\n            \"taxName\": \"string\",\n            \"taxAmount\": \"string\",\n            \"taxable\": \"string\",\n            \"name\": \"string\",\n            \"code\": \"string\",\n            \"rate\": \"string\",\n            \"region\": \"string\",\n            \"country\": \"string\"\n          },\n          {\n            \"type\": \"string\",\n            \"taxName\": \"string\",\n            \"taxAmount\": \"string\",\n            \"taxable\": \"string\",\n            \"name\": \"string\",\n            \"code\": \"string\",\n            \"rate\": \"string\",\n            \"region\": \"string\",\n            \"country\": \"string\"\n          }\n        ],\n        \"exemptAmount\": \"string\",\n        \"taxableAmount\": \"string\",\n        \"taxAmount\": \"string\"\n      },\n      {\n        \"taxDetails\": [\n          {\n            \"type\": \"string\",\n            \"amount\": \"string\"\n          },\n          {\n            \"type\": \"string\",\n            \"amount\": \"string\"\n          }\n        ],\n        \"jurisdiction\": [\n          {\n            \"type\": \"string\",\n            \"taxName\": \"string\",\n            \"taxAmount\": \"string\",\n            \"taxable\": \"string\",\n            \"name\": \"string\",\n            \"code\": \"string\",\n            \"rate\": \"string\",\n            \"region\": \"string\",\n            \"country\": \"string\"\n          },\n          {\n            \"type\": \"string\",\n            \"taxName\": \"string\",\n            \"taxAmount\": \"string\",\n            \"taxable\": \"string\",\n            \"name\": \"string\",\n            \"code\": \"string\",\n            \"rate\": \"string\",\n            \"region\": \"string\",\n            \"country\": \"string\"\n          }\n        ],\n        \"exemptAmount\": \"string\",\n        \"taxableAmount\": \"string\",\n        \"taxAmount\": \"string\"\n      }\n    ],\n    \"taxDetails\": [\n      {\n        \"type\": \"string\",\n        \"amount\": \"string\"\n      },\n      {\n        \"type\": \"string\",\n        \"amount\": \"string\"\n      }\n    ],\n    \"amountDetails\": {\n      \"totalAmount\": \"string\",\n      \"currency\": \"str\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66da1034-32be-4d10-b71d-47d6dd58dfc6",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vas",
+                    "v2",
+                    "tax"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    },\n    \"comments\": \"<string>\"\n  },\n  \"taxInformation\": {\n    \"reportingDate\": \"<string>\",\n    \"dateOverrideReason\": \"<string>\",\n    \"nexus\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"noNexus\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"showTaxPerLineItem\": \"<string>\",\n    \"commitIndicator\": \"<boolean>\",\n    \"refundIndicator\": \"<boolean>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\"\n    },\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"shippingDetails\": {\n      \"shipFromLocality\": \"<string>\",\n      \"shipFromCountry\": \"<string>\",\n      \"shipFromPostalCode\": \"<string>\",\n      \"shipFromAdministrativeArea\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"country\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"address3\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"productSKU\": \"<string>\",\n        \"productCode\": \"<string>\",\n        \"quantity\": 1,\n        \"productName\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"orderAcceptance\": {\n          \"locality\": \"<string>\",\n          \"administrativeArea\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        \"orderOrigin\": {\n          \"locality\": \"<string>\",\n          \"administrativeArea\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        \"shipFromCountry\": \"<string>\",\n        \"shipFromAdministrativeArea\": \"<string>\",\n        \"shipFromLocality\": \"<string>\",\n        \"shipFromPostalCode\": \"<string>\",\n        \"buyerVatRegistrationNumber\": \"<string>\",\n        \"sellerVatRegistrationNumber\": \"<string>\"\n      },\n      {\n        \"productSKU\": \"<string>\",\n        \"productCode\": \"<string>\",\n        \"quantity\": 1,\n        \"productName\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"orderAcceptance\": {\n          \"locality\": \"<string>\",\n          \"administrativeArea\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        \"orderOrigin\": {\n          \"locality\": \"<string>\",\n          \"administrativeArea\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        \"shipFromCountry\": \"<string>\",\n        \"shipFromAdministrativeArea\": \"<string>\",\n        \"shipFromLocality\": \"<string>\",\n        \"shipFromPostalCode\": \"<string>\",\n        \"buyerVatRegistrationNumber\": \"<string>\",\n        \"sellerVatRegistrationNumber\": \"<string>\"\n      }\n    ],\n    \"invoiceDetails\": {\n      \"invoiceDate\": \"<string>\"\n    },\n    \"orderAcceptance\": {\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"orderOrigin\": {\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  },\n  \"merchantInformation\": {\n    \"vatRegistrationNumber\": \"<string>\"\n  },\n  \"buyerInformation\": {\n    \"vatRegistrationNumber\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de887a1b-979b-4ad8-af1d-bb57c7fa0ee8",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vas",
+                    "v2",
+                    "tax"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    },\n    \"comments\": \"<string>\"\n  },\n  \"taxInformation\": {\n    \"reportingDate\": \"<string>\",\n    \"dateOverrideReason\": \"<string>\",\n    \"nexus\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"noNexus\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"showTaxPerLineItem\": \"<string>\",\n    \"commitIndicator\": \"<boolean>\",\n    \"refundIndicator\": \"<boolean>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\"\n    },\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"shippingDetails\": {\n      \"shipFromLocality\": \"<string>\",\n      \"shipFromCountry\": \"<string>\",\n      \"shipFromPostalCode\": \"<string>\",\n      \"shipFromAdministrativeArea\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"country\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"address3\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"productSKU\": \"<string>\",\n        \"productCode\": \"<string>\",\n        \"quantity\": 1,\n        \"productName\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"orderAcceptance\": {\n          \"locality\": \"<string>\",\n          \"administrativeArea\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        \"orderOrigin\": {\n          \"locality\": \"<string>\",\n          \"administrativeArea\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        \"shipFromCountry\": \"<string>\",\n        \"shipFromAdministrativeArea\": \"<string>\",\n        \"shipFromLocality\": \"<string>\",\n        \"shipFromPostalCode\": \"<string>\",\n        \"buyerVatRegistrationNumber\": \"<string>\",\n        \"sellerVatRegistrationNumber\": \"<string>\"\n      },\n      {\n        \"productSKU\": \"<string>\",\n        \"productCode\": \"<string>\",\n        \"quantity\": 1,\n        \"productName\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"orderAcceptance\": {\n          \"locality\": \"<string>\",\n          \"administrativeArea\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        \"orderOrigin\": {\n          \"locality\": \"<string>\",\n          \"administrativeArea\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\"\n        },\n        \"shipFromCountry\": \"<string>\",\n        \"shipFromAdministrativeArea\": \"<string>\",\n        \"shipFromLocality\": \"<string>\",\n        \"shipFromPostalCode\": \"<string>\",\n        \"buyerVatRegistrationNumber\": \"<string>\",\n        \"sellerVatRegistrationNumber\": \"<string>\"\n      }\n    ],\n    \"invoiceDetails\": {\n      \"invoiceDate\": \"<string>\"\n    },\n    \"orderAcceptance\": {\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"orderOrigin\": {\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  },\n  \"merchantInformation\": {\n    \"vatRegistrationNumber\": \"<string>\"\n  },\n  \"buyerInformation\": {\n    \"vatRegistrationNumber\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b33b4583-e1f3-4d9a-8a47-f5cd2b704020",
+          "name": "Void Taxes",
+          "request": {
+            "name": "Void Taxes",
+            "description": {
+              "content": "Pass the Tax Request ID in the PATCH request to void the committed tax calculation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vas",
+                "v2",
+                "tax",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The tax ID returned from a previous request."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"solutionId\": \"<string>\",\n      \"developerId\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c09be91a-27cd-4746-8f4e-c94ebbf59013",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vas",
+                    "v2",
+                    "tax",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The tax ID returned from a previous request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"solutionId\": \"<string>\",\n      \"developerId\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"clientReferenceInformation\": {\n    \"code\": \"string\"\n  },\n  \"voidAmountDetails\": {\n    \"voidAmount\": \"string\",\n    \"currency\": \"str\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fcef2795-104f-484f-8b8f-96c6ce67d908",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vas",
+                    "v2",
+                    "tax",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The tax ID returned from a previous request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"solutionId\": \"<string>\",\n      \"developerId\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2dfcc52-2d9a-42e7-ae9f-6610ccd5e7bd",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vas",
+                    "v2",
+                    "tax",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The tax ID returned from a previous request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"solutionId\": \"<string>\",\n      \"developerId\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f0c977fa-6d38-467f-8e5f-ec90bd243c00",
+    "name": "CyberSource Merged Spec bankAccountValidation taxes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

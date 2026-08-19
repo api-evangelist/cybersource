@@ -1,0 +1,1773 @@
+{
+  "item": [
+    {
+      "id": "26c7845f-50eb-4d48-ab45-7cd7e187958b",
+      "name": "Invoices",
+      "description": {
+        "content": "Offer your customers a simple, convenient, and fast way to pay with the new online invoicing tool.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c354cc82-5b47-46c9-b511-70f022c7b2fc",
+          "name": "Create a New Invoice",
+          "request": {
+            "name": "Create a New Invoice",
+            "description": {
+              "content": "The invoicing product enables you to bill any customer with an email address and accept digital payments securely from any connected device. You can either use the system generated email or use the invoice payment link in your own communication. You can add discounts and taxes for the entire invoice or for each line item. To customize the invoice to match your brand see [Invoice Settings](https://developer.cybersource.com/api-reference-assets/index.html#invoicing_invoice-settings_update-invoice-settings). The invoice payment page uses Unified Checkout to process the payments.\nThe availability of API features for a merchant can depend on the portfolio configuration and may need to be enabled at the portfolio level before they can be added to merchant accounts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoicing",
+                "v2",
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoiceInformation\": {\n    \"dueDate\": \"<date>\",\n    \"description\": \"<string>\",\n    \"invoiceNumber\": \"<string>\",\n    \"expirationDate\": \"<date>\",\n    \"sendImmediately\": false,\n    \"allowPartialPayments\": false,\n    \"deliveryMode\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"totalAmount\": \"<string>\",\n      \"discountAmount\": \"<string>\",\n      \"discountPercent\": \"<string>\",\n      \"subAmount\": \"<string>\",\n      \"minimumPartialAmount\": \"<string>\",\n      \"taxDetails\": {\n        \"type\": \"<string>\",\n        \"amount\": \"<string>\",\n        \"rate\": \"<string>\"\n      },\n      \"freight\": {\n        \"amount\": \"<string>\",\n        \"taxable\": \"<boolean>\",\n        \"taxRate\": \"<string>\"\n      }\n    },\n    \"lineItems\": [\n      {\n        \"productSku\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"discountAmount\": \"<string>\",\n        \"discountPercent\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\",\n        \"totalAmount\": \"<string>\"\n      },\n      {\n        \"productSku\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"discountAmount\": \"<string>\",\n        \"discountPercent\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\",\n        \"totalAmount\": \"<string>\"\n      }\n    ]\n  },\n  \"clientReferenceInformation\": {\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"customerInformation\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"merchantCustomerId\": \"<string>\",\n    \"company\": {\n      \"name\": \"<string>\"\n    }\n  },\n  \"processingInformation\": {\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"merchantDefinedFieldValues\": [\n    {\n      \"definitionId\": \"<long>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"definitionId\": \"<long>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f69f60ce-57b9-42ee-bba9-5b6f73b25b68",
+              "name": "Created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceInformation\": {\n    \"dueDate\": \"<date>\",\n    \"description\": \"<string>\",\n    \"invoiceNumber\": \"<string>\",\n    \"expirationDate\": \"<date>\",\n    \"sendImmediately\": false,\n    \"allowPartialPayments\": false,\n    \"deliveryMode\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"totalAmount\": \"<string>\",\n      \"discountAmount\": \"10.00\",\n      \"discountPercent\": \"10\",\n      \"subAmount\": \"<string>\",\n      \"minimumPartialAmount\": \"<string>\",\n      \"taxDetails\": {\n        \"type\": \"<string>\",\n        \"amount\": \"<string>\",\n        \"rate\": \"<string>\"\n      },\n      \"freight\": {\n        \"amount\": \"<string>\",\n        \"taxable\": \"<boolean>\",\n        \"taxRate\": \"<string>\"\n      }\n    },\n    \"lineItems\": [\n      {\n        \"productSku\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\",\n        \"totalAmount\": \"<string>\"\n      },\n      {\n        \"productSku\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\",\n        \"totalAmount\": \"<string>\"\n      }\n    ]\n  },\n  \"clientReferenceInformation\": {\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"customerInformation\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"merchantCustomerId\": \"<string>\",\n    \"company\": {\n      \"name\": \"<string>\"\n    }\n  },\n  \"processingInformation\": {\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"merchantDefinedFieldValues\": [\n    {\n      \"definitionId\": \"<long>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"definitionId\": \"<long>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"update\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"deliver\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"cancel\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"customerInformation\": {\n    \"name\": \"string\",\n    \"email\": \"string\",\n    \"merchantCustomerId\": \"string\",\n    \"company\": {\n      \"name\": \"string\"\n    }\n  },\n  \"processingInformation\": {\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"invoiceInformation\": {\n    \"invoiceNumber\": \"string\",\n    \"description\": \"string\",\n    \"dueDate\": \"2012-01-05\",\n    \"expirationDate\": \"2011-02-05\",\n    \"allowPartialPayments\": false,\n    \"paymentLink\": \"string\",\n    \"deliveryMode\": \"string\",\n    \"customLabels\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      }\n    ]\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"string\",\n      \"currency\": \"str\",\n      \"balanceAmount\": \"string\",\n      \"discountAmount\": \"string\",\n      \"discountPercent\": \"string\",\n      \"subAmount\": \"string\",\n      \"minimumPartialAmount\": \"string\",\n      \"taxDetails\": {\n        \"type\": \"string\",\n        \"amount\": \"string\",\n        \"rate\": \"string\"\n      },\n      \"freight\": {\n        \"amount\": \"string\",\n        \"taxable\": true,\n        \"taxRate\": \"string\"\n      }\n    },\n    \"lineItems\": [\n      {\n        \"productSku\": \"string\",\n        \"productName\": \"string\",\n        \"quantity\": 1,\n        \"unitPrice\": \"string\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"string\",\n        \"taxRate\": \"string\",\n        \"totalAmount\": \"string\"\n      },\n      {\n        \"productSku\": \"string\",\n        \"productName\": \"string\",\n        \"quantity\": 1,\n        \"unitPrice\": \"string\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"string\",\n        \"taxRate\": \"string\",\n        \"totalAmount\": \"string\"\n      }\n    ]\n  },\n  \"merchantDefinedFieldValuesWithDefinition\": [\n    {\n      \"referenceType\": \"string\",\n      \"label\": \"string\",\n      \"fieldType\": \"string\",\n      \"customerVisible\": true,\n      \"readOnly\": true,\n      \"textMinLength\": 8194,\n      \"textMaxLength\": 2127,\n      \"textDefaultValue\": \"string\",\n      \"possibleValues\": \"string\",\n      \"value\": \"string\",\n      \"position\": 4267,\n      \"definitionId\": 482,\n      \"merchantDefinedDataIndex\": 3514\n    },\n    {\n      \"referenceType\": \"string\",\n      \"label\": \"string\",\n      \"fieldType\": \"string\",\n      \"customerVisible\": false,\n      \"readOnly\": true,\n      \"textMinLength\": 9757,\n      \"textMaxLength\": 6445,\n      \"textDefaultValue\": \"string\",\n      \"possibleValues\": \"string\",\n      \"value\": \"string\",\n      \"position\": 6046,\n      \"definitionId\": 5276,\n      \"merchantDefinedDataIndex\": 4799\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b52327f3-708f-4597-8e80-de200c1b6ed9",
+              "name": "Invoice created but failed to send an email. Send the invoice separately.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceInformation\": {\n    \"dueDate\": \"<date>\",\n    \"description\": \"<string>\",\n    \"invoiceNumber\": \"<string>\",\n    \"expirationDate\": \"<date>\",\n    \"sendImmediately\": false,\n    \"allowPartialPayments\": false,\n    \"deliveryMode\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"totalAmount\": \"<string>\",\n      \"discountAmount\": \"10.00\",\n      \"discountPercent\": \"10\",\n      \"subAmount\": \"<string>\",\n      \"minimumPartialAmount\": \"<string>\",\n      \"taxDetails\": {\n        \"type\": \"<string>\",\n        \"amount\": \"<string>\",\n        \"rate\": \"<string>\"\n      },\n      \"freight\": {\n        \"amount\": \"<string>\",\n        \"taxable\": \"<boolean>\",\n        \"taxRate\": \"<string>\"\n      }\n    },\n    \"lineItems\": [\n      {\n        \"productSku\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\",\n        \"totalAmount\": \"<string>\"\n      },\n      {\n        \"productSku\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\",\n        \"totalAmount\": \"<string>\"\n      }\n    ]\n  },\n  \"clientReferenceInformation\": {\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"customerInformation\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"merchantCustomerId\": \"<string>\",\n    \"company\": {\n      \"name\": \"<string>\"\n    }\n  },\n  \"processingInformation\": {\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"merchantDefinedFieldValues\": [\n    {\n      \"definitionId\": \"<long>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"definitionId\": \"<long>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-06-28T20:21:48Z\",\n  \"status\": \"ACCEPTED\",\n  \"reason\": \"ACCEPTED\",\n  \"message\": \"Invoice ID 98753 created but failed to send an email. Send the invoice separately.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2dc08e7-3e23-4ba1-b512-7efebc11d2fd",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceInformation\": {\n    \"dueDate\": \"<date>\",\n    \"description\": \"<string>\",\n    \"invoiceNumber\": \"<string>\",\n    \"expirationDate\": \"<date>\",\n    \"sendImmediately\": false,\n    \"allowPartialPayments\": false,\n    \"deliveryMode\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"totalAmount\": \"<string>\",\n      \"discountAmount\": \"10.00\",\n      \"discountPercent\": \"10\",\n      \"subAmount\": \"<string>\",\n      \"minimumPartialAmount\": \"<string>\",\n      \"taxDetails\": {\n        \"type\": \"<string>\",\n        \"amount\": \"<string>\",\n        \"rate\": \"<string>\"\n      },\n      \"freight\": {\n        \"amount\": \"<string>\",\n        \"taxable\": \"<boolean>\",\n        \"taxRate\": \"<string>\"\n      }\n    },\n    \"lineItems\": [\n      {\n        \"productSku\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\",\n        \"totalAmount\": \"<string>\"\n      },\n      {\n        \"productSku\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\",\n        \"totalAmount\": \"<string>\"\n      }\n    ]\n  },\n  \"clientReferenceInformation\": {\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"customerInformation\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"merchantCustomerId\": \"<string>\",\n    \"company\": {\n      \"name\": \"<string>\"\n    }\n  },\n  \"processingInformation\": {\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"merchantDefinedFieldValues\": [\n    {\n      \"definitionId\": \"<long>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"definitionId\": \"<long>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:40:10Z\",\n  \"status\": \"BADREQUEST\",\n  \"reason\": \"VALIDATION_ERROR\",\n  \"message\": \"Field validation errors.\",\n  \"details\": [\n    {\n      \"field\": \"customerInformation.email\",\n      \"reason\": \"Invalid email\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc38cb50-40c0-45bf-9e26-9f99d782400f",
+              "name": "The specified resource is not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceInformation\": {\n    \"dueDate\": \"<date>\",\n    \"description\": \"<string>\",\n    \"invoiceNumber\": \"<string>\",\n    \"expirationDate\": \"<date>\",\n    \"sendImmediately\": false,\n    \"allowPartialPayments\": false,\n    \"deliveryMode\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"totalAmount\": \"<string>\",\n      \"discountAmount\": \"10.00\",\n      \"discountPercent\": \"10\",\n      \"subAmount\": \"<string>\",\n      \"minimumPartialAmount\": \"<string>\",\n      \"taxDetails\": {\n        \"type\": \"<string>\",\n        \"amount\": \"<string>\",\n        \"rate\": \"<string>\"\n      },\n      \"freight\": {\n        \"amount\": \"<string>\",\n        \"taxable\": \"<boolean>\",\n        \"taxRate\": \"<string>\"\n      }\n    },\n    \"lineItems\": [\n      {\n        \"productSku\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\",\n        \"totalAmount\": \"<string>\"\n      },\n      {\n        \"productSku\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\",\n        \"totalAmount\": \"<string>\"\n      }\n    ]\n  },\n  \"clientReferenceInformation\": {\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"customerInformation\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"merchantCustomerId\": \"<string>\",\n    \"company\": {\n      \"name\": \"<string>\"\n    }\n  },\n  \"processingInformation\": {\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"merchantDefinedFieldValues\": [\n    {\n      \"definitionId\": \"<long>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"definitionId\": \"<long>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:36:29Z\",\n  \"status\": \"NOTFOUND\",\n  \"reason\": \"NOT_FOUND\",\n  \"message\": \"Invoice does not exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7cd17c8f-9763-4ff1-96b6-64b5d4306dfd",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceInformation\": {\n    \"dueDate\": \"<date>\",\n    \"description\": \"<string>\",\n    \"invoiceNumber\": \"<string>\",\n    \"expirationDate\": \"<date>\",\n    \"sendImmediately\": false,\n    \"allowPartialPayments\": false,\n    \"deliveryMode\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"totalAmount\": \"<string>\",\n      \"discountAmount\": \"10.00\",\n      \"discountPercent\": \"10\",\n      \"subAmount\": \"<string>\",\n      \"minimumPartialAmount\": \"<string>\",\n      \"taxDetails\": {\n        \"type\": \"<string>\",\n        \"amount\": \"<string>\",\n        \"rate\": \"<string>\"\n      },\n      \"freight\": {\n        \"amount\": \"<string>\",\n        \"taxable\": \"<boolean>\",\n        \"taxRate\": \"<string>\"\n      }\n    },\n    \"lineItems\": [\n      {\n        \"productSku\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\",\n        \"totalAmount\": \"<string>\"\n      },\n      {\n        \"productSku\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\",\n        \"totalAmount\": \"<string>\"\n      }\n    ]\n  },\n  \"clientReferenceInformation\": {\n    \"partner\": {\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\"\n    }\n  },\n  \"customerInformation\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"merchantCustomerId\": \"<string>\",\n    \"company\": {\n      \"name\": \"<string>\"\n    }\n  },\n  \"processingInformation\": {\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"merchantDefinedFieldValues\": [\n    {\n      \"definitionId\": \"<long>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"definitionId\": \"<long>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2018-06-12T09:27:20Z\",\n  \"status\": \"SERVER_ERROR\",\n  \"reason\": \"SERVER_ERROR\",\n  \"message\": \"Error - General system failure.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ee0c610-49d5-4449-b06c-8142b8c2eb71",
+          "name": "Get a List of Invoices",
+          "request": {
+            "name": "Get a List of Invoices",
+            "description": {
+              "content": "Provides a (filtered) list of invoices that have been created in your account. You can filter the list based on Invoice Status by setting the status query parameter to one of DRAFT, CREATED, SENT, PARTIAL, PAID or CANCELED.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoicing",
+                "v2",
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "(Required) Page offset number."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "(Required) Maximum number of items you would like returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "The status of the invoice.\n\nPossible values:\n  - DRAFT\n  - CREATED\n  - SENT\n  - PARTIAL\n  - PAID\n  - CANCELED\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d0fe7de6-e510-4c90-b211-38fc8f11bff2",
+              "name": "OK.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"/v2/invoices/?offset=1&limit=2&status=draft\",\n      \"method\": \"GET\"\n    },\n    \"next\": {\n      \"href\": \"/v2/invoices/?offset=3&limit=2&status=draft\",\n      \"method\": \"GET\"\n    },\n    \"previous\": {\n      \"href\": \"/v2/invoices/?offset=0&limit=2&status=draft\",\n      \"method\": \"GET\"\n    }\n  },\n  \"submitTimeUtc\": \"2019-07-03T19:22:26Z\",\n  \"totalInvoices\": 123,\n  \"invoices\": [\n    {\n      \"_links\": {\n        \"self\": {\n          \"href\": \"/v2/invoices/98772\",\n          \"method\": \"GET\"\n        }\n      },\n      \"status\": \"DRAFT\",\n      \"customerInformation\": {\n        \"name\": \"Tanya Lee\",\n        \"merchantCustomerId\": \"1234\"\n      },\n      \"invoiceInformation\": {\n        \"dueDate\": \"2019-07-11\",\n        \"expirationDate\": \"2028-08-11\"\n      },\n      \"orderInformation\": {\n        \"amountDetails\": {\n          \"totalAmount\": \"14249.56\",\n          \"currency\": \"USD\"\n        }\n      }\n    },\n    {\n      \"_links\": {\n        \"self\": {\n          \"href\": \"/v2/invoices/98771\",\n          \"method\": \"GET\"\n        },\n        \"deliver\": {\n          \"href\": \"/v2/invoices/A123/delivery\",\n          \"method\": \"POST\"\n        },\n        \"update\": {\n          \"href\": \"/v2/invoices/A123\",\n          \"method\": \"PUT\"\n        },\n        \"cancel\": {\n          \"href\": \"/v2/invoices/A123/cancelation\",\n          \"method\": \"POST\"\n        }\n      },\n      \"status\": \"DRAFT\",\n      \"createdDate\": \"2018-08-11T22:47:57Z\",\n      \"customerInformation\": {\n        \"name\": \"Tanya Lee\",\n        \"firstName\": \"Tanya\",\n        \"lastName\": \"Lee\",\n        \"merchantCustomerId\": \"1234\",\n        \"company\": {\n          \"name\": \"ABC\"\n        }\n      },\n      \"invoiceInformation\": {\n        \"dueDate\": \"2019-07-11\",\n        \"expirationDate\": \"2028-08-11\"\n      },\n      \"orderInformation\": {\n        \"amountDetails\": {\n          \"totalAmount\": \"14249.56\",\n          \"currency\": \"USD\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76f3d0a1-5b2e-4d20-9f36-a5f31d87fa69",
+              "name": "Invalid invoice status. The status should be one of: `DRAFT`, `CREATED`, `SENT`, `PARTIAL`, `PAID`, or `CANCELED`.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:40:10Z\",\n  \"status\": \"BADREQUEST\",\n  \"reason\": \"VALIDATION_ERROR\",\n  \"message\": \"Field validation errors.\",\n  \"details\": [\n    {\n      \"field\": \"customerInformation.email\",\n      \"reason\": \"Invalid email\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96ee044f-250d-415b-9405-144fb714d665",
+              "name": "No invoices found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:36:29Z\",\n  \"status\": \"NOTFOUND\",\n  \"reason\": \"NOT_FOUND\",\n  \"message\": \"Invoice does not exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1041c24f-ea36-49bc-b733-c452ec1f6269",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2018-06-12T09:27:20Z\",\n  \"status\": \"SERVER_ERROR\",\n  \"reason\": \"SERVER_ERROR\",\n  \"message\": \"Error - General system failure.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "31120773-9981-44cf-bebf-bde8a67d76c4",
+          "name": "Get Invoice Details",
+          "request": {
+            "name": "Get Invoice Details",
+            "description": {
+              "content": "You can retrieve details of a specific invoice. This can be used to check the Invoice status and get a list of invoice payments in the invoice history section of the response. For each payment transaction you can use the Transaction Details API to get more details on the payment transaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoicing",
+                "v2",
+                "invoices",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The invoice number."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "212b8d08-c420-4cc3-bed0-1b93a27d35ad",
+              "name": "OK.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"update\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"deliver\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"cancel\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"customerInformation\": {\n    \"name\": \"string\",\n    \"email\": \"string\",\n    \"merchantCustomerId\": \"string\",\n    \"company\": {\n      \"name\": \"string\"\n    }\n  },\n  \"processingInformation\": {\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"invoiceInformation\": {\n    \"invoiceNumber\": \"string\",\n    \"description\": \"string\",\n    \"dueDate\": \"1947-07-29\",\n    \"expirationDate\": \"1990-03-19\",\n    \"allowPartialPayments\": false,\n    \"paymentLink\": \"string\",\n    \"deliveryMode\": \"string\",\n    \"customLabels\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      }\n    ]\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"string\",\n      \"currency\": \"str\",\n      \"balanceAmount\": \"string\",\n      \"discountAmount\": \"string\",\n      \"discountPercent\": \"string\",\n      \"subAmount\": \"string\",\n      \"minimumPartialAmount\": \"string\",\n      \"taxDetails\": {\n        \"type\": \"string\",\n        \"amount\": \"string\",\n        \"rate\": \"string\"\n      },\n      \"freight\": {\n        \"amount\": \"string\",\n        \"taxable\": true,\n        \"taxRate\": \"string\"\n      }\n    },\n    \"lineItems\": [\n      {\n        \"productSku\": \"string\",\n        \"productName\": \"string\",\n        \"quantity\": 1,\n        \"unitPrice\": \"string\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"string\",\n        \"taxRate\": \"string\",\n        \"totalAmount\": \"string\"\n      },\n      {\n        \"productSku\": \"string\",\n        \"productName\": \"string\",\n        \"quantity\": 1,\n        \"unitPrice\": \"string\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"string\",\n        \"taxRate\": \"string\",\n        \"totalAmount\": \"string\"\n      }\n    ]\n  },\n  \"merchantDefinedFieldValuesWithDefinition\": [\n    {\n      \"referenceType\": \"string\",\n      \"label\": \"string\",\n      \"fieldType\": \"string\",\n      \"customerVisible\": false,\n      \"readOnly\": false,\n      \"textMinLength\": 4986,\n      \"textMaxLength\": 5280,\n      \"textDefaultValue\": \"string\",\n      \"possibleValues\": \"string\",\n      \"value\": \"string\",\n      \"position\": 1961,\n      \"definitionId\": 6106,\n      \"merchantDefinedDataIndex\": 2336\n    },\n    {\n      \"referenceType\": \"string\",\n      \"label\": \"string\",\n      \"fieldType\": \"string\",\n      \"customerVisible\": false,\n      \"readOnly\": false,\n      \"textMinLength\": 6383,\n      \"textMaxLength\": 9700,\n      \"textDefaultValue\": \"string\",\n      \"possibleValues\": \"string\",\n      \"value\": \"string\",\n      \"position\": 8411,\n      \"definitionId\": 5930,\n      \"merchantDefinedDataIndex\": 2925\n    }\n  ],\n  \"invoiceHistory\": [\n    {\n      \"event\": \"string\",\n      \"date\": \"1982-11-26T23:09:38.974Z\",\n      \"transactionDetails\": {\n        \"transactionId\": \"string\",\n        \"amount\": \"string\"\n      }\n    },\n    {\n      \"event\": \"string\",\n      \"date\": \"1958-05-05T01:47:14.419Z\",\n      \"transactionDetails\": {\n        \"transactionId\": \"string\",\n        \"amount\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5aa04e68-96dc-4937-908f-de30d57f6a77",
+              "name": "Invoicing service is not enabled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:40:10Z\",\n  \"status\": \"BADREQUEST\",\n  \"reason\": \"VALIDATION_ERROR\",\n  \"message\": \"Field validation errors.\",\n  \"details\": [\n    {\n      \"field\": \"customerInformation.email\",\n      \"reason\": \"Invalid email\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8166576e-52df-47d5-9f56-019b54ee944e",
+              "name": "Invoice does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:36:29Z\",\n  \"status\": \"NOTFOUND\",\n  \"reason\": \"NOT_FOUND\",\n  \"message\": \"Invoice does not exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f05d98f-b7c6-4de7-a9a9-99756678c2fc",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2018-06-12T09:27:20Z\",\n  \"status\": \"SERVER_ERROR\",\n  \"reason\": \"SERVER_ERROR\",\n  \"message\": \"Error - General system failure.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f857f7a-60a8-4de8-aac9-cee8a074f3d4",
+          "name": "Update an Invoice",
+          "request": {
+            "name": "Update an Invoice",
+            "description": {
+              "content": "You can update all information except the invoice number till any payment is received for an invoice. Invoices that are partially or fully paid or cancelled cannot be updated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoicing",
+                "v2",
+                "invoices",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The invoice number."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoiceInformation\": {\n    \"dueDate\": \"<date>\",\n    \"description\": \"<string>\",\n    \"expirationDate\": \"<date>\",\n    \"sendImmediately\": false,\n    \"allowPartialPayments\": false,\n    \"deliveryMode\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"totalAmount\": \"<string>\",\n      \"discountAmount\": \"<string>\",\n      \"discountPercent\": \"<string>\",\n      \"subAmount\": \"<string>\",\n      \"minimumPartialAmount\": \"<string>\",\n      \"taxDetails\": {\n        \"type\": \"<string>\",\n        \"amount\": \"<string>\",\n        \"rate\": \"<string>\"\n      },\n      \"freight\": {\n        \"amount\": \"<string>\",\n        \"taxable\": \"<boolean>\",\n        \"taxRate\": \"<string>\"\n      }\n    },\n    \"lineItems\": [\n      {\n        \"productSku\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"discountAmount\": \"<string>\",\n        \"discountPercent\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\",\n        \"totalAmount\": \"<string>\"\n      },\n      {\n        \"productSku\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"discountAmount\": \"<string>\",\n        \"discountPercent\": \"<string>\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\",\n        \"totalAmount\": \"<string>\"\n      }\n    ]\n  },\n  \"customerInformation\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"merchantCustomerId\": \"<string>\",\n    \"company\": {\n      \"name\": \"<string>\"\n    }\n  },\n  \"processingInformation\": {\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"merchantDefinedFieldValues\": [\n    {\n      \"definitionId\": \"<long>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"definitionId\": \"<long>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0046c050-acdb-40e4-b25f-9667c06fe947",
+              "name": "OK.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceInformation\": {\n    \"dueDate\": \"<date>\",\n    \"description\": \"<string>\",\n    \"expirationDate\": \"<date>\",\n    \"sendImmediately\": false,\n    \"allowPartialPayments\": false,\n    \"deliveryMode\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"totalAmount\": \"<string>\",\n      \"discountAmount\": \"10.00\",\n      \"discountPercent\": \"10\",\n      \"subAmount\": \"<string>\",\n      \"minimumPartialAmount\": \"<string>\",\n      \"taxDetails\": {\n        \"type\": \"<string>\",\n        \"amount\": \"<string>\",\n        \"rate\": \"<string>\"\n      },\n      \"freight\": {\n        \"amount\": \"<string>\",\n        \"taxable\": \"<boolean>\",\n        \"taxRate\": \"<string>\"\n      }\n    },\n    \"lineItems\": [\n      {\n        \"productSku\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\",\n        \"totalAmount\": \"<string>\"\n      },\n      {\n        \"productSku\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\",\n        \"totalAmount\": \"<string>\"\n      }\n    ]\n  },\n  \"customerInformation\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"merchantCustomerId\": \"<string>\",\n    \"company\": {\n      \"name\": \"<string>\"\n    }\n  },\n  \"processingInformation\": {\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"merchantDefinedFieldValues\": [\n    {\n      \"definitionId\": \"<long>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"definitionId\": \"<long>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"update\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"deliver\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"cancel\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"customerInformation\": {\n    \"name\": \"string\",\n    \"email\": \"string\",\n    \"merchantCustomerId\": \"string\",\n    \"company\": {\n      \"name\": \"string\"\n    }\n  },\n  \"processingInformation\": {\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"invoiceInformation\": {\n    \"invoiceNumber\": \"string\",\n    \"description\": \"string\",\n    \"dueDate\": \"1999-03-10\",\n    \"expirationDate\": \"2008-09-19\",\n    \"allowPartialPayments\": false,\n    \"paymentLink\": \"string\",\n    \"deliveryMode\": \"string\",\n    \"customLabels\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      }\n    ]\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"string\",\n      \"currency\": \"str\",\n      \"balanceAmount\": \"string\",\n      \"discountAmount\": \"string\",\n      \"discountPercent\": \"string\",\n      \"subAmount\": \"string\",\n      \"minimumPartialAmount\": \"string\",\n      \"taxDetails\": {\n        \"type\": \"string\",\n        \"amount\": \"string\",\n        \"rate\": \"string\"\n      },\n      \"freight\": {\n        \"amount\": \"string\",\n        \"taxable\": false,\n        \"taxRate\": \"string\"\n      }\n    },\n    \"lineItems\": [\n      {\n        \"productSku\": \"string\",\n        \"productName\": \"string\",\n        \"quantity\": 1,\n        \"unitPrice\": \"string\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"string\",\n        \"taxRate\": \"string\",\n        \"totalAmount\": \"string\"\n      },\n      {\n        \"productSku\": \"string\",\n        \"productName\": \"string\",\n        \"quantity\": 1,\n        \"unitPrice\": \"string\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"string\",\n        \"taxRate\": \"string\",\n        \"totalAmount\": \"string\"\n      }\n    ]\n  },\n  \"merchantDefinedFieldValuesWithDefinition\": [\n    {\n      \"referenceType\": \"string\",\n      \"label\": \"string\",\n      \"fieldType\": \"string\",\n      \"customerVisible\": true,\n      \"readOnly\": false,\n      \"textMinLength\": 3575,\n      \"textMaxLength\": 8929,\n      \"textDefaultValue\": \"string\",\n      \"possibleValues\": \"string\",\n      \"value\": \"string\",\n      \"position\": 6642,\n      \"definitionId\": 887,\n      \"merchantDefinedDataIndex\": 1606\n    },\n    {\n      \"referenceType\": \"string\",\n      \"label\": \"string\",\n      \"fieldType\": \"string\",\n      \"customerVisible\": false,\n      \"readOnly\": true,\n      \"textMinLength\": 4589,\n      \"textMaxLength\": 9601,\n      \"textDefaultValue\": \"string\",\n      \"possibleValues\": \"string\",\n      \"value\": \"string\",\n      \"position\": 6429,\n      \"definitionId\": 7902,\n      \"merchantDefinedDataIndex\": 2238\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00dedc83-c1f7-4805-ab56-1cd845f0133d",
+              "name": "Field validation errors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceInformation\": {\n    \"dueDate\": \"<date>\",\n    \"description\": \"<string>\",\n    \"expirationDate\": \"<date>\",\n    \"sendImmediately\": false,\n    \"allowPartialPayments\": false,\n    \"deliveryMode\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"totalAmount\": \"<string>\",\n      \"discountAmount\": \"10.00\",\n      \"discountPercent\": \"10\",\n      \"subAmount\": \"<string>\",\n      \"minimumPartialAmount\": \"<string>\",\n      \"taxDetails\": {\n        \"type\": \"<string>\",\n        \"amount\": \"<string>\",\n        \"rate\": \"<string>\"\n      },\n      \"freight\": {\n        \"amount\": \"<string>\",\n        \"taxable\": \"<boolean>\",\n        \"taxRate\": \"<string>\"\n      }\n    },\n    \"lineItems\": [\n      {\n        \"productSku\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\",\n        \"totalAmount\": \"<string>\"\n      },\n      {\n        \"productSku\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\",\n        \"totalAmount\": \"<string>\"\n      }\n    ]\n  },\n  \"customerInformation\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"merchantCustomerId\": \"<string>\",\n    \"company\": {\n      \"name\": \"<string>\"\n    }\n  },\n  \"processingInformation\": {\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"merchantDefinedFieldValues\": [\n    {\n      \"definitionId\": \"<long>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"definitionId\": \"<long>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:40:10Z\",\n  \"status\": \"BADREQUEST\",\n  \"reason\": \"VALIDATION_ERROR\",\n  \"message\": \"Field validation errors.\",\n  \"details\": [\n    {\n      \"field\": \"customerInformation.email\",\n      \"reason\": \"Invalid email\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8dac5206-7bda-4929-b25f-a51f3057412e",
+              "name": "Invoice does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceInformation\": {\n    \"dueDate\": \"<date>\",\n    \"description\": \"<string>\",\n    \"expirationDate\": \"<date>\",\n    \"sendImmediately\": false,\n    \"allowPartialPayments\": false,\n    \"deliveryMode\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"totalAmount\": \"<string>\",\n      \"discountAmount\": \"10.00\",\n      \"discountPercent\": \"10\",\n      \"subAmount\": \"<string>\",\n      \"minimumPartialAmount\": \"<string>\",\n      \"taxDetails\": {\n        \"type\": \"<string>\",\n        \"amount\": \"<string>\",\n        \"rate\": \"<string>\"\n      },\n      \"freight\": {\n        \"amount\": \"<string>\",\n        \"taxable\": \"<boolean>\",\n        \"taxRate\": \"<string>\"\n      }\n    },\n    \"lineItems\": [\n      {\n        \"productSku\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\",\n        \"totalAmount\": \"<string>\"\n      },\n      {\n        \"productSku\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\",\n        \"totalAmount\": \"<string>\"\n      }\n    ]\n  },\n  \"customerInformation\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"merchantCustomerId\": \"<string>\",\n    \"company\": {\n      \"name\": \"<string>\"\n    }\n  },\n  \"processingInformation\": {\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"merchantDefinedFieldValues\": [\n    {\n      \"definitionId\": \"<long>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"definitionId\": \"<long>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:36:29Z\",\n  \"status\": \"NOTFOUND\",\n  \"reason\": \"NOT_FOUND\",\n  \"message\": \"Invoice does not exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3c18a83-c543-4976-933d-2b68404663d5",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceInformation\": {\n    \"dueDate\": \"<date>\",\n    \"description\": \"<string>\",\n    \"expirationDate\": \"<date>\",\n    \"sendImmediately\": false,\n    \"allowPartialPayments\": false,\n    \"deliveryMode\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"totalAmount\": \"<string>\",\n      \"discountAmount\": \"10.00\",\n      \"discountPercent\": \"10\",\n      \"subAmount\": \"<string>\",\n      \"minimumPartialAmount\": \"<string>\",\n      \"taxDetails\": {\n        \"type\": \"<string>\",\n        \"amount\": \"<string>\",\n        \"rate\": \"<string>\"\n      },\n      \"freight\": {\n        \"amount\": \"<string>\",\n        \"taxable\": \"<boolean>\",\n        \"taxRate\": \"<string>\"\n      }\n    },\n    \"lineItems\": [\n      {\n        \"productSku\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\",\n        \"totalAmount\": \"<string>\"\n      },\n      {\n        \"productSku\": \"<string>\",\n        \"productName\": \"<string>\",\n        \"quantity\": 1,\n        \"unitPrice\": \"<string>\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"<string>\",\n        \"taxRate\": \"<string>\",\n        \"totalAmount\": \"<string>\"\n      }\n    ]\n  },\n  \"customerInformation\": {\n    \"name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"merchantCustomerId\": \"<string>\",\n    \"company\": {\n      \"name\": \"<string>\"\n    }\n  },\n  \"processingInformation\": {\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"merchantDefinedFieldValues\": [\n    {\n      \"definitionId\": \"<long>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"definitionId\": \"<long>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2018-06-12T09:27:20Z\",\n  \"status\": \"SERVER_ERROR\",\n  \"reason\": \"SERVER_ERROR\",\n  \"message\": \"Error - General system failure.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e17ad8a-6a18-4070-a634-5b14bc23c3bf",
+          "name": "Send an Invoice",
+          "request": {
+            "name": "Send an Invoice",
+            "description": {
+              "content": "You can send an invoice in draft or created state or resend a sent or partially paid invoice. Fully paid or canceled invoices cannot be resent.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoicing",
+                "v2",
+                "invoices",
+                ":id",
+                "delivery"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The invoice number."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f67e2022-670d-408a-82ea-329958ca2493",
+              "name": "OK.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices",
+                    ":id",
+                    "delivery"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"update\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"deliver\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"cancel\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"customerInformation\": {\n    \"name\": \"string\",\n    \"email\": \"string\",\n    \"merchantCustomerId\": \"string\",\n    \"company\": {\n      \"name\": \"string\"\n    }\n  },\n  \"processingInformation\": {\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"invoiceInformation\": {\n    \"invoiceNumber\": \"string\",\n    \"description\": \"string\",\n    \"dueDate\": \"1955-12-30\",\n    \"expirationDate\": \"1955-11-17\",\n    \"allowPartialPayments\": false,\n    \"paymentLink\": \"string\",\n    \"deliveryMode\": \"string\",\n    \"customLabels\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      }\n    ]\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"string\",\n      \"currency\": \"str\",\n      \"balanceAmount\": \"string\",\n      \"discountAmount\": \"string\",\n      \"discountPercent\": \"string\",\n      \"subAmount\": \"string\",\n      \"minimumPartialAmount\": \"string\",\n      \"taxDetails\": {\n        \"type\": \"string\",\n        \"amount\": \"string\",\n        \"rate\": \"string\"\n      },\n      \"freight\": {\n        \"amount\": \"string\",\n        \"taxable\": false,\n        \"taxRate\": \"string\"\n      }\n    },\n    \"lineItems\": [\n      {\n        \"productSku\": \"string\",\n        \"productName\": \"string\",\n        \"quantity\": 1,\n        \"unitPrice\": \"string\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"string\",\n        \"taxRate\": \"string\",\n        \"totalAmount\": \"string\"\n      },\n      {\n        \"productSku\": \"string\",\n        \"productName\": \"string\",\n        \"quantity\": 1,\n        \"unitPrice\": \"string\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"string\",\n        \"taxRate\": \"string\",\n        \"totalAmount\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8472f7ab-f2c5-4d5a-bcda-6714ca4cc9fa",
+              "name": "Requested action is not allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices",
+                    ":id",
+                    "delivery"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:40:10Z\",\n  \"status\": \"BADREQUEST\",\n  \"reason\": \"VALIDATION_ERROR\",\n  \"message\": \"Field validation errors.\",\n  \"details\": [\n    {\n      \"field\": \"customerInformation.email\",\n      \"reason\": \"Invalid email\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b56bb1d3-7554-4256-a9e3-e8c17fdc1b8e",
+              "name": "Invoice does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices",
+                    ":id",
+                    "delivery"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:36:29Z\",\n  \"status\": \"NOTFOUND\",\n  \"reason\": \"NOT_FOUND\",\n  \"message\": \"Invoice does not exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fce6d3fd-35f8-4b9e-aaee-6650d17233cd",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices",
+                    ":id",
+                    "delivery"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2018-06-12T09:27:20Z\",\n  \"status\": \"SERVER_ERROR\",\n  \"reason\": \"SERVER_ERROR\",\n  \"message\": \"Error - General system failure.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a515a48b-c04f-42ed-a88c-4c07078d5ce3",
+          "name": "Cancel an Invoice",
+          "request": {
+            "name": "Cancel an Invoice",
+            "description": {
+              "content": "You can cancel an invoice if no payment is made to it. You cannot cancel partially or fully paid invoices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoicing",
+                "v2",
+                "invoices",
+                ":id",
+                "cancelation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The invoice number."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f42a1c2-d5e3-41cc-8f20-e5f697944855",
+              "name": "OK.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices",
+                    ":id",
+                    "cancelation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"update\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"deliver\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"cancel\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"customerInformation\": {\n    \"name\": \"string\",\n    \"email\": \"string\",\n    \"merchantCustomerId\": \"string\",\n    \"company\": {\n      \"name\": \"string\"\n    }\n  },\n  \"processingInformation\": {\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"invoiceInformation\": {\n    \"invoiceNumber\": \"string\",\n    \"description\": \"string\",\n    \"dueDate\": \"2006-01-18\",\n    \"expirationDate\": \"2006-02-07\",\n    \"allowPartialPayments\": false,\n    \"paymentLink\": \"string\",\n    \"deliveryMode\": \"string\",\n    \"customLabels\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      }\n    ]\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"string\",\n      \"currency\": \"str\",\n      \"balanceAmount\": \"string\",\n      \"discountAmount\": \"string\",\n      \"discountPercent\": \"string\",\n      \"subAmount\": \"string\",\n      \"minimumPartialAmount\": \"string\",\n      \"taxDetails\": {\n        \"type\": \"string\",\n        \"amount\": \"string\",\n        \"rate\": \"string\"\n      },\n      \"freight\": {\n        \"amount\": \"string\",\n        \"taxable\": true,\n        \"taxRate\": \"string\"\n      }\n    },\n    \"lineItems\": [\n      {\n        \"productSku\": \"string\",\n        \"productName\": \"string\",\n        \"quantity\": 1,\n        \"unitPrice\": \"string\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"string\",\n        \"taxRate\": \"string\",\n        \"totalAmount\": \"string\"\n      },\n      {\n        \"productSku\": \"string\",\n        \"productName\": \"string\",\n        \"quantity\": 1,\n        \"unitPrice\": \"string\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"string\",\n        \"taxRate\": \"string\",\n        \"totalAmount\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a377fe14-44fc-4609-b40e-b30fe3c7eb73",
+              "name": "Requested action is not allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices",
+                    ":id",
+                    "cancelation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:40:10Z\",\n  \"status\": \"BADREQUEST\",\n  \"reason\": \"VALIDATION_ERROR\",\n  \"message\": \"Field validation errors.\",\n  \"details\": [\n    {\n      \"field\": \"customerInformation.email\",\n      \"reason\": \"Invalid email\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d951772-7b8c-43ad-8e01-3deea85279f8",
+              "name": "Invoice does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices",
+                    ":id",
+                    "cancelation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:36:29Z\",\n  \"status\": \"NOTFOUND\",\n  \"reason\": \"NOT_FOUND\",\n  \"message\": \"Invoice does not exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1ab0a98-0d4a-4d28-8fdf-10f9f8e6c577",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices",
+                    ":id",
+                    "cancelation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2018-06-12T09:27:20Z\",\n  \"status\": \"SERVER_ERROR\",\n  \"reason\": \"SERVER_ERROR\",\n  \"message\": \"Error - General system failure.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6a0dc64-a844-4065-bd51-df54e7934103",
+          "name": "Publish an Invoice",
+          "request": {
+            "name": "Publish an Invoice",
+            "description": {
+              "content": "You can publish an invoice in DRAFT status. After invoking this method, the invoice status is changed to CREATED.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoicing",
+                "v2",
+                "invoices",
+                ":id",
+                "publication"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The invoice number."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3406fd0d-fe8d-46e3-ab99-7390808e180f",
+              "name": "OK.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices",
+                    ":id",
+                    "publication"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"update\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"deliver\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"cancel\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"customerInformation\": {\n    \"name\": \"string\",\n    \"email\": \"string\",\n    \"merchantCustomerId\": \"string\",\n    \"company\": {\n      \"name\": \"string\"\n    }\n  },\n  \"processingInformation\": {\n    \"requestPhone\": false,\n    \"requestShipping\": false\n  },\n  \"invoiceInformation\": {\n    \"invoiceNumber\": \"string\",\n    \"description\": \"string\",\n    \"dueDate\": \"2008-06-22\",\n    \"expirationDate\": \"2016-05-24\",\n    \"allowPartialPayments\": false,\n    \"paymentLink\": \"string\",\n    \"deliveryMode\": \"string\",\n    \"customLabels\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      }\n    ]\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"string\",\n      \"currency\": \"str\",\n      \"balanceAmount\": \"string\",\n      \"discountAmount\": \"string\",\n      \"discountPercent\": \"string\",\n      \"subAmount\": \"string\",\n      \"minimumPartialAmount\": \"string\",\n      \"taxDetails\": {\n        \"type\": \"string\",\n        \"amount\": \"string\",\n        \"rate\": \"string\"\n      },\n      \"freight\": {\n        \"amount\": \"string\",\n        \"taxable\": false,\n        \"taxRate\": \"string\"\n      }\n    },\n    \"lineItems\": [\n      {\n        \"productSku\": \"string\",\n        \"productName\": \"string\",\n        \"quantity\": 1,\n        \"unitPrice\": \"string\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"string\",\n        \"taxRate\": \"string\",\n        \"totalAmount\": \"string\"\n      },\n      {\n        \"productSku\": \"string\",\n        \"productName\": \"string\",\n        \"quantity\": 1,\n        \"unitPrice\": \"string\",\n        \"discountAmount\": \"10.00\",\n        \"discountPercent\": \"10\",\n        \"taxAmount\": \"string\",\n        \"taxRate\": \"string\",\n        \"totalAmount\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68ae6812-3b9d-4270-8187-cf3141023e1f",
+              "name": "Requested action is not allowed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices",
+                    ":id",
+                    "publication"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:40:10Z\",\n  \"status\": \"BADREQUEST\",\n  \"reason\": \"VALIDATION_ERROR\",\n  \"message\": \"Field validation errors.\",\n  \"details\": [\n    {\n      \"field\": \"customerInformation.email\",\n      \"reason\": \"Invalid email\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e85ed41f-84b3-4dd6-831d-1697a46688c6",
+              "name": "Invoice does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices",
+                    ":id",
+                    "publication"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:36:29Z\",\n  \"status\": \"NOTFOUND\",\n  \"reason\": \"NOT_FOUND\",\n  \"message\": \"Invoice does not exist.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8558c5a1-b5d2-4333-866a-004a589d787a",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoices",
+                    ":id",
+                    "publication"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The invoice number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2018-06-12T09:27:20Z\",\n  \"status\": \"SERVER_ERROR\",\n  \"reason\": \"SERVER_ERROR\",\n  \"message\": \"Error - General system failure.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2479dde3-f50a-4f63-b0fb-a49ebfe10c71",
+    "name": "CyberSource Merged Spec bankAccountValidation Invoices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

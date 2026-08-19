@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation UserManagementSearch API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "UserManagementSearch",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search User Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ums/v1/users/search"
+          },
+          "docs": "This endpoint is to get all the user information depending on the filter criteria passed in request body."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

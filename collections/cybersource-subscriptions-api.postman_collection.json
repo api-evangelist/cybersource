@@ -1,0 +1,2452 @@
+{
+  "item": [
+    {
+      "id": "75ac5ce4-0f0f-4e84-98e3-0f135e26ff36",
+      "name": "Subscriptions",
+      "description": {
+        "content": "Create and manage Recurring Subscriptions.\n\nYou have option to link subscription to plan or create independent subscriptions.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7474da7c-2bca-4504-9874-849c939136a9",
+          "name": "Create a Subscription",
+          "request": {
+            "name": "Create a Subscription",
+            "description": {
+              "content": "Create a Recurring Billing Subscription",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rbs",
+                "v1",
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"<string>\",\n    \"authorizationOptions\": {\n      \"initiator\": {\n        \"type\": \"<string>\"\n      }\n    }\n  },\n  \"planInformation\": {\n    \"billingPeriod\": {\n      \"length\": \"<string>\",\n      \"unit\": \"<string>\"\n    },\n    \"billingCycles\": {\n      \"total\": \"<string>\"\n    }\n  },\n  \"subscriptionInformation\": {\n    \"name\": \"<string>\",\n    \"startDate\": \"<string>\",\n    \"code\": \"<string>\",\n    \"planId\": \"<string>\",\n    \"originalTransactionId\": \"<string>\",\n    \"originalTransactionAuthorizedAmount\": \"<string>\"\n  },\n  \"paymentInformation\": {\n    \"customer\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"billingAmount\": \"<string>\",\n      \"setupFee\": \"<string>\",\n      \"surcharge\": {\n        \"amount\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5f7f10dc-5188-46b9-9478-283d18f8902f",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"<string>\",\n    \"authorizationOptions\": {\n      \"initiator\": {\n        \"type\": \"<string>\"\n      }\n    }\n  },\n  \"planInformation\": {\n    \"billingPeriod\": {\n      \"length\": \"<string>\",\n      \"unit\": \"<string>\"\n    },\n    \"billingCycles\": {\n      \"total\": \"<string>\"\n    }\n  },\n  \"subscriptionInformation\": {\n    \"name\": \"<string>\",\n    \"startDate\": \"<string>\",\n    \"code\": \"<string>\",\n    \"planId\": \"<string>\",\n    \"originalTransactionId\": \"<string>\",\n    \"originalTransactionAuthorizedAmount\": \"<string>\"\n  },\n  \"paymentInformation\": {\n    \"customer\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"billingAmount\": \"<string>\",\n      \"setupFee\": \"<string>\",\n      \"surcharge\": {\n        \"amount\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"/rbs/v1/subscriptions/4567000000000123456789\",\n      \"method\": \"GET\"\n    },\n    \"update\": {\n      \"href\": \"/rbs/v1/subscriptions/4567000000000123456789\",\n      \"method\": \"PATCH\"\n    },\n    \"cancel\": {\n      \"href\": \"/rbs/v1/subscriptions/4567000000000123456789/cancel\",\n      \"method\": \"POST\"\n    },\n    \"suspend\": {\n      \"href\": \"/rbs/v1/subscriptions/4567000000000123456789/suspend\",\n      \"method\": \"POST\"\n    },\n    \"activate\": {\n      \"href\": \"/rbs/v1/subscriptions/4567000000000123456789/activate\",\n      \"method\": \"POST\"\n    }\n  },\n  \"submitTimeUtc\": \"2020-11-01T071957Z\",\n  \"status\": \"COMPLETED\",\n  \"subscriptionInformation\": {\n    \"code\": \"SUB1\",\n    \"status\": \"ACTIVE\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a4c59f1-7f5c-49bf-9cda-b081e43c12d1",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"<string>\",\n    \"authorizationOptions\": {\n      \"initiator\": {\n        \"type\": \"<string>\"\n      }\n    }\n  },\n  \"planInformation\": {\n    \"billingPeriod\": {\n      \"length\": \"<string>\",\n      \"unit\": \"<string>\"\n    },\n    \"billingCycles\": {\n      \"total\": \"<string>\"\n    }\n  },\n  \"subscriptionInformation\": {\n    \"name\": \"<string>\",\n    \"startDate\": \"<string>\",\n    \"code\": \"<string>\",\n    \"planId\": \"<string>\",\n    \"originalTransactionId\": \"<string>\",\n    \"originalTransactionAuthorizedAmount\": \"<string>\"\n  },\n  \"paymentInformation\": {\n    \"customer\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"billingAmount\": \"<string>\",\n      \"setupFee\": \"<string>\",\n      \"surcharge\": {\n        \"amount\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "191d9cff-8fc6-4ca3-b4f5-0d8f8c9d57ec",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"<string>\",\n    \"authorizationOptions\": {\n      \"initiator\": {\n        \"type\": \"<string>\"\n      }\n    }\n  },\n  \"planInformation\": {\n    \"billingPeriod\": {\n      \"length\": \"<string>\",\n      \"unit\": \"<string>\"\n    },\n    \"billingCycles\": {\n      \"total\": \"<string>\"\n    }\n  },\n  \"subscriptionInformation\": {\n    \"name\": \"<string>\",\n    \"startDate\": \"<string>\",\n    \"code\": \"<string>\",\n    \"planId\": \"<string>\",\n    \"originalTransactionId\": \"<string>\",\n    \"originalTransactionAuthorizedAmount\": \"<string>\"\n  },\n  \"paymentInformation\": {\n    \"customer\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"<string>\",\n      \"billingAmount\": \"<string>\",\n      \"setupFee\": \"<string>\",\n      \"surcharge\": {\n        \"amount\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "573861bb-8b9f-44ad-aede-07aaeab55b8f",
+          "name": "Get a List of Subscriptions",
+          "request": {
+            "name": "Get a List of Subscriptions",
+            "description": {
+              "content": "Retrieve Subscriptions by Subscription Code & Subscription Status.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rbs",
+                "v1",
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Page offset number."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of items to be returned. Default - `20`, Max - `100`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "code",
+                  "value": "<string>",
+                  "description": "Filter by Subscription Code"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by Subscription Status"
+                },
+                {
+                  "disabled": false,
+                  "key": "customerId",
+                  "value": "<string>",
+                  "description": "Filter by Customer Id"
+                },
+                {
+                  "disabled": false,
+                  "key": "clientReferenceInformationCode",
+                  "value": "<string>",
+                  "description": "Filter by Client Reference Information Code / Merchant Reference Number"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b8a9af08-c27b-45f0-821f-edee34e8ba05",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientReferenceInformationCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"next\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"previous\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"submitTimeUtc\": \"string\",\n  \"totalCount\": 5134,\n  \"subscriptions\": [\n    {\n      \"_links\": {\n        \"self\": {\n          \"href\": \"string\",\n          \"method\": \"string\"\n        },\n        \"cancel\": {\n          \"href\": \"string\",\n          \"method\": \"string\"\n        },\n        \"suspend\": {\n          \"href\": \"string\",\n          \"method\": \"string\"\n        },\n        \"activate\": {\n          \"href\": \"string\",\n          \"method\": \"string\"\n        }\n      },\n      \"id\": \"string\",\n      \"planInformation\": {\n        \"code\": \"string\",\n        \"name\": \"string\",\n        \"billingPeriod\": {\n          \"length\": \"string\",\n          \"unit\": \"string\"\n        },\n        \"billingCycles\": {\n          \"total\": \"string\",\n          \"current\": \"string\"\n        }\n      },\n      \"subscriptionInformation\": {\n        \"code\": \"string\",\n        \"planId\": \"string\",\n        \"name\": \"string\",\n        \"startDate\": \"string\",\n        \"status\": \"string\"\n      },\n      \"clientReferenceInformation\": {\n        \"code\": \"string\"\n      },\n      \"paymentInformation\": {\n        \"customer\": {\n          \"id\": \"string\"\n        }\n      },\n      \"orderInformation\": {\n        \"amountDetails\": {\n          \"currency\": \"str\",\n          \"billingAmount\": \"string\",\n          \"setupFee\": \"string\",\n          \"surcharge\": {\n            \"amount\": \"string\",\n            \"description\": \"string\"\n          }\n        },\n        \"billTo\": {\n          \"firstName\": \"string\",\n          \"lastName\": \"string\"\n        }\n      }\n    },\n    {\n      \"_links\": {\n        \"self\": {\n          \"href\": \"string\",\n          \"method\": \"string\"\n        },\n        \"cancel\": {\n          \"href\": \"string\",\n          \"method\": \"string\"\n        },\n        \"suspend\": {\n          \"href\": \"string\",\n          \"method\": \"string\"\n        },\n        \"activate\": {\n          \"href\": \"string\",\n          \"method\": \"string\"\n        }\n      },\n      \"id\": \"string\",\n      \"planInformation\": {\n        \"code\": \"string\",\n        \"name\": \"string\",\n        \"billingPeriod\": {\n          \"length\": \"string\",\n          \"unit\": \"string\"\n        },\n        \"billingCycles\": {\n          \"total\": \"string\",\n          \"current\": \"string\"\n        }\n      },\n      \"subscriptionInformation\": {\n        \"code\": \"string\",\n        \"planId\": \"string\",\n        \"name\": \"string\",\n        \"startDate\": \"string\",\n        \"status\": \"string\"\n      },\n      \"clientReferenceInformation\": {\n        \"code\": \"string\"\n      },\n      \"paymentInformation\": {\n        \"customer\": {\n          \"id\": \"string\"\n        }\n      },\n      \"orderInformation\": {\n        \"amountDetails\": {\n          \"currency\": \"str\",\n          \"billingAmount\": \"string\",\n          \"setupFee\": \"string\",\n          \"surcharge\": {\n            \"amount\": \"string\",\n            \"description\": \"string\"\n          }\n        },\n        \"billTo\": {\n          \"firstName\": \"string\",\n          \"lastName\": \"string\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8bef2cd-abe1-456d-8d22-95ab8eb63e48",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientReferenceInformationCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "342b7aa6-3e91-4eb0-9724-d48f7314ae4d",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "clientReferenceInformationCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "71b055a3-db6e-4e7c-838a-3223766f8634",
+          "name": "Get a Subscription",
+          "request": {
+            "name": "Get a Subscription",
+            "description": {
+              "content": "Get a Subscription by Subscription Id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rbs",
+                "v1",
+                "subscriptions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Subscription Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aeda8275-a7dc-47b2-a10b-6dd1c39f7c3e",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"cancel\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"suspend\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"activate\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"planInformation\": {\n    \"code\": \"string\",\n    \"name\": \"string\",\n    \"billingPeriod\": {\n      \"length\": \"string\",\n      \"unit\": \"string\"\n    },\n    \"billingCycles\": {\n      \"total\": \"string\",\n      \"current\": \"string\"\n    }\n  },\n  \"subscriptionInformation\": {\n    \"code\": \"string\",\n    \"planId\": \"string\",\n    \"name\": \"string\",\n    \"startDate\": \"string\",\n    \"status\": \"string\"\n  },\n  \"paymentInformation\": {\n    \"customer\": {\n      \"id\": \"string\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"currency\": \"str\",\n      \"billingAmount\": \"string\",\n      \"setupFee\": \"string\",\n      \"surcharge\": {\n        \"amount\": \"string\",\n        \"description\": \"string\"\n      }\n    },\n    \"billTo\": {\n      \"firstName\": \"string\",\n      \"lastName\": \"string\"\n    }\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"string\"\n  },\n  \"reactivationInformation\": {\n    \"missedPaymentsCount\": \"string\",\n    \"missedPaymentsTotalAmount\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62cc3b92-a3a4-4643-8249-79f0cdc25e6c",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9764f6a5-f8cc-4dce-9002-8017cd52ffd5",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "873877f4-11ab-4ea8-a0c3-c95324c5b6c0",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cad4b897-5af0-46e7-98e4-8e14b4cd7d18",
+          "name": "Update a Subscription",
+          "request": {
+            "name": "Update a Subscription",
+            "description": {
+              "content": "Update a Subscription by Subscription Id",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rbs",
+                "v1",
+                "subscriptions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Subscription Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"<string>\",\n    \"authorizationOptions\": {\n      \"initiator\": {\n        \"type\": \"<string>\"\n      }\n    }\n  },\n  \"planInformation\": {\n    \"billingCycles\": {\n      \"total\": \"<string>\"\n    }\n  },\n  \"subscriptionInformation\": {\n    \"code\": \"<string>\",\n    \"planId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"startDate\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"billingAmount\": \"<string>\",\n      \"setupFee\": \"<string>\",\n      \"surcharge\": {\n        \"amount\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6aeedf0d-9ada-40c3-b36f-885567fffdbd",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"<string>\",\n    \"authorizationOptions\": {\n      \"initiator\": {\n        \"type\": \"<string>\"\n      }\n    }\n  },\n  \"planInformation\": {\n    \"billingCycles\": {\n      \"total\": \"<string>\"\n    }\n  },\n  \"subscriptionInformation\": {\n    \"code\": \"<string>\",\n    \"planId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"startDate\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"billingAmount\": \"<string>\",\n      \"setupFee\": \"<string>\",\n      \"surcharge\": {\n        \"amount\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"cancel\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"suspend\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"activate\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"subscriptionInformation\": {\n    \"code\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53400a78-d375-4abe-8275-cde26a807524",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"<string>\",\n    \"authorizationOptions\": {\n      \"initiator\": {\n        \"type\": \"<string>\"\n      }\n    }\n  },\n  \"planInformation\": {\n    \"billingCycles\": {\n      \"total\": \"<string>\"\n    }\n  },\n  \"subscriptionInformation\": {\n    \"code\": \"<string>\",\n    \"planId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"startDate\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"billingAmount\": \"<string>\",\n      \"setupFee\": \"<string>\",\n      \"surcharge\": {\n        \"amount\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0de92106-4690-443a-a4f5-f0e248a0e442",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"<string>\",\n    \"authorizationOptions\": {\n      \"initiator\": {\n        \"type\": \"<string>\"\n      }\n    }\n  },\n  \"planInformation\": {\n    \"billingCycles\": {\n      \"total\": \"<string>\"\n    }\n  },\n  \"subscriptionInformation\": {\n    \"code\": \"<string>\",\n    \"planId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"startDate\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"billingAmount\": \"<string>\",\n      \"setupFee\": \"<string>\",\n      \"surcharge\": {\n        \"amount\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aff68859-f902-480b-90bf-3b75e2abbab4",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"<string>\",\n    \"authorizationOptions\": {\n      \"initiator\": {\n        \"type\": \"<string>\"\n      }\n    }\n  },\n  \"planInformation\": {\n    \"billingCycles\": {\n      \"total\": \"<string>\"\n    }\n  },\n  \"subscriptionInformation\": {\n    \"code\": \"<string>\",\n    \"planId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"startDate\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"billingAmount\": \"<string>\",\n      \"setupFee\": \"<string>\",\n      \"surcharge\": {\n        \"amount\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ea721a3-c4d3-4f44-86cd-504ed7e96f1f",
+          "name": "Cancel a Subscription",
+          "request": {
+            "name": "Cancel a Subscription",
+            "description": {
+              "content": "Cancel a Subscription",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rbs",
+                "v1",
+                "subscriptions",
+                ":id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Subscription Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d42373c-3378-48a9-a459-b1ff42bf9797",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"subscriptionInformation\": {\n    \"code\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eccf57b5-d5c6-4b56-9076-5dd2e135e5cc",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0fd1919f-f74f-4a55-8eab-86bc85a113d1",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f0dcc85-de0b-45be-b6c1-a655e5665fb3",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a02dc87-b47a-4d40-8387-e09f23219388",
+          "name": "Suspend a Subscription",
+          "request": {
+            "name": "Suspend a Subscription",
+            "description": {
+              "content": "Suspend a Subscription\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rbs",
+                "v1",
+                "subscriptions",
+                ":id",
+                "suspend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Subscription Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aeca7925-d21a-46b7-b445-a97818f209b2",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id",
+                    "suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"subscriptionInformation\": {\n    \"code\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2cb09653-7f60-41a8-a4e4-d73f64649fe4",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id",
+                    "suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4cb2353-2a68-496e-9b90-3dbd2c38ae24",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id",
+                    "suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef3eee07-0154-466e-9abf-371c0820dba2",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id",
+                    "suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64d8c624-34ef-4282-92af-590d035f4a16",
+          "name": "Reactivating a Suspended Subscription",
+          "request": {
+            "name": "Reactivating a Suspended Subscription",
+            "description": {
+              "content": "# Reactivating a Suspended Subscription\n\nYou can reactivate a suspended subscription for the next billing cycle. You cannot reactivate a canceled or completed subscription.\n\nYou can specify whether you want to process missed payments for the period during which the subscription was suspended using the `processMissedPayments` query parameter by setting it to true or false. \nIf no value is specified, the system will default to `true`.\n\n**Important:** The \"processMissedPayments\" query parameter is only effective when the Ask each time before reactivating option is selected in the reactivation settings. If any other option is chosen, the value provided in the request will be ignored by the system. For more information, see the [Recurring Billing User Guide](https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/user/all/rest/recurring-billing-user/recurring-billing-user-about-guide.html).\n\nYou can check how many payments were missed and the total amount by retrieving the subscription details, where you will find the `reactivationInformation` object. See: [Retrieving a Subscription](https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing-dev/recur-bill-subscriptions/recur-bill-getting-a-subscription.html).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rbs",
+                "v1",
+                "subscriptions",
+                ":id",
+                "activate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "processMissedPayments",
+                  "value": "true",
+                  "description": "Indicates if missed payments should be processed from the period when the subscription was suspended. By default, this is set to true.\nWhen any option other than \"Ask each time before reactivating\" is selected in the reactivation settings, the value that you enter will be ignored.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Subscription Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "20a1e83b-988b-49dd-a42d-08d5ca4f117f",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "processMissedPayments",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"subscriptionInformation\": {\n    \"code\": \"string\",\n    \"status\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5311f6d6-3a2b-46d4-97ec-f79e1cbc9192",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "processMissedPayments",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b041ecef-d8ca-4245-8af4-05c668dd1ae8",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "processMissedPayments",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac7abf37-be67-4884-a711-2773821c1a50",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "processMissedPayments",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dabb292e-8389-41d3-ab69-644c0d589eb8",
+          "name": "Get a Subscription Code",
+          "request": {
+            "name": "Get a Subscription Code",
+            "description": {
+              "content": "Get a Unique Subscription Code",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rbs",
+                "v1",
+                "subscriptions",
+                "code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f071336-7db5-41b4-8861-878cd504d9de",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    "code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3c66e20-d818-4dca-97dc-35c8c265f038",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    "code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba4997cf-7933-4514-bc32-a028fd6b53bb",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    "code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4674ffba-a258-4477-880e-05f305a4bf1b",
+          "name": "Get Payments for a Subscription",
+          "request": {
+            "name": "Get Payments for a Subscription",
+            "description": {
+              "content": "Retrieve a list of payments for a specific subscription by its ID.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rbs",
+                "v1",
+                "subscriptions",
+                ":id",
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Page offset number."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of items to be returned. Default - `20`, Max - `100`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "scheduledPaymentsCount",
+                  "value": "<integer>",
+                  "description": "Number of existing scheduled payments to be returned. Default - `5`, Max - `9999`\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Subscription Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0b1668e-8aab-4ddc-97d9-a0bb95982028",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "scheduledPaymentsCount",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"next\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"prev\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"submitTimeUtc\": \"string\",\n  \"totalCount\": 2781,\n  \"cyclesCompletedCount\": {\n    \"paid\": 9443\n  },\n  \"billingCyclesToSkip\": [\n    8748,\n    5989\n  ],\n  \"subscriptionPayment\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"paymentType\": \"string\",\n      \"transactionID\": \"string\",\n      \"date\": \"1956-01-17T20:13:29.146Z\",\n      \"currency\": \"str\",\n      \"billingStartDate\": \"1976-09-08T03:13:02.480Z\",\n      \"billingEndDate\": \"1991-05-04T19:18:53.999Z\",\n      \"billingCycle\": \"string\",\n      \"paymentNumber\": \"string\",\n      \"billingAmount\": \"string\",\n      \"setupFee\": \"string\",\n      \"surchargeAmount\": \"string\",\n      \"surchargeDescription\": \"string\",\n      \"modifiable\": false\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"paymentType\": \"string\",\n      \"transactionID\": \"string\",\n      \"date\": \"1985-07-20T19:45:05.670Z\",\n      \"currency\": \"str\",\n      \"billingStartDate\": \"2009-09-09T08:54:45.691Z\",\n      \"billingEndDate\": \"2002-07-15T05:36:03.036Z\",\n      \"billingCycle\": \"string\",\n      \"paymentNumber\": \"string\",\n      \"billingAmount\": \"string\",\n      \"setupFee\": \"string\",\n      \"surchargeAmount\": \"string\",\n      \"surchargeDescription\": \"string\",\n      \"modifiable\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2446a3af-2bba-4ee9-8745-2f771c2e6db7",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "scheduledPaymentsCount",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91222f0a-c840-4793-a80f-20ff9087b44b",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "scheduledPaymentsCount",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd1f547f-53cd-4e15-ab89-7bd51ca4d56f",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "scheduledPaymentsCount",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24dca58d-4a12-4fee-b0db-ccbc79904565",
+          "name": "Update Payments for a subscription",
+          "request": {
+            "name": "Update Payments for a subscription",
+            "description": {
+              "content": "Modifies the state of a subscription's payments.\nCurrently, the only possible modifications are \"skipping\" and \"restoring\" payments. \nMarking a payment as \"skipped\" means it will not be processed when its scheduled time arrives. \"Restoring\" a payment removes it from the list of payments to be skipped.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rbs",
+                "v1",
+                "subscriptions",
+                ":id",
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Subscription Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"billingCyclesToSkip\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2679a901-8c5b-4d5a-83d5-f50af9b3760a",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billingCyclesToSkip\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    },\n    \"update\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"billingCyclesToSkip\": [\n    1147,\n    8590\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec5144bb-1f0c-4d53-a2ff-2506eab177e2",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billingCyclesToSkip\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4073713-0349-4ec1-bf0d-44ddee2171a3",
+              "name": "Not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billingCyclesToSkip\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7acafa7-a29a-4325-83b5-f6d979145989",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rbs",
+                    "v1",
+                    "subscriptions",
+                    ":id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Subscription Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billingCyclesToSkip\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8656e828-7fbf-4a60-a051-5a7e9a286de2",
+    "name": "CyberSource Merged Spec bankAccountValidation Subscriptions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

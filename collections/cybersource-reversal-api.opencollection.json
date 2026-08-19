@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation reversal API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "reversal",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Process an Authorization Reversal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/pts/v2/payments/:id/reversals",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The payment ID returned from a previous payment request."
+              }
+            ]
+          },
+          "docs": "Include the payment ID in the POST request to reverse the payment amount."
+        },
+        {
+          "info": {
+            "name": "Timeout Reversal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/pts/v2/reversals"
+          },
+          "docs": "This is to reverse a previous payment that merchant does not receive a reply(Mostly due to Timeout). To use this feature/API, make sure to pass unique value to field - clientReferenceInformation -> transactionId in [/pts/v2/payments](https://developer.cybersource.com/api-reference-assets/index.html#payments_payments) API call and use same transactionId in this API request payload to reverse the payment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

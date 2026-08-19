@@ -1,0 +1,172 @@
+{
+  "item": [
+    {
+      "id": "46ff5b9b-a3b8-42ad-b93f-022441235acc",
+      "name": "Microform Integration",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7df2d824-dccb-45bc-a70f-ddaad321ab57",
+          "name": "Generate Capture Context",
+          "request": {
+            "name": "Generate Capture Context",
+            "description": {
+              "content": "This API is used to generate the Capture Context data structure for the Microform Integration.  Microform is a browser-based acceptance solution that allows a seller to capture payment information is a secure manner from their website.  For more information about Flex Microform transactions, see the [Flex Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-flex/SAFlexibleToken.html). For examples on how to integrate Flex Microform within your webpage please see our [GitHub Flex Samples](https://github.com/CyberSource?q=flex&type=&language=) This API is a server-to-server API to generate the capture context that can be used to initiate instance of microform on a acceptance page.  The capture context is a digitally signed JWT that provides authentication, one-time keys, and the target origin to the Microform Integration application.  The availability of API features for a merchant may depend on the portfolio configuration and may need to be enabled at the portfolio level before they can be added to merchant accounts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "microform",
+                "v2",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/jwt"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientVersion\": \"<string>\",\n  \"targetOrigins\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowedCardNetworks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowedPaymentTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"transientTokenResponseOptions\": {\n    \"includeCardPrefix\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "06496668-fec0-422f-9a21-eb87326559eb",
+              "name": "Capture Context Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "microform",
+                    "v2",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/jwt"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientVersion\": \"<string>\",\n  \"targetOrigins\": [\n    \"https://www.test.com\",\n    \"https://www.test.com\"\n  ],\n  \"allowedCardNetworks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowedPaymentTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"transientTokenResponseOptions\": {\n    \"includeCardPrefix\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/jwt"
+                }
+              ],
+              "body": "eyJraWQiOiJ6dSIsImFsZyI6IlJTMjU2In0.eyJmbHgiOnsicGF0aCI6Ii9mbGV4L3YyL3Rva2VucyIsImRhdGEiOiJVUmIycEtZa2xhU0M4OW43ai9CWEJCQUFFQ1ZjVjRlU0xoTThvdDc5anRFREp4Vk1PdUFDRCtaUU03UGEydEhkbm5ENzh0MjBYcktCZVFnaUI4dysrZ0hNbHpBOUxqTng1K2MxNlo2VzJ2bGNaWGJyUmEydkUyRWFyaldlUUc0Q1pieEwiLCJvcmlnaW4iOiJodHRwczovL3Rlc3RmbGV4LmN5YmVyc291cmNlLmNvbSIsImp3ayI6eyJrdHkiOiJSU0EiLCJlIjoiQVFBQiIsInVzZSI6ImVuYyIsIm4iOiJod3VBT0NWcG5YWk9mTXNHWWJ6dUQyYW81dndvZGNPMVVqa2RpS3RXdEh5dmMybS1iY1hwUTRGRTk3UDk3NV9KMVJwMWJiZW5jWjNCZW1lbUJ5aU9VajlHRVVkV25raXVyNE5VWmVkQVpzelFkbFFaSlAzdzZQWVoxREFUY05ZekZwYjRXbnQzQkpKSm9XM2p3aTlMLTY1cWNuYU5SWFppRTV1V0FlQnFQY085UmNDU1BtR3lsT3REUWEzT0d5ZXFESDl0S3piU2lKNGxHMW9FcExVRWw2N003V0xXeXR1R2tsOExXUExncmkybldoaEdLS2d5cFA3bEp5Qk5IX2FxUHVOT3A3YUFVYTlvZVRqV2t0WVpqUzNqbTFjTDVkazJ6VkFGU3JkRGdTYzd1VXMtZVdkZThOYW1zZHhZTHFzX3BFSW1XU3FteDVvc2tpenZWR1A3anciLCJraWQiOiIwNzZSRjlmMEZMdVRLaU9jZkhiNU1TSkZwZzZqODY2YSJ9fSwiY3R4IjpbeyJkYXRhIjp7ImNsaWVudExpYnJhcnkiOiJodHRwczovL3Rlc3RmbGV4LmN5YmVyc291cmNlLmNvbS9taWNyb2Zvcm0vYnVuZGxlL3YxL2ZsZXgtbWljcm9mb3JtLm1pbi5qcyIsInRhcmdldE9yaWdpbnMiOlsiaHR0cHM6Ly93d3cuY3liZXJzb3VyY2UtbWVyY2hhbnQuY29tIl0sIm1mT3JpZ2luIjoiaHR0cHM6Ly90ZXN0ZmxleC5jeWJlcnNvdXJjZS5jb20ifSwidHlwZSI6Im1mLTEuMC4wIn1dLCJpc3MiOiJGbGV4IEFQSSIsImV4cCI6MTY2NDkyNzM5NywiaWF0IjoxNjY0OTI2NDk3LCJqdGkiOiJybXBWQ0NCSW9sdWhYQ2E0In0.LlunfxI-deZ_Tqypz4ucNhhF_IYsB6ZhlKndgWdJe1vv91ekePZBU6icq6aDVUAFuDR5MmjCQc7IsQNhCiZGf6uqV9YFLokhEZdnHOHkpwE1viH9GoddsdiSvBcJrYJ4FsV49JK2xRNvGTxNKR62wiO2YqPhNm934b2bbsjyYyDByw2wEZhJyAPBIDJk6IF2IvR4kq1lNyAtFs4EXVO2tqBATvj1nahqHMqUlrTsOGY96XioXl1YKnqeM1g5lREqoxR3M8HsWm2kCSsGyirIWLEaOYYEvWcKNBmkhW410XEYfb3hrg-H7irLe0_4OICdV1FyY-AsjbzO7mO17BENQg",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b1b768ff-6a39-4282-ae99-89e265d70018",
+              "name": "Error retrieving key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "microform",
+                    "v2",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/jwt"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientVersion\": \"<string>\",\n  \"targetOrigins\": [\n    \"https://www.test.com\",\n    \"https://www.test.com\"\n  ],\n  \"allowedCardNetworks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"allowedPaymentTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"transientTokenResponseOptions\": {\n    \"includeCardPrefix\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/jwt"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b073090e-9a2f-4e7f-be46-08006f472cce",
+    "name": "CyberSource Merged Spec bankAccountValidation Microform Integration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

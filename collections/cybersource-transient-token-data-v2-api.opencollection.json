@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Transient Token Data v2 API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transient Token Data v2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Transient Token Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/up/v1/payment-details/:transientToken",
+            "params": [
+              {
+                "name": "transientToken",
+                "value": "",
+                "type": "path",
+                "description": "Transient Token returned by the Unified Checkout application.\n"
+              }
+            ]
+          },
+          "docs": "Retrieve the data captured by Unified Checkout. This API is used to retrieve the detailed data represented by the Transient Token. This API will not return PCI payment data (PAN). Include the Request ID in the GET request to retrieve the transaction details."
+        },
+        {
+          "info": {
+            "name": "Get Transient Token Data v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/flex/v2/payment-details/:jti",
+            "params": [
+              {
+                "name": "jti",
+                "value": "",
+                "type": "path",
+                "description": "The jti within the Transient Token jwt returned by the Unified Checkout application\n"
+              }
+            ]
+          },
+          "docs": "Retrieve data captured through Unified Checkout. This API retrieves the detailed information associated with a Transient Token by looking it up in TMS and using its ID (the jti claim from the /flex/v2/tokens JWT response). The response returns a decrypted version of the Transient Token; however, PCI-sensitive payment data (PAN) is never returned and is always masked.<br><br> Example jti value: 1D42LRF04LYTMO3I1G8JX6GO6S1PUFM2R4CQLU51267E0EOQ7X2169A99674E16E"
+        },
+        {
+          "info": {
+            "name": "Get Payment Credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/flex/v2/payment-credentials/:paymentCredentialsReference",
+            "params": [
+              {
+                "name": "paymentCredentialsReference",
+                "value": "",
+                "type": "path",
+                "description": "The paymentCredentialsReference field contained within the Transient token returned from a successful Unified Checkout transaction.\n"
+              }
+            ]
+          },
+          "docs": "Retrieve the Payment data captured by Unified Checkout. This API is used to retrieve the detailed data represented by the Transient Token. This API will return PCI payment data captured by the Unified Checkout platform."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

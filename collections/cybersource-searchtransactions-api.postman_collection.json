@@ -1,0 +1,389 @@
+{
+  "item": [
+    {
+      "id": "4da1ff29-baa2-46c7-b788-9fb90824775e",
+      "name": "SearchTransactions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e6a6a548-152d-4723-a7bf-41e6704f850b",
+          "name": "Create a Search Request",
+          "request": {
+            "name": "Create a Search Request",
+            "description": {
+              "content": "Create a search request.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tss",
+                "v2",
+                "searches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"save\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"query\": \"<string>\",\n  \"offset\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"sort\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "16bfc549-fb23-41e0-a83a-9b332ccc421b",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tss",
+                    "v2",
+                    "searches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"save\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"query\": \"<string>\",\n  \"offset\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"sort\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"searchId\": \"string\",\n  \"save\": true,\n  \"name\": \"string\",\n  \"timezone\": \"string\",\n  \"query\": \"string\",\n  \"offset\": 5376,\n  \"limit\": 4980,\n  \"sort\": \"string\",\n  \"count\": 1995,\n  \"totalCount\": 247,\n  \"submitTimeUtc\": \"string\",\n  \"_embedded\": {\n    \"transactionSummaries\": [\n      {\n        \"id\": \"string\",\n        \"submitTimeUtc\": \"string\",\n        \"merchantId\": \"string\",\n        \"status\": \"string\",\n        \"applicationInformation\": {\n          \"reasonCode\": \"string\",\n          \"rCode\": \"string\",\n          \"rFlag\": \"string\",\n          \"applications\": [\n            {\n              \"name\": \"string\",\n              \"reasonCode\": \"string\",\n              \"status\": \"string\",\n              \"reason\": \"string\",\n              \"rCode\": \"string\",\n              \"rFlag\": \"string\",\n              \"reconciliationId\": \"string\",\n              \"rMessage\": \"string\",\n              \"returnCode\": 3187\n            },\n            {\n              \"name\": \"string\",\n              \"reasonCode\": \"string\",\n              \"status\": \"string\",\n              \"reason\": \"string\",\n              \"rCode\": \"string\",\n              \"rFlag\": \"string\",\n              \"reconciliationId\": \"string\",\n              \"rMessage\": \"string\",\n              \"returnCode\": 5706\n            }\n          ],\n          \"returnCode\": 9738\n        },\n        \"buyerInformation\": {\n          \"merchantCustomerId\": \"string\"\n        },\n        \"clientReferenceInformation\": {\n          \"code\": \"string\",\n          \"applicationName\": \"string\",\n          \"applicationUser\": \"string\",\n          \"partner\": {\n            \"solutionId\": \"string\"\n          }\n        },\n        \"consumerAuthenticationInformation\": {\n          \"xid\": \"string\",\n          \"transactionId\": \"string\",\n          \"eciRaw\": \"st\"\n        },\n        \"deviceInformation\": {\n          \"ipAddress\": \"string\"\n        },\n        \"errorInformation\": {\n          \"reason\": \"string\"\n        },\n        \"fraudMarkingInformation\": {\n          \"reason\": \"string\"\n        },\n        \"merchantDefinedInformation\": [\n          {\n            \"key\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"key\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"merchantInformation\": {\n          \"resellerId\": \"string\"\n        },\n        \"orderInformation\": {\n          \"billTo\": {\n            \"firstName\": \"string\",\n            \"lastName\": \"string\",\n            \"address1\": \"string\",\n            \"email\": \"string\",\n            \"country\": \"str\",\n            \"phoneNumber\": \"string\"\n          },\n          \"shipTo\": {\n            \"firstName\": \"string\",\n            \"lastName\": \"string\",\n            \"address1\": \"string\",\n            \"country\": \"str\",\n            \"phoneNumber\": \"string\"\n          },\n          \"amountDetails\": {\n            \"totalAmount\": \"string\",\n            \"currency\": \"str\"\n          }\n        },\n        \"paymentInformation\": {\n          \"paymentType\": {\n            \"type\": \"string\",\n            \"method\": \"string\"\n          },\n          \"customer\": {\n            \"customerId\": \"string\"\n          },\n          \"card\": {\n            \"suffix\": \"string\",\n            \"prefix\": \"string\",\n            \"type\": \"string\"\n          },\n          \"bank\": {\n            \"account\": {\n              \"suffix\": \"string\",\n              \"prefix\": \"string\"\n            }\n          }\n        },\n        \"processingInformation\": {\n          \"paymentSolution\": \"string\",\n          \"businessApplicationId\": \"string\",\n          \"commerceIndicator\": \"string\",\n          \"commerceIndicatorLabel\": \"string\"\n        },\n        \"processorInformation\": {\n          \"processor\": {\n            \"name\": \"string\"\n          },\n          \"providerTransactionId\": \"string\",\n          \"approvalCode\": \"string\",\n          \"eventStatus\": \"string\",\n          \"retrievalReferenceNumber\": \"string\"\n        },\n        \"pointOfSaleInformation\": {\n          \"terminalId\": \"string\",\n          \"terminalSerialNumber\": \"string\",\n          \"deviceId\": \"string\",\n          \"partner\": {\n            \"originalTransactionId\": \"string\"\n          },\n          \"emv\": {\n            \"tags\": \"string\"\n          }\n        },\n        \"riskInformation\": {\n          \"providers\": {\n            \"fingerprint\": {\n              \"true_ipaddress\": \"string\",\n              \"hash\": \"string\",\n              \"smartId\": \"string\"\n            }\n          }\n        },\n        \"_links\": {\n          \"transactionDetail\": {\n            \"href\": \"string\",\n            \"method\": \"string\"\n          }\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"submitTimeUtc\": \"string\",\n        \"merchantId\": \"string\",\n        \"status\": \"string\",\n        \"applicationInformation\": {\n          \"reasonCode\": \"string\",\n          \"rCode\": \"string\",\n          \"rFlag\": \"string\",\n          \"applications\": [\n            {\n              \"name\": \"string\",\n              \"reasonCode\": \"string\",\n              \"status\": \"string\",\n              \"reason\": \"string\",\n              \"rCode\": \"string\",\n              \"rFlag\": \"string\",\n              \"reconciliationId\": \"string\",\n              \"rMessage\": \"string\",\n              \"returnCode\": 1671\n            },\n            {\n              \"name\": \"string\",\n              \"reasonCode\": \"string\",\n              \"status\": \"string\",\n              \"reason\": \"string\",\n              \"rCode\": \"string\",\n              \"rFlag\": \"string\",\n              \"reconciliationId\": \"string\",\n              \"rMessage\": \"string\",\n              \"returnCode\": 595\n            }\n          ],\n          \"returnCode\": 6147\n        },\n        \"buyerInformation\": {\n          \"merchantCustomerId\": \"string\"\n        },\n        \"clientReferenceInformation\": {\n          \"code\": \"string\",\n          \"applicationName\": \"string\",\n          \"applicationUser\": \"string\",\n          \"partner\": {\n            \"solutionId\": \"string\"\n          }\n        },\n        \"consumerAuthenticationInformation\": {\n          \"xid\": \"string\",\n          \"transactionId\": \"string\",\n          \"eciRaw\": \"st\"\n        },\n        \"deviceInformation\": {\n          \"ipAddress\": \"string\"\n        },\n        \"errorInformation\": {\n          \"reason\": \"string\"\n        },\n        \"fraudMarkingInformation\": {\n          \"reason\": \"string\"\n        },\n        \"merchantDefinedInformation\": [\n          {\n            \"key\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"key\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"merchantInformation\": {\n          \"resellerId\": \"string\"\n        },\n        \"orderInformation\": {\n          \"billTo\": {\n            \"firstName\": \"string\",\n            \"lastName\": \"string\",\n            \"address1\": \"string\",\n            \"email\": \"string\",\n            \"country\": \"str\",\n            \"phoneNumber\": \"string\"\n          },\n          \"shipTo\": {\n            \"firstName\": \"string\",\n            \"lastName\": \"string\",\n            \"address1\": \"string\",\n            \"country\": \"str\",\n            \"phoneNumber\": \"string\"\n          },\n          \"amountDetails\": {\n            \"totalAmount\": \"string\",\n            \"currency\": \"str\"\n          }\n        },\n        \"paymentInformation\": {\n          \"paymentType\": {\n            \"type\": \"string\",\n            \"method\": \"string\"\n          },\n          \"customer\": {\n            \"customerId\": \"string\"\n          },\n          \"card\": {\n            \"suffix\": \"string\",\n            \"prefix\": \"string\",\n            \"type\": \"string\"\n          },\n          \"bank\": {\n            \"account\": {\n              \"suffix\": \"string\",\n              \"prefix\": \"string\"\n            }\n          }\n        },\n        \"processingInformation\": {\n          \"paymentSolution\": \"string\",\n          \"businessApplicationId\": \"string\",\n          \"commerceIndicator\": \"string\",\n          \"commerceIndicatorLabel\": \"string\"\n        },\n        \"processorInformation\": {\n          \"processor\": {\n            \"name\": \"string\"\n          },\n          \"providerTransactionId\": \"string\",\n          \"approvalCode\": \"string\",\n          \"eventStatus\": \"string\",\n          \"retrievalReferenceNumber\": \"string\"\n        },\n        \"pointOfSaleInformation\": {\n          \"terminalId\": \"string\",\n          \"terminalSerialNumber\": \"string\",\n          \"deviceId\": \"string\",\n          \"partner\": {\n            \"originalTransactionId\": \"string\"\n          },\n          \"emv\": {\n            \"tags\": \"string\"\n          }\n        },\n        \"riskInformation\": {\n          \"providers\": {\n            \"fingerprint\": {\n              \"true_ipaddress\": \"string\",\n              \"hash\": \"string\",\n              \"smartId\": \"string\"\n            }\n          }\n        },\n        \"_links\": {\n          \"transactionDetail\": {\n            \"href\": \"string\",\n            \"method\": \"string\"\n          }\n        }\n      }\n    ]\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49b38561-606d-4e19-a904-1830d45dc3d8",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tss",
+                    "v2",
+                    "searches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"save\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"query\": \"<string>\",\n  \"offset\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"sort\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b008d2c6-f0de-4930-a9cf-05981c5a7e2d",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tss",
+                    "v2",
+                    "searches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"save\": \"<boolean>\",\n  \"name\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"query\": \"<string>\",\n  \"offset\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"sort\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "543fefc0-abba-4fff-8e5d-1706d65c7cbd",
+          "name": "Get Search Results",
+          "request": {
+            "name": "Get Search Results",
+            "description": {
+              "content": "Include the Search ID in the GET request to retrieve the search results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tss",
+                "v2",
+                "searches",
+                ":searchId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "searchId",
+                  "description": "(Required) Search ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "914a1e15-f179-49f7-b7da-acd667c22de5",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tss",
+                    "v2",
+                    "searches",
+                    ":searchId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "searchId",
+                      "description": "(Required) Search ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"searchId\": \"string\",\n  \"save\": true,\n  \"name\": \"string\",\n  \"timezone\": \"string\",\n  \"query\": \"string\",\n  \"offset\": 5376,\n  \"limit\": 4980,\n  \"sort\": \"string\",\n  \"count\": 1995,\n  \"totalCount\": 247,\n  \"submitTimeUtc\": \"string\",\n  \"_embedded\": {\n    \"transactionSummaries\": [\n      {\n        \"id\": \"string\",\n        \"submitTimeUtc\": \"string\",\n        \"merchantId\": \"string\",\n        \"status\": \"string\",\n        \"applicationInformation\": {\n          \"reasonCode\": \"string\",\n          \"rCode\": \"string\",\n          \"rFlag\": \"string\",\n          \"applications\": [\n            {\n              \"name\": \"string\",\n              \"reasonCode\": \"string\",\n              \"status\": \"string\",\n              \"reason\": \"string\",\n              \"rCode\": \"string\",\n              \"rFlag\": \"string\",\n              \"reconciliationId\": \"string\",\n              \"rMessage\": \"string\",\n              \"returnCode\": 3187\n            },\n            {\n              \"name\": \"string\",\n              \"reasonCode\": \"string\",\n              \"status\": \"string\",\n              \"reason\": \"string\",\n              \"rCode\": \"string\",\n              \"rFlag\": \"string\",\n              \"reconciliationId\": \"string\",\n              \"rMessage\": \"string\",\n              \"returnCode\": 5706\n            }\n          ],\n          \"returnCode\": 9738\n        },\n        \"buyerInformation\": {\n          \"merchantCustomerId\": \"string\"\n        },\n        \"clientReferenceInformation\": {\n          \"code\": \"string\",\n          \"applicationName\": \"string\",\n          \"applicationUser\": \"string\",\n          \"partner\": {\n            \"solutionId\": \"string\"\n          }\n        },\n        \"consumerAuthenticationInformation\": {\n          \"xid\": \"string\",\n          \"transactionId\": \"string\",\n          \"eciRaw\": \"st\"\n        },\n        \"deviceInformation\": {\n          \"ipAddress\": \"string\"\n        },\n        \"errorInformation\": {\n          \"reason\": \"string\"\n        },\n        \"fraudMarkingInformation\": {\n          \"reason\": \"string\"\n        },\n        \"merchantDefinedInformation\": [\n          {\n            \"key\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"key\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"merchantInformation\": {\n          \"resellerId\": \"string\"\n        },\n        \"orderInformation\": {\n          \"billTo\": {\n            \"firstName\": \"string\",\n            \"lastName\": \"string\",\n            \"address1\": \"string\",\n            \"email\": \"string\",\n            \"country\": \"str\",\n            \"phoneNumber\": \"string\"\n          },\n          \"shipTo\": {\n            \"firstName\": \"string\",\n            \"lastName\": \"string\",\n            \"address1\": \"string\",\n            \"country\": \"str\",\n            \"phoneNumber\": \"string\"\n          },\n          \"amountDetails\": {\n            \"totalAmount\": \"string\",\n            \"currency\": \"str\"\n          }\n        },\n        \"paymentInformation\": {\n          \"paymentType\": {\n            \"type\": \"string\",\n            \"method\": \"string\"\n          },\n          \"customer\": {\n            \"customerId\": \"string\"\n          },\n          \"card\": {\n            \"suffix\": \"string\",\n            \"prefix\": \"string\",\n            \"type\": \"string\"\n          },\n          \"bank\": {\n            \"account\": {\n              \"suffix\": \"string\",\n              \"prefix\": \"string\"\n            }\n          }\n        },\n        \"processingInformation\": {\n          \"paymentSolution\": \"string\",\n          \"businessApplicationId\": \"string\",\n          \"commerceIndicator\": \"string\",\n          \"commerceIndicatorLabel\": \"string\"\n        },\n        \"processorInformation\": {\n          \"processor\": {\n            \"name\": \"string\"\n          },\n          \"providerTransactionId\": \"string\",\n          \"approvalCode\": \"string\",\n          \"eventStatus\": \"string\",\n          \"retrievalReferenceNumber\": \"string\"\n        },\n        \"pointOfSaleInformation\": {\n          \"terminalId\": \"string\",\n          \"terminalSerialNumber\": \"string\",\n          \"deviceId\": \"string\",\n          \"partner\": {\n            \"originalTransactionId\": \"string\"\n          },\n          \"emv\": {\n            \"tags\": \"string\"\n          }\n        },\n        \"riskInformation\": {\n          \"providers\": {\n            \"fingerprint\": {\n              \"true_ipaddress\": \"string\",\n              \"hash\": \"string\",\n              \"smartId\": \"string\"\n            }\n          }\n        },\n        \"_links\": {\n          \"transactionDetail\": {\n            \"href\": \"string\",\n            \"method\": \"string\"\n          }\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"submitTimeUtc\": \"string\",\n        \"merchantId\": \"string\",\n        \"status\": \"string\",\n        \"applicationInformation\": {\n          \"reasonCode\": \"string\",\n          \"rCode\": \"string\",\n          \"rFlag\": \"string\",\n          \"applications\": [\n            {\n              \"name\": \"string\",\n              \"reasonCode\": \"string\",\n              \"status\": \"string\",\n              \"reason\": \"string\",\n              \"rCode\": \"string\",\n              \"rFlag\": \"string\",\n              \"reconciliationId\": \"string\",\n              \"rMessage\": \"string\",\n              \"returnCode\": 1671\n            },\n            {\n              \"name\": \"string\",\n              \"reasonCode\": \"string\",\n              \"status\": \"string\",\n              \"reason\": \"string\",\n              \"rCode\": \"string\",\n              \"rFlag\": \"string\",\n              \"reconciliationId\": \"string\",\n              \"rMessage\": \"string\",\n              \"returnCode\": 595\n            }\n          ],\n          \"returnCode\": 6147\n        },\n        \"buyerInformation\": {\n          \"merchantCustomerId\": \"string\"\n        },\n        \"clientReferenceInformation\": {\n          \"code\": \"string\",\n          \"applicationName\": \"string\",\n          \"applicationUser\": \"string\",\n          \"partner\": {\n            \"solutionId\": \"string\"\n          }\n        },\n        \"consumerAuthenticationInformation\": {\n          \"xid\": \"string\",\n          \"transactionId\": \"string\",\n          \"eciRaw\": \"st\"\n        },\n        \"deviceInformation\": {\n          \"ipAddress\": \"string\"\n        },\n        \"errorInformation\": {\n          \"reason\": \"string\"\n        },\n        \"fraudMarkingInformation\": {\n          \"reason\": \"string\"\n        },\n        \"merchantDefinedInformation\": [\n          {\n            \"key\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"key\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"merchantInformation\": {\n          \"resellerId\": \"string\"\n        },\n        \"orderInformation\": {\n          \"billTo\": {\n            \"firstName\": \"string\",\n            \"lastName\": \"string\",\n            \"address1\": \"string\",\n            \"email\": \"string\",\n            \"country\": \"str\",\n            \"phoneNumber\": \"string\"\n          },\n          \"shipTo\": {\n            \"firstName\": \"string\",\n            \"lastName\": \"string\",\n            \"address1\": \"string\",\n            \"country\": \"str\",\n            \"phoneNumber\": \"string\"\n          },\n          \"amountDetails\": {\n            \"totalAmount\": \"string\",\n            \"currency\": \"str\"\n          }\n        },\n        \"paymentInformation\": {\n          \"paymentType\": {\n            \"type\": \"string\",\n            \"method\": \"string\"\n          },\n          \"customer\": {\n            \"customerId\": \"string\"\n          },\n          \"card\": {\n            \"suffix\": \"string\",\n            \"prefix\": \"string\",\n            \"type\": \"string\"\n          },\n          \"bank\": {\n            \"account\": {\n              \"suffix\": \"string\",\n              \"prefix\": \"string\"\n            }\n          }\n        },\n        \"processingInformation\": {\n          \"paymentSolution\": \"string\",\n          \"businessApplicationId\": \"string\",\n          \"commerceIndicator\": \"string\",\n          \"commerceIndicatorLabel\": \"string\"\n        },\n        \"processorInformation\": {\n          \"processor\": {\n            \"name\": \"string\"\n          },\n          \"providerTransactionId\": \"string\",\n          \"approvalCode\": \"string\",\n          \"eventStatus\": \"string\",\n          \"retrievalReferenceNumber\": \"string\"\n        },\n        \"pointOfSaleInformation\": {\n          \"terminalId\": \"string\",\n          \"terminalSerialNumber\": \"string\",\n          \"deviceId\": \"string\",\n          \"partner\": {\n            \"originalTransactionId\": \"string\"\n          },\n          \"emv\": {\n            \"tags\": \"string\"\n          }\n        },\n        \"riskInformation\": {\n          \"providers\": {\n            \"fingerprint\": {\n              \"true_ipaddress\": \"string\",\n              \"hash\": \"string\",\n              \"smartId\": \"string\"\n            }\n          }\n        },\n        \"_links\": {\n          \"transactionDetail\": {\n            \"href\": \"string\",\n            \"method\": \"string\"\n          }\n        }\n      }\n    ]\n  },\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8daf1615-87b5-434b-867c-f79ebd448358",
+              "name": "The specified resource not found in the system.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tss",
+                    "v2",
+                    "searches",
+                    ":searchId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "searchId",
+                      "description": "(Required) Search ID."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f6ce3241-0def-4fbe-9172-b130f7a284ed",
+              "name": "Unexpected server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tss",
+                    "v2",
+                    "searches",
+                    ":searchId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "searchId",
+                      "description": "(Required) Search ID."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5f3f6225-4621-4c76-9abf-dc28f6c5a9c4",
+    "name": "CyberSource Merged Spec bankAccountValidation SearchTransactions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

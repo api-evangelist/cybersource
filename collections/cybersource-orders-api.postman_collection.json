@@ -1,0 +1,438 @@
+{
+  "item": [
+    {
+      "id": "1ab6e50c-61a4-4c8a-b78d-e1ba4e4ef01a",
+      "name": "orders",
+      "description": {
+        "content": "An order is a service that is used for initiating a transaction with itemized details, shipping, billing and buyer information. \n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "37202735-a817-4492-b703-752747438fb4",
+          "name": "Create an Order",
+          "request": {
+            "name": "Create an Order",
+            "description": {
+              "content": "A create order request enables you to send the itemized details along with the order. This API can be used by merchants initiating their transactions with the create order API. \n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pts",
+                "v2",
+                "intents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientReferenceInformation\": {\n    \"reconciliationId\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"processingInstruction\": \"<string>\",\n    \"authorizationOptions\": {\n      \"authType\": \"<string>\"\n    },\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"highRiskTransactionFlag\": \"<string>\",\n    \"transactionRetry\": \"<string>\",\n    \"lastOneHrTransactionCount\": \"<string>\",\n    \"lastOneDayTransactionCount\": \"<string>\",\n    \"lastThreeMonthsTxnCount\": \"<string>\",\n    \"totalTransactionCount\": \"<string>\",\n    \"pinVerification\": \"<string>\",\n    \"faceIdVerification\": \"<string>\",\n    \"userPassedVerification\": \"<string>\",\n    \"ipAddress\": \"<string>\",\n    \"transactionDate\": \"<string>\",\n    \"tangible\": \"<string>\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"name\": \"<string>\",\n      \"email\": \"<string>\"\n    },\n    \"cancelUrl\": \"<string>\",\n    \"successUrl\": \"<string>\"\n  },\n  \"paymentInformation\": {\n    \"paymentType\": {\n      \"name\": \"<string>\",\n      \"method\": {\n        \"name\": \"<string>\"\n      }\n    },\n    \"tokenizedPaymentMethod\": {\n      \"description\": \"<string>\",\n      \"usagePattern\": \"<string>\",\n      \"usageType\": \"<string>\",\n      \"allowMultipleTokens\": \"<string>\"\n    },\n    \"industryType\": \"<string>\",\n    \"eWallet\": {\n      \"accountId\": \"<string>\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"discountAmount\": \"<string>\",\n      \"shippingAmount\": \"<string>\",\n      \"shippingDiscountAmount\": \"<string>\",\n      \"taxAmount\": \"<string>\",\n      \"insuranceAmount\": \"<string>\",\n      \"dutyAmount\": \"<string>\"\n    },\n    \"billTo\": {\n      \"email\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"method\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"productName\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"typeOfSupply\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"totalAmount\": \"<string>\",\n        \"taxAmount\": \"<string>\"\n      },\n      {\n        \"productName\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"typeOfSupply\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"totalAmount\": \"<string>\",\n        \"taxAmount\": \"<string>\"\n      }\n    ],\n    \"invoiceDetails\": {\n      \"productDescription\": \"<string>\"\n    }\n  },\n  \"senderInformation\": {\n    \"account\": {\n      \"number\": \"<string>\"\n    },\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"createDate\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"riskPopularityScore\": \"<string>\"\n  },\n  \"eventInformation\": {\n    \"date\": \"<string>\",\n    \"type\": \"<string>\",\n    \"totalTickets\": \"<string>\"\n  },\n  \"travelInformation\": {\n    \"agency\": {\n      \"startDate\": \"<string>\",\n      \"endDate\": \"<string>\",\n      \"changeOfGuest\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"journeyType\": \"<string>\",\n    \"actualFinalDestination\": \"<string>\"\n  },\n  \"recipientInformation\": {\n    \"accountId\": \"<string>\",\n    \"createDate\": \"<string>\",\n    \"email\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"businessName\": \"<string>\",\n    \"riskPopularityScore\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a3cca7ec-f5a0-49e2-b017-a00e2a201317",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"reconciliationId\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"processingInstruction\": \"<string>\",\n    \"authorizationOptions\": {\n      \"authType\": \"<string>\"\n    },\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"highRiskTransactionFlag\": \"<string>\",\n    \"transactionRetry\": \"<string>\",\n    \"lastOneHrTransactionCount\": \"<string>\",\n    \"lastOneDayTransactionCount\": \"<string>\",\n    \"lastThreeMonthsTxnCount\": \"<string>\",\n    \"totalTransactionCount\": \"<string>\",\n    \"pinVerification\": \"<string>\",\n    \"faceIdVerification\": \"<string>\",\n    \"userPassedVerification\": \"<string>\",\n    \"ipAddress\": \"<string>\",\n    \"transactionDate\": \"<string>\",\n    \"tangible\": \"<string>\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"name\": \"<string>\",\n      \"email\": \"<string>\"\n    },\n    \"cancelUrl\": \"<string>\",\n    \"successUrl\": \"<string>\"\n  },\n  \"paymentInformation\": {\n    \"paymentType\": {\n      \"name\": \"<string>\",\n      \"method\": {\n        \"name\": \"<string>\"\n      }\n    },\n    \"tokenizedPaymentMethod\": {\n      \"description\": \"<string>\",\n      \"usagePattern\": \"<string>\",\n      \"usageType\": \"<string>\",\n      \"allowMultipleTokens\": \"<string>\"\n    },\n    \"industryType\": \"<string>\",\n    \"eWallet\": {\n      \"accountId\": \"<string>\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"discountAmount\": \"<string>\",\n      \"shippingAmount\": \"<string>\",\n      \"shippingDiscountAmount\": \"<string>\",\n      \"taxAmount\": \"<string>\",\n      \"insuranceAmount\": \"<string>\",\n      \"dutyAmount\": \"<string>\"\n    },\n    \"billTo\": {\n      \"email\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"method\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"productName\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"typeOfSupply\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"totalAmount\": \"<string>\",\n        \"taxAmount\": \"<string>\"\n      },\n      {\n        \"productName\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"typeOfSupply\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"totalAmount\": \"<string>\",\n        \"taxAmount\": \"<string>\"\n      }\n    ],\n    \"invoiceDetails\": {\n      \"productDescription\": \"<string>\"\n    }\n  },\n  \"senderInformation\": {\n    \"account\": {\n      \"number\": \"<string>\"\n    },\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"createDate\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"riskPopularityScore\": \"<string>\"\n  },\n  \"eventInformation\": {\n    \"date\": \"<string>\",\n    \"type\": \"<string>\",\n    \"totalTickets\": \"<string>\"\n  },\n  \"travelInformation\": {\n    \"agency\": {\n      \"startDate\": \"<string>\",\n      \"endDate\": \"<string>\",\n      \"changeOfGuest\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"journeyType\": \"<string>\",\n    \"actualFinalDestination\": \"<string>\"\n  },\n  \"recipientInformation\": {\n    \"accountId\": \"<string>\",\n    \"createDate\": \"<string>\",\n    \"email\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"businessName\": \"<string>\",\n    \"riskPopularityScore\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2024-06-01T071957Z\",\n  \"updateTimeUtc\": \"2024-06-01T071957Z\",\n  \"status\": \"CREATED\",\n  \"reconciliationId\": \"39570726X3E1LBQR\",\n  \"clientReferenceInformation\": {\n    \"code\": \"DEFAULT\"\n  },\n  \"processorInformation\": {\n    \"transactionId\": \"1234qwerty1234\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18049d10-9162-4a8e-864f-a07135dfce25",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"reconciliationId\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"processingInstruction\": \"<string>\",\n    \"authorizationOptions\": {\n      \"authType\": \"<string>\"\n    },\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"highRiskTransactionFlag\": \"<string>\",\n    \"transactionRetry\": \"<string>\",\n    \"lastOneHrTransactionCount\": \"<string>\",\n    \"lastOneDayTransactionCount\": \"<string>\",\n    \"lastThreeMonthsTxnCount\": \"<string>\",\n    \"totalTransactionCount\": \"<string>\",\n    \"pinVerification\": \"<string>\",\n    \"faceIdVerification\": \"<string>\",\n    \"userPassedVerification\": \"<string>\",\n    \"ipAddress\": \"<string>\",\n    \"transactionDate\": \"<string>\",\n    \"tangible\": \"<string>\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"name\": \"<string>\",\n      \"email\": \"<string>\"\n    },\n    \"cancelUrl\": \"<string>\",\n    \"successUrl\": \"<string>\"\n  },\n  \"paymentInformation\": {\n    \"paymentType\": {\n      \"name\": \"<string>\",\n      \"method\": {\n        \"name\": \"<string>\"\n      }\n    },\n    \"tokenizedPaymentMethod\": {\n      \"description\": \"<string>\",\n      \"usagePattern\": \"<string>\",\n      \"usageType\": \"<string>\",\n      \"allowMultipleTokens\": \"<string>\"\n    },\n    \"industryType\": \"<string>\",\n    \"eWallet\": {\n      \"accountId\": \"<string>\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"discountAmount\": \"<string>\",\n      \"shippingAmount\": \"<string>\",\n      \"shippingDiscountAmount\": \"<string>\",\n      \"taxAmount\": \"<string>\",\n      \"insuranceAmount\": \"<string>\",\n      \"dutyAmount\": \"<string>\"\n    },\n    \"billTo\": {\n      \"email\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"method\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"productName\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"typeOfSupply\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"totalAmount\": \"<string>\",\n        \"taxAmount\": \"<string>\"\n      },\n      {\n        \"productName\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"typeOfSupply\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"totalAmount\": \"<string>\",\n        \"taxAmount\": \"<string>\"\n      }\n    ],\n    \"invoiceDetails\": {\n      \"productDescription\": \"<string>\"\n    }\n  },\n  \"senderInformation\": {\n    \"account\": {\n      \"number\": \"<string>\"\n    },\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"createDate\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"riskPopularityScore\": \"<string>\"\n  },\n  \"eventInformation\": {\n    \"date\": \"<string>\",\n    \"type\": \"<string>\",\n    \"totalTickets\": \"<string>\"\n  },\n  \"travelInformation\": {\n    \"agency\": {\n      \"startDate\": \"<string>\",\n      \"endDate\": \"<string>\",\n      \"changeOfGuest\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"journeyType\": \"<string>\",\n    \"actualFinalDestination\": \"<string>\"\n  },\n  \"recipientInformation\": {\n    \"accountId\": \"<string>\",\n    \"createDate\": \"<string>\",\n    \"email\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"businessName\": \"<string>\",\n    \"riskPopularityScore\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9687275d-9390-4ab7-8734-e415ab7dbd3e",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "intents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"reconciliationId\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"processingInstruction\": \"<string>\",\n    \"authorizationOptions\": {\n      \"authType\": \"<string>\"\n    },\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"highRiskTransactionFlag\": \"<string>\",\n    \"transactionRetry\": \"<string>\",\n    \"lastOneHrTransactionCount\": \"<string>\",\n    \"lastOneDayTransactionCount\": \"<string>\",\n    \"lastThreeMonthsTxnCount\": \"<string>\",\n    \"totalTransactionCount\": \"<string>\",\n    \"pinVerification\": \"<string>\",\n    \"faceIdVerification\": \"<string>\",\n    \"userPassedVerification\": \"<string>\",\n    \"ipAddress\": \"<string>\",\n    \"transactionDate\": \"<string>\",\n    \"tangible\": \"<string>\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"name\": \"<string>\",\n      \"email\": \"<string>\"\n    },\n    \"cancelUrl\": \"<string>\",\n    \"successUrl\": \"<string>\"\n  },\n  \"paymentInformation\": {\n    \"paymentType\": {\n      \"name\": \"<string>\",\n      \"method\": {\n        \"name\": \"<string>\"\n      }\n    },\n    \"tokenizedPaymentMethod\": {\n      \"description\": \"<string>\",\n      \"usagePattern\": \"<string>\",\n      \"usageType\": \"<string>\",\n      \"allowMultipleTokens\": \"<string>\"\n    },\n    \"industryType\": \"<string>\",\n    \"eWallet\": {\n      \"accountId\": \"<string>\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"discountAmount\": \"<string>\",\n      \"shippingAmount\": \"<string>\",\n      \"shippingDiscountAmount\": \"<string>\",\n      \"taxAmount\": \"<string>\",\n      \"insuranceAmount\": \"<string>\",\n      \"dutyAmount\": \"<string>\"\n    },\n    \"billTo\": {\n      \"email\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"method\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"productName\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"typeOfSupply\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"totalAmount\": \"<string>\",\n        \"taxAmount\": \"<string>\"\n      },\n      {\n        \"productName\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"typeOfSupply\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"totalAmount\": \"<string>\",\n        \"taxAmount\": \"<string>\"\n      }\n    ],\n    \"invoiceDetails\": {\n      \"productDescription\": \"<string>\"\n    }\n  },\n  \"senderInformation\": {\n    \"account\": {\n      \"number\": \"<string>\"\n    },\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"createDate\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"riskPopularityScore\": \"<string>\"\n  },\n  \"eventInformation\": {\n    \"date\": \"<string>\",\n    \"type\": \"<string>\",\n    \"totalTickets\": \"<string>\"\n  },\n  \"travelInformation\": {\n    \"agency\": {\n      \"startDate\": \"<string>\",\n      \"endDate\": \"<string>\",\n      \"changeOfGuest\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    },\n    \"journeyType\": \"<string>\",\n    \"actualFinalDestination\": \"<string>\"\n  },\n  \"recipientInformation\": {\n    \"accountId\": \"<string>\",\n    \"createDate\": \"<string>\",\n    \"email\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"businessName\": \"<string>\",\n    \"riskPopularityScore\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98aa9f78-6758-40f3-a725-b8ef99d81dd2",
+          "name": "Update an Order",
+          "request": {
+            "name": "Update an Order",
+            "description": {
+              "content": "This API can be used in two flavours - for updating the order as well as saving the order.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pts",
+                "v2",
+                "intents",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID returned from the original create order response."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientReferenceInformation\": {\n    \"reconciliationId\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"discountAmount\": \"<string>\",\n      \"shippingAmount\": \"<string>\",\n      \"shippingDiscountAmount\": \"<string>\",\n      \"taxAmount\": \"<string>\",\n      \"insuranceAmount\": \"<string>\",\n      \"dutyAmount\": \"<string>\"\n    },\n    \"shipTo\": {\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"method\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\"\n    },\n    \"lineItems\": [\n      {\n        \"productName\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"typeOfSupply\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"totalAmount\": \"<string>\",\n        \"taxAmount\": \"<string>\"\n      },\n      {\n        \"productName\": \"<string>\",\n        \"productDescription\": \"<string>\",\n        \"productSku\": \"<string>\",\n        \"quantity\": 1,\n        \"typeOfSupply\": \"<string>\",\n        \"unitPrice\": \"<string>\",\n        \"totalAmount\": \"<string>\",\n        \"taxAmount\": \"<string>\"\n      }\n    ],\n    \"invoiceDetails\": {\n      \"productDescription\": \"<string>\"\n    }\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"name\": \"<string>\",\n      \"email\": \"<string>\"\n    }\n  },\n  \"paymentInformation\": {\n    \"paymentType\": {\n      \"name\": \"<string>\",\n      \"method\": {\n        \"name\": \"<string>\"\n      }\n    }\n  },\n  \"processingInformation\": {\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6105fe0f-10df-48c3-878e-a97799fc4056",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "intents",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID returned from the original create order response."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"102.21\",\n      \"currency\": \"USD\"\n    },\n    \"shipTo\": {\n      \"country\": \"US\",\n      \"lastName\": \"VDP\",\n      \"address1\": \"201 S. Division St.\",\n      \"postalCode\": \"48104-2201\",\n      \"locality\": \"Ann Arbor\",\n      \"administrativeArea\": \"MI\",\n      \"firstName\": \"RTS\"\n    },\n    \"invoiceDescription\": {\n      \"productDescription\": \"Description of the product invoice\"\n    }\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"name\": \"Merchant1\",\n      \"email\": \"merchant1@gmail.com\"\n    }\n  },\n  \"paymentInformation\": {\n    \"paymentType\": {\n      \"method\": {\n        \"name\": \"payPal\"\n      },\n      \"name\": \"ewallet\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"status\": \"COMPLETED\",\n  \"processorInformation\": {\n    \"transactionId\": \"1234qwerty1234\",\n    \"networkTransactionId\": \"123qwerty123\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c574677-0522-4db1-a998-edbb4d746b63",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "intents",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID returned from the original create order response."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"102.21\",\n      \"currency\": \"USD\"\n    },\n    \"shipTo\": {\n      \"country\": \"US\",\n      \"lastName\": \"VDP\",\n      \"address1\": \"201 S. Division St.\",\n      \"postalCode\": \"48104-2201\",\n      \"locality\": \"Ann Arbor\",\n      \"administrativeArea\": \"MI\",\n      \"firstName\": \"RTS\"\n    },\n    \"invoiceDescription\": {\n      \"productDescription\": \"Description of the product invoice\"\n    }\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"name\": \"Merchant1\",\n      \"email\": \"merchant1@gmail.com\"\n    }\n  },\n  \"paymentInformation\": {\n    \"paymentType\": {\n      \"method\": {\n        \"name\": \"payPal\"\n      },\n      \"name\": \"ewallet\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce287502-4d1f-4670-bd67-8f99a05925d7",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "intents",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID returned from the original create order response."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"102.21\",\n      \"currency\": \"USD\"\n    },\n    \"shipTo\": {\n      \"country\": \"US\",\n      \"lastName\": \"VDP\",\n      \"address1\": \"201 S. Division St.\",\n      \"postalCode\": \"48104-2201\",\n      \"locality\": \"Ann Arbor\",\n      \"administrativeArea\": \"MI\",\n      \"firstName\": \"RTS\"\n    },\n    \"invoiceDescription\": {\n      \"productDescription\": \"Description of the product invoice\"\n    }\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"name\": \"Merchant1\",\n      \"email\": \"merchant1@gmail.com\"\n    }\n  },\n  \"paymentInformation\": {\n    \"paymentType\": {\n      \"method\": {\n        \"name\": \"payPal\"\n      },\n      \"name\": \"ewallet\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "333bd1ab-52d6-4b4e-996d-cfe5361c54e5",
+    "name": "CyberSource Merged Spec bankAccountValidation orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

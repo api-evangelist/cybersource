@@ -1,0 +1,286 @@
+{
+  "item": [
+    {
+      "id": "68649719-38f0-4935-80fa-a69e0ca65ec9",
+      "name": "Payment Batch Summaries",
+      "description": {
+        "content": "API for payment batch summary reports",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "50edfbb1-d872-4d22-9e18-f06175b576be",
+          "name": "Get Payment Batch Summary Data",
+          "request": {
+            "name": "Get Payment Batch Summary Data",
+            "description": {
+              "content": "Scope can be either account/merchant or reseller.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "v3",
+                "payment-batch-summaries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) Valid report Start Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n**Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) Valid report End Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n**Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "organizationId",
+                  "value": "<string>",
+                  "description": "Valid Organization Id"
+                },
+                {
+                  "disabled": false,
+                  "key": "rollUp",
+                  "value": "<string>",
+                  "description": "Conditional - RollUp for data for day/week/month. Required while getting breakdown data for a Merchant"
+                },
+                {
+                  "disabled": false,
+                  "key": "breakdown",
+                  "value": "<string>",
+                  "description": "Conditional - Breakdown on account_rollup/all_merchant/selected_merchant. Required while getting breakdown data for a Merchant."
+                },
+                {
+                  "disabled": false,
+                  "key": "startDayOfWeek",
+                  "value": "<integer>",
+                  "description": "Optional - Start day of week to breakdown data for weeks in a month"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "82013ca2-7384-4cbd-9094-3317105b1493",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "payment-batch-summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "rollUp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdown",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDayOfWeek",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"startTime\": \"1946-08-29T23:40:19.312Z\",\n  \"endTime\": \"2021-07-06T23:50:39.329Z\",\n  \"paymentBatchSummaries\": [\n    {\n      \"currencyCode\": \"USD\",\n      \"paymentSubTypeDescription\": \"Diners Club\",\n      \"startTime\": \"2005-06-04T04:18:22.343Z\",\n      \"endTime\": \"1967-12-29T01:47:25.038Z\",\n      \"salesCount\": 10,\n      \"salesAmount\": \"5000.01\",\n      \"creditCount\": 10,\n      \"creditAmount\": \"5000.01\",\n      \"accountName\": \"ubmerchant296\",\n      \"accountId\": \"ubmerchant296_acct\",\n      \"merchantId\": \"ubmerchant296_3\",\n      \"merchantName\": \"ubmerchant296_3\"\n    },\n    {\n      \"currencyCode\": \"USD\",\n      \"paymentSubTypeDescription\": \"Diners Club\",\n      \"startTime\": \"1972-07-03T08:03:48.055Z\",\n      \"endTime\": \"1958-08-27T14:31:49.204Z\",\n      \"salesCount\": 10,\n      \"salesAmount\": \"5000.01\",\n      \"creditCount\": 10,\n      \"creditAmount\": \"5000.01\",\n      \"accountName\": \"ubmerchant296\",\n      \"accountId\": \"ubmerchant296_acct\",\n      \"merchantId\": \"ubmerchant296_3\",\n      \"merchantName\": \"ubmerchant296_3\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c45c176-5f1c-42df-bce1-2e893cc23ed9",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "payment-batch-summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "rollUp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdown",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDayOfWeek",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2016-08-11T22:47:57Z\",\n  \"reason\": \"INVALID_DATA\",\n  \"message\": \"One or more fields contains invalid data\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8267df31-0781-4568-80e4-454d7a168831",
+              "name": "Payment Batch Summary not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "payment-batch-summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "rollUp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "breakdown",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDayOfWeek",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8e558bea-8b34-4653-97cd-22290939ab3b",
+    "name": "CyberSource Merged Spec bankAccountValidation Payment Batch Summaries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

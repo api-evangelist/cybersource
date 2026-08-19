@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Push Funds API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Push Funds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Process a Push Funds Transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/pts/v1/push-funds-transfer",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "x-requestid",
+                "value": ""
+              },
+              {
+                "name": "v-c-merchant-id",
+                "value": ""
+              },
+              {
+                "name": "v-c-permissions",
+                "value": ""
+              },
+              {
+                "name": "v-c-correlation-id",
+                "value": ""
+              },
+              {
+                "name": "v-c-organization-id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Receive funds using an Original Credit Transaction (OCT).\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

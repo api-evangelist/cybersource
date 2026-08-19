@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Merchant Boarding API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Merchant Boarding",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a boarding registration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/boarding/v1/registrations",
+            "headers": [
+              {
+                "name": "v-c-idempotency-id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Boarding Product is specifically for resellers who onboard merchants to resell their services to merchants and help integrate REST API into their systems.\n\nThe Boarding API is designed to simplify and streamline the onboarding process of merchants by enabling administrators and developers to:\n1. Enable and Configure Products: The API helps in adding new products to an existing organization and configuring them to suit specific needs.\n2. Update Merchant Information: The API allows for updating an"
+        },
+        {
+          "info": {
+            "name": "Gets all the information on a boarding registration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/boarding/v1/registrations/:registrationId",
+            "params": [
+              {
+                "name": "registrationId",
+                "value": "",
+                "type": "path",
+                "description": "Identifies the boarding registration to be updated"
+              }
+            ]
+          },
+          "docs": "This end point will get all information of a boarding registration\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

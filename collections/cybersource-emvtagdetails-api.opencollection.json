@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation EMVTagDetails API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "EMVTagDetails",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the EMV Dictionary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tss/v2/transactions/emvTagDetails"
+          },
+          "docs": "Returns the entire EMV tag dictionary"
+        },
+        {
+          "info": {
+            "name": "Parse an EMV String",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tss/v2/transactions/emvTagDetails"
+          },
+          "docs": "Pass an EMV Tag-Length-Value (TLV) string for parsing."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

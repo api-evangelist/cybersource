@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation payment-tokens API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "payment-tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve or Delete Payment Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/pts/v2/payment-tokens"
+          },
+          "docs": "This API can be used in two flavours - for retrieval or deletion of vault id.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Report Subscriptions API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Report Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reporting/v3/report-subscriptions",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "query",
+                "description": "Valid Organization Id"
+              }
+            ]
+          },
+          "docs": "View a summary of all report subscriptions.\n"
+        },
+        {
+          "info": {
+            "name": "Create Report Subscription for a Report Name by Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/reporting/v3/report-subscriptions",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "query",
+                "description": "Valid Organization Id"
+              }
+            ]
+          },
+          "docs": "Create a report subscription for your organization. The report name must be unique.\n"
+        },
+        {
+          "info": {
+            "name": "Get Subscription for Report Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reporting/v3/report-subscriptions/:reportName",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "query",
+                "description": "Valid Organization Id"
+              },
+              {
+                "name": "reportName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Report to Retrieve"
+              }
+            ]
+          },
+          "docs": "View the details of a report subscription, such as the report format or report frequency, using the report's unique name.\n"
+        },
+        {
+          "info": {
+            "name": "Delete Subscription of a Report Name by Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/reporting/v3/report-subscriptions/:reportName",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "query",
+                "description": "Valid Organization Id"
+              },
+              {
+                "name": "reportName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Report to Delete"
+              }
+            ]
+          },
+          "docs": "Delete a report subscription for your organization. You must know the unique name of the report you want to delete.\n"
+        },
+        {
+          "info": {
+            "name": "Create a Standard or Classic Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/reporting/v3/predefined-report-subscriptions",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "query",
+                "description": "Valid Organization Id"
+              }
+            ]
+          },
+          "docs": "Create or update an already existing classic or standard subscription.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

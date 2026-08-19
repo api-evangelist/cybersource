@@ -1,0 +1,442 @@
+{
+  "item": [
+    {
+      "id": "d9aafcc9-afad-41c2-8323-d65aa57dc320",
+      "name": "Enrollment",
+      "description": {
+        "content": "Card enrollment and tokenization for agentic payments. Use these APIs to register a consumer's payment card, creating a tokenized reference that can be used in subsequent purchase instructions and payment credential retrieval. Supports Visa, Mastercard, and American Express networks.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "501055ec-45b1-4272-a5a8-364d9970accb",
+          "name": "Enroll a card",
+          "request": {
+            "name": "Enroll a card",
+            "description": {
+              "content": "Enroll a payment card for agentic or e-commerce transactions. This is typically the first step in the Intelligent Commerce payment lifecycle — the agent calls this endpoint to register a consumer's card, creating a tokenized reference that can be used in subsequent purchase instructions and payment credential retrieval. Requires device information, consumer identity, billing details, and payment instrument references. Returns a status of ACTIVE (HTTP 200) if enrollment completes immediately, or PENDING (HTTP 202) with pendingEvents if cardholder authentication is required. Call this endpoint when a consumer wants to add a new payment card or when setting up a card for agentic payment flows.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "acp",
+                "v1",
+                "tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"billTo\": {\n    \"country\": \"<string>\",\n    \"countryCallingCode\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"fullName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"numberIsVoiceOnly\": \"<boolean>\"\n  },\n  \"clientCorrelationId\": \"<string>\",\n  \"consumerIdentity\": {\n    \"identityType\": \"<string>\",\n    \"identityValue\": \"<string>\",\n    \"identityProvider\": \"<string>\",\n    \"identityProviderUrl\": \"<string>\"\n  },\n  \"deviceInformation\": {\n    \"applicationName\": \"<string>\",\n    \"deviceData\": {\n      \"type\": \"<string>\",\n      \"brand\": \"<string>\",\n      \"manufacturer\": \"<string>\",\n      \"model\": \"<string>\"\n    },\n    \"ipAddress\": \"<string>\",\n    \"fingerprintSessionId\": \"<string>\",\n    \"userAgent\": \"<string>\",\n    \"country\": \"<ISO 3166-1-alpha2>\",\n    \"clientDeviceId\": \"<string>\"\n  },\n  \"paymentInformation\": {\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\"\n    },\n    \"customer\": {\n      \"id\": \"<string>\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\",\n    \"personalIdentification\": [\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issueBy\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issueBy\": \"<string>\"\n      }\n    ],\n    \"language\": \"<string>\"\n  },\n  \"enrollmentReferenceData\": {\n    \"enrollmentReferenceType\": \"<string>\",\n    \"enrollmentReferenceProvider\": \"<string>\"\n  },\n  \"assuranceData\": [\n    {\n      \"verificationMethod\": \"<string>\",\n      \"verificationResults\": \"<string>\",\n      \"verificationTimestamp\": \"<string>\",\n      \"verificationType\": \"<string>\",\n      \"verificationEntity\": \"<string>\",\n      \"verificationEvents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authenticationContext\": {\n        \"action\": \"<string>\"\n      },\n      \"authenticatedIdentities\": {\n        \"id\": \"<string>\",\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      \"additionalData\": \"<string>\"\n    },\n    {\n      \"verificationMethod\": \"<string>\",\n      \"verificationResults\": \"<string>\",\n      \"verificationTimestamp\": \"<string>\",\n      \"verificationType\": \"<string>\",\n      \"verificationEntity\": \"<string>\",\n      \"verificationEvents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authenticationContext\": {\n        \"action\": \"<string>\"\n      },\n      \"authenticatedIdentities\": {\n        \"id\": \"<string>\",\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      \"additionalData\": \"<string>\"\n    }\n  ],\n  \"consentData\": [\n    {\n      \"acceptedTime\": \"<string>\",\n      \"effectiveUntil\": \"<string>\",\n      \"id\": \"<string>\",\n      \"source\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"acceptedTime\": \"<string>\",\n      \"effectiveUntil\": \"<string>\",\n      \"id\": \"<string>\",\n      \"source\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7b07b758-313c-4f1f-bd31-62c7ba3629e0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "acp",
+                    "v1",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billTo\": {\n    \"country\": \"<string>\",\n    \"countryCallingCode\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"fullName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"numberIsVoiceOnly\": \"<boolean>\"\n  },\n  \"clientCorrelationId\": \"<string>\",\n  \"consumerIdentity\": {\n    \"identityType\": \"<string>\",\n    \"identityValue\": \"<string>\",\n    \"identityProvider\": \"<string>\",\n    \"identityProviderUrl\": \"<string>\"\n  },\n  \"deviceInformation\": {\n    \"applicationName\": \"<string>\",\n    \"deviceData\": {\n      \"type\": \"<string>\",\n      \"brand\": \"<string>\",\n      \"manufacturer\": \"<string>\",\n      \"model\": \"<string>\"\n    },\n    \"ipAddress\": \"<string>\",\n    \"fingerprintSessionId\": \"<string>\",\n    \"userAgent\": \"<string>\",\n    \"country\": \"<ISO 3166-1-alpha2>\",\n    \"clientDeviceId\": \"<string>\"\n  },\n  \"paymentInformation\": {\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\"\n    },\n    \"customer\": {\n      \"id\": \"<string>\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\",\n    \"personalIdentification\": [\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issueBy\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issueBy\": \"<string>\"\n      }\n    ],\n    \"language\": \"<string>\"\n  },\n  \"enrollmentReferenceData\": {\n    \"enrollmentReferenceType\": \"<string>\",\n    \"enrollmentReferenceProvider\": \"<string>\"\n  },\n  \"assuranceData\": [\n    {\n      \"verificationMethod\": \"<string>\",\n      \"verificationResults\": \"<string>\",\n      \"verificationTimestamp\": \"<string>\",\n      \"verificationType\": \"<string>\",\n      \"verificationEntity\": \"<string>\",\n      \"verificationEvents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authenticationContext\": {\n        \"action\": \"<string>\"\n      },\n      \"authenticatedIdentities\": {\n        \"id\": \"<string>\",\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      \"additionalData\": \"<string>\"\n    },\n    {\n      \"verificationMethod\": \"<string>\",\n      \"verificationResults\": \"<string>\",\n      \"verificationTimestamp\": \"<string>\",\n      \"verificationType\": \"<string>\",\n      \"verificationEntity\": \"<string>\",\n      \"verificationEvents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authenticationContext\": {\n        \"action\": \"<string>\"\n      },\n      \"authenticatedIdentities\": {\n        \"id\": \"<string>\",\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      \"additionalData\": \"<string>\"\n    }\n  ],\n  \"consentData\": [\n    {\n      \"acceptedTime\": \"<string>\",\n      \"effectiveUntil\": \"<string>\",\n      \"id\": \"<string>\",\n      \"source\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"acceptedTime\": \"<string>\",\n      \"effectiveUntil\": \"<string>\",\n      \"id\": \"<string>\",\n      \"source\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"clientCorrelationId\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1de8259a-6ec4-4d07-b59b-8f0f430f4d65",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "acp",
+                    "v1",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billTo\": {\n    \"country\": \"<string>\",\n    \"countryCallingCode\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"fullName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"numberIsVoiceOnly\": \"<boolean>\"\n  },\n  \"clientCorrelationId\": \"<string>\",\n  \"consumerIdentity\": {\n    \"identityType\": \"<string>\",\n    \"identityValue\": \"<string>\",\n    \"identityProvider\": \"<string>\",\n    \"identityProviderUrl\": \"<string>\"\n  },\n  \"deviceInformation\": {\n    \"applicationName\": \"<string>\",\n    \"deviceData\": {\n      \"type\": \"<string>\",\n      \"brand\": \"<string>\",\n      \"manufacturer\": \"<string>\",\n      \"model\": \"<string>\"\n    },\n    \"ipAddress\": \"<string>\",\n    \"fingerprintSessionId\": \"<string>\",\n    \"userAgent\": \"<string>\",\n    \"country\": \"<ISO 3166-1-alpha2>\",\n    \"clientDeviceId\": \"<string>\"\n  },\n  \"paymentInformation\": {\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\"\n    },\n    \"customer\": {\n      \"id\": \"<string>\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\",\n    \"personalIdentification\": [\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issueBy\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issueBy\": \"<string>\"\n      }\n    ],\n    \"language\": \"<string>\"\n  },\n  \"enrollmentReferenceData\": {\n    \"enrollmentReferenceType\": \"<string>\",\n    \"enrollmentReferenceProvider\": \"<string>\"\n  },\n  \"assuranceData\": [\n    {\n      \"verificationMethod\": \"<string>\",\n      \"verificationResults\": \"<string>\",\n      \"verificationTimestamp\": \"<string>\",\n      \"verificationType\": \"<string>\",\n      \"verificationEntity\": \"<string>\",\n      \"verificationEvents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authenticationContext\": {\n        \"action\": \"<string>\"\n      },\n      \"authenticatedIdentities\": {\n        \"id\": \"<string>\",\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      \"additionalData\": \"<string>\"\n    },\n    {\n      \"verificationMethod\": \"<string>\",\n      \"verificationResults\": \"<string>\",\n      \"verificationTimestamp\": \"<string>\",\n      \"verificationType\": \"<string>\",\n      \"verificationEntity\": \"<string>\",\n      \"verificationEvents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authenticationContext\": {\n        \"action\": \"<string>\"\n      },\n      \"authenticatedIdentities\": {\n        \"id\": \"<string>\",\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      \"additionalData\": \"<string>\"\n    }\n  ],\n  \"consentData\": [\n    {\n      \"acceptedTime\": \"<string>\",\n      \"effectiveUntil\": \"<string>\",\n      \"id\": \"<string>\",\n      \"source\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"acceptedTime\": \"<string>\",\n      \"effectiveUntil\": \"<string>\",\n      \"id\": \"<string>\",\n      \"source\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"clientCorrelationId\": \"string\",\n  \"status\": \"string\",\n  \"pendingEvents\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb6cdab1-0589-467b-bc85-2d94d09c09ff",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "acp",
+                    "v1",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billTo\": {\n    \"country\": \"<string>\",\n    \"countryCallingCode\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"fullName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"numberIsVoiceOnly\": \"<boolean>\"\n  },\n  \"clientCorrelationId\": \"<string>\",\n  \"consumerIdentity\": {\n    \"identityType\": \"<string>\",\n    \"identityValue\": \"<string>\",\n    \"identityProvider\": \"<string>\",\n    \"identityProviderUrl\": \"<string>\"\n  },\n  \"deviceInformation\": {\n    \"applicationName\": \"<string>\",\n    \"deviceData\": {\n      \"type\": \"<string>\",\n      \"brand\": \"<string>\",\n      \"manufacturer\": \"<string>\",\n      \"model\": \"<string>\"\n    },\n    \"ipAddress\": \"<string>\",\n    \"fingerprintSessionId\": \"<string>\",\n    \"userAgent\": \"<string>\",\n    \"country\": \"<ISO 3166-1-alpha2>\",\n    \"clientDeviceId\": \"<string>\"\n  },\n  \"paymentInformation\": {\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\"\n    },\n    \"customer\": {\n      \"id\": \"<string>\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\",\n    \"personalIdentification\": [\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issueBy\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issueBy\": \"<string>\"\n      }\n    ],\n    \"language\": \"<string>\"\n  },\n  \"enrollmentReferenceData\": {\n    \"enrollmentReferenceType\": \"<string>\",\n    \"enrollmentReferenceProvider\": \"<string>\"\n  },\n  \"assuranceData\": [\n    {\n      \"verificationMethod\": \"<string>\",\n      \"verificationResults\": \"<string>\",\n      \"verificationTimestamp\": \"<string>\",\n      \"verificationType\": \"<string>\",\n      \"verificationEntity\": \"<string>\",\n      \"verificationEvents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authenticationContext\": {\n        \"action\": \"<string>\"\n      },\n      \"authenticatedIdentities\": {\n        \"id\": \"<string>\",\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      \"additionalData\": \"<string>\"\n    },\n    {\n      \"verificationMethod\": \"<string>\",\n      \"verificationResults\": \"<string>\",\n      \"verificationTimestamp\": \"<string>\",\n      \"verificationType\": \"<string>\",\n      \"verificationEntity\": \"<string>\",\n      \"verificationEvents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authenticationContext\": {\n        \"action\": \"<string>\"\n      },\n      \"authenticatedIdentities\": {\n        \"id\": \"<string>\",\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      \"additionalData\": \"<string>\"\n    }\n  ],\n  \"consentData\": [\n    {\n      \"acceptedTime\": \"<string>\",\n      \"effectiveUntil\": \"<string>\",\n      \"id\": \"<string>\",\n      \"source\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"acceptedTime\": \"<string>\",\n      \"effectiveUntil\": \"<string>\",\n      \"id\": \"<string>\",\n      \"source\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"status\": \"string\",\n    \"reason\": \"string\",\n    \"message\": \"string\",\n    \"detail\": {\n      \"reason\": \"string\",\n      \"source\": \"string\",\n      \"sourceType\": \"string\",\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa597e57-88a1-434e-9431-0e10e3b28efa",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "acp",
+                    "v1",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billTo\": {\n    \"country\": \"<string>\",\n    \"countryCallingCode\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"fullName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"numberIsVoiceOnly\": \"<boolean>\"\n  },\n  \"clientCorrelationId\": \"<string>\",\n  \"consumerIdentity\": {\n    \"identityType\": \"<string>\",\n    \"identityValue\": \"<string>\",\n    \"identityProvider\": \"<string>\",\n    \"identityProviderUrl\": \"<string>\"\n  },\n  \"deviceInformation\": {\n    \"applicationName\": \"<string>\",\n    \"deviceData\": {\n      \"type\": \"<string>\",\n      \"brand\": \"<string>\",\n      \"manufacturer\": \"<string>\",\n      \"model\": \"<string>\"\n    },\n    \"ipAddress\": \"<string>\",\n    \"fingerprintSessionId\": \"<string>\",\n    \"userAgent\": \"<string>\",\n    \"country\": \"<ISO 3166-1-alpha2>\",\n    \"clientDeviceId\": \"<string>\"\n  },\n  \"paymentInformation\": {\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\"\n    },\n    \"customer\": {\n      \"id\": \"<string>\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\",\n    \"personalIdentification\": [\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issueBy\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issueBy\": \"<string>\"\n      }\n    ],\n    \"language\": \"<string>\"\n  },\n  \"enrollmentReferenceData\": {\n    \"enrollmentReferenceType\": \"<string>\",\n    \"enrollmentReferenceProvider\": \"<string>\"\n  },\n  \"assuranceData\": [\n    {\n      \"verificationMethod\": \"<string>\",\n      \"verificationResults\": \"<string>\",\n      \"verificationTimestamp\": \"<string>\",\n      \"verificationType\": \"<string>\",\n      \"verificationEntity\": \"<string>\",\n      \"verificationEvents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authenticationContext\": {\n        \"action\": \"<string>\"\n      },\n      \"authenticatedIdentities\": {\n        \"id\": \"<string>\",\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      \"additionalData\": \"<string>\"\n    },\n    {\n      \"verificationMethod\": \"<string>\",\n      \"verificationResults\": \"<string>\",\n      \"verificationTimestamp\": \"<string>\",\n      \"verificationType\": \"<string>\",\n      \"verificationEntity\": \"<string>\",\n      \"verificationEvents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authenticationContext\": {\n        \"action\": \"<string>\"\n      },\n      \"authenticatedIdentities\": {\n        \"id\": \"<string>\",\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      \"additionalData\": \"<string>\"\n    }\n  ],\n  \"consentData\": [\n    {\n      \"acceptedTime\": \"<string>\",\n      \"effectiveUntil\": \"<string>\",\n      \"id\": \"<string>\",\n      \"source\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"acceptedTime\": \"<string>\",\n      \"effectiveUntil\": \"<string>\",\n      \"id\": \"<string>\",\n      \"source\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"status\": \"string\",\n    \"reason\": \"string\",\n    \"message\": \"string\",\n    \"detail\": {\n      \"reason\": \"string\",\n      \"source\": \"string\",\n      \"sourceType\": \"string\",\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3380f38a-3b90-4d4a-96a0-f125bb96dcae",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "acp",
+                    "v1",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billTo\": {\n    \"country\": \"<string>\",\n    \"countryCallingCode\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"fullName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"numberIsVoiceOnly\": \"<boolean>\"\n  },\n  \"clientCorrelationId\": \"<string>\",\n  \"consumerIdentity\": {\n    \"identityType\": \"<string>\",\n    \"identityValue\": \"<string>\",\n    \"identityProvider\": \"<string>\",\n    \"identityProviderUrl\": \"<string>\"\n  },\n  \"deviceInformation\": {\n    \"applicationName\": \"<string>\",\n    \"deviceData\": {\n      \"type\": \"<string>\",\n      \"brand\": \"<string>\",\n      \"manufacturer\": \"<string>\",\n      \"model\": \"<string>\"\n    },\n    \"ipAddress\": \"<string>\",\n    \"fingerprintSessionId\": \"<string>\",\n    \"userAgent\": \"<string>\",\n    \"country\": \"<ISO 3166-1-alpha2>\",\n    \"clientDeviceId\": \"<string>\"\n  },\n  \"paymentInformation\": {\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\"\n    },\n    \"customer\": {\n      \"id\": \"<string>\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\",\n    \"personalIdentification\": [\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issueBy\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issueBy\": \"<string>\"\n      }\n    ],\n    \"language\": \"<string>\"\n  },\n  \"enrollmentReferenceData\": {\n    \"enrollmentReferenceType\": \"<string>\",\n    \"enrollmentReferenceProvider\": \"<string>\"\n  },\n  \"assuranceData\": [\n    {\n      \"verificationMethod\": \"<string>\",\n      \"verificationResults\": \"<string>\",\n      \"verificationTimestamp\": \"<string>\",\n      \"verificationType\": \"<string>\",\n      \"verificationEntity\": \"<string>\",\n      \"verificationEvents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authenticationContext\": {\n        \"action\": \"<string>\"\n      },\n      \"authenticatedIdentities\": {\n        \"id\": \"<string>\",\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      \"additionalData\": \"<string>\"\n    },\n    {\n      \"verificationMethod\": \"<string>\",\n      \"verificationResults\": \"<string>\",\n      \"verificationTimestamp\": \"<string>\",\n      \"verificationType\": \"<string>\",\n      \"verificationEntity\": \"<string>\",\n      \"verificationEvents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authenticationContext\": {\n        \"action\": \"<string>\"\n      },\n      \"authenticatedIdentities\": {\n        \"id\": \"<string>\",\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      \"additionalData\": \"<string>\"\n    }\n  ],\n  \"consentData\": [\n    {\n      \"acceptedTime\": \"<string>\",\n      \"effectiveUntil\": \"<string>\",\n      \"id\": \"<string>\",\n      \"source\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"acceptedTime\": \"<string>\",\n      \"effectiveUntil\": \"<string>\",\n      \"id\": \"<string>\",\n      \"source\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"status\": \"string\",\n    \"reason\": \"string\",\n    \"message\": \"string\",\n    \"detail\": {\n      \"reason\": \"string\",\n      \"source\": \"string\",\n      \"sourceType\": \"string\",\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5abba68a-9b90-42e0-b9ad-abcd5e57c4f3",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "acp",
+                    "v1",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billTo\": {\n    \"country\": \"<string>\",\n    \"countryCallingCode\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"fullName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"numberIsVoiceOnly\": \"<boolean>\"\n  },\n  \"clientCorrelationId\": \"<string>\",\n  \"consumerIdentity\": {\n    \"identityType\": \"<string>\",\n    \"identityValue\": \"<string>\",\n    \"identityProvider\": \"<string>\",\n    \"identityProviderUrl\": \"<string>\"\n  },\n  \"deviceInformation\": {\n    \"applicationName\": \"<string>\",\n    \"deviceData\": {\n      \"type\": \"<string>\",\n      \"brand\": \"<string>\",\n      \"manufacturer\": \"<string>\",\n      \"model\": \"<string>\"\n    },\n    \"ipAddress\": \"<string>\",\n    \"fingerprintSessionId\": \"<string>\",\n    \"userAgent\": \"<string>\",\n    \"country\": \"<ISO 3166-1-alpha2>\",\n    \"clientDeviceId\": \"<string>\"\n  },\n  \"paymentInformation\": {\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\"\n    },\n    \"customer\": {\n      \"id\": \"<string>\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\",\n    \"personalIdentification\": [\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issueBy\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issueBy\": \"<string>\"\n      }\n    ],\n    \"language\": \"<string>\"\n  },\n  \"enrollmentReferenceData\": {\n    \"enrollmentReferenceType\": \"<string>\",\n    \"enrollmentReferenceProvider\": \"<string>\"\n  },\n  \"assuranceData\": [\n    {\n      \"verificationMethod\": \"<string>\",\n      \"verificationResults\": \"<string>\",\n      \"verificationTimestamp\": \"<string>\",\n      \"verificationType\": \"<string>\",\n      \"verificationEntity\": \"<string>\",\n      \"verificationEvents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authenticationContext\": {\n        \"action\": \"<string>\"\n      },\n      \"authenticatedIdentities\": {\n        \"id\": \"<string>\",\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      \"additionalData\": \"<string>\"\n    },\n    {\n      \"verificationMethod\": \"<string>\",\n      \"verificationResults\": \"<string>\",\n      \"verificationTimestamp\": \"<string>\",\n      \"verificationType\": \"<string>\",\n      \"verificationEntity\": \"<string>\",\n      \"verificationEvents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authenticationContext\": {\n        \"action\": \"<string>\"\n      },\n      \"authenticatedIdentities\": {\n        \"id\": \"<string>\",\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      \"additionalData\": \"<string>\"\n    }\n  ],\n  \"consentData\": [\n    {\n      \"acceptedTime\": \"<string>\",\n      \"effectiveUntil\": \"<string>\",\n      \"id\": \"<string>\",\n      \"source\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"acceptedTime\": \"<string>\",\n      \"effectiveUntil\": \"<string>\",\n      \"id\": \"<string>\",\n      \"source\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"status\": \"string\",\n    \"reason\": \"string\",\n    \"message\": \"string\",\n    \"detail\": {\n      \"reason\": \"string\",\n      \"source\": \"string\",\n      \"sourceType\": \"string\",\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a58ba7bc-684d-4258-8dab-99d7be362b45",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "acp",
+                    "v1",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billTo\": {\n    \"country\": \"<string>\",\n    \"countryCallingCode\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"fullName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"numberIsVoiceOnly\": \"<boolean>\"\n  },\n  \"clientCorrelationId\": \"<string>\",\n  \"consumerIdentity\": {\n    \"identityType\": \"<string>\",\n    \"identityValue\": \"<string>\",\n    \"identityProvider\": \"<string>\",\n    \"identityProviderUrl\": \"<string>\"\n  },\n  \"deviceInformation\": {\n    \"applicationName\": \"<string>\",\n    \"deviceData\": {\n      \"type\": \"<string>\",\n      \"brand\": \"<string>\",\n      \"manufacturer\": \"<string>\",\n      \"model\": \"<string>\"\n    },\n    \"ipAddress\": \"<string>\",\n    \"fingerprintSessionId\": \"<string>\",\n    \"userAgent\": \"<string>\",\n    \"country\": \"<ISO 3166-1-alpha2>\",\n    \"clientDeviceId\": \"<string>\"\n  },\n  \"paymentInformation\": {\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\"\n    },\n    \"customer\": {\n      \"id\": \"<string>\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\",\n    \"personalIdentification\": [\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issueBy\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issueBy\": \"<string>\"\n      }\n    ],\n    \"language\": \"<string>\"\n  },\n  \"enrollmentReferenceData\": {\n    \"enrollmentReferenceType\": \"<string>\",\n    \"enrollmentReferenceProvider\": \"<string>\"\n  },\n  \"assuranceData\": [\n    {\n      \"verificationMethod\": \"<string>\",\n      \"verificationResults\": \"<string>\",\n      \"verificationTimestamp\": \"<string>\",\n      \"verificationType\": \"<string>\",\n      \"verificationEntity\": \"<string>\",\n      \"verificationEvents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authenticationContext\": {\n        \"action\": \"<string>\"\n      },\n      \"authenticatedIdentities\": {\n        \"id\": \"<string>\",\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      \"additionalData\": \"<string>\"\n    },\n    {\n      \"verificationMethod\": \"<string>\",\n      \"verificationResults\": \"<string>\",\n      \"verificationTimestamp\": \"<string>\",\n      \"verificationType\": \"<string>\",\n      \"verificationEntity\": \"<string>\",\n      \"verificationEvents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authenticationContext\": {\n        \"action\": \"<string>\"\n      },\n      \"authenticatedIdentities\": {\n        \"id\": \"<string>\",\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      \"additionalData\": \"<string>\"\n    }\n  ],\n  \"consentData\": [\n    {\n      \"acceptedTime\": \"<string>\",\n      \"effectiveUntil\": \"<string>\",\n      \"id\": \"<string>\",\n      \"source\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"acceptedTime\": \"<string>\",\n      \"effectiveUntil\": \"<string>\",\n      \"id\": \"<string>\",\n      \"source\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"status\": \"string\",\n    \"reason\": \"string\",\n    \"message\": \"string\",\n    \"detail\": {\n      \"reason\": \"string\",\n      \"source\": \"string\",\n      \"sourceType\": \"string\",\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e10a28d2-1cfa-40e0-96f2-e6da47e70b5b",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "acp",
+                    "v1",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billTo\": {\n    \"country\": \"<string>\",\n    \"countryCallingCode\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"fullName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"numberIsVoiceOnly\": \"<boolean>\"\n  },\n  \"clientCorrelationId\": \"<string>\",\n  \"consumerIdentity\": {\n    \"identityType\": \"<string>\",\n    \"identityValue\": \"<string>\",\n    \"identityProvider\": \"<string>\",\n    \"identityProviderUrl\": \"<string>\"\n  },\n  \"deviceInformation\": {\n    \"applicationName\": \"<string>\",\n    \"deviceData\": {\n      \"type\": \"<string>\",\n      \"brand\": \"<string>\",\n      \"manufacturer\": \"<string>\",\n      \"model\": \"<string>\"\n    },\n    \"ipAddress\": \"<string>\",\n    \"fingerprintSessionId\": \"<string>\",\n    \"userAgent\": \"<string>\",\n    \"country\": \"<ISO 3166-1-alpha2>\",\n    \"clientDeviceId\": \"<string>\"\n  },\n  \"paymentInformation\": {\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\"\n    },\n    \"customer\": {\n      \"id\": \"<string>\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\"\n    }\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\",\n    \"personalIdentification\": [\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issueBy\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"id\": \"<string>\",\n        \"issueBy\": \"<string>\"\n      }\n    ],\n    \"language\": \"<string>\"\n  },\n  \"enrollmentReferenceData\": {\n    \"enrollmentReferenceType\": \"<string>\",\n    \"enrollmentReferenceProvider\": \"<string>\"\n  },\n  \"assuranceData\": [\n    {\n      \"verificationMethod\": \"<string>\",\n      \"verificationResults\": \"<string>\",\n      \"verificationTimestamp\": \"<string>\",\n      \"verificationType\": \"<string>\",\n      \"verificationEntity\": \"<string>\",\n      \"verificationEvents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authenticationContext\": {\n        \"action\": \"<string>\"\n      },\n      \"authenticatedIdentities\": {\n        \"id\": \"<string>\",\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      \"additionalData\": \"<string>\"\n    },\n    {\n      \"verificationMethod\": \"<string>\",\n      \"verificationResults\": \"<string>\",\n      \"verificationTimestamp\": \"<string>\",\n      \"verificationType\": \"<string>\",\n      \"verificationEntity\": \"<string>\",\n      \"verificationEvents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"authenticationContext\": {\n        \"action\": \"<string>\"\n      },\n      \"authenticatedIdentities\": {\n        \"id\": \"<string>\",\n        \"data\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      \"additionalData\": \"<string>\"\n    }\n  ],\n  \"consentData\": [\n    {\n      \"acceptedTime\": \"<string>\",\n      \"effectiveUntil\": \"<string>\",\n      \"id\": \"<string>\",\n      \"source\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"acceptedTime\": \"<string>\",\n      \"effectiveUntil\": \"<string>\",\n      \"id\": \"<string>\",\n      \"source\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"status\": \"string\",\n    \"reason\": \"string\",\n    \"message\": \"string\",\n    \"detail\": {\n      \"reason\": \"string\",\n      \"source\": \"string\",\n      \"sourceType\": \"string\",\n      \"message\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4ce70709-a998-4e4f-b8d2-2a30749a09d0",
+    "name": "CyberSource Merged Spec bankAccountValidation Enrollment API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

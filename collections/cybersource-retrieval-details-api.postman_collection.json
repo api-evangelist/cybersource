@@ -1,0 +1,138 @@
+{
+  "item": [
+    {
+      "id": "9490c0b2-0545-4d42-a2b5-4598b255a6cd",
+      "name": "Retrieval Details",
+      "description": {
+        "content": "API for requesting Retrieval Details.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "463a7055-f2f7-448c-b209-4cb6f84e4498",
+          "name": "Get Retrieval Details",
+          "request": {
+            "name": "Get Retrieval Details",
+            "description": {
+              "content": "Retrieval Detail Report Description",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "v3",
+                "retrieval-details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) Valid report Start Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n**Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) Valid report End Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n**Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "organizationId",
+                  "value": "<string>",
+                  "description": "Valid Organization Id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c4da00b-5cba-45f4-a40c-ac7865e036c7",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "retrieval-details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"organizationId\": \"testrest\",\n  \"startTime\": \"2017-10-01T10:10:10+05:00\",\n  \"endTime\": \"2017-10-01T10:10:10+05:00\",\n  \"retrievalDetails\": [\n    {\n      \"processorMerchantId\": \"174263416896\",\n      \"merchantName\": \"ZZZZZZ USA_EUR\",\n      \"transactionReferenceNumber\": \"02230413\",\n      \"merchantReferenceNumber\": \"123\",\n      \"natureOfDispute\": \"Retrieval\",\n      \"alertType\": \"2\",\n      \"amount\": \"5\",\n      \"sign\": \"C\",\n      \"action\": \"3\",\n      \"cardType\": \"American Express\",\n      \"originalSettlementTime\": \"2017-10-01T10:10:10+05:00\",\n      \"trackingNumber\": \"990175\",\n      \"currencyCode\": \"USD\",\n      \"requestId\": \"5060113732046412501541\",\n      \"responseDueTime\": \"2017-10-01T10:10:10+05:00\",\n      \"time\": \"2017-10-01T10:10:10+05:00\",\n      \"actionDescription\": \"Financial transaction\",\n      \"customerId\": \"Customer Id\",\n      \"reasonCode\": \"1050\",\n      \"representmentCPTime\": \"2017-10-01T10:10:10+05:00\",\n      \"applications\": \"ics_auth\",\n      \"eventRequestedTime\": \"2017-10-01T10:10:10+05:00\"\n    },\n    {\n      \"processorMerchantId\": \"174263416896\",\n      \"merchantName\": \"ZZZZZZ USA_EUR\",\n      \"transactionReferenceNumber\": \"02230413\",\n      \"merchantReferenceNumber\": \"123\",\n      \"natureOfDispute\": \"Retrieval\",\n      \"alertType\": \"2\",\n      \"amount\": \"5\",\n      \"sign\": \"C\",\n      \"action\": \"3\",\n      \"cardType\": \"American Express\",\n      \"originalSettlementTime\": \"2017-10-01T10:10:10+05:00\",\n      \"trackingNumber\": \"990175\",\n      \"currencyCode\": \"USD\",\n      \"requestId\": \"5060113732046412501541\",\n      \"responseDueTime\": \"2017-10-01T10:10:10+05:00\",\n      \"time\": \"2017-10-01T10:10:10+05:00\",\n      \"actionDescription\": \"Financial transaction\",\n      \"customerId\": \"Customer Id\",\n      \"reasonCode\": \"1050\",\n      \"representmentCPTime\": \"2017-10-01T10:10:10+05:00\",\n      \"applications\": \"ics_auth\",\n      \"eventRequestedTime\": \"2017-10-01T10:10:10+05:00\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "274edea7-1c99-4855-bf6c-f38cd42342a8",
+    "name": "CyberSource Merged Spec bankAccountValidation Retrieval Details API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

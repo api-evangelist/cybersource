@@ -1,0 +1,349 @@
+{
+  "item": [
+    {
+      "id": "79b0fcb8-cb6f-4188-8f7d-60e99e4216df",
+      "name": "EMVTagDetails",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7af14549-09a5-447e-b66f-88f02a66e77d",
+          "name": "Retrieve the EMV Dictionary",
+          "request": {
+            "name": "Retrieve the EMV Dictionary",
+            "description": {
+              "content": "Returns the entire EMV tag dictionary",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tss",
+                "v2",
+                "transactions",
+                "emvTagDetails"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "31466687-ff21-4387-9366-6502414dc79c",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tss",
+                    "v2",
+                    "transactions",
+                    "emvTagDetails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"emvTagBreakdownList\": [\n    {\n      \"tag\": \"B\",\n      \"name\": \"string\"\n    },\n    {\n      \"tag\": \"B55721E\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6cdac132-dc6a-4bc4-8981-19258fa23fb9",
+              "name": "The specified resource not found in the system.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tss",
+                    "v2",
+                    "transactions",
+                    "emvTagDetails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "49c7c8e7-0e6c-4968-9a6a-458bc820dffc",
+              "name": "Unexpected server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tss",
+                    "v2",
+                    "transactions",
+                    "emvTagDetails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "912d563d-5d20-44eb-9a5c-14a2fdd1e5b6",
+          "name": "Parse an EMV String",
+          "request": {
+            "name": "Parse an EMV String",
+            "description": {
+              "content": "Pass an EMV Tag-Length-Value (TLV) string for parsing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tss",
+                "v2",
+                "transactions",
+                "emvTagDetails"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requestor\": \"<string>\",\n  \"emvDetailsList\": [\n    {\n      \"requestId\": \"<string>\",\n      \"emvRequestCombinedTags\": \"<string>\"\n    },\n    {\n      \"requestId\": \"<string>\",\n      \"emvRequestCombinedTags\": \"<string>\"\n    }\n  ],\n  \"parsedTagLimit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "25b24235-c8e9-4227-9ff2-42290726d537",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tss",
+                    "v2",
+                    "transactions",
+                    "emvTagDetails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestor\": \"<string>\",\n  \"emvDetailsList\": [\n    {\n      \"requestId\": \"<string>\",\n      \"emvRequestCombinedTags\": \"<string>\"\n    },\n    {\n      \"requestId\": \"<string>\",\n      \"emvRequestCombinedTags\": \"<string>\"\n    }\n  ],\n  \"parsedTagLimit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"parsedEMVTagsList\": [\n    {\n      \"requestId\": \"string\",\n      \"totalTags\": 4745,\n      \"emvTagBreakdownList\": [\n        {\n          \"tag\": \"ACCF5D0A\",\n          \"name\": \"string\",\n          \"length\": 8496,\n          \"value\": \"|E4\",\n          \"description\": \"string\"\n        },\n        {\n          \"tag\": \"15BD50\",\n          \"name\": \"string\",\n          \"length\": 8498,\n          \"value\": \"74\",\n          \"description\": \"string\"\n        }\n      ]\n    },\n    {\n      \"requestId\": \"string\",\n      \"totalTags\": 5351,\n      \"emvTagBreakdownList\": [\n        {\n          \"tag\": \"2DE\",\n          \"name\": \"string\",\n          \"length\": 6485,\n          \"value\": \"5XD8A69C0D\",\n          \"description\": \"string\"\n        },\n        {\n          \"tag\": \"2B1713E0\",\n          \"name\": \"string\",\n          \"length\": 6774,\n          \"value\": \"B83DBA35A\",\n          \"description\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c19b4501-fbe7-4452-af99-c7dedeb96d24",
+              "name": "The specified resource not found in the system.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tss",
+                    "v2",
+                    "transactions",
+                    "emvTagDetails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestor\": \"<string>\",\n  \"emvDetailsList\": [\n    {\n      \"requestId\": \"<string>\",\n      \"emvRequestCombinedTags\": \"<string>\"\n    },\n    {\n      \"requestId\": \"<string>\",\n      \"emvRequestCombinedTags\": \"<string>\"\n    }\n  ],\n  \"parsedTagLimit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ce0e5f76-1263-4257-9ccc-bb0e6560cf00",
+              "name": "Unexpected server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tss",
+                    "v2",
+                    "transactions",
+                    "emvTagDetails"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestor\": \"<string>\",\n  \"emvDetailsList\": [\n    {\n      \"requestId\": \"<string>\",\n      \"emvRequestCombinedTags\": \"<string>\"\n    },\n    {\n      \"requestId\": \"<string>\",\n      \"emvRequestCombinedTags\": \"<string>\"\n    }\n  ],\n  \"parsedTagLimit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "282a3107-dc63-4557-bdf6-dd09c6a9fa0e",
+    "name": "CyberSource Merged Spec bankAccountValidation EMVTagDetails API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

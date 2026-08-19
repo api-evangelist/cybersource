@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation SearchTransactions API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SearchTransactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Search Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tss/v2/searches"
+          },
+          "docs": "Create a search request.\n"
+        },
+        {
+          "info": {
+            "name": "Get Search Results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tss/v2/searches/:searchId",
+            "params": [
+              {
+                "name": "searchId",
+                "value": "",
+                "type": "path",
+                "description": "Search ID."
+              }
+            ]
+          },
+          "docs": "Include the Search ID in the GET request to retrieve the search results."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

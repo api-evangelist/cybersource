@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Subscriptions Follow-Ons API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subscriptions Follow-Ons",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a Follow-On Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/rbs/v1/subscriptions/follow-ons/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "Request Id of an existing successful Transaction"
+              }
+            ]
+          },
+          "docs": "Get details of the Subscription being created based on the Request Id of an existing successful Transaction.\n"
+        },
+        {
+          "info": {
+            "name": "Create a Follow-On Subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/rbs/v1/subscriptions/follow-ons/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "Request Id of an existing successful Transaction"
+              }
+            ]
+          },
+          "docs": "Create a new Subscription based on the Request Id of an existing successful Transaction."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

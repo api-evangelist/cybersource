@@ -1,0 +1,726 @@
+{
+  "item": [
+    {
+      "id": "b8d1e3cd-ebd0-4fc7-8f43-bed2ff2d8113",
+      "name": "Device De-Association",
+      "description": {
+        "content": "Remove Association of a Device.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6d384b19-282f-4bc6-ab23-f9e49851ec92",
+          "name": "De-associate a device from merchant or account V2",
+          "request": {
+            "name": "De-associate a device from merchant or account V2",
+            "description": {
+              "content": "The current association of the device will be removed and will be assigned back to parent in the hierarchy based on internal logic",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dms",
+                "v2",
+                "devices",
+                "deassociate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"deviceId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cb2f91f9-2878-476e-b987-f14aa2b235b9",
+              "name": "The request is fulfilled but does not need to return a body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v2",
+                    "devices",
+                    "deassociate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"deviceId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b9df2346-f515-40c7-ad48-6f1396912abc",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v2",
+                    "devices",
+                    "deassociate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"deviceId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e01326ea-d226-47e8-90c0-79be8d47a1e9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v2",
+                    "devices",
+                    "deassociate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"deviceId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5cb91ee1-e466-4909-80f9-7873655a5f3c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v2",
+                    "devices",
+                    "deassociate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"deviceId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0a1865f-4588-492f-beee-017383ab49d7",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v2",
+                    "devices",
+                    "deassociate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"deviceId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b64df9aa-0c8a-48bf-9d78-a7d1841a402b",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v2",
+                    "devices",
+                    "deassociate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"deviceId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e50beccc-52d3-4806-9b7b-b111f4034758",
+          "name": "De-associate a device from merchant to account or reseller and from account to reseller",
+          "request": {
+            "name": "De-associate a device from merchant to account or reseller and from account to reseller",
+            "description": {
+              "content": "A device will be de-associated from its current organization and moved up in the hierarchy.\nThe device's new position will be determined by a specified destination, either an account or a portfolio. If no destination is provided, the device will default to the currently logged-in user.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dms",
+                "v3",
+                "devices",
+                "deassociate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"deviceId\": \"<string>\",\n    \"organizationId\": \"<string>\"\n  },\n  {\n    \"deviceId\": \"<string>\",\n    \"organizationId\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c72bb11d-65ea-4312-a643-7fbaa1cbfa6e",
+              "name": "De-associated all device(s) to their respective destination(s)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v3",
+                    "devices",
+                    "deassociate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"deviceId\": \"<string>\",\n    \"organizationId\": \"<string>\"\n  },\n  {\n    \"deviceId\": \"<string>\",\n    \"organizationId\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "[\n  {\n    \"status\": \"string\",\n    \"devices\": [\n      {\n        \"deviceId\": \"73c7d8ba-3673-4baf-801e-cf4bf5cc2b57\",\n        \"reason\": \"Device detached successfully.\",\n        \"code\": \"deviceDetach.sync.success\"\n      },\n      {\n        \"deviceId\": \"73c7d8ba-3673-4baf-801e-cf4bf5cc2b57\",\n        \"reason\": \"Device detached successfully.\",\n        \"code\": \"deviceDetach.sync.success\"\n      }\n    ]\n  },\n  {\n    \"status\": \"string\",\n    \"devices\": [\n      {\n        \"deviceId\": \"73c7d8ba-3673-4baf-801e-cf4bf5cc2b57\",\n        \"reason\": \"Device detached successfully.\",\n        \"code\": \"deviceDetach.sync.success\"\n      },\n      {\n        \"deviceId\": \"73c7d8ba-3673-4baf-801e-cf4bf5cc2b57\",\n        \"reason\": \"Device detached successfully.\",\n        \"code\": \"deviceDetach.sync.success\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15d30daf-88a9-47d0-af24-24bc0c72c224",
+              "name": "Partial Success. De-associated device(s) to their respective destination(s)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v3",
+                    "devices",
+                    "deassociate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"deviceId\": \"<string>\",\n    \"organizationId\": \"<string>\"\n  },\n  {\n    \"deviceId\": \"<string>\",\n    \"organizationId\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Partial Content",
+              "code": 206,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "[\n  {\n    \"status\": \"string\",\n    \"devices\": [\n      {\n        \"deviceId\": \"73c7d8ba-3673-4baf-801e-cf4bf5cc2b57\",\n        \"reason\": \"Device detached successfully.\",\n        \"code\": \"deviceDetach.sync.success\"\n      },\n      {\n        \"deviceId\": \"73c7d8ba-3673-4baf-801e-cf4bf5cc2b57\",\n        \"reason\": \"Device detached successfully.\",\n        \"code\": \"deviceDetach.sync.success\"\n      }\n    ]\n  },\n  {\n    \"status\": \"string\",\n    \"devices\": [\n      {\n        \"deviceId\": \"73c7d8ba-3673-4baf-801e-cf4bf5cc2b57\",\n        \"reason\": \"Device detached successfully.\",\n        \"code\": \"deviceDetach.sync.success\"\n      },\n      {\n        \"deviceId\": \"73c7d8ba-3673-4baf-801e-cf4bf5cc2b57\",\n        \"reason\": \"Device detached successfully.\",\n        \"code\": \"deviceDetach.sync.success\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "abcb3ad1-b19a-4dbd-b3ae-c6dd89640615",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v3",
+                    "devices",
+                    "deassociate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"deviceId\": \"<string>\",\n    \"organizationId\": \"<string>\"\n  },\n  {\n    \"deviceId\": \"<string>\",\n    \"organizationId\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\",\n      \"code\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\",\n      \"code\": \"string\"\n    }\n  ],\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f53019fa-9fd8-4eb6-80b6-0a90790c1557",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v3",
+                    "devices",
+                    "deassociate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"deviceId\": \"<string>\",\n    \"organizationId\": \"<string>\"\n  },\n  {\n    \"deviceId\": \"<string>\",\n    \"organizationId\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04c603f8-628d-4aa9-a3d2-4986f4c3440e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v3",
+                    "devices",
+                    "deassociate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"deviceId\": \"<string>\",\n    \"organizationId\": \"<string>\"\n  },\n  {\n    \"deviceId\": \"<string>\",\n    \"organizationId\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27f89921-6793-4da3-9c0a-90a6def59e4f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v3",
+                    "devices",
+                    "deassociate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"deviceId\": \"<string>\",\n    \"organizationId\": \"<string>\"\n  },\n  {\n    \"deviceId\": \"<string>\",\n    \"organizationId\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e30fc85-8bb6-4c4b-b072-14b17d4ffff4",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dms",
+                    "v3",
+                    "devices",
+                    "deassociate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"deviceId\": \"<string>\",\n    \"organizationId\": \"<string>\"\n  },\n  {\n    \"deviceId\": \"<string>\",\n    \"organizationId\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"submitTimeUtc\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a571e45a-f68e-4c16-9117-590f0554d678",
+    "name": "CyberSource Merged Spec bankAccountValidation Device De-Association API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

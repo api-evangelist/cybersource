@@ -1,0 +1,191 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Network Tokens API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Network Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Tokenized Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tms/v2/tokenized-cards",
+            "headers": [
+              {
+                "name": "profile-id",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "**Tokenized cards**<br>A Tokenized card represents a network token.\nNetwork tokens perform better than regular card numbers and they are not necessarily invalidated when a cardholder loses their card, or it expires.\nThis API submits a request to the card association to create a network token. If successful, a tokenized card will be created in TMS to represent the network token.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Tokenized Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tms/v2/tokenized-cards/:tokenizedCardId",
+            "headers": [
+              {
+                "name": "profile-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "tokenizedCardId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a tokenized card."
+              }
+            ]
+          },
+          "docs": "|**Tokenized Cards**<br>A Tokenized Card represents a network token.\nNetwork tokens perform better than regular card numbers and they are not necessarily invalidated when a cardholder loses their card, or it expires.\nThis API returns the details of a tokenized card stored in TMS. You can use this API to check the status of a tokenized card and retrieve details such as the last four digits of the underlying card, expiration date, and card type.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a Tokenized Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tms/v2/tokenized-cards/:tokenizedCardId/delete",
+            "headers": [
+              {
+                "name": "profile-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "tokenizedCardId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a tokenized card."
+              }
+            ]
+          },
+          "docs": "This API attempts to delete a network token from the card association with a specified reason. |\nIf successful, the corresponding tokenized card will be deleted. |\nThe reason for deletion can be specified to provide context for the deletion operation.\n"
+        },
+        {
+          "info": {
+            "name": "Generate Payment Credentials Latest Version v3",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tms/v3/tokens/:tokenId/payment-credentials",
+            "headers": [
+              {
+                "name": "profile-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a token representing a Customer, Payment Instrument or Instrument Identifier."
+              }
+            ]
+          },
+          "docs": "**Payment Credentials**<br>Contains payment information such as the network token, generated TAVV cryptogram for Visa & MasterCard, dynamic CVV for Amex, or DTVV cryptogram for VISA. This latest version (v3) returns the Primary Account Number details, if the network token is not present. The response is provided in JSON Web Encryption (JWE) format. <br>Your system can use this API to retrieve the Payment Credentials for an existing Customer, Payment Instrument, Instrument Identifier or Tokenized"
+        },
+        {
+          "info": {
+            "name": "Generate Payment Credentials v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tms/v2/tokens/:tokenId/payment-credentials",
+            "headers": [
+              {
+                "name": "profile-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a token representing a Customer, Payment Instrument or Instrument Identifier."
+              }
+            ]
+          },
+          "docs": "**Note**: This resource will be replace by [payment credentials version 3](#/paths/~1tms~1v3~1tokens~1{tokenId}~1payment-credentials/post). The SDK will remain available for now; however, it will no longer be documented or maintain in the Developer Centre.<br>\n**Token**<br>A Token can represent your tokenized Customer, Payment Instrument, Instrument Identifier or Tokenized Card information.<br>\n**Payment Credentials**<br>Contains payment information such as the network token, generated cryptogra"
+        },
+        {
+          "info": {
+            "name": "Retrieve Card Art",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tms/v2/tokens/:instrumentIdentifierId/:tokenProvider/assets/:assetType",
+            "params": [
+              {
+                "name": "instrumentIdentifierId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of an Instrument Identifier."
+              },
+              {
+                "name": "tokenProvider",
+                "value": "",
+                "type": "path",
+                "description": "The token provider."
+              },
+              {
+                "name": "assetType",
+                "value": "",
+                "type": "path",
+                "description": "The type of asset."
+              }
+            ]
+          },
+          "docs": "Retrieves Card Art for a specific Instrument Identifier. The Card Art is a visual representation of the cardholder's payment card.\nCard Art is only available if a Network Token is successfully provisioned.\n"
+        },
+        {
+          "info": {
+            "name": "Simulate Issuer Life Cycle Management Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tms/v2/tokenized-cards/:tokenizedCardId/issuer-life-cycle-event-simulations",
+            "headers": [
+              {
+                "name": "profile-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "tokenizedCardId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a tokenized card."
+              }
+            ]
+          },
+          "docs": "**Lifecycle Management Events**<br>Simulates an issuer life cycle manegement event for updates on the tokenized card.\nThe events that can be simulated are:\n- Token status changes (e.g. active, suspended, deleted)\n- Updates to the underlying card, including card art changes, expiration date changes, and card number suffix.\n**Note:** This is only available in CAS environment.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

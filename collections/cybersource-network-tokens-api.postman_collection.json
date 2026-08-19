@@ -1,0 +1,3289 @@
+{
+  "item": [
+    {
+      "id": "948c6662-69b1-4c55-a4aa-4e748130549a",
+      "name": "Network Tokens",
+      "description": {
+        "content": "A Network Token represents a tokenized version of a card number (PAN) that can be used for payment transactions and, it's represented by a Tokenized Card in TMS.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bde8ec39-15ca-41ed-9e29-cd8f8532ee38",
+          "name": "Create a Tokenized Card",
+          "request": {
+            "name": "Create a Tokenized Card",
+            "description": {
+              "content": "**Tokenized cards**<br>A Tokenized card represents a network token.\nNetwork tokens perform better than regular card numbers and they are not necessarily invalidated when a cardholder loses their card, or it expires.\nThis API submits a request to the card association to create a network token. If successful, a tokenized card will be created in TMS to represent the network token.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tms",
+                "v2",
+                "tokenized-cards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The Id of a profile containing user specific TMS configuration.",
+                "key": "profile-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source\": \"<string>\",\n  \"accountReferenceId\": \"<string>\",\n  \"consumerId\": \"<string>\",\n  \"createPanInstrumentIdentifier\": \"<boolean>\",\n  \"card\": {\n    \"number\": \"<string>\",\n    \"expirationMonth\": \"<string>\",\n    \"expirationYear\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"passcode\": {\n    \"value\": \"<string>\"\n  },\n  \"billTo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"locality\": \"<string>\",\n    \"administrativeArea\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2ea87c0c-6eca-4206-99ae-835d36750dc2",
+              "name": "Returns an existing tokenized card associated with the supplied Id.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"accountReferenceId\": \"<string>\",\n  \"consumerId\": \"<string>\",\n  \"createPanInstrumentIdentifier\": \"<boolean>\",\n  \"card\": {\n    \"number\": \"<string>\",\n    \"expirationMonth\": \"<string>\",\n    \"expirationYear\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"passcode\": {\n    \"value\": \"<string>\"\n  },\n  \"billTo\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"address1\": \"1 Market St\",\n    \"locality\": \"San Francisco\",\n    \"administrativeArea\": \"CA\",\n    \"postalCode\": \"94105\",\n    \"country\": \"US\",\n    \"email\": \"test@cybs.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally-unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\"\n    }\n  },\n  \"tokenizedCard\": {\n    \"id\": \"string\",\n    \"object\": \"tokenizedCard\",\n    \"source\": \"string\",\n    \"state\": \"ACTIVE\",\n    \"enrollmentId\": \"string\",\n    \"tokenReferenceId\": \"string\",\n    \"number\": \"string\",\n    \"expirationMonth\": \"string\",\n    \"expirationYear\": \"string\",\n    \"type\": \"string\",\n    \"reason\": \"ACTIVE\",\n    \"cryptogram\": \"CgAFRFYFPTFOfg5rj2ais9wQAAAAAM=\",\n    \"securityCode\": \"4523\",\n    \"eci\": \"string\",\n    \"requestorId\": \"string\",\n    \"paymentAccountReference\": \"string\",\n    \"applicationTransactionCounter\": \"string\",\n    \"card\": {\n      \"number\": \"stringstring\",\n      \"expirationMonth\": \"st\",\n      \"expirationYear\": \"stri\",\n      \"type\": \"string\",\n      \"suffix\": \"string\",\n      \"issueDate\": \"2030-12-15\",\n      \"activationDate\": \"2030-12-20\",\n      \"expirationPrinted\": true,\n      \"securityCodePrinted\": true,\n      \"termsAndConditions\": {\n        \"url\": \"string\"\n      }\n    },\n    \"verificationResults\": {\n      \"securityCode\": \"string\",\n      \"address\": \"string\"\n    },\n    \"metadata\": {\n      \"cardArt\": {\n        \"foregroundColor\": \"string\",\n        \"backgroundColor\": \"string\",\n        \"labelColor\": \"string\",\n        \"combinedAsset\": {\n          \"id\": \"string\",\n          \"_links\": {\n            \"self\": {\n              \"href\": \"string\"\n            }\n          }\n        },\n        \"brandLogoAsset\": {\n          \"id\": \"string\",\n          \"_links\": {\n            \"self\": {\n              \"href\": \"string\"\n            }\n          }\n        },\n        \"issuerLogoAsset\": {\n          \"id\": \"string\",\n          \"_links\": {\n            \"self\": {\n              \"href\": \"string\"\n            }\n          }\n        },\n        \"iconAsset\": {\n          \"id\": \"string\",\n          \"_links\": {\n            \"self\": {\n              \"href\": \"string\"\n            }\n          }\n        }\n      },\n      \"issuer\": {\n        \"name\": \"string\",\n        \"shortDescription\": \"string\",\n        \"longDescription\": \"string\",\n        \"email\": \"string\",\n        \"phoneNumber\": \"string\",\n        \"url\": \"string\",\n        \"privacyPolicyUrl\": \"string\",\n        \"capabilities\": {\n          \"deviceBindingSupported\": false,\n          \"cardholderVerificationSupported\": false,\n          \"trustedBeneficiaryEnrollmentSupported\": false,\n          \"delegatedAuthenticationSupported\": false,\n          \"oboDeviceBindingSupported\": true,\n          \"tokenLcmNotificationsSupported\": true,\n          \"fpanLcmNotificationsSupported\": false\n        },\n        \"bankApplications\": [\n          {\n            \"name\": \"string\",\n            \"address\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"address\": \"string\"\n          }\n        ]\n      },\n      \"creator\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d2f8e05-06c1-4271-b940-7a73a027cb3b",
+              "name": "A new tokenized card has been created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"accountReferenceId\": \"<string>\",\n  \"consumerId\": \"<string>\",\n  \"createPanInstrumentIdentifier\": \"<boolean>\",\n  \"card\": {\n    \"number\": \"<string>\",\n    \"expirationMonth\": \"<string>\",\n    \"expirationYear\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"passcode\": {\n    \"value\": \"<string>\"\n  },\n  \"billTo\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"address1\": \"1 Market St\",\n    \"locality\": \"San Francisco\",\n    \"administrativeArea\": \"CA\",\n    \"postalCode\": \"94105\",\n    \"country\": \"US\",\n    \"email\": \"test@cybs.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Location of the Tokenized Card.",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally-unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\"\n    }\n  },\n  \"tokenizedCard\": {\n    \"id\": \"string\",\n    \"object\": \"tokenizedCard\",\n    \"source\": \"string\",\n    \"state\": \"ACTIVE\",\n    \"enrollmentId\": \"string\",\n    \"tokenReferenceId\": \"string\",\n    \"number\": \"string\",\n    \"expirationMonth\": \"string\",\n    \"expirationYear\": \"string\",\n    \"type\": \"string\",\n    \"reason\": \"ACTIVE\",\n    \"cryptogram\": \"CgAFRFYFPTFOfg5rj2ais9wQAAAAAM=\",\n    \"securityCode\": \"4523\",\n    \"eci\": \"string\",\n    \"requestorId\": \"string\",\n    \"paymentAccountReference\": \"string\",\n    \"applicationTransactionCounter\": \"string\",\n    \"card\": {\n      \"number\": \"stringstring\",\n      \"expirationMonth\": \"st\",\n      \"expirationYear\": \"stri\",\n      \"type\": \"string\",\n      \"suffix\": \"string\",\n      \"issueDate\": \"2030-12-15\",\n      \"activationDate\": \"2030-12-20\",\n      \"expirationPrinted\": true,\n      \"securityCodePrinted\": true,\n      \"termsAndConditions\": {\n        \"url\": \"string\"\n      }\n    },\n    \"verificationResults\": {\n      \"securityCode\": \"string\",\n      \"address\": \"string\"\n    },\n    \"metadata\": {\n      \"cardArt\": {\n        \"foregroundColor\": \"string\",\n        \"backgroundColor\": \"string\",\n        \"labelColor\": \"string\",\n        \"combinedAsset\": {\n          \"id\": \"string\",\n          \"_links\": {\n            \"self\": {\n              \"href\": \"string\"\n            }\n          }\n        },\n        \"brandLogoAsset\": {\n          \"id\": \"string\",\n          \"_links\": {\n            \"self\": {\n              \"href\": \"string\"\n            }\n          }\n        },\n        \"issuerLogoAsset\": {\n          \"id\": \"string\",\n          \"_links\": {\n            \"self\": {\n              \"href\": \"string\"\n            }\n          }\n        },\n        \"iconAsset\": {\n          \"id\": \"string\",\n          \"_links\": {\n            \"self\": {\n              \"href\": \"string\"\n            }\n          }\n        }\n      },\n      \"issuer\": {\n        \"name\": \"string\",\n        \"shortDescription\": \"string\",\n        \"longDescription\": \"string\",\n        \"email\": \"string\",\n        \"phoneNumber\": \"string\",\n        \"url\": \"string\",\n        \"privacyPolicyUrl\": \"string\",\n        \"capabilities\": {\n          \"deviceBindingSupported\": false,\n          \"cardholderVerificationSupported\": false,\n          \"trustedBeneficiaryEnrollmentSupported\": false,\n          \"delegatedAuthenticationSupported\": false,\n          \"oboDeviceBindingSupported\": true,\n          \"tokenLcmNotificationsSupported\": true,\n          \"fpanLcmNotificationsSupported\": false\n        },\n        \"bankApplications\": [\n          {\n            \"name\": \"string\",\n            \"address\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"address\": \"string\"\n          }\n        ]\n      },\n      \"creator\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c96d6ae1-c619-4b8f-b01a-2e0cacc4a25c",
+              "name": "Bad Request: e.g. A required header value could be missing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"accountReferenceId\": \"<string>\",\n  \"consumerId\": \"<string>\",\n  \"createPanInstrumentIdentifier\": \"<boolean>\",\n  \"card\": {\n    \"number\": \"<string>\",\n    \"expirationMonth\": \"<string>\",\n    \"expirationYear\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"passcode\": {\n    \"value\": \"<string>\"\n  },\n  \"billTo\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"address1\": \"1 Market St\",\n    \"locality\": \"San Francisco\",\n    \"administrativeArea\": \"CA\",\n    \"postalCode\": \"94105\",\n    \"country\": \"US\",\n    \"email\": \"test@cybs.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\",\n      \"details\": [\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        }\n      ]\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\",\n      \"details\": [\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca4c721b-432a-4ba5-9cf8-f273154f882c",
+              "name": "Forbidden: e.g. The profile might not have permission to perform the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"accountReferenceId\": \"<string>\",\n  \"consumerId\": \"<string>\",\n  \"createPanInstrumentIdentifier\": \"<boolean>\",\n  \"card\": {\n    \"number\": \"<string>\",\n    \"expirationMonth\": \"<string>\",\n    \"expirationYear\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"passcode\": {\n    \"value\": \"<string>\"\n  },\n  \"billTo\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"address1\": \"1 Market St\",\n    \"locality\": \"San Francisco\",\n    \"administrativeArea\": \"CA\",\n    \"postalCode\": \"94105\",\n    \"country\": \"US\",\n    \"email\": \"test@cybs.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "486c8412-d28e-437b-a558-7917d84eb56d",
+              "name": "Conflict. The token is linked to a Payment Instrument.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"accountReferenceId\": \"<string>\",\n  \"consumerId\": \"<string>\",\n  \"createPanInstrumentIdentifier\": \"<boolean>\",\n  \"card\": {\n    \"number\": \"<string>\",\n    \"expirationMonth\": \"<string>\",\n    \"expirationYear\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"passcode\": {\n    \"value\": \"<string>\"\n  },\n  \"billTo\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"address1\": \"1 Market St\",\n    \"locality\": \"San Francisco\",\n    \"administrativeArea\": \"CA\",\n    \"postalCode\": \"94105\",\n    \"country\": \"US\",\n    \"email\": \"test@cybs.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f43aae0b-3bcb-4cce-aeb1-be645c1166e9",
+              "name": "Failed Dependency: e.g. The profile represented by the profile-id may not exist or the profile-id was entered incorrectly.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"accountReferenceId\": \"<string>\",\n  \"consumerId\": \"<string>\",\n  \"createPanInstrumentIdentifier\": \"<boolean>\",\n  \"card\": {\n    \"number\": \"<string>\",\n    \"expirationMonth\": \"<string>\",\n    \"expirationYear\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"passcode\": {\n    \"value\": \"<string>\"\n  },\n  \"billTo\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"address1\": \"1 Market St\",\n    \"locality\": \"San Francisco\",\n    \"administrativeArea\": \"CA\",\n    \"postalCode\": \"94105\",\n    \"country\": \"US\",\n    \"email\": \"test@cybs.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "061e9f43-feba-4273-b444-7fb50658e298",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source\": \"<string>\",\n  \"accountReferenceId\": \"<string>\",\n  \"consumerId\": \"<string>\",\n  \"createPanInstrumentIdentifier\": \"<boolean>\",\n  \"card\": {\n    \"number\": \"<string>\",\n    \"expirationMonth\": \"<string>\",\n    \"expirationYear\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"passcode\": {\n    \"value\": \"<string>\"\n  },\n  \"billTo\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"address1\": \"1 Market St\",\n    \"locality\": \"San Francisco\",\n    \"administrativeArea\": \"CA\",\n    \"postalCode\": \"94105\",\n    \"country\": \"US\",\n    \"email\": \"test@cybs.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c416c73-15af-4566-90f4-b7ed4839fd25",
+          "name": "Retrieve a Tokenized Card",
+          "request": {
+            "name": "Retrieve a Tokenized Card",
+            "description": {
+              "content": "|**Tokenized Cards**<br>A Tokenized Card represents a network token.\nNetwork tokens perform better than regular card numbers and they are not necessarily invalidated when a cardholder loses their card, or it expires.\nThis API returns the details of a tokenized card stored in TMS. You can use this API to check the status of a tokenized card and retrieve details such as the last four digits of the underlying card, expiration date, and card type.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tms",
+                "v2",
+                "tokenized-cards",
+                ":tokenizedCardId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tokenizedCardId",
+                  "description": "(Required) The Id of a tokenized card."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The Id of a profile containing user specific TMS configuration.",
+                "key": "profile-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8cc805d2-2ef7-4513-8ac3-c87c7e0776cc",
+              "name": "Returns an existing tokenized card associated with the supplied Id.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards",
+                    ":tokenizedCardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenizedCardId",
+                      "description": "(Required) The Id of a tokenized card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally-unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\"\n    }\n  },\n  \"tokenizedCard\": {\n    \"id\": \"string\",\n    \"object\": \"tokenizedCard\",\n    \"source\": \"string\",\n    \"state\": \"ACTIVE\",\n    \"enrollmentId\": \"string\",\n    \"tokenReferenceId\": \"string\",\n    \"number\": \"string\",\n    \"expirationMonth\": \"string\",\n    \"expirationYear\": \"string\",\n    \"type\": \"string\",\n    \"reason\": \"ACTIVE\",\n    \"cryptogram\": \"CgAFRFYFPTFOfg5rj2ais9wQAAAAAM=\",\n    \"securityCode\": \"4523\",\n    \"eci\": \"string\",\n    \"requestorId\": \"string\",\n    \"paymentAccountReference\": \"string\",\n    \"applicationTransactionCounter\": \"string\",\n    \"card\": {\n      \"number\": \"stringstring\",\n      \"expirationMonth\": \"st\",\n      \"expirationYear\": \"stri\",\n      \"type\": \"string\",\n      \"suffix\": \"string\",\n      \"issueDate\": \"2030-12-15\",\n      \"activationDate\": \"2030-12-20\",\n      \"expirationPrinted\": true,\n      \"securityCodePrinted\": true,\n      \"termsAndConditions\": {\n        \"url\": \"string\"\n      }\n    },\n    \"verificationResults\": {\n      \"securityCode\": \"string\",\n      \"address\": \"string\"\n    },\n    \"metadata\": {\n      \"cardArt\": {\n        \"foregroundColor\": \"string\",\n        \"backgroundColor\": \"string\",\n        \"labelColor\": \"string\",\n        \"combinedAsset\": {\n          \"id\": \"string\",\n          \"_links\": {\n            \"self\": {\n              \"href\": \"string\"\n            }\n          }\n        },\n        \"brandLogoAsset\": {\n          \"id\": \"string\",\n          \"_links\": {\n            \"self\": {\n              \"href\": \"string\"\n            }\n          }\n        },\n        \"issuerLogoAsset\": {\n          \"id\": \"string\",\n          \"_links\": {\n            \"self\": {\n              \"href\": \"string\"\n            }\n          }\n        },\n        \"iconAsset\": {\n          \"id\": \"string\",\n          \"_links\": {\n            \"self\": {\n              \"href\": \"string\"\n            }\n          }\n        }\n      },\n      \"issuer\": {\n        \"name\": \"string\",\n        \"shortDescription\": \"string\",\n        \"longDescription\": \"string\",\n        \"email\": \"string\",\n        \"phoneNumber\": \"string\",\n        \"url\": \"string\",\n        \"privacyPolicyUrl\": \"string\",\n        \"capabilities\": {\n          \"deviceBindingSupported\": false,\n          \"cardholderVerificationSupported\": false,\n          \"trustedBeneficiaryEnrollmentSupported\": false,\n          \"delegatedAuthenticationSupported\": false,\n          \"oboDeviceBindingSupported\": true,\n          \"tokenLcmNotificationsSupported\": true,\n          \"fpanLcmNotificationsSupported\": false\n        },\n        \"bankApplications\": [\n          {\n            \"name\": \"string\",\n            \"address\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"address\": \"string\"\n          }\n        ]\n      },\n      \"creator\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba0821c4-005e-4447-b52e-fb0c760356ab",
+              "name": "Bad Request: e.g. A required header value could be missing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards",
+                    ":tokenizedCardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenizedCardId",
+                      "description": "(Required) The Id of a tokenized card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\",\n      \"details\": [\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        }\n      ]\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\",\n      \"details\": [\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4a57d68-a2b8-476d-b700-01b5dd9e228f",
+              "name": "Forbidden: e.g. The profile might not have permission to perform the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards",
+                    ":tokenizedCardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenizedCardId",
+                      "description": "(Required) The Id of a tokenized card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06bcbf01-44b7-4526-bf59-0e3d702d859d",
+              "name": "Token Not Found. The Id may not exist or was entered incorrectly.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards",
+                    ":tokenizedCardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenizedCardId",
+                      "description": "(Required) The Id of a tokenized card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d2f1841-0ef1-4347-886e-9e6c537255a5",
+              "name": "Failed Dependency: e.g. The profile represented by the profile-id may not exist or the profile-id was entered incorrectly.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards",
+                    ":tokenizedCardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenizedCardId",
+                      "description": "(Required) The Id of a tokenized card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70119e73-011a-41a2-8d2e-c00ac157a1b0",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards",
+                    ":tokenizedCardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenizedCardId",
+                      "description": "(Required) The Id of a tokenized card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60b81dd5-1dd9-4514-8bef-26ef75f103a8",
+          "name": "Delete a Tokenized Card",
+          "request": {
+            "name": "Delete a Tokenized Card",
+            "description": {
+              "content": "This API attempts to delete a network token from the card association with a specified reason. |\nIf successful, the corresponding tokenized card will be deleted. |\nThe reason for deletion can be specified to provide context for the deletion operation.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tms",
+                "v2",
+                "tokenized-cards",
+                ":tokenizedCardId",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tokenizedCardId",
+                  "description": "(Required) The Id of a tokenized card."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The Id of a profile containing user specific TMS configuration.",
+                "key": "profile-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7dd50b47-ee28-4b77-8e05-d3124459b1dc",
+              "name": "The request is fulfilled but does not need to return a body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards",
+                    ":tokenizedCardId",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenizedCardId",
+                      "description": "(Required) The Id of a tokenized card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": {\n    \"code\": \"<string>\",\n    \"description\": \"Customer requested removal of network token.\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c4aa5ddf-5030-425f-825f-113be71f061a",
+              "name": "Bad Request: e.g. A required header value could be missing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards",
+                    ":tokenizedCardId",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenizedCardId",
+                      "description": "(Required) The Id of a tokenized card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": {\n    \"code\": \"<string>\",\n    \"description\": \"Customer requested removal of network token.\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\",\n      \"details\": [\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        }\n      ]\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\",\n      \"details\": [\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52cbc6a5-4955-40c6-8bfb-59b592961e30",
+              "name": "Forbidden: e.g. The profile might not have permission to perform the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards",
+                    ":tokenizedCardId",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenizedCardId",
+                      "description": "(Required) The Id of a tokenized card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": {\n    \"code\": \"<string>\",\n    \"description\": \"Customer requested removal of network token.\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d79c062-e1fa-4ee7-8050-11ef16582afe",
+              "name": "Token Not Found. The Id may not exist or was entered incorrectly.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards",
+                    ":tokenizedCardId",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenizedCardId",
+                      "description": "(Required) The Id of a tokenized card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": {\n    \"code\": \"<string>\",\n    \"description\": \"Customer requested removal of network token.\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3dd5f9a6-7d27-47f2-aae0-2cf05a7640a9",
+              "name": "Conflict. The token is linked to a Payment Instrument.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards",
+                    ":tokenizedCardId",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenizedCardId",
+                      "description": "(Required) The Id of a tokenized card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": {\n    \"code\": \"<string>\",\n    \"description\": \"Customer requested removal of network token.\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "864436bf-26ac-42bc-a9e2-18c0cca8f8ca",
+              "name": "Token Not Available. The token has been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards",
+                    ":tokenizedCardId",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenizedCardId",
+                      "description": "(Required) The Id of a tokenized card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": {\n    \"code\": \"<string>\",\n    \"description\": \"Customer requested removal of network token.\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6cc07dad-9c7c-4524-b7c6-42a676ae670d",
+              "name": "Failed Dependency: e.g. The profile represented by the profile-id may not exist or the profile-id was entered incorrectly.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards",
+                    ":tokenizedCardId",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenizedCardId",
+                      "description": "(Required) The Id of a tokenized card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": {\n    \"code\": \"<string>\",\n    \"description\": \"Customer requested removal of network token.\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8d92d12-fba6-4a0d-a641-58940b6fad30",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards",
+                    ":tokenizedCardId",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenizedCardId",
+                      "description": "(Required) The Id of a tokenized card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": {\n    \"code\": \"<string>\",\n    \"description\": \"Customer requested removal of network token.\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42aa7dba-9893-4141-94e7-ec7c1322fa62",
+          "name": "Generate Payment Credentials Latest Version v3",
+          "request": {
+            "name": "Generate Payment Credentials Latest Version v3",
+            "description": {
+              "content": "**Payment Credentials**<br>Contains payment information such as the network token, generated TAVV cryptogram for Visa & MasterCard, dynamic CVV for Amex, or DTVV cryptogram for VISA. This latest version (v3) returns the Primary Account Number details, if the network token is not present. The response is provided in JSON Web Encryption (JWE) format. <br>Your system can use this API to retrieve the Payment Credentials for an existing Customer, Payment Instrument, Instrument Identifier or Tokenized Card.<br>Optionally, **authenticated identities** information from Passkey authentication can be provided to potentially achieve liability shift, which may result in the return of an e-commerce indicator of 5 if successful.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tms",
+                "v3",
+                "tokens",
+                ":tokenId",
+                "payment-credentials"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tokenId",
+                  "description": "(Required) The Id of a token representing a Customer, Payment Instrument or Instrument Identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The Id of a profile containing user specific TMS configuration.",
+                "key": "profile-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/jose;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"paymentCredentialType\": \"<string>\",\n  \"transactionType\": \"<string>\",\n  \"clientCorrelationId\": \"<string>\",\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\"\n    },\n    \"billTo\": {\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"email\": \"<string>\"\n    }\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  },\n  \"deviceInformation\": {\n    \"platformType\": \"<string>\",\n    \"ipAddress\": \"<string>\",\n    \"httpAcceptContent\": \"<string>\",\n    \"httpBrowserLanguage\": \"<string>\",\n    \"httpBrowserJavaEnabled\": \"<boolean>\",\n    \"httpBrowserJavaScriptEnabled\": \"<boolean>\",\n    \"httpBrowserColorDepth\": \"<string>\",\n    \"httpBrowserScreenHeight\": \"<string>\",\n    \"httpBrowserScreenWidth\": \"<string>\",\n    \"httpBrowserTimeDifference\": \"<string>\",\n    \"userAgentBrowserValue\": \"<string>\"\n  },\n  \"authenticatedIdentities\": [\n    {\n      \"id\": \"<string>\",\n      \"provider\": \"<string>\",\n      \"data\": \"<string>\",\n      \"relyingPartyId\": \"<string>\",\n      \"userAuthenticationMethod\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"provider\": \"<string>\",\n      \"data\": \"<string>\",\n      \"relyingPartyId\": \"<string>\",\n      \"userAuthenticationMethod\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7b805c52-2098-4c51-aaa0-8fcd25efe221",
+              "name": "A base64 encoded JSON Web Encryption (JWE) response containing encrypted Payment Credentials.\n\nExample JWE Header:\n  ```json\n  {\n    \"kid\": \"a0eb65d572e556fddb68eb3a4078555605f7b283\",\n    \"cty\": \"json\",\n    \"typ\": \"JWT\",\n    \"enc\": \"A256GCM\",\n   \"alg\": \"RSA-OAEP-256\"\n  }\n  ```\n\nWhen cryptogram is requested or returned by default (paymentCredentialType: CRYPTOGRAM), the response includes cryptogram and ECI values for Visa/Mastercard. \nWhen security code is requested (paymentCredentialType: SECURITY_CODE), the response includes:\n- For American Express: Dynamic Card Secure Code (DCSC) returned by default\n- For Visa: DTVV cryptogram when explicitly requested<br>\n\nThe decrypted Payment Credentials response may include:\n\n<details>\n  <summary>Decrypted Payment Credentials for Tokenized Card</summary>\n  \n```json\n{\n    \"_links\": {\n      \"tokenizedCard\": {\n        \"href\": \"/tms/v2/tokenized-cards/47CA8267360FD3EAE063AF598E0A5792\"\n      }\n    },\n    \"tokenizedCard\": {\n      \"id\": \"47CA8267360FD3EAE063AF598E0A5792\",\n      \"state\": \"ACTIVE\",\n      \"enrollmentId\": \"8e823a4c6cd8299ee84a19346009e901\",\n      \"tokenReferenceId\": \"8009397c2f12e5d741921d5b59837701\",\n      \"number\": \"4323126880354068\",\n      \"expirationMonth\": \"12\",\n      \"expirationYear\": \"2026\",\n      \"type\": \"visa\",\n      \"cryptogram\": \"AwAAAAAAWx6z/7YAAAAAgBcAAAA=\",\n      \"eci\": \"07\",\n      \"requestorId\": \"40010052236\",\n      \"applicationTransactionCounter\": \"12345\",\n      \"card\": {\n        \"suffix\": \"6726\",\n        \"expirationMonth\": \"12\",\n        \"expirationYear\": \"2026\",\n        \"expirationPrinted\": true,\n        \"securityCodePrinted\": true\n      }\n    },\n    \"issuer\": {\n      \"paymentAccountReference\": \"V0010013025198559200843564380\"\n    }\n  }\n```\n</details>\n<details>\n  <summary>Decrypted Payment Credentials for TMS Token with Tokenized Card</summary>\n  \n```json\n{\n    \"_links\": {\n      \"instrumentIdentifier\": {\n        \"href\": \"/tms/v1/instrumentidentifiers/47CA82673608D3EAE063AF598E0A5792\"\n      },\n      \"tokenizedCard\": {\n        \"href\": \"/tms/v2/tokenized-cards/47CA8267360FD3EAE063AF598E0A5792\"\n      }\n    },\n    \"card\": {\n      \"number\": \"462294XXXXXX6726\"\n    },\n    \"tokenizedCard\": {\n      \"id\": \"47CA8267360FD3EAE063AF598E0A5792\",\n      \"state\": \"ACTIVE\",\n      \"enrollmentId\": \"8e823a4c6cd8299ee84a19346009e901\",\n      \"tokenReferenceId\": \"8009397c2f12e5d741921d5b59837701\",\n      \"number\": \"4323126880354068\",\n      \"expirationMonth\": \"12\",\n      \"expirationYear\": \"2026\",\n      \"type\": \"visa\",\n      \"cryptogram\": \"AwAAAAAAUbSN0KoAAAAAgBcAAAA=\",\n      \"eci\": \"07\",\n      \"requestorId\": \"40010052236\",\n      \"applicationTransactionCounter\": \"12345\",\n      \"card\": {\n        \"suffix\": \"6726\",\n        \"expirationMonth\": \"12\",\n        \"expirationYear\": \"2026\",\n        \"expirationPrinted\": true,\n        \"securityCodePrinted\": true\n      }\n    },\n    \"issuer\": {\n      \"paymentAccountReference\": \"V0010013025198559200843564380\"\n    }\n  }\n```\n</details>\n<details>\n  <summary>Decrypted Payment Credentials for TMS Token without Tokenized Card</summary>\n  \n```json\n{\n    \"_links\": {\n      \"paymentInstruments\": {\n        \"href\": \"/tms/v1/paymentinstruments/49133768477C678CE063AF598E0AD7CB\"\n      },\n      \"instrumentIdentifier\": {\n        \"href\": \"/tms/v1/instrumentidentifiers/490DC5B225867B0EE063AF598E0A0174\"\n      }\n    },\n    \"card\": {\n      \"number\": \"462294XXXXXX6791\",\n      \"expirationMonth\": \"12\",\n      \"expirationYear\": \"2030\",\n      \"type\": \"001\"\n    },\n    \"billTo\": {\n      \"firstName\": \"MM\",\n      \"lastName\": \"Doe\",\n      \"company\": \"Visa\",\n      \"address1\": \"1 Market St\",\n      \"locality\": \"san francisco\",\n      \"administrativeArea\": \"CA\",\n      \"postalCode\": \"94105\",\n      \"country\": \"US\",\n      \"email\": \"test@cybs.com\",\n      \"phoneNumber\": \"4158880000\"\n    }\n  }\n```\n</details>\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v3",
+                    "tokens",
+                    ":tokenId",
+                    "payment-credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenId",
+                      "description": "(Required) The Id of a token representing a Customer, Payment Instrument or Instrument Identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/jose;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A globally unique id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/jose;charset=utf-8"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6df93552-86bc-4ca8-99a0-34a200b805c6",
+              "name": "Bad Request: e.g. A required header value could be missing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v3",
+                    "tokens",
+                    ":tokenId",
+                    "payment-credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenId",
+                      "description": "(Required) The Id of a token representing a Customer, Payment Instrument or Instrument Identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/jose;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/jose;charset=utf-8"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "04ed86a9-5339-4d5c-9e59-a5e14d44f1b3",
+              "name": "Forbidden: e.g. The profile might not have permission to perform the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v3",
+                    "tokens",
+                    ":tokenId",
+                    "payment-credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenId",
+                      "description": "(Required) The Id of a token representing a Customer, Payment Instrument or Instrument Identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/jose;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"forbidden\",\n      \"message\": \"Request not permitted\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba644255-b4bb-42d1-beed-2ad1d1f7f181",
+              "name": "Token Not Found. The Id may not exist or was entered incorrectly.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v3",
+                    "tokens",
+                    ":tokenId",
+                    "payment-credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenId",
+                      "description": "(Required) The Id of a token representing a Customer, Payment Instrument or Instrument Identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/jose;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"notFound\",\n      \"message\": \"Token not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c12f031-33e0-47ff-bd9b-f12d5b13f774",
+              "name": "Conflict. The token is linked to a Payment Instrument.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v3",
+                    "tokens",
+                    ":tokenId",
+                    "payment-credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenId",
+                      "description": "(Required) The Id of a token representing a Customer, Payment Instrument or Instrument Identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/jose;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"conflict\",\n      \"message\": \"Action cannot be performed as the PaymentInstrument is the customers default\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e04a0051-8adc-4a65-a625-fcac3e8b733c",
+              "name": "Token Not Available. The token has been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v3",
+                    "tokens",
+                    ":tokenId",
+                    "payment-credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenId",
+                      "description": "(Required) The Id of a token representing a Customer, Payment Instrument or Instrument Identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/jose;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"notAvailable\",\n      \"message\": \"Token not available.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98384f6e-2e80-4c00-99c2-956d99863b2c",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v3",
+                    "tokens",
+                    ":tokenId",
+                    "payment-credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenId",
+                      "description": "(Required) The Id of a token representing a Customer, Payment Instrument or Instrument Identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/jose;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"serverError\",\n      \"message\": \"Internal server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "741aeac4-453f-4ae9-a02b-1875f15f6974",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v3",
+                    "tokens",
+                    ":tokenId",
+                    "payment-credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenId",
+                      "description": "(Required) The Id of a token representing a Customer, Payment Instrument or Instrument Identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/jose;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"badGateway\",\n      \"message\": \"An unexpected error occurred with network token service, check configuration\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40c7d1c0-e32a-480f-b185-c32e02bd3d0f",
+          "name": "Generate Payment Credentials v2",
+          "request": {
+            "name": "Generate Payment Credentials v2",
+            "description": {
+              "content": "**Note**: This resource will be replace by [payment credentials version 3](#/paths/~1tms~1v3~1tokens~1{tokenId}~1payment-credentials/post). The SDK will remain available for now; however, it will no longer be documented or maintain in the Developer Centre.<br>\n**Token**<br>A Token can represent your tokenized Customer, Payment Instrument, Instrument Identifier or Tokenized Card information.<br>\n**Payment Credentials**<br>Contains payment information such as the network token, generated cryptogram for Visa & MasterCard or dynamic CVV for Amex in a JSON Web Encryption (JWE) response.<br>Your system can use this API to retrieve the Payment Credentials for an existing Customer, Payment Instrument, Instrument Identifier or Tokenized Card.<br>Optionally, **authenticated identities** information from Passkey authentication can be provided to potentially achieve liability shift, which may result in the return of an e-commerce indicator of 5 if successful.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tms",
+                "v2",
+                "tokens",
+                ":tokenId",
+                "payment-credentials"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tokenId",
+                  "description": "(Required) The Id of a token representing a Customer, Payment Instrument or Instrument Identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The Id of a profile containing user specific TMS configuration.",
+                "key": "profile-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/jose;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"paymentCredentialType\": \"<string>\",\n  \"transactionType\": \"<string>\",\n  \"clientCorrelationId\": \"<string>\",\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\"\n    },\n    \"billTo\": {\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"email\": \"<string>\"\n    }\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"name\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  },\n  \"deviceInformation\": {\n    \"platformType\": \"<string>\",\n    \"ipAddress\": \"<string>\",\n    \"httpAcceptContent\": \"<string>\",\n    \"httpBrowserLanguage\": \"<string>\",\n    \"httpBrowserJavaEnabled\": \"<boolean>\",\n    \"httpBrowserJavaScriptEnabled\": \"<boolean>\",\n    \"httpBrowserColorDepth\": \"<string>\",\n    \"httpBrowserScreenHeight\": \"<string>\",\n    \"httpBrowserScreenWidth\": \"<string>\",\n    \"httpBrowserTimeDifference\": \"<string>\",\n    \"userAgentBrowserValue\": \"<string>\"\n  },\n  \"authenticatedIdentities\": [\n    {\n      \"id\": \"<string>\",\n      \"provider\": \"<string>\",\n      \"data\": \"<string>\",\n      \"relyingPartyId\": \"<string>\",\n      \"userAuthenticationMethod\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"provider\": \"<string>\",\n      \"data\": \"<string>\",\n      \"relyingPartyId\": \"<string>\",\n      \"userAuthenticationMethod\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bd7f4fa4-67cc-4e2c-a0a6-bf3528f4b09c",
+              "name": "A base64 encoded JSON Web Encryption (JWE) response containing encrypted Payment Credentials.\n\nExample:\n{\n\"kid\":\"a0eb65d572e556fddb68eb3a4078555605f7b283\",\n\"cty\":\"json\",\n\"typ\":\"JWT\",\n\"enc\":\"A256GCM\",\n\"alg\":\"RSA-OAEP-256\"\n}\n[Encrypted Instrument Identifier Payment Credentials]\n\nThe encrypted Payment Credentials will contain the network token and cryptogram or dynamic CVV.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokens",
+                    ":tokenId",
+                    "payment-credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenId",
+                      "description": "(Required) The Id of a token representing a Customer, Payment Instrument or Instrument Identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/jose;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "A globally unique id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/jose;charset=utf-8"
+                }
+              ],
+              "body": "eyJraWQiOiJhMGViNjVkNTcyZTU1NmZkZGI2OGViM2E0MDc4NTU1NjA1ZjdiMjgzIiwiY3R5IjoianNvbiIsInR5cCI6IkpXVCIsImVuYyI6IkEyNTZHQ00iLCJhbGciOiJSU0EtT0FFUC0yNTYifQ.o3V2waZn8TQgFXVJItH3EFv9IidsMQ45mskDJyAc6HVvIsT2Pw2blK1BpXv9l6JIU4pqKXzeKPTZTOLUOUoUf7Vr8bliMqCwJuHqq9Nx_qDJrL1MIGV9db8Ssog70-Cz5S6kPzWEWvLB-X8WvUsRfk9EY5Ge8r3BhcLyd-NVsIUKUBADS4-Ovrp2USlLehwVuiqbJzjblfwFCbOwAcDUBP3DGi6oZt8odrBCMV_W-1RH8KAZnS7NzkDgIRzzJoTvPLM4tMF2aSvrQG_GmZndLKeleZNa1voAdk35a2PGAyTc85vb_Eju79vV4C2nlCbxC2yImjumlJ_BZaKhj8q2xA.pWQZef3L3O0SFQtU.tfp2L0Jqqw-c4s9m7e0e8Y7eWAHVOEryLQlL3rLYPmo8OdEUaz-ftm_wpdtsycA5-iRZozDyyas6v6zqbXCMIG_Tg6cBS6cESrnBlgnkELtItv9Zw3UPSNVzoA97T0GxJVPmMkaHUkf0IAd7SXH4Zj5zCCTTDbpIwq4-TaGIxvXd_PJ4L6E1wcqEVaI6sU_PoTWvLJOFLDY_H4pjgVENVuPKVPJZodQxvpLo9L9B0zzOs4YMiv-1ACS_91vYUygBbwZuRnOD6jrW6V0J_nRQik2rCOTwV0B-Mt8nEV0xJpUByScrj91I5HBG1SEVDQPc6RJdNPM7SrPWfEc42Vc9F0oSehCpaIk7QXBCYZez629Li0KhUfqhPa5IJUygH8NB_UgfR5AcyzDr76Kq9Dht8PHPmkJVbPRdyVgkZsMmp_6GQ7Q7r2c3WrHESgbjGgsv4cz8Xui3cqw0Ni0Atozh46Kkd6yOPHC6y6IgdR32020Fs0cwTJnsAAkXy_wX4ScI9ElfpqxF9EshA9l5sHNfCPFbA2eHJUSA0x3vaRCoGCdF4GWq-2zgUEANPwkMNvHsB3E5_4gefqJi8K_nMMfekNGxFabqgkLxpqxXuyJ4cADatuE.kxPM1qm305qmJ6KuIU-9-A",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c72dc4b8-3553-40af-9007-b0d199ec15ac",
+              "name": "Bad Request: e.g. A required header value could be missing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokens",
+                    ":tokenId",
+                    "payment-credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenId",
+                      "description": "(Required) The Id of a token representing a Customer, Payment Instrument or Instrument Identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/jose;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/jose;charset=utf-8"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4dc3b00a-4e51-48e2-82f6-b94e799d9767",
+              "name": "Forbidden: e.g. The profile might not have permission to perform the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokens",
+                    ":tokenId",
+                    "payment-credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenId",
+                      "description": "(Required) The Id of a token representing a Customer, Payment Instrument or Instrument Identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/jose;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"forbidden\",\n      \"message\": \"Request not permitted\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aacc194a-7d25-4446-a891-9190833fb0dc",
+              "name": "Token Not Found. The Id may not exist or was entered incorrectly.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokens",
+                    ":tokenId",
+                    "payment-credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenId",
+                      "description": "(Required) The Id of a token representing a Customer, Payment Instrument or Instrument Identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/jose;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"notFound\",\n      \"message\": \"Token not found\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fcdb39e5-52b1-4736-9054-432ddb1c4bf3",
+              "name": "Token Not Available. The token has been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokens",
+                    ":tokenId",
+                    "payment-credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenId",
+                      "description": "(Required) The Id of a token representing a Customer, Payment Instrument or Instrument Identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/jose;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"notAvailable\",\n      \"message\": \"Token not available.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2d019e0-20ac-4670-a672-9df0e5ffda4f",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokens",
+                    ":tokenId",
+                    "payment-credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenId",
+                      "description": "(Required) The Id of a token representing a Customer, Payment Instrument or Instrument Identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/jose;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"serverError\",\n      \"message\": \"Internal server error\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9fa10d0-525e-4f7e-9767-997cdcd6d496",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokens",
+                    ":tokenId",
+                    "payment-credentials"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenId",
+                      "description": "(Required) The Id of a token representing a Customer, Payment Instrument or Instrument Identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/jose;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"badGateway\",\n      \"message\": \"An unexpected error occurred with network token service, check configuration\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b045a1a7-0332-445f-9e85-07fd7da575b2",
+          "name": "Retrieve Card Art",
+          "request": {
+            "name": "Retrieve Card Art",
+            "description": {
+              "content": "Retrieves Card Art for a specific Instrument Identifier. The Card Art is a visual representation of the cardholder's payment card.\nCard Art is only available if a Network Token is successfully provisioned.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tms",
+                "v2",
+                "tokens",
+                ":instrumentIdentifierId",
+                ":tokenProvider",
+                "assets",
+                ":assetType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instrumentIdentifierId",
+                  "description": "(Required) The Id of an Instrument Identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tokenProvider",
+                  "description": "(Required) The token provider."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetType",
+                  "description": "(Required) The type of asset."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "89fe0ecf-d13d-4d5c-b173-f1bdf7021950",
+              "name": "Returns the Card Art Asset Content of a Network Token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokens",
+                    ":instrumentIdentifierId",
+                    ":tokenProvider",
+                    "assets",
+                    ":assetType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instrumentIdentifierId",
+                      "description": "(Required) The Id of an Instrument Identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenProvider",
+                      "description": "(Required) The token provider."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetType",
+                      "description": "(Required) The type of asset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally-unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"84cfb836a0000859be62c766bdc9e510\",\n  \"type\": \"cardArtCombined\",\n  \"provider\": \"vts\",\n  \"content\": [\n    {\n      \"type\": \"image/png\",\n      \"data\": \"iVBORw0KGgoAAAANSUhEUgAA...\",\n      \"width\": 1536,\n      \"height\": 969\n    },\n    {\n      \"type\": \"image/png\",\n      \"data\": \"iVBORw0KGgoAAAANSUhEUgAA...\",\n      \"width\": 1536,\n      \"height\": 969\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c23952ef-e74c-48e1-8e2d-94b2e04fe6e0",
+          "name": "Simulate Issuer Life Cycle Management Events",
+          "request": {
+            "name": "Simulate Issuer Life Cycle Management Events",
+            "description": {
+              "content": "**Lifecycle Management Events**<br>Simulates an issuer life cycle manegement event for updates on the tokenized card.\nThe events that can be simulated are:\n- Token status changes (e.g. active, suspended, deleted)\n- Updates to the underlying card, including card art changes, expiration date changes, and card number suffix.\n**Note:** This is only available in CAS environment.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tms",
+                "v2",
+                "tokenized-cards",
+                ":tokenizedCardId",
+                "issuer-life-cycle-event-simulations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tokenizedCardId",
+                  "description": "(Required) The Id of a tokenized card."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The Id of a profile containing user specific TMS configuration.",
+                "key": "profile-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"state\": \"<string>\",\n  \"card\": {\n    \"last4\": \"<string>\",\n    \"expirationMonth\": \"<string>\",\n    \"expirationYear\": \"<string>\"\n  },\n  \"metadata\": {\n    \"cardArt\": {\n      \"combinedAsset\": {\n        \"update\": \"<string>\"\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4347ce86-1bf7-4fff-80c8-46d3fffcdec6",
+              "name": "The request is fulfilled but does not need to return a body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards",
+                    ":tokenizedCardId",
+                    "issuer-life-cycle-event-simulations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenizedCardId",
+                      "description": "(Required) The Id of a tokenized card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"state\": \"<string>\",\n  \"card\": {\n    \"last4\": \"<string>\",\n    \"expirationMonth\": \"<string>\",\n    \"expirationYear\": \"<string>\"\n  },\n  \"metadata\": {\n    \"cardArt\": {\n      \"combinedAsset\": {\n        \"update\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ac96dfc0-f275-4fe7-b811-a28f6cd6655f",
+              "name": "Bad Request: e.g. A required header value could be missing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards",
+                    ":tokenizedCardId",
+                    "issuer-life-cycle-event-simulations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenizedCardId",
+                      "description": "(Required) The Id of a tokenized card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"state\": \"<string>\",\n  \"card\": {\n    \"last4\": \"<string>\",\n    \"expirationMonth\": \"<string>\",\n    \"expirationYear\": \"<string>\"\n  },\n  \"metadata\": {\n    \"cardArt\": {\n      \"combinedAsset\": {\n        \"update\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\",\n      \"details\": [\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        }\n      ]\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\",\n      \"details\": [\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68bb2458-961b-4552-9526-bc73b583bd36",
+              "name": "Forbidden: e.g. The profile might not have permission to perform the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards",
+                    ":tokenizedCardId",
+                    "issuer-life-cycle-event-simulations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenizedCardId",
+                      "description": "(Required) The Id of a tokenized card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"state\": \"<string>\",\n  \"card\": {\n    \"last4\": \"<string>\",\n    \"expirationMonth\": \"<string>\",\n    \"expirationYear\": \"<string>\"\n  },\n  \"metadata\": {\n    \"cardArt\": {\n      \"combinedAsset\": {\n        \"update\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "874dd4b9-b285-487b-98f3-308c8040dca2",
+              "name": "Token Not Found. The Id may not exist or was entered incorrectly.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards",
+                    ":tokenizedCardId",
+                    "issuer-life-cycle-event-simulations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenizedCardId",
+                      "description": "(Required) The Id of a tokenized card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"state\": \"<string>\",\n  \"card\": {\n    \"last4\": \"<string>\",\n    \"expirationMonth\": \"<string>\",\n    \"expirationYear\": \"<string>\"\n  },\n  \"metadata\": {\n    \"cardArt\": {\n      \"combinedAsset\": {\n        \"update\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c60cb329-9309-4f1a-8272-d49314b44090",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v2",
+                    "tokenized-cards",
+                    ":tokenizedCardId",
+                    "issuer-life-cycle-event-simulations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenizedCardId",
+                      "description": "(Required) The Id of a tokenized card."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"state\": \"<string>\",\n  \"card\": {\n    \"last4\": \"<string>\",\n    \"expirationMonth\": \"<string>\",\n    \"expirationYear\": \"<string>\"\n  },\n  \"metadata\": {\n    \"cardArt\": {\n      \"combinedAsset\": {\n        \"update\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fbd3b759-3659-4b44-8d19-4675587e1e19",
+    "name": "CyberSource Merged Spec bankAccountValidation Network Tokens API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

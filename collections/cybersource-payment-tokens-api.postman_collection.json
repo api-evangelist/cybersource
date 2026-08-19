@@ -1,0 +1,217 @@
+{
+  "item": [
+    {
+      "id": "5299f8c3-7daa-4da2-8196-6230aec4fdec",
+      "name": "payment-tokens",
+      "description": {
+        "content": "A payment-tokens is a service that is used for retrieving vault details or deleting vault id/payment method.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bf156e46-a698-45d6-a83e-6642d805d0b8",
+          "name": "Retrieve or Delete Payment Token",
+          "request": {
+            "name": "Retrieve or Delete Payment Token",
+            "description": {
+              "content": "This API can be used in two flavours - for retrieval or deletion of vault id.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pts",
+                "v2",
+                "payment-tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"processingInformation\": {\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"paymentInformation\": {\n    \"paymentType\": {\n      \"name\": \"<string>\",\n      \"method\": {\n        \"name\": \"<string>\"\n      }\n    },\n    \"tokenizedPaymentMethod\": {\n      \"id\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "00a48eab-a42e-40e5-b758-4a7993b734da",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "payment-tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"processingInformation\": {\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"paymentInformation\": {\n    \"paymentType\": {\n      \"name\": \"<string>\",\n      \"method\": {\n        \"name\": \"<string>\"\n      }\n    },\n    \"tokenizedPaymentMethod\": {\n      \"id\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"paymentInformation\": {\n    \"tokenizedPaymentMethod\": {\n      \"id\": \"string\",\n      \"usageType\": \"string\"\n    },\n    \"eWallet\": {\n      \"accountId\": \"string\"\n    }\n  },\n  \"orderInformation\": {\n    \"shipTo\": {\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"address1\": \"string\",\n      \"address2\": \"string\",\n      \"administrativeArea\": \"string\",\n      \"locality\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"str\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df1dd763-dec8-47a5-ba30-f8eaca897a1c",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "payment-tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"processingInformation\": {\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"paymentInformation\": {\n    \"paymentType\": {\n      \"name\": \"<string>\",\n      \"method\": {\n        \"name\": \"<string>\"\n      }\n    },\n    \"tokenizedPaymentMethod\": {\n      \"id\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f6fb512-b82f-42a2-b9df-3a130678b874",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "payment-tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"processingInformation\": {\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"paymentInformation\": {\n    \"paymentType\": {\n      \"name\": \"<string>\",\n      \"method\": {\n        \"name\": \"<string>\"\n      }\n    },\n    \"tokenizedPaymentMethod\": {\n      \"id\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8c014279-138e-4565-aa5a-9afad6249982",
+    "name": "CyberSource Merged Spec bankAccountValidation payment-tokens API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

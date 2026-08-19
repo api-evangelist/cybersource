@@ -1,0 +1,409 @@
+{
+  "item": [
+    {
+      "id": "db01e7c9-c932-4a61-86c0-66714328234e",
+      "name": "Invoice Settings",
+      "description": {
+        "content": "Update the settings for the invoice payment page.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9526efc9-3574-4d3e-a214-538fcb7823bf",
+          "name": "Update Invoice Settings",
+          "request": {
+            "name": "Update Invoice Settings",
+            "description": {
+              "content": "Allows you to customize the payment page, the checkout experience, email communication and payer authentication. You can customize the invoice to match your brand with your business name, logo and brand colors, and a VAT Tax number. You can choose to capture the payers shipping details, phone number and email during the checkout process. You can add a custom message to all invoice emails and enable or disable payer authentication for invoice payments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoicing",
+                "v2",
+                "invoiceSettings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "productType",
+                  "value": "<string>",
+                  "description": "Allows you to choose which product type settings you want to update."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoiceSettingsInformation\": {\n    \"merchantLogo\": \"<string>\",\n    \"merchantDisplayName\": \"<string>\",\n    \"customEmailMessage\": \"<string>\",\n    \"enableReminders\": \"<boolean>\",\n    \"headerStyle\": {\n      \"fontColor\": \"<string>\",\n      \"backgroundColor\": \"<string>\"\n    },\n    \"deliveryLanguage\": \"<string>\",\n    \"defaultCurrencyCode\": \"<string>\",\n    \"payerAuthenticationInInvoicing\": \"<string>\",\n    \"showVatNumber\": false,\n    \"vatRegistrationNumber\": \"<string>\",\n    \"shipTo\": false,\n    \"phoneNumber\": false,\n    \"email\": false,\n    \"enableMerchantEmailNotifications\": false,\n    \"customLabels\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      }\n    ],\n    \"customRedirectUrls\": {\n      \"paymentAccepted\": \"<string>\",\n      \"paymentRejected\": \"<string>\",\n      \"paymentPending\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b136336f-ef54-4c1f-8dc2-30715f4170da",
+              "name": "OK.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoiceSettings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "productType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceSettingsInformation\": {\n    \"merchantLogo\": \"<string>\",\n    \"merchantDisplayName\": \"<string>\",\n    \"customEmailMessage\": \"<string>\",\n    \"enableReminders\": \"<boolean>\",\n    \"headerStyle\": {\n      \"fontColor\": \"<string>\",\n      \"backgroundColor\": \"<string>\"\n    },\n    \"deliveryLanguage\": \"<string>\",\n    \"defaultCurrencyCode\": \"<string>\",\n    \"payerAuthenticationInInvoicing\": \"<string>\",\n    \"showVatNumber\": false,\n    \"vatRegistrationNumber\": \"<string>\",\n    \"shipTo\": false,\n    \"phoneNumber\": false,\n    \"email\": false,\n    \"enableMerchantEmailNotifications\": false,\n    \"customLabels\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      }\n    ],\n    \"customRedirectUrls\": {\n      \"paymentAccepted\": \"<string>\",\n      \"paymentRejected\": \"<string>\",\n      \"paymentPending\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"invoiceSettingsInformation\": {\n    \"merchantLogo\": \"string\",\n    \"merchantDisplayName\": \"string\",\n    \"customEmailMessage\": \"string\",\n    \"enableReminders\": false,\n    \"headerStyle\": {\n      \"fontColor\": \"#ecB\",\n      \"backgroundColor\": \"#dEaF86\"\n    },\n    \"deliveryLanguage\": \"string\",\n    \"defaultCurrencyCode\": \"str\",\n    \"payerAuthentication3DSVersion\": false,\n    \"showVatNumber\": false,\n    \"vatRegistrationNumber\": \"string\",\n    \"shipTo\": false,\n    \"phoneNumber\": false,\n    \"email\": false,\n    \"enableMerchantEmailNotifications\": false,\n    \"customLabels\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      }\n    ],\n    \"customRedirectUrls\": {\n      \"paymentAccepted\": \"string\",\n      \"paymentRejected\": \"string\",\n      \"paymentPending\": \"string\"\n    }\n  },\n  \"merchantInformation\": {\n    \"name\": \"string\",\n    \"phone\": \"string\",\n    \"addressDetails\": {\n      \"address1\": \"string\",\n      \"address2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"country\": \"string\",\n      \"postalCode\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "530c6356-9b7d-4d64-b997-6ef574aa2543",
+              "name": "Could not update the invoice settings for this merchant.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoiceSettings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "productType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceSettingsInformation\": {\n    \"merchantLogo\": \"<string>\",\n    \"merchantDisplayName\": \"<string>\",\n    \"customEmailMessage\": \"<string>\",\n    \"enableReminders\": \"<boolean>\",\n    \"headerStyle\": {\n      \"fontColor\": \"<string>\",\n      \"backgroundColor\": \"<string>\"\n    },\n    \"deliveryLanguage\": \"<string>\",\n    \"defaultCurrencyCode\": \"<string>\",\n    \"payerAuthenticationInInvoicing\": \"<string>\",\n    \"showVatNumber\": false,\n    \"vatRegistrationNumber\": \"<string>\",\n    \"shipTo\": false,\n    \"phoneNumber\": false,\n    \"email\": false,\n    \"enableMerchantEmailNotifications\": false,\n    \"customLabels\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      }\n    ],\n    \"customRedirectUrls\": {\n      \"paymentAccepted\": \"<string>\",\n      \"paymentRejected\": \"<string>\",\n      \"paymentPending\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:40:10Z\",\n  \"status\": \"BADREQUEST\",\n  \"reason\": \"VALIDATION_ERROR\",\n  \"message\": \"Field validation errors.\",\n  \"details\": [\n    {\n      \"field\": \"customerInformation.email\",\n      \"reason\": \"Invalid email\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "285d0d75-f2b6-4000-abc0-52dca7865a47",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoiceSettings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "productType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceSettingsInformation\": {\n    \"merchantLogo\": \"<string>\",\n    \"merchantDisplayName\": \"<string>\",\n    \"customEmailMessage\": \"<string>\",\n    \"enableReminders\": \"<boolean>\",\n    \"headerStyle\": {\n      \"fontColor\": \"<string>\",\n      \"backgroundColor\": \"<string>\"\n    },\n    \"deliveryLanguage\": \"<string>\",\n    \"defaultCurrencyCode\": \"<string>\",\n    \"payerAuthenticationInInvoicing\": \"<string>\",\n    \"showVatNumber\": false,\n    \"vatRegistrationNumber\": \"<string>\",\n    \"shipTo\": false,\n    \"phoneNumber\": false,\n    \"email\": false,\n    \"enableMerchantEmailNotifications\": false,\n    \"customLabels\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      }\n    ],\n    \"customRedirectUrls\": {\n      \"paymentAccepted\": \"<string>\",\n      \"paymentRejected\": \"<string>\",\n      \"paymentPending\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2018-06-12T09:27:20Z\",\n  \"status\": \"SERVER_ERROR\",\n  \"reason\": \"SERVER_ERROR\",\n  \"message\": \"Error - General system failure.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a4aadd0-443c-4c19-ba94-2bf73697d3c8",
+          "name": "Get Invoice Settings",
+          "request": {
+            "name": "Get Invoice Settings",
+            "description": {
+              "content": "Allows you to retrieve the invoice settings for the payment page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoicing",
+                "v2",
+                "invoiceSettings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "productType",
+                  "value": "<string>",
+                  "description": "Allows you to choose which product type settings you want to update."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9203aa19-6c67-430c-a5f7-2cec6d773e00",
+              "name": "OK.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoiceSettings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "productType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"invoiceSettingsInformation\": {\n    \"merchantLogo\": \"string\",\n    \"merchantDisplayName\": \"string\",\n    \"customEmailMessage\": \"string\",\n    \"enableReminders\": true,\n    \"headerStyle\": {\n      \"fontColor\": \"#dce\",\n      \"backgroundColor\": \"#cC546D\"\n    },\n    \"deliveryLanguage\": \"string\",\n    \"defaultCurrencyCode\": \"str\",\n    \"payerAuthentication3DSVersion\": false,\n    \"showVatNumber\": false,\n    \"vatRegistrationNumber\": \"string\",\n    \"shipTo\": false,\n    \"phoneNumber\": false,\n    \"email\": false,\n    \"enableMerchantEmailNotifications\": false,\n    \"customLabels\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"hidden\": false,\n        \"hiddenForInvoice\": false,\n        \"hiddenForItem\": false\n      }\n    ],\n    \"customRedirectUrls\": {\n      \"paymentAccepted\": \"string\",\n      \"paymentRejected\": \"string\",\n      \"paymentPending\": \"string\"\n    }\n  },\n  \"merchantInformation\": {\n    \"name\": \"string\",\n    \"phone\": \"string\",\n    \"addressDetails\": {\n      \"address1\": \"string\",\n      \"address2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"country\": \"string\",\n      \"postalCode\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44e4c5be-d798-424d-a4f0-42844ce92962",
+              "name": "Could not get the invoice settings for this merchant.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoiceSettings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "productType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2019-07-01T21:40:10Z\",\n  \"status\": \"BADREQUEST\",\n  \"reason\": \"VALIDATION_ERROR\",\n  \"message\": \"Field validation errors.\",\n  \"details\": [\n    {\n      \"field\": \"customerInformation.email\",\n      \"reason\": \"Invalid email\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1933d3ea-d326-4cf1-b8a4-3a927ddbfad9",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicing",
+                    "v2",
+                    "invoiceSettings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "productType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2018-06-12T09:27:20Z\",\n  \"status\": \"SERVER_ERROR\",\n  \"reason\": \"SERVER_ERROR\",\n  \"message\": \"Error - General system failure.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "69db129e-d2c4-4bb8-89e4-7ef737e1269c",
+    "name": "CyberSource Merged Spec bankAccountValidation Invoice Settings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

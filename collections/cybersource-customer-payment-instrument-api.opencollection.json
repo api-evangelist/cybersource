@@ -1,0 +1,177 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Customer Payment Instrument API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customer Payment Instrument",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Payment Instruments for a Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tms/v2/customers/:customerId/payment-instruments",
+            "headers": [
+              {
+                "name": "profile-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a Customer."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Starting record in zero-based dataset that should be returned as the first object in the array. Default is 0."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number that can be returned in the array starting from the offset record in zero-based dataset. Default is 20, maximum is 100."
+              }
+            ]
+          },
+          "docs": "|  |  |  |\n| --- | --- | --- |\n|**Customer Payment Instrument**<br>A Customer Payment Instrument represents tokenized customer payment information such as expiration date, billing address & card type.<br>A [Customer](#token-management_customer_create-a-customer) can have [one or more Payment Instruments](#token-management_customer-payment-instrument_retrieve-a-customer-payment-instrument), with one allocated as the Customers default for use in payments.<br>A Payment Instrument token does not sto"
+        },
+        {
+          "info": {
+            "name": "Create a Customer Payment Instrument",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/tms/v2/customers/:customerId/payment-instruments",
+            "headers": [
+              {
+                "name": "profile-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a Customer."
+              }
+            ]
+          },
+          "docs": "|  |  |  |\n| --- | --- | --- |\n|**Customer Payment Instrument**<br>A Customer Payment Instrument represents tokenized customer payment information such as expiration date, billing address & card type.<br>A [Customer](#token-management_customer_create-a-customer) can have [one or more Payment Instruments](#token-management_customer-payment-instrument_retrieve-a-customer-payment-instrument), with one allocated as the Customers default for use in payments.<br>A Payment Instrument token does not sto"
+        },
+        {
+          "info": {
+            "name": "Retrieve a Customer Payment Instrument",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tms/v2/customers/:customerId/payment-instruments/:paymentInstrumentId",
+            "headers": [
+              {
+                "name": "profile-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a Customer."
+              },
+              {
+                "name": "paymentInstrumentId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a payment instrument."
+              }
+            ]
+          },
+          "docs": "|  |  |  |\n| --- | --- | --- |\n|**Customer Payment Instrument**<br>A Customer Payment Instrument represents tokenized customer payment information such as expiration date, billing address & card type.<br>A [Customer](#token-management_customer_create-a-customer) can have [one or more Payment Instruments](#token-management_customer-payment-instrument_retrieve-a-customer-payment-instrument), with one allocated as the Customers default for use in payments.<br>A Payment Instrument token does not sto"
+        },
+        {
+          "info": {
+            "name": "Update a Customer Payment Instrument",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/tms/v2/customers/:customerId/payment-instruments/:paymentInstrumentId",
+            "headers": [
+              {
+                "name": "profile-id",
+                "value": ""
+              },
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a Customer."
+              },
+              {
+                "name": "paymentInstrumentId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a payment instrument."
+              }
+            ]
+          },
+          "docs": "|  |  |  |\n| --- | --- | --- |\n|**Customer Payment Instrument**<br>A Customer Payment Instrument represents tokenized customer payment information such as expiration date, billing address & card type.<br>A [Customer](#token-management_customer_create-a-customer) can have [one or more Payment Instruments](#token-management_customer-payment-instrument_retrieve-a-customer-payment-instrument), with one allocated as the Customers default for use in payments.<br>A Payment Instrument token does not sto"
+        },
+        {
+          "info": {
+            "name": "Delete a Customer Payment Instrument",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/tms/v2/customers/:customerId/payment-instruments/:paymentInstrumentId",
+            "headers": [
+              {
+                "name": "profile-id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a Customer."
+              },
+              {
+                "name": "paymentInstrumentId",
+                "value": "",
+                "type": "path",
+                "description": "The Id of a payment instrument."
+              }
+            ]
+          },
+          "docs": "|  |  |  |\n| --- | --- | --- |\n|**Customer Payment Instrument**<br>A Customer Payment Instrument represents tokenized customer payment information such as expiration date, billing address & card type.<br>A [Customer](#token-management_customer_create-a-customer) can have [one or more Payment Instruments](#token-management_customer-payment-instrument_retrieve-a-customer-payment-instrument), with one allocated as the Customers default for use in payments.<br>A Payment Instrument token does not sto"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

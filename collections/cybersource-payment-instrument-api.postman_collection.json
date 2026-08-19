@@ -1,0 +1,2125 @@
+{
+  "item": [
+    {
+      "id": "6d081f9a-2f47-4987-b408-90933f2a4fa7",
+      "name": "Payment Instrument",
+      "description": {
+        "content": "A stand-alone Payment Instrument is linked to an Instrument Identifier.\nIt stores additional information in relation to a card number(PAN) or bank account (echeck).\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "88e31b24-4654-4fcb-91a5-02e5ff6d4484",
+          "name": "Create a Payment Instrument",
+          "request": {
+            "name": "Create a Payment Instrument",
+            "description": {
+              "content": "|  |  |  |\n| --- | --- | --- |\n|**Standalone Payment Instruments**<br>A Payment Instrument represents tokenized payment information such as expiration date, billing address & card type.<br>A Payment Instrument token does not store the card number. A Payment Instrument is associated with an [Instrument Identifier](#token-management_instrument-identifier_create-an-instrument-identifier) that represents either a payment card number, or in the case of an ACH bank account, the routing and account number.<br>**Standalone Payment Instruments do not belong to a [Customer](#token-management_customer_create-a-customer).**<br><br>**Creating a Payment Instrument**<br>It is recommended you [create a Payment Instrument via a Payment Authorization](#payments_payments_process-a-payment_samplerequests-dropdown_authorization-with-token-create_authorization-with-customer-token-creation_liveconsole-tab-request-body), this can be for a zero amount.<br>In Europe: You should perform Payer Authentication alongside the Authorization.|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|**Payment Network Tokens**<br>Network tokens perform better than regular card numbers and they are not necessarily invalidated when a cardholder loses their card, or it expires.<br>A Payment Network Token will be automatically created and used in future payments if you are enabled for the service.<br>A Payment Network Token can also be [provisioned for an existing Instrument Identifier](#token-management_instrument-identifier_enroll-an-instrument-identifier-for-payment-network-token).<br>For more information about Payment Network Tokens see the Developer Guide.<br><br>**Payments with Payment Instruments**<br>To perform a payment with a particular Payment Instrument specify the [Payment Instrument in the payment request](#payments_payments_process-a-payment_samplerequests-dropdown_authorization-using-tokens_authorization-with-customer-payment-instrument-and-shipping-address-token-id_liveconsole-tab-request-body).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tms",
+                "v1",
+                "paymentinstruments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "retrieveBinDetails",
+                  "value": "<boolean>",
+                  "description": "Retrieve the Bin Details of PAN or network token"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The Id of a profile containing user specific TMS configuration.",
+                "key": "profile-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"bankAccount\": {\n    \"type\": \"<string>\"\n  },\n  \"card\": {\n    \"expirationMonth\": \"<string>\",\n    \"expirationYear\": \"<string>\",\n    \"type\": \"<string>\",\n    \"issueNumber\": \"<string>\",\n    \"startMonth\": \"<string>\",\n    \"startYear\": \"<string>\",\n    \"useAs\": \"<string>\",\n    \"tokenizedInformation\": {\n      \"requestorID\": \"<string>\",\n      \"transactionType\": \"<string>\"\n    }\n  },\n  \"buyerInformation\": {\n    \"companyTaxID\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"dateOfBirth\": \"<date>\",\n    \"personalIdentification\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"issuedBy\": {\n          \"administrativeArea\": \"<string>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"issuedBy\": {\n          \"administrativeArea\": \"<string>\"\n        }\n      }\n    ]\n  },\n  \"billTo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"company\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"locality\": \"<string>\",\n    \"administrativeArea\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phoneNumber\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"billPaymentProgramEnabled\": \"<boolean>\",\n    \"bankTransferOptions\": {\n      \"SECCode\": \"<string>\"\n    }\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"alternateName\": \"<string>\"\n    }\n  },\n  \"instrumentIdentifier\": {\n    \"id\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ae8ef6af-204b-4344-9eda-d57ade0dc3b3",
+              "name": "Returns an existing Payment Instrument associated with the supplied Id.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "retrieveBinDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "An ETag is an identifier assigned to a specific version of a resource.",
+                  "key": "ETag",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally-unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"/tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3/payment-instruments\"\n    },\n    \"customer\": {\n      \"href\": \"/tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3\"\n    }\n  },\n  \"id\": \"string\",\n  \"object\": \"paymentInstrument\",\n  \"default\": true,\n  \"state\": \"ACTIVE\",\n  \"type\": \"string\",\n  \"bankAccount\": {\n    \"type\": \"string\"\n  },\n  \"card\": {\n    \"expirationMonth\": \"st\",\n    \"expirationYear\": \"stri\",\n    \"type\": \"string\",\n    \"issueNumber\": \"st\",\n    \"startMonth\": \"st\",\n    \"startYear\": \"stri\",\n    \"useAs\": \"pinless debit\",\n    \"hash\": \"stringstringstringstringstringstr\",\n    \"tokenizedInformation\": {\n      \"requestorID\": \"string\",\n      \"transactionType\": \"s\"\n    }\n  },\n  \"buyerInformation\": {\n    \"companyTaxID\": \"string\",\n    \"currency\": \"str\",\n    \"dateOfBirth\": \"1960-12-30\",\n    \"personalIdentification\": [\n      {\n        \"id\": \"string\",\n        \"type\": \"string\",\n        \"issuedBy\": {\n          \"administrativeArea\": \"string\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"type\": \"string\",\n        \"issuedBy\": {\n          \"administrativeArea\": \"string\"\n        }\n      }\n    ]\n  },\n  \"billTo\": {\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"company\": \"string\",\n    \"address1\": \"string\",\n    \"address2\": \"string\",\n    \"locality\": \"string\",\n    \"administrativeArea\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"st\",\n    \"email\": \"string\",\n    \"phoneNumber\": \"string\"\n  },\n  \"processingInformation\": {\n    \"billPaymentProgramEnabled\": true,\n    \"bankTransferOptions\": {\n      \"SECCode\": \"str\"\n    }\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"alternateName\": \"string\"\n    }\n  },\n  \"instrumentIdentifier\": {\n    \"id\": \"stringstring\"\n  },\n  \"metadata\": {\n    \"creator\": \"string\"\n  },\n  \"_embedded\": {\n    \"instrumentIdentifier\": {\n      \"_links\": {\n        \"self\": {\n          \"href\": \"tms/v1/instrumentidentifiers/7010000000016241111\"\n        },\n        \"paymentInstruments\": {\n          \"href\": \"tms/v1/instrumentidentifiers/7010000000016241111/paymentinstruments\"\n        },\n        \"tokenized-cards\": {\n          \"href\": \"tms/v2/tokenized-cards/352DAB7D2F3A9511E063AF598E0A2FE3\"\n        }\n      },\n      \"id\": \"string\",\n      \"object\": \"instrumentIdentifier\",\n      \"state\": \"ACTIVE\",\n      \"type\": \"string\",\n      \"source\": \"string\",\n      \"tokenProvisioningInformation\": {\n        \"consumerConsentObtained\": false,\n        \"multiFactorAuthenticated\": true\n      },\n      \"card\": {\n        \"number\": \"stringstring\",\n        \"expirationMonth\": \"st\",\n        \"expirationYear\": \"stri\",\n        \"securityCode\": \"stri\"\n      },\n      \"pointOfSaleInformation\": {\n        \"emvTags\": [\n          {\n            \"tag\": \"5A\",\n            \"value\": \"4111111111111111\",\n            \"source\": \"CARD\"\n          }\n        ]\n      },\n      \"bankAccount\": {\n        \"number\": \"string\",\n        \"routingNumber\": \"string\"\n      },\n      \"tokenizedCard\": {\n        \"id\": \"string\",\n        \"object\": \"tokenizedCard\",\n        \"source\": \"string\",\n        \"state\": \"ACTIVE\",\n        \"enrollmentId\": \"string\",\n        \"tokenReferenceId\": \"string\",\n        \"number\": \"string\",\n        \"expirationMonth\": \"string\",\n        \"expirationYear\": \"string\",\n        \"type\": \"string\",\n        \"reason\": \"ACTIVE\",\n        \"cryptogram\": \"CgAFRFYFPTFOfg5rj2ais9wQAAAAAM=\",\n        \"securityCode\": \"4523\",\n        \"eci\": \"string\",\n        \"requestorId\": \"string\",\n        \"paymentAccountReference\": \"string\",\n        \"applicationTransactionCounter\": \"string\",\n        \"card\": {\n          \"number\": \"stringstring\",\n          \"expirationMonth\": \"st\",\n          \"expirationYear\": \"stri\",\n          \"type\": \"string\",\n          \"suffix\": \"string\",\n          \"issueDate\": \"2030-12-15\",\n          \"activationDate\": \"2030-12-20\",\n          \"expirationPrinted\": true,\n          \"securityCodePrinted\": true,\n          \"termsAndConditions\": {\n            \"url\": \"string\"\n          }\n        },\n        \"verificationResults\": {\n          \"securityCode\": \"string\",\n          \"address\": \"string\"\n        },\n        \"metadata\": {\n          \"cardArt\": {\n            \"foregroundColor\": \"string\",\n            \"backgroundColor\": \"string\",\n            \"labelColor\": \"string\",\n            \"combinedAsset\": {\n              \"id\": \"string\",\n              \"_links\": {\n                \"self\": {\n                  \"href\": \"string\"\n                }\n              }\n            },\n            \"brandLogoAsset\": {\n              \"id\": \"string\",\n              \"_links\": {\n                \"self\": {\n                  \"href\": \"string\"\n                }\n              }\n            },\n            \"issuerLogoAsset\": {\n              \"id\": \"string\",\n              \"_links\": {\n                \"self\": {\n                  \"href\": \"string\"\n                }\n              }\n            },\n            \"iconAsset\": {\n              \"id\": \"string\",\n              \"_links\": {\n                \"self\": {\n                  \"href\": \"string\"\n                }\n              }\n            }\n          },\n          \"issuer\": {\n            \"name\": \"string\",\n            \"shortDescription\": \"string\",\n            \"longDescription\": \"string\",\n            \"email\": \"string\",\n            \"phoneNumber\": \"string\",\n            \"url\": \"string\",\n            \"privacyPolicyUrl\": \"string\",\n            \"capabilities\": {\n              \"deviceBindingSupported\": true,\n              \"cardholderVerificationSupported\": false,\n              \"trustedBeneficiaryEnrollmentSupported\": false,\n              \"delegatedAuthenticationSupported\": true,\n              \"oboDeviceBindingSupported\": true,\n              \"tokenLcmNotificationsSupported\": false,\n              \"fpanLcmNotificationsSupported\": false\n            },\n            \"bankApplications\": [\n              {\n                \"name\": \"string\",\n                \"address\": \"string\"\n              },\n              {\n                \"name\": \"string\",\n                \"address\": \"string\"\n              }\n            ]\n          },\n          \"creator\": \"string\"\n        }\n      },\n      \"issuer\": {\n        \"paymentAccountReference\": \"string\"\n      },\n      \"processingInformation\": {\n        \"authorizationOptions\": {\n          \"initiator\": {\n            \"merchantInitiatedTransaction\": {\n              \"previousTransactionId\": \"string\",\n              \"originalAuthorizedAmount\": \"string\"\n            }\n          }\n        }\n      },\n      \"billTo\": {\n        \"address1\": \"string\",\n        \"address2\": \"string\",\n        \"locality\": \"string\",\n        \"administrativeArea\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"st\",\n        \"email\": \"string\"\n      },\n      \"metadata\": {\n        \"creator\": \"string\"\n      },\n      \"_embedded\": {\n        \"binLookup\": {\n          \"paymentAccountInformation\": {\n            \"card\": {\n              \"type\": \"str\",\n              \"brandName\": \"string\",\n              \"currency\": \"str\",\n              \"maxLength\": \"st\",\n              \"credentialType\": \"strin\",\n              \"brands\": [\n                {\n                  \"type\": \"str\",\n                  \"brandName\": \"string\"\n                },\n                {\n                  \"type\": \"str\",\n                  \"brandName\": \"string\"\n                }\n              ]\n            },\n            \"features\": {\n              \"accountFundingSource\": \"string\",\n              \"accountFundingSourceSubType\": \"string\",\n              \"cardProduct\": \"string\",\n              \"messageType\": \"s\",\n              \"acceptanceLevel\": \"st\",\n              \"cardPlatform\": \"string\",\n              \"comboCard\": \"s\",\n              \"corporatePurchase\": false,\n              \"healthCard\": false,\n              \"sharedBIN\": true,\n              \"posDomesticOnly\": false,\n              \"gamblingAllowed\": true,\n              \"commercialCardLevel2\": false,\n              \"commercialCardLevel3\": false,\n              \"exemptBIN\": true,\n              \"accountLevelManagement\": true,\n              \"onlineGamblingBlock\": false,\n              \"autoSubstantiation\": false,\n              \"flexCredential\": false,\n              \"productId\": \"string\",\n              \"productIdSubtype\": \"string\",\n              \"threeDSSupport\": true,\n              \"siEligible\": true,\n              \"emiEligible\": false,\n              \"fleetCard\": false,\n              \"atmEnabled\": true,\n              \"posEnabled\": false,\n              \"ecomEnabled\": false\n            },\n            \"network\": {\n              \"id\": \"string\"\n            }\n          },\n          \"issuerInformation\": {\n            \"name\": \"string\",\n            \"country\": \"st\",\n            \"binLength\": \"st\",\n            \"accountPrefix\": \"string\",\n            \"phoneNumber\": \"string\"\n          }\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e227597a-0f7b-4075-8457-9e96698a5e3d",
+              "name": "Bad Request: e.g. A required header value could be missing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "retrieveBinDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\",\n      \"details\": [\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        }\n      ]\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\",\n      \"details\": [\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ade0660-3030-4791-8178-d0651fc8c747",
+              "name": "Forbidden: e.g. The profile might not have permission to perform the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "retrieveBinDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d682a44d-7b78-43bc-a720-91ce38a99772",
+              "name": "Conflict. The token is linked to a Payment Instrument.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "retrieveBinDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5fe22fa-0ba4-47a6-a5d4-6b7642253427",
+              "name": "Failed Dependency: e.g. The profile represented by the profile-id may not exist or the profile-id was entered incorrectly.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "retrieveBinDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35ea3790-879c-4bec-9b2f-2691207fd664",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "retrieveBinDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96c3d445-1c6e-4f14-a305-dc80ca8972f8",
+          "name": "Retrieve a Payment Instrument",
+          "request": {
+            "name": "Retrieve a Payment Instrument",
+            "description": {
+              "content": "|  |  |  |\n| --- | --- | --- |\n|**Standalone Payment Instruments**<br>A Payment Instrument represents tokenized payment information such as expiration date, billing address & card type.<br>A Payment Instrument token does not store the card number. A Payment Instrument is associated with an [Instrument Identifier](#token-management_instrument-identifier_create-an-instrument-identifier) that represents either a payment card number, or in the case of an ACH bank account, the routing and account number.<br>**Standalone Payment Instruments do not belong to a [Customer](#token-management_customer_create-a-customer).**|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|**Retrieving a Payment Instrument**<br>Your system can use this API to retrieve an existing Payment Instrument.<br>To perform a payment with a particular Payment Instrument simply specify the [Payment Instrument Id in the payments request](#payments_payments_process-a-payment_samplerequests-dropdown_authorization-using-tokens_authorization-with-customer-payment-instrument-and-shipping-address-token-id_liveconsole-tab-request-body).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tms",
+                "v1",
+                "paymentinstruments",
+                ":paymentInstrumentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "retrieveBinDetails",
+                  "value": "<boolean>",
+                  "description": "Retrieve the Bin Details of PAN or network token"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentInstrumentId",
+                  "description": "(Required) The Id of a payment instrument."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The Id of a profile containing user specific TMS configuration.",
+                "key": "profile-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2914a394-25a8-4da8-866c-3dd9a07b35b7",
+              "name": "Returns an existing Payment Instrument associated with the supplied Id.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments",
+                    ":paymentInstrumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "retrieveBinDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentInstrumentId",
+                      "description": "(Required) The Id of a payment instrument."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "An ETag is an identifier assigned to a specific version of a resource.",
+                  "key": "ETag",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally-unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"/tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3/payment-instruments\"\n    },\n    \"customer\": {\n      \"href\": \"/tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3\"\n    }\n  },\n  \"id\": \"string\",\n  \"object\": \"paymentInstrument\",\n  \"default\": true,\n  \"state\": \"ACTIVE\",\n  \"type\": \"string\",\n  \"bankAccount\": {\n    \"type\": \"string\"\n  },\n  \"card\": {\n    \"expirationMonth\": \"st\",\n    \"expirationYear\": \"stri\",\n    \"type\": \"string\",\n    \"issueNumber\": \"st\",\n    \"startMonth\": \"st\",\n    \"startYear\": \"stri\",\n    \"useAs\": \"pinless debit\",\n    \"hash\": \"stringstringstringstringstringstr\",\n    \"tokenizedInformation\": {\n      \"requestorID\": \"string\",\n      \"transactionType\": \"s\"\n    }\n  },\n  \"buyerInformation\": {\n    \"companyTaxID\": \"string\",\n    \"currency\": \"str\",\n    \"dateOfBirth\": \"1960-12-30\",\n    \"personalIdentification\": [\n      {\n        \"id\": \"string\",\n        \"type\": \"string\",\n        \"issuedBy\": {\n          \"administrativeArea\": \"string\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"type\": \"string\",\n        \"issuedBy\": {\n          \"administrativeArea\": \"string\"\n        }\n      }\n    ]\n  },\n  \"billTo\": {\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"company\": \"string\",\n    \"address1\": \"string\",\n    \"address2\": \"string\",\n    \"locality\": \"string\",\n    \"administrativeArea\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"st\",\n    \"email\": \"string\",\n    \"phoneNumber\": \"string\"\n  },\n  \"processingInformation\": {\n    \"billPaymentProgramEnabled\": true,\n    \"bankTransferOptions\": {\n      \"SECCode\": \"str\"\n    }\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"alternateName\": \"string\"\n    }\n  },\n  \"instrumentIdentifier\": {\n    \"id\": \"stringstring\"\n  },\n  \"metadata\": {\n    \"creator\": \"string\"\n  },\n  \"_embedded\": {\n    \"instrumentIdentifier\": {\n      \"_links\": {\n        \"self\": {\n          \"href\": \"tms/v1/instrumentidentifiers/7010000000016241111\"\n        },\n        \"paymentInstruments\": {\n          \"href\": \"tms/v1/instrumentidentifiers/7010000000016241111/paymentinstruments\"\n        },\n        \"tokenized-cards\": {\n          \"href\": \"tms/v2/tokenized-cards/352DAB7D2F3A9511E063AF598E0A2FE3\"\n        }\n      },\n      \"id\": \"string\",\n      \"object\": \"instrumentIdentifier\",\n      \"state\": \"ACTIVE\",\n      \"type\": \"string\",\n      \"source\": \"string\",\n      \"tokenProvisioningInformation\": {\n        \"consumerConsentObtained\": false,\n        \"multiFactorAuthenticated\": true\n      },\n      \"card\": {\n        \"number\": \"stringstring\",\n        \"expirationMonth\": \"st\",\n        \"expirationYear\": \"stri\",\n        \"securityCode\": \"stri\"\n      },\n      \"pointOfSaleInformation\": {\n        \"emvTags\": [\n          {\n            \"tag\": \"5A\",\n            \"value\": \"4111111111111111\",\n            \"source\": \"CARD\"\n          }\n        ]\n      },\n      \"bankAccount\": {\n        \"number\": \"string\",\n        \"routingNumber\": \"string\"\n      },\n      \"tokenizedCard\": {\n        \"id\": \"string\",\n        \"object\": \"tokenizedCard\",\n        \"source\": \"string\",\n        \"state\": \"ACTIVE\",\n        \"enrollmentId\": \"string\",\n        \"tokenReferenceId\": \"string\",\n        \"number\": \"string\",\n        \"expirationMonth\": \"string\",\n        \"expirationYear\": \"string\",\n        \"type\": \"string\",\n        \"reason\": \"ACTIVE\",\n        \"cryptogram\": \"CgAFRFYFPTFOfg5rj2ais9wQAAAAAM=\",\n        \"securityCode\": \"4523\",\n        \"eci\": \"string\",\n        \"requestorId\": \"string\",\n        \"paymentAccountReference\": \"string\",\n        \"applicationTransactionCounter\": \"string\",\n        \"card\": {\n          \"number\": \"stringstring\",\n          \"expirationMonth\": \"st\",\n          \"expirationYear\": \"stri\",\n          \"type\": \"string\",\n          \"suffix\": \"string\",\n          \"issueDate\": \"2030-12-15\",\n          \"activationDate\": \"2030-12-20\",\n          \"expirationPrinted\": true,\n          \"securityCodePrinted\": true,\n          \"termsAndConditions\": {\n            \"url\": \"string\"\n          }\n        },\n        \"verificationResults\": {\n          \"securityCode\": \"string\",\n          \"address\": \"string\"\n        },\n        \"metadata\": {\n          \"cardArt\": {\n            \"foregroundColor\": \"string\",\n            \"backgroundColor\": \"string\",\n            \"labelColor\": \"string\",\n            \"combinedAsset\": {\n              \"id\": \"string\",\n              \"_links\": {\n                \"self\": {\n                  \"href\": \"string\"\n                }\n              }\n            },\n            \"brandLogoAsset\": {\n              \"id\": \"string\",\n              \"_links\": {\n                \"self\": {\n                  \"href\": \"string\"\n                }\n              }\n            },\n            \"issuerLogoAsset\": {\n              \"id\": \"string\",\n              \"_links\": {\n                \"self\": {\n                  \"href\": \"string\"\n                }\n              }\n            },\n            \"iconAsset\": {\n              \"id\": \"string\",\n              \"_links\": {\n                \"self\": {\n                  \"href\": \"string\"\n                }\n              }\n            }\n          },\n          \"issuer\": {\n            \"name\": \"string\",\n            \"shortDescription\": \"string\",\n            \"longDescription\": \"string\",\n            \"email\": \"string\",\n            \"phoneNumber\": \"string\",\n            \"url\": \"string\",\n            \"privacyPolicyUrl\": \"string\",\n            \"capabilities\": {\n              \"deviceBindingSupported\": true,\n              \"cardholderVerificationSupported\": false,\n              \"trustedBeneficiaryEnrollmentSupported\": false,\n              \"delegatedAuthenticationSupported\": true,\n              \"oboDeviceBindingSupported\": true,\n              \"tokenLcmNotificationsSupported\": false,\n              \"fpanLcmNotificationsSupported\": false\n            },\n            \"bankApplications\": [\n              {\n                \"name\": \"string\",\n                \"address\": \"string\"\n              },\n              {\n                \"name\": \"string\",\n                \"address\": \"string\"\n              }\n            ]\n          },\n          \"creator\": \"string\"\n        }\n      },\n      \"issuer\": {\n        \"paymentAccountReference\": \"string\"\n      },\n      \"processingInformation\": {\n        \"authorizationOptions\": {\n          \"initiator\": {\n            \"merchantInitiatedTransaction\": {\n              \"previousTransactionId\": \"string\",\n              \"originalAuthorizedAmount\": \"string\"\n            }\n          }\n        }\n      },\n      \"billTo\": {\n        \"address1\": \"string\",\n        \"address2\": \"string\",\n        \"locality\": \"string\",\n        \"administrativeArea\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"st\",\n        \"email\": \"string\"\n      },\n      \"metadata\": {\n        \"creator\": \"string\"\n      },\n      \"_embedded\": {\n        \"binLookup\": {\n          \"paymentAccountInformation\": {\n            \"card\": {\n              \"type\": \"str\",\n              \"brandName\": \"string\",\n              \"currency\": \"str\",\n              \"maxLength\": \"st\",\n              \"credentialType\": \"strin\",\n              \"brands\": [\n                {\n                  \"type\": \"str\",\n                  \"brandName\": \"string\"\n                },\n                {\n                  \"type\": \"str\",\n                  \"brandName\": \"string\"\n                }\n              ]\n            },\n            \"features\": {\n              \"accountFundingSource\": \"string\",\n              \"accountFundingSourceSubType\": \"string\",\n              \"cardProduct\": \"string\",\n              \"messageType\": \"s\",\n              \"acceptanceLevel\": \"st\",\n              \"cardPlatform\": \"string\",\n              \"comboCard\": \"s\",\n              \"corporatePurchase\": false,\n              \"healthCard\": false,\n              \"sharedBIN\": true,\n              \"posDomesticOnly\": false,\n              \"gamblingAllowed\": true,\n              \"commercialCardLevel2\": false,\n              \"commercialCardLevel3\": false,\n              \"exemptBIN\": true,\n              \"accountLevelManagement\": true,\n              \"onlineGamblingBlock\": false,\n              \"autoSubstantiation\": false,\n              \"flexCredential\": false,\n              \"productId\": \"string\",\n              \"productIdSubtype\": \"string\",\n              \"threeDSSupport\": true,\n              \"siEligible\": true,\n              \"emiEligible\": false,\n              \"fleetCard\": false,\n              \"atmEnabled\": true,\n              \"posEnabled\": false,\n              \"ecomEnabled\": false\n            },\n            \"network\": {\n              \"id\": \"string\"\n            }\n          },\n          \"issuerInformation\": {\n            \"name\": \"string\",\n            \"country\": \"st\",\n            \"binLength\": \"st\",\n            \"accountPrefix\": \"string\",\n            \"phoneNumber\": \"string\"\n          }\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7fef9ac8-d611-45f1-b03b-ea17201c7b30",
+              "name": "Bad Request: e.g. A required header value could be missing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments",
+                    ":paymentInstrumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "retrieveBinDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentInstrumentId",
+                      "description": "(Required) The Id of a payment instrument."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\",\n      \"details\": [\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        }\n      ]\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\",\n      \"details\": [\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35d6ed4a-41df-4654-8bb8-23eed9f6baf3",
+              "name": "Forbidden: e.g. The profile might not have permission to perform the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments",
+                    ":paymentInstrumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "retrieveBinDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentInstrumentId",
+                      "description": "(Required) The Id of a payment instrument."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0698c72-df99-42fd-bba7-18c0cfcc947a",
+              "name": "Token Not Found. The Id may not exist or was entered incorrectly.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments",
+                    ":paymentInstrumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "retrieveBinDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentInstrumentId",
+                      "description": "(Required) The Id of a payment instrument."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de7dd67a-7fd5-4ac2-8d89-9fd885b72b8c",
+              "name": "Token Not Available. The token has been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments",
+                    ":paymentInstrumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "retrieveBinDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentInstrumentId",
+                      "description": "(Required) The Id of a payment instrument."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9eca1ade-9e1d-4deb-8122-0bbd75358a8d",
+              "name": "Failed Dependency: e.g. The profile represented by the profile-id may not exist or the profile-id was entered incorrectly.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments",
+                    ":paymentInstrumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "retrieveBinDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentInstrumentId",
+                      "description": "(Required) The Id of a payment instrument."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b393c75a-e92f-4e95-b1d2-9d4a6ed0b850",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments",
+                    ":paymentInstrumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "retrieveBinDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentInstrumentId",
+                      "description": "(Required) The Id of a payment instrument."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35e766f9-44bc-485f-bd05-e3b0260d4794",
+          "name": "Update a Payment Instrument",
+          "request": {
+            "name": "Update a Payment Instrument",
+            "description": {
+              "content": "|  |  |  |\n| --- | --- | --- |\n|**Standalone Payment Instruments**<br>A Payment Instrument represents tokenized payment information such as expiration date, billing address & card type.<br>A Payment Instrument token does not store the card number. A Payment Instrument is associated with an [Instrument Identifier](#token-management_instrument-identifier_create-an-instrument-identifier) that represents either a payment card number, or in the case of an ACH bank account, the routing and account number.<br>**Standalone Payment Instruments do not belong to a [Customer](#token-management_customer_create-a-customer).**|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|**Updating a Payment Instrument**<br>Your system can use this API to update an existing Payment Instrument.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tms",
+                "v1",
+                "paymentinstruments",
+                ":paymentInstrumentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "retrieveBinDetails",
+                  "value": "<boolean>",
+                  "description": "Retrieve the Bin Details of PAN or network token"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentInstrumentId",
+                  "description": "(Required) The Id of a payment instrument."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The Id of a profile containing user specific TMS configuration.",
+                "key": "profile-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Contains an ETag value from a GET request to make the request conditional.",
+                "key": "if-match",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"bankAccount\": {\n    \"type\": \"<string>\"\n  },\n  \"card\": {\n    \"expirationMonth\": \"<string>\",\n    \"expirationYear\": \"<string>\",\n    \"type\": \"<string>\",\n    \"issueNumber\": \"<string>\",\n    \"startMonth\": \"<string>\",\n    \"startYear\": \"<string>\",\n    \"useAs\": \"<string>\",\n    \"tokenizedInformation\": {\n      \"requestorID\": \"<string>\",\n      \"transactionType\": \"<string>\"\n    }\n  },\n  \"buyerInformation\": {\n    \"companyTaxID\": \"<string>\",\n    \"currency\": \"<string>\",\n    \"dateOfBirth\": \"<date>\",\n    \"personalIdentification\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"issuedBy\": {\n          \"administrativeArea\": \"<string>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\",\n        \"issuedBy\": {\n          \"administrativeArea\": \"<string>\"\n        }\n      }\n    ]\n  },\n  \"billTo\": {\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"company\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"locality\": \"<string>\",\n    \"administrativeArea\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phoneNumber\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"billPaymentProgramEnabled\": \"<boolean>\",\n    \"bankTransferOptions\": {\n      \"SECCode\": \"<string>\"\n    }\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"alternateName\": \"<string>\"\n    }\n  },\n  \"instrumentIdentifier\": {\n    \"id\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "13bf0811-7816-43dd-9997-91fc74ad49d7",
+              "name": "Returns an existing Payment Instrument associated with the supplied Id.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments",
+                    ":paymentInstrumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "retrieveBinDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentInstrumentId",
+                      "description": "(Required) The Id of a payment instrument."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Contains an ETag value from a GET request to make the request conditional.",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "An ETag is an identifier assigned to a specific version of a resource.",
+                  "key": "ETag",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally-unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"/tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3/payment-instruments\"\n    },\n    \"customer\": {\n      \"href\": \"/tms/v2/customers/D9F340DD3DB9C276E053A2598D0A41A3\"\n    }\n  },\n  \"id\": \"string\",\n  \"object\": \"paymentInstrument\",\n  \"default\": true,\n  \"state\": \"ACTIVE\",\n  \"type\": \"string\",\n  \"bankAccount\": {\n    \"type\": \"string\"\n  },\n  \"card\": {\n    \"expirationMonth\": \"st\",\n    \"expirationYear\": \"stri\",\n    \"type\": \"string\",\n    \"issueNumber\": \"st\",\n    \"startMonth\": \"st\",\n    \"startYear\": \"stri\",\n    \"useAs\": \"pinless debit\",\n    \"hash\": \"stringstringstringstringstringstr\",\n    \"tokenizedInformation\": {\n      \"requestorID\": \"string\",\n      \"transactionType\": \"s\"\n    }\n  },\n  \"buyerInformation\": {\n    \"companyTaxID\": \"string\",\n    \"currency\": \"str\",\n    \"dateOfBirth\": \"1960-12-30\",\n    \"personalIdentification\": [\n      {\n        \"id\": \"string\",\n        \"type\": \"string\",\n        \"issuedBy\": {\n          \"administrativeArea\": \"string\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"type\": \"string\",\n        \"issuedBy\": {\n          \"administrativeArea\": \"string\"\n        }\n      }\n    ]\n  },\n  \"billTo\": {\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"company\": \"string\",\n    \"address1\": \"string\",\n    \"address2\": \"string\",\n    \"locality\": \"string\",\n    \"administrativeArea\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"st\",\n    \"email\": \"string\",\n    \"phoneNumber\": \"string\"\n  },\n  \"processingInformation\": {\n    \"billPaymentProgramEnabled\": true,\n    \"bankTransferOptions\": {\n      \"SECCode\": \"str\"\n    }\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"alternateName\": \"string\"\n    }\n  },\n  \"instrumentIdentifier\": {\n    \"id\": \"stringstring\"\n  },\n  \"metadata\": {\n    \"creator\": \"string\"\n  },\n  \"_embedded\": {\n    \"instrumentIdentifier\": {\n      \"_links\": {\n        \"self\": {\n          \"href\": \"tms/v1/instrumentidentifiers/7010000000016241111\"\n        },\n        \"paymentInstruments\": {\n          \"href\": \"tms/v1/instrumentidentifiers/7010000000016241111/paymentinstruments\"\n        },\n        \"tokenized-cards\": {\n          \"href\": \"tms/v2/tokenized-cards/352DAB7D2F3A9511E063AF598E0A2FE3\"\n        }\n      },\n      \"id\": \"string\",\n      \"object\": \"instrumentIdentifier\",\n      \"state\": \"ACTIVE\",\n      \"type\": \"string\",\n      \"source\": \"string\",\n      \"tokenProvisioningInformation\": {\n        \"consumerConsentObtained\": false,\n        \"multiFactorAuthenticated\": true\n      },\n      \"card\": {\n        \"number\": \"stringstring\",\n        \"expirationMonth\": \"st\",\n        \"expirationYear\": \"stri\",\n        \"securityCode\": \"stri\"\n      },\n      \"pointOfSaleInformation\": {\n        \"emvTags\": [\n          {\n            \"tag\": \"5A\",\n            \"value\": \"4111111111111111\",\n            \"source\": \"CARD\"\n          }\n        ]\n      },\n      \"bankAccount\": {\n        \"number\": \"string\",\n        \"routingNumber\": \"string\"\n      },\n      \"tokenizedCard\": {\n        \"id\": \"string\",\n        \"object\": \"tokenizedCard\",\n        \"source\": \"string\",\n        \"state\": \"ACTIVE\",\n        \"enrollmentId\": \"string\",\n        \"tokenReferenceId\": \"string\",\n        \"number\": \"string\",\n        \"expirationMonth\": \"string\",\n        \"expirationYear\": \"string\",\n        \"type\": \"string\",\n        \"reason\": \"ACTIVE\",\n        \"cryptogram\": \"CgAFRFYFPTFOfg5rj2ais9wQAAAAAM=\",\n        \"securityCode\": \"4523\",\n        \"eci\": \"string\",\n        \"requestorId\": \"string\",\n        \"paymentAccountReference\": \"string\",\n        \"applicationTransactionCounter\": \"string\",\n        \"card\": {\n          \"number\": \"stringstring\",\n          \"expirationMonth\": \"st\",\n          \"expirationYear\": \"stri\",\n          \"type\": \"string\",\n          \"suffix\": \"string\",\n          \"issueDate\": \"2030-12-15\",\n          \"activationDate\": \"2030-12-20\",\n          \"expirationPrinted\": true,\n          \"securityCodePrinted\": true,\n          \"termsAndConditions\": {\n            \"url\": \"string\"\n          }\n        },\n        \"verificationResults\": {\n          \"securityCode\": \"string\",\n          \"address\": \"string\"\n        },\n        \"metadata\": {\n          \"cardArt\": {\n            \"foregroundColor\": \"string\",\n            \"backgroundColor\": \"string\",\n            \"labelColor\": \"string\",\n            \"combinedAsset\": {\n              \"id\": \"string\",\n              \"_links\": {\n                \"self\": {\n                  \"href\": \"string\"\n                }\n              }\n            },\n            \"brandLogoAsset\": {\n              \"id\": \"string\",\n              \"_links\": {\n                \"self\": {\n                  \"href\": \"string\"\n                }\n              }\n            },\n            \"issuerLogoAsset\": {\n              \"id\": \"string\",\n              \"_links\": {\n                \"self\": {\n                  \"href\": \"string\"\n                }\n              }\n            },\n            \"iconAsset\": {\n              \"id\": \"string\",\n              \"_links\": {\n                \"self\": {\n                  \"href\": \"string\"\n                }\n              }\n            }\n          },\n          \"issuer\": {\n            \"name\": \"string\",\n            \"shortDescription\": \"string\",\n            \"longDescription\": \"string\",\n            \"email\": \"string\",\n            \"phoneNumber\": \"string\",\n            \"url\": \"string\",\n            \"privacyPolicyUrl\": \"string\",\n            \"capabilities\": {\n              \"deviceBindingSupported\": true,\n              \"cardholderVerificationSupported\": false,\n              \"trustedBeneficiaryEnrollmentSupported\": false,\n              \"delegatedAuthenticationSupported\": true,\n              \"oboDeviceBindingSupported\": true,\n              \"tokenLcmNotificationsSupported\": false,\n              \"fpanLcmNotificationsSupported\": false\n            },\n            \"bankApplications\": [\n              {\n                \"name\": \"string\",\n                \"address\": \"string\"\n              },\n              {\n                \"name\": \"string\",\n                \"address\": \"string\"\n              }\n            ]\n          },\n          \"creator\": \"string\"\n        }\n      },\n      \"issuer\": {\n        \"paymentAccountReference\": \"string\"\n      },\n      \"processingInformation\": {\n        \"authorizationOptions\": {\n          \"initiator\": {\n            \"merchantInitiatedTransaction\": {\n              \"previousTransactionId\": \"string\",\n              \"originalAuthorizedAmount\": \"string\"\n            }\n          }\n        }\n      },\n      \"billTo\": {\n        \"address1\": \"string\",\n        \"address2\": \"string\",\n        \"locality\": \"string\",\n        \"administrativeArea\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"st\",\n        \"email\": \"string\"\n      },\n      \"metadata\": {\n        \"creator\": \"string\"\n      },\n      \"_embedded\": {\n        \"binLookup\": {\n          \"paymentAccountInformation\": {\n            \"card\": {\n              \"type\": \"str\",\n              \"brandName\": \"string\",\n              \"currency\": \"str\",\n              \"maxLength\": \"st\",\n              \"credentialType\": \"strin\",\n              \"brands\": [\n                {\n                  \"type\": \"str\",\n                  \"brandName\": \"string\"\n                },\n                {\n                  \"type\": \"str\",\n                  \"brandName\": \"string\"\n                }\n              ]\n            },\n            \"features\": {\n              \"accountFundingSource\": \"string\",\n              \"accountFundingSourceSubType\": \"string\",\n              \"cardProduct\": \"string\",\n              \"messageType\": \"s\",\n              \"acceptanceLevel\": \"st\",\n              \"cardPlatform\": \"string\",\n              \"comboCard\": \"s\",\n              \"corporatePurchase\": false,\n              \"healthCard\": false,\n              \"sharedBIN\": true,\n              \"posDomesticOnly\": false,\n              \"gamblingAllowed\": true,\n              \"commercialCardLevel2\": false,\n              \"commercialCardLevel3\": false,\n              \"exemptBIN\": true,\n              \"accountLevelManagement\": true,\n              \"onlineGamblingBlock\": false,\n              \"autoSubstantiation\": false,\n              \"flexCredential\": false,\n              \"productId\": \"string\",\n              \"productIdSubtype\": \"string\",\n              \"threeDSSupport\": true,\n              \"siEligible\": true,\n              \"emiEligible\": false,\n              \"fleetCard\": false,\n              \"atmEnabled\": true,\n              \"posEnabled\": false,\n              \"ecomEnabled\": false\n            },\n            \"network\": {\n              \"id\": \"string\"\n            }\n          },\n          \"issuerInformation\": {\n            \"name\": \"string\",\n            \"country\": \"st\",\n            \"binLength\": \"st\",\n            \"accountPrefix\": \"string\",\n            \"phoneNumber\": \"string\"\n          }\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e691aa3-faf3-4b3c-9ebe-f8772d2d6372",
+              "name": "Bad Request: e.g. A required header value could be missing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments",
+                    ":paymentInstrumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "retrieveBinDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentInstrumentId",
+                      "description": "(Required) The Id of a payment instrument."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Contains an ETag value from a GET request to make the request conditional.",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\",\n      \"details\": [\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        }\n      ]\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\",\n      \"details\": [\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"location\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9eced49b-a8e6-4cc2-93ed-549d4aa63173",
+              "name": "Forbidden: e.g. The profile might not have permission to perform the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments",
+                    ":paymentInstrumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "retrieveBinDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentInstrumentId",
+                      "description": "(Required) The Id of a payment instrument."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Contains an ETag value from a GET request to make the request conditional.",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c84d69a-c999-4723-90e3-ed7d060d18e2",
+              "name": "Token Not Found. The Id may not exist or was entered incorrectly.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments",
+                    ":paymentInstrumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "retrieveBinDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentInstrumentId",
+                      "description": "(Required) The Id of a payment instrument."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Contains an ETag value from a GET request to make the request conditional.",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53c4bf45-21fd-433d-a3f2-fb848b23bcee",
+              "name": "Token Not Available. The token has been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments",
+                    ":paymentInstrumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "retrieveBinDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentInstrumentId",
+                      "description": "(Required) The Id of a payment instrument."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Contains an ETag value from a GET request to make the request conditional.",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "162ab1c9-9979-4119-8be0-7ccbd94f6b41",
+              "name": "Precondition Failed: The If-Match request header value does not match the current resources ETag",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments",
+                    ":paymentInstrumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "retrieveBinDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentInstrumentId",
+                      "description": "(Required) The Id of a payment instrument."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Contains an ETag value from a GET request to make the request conditional.",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Precondition Failed",
+              "code": 412,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9527410-d045-4d97-b079-81659d858875",
+              "name": "Failed Dependency: e.g. The profile represented by the profile-id may not exist or the profile-id was entered incorrectly.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments",
+                    ":paymentInstrumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "retrieveBinDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentInstrumentId",
+                      "description": "(Required) The Id of a payment instrument."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Contains an ETag value from a GET request to make the request conditional.",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c13b65c4-bc8a-4eb7-8a5e-80ec4edf1e99",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments",
+                    ":paymentInstrumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "retrieveBinDetails",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentInstrumentId",
+                      "description": "(Required) The Id of a payment instrument."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Contains an ETag value from a GET request to make the request conditional.",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "480660e6-955c-4e35-9a73-b1c17ac9cba7",
+          "name": "Delete a Payment Instrument",
+          "request": {
+            "name": "Delete a Payment Instrument",
+            "description": {
+              "content": "|  |  |  |\n| --- | --- | --- |\n|**Standalone Payment Instruments**<br>A Payment Instrument represents tokenized payment information such as expiration date, billing address & card type.<br>A Payment Instrument token does not store the card number. A Payment Instrument is associated with an [Instrument Identifier](#token-management_instrument-identifier_create-an-instrument-identifier) that represents either a payment card number, or in the case of an ACH bank account, the routing and account number.<br>**Standalone Payment Instruments do not belong to a [Customer](#token-management_customer_create-a-customer).**|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|**Deleting a Payment Instrument**<br>Your system can use this API to delete an existing Payment Instrument.<br>Any Instrument Identifiers representing the card number will also be deleted if they are not associated with any other Payment Instruments.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tms",
+                "v1",
+                "paymentinstruments",
+                ":paymentInstrumentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentInstrumentId",
+                  "description": "(Required) The Id of a payment instrument."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The Id of a profile containing user specific TMS configuration.",
+                "key": "profile-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "84f8c380-480f-4cf3-9e0b-03f7b4a6a78b",
+              "name": "The request is fulfilled but does not need to return a body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments",
+                    ":paymentInstrumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentInstrumentId",
+                      "description": "(Required) The Id of a payment instrument."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "119d9de9-0f74-46fd-9e92-39947b7887e0",
+              "name": "Forbidden: e.g. The profile might not have permission to perform the operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments",
+                    ":paymentInstrumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentInstrumentId",
+                      "description": "(Required) The Id of a payment instrument."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0422d51-77d0-48d8-a50d-a20972d69d8f",
+              "name": "Token Not Found. The Id may not exist or was entered incorrectly.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments",
+                    ":paymentInstrumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentInstrumentId",
+                      "description": "(Required) The Id of a payment instrument."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "062f7b56-28f7-4c3d-a931-6dd3151d6eef",
+              "name": "Token Not Available. The token has been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments",
+                    ":paymentInstrumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentInstrumentId",
+                      "description": "(Required) The Id of a payment instrument."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96d39af9-a5ac-44e1-8ecb-74ae6d504981",
+              "name": "Failed Dependency: e.g. The profile represented by the profile-id may not exist or the profile-id was entered incorrectly.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments",
+                    ":paymentInstrumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentInstrumentId",
+                      "description": "(Required) The Id of a payment instrument."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Failed Dependency (WebDAV) (RFC 4918)",
+              "code": 424,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c233d270-c216-4190-b4ee-3285c437c7da",
+              "name": "Unexpected error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tms",
+                    "v1",
+                    "paymentinstruments",
+                    ":paymentInstrumentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentInstrumentId",
+                      "description": "(Required) The Id of a payment instrument."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Id of a profile containing user specific TMS configuration.",
+                    "key": "profile-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The mandatory correlation Id passed by upstream (calling) system.",
+                  "key": "v-c-correlation-id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "A globally unique Id associated with your request.",
+                  "key": "uniqueTransactionID",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "84b12c80-4770-4563-aaf2-38b1e8adc822",
+    "name": "CyberSource Merged Spec bankAccountValidation Payment Instrument API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

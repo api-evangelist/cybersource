@@ -1,0 +1,769 @@
+{
+  "item": [
+    {
+      "id": "984152f9-546b-4294-a56d-bd9b203ada56",
+      "name": "Create New Webhooks",
+      "description": {
+        "content": "Create a new webhook connection\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "550b4158-c0db-427c-940c-a03a00f2a596",
+          "name": "Create Webhook Security Keys",
+          "request": {
+            "name": "Create Webhook Security Keys",
+            "description": {
+              "content": "Create security keys that CyberSource will use internally to connect to your servers and validate messages using a digital signature.\n\nSelect the CREATE example for CyberSource to generate the key on our server and maintain it for you as well. Remember to save the key in the API response, so that you can use it to validate messages later.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kms",
+                "egress",
+                "v2",
+                "keys-sym"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "A globally unique id associated with your request",
+                "key": "v-c-correlation-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Sender organization id",
+                "key": "v-c-sender-organization-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Encoded user permissions returned by the CGK, for the entity user who initiated the boarding",
+                "key": "v-c-permissions",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\"\n  },\n  \"clientRequestAction\": \"<string>\",\n  \"keyInformation\": {\n    \"provider\": \"<string>\",\n    \"tenant\": \"<string>\",\n    \"keyType\": \"<string>\",\n    \"organizationId\": \"<string>\",\n    \"clientKeyId\": \"<string>\",\n    \"keyId\": \"<string>\",\n    \"key\": \"<string>\",\n    \"status\": \"<string>\",\n    \"expiryDuration\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4506044d-a23f-4c6d-afae-6df29ec28b50",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kms",
+                    "egress",
+                    "v2",
+                    "keys-sym"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "A globally unique id associated with your request",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Sender organization id",
+                    "key": "v-c-sender-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Encoded user permissions returned by the CGK, for the entity user who initiated the boarding",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\"\n  },\n  \"clientRequestAction\": \"<string>\",\n  \"keyInformation\": {\n    \"provider\": \"<string>\",\n    \"tenant\": \"<string>\",\n    \"keyType\": \"<string>\",\n    \"organizationId\": \"<string>\",\n    \"clientKeyId\": \"<string>\",\n    \"keyId\": \"<string>\",\n    \"key\": \"<string>\",\n    \"status\": \"<string>\",\n    \"expiryDuration\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"clientReferenceInformation\": {\n    \"code\": \"string\"\n  },\n  \"keyInformation\": {\n    \"provider\": \"string\",\n    \"tenant\": \"string\",\n    \"organizationId\": \"string\",\n    \"clientKeyId\": \"string\",\n    \"keyId\": \"string\",\n    \"key\": \"string\",\n    \"keyType\": \"string\",\n    \"status\": \"string\",\n    \"expirationDate\": \"string\",\n    \"message\": \"string\",\n    \"errorInformation\": {\n      \"reason\": \"string\",\n      \"details\": [\n        {\n          \"field\": \"string\",\n          \"reason\": \"string\"\n        },\n        {\n          \"field\": \"string\",\n          \"reason\": \"string\"\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b52e60c6-21a6-4d26-bd0d-af6fa683a3b7",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kms",
+                    "egress",
+                    "v2",
+                    "keys-sym"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "A globally unique id associated with your request",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Sender organization id",
+                    "key": "v-c-sender-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Encoded user permissions returned by the CGK, for the entity user who initiated the boarding",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\"\n  },\n  \"clientRequestAction\": \"<string>\",\n  \"keyInformation\": {\n    \"provider\": \"<string>\",\n    \"tenant\": \"<string>\",\n    \"keyType\": \"<string>\",\n    \"organizationId\": \"<string>\",\n    \"clientKeyId\": \"<string>\",\n    \"keyId\": \"<string>\",\n    \"key\": \"<string>\",\n    \"status\": \"<string>\",\n    \"expiryDuration\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c8624fec-da13-4e9e-aee8-16586e4cf9db",
+              "name": "Unauthorized Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kms",
+                    "egress",
+                    "v2",
+                    "keys-sym"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "A globally unique id associated with your request",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Sender organization id",
+                    "key": "v-c-sender-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Encoded user permissions returned by the CGK, for the entity user who initiated the boarding",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\"\n  },\n  \"clientRequestAction\": \"<string>\",\n  \"keyInformation\": {\n    \"provider\": \"<string>\",\n    \"tenant\": \"<string>\",\n    \"keyType\": \"<string>\",\n    \"organizationId\": \"<string>\",\n    \"clientKeyId\": \"<string>\",\n    \"keyId\": \"<string>\",\n    \"key\": \"<string>\",\n    \"status\": \"<string>\",\n    \"expiryDuration\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e92aaf01-744a-46f3-8375-d840f20f57c6",
+              "name": "Unexpected system error or system timeout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kms",
+                    "egress",
+                    "v2",
+                    "keys-sym"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "A globally unique id associated with your request",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Sender organization id",
+                    "key": "v-c-sender-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Encoded user permissions returned by the CGK, for the entity user who initiated the boarding",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\"\n  },\n  \"clientRequestAction\": \"<string>\",\n  \"keyInformation\": {\n    \"provider\": \"<string>\",\n    \"tenant\": \"<string>\",\n    \"keyType\": \"<string>\",\n    \"organizationId\": \"<string>\",\n    \"clientKeyId\": \"<string>\",\n    \"keyId\": \"<string>\",\n    \"key\": \"<string>\",\n    \"status\": \"<string>\",\n    \"expiryDuration\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d61eee43-3180-496a-8708-f05784f1601c",
+          "name": "Find Products You Can Subscribe To",
+          "request": {
+            "name": "Find Products You Can Subscribe To",
+            "description": {
+              "content": "Retrieve a list of products and event types that your account is eligible for. These products and events are the ones that you may subscribe to in the next step of creating webhooks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "notification-subscriptions",
+                "v2",
+                "products",
+                ":organizationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationId",
+                  "description": "(Required) The Organization Identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f4760f07-8a1e-4bc4-8f7e-39b4a5a58bda",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "products",
+                    ":organizationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The Organization Identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "[\n  {\n    \"productId\": \"string\",\n    \"productName\": \"string\",\n    \"eventTypes\": [\n      {\n        \"eventName\": \"tms.networktoken.updated\",\n        \"payloadEncryption\": true\n      },\n      {\n        \"eventName\": \"tms.networktoken.updated\",\n        \"payloadEncryption\": true\n      }\n    ]\n  },\n  {\n    \"productId\": \"string\",\n    \"productName\": \"string\",\n    \"eventTypes\": [\n      {\n        \"eventName\": \"tms.networktoken.updated\",\n        \"payloadEncryption\": true\n      },\n      {\n        \"eventName\": \"tms.networktoken.updated\",\n        \"payloadEncryption\": true\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6800b5fa-150a-4597-8582-629ec9b39b0e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "products",
+                    ":organizationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The Organization Identifier."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cac32f1f-699e-43d5-b344-cd7932d1fa10",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "products",
+                    ":organizationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The Organization Identifier."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9bec6b27-ad1b-4360-a513-b9ba67d56ebd",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "products",
+                    ":organizationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The Organization Identifier."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d4f6384-ef80-46c5-910d-4ccb81e30691",
+          "name": "Create a New Webhook Subscription",
+          "request": {
+            "name": "Create a New Webhook Subscription",
+            "description": {
+              "content": "Create a new webhook subscription. Before creating a webhook, ensure that a signature key has been created.\n\nFor the example \"Create Webhook using oAuth with Client Credentials\" - for clients who have more than one oAuth Provider and have different client secrets that they would like to config for a given webhook, they may do so by overriding the keyId inside security config of webhook subscription.\nSee the Developer Center examples section titled \"Webhook Security - Create or Store Egress Symmetric Key - Store oAuth Credentials For Symmetric Key\" to store these oAuth credentials that CYBS will need for oAuth.\n\nFor JWT authentication, attach your oAuth details to the webhook subscription. See the example \"Create Webhook using oAuth with JWT\"\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "notification-subscriptions",
+                "v2",
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"organizationId\": \"<string>\",\n  \"products\": [\n    {\n      \"productId\": \"<string>\",\n      \"eventTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"productId\": \"<string>\",\n      \"eventTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"webhookUrl\": \"<string>\",\n  \"healthCheckUrl\": \"<string>\",\n  \"retryPolicy\": {\n    \"algorithm\": \"ARITHMETIC\",\n    \"firstRetry\": 1,\n    \"interval\": 1,\n    \"numberOfRetries\": 3,\n    \"deactivateFlag\": \"<string>\",\n    \"repeatSequenceCount\": 0,\n    \"repeatSequenceWaitTime\": 0,\n    \"additionalAttributes\": [\n      {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    ]\n  },\n  \"notificationScope\": \"DESCENDANTS\",\n  \"securityPolicy\": {\n    \"securityType\": \"<string>\",\n    \"config\": {\n      \"oAuthURL\": \"<string>\",\n      \"oAuthTokenType\": \"<string>\",\n      \"additionalConfig\": {\n        \"aud\": \"<string>\",\n        \"client_id\": \"<string>\",\n        \"keyId\": \"<string>\",\n        \"scope\": \"<string>\"\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0e71c0f8-dec6-4f97-807e-27b8ee327509",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"organizationId\": \"<string>\",\n  \"products\": [\n    {\n      \"productId\": \"<string>\",\n      \"eventTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"productId\": \"<string>\",\n      \"eventTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"webhookUrl\": \"<string>\",\n  \"healthCheckUrl\": \"<string>\",\n  \"retryPolicy\": {\n    \"algorithm\": \"ARITHMETIC\",\n    \"firstRetry\": 1,\n    \"interval\": 1,\n    \"numberOfRetries\": 3,\n    \"deactivateFlag\": \"<string>\",\n    \"repeatSequenceCount\": 0,\n    \"repeatSequenceWaitTime\": 0,\n    \"additionalAttributes\": [\n      {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      {\n        \"key_0\": \"<string>\"\n      }\n    ]\n  },\n  \"notificationScope\": \"DESCENDANTS\",\n  \"securityPolicy\": {\n    \"securityType\": \"<string>\",\n    \"config\": {\n      \"oAuthURL\": \"<string>\",\n      \"oAuthTokenType\": \"<string>\",\n      \"additionalConfig\": {\n        \"aud\": \"<string>\",\n        \"client_id\": \"<string>\",\n        \"keyId\": \"<string>\",\n        \"scope\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"webhookId\": \"string\",\n  \"organizationId\": \"string\",\n  \"products\": [\n    {\n      \"productId\": \"string\",\n      \"eventTypes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"productId\": \"string\",\n      \"eventTypes\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"webhookUrl\": \"string\",\n  \"healthCheckUrl\": \"string\",\n  \"status\": \"INACTIVE\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"retryPolicy\": {\n    \"algorithm\": \"ARITHMETIC\",\n    \"firstRetry\": 1,\n    \"interval\": 1,\n    \"numberOfRetries\": 3,\n    \"deactivateFlag\": \"string\",\n    \"repeatSequenceCount\": 0,\n    \"repeatSequenceWaitTime\": 0,\n    \"additionalAttributes\": [\n      {\n        \"key_0\": \"string\"\n      },\n      {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    ]\n  },\n  \"securityPolicy\": {\n    \"securityType\": \"string\",\n    \"config\": {\n      \"oAuthURL\": \"string\",\n      \"oAuthTokenType\": \"string\",\n      \"additionalConfig\": {\n        \"aud\": \"string\",\n        \"client_id\": \"string\",\n        \"keyId\": \"string\",\n        \"scope\": \"string\"\n      }\n    }\n  },\n  \"createdOn\": \"string\",\n  \"notificationScope\": \"DESCENDANTS\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "487fc507-2650-4dec-87ae-94f359791720",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"organizationId\": \"<string>\",\n  \"products\": [\n    {\n      \"productId\": \"<string>\",\n      \"eventTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"productId\": \"<string>\",\n      \"eventTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"webhookUrl\": \"<string>\",\n  \"healthCheckUrl\": \"<string>\",\n  \"retryPolicy\": {\n    \"algorithm\": \"ARITHMETIC\",\n    \"firstRetry\": 1,\n    \"interval\": 1,\n    \"numberOfRetries\": 3,\n    \"deactivateFlag\": \"<string>\",\n    \"repeatSequenceCount\": 0,\n    \"repeatSequenceWaitTime\": 0,\n    \"additionalAttributes\": [\n      {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      {\n        \"key_0\": \"<string>\"\n      }\n    ]\n  },\n  \"notificationScope\": \"DESCENDANTS\",\n  \"securityPolicy\": {\n    \"securityType\": \"<string>\",\n    \"config\": {\n      \"oAuthURL\": \"<string>\",\n      \"oAuthTokenType\": \"<string>\",\n      \"additionalConfig\": {\n        \"aud\": \"<string>\",\n        \"client_id\": \"<string>\",\n        \"keyId\": \"<string>\",\n        \"scope\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bca3f035-7c97-47f4-88ed-075848aacb81",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"organizationId\": \"<string>\",\n  \"products\": [\n    {\n      \"productId\": \"<string>\",\n      \"eventTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"productId\": \"<string>\",\n      \"eventTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"webhookUrl\": \"<string>\",\n  \"healthCheckUrl\": \"<string>\",\n  \"retryPolicy\": {\n    \"algorithm\": \"ARITHMETIC\",\n    \"firstRetry\": 1,\n    \"interval\": 1,\n    \"numberOfRetries\": 3,\n    \"deactivateFlag\": \"<string>\",\n    \"repeatSequenceCount\": 0,\n    \"repeatSequenceWaitTime\": 0,\n    \"additionalAttributes\": [\n      {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      {\n        \"key_0\": \"<string>\"\n      }\n    ]\n  },\n  \"notificationScope\": \"DESCENDANTS\",\n  \"securityPolicy\": {\n    \"securityType\": \"<string>\",\n    \"config\": {\n      \"oAuthURL\": \"<string>\",\n      \"oAuthTokenType\": \"<string>\",\n      \"additionalConfig\": {\n        \"aud\": \"<string>\",\n        \"client_id\": \"<string>\",\n        \"keyId\": \"<string>\",\n        \"scope\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a7fbc0fe-cde4-440f-8fb9-ff51a5f179c9",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"organizationId\": \"<string>\",\n  \"products\": [\n    {\n      \"productId\": \"<string>\",\n      \"eventTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"productId\": \"<string>\",\n      \"eventTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"webhookUrl\": \"<string>\",\n  \"healthCheckUrl\": \"<string>\",\n  \"retryPolicy\": {\n    \"algorithm\": \"ARITHMETIC\",\n    \"firstRetry\": 1,\n    \"interval\": 1,\n    \"numberOfRetries\": 3,\n    \"deactivateFlag\": \"<string>\",\n    \"repeatSequenceCount\": 0,\n    \"repeatSequenceWaitTime\": 0,\n    \"additionalAttributes\": [\n      {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      {\n        \"key_0\": \"<string>\"\n      }\n    ]\n  },\n  \"notificationScope\": \"DESCENDANTS\",\n  \"securityPolicy\": {\n    \"securityType\": \"<string>\",\n    \"config\": {\n      \"oAuthURL\": \"<string>\",\n      \"oAuthTokenType\": \"<string>\",\n      \"additionalConfig\": {\n        \"aud\": \"<string>\",\n        \"client_id\": \"<string>\",\n        \"keyId\": \"<string>\",\n        \"scope\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3a170945-68f4-4329-8035-391f12917cd2",
+    "name": "CyberSource Merged Spec bankAccountValidation Create New Webhooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

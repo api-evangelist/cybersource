@@ -1,0 +1,217 @@
+{
+  "item": [
+    {
+      "id": "0534e271-9786-47e8-8d73-16739c6ae0f3",
+      "name": "Payouts",
+      "description": {
+        "content": "A payout enables an originator to send funds on behalf of itself, merchants, or customers to credit card\naccounts using an Original Credit Transaction (OCT). An originator is a merchant, government entity, or\ncorporation with a merchant account from an acquiring bank.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1be715c9-ad89-4b20-90a6-6fe1fc62a1a1",
+          "name": "Process a Payout",
+          "request": {
+            "name": "Process a Payout",
+            "description": {
+              "content": "Send funds from a selected funding source to a designated credit/debit card account or a prepaid card using an Original Credit Transaction (OCT).\nThe availability of API features for a merchant can depend on the portfolio configuration and may need to be enabled at the portfolio level before they can be added to merchant accounts.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pts",
+                "v2",
+                "payouts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"surcharge\": {\n        \"amount\": \"<string>\"\n      }\n    },\n    \"billTo\": {\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"country\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"phoneType\": \"<string>\"\n    },\n    \"isCryptocurrencyPurchase\": \"<string>\"\n  },\n  \"merchantInformation\": {\n    \"categoryCode\": \"<integer>\",\n    \"submitLocalDateTime\": \"<string>\",\n    \"vatRegistrationNumber\": \"<string>\",\n    \"merchantDescriptor\": {\n      \"name\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"country\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"contact\": \"<string>\",\n      \"address1\": \"<string>\"\n    }\n  },\n  \"recipientInformation\": {\n    \"firstName\": \"<string>\",\n    \"middleName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"locality\": \"<string>\",\n    \"administrativeArea\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"aliasName\": \"<string>\",\n    \"nationality\": \"<string>\",\n    \"countryOfBirth\": \"<string>\",\n    \"occupation\": \"<string>\",\n    \"email\": \"<string>\"\n  },\n  \"senderInformation\": {\n    \"referenceNumber\": \"<string>\",\n    \"account\": {\n      \"fundsSource\": \"<string>\",\n      \"number\": \"<string>\"\n    },\n    \"firstName\": \"<string>\",\n    \"middleInitial\": \"<string>\",\n    \"middleName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"name\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"locality\": \"<string>\",\n    \"administrativeArea\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"dateOfBirth\": \"<string>\",\n    \"vatRegistrationNumber\": \"<string>\",\n    \"personalIdType\": \"<string>\",\n    \"type\": \"<string>\",\n    \"identificationNumber\": \"<string>\",\n    \"aliasName\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"businessApplicationId\": \"<string>\",\n    \"networkRoutingOrder\": \"<string>\",\n    \"commerceIndicator\": \"<string>\",\n    \"reconciliationId\": \"<string>\",\n    \"payoutsOptions\": {\n      \"acquirerMerchantId\": \"<string>\",\n      \"acquirerBin\": \"<string>\",\n      \"retrievalReferenceNumber\": \"<string>\",\n      \"accountFundingReferenceId\": \"<string>\",\n      \"deferredDateTime\": \"<string>\"\n    },\n    \"transactionReason\": \"<string>\",\n    \"purposeOfPayment\": \"<string>\",\n    \"fundingOptions\": {\n      \"initiator\": {\n        \"type\": \"<string>\"\n      }\n    },\n    \"languageCode\": \"<string>\",\n    \"purchaseOptions\": {\n      \"benefitAmount\": \"<string>\",\n      \"benefitType\": \"<string>\"\n    },\n    \"accountVerificationCode\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"type\": \"<string>\",\n      \"number\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"sourceAccountType\": \"<string>\"\n    },\n    \"customer\": {\n      \"customerId\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"<string>\"\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"<string>\",\n      \"state\": \"<string>\"\n    },\n    \"tokenizedCard\": {\n      \"number\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"type\": \"<string>\",\n      \"cryptogram\": \"<string>\",\n      \"requestorId\": \"<string>\",\n      \"transactionType\": \"<string>\",\n      \"assuranceLevel\": \"<string>\",\n      \"storageMethod\": \"<string>\",\n      \"securityCode\": \"<string>\",\n      \"securityCodeIndicator\": \"<string>\",\n      \"assuranceMethod\": \"<string>\"\n    }\n  },\n  \"aggregatorInformation\": {\n    \"aggregatorId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"independentSalesOrganizationID\": \"<string>\",\n    \"subMerchant\": {\n      \"id\": \"<string>\"\n    },\n    \"streetAddress\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5c7df57f-c636-4a9b-99c8-91ccb6a85f33",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "payouts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"33557799\"\n  },\n  \"senderInformation\": {\n    \"referenceNumber\": \"1234567890\",\n    \"address1\": \"900 Metro Center Blvd.900\",\n    \"countryCode\": \"US\",\n    \"locality\": \"Foster City\",\n    \"name\": \"Thomas Jefferson\",\n    \"administrativeArea\": \"CA\",\n    \"account\": {\n      \"number\": \"1234567890123456789012345678901234\",\n      \"fundsSource\": \"01\"\n    },\n    \"aliasName\": \"Thomas my friend\"\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"internet\",\n    \"businessApplicationId\": \"FD\",\n    \"networkRoutingOrder\": \"ECG\",\n    \"languageCode\": \"US\",\n    \"purchaseOptions\": {\n      \"benefitAmount\": \"10.00\",\n      \"benefitType\": \"5T\"\n    }\n  },\n  \"payoutsOptions\": {\n    \"retrievalReferenceNumber\": \"123456789012\",\n    \"acquirerBin\": \"567890124\"\n  },\n  \"reconciliationId\": \"1087488702VIAQNSPQ\",\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"100.00\",\n      \"currency\": \"USD\"\n    }\n  },\n  \"merchantInformation\": {\n    \"merchantCategoryCode\": 1234,\n    \"merchantDescriptor\": {\n      \"country\": \"US\",\n      \"postalCode\": \"94440\",\n      \"locality\": \"FC\",\n      \"name\": \"Thomas\",\n      \"administrativeArea\": \"CA\"\n    }\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"expirationYear\": \"2035\",\n      \"number\": \"4111111111111111\",\n      \"expirationMonth\": \"12\",\n      \"type\": \"001\",\n      \"sourceAccountType\": \"CH\"\n    }\n  },\n  \"recipientInformation\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"address1\": \"Paseo Padre Boulevard\",\n    \"locality\": \"Foster City\",\n    \"administrativeArea\": \"CA\",\n    \"postalCode\": \"94400\",\n    \"phoneNumber\": \"6504320556\",\n    \"dateOfBirth\": \"19801009\",\n    \"country\": \"US\",\n    \"aliasName\": \"John My Friend\",\n    \"nationality\": \"GB\",\n    \"countryOfBirth\": \"GB\",\n    \"occupation\": \"freelancer\",\n    \"email\": \"joe@visa.com\"\n  },\n  \"aggregatorInformation\": {\n    \"streetAddress\": \"202 S. Division St.\",\n    \"city\": \"Phoenix\",\n    \"state\": \"Arizona\",\n    \"postalCode\": \"560048\",\n    \"country\": \"USA\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"string\",\n      \"method\": \"string\"\n    }\n  },\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reconciliationId\": \"string\",\n  \"errorInformation\": {\n    \"reason\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"reason\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"reason\": \"string\"\n      }\n    ]\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"string\",\n    \"submitLocalDateTime\": \"string\",\n    \"ownerMerchantId\": \"string\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"name\": \"string\",\n      \"locality\": \"string\",\n      \"country\": \"str\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"string\",\n      \"currency\": \"str\",\n      \"settlementAmount\": \"string\",\n      \"settlementCurrency\": \"str\"\n    }\n  },\n  \"processorInformation\": {\n    \"approvalCode\": \"string\",\n    \"responseCode\": \"string\",\n    \"transactionId\": \"string\",\n    \"systemTraceAuditNumber\": \"string\",\n    \"responseCodeSource\": \"s\",\n    \"merchantAdvice\": {\n      \"code\": \"st\",\n      \"codeRaw\": \"stri\"\n    },\n    \"avs\": {\n      \"code\": \"s\"\n    },\n    \"customer\": {\n      \"personalIdResult\": \"s\"\n    },\n    \"electronicVerificationResults\": {\n      \"emailRaw\": \"s\",\n      \"firstNameRaw\": \"st\",\n      \"lastNameRaw\": \"st\",\n      \"middleNameRaw\": \"st\",\n      \"nameRaw\": \"st\",\n      \"phoneNumberRaw\": \"s\"\n    },\n    \"cardVerification\": {\n      \"resultCode\": \"s\",\n      \"resultCodeRaw\": \"string\"\n    }\n  },\n  \"recipientInformation\": {\n    \"card\": {\n      \"balance\": \"string\",\n      \"currency\": \"str\"\n    }\n  },\n  \"issuerInformation\": {\n    \"octDomesticParticipantIndicator\": false,\n    \"octCrossBorderParticipantIndicator\": false,\n    \"octMoneyTransferDomesticIndicator\": true,\n    \"octMoneyTransferCrossBorderIndicator\": false,\n    \"octMoneyTransferFastFundsDomesticIndicator\": true,\n    \"octMoneyTransferFastFundsCrossBorderIndicator\": true,\n    \"octMoneyTransferMerchantCountryRestricted\": false,\n    \"octNonMoneyTransferDomesticIndicator\": true,\n    \"octNonMoneyTransferCrossBorderIndicator\": false,\n    \"octNonMoneyTransferFastFundsDomesticIndicator\": true,\n    \"octNonMoneyTransferFastFundsCrossBorderIndicator\": false,\n    \"octOnlineGamblingDomesticIndicator\": false,\n    \"octOnlineGamblingCrossBorderIndicator\": false,\n    \"octOnlineGamblingFastFundsDomesticIndicator\": false,\n    \"octOnlineGamblingFastFundsCrossBorderIndicator\": true,\n    \"serviceProcessingType\": \"st\"\n  },\n  \"tokenInformation\": {\n    \"instrumentidentifierNew\": false,\n    \"customer\": {\n      \"id\": \"str\"\n    },\n    \"paymentInstrument\": {\n      \"id\": \"string\"\n    },\n    \"shippingAddress\": {\n      \"id\": \"string\"\n    },\n    \"instrumentIdentifier\": {\n      \"id\": \"stringstring\",\n      \"state\": \"string\"\n    },\n    \"thirdPartyToken\": {\n      \"source\": \"string\",\n      \"id\": \"string\"\n    }\n  },\n  \"processingInformation\": {\n    \"purchaseOptions\": {\n      \"benefitAmount\": \"string\",\n      \"benefitType\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67994417-9b2d-4723-9fe2-c6612bfb0b98",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "payouts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"33557799\"\n  },\n  \"senderInformation\": {\n    \"referenceNumber\": \"1234567890\",\n    \"address1\": \"900 Metro Center Blvd.900\",\n    \"countryCode\": \"US\",\n    \"locality\": \"Foster City\",\n    \"name\": \"Thomas Jefferson\",\n    \"administrativeArea\": \"CA\",\n    \"account\": {\n      \"number\": \"1234567890123456789012345678901234\",\n      \"fundsSource\": \"01\"\n    },\n    \"aliasName\": \"Thomas my friend\"\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"internet\",\n    \"businessApplicationId\": \"FD\",\n    \"networkRoutingOrder\": \"ECG\",\n    \"languageCode\": \"US\",\n    \"purchaseOptions\": {\n      \"benefitAmount\": \"10.00\",\n      \"benefitType\": \"5T\"\n    }\n  },\n  \"payoutsOptions\": {\n    \"retrievalReferenceNumber\": \"123456789012\",\n    \"acquirerBin\": \"567890124\"\n  },\n  \"reconciliationId\": \"1087488702VIAQNSPQ\",\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"100.00\",\n      \"currency\": \"USD\"\n    }\n  },\n  \"merchantInformation\": {\n    \"merchantCategoryCode\": 1234,\n    \"merchantDescriptor\": {\n      \"country\": \"US\",\n      \"postalCode\": \"94440\",\n      \"locality\": \"FC\",\n      \"name\": \"Thomas\",\n      \"administrativeArea\": \"CA\"\n    }\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"expirationYear\": \"2035\",\n      \"number\": \"4111111111111111\",\n      \"expirationMonth\": \"12\",\n      \"type\": \"001\",\n      \"sourceAccountType\": \"CH\"\n    }\n  },\n  \"recipientInformation\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"address1\": \"Paseo Padre Boulevard\",\n    \"locality\": \"Foster City\",\n    \"administrativeArea\": \"CA\",\n    \"postalCode\": \"94400\",\n    \"phoneNumber\": \"6504320556\",\n    \"dateOfBirth\": \"19801009\",\n    \"country\": \"US\",\n    \"aliasName\": \"John My Friend\",\n    \"nationality\": \"GB\",\n    \"countryOfBirth\": \"GB\",\n    \"occupation\": \"freelancer\",\n    \"email\": \"joe@visa.com\"\n  },\n  \"aggregatorInformation\": {\n    \"streetAddress\": \"202 S. Division St.\",\n    \"city\": \"Phoenix\",\n    \"state\": \"Arizona\",\n    \"postalCode\": \"560048\",\n    \"country\": \"USA\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f19ed2c-fc05-4c6a-9b83-cc8b74c33584",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "payouts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"33557799\"\n  },\n  \"senderInformation\": {\n    \"referenceNumber\": \"1234567890\",\n    \"address1\": \"900 Metro Center Blvd.900\",\n    \"countryCode\": \"US\",\n    \"locality\": \"Foster City\",\n    \"name\": \"Thomas Jefferson\",\n    \"administrativeArea\": \"CA\",\n    \"account\": {\n      \"number\": \"1234567890123456789012345678901234\",\n      \"fundsSource\": \"01\"\n    },\n    \"aliasName\": \"Thomas my friend\"\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"internet\",\n    \"businessApplicationId\": \"FD\",\n    \"networkRoutingOrder\": \"ECG\",\n    \"languageCode\": \"US\",\n    \"purchaseOptions\": {\n      \"benefitAmount\": \"10.00\",\n      \"benefitType\": \"5T\"\n    }\n  },\n  \"payoutsOptions\": {\n    \"retrievalReferenceNumber\": \"123456789012\",\n    \"acquirerBin\": \"567890124\"\n  },\n  \"reconciliationId\": \"1087488702VIAQNSPQ\",\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"100.00\",\n      \"currency\": \"USD\"\n    }\n  },\n  \"merchantInformation\": {\n    \"merchantCategoryCode\": 1234,\n    \"merchantDescriptor\": {\n      \"country\": \"US\",\n      \"postalCode\": \"94440\",\n      \"locality\": \"FC\",\n      \"name\": \"Thomas\",\n      \"administrativeArea\": \"CA\"\n    }\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"expirationYear\": \"2035\",\n      \"number\": \"4111111111111111\",\n      \"expirationMonth\": \"12\",\n      \"type\": \"001\",\n      \"sourceAccountType\": \"CH\"\n    }\n  },\n  \"recipientInformation\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"address1\": \"Paseo Padre Boulevard\",\n    \"locality\": \"Foster City\",\n    \"administrativeArea\": \"CA\",\n    \"postalCode\": \"94400\",\n    \"phoneNumber\": \"6504320556\",\n    \"dateOfBirth\": \"19801009\",\n    \"country\": \"US\",\n    \"aliasName\": \"John My Friend\",\n    \"nationality\": \"GB\",\n    \"countryOfBirth\": \"GB\",\n    \"occupation\": \"freelancer\",\n    \"email\": \"joe@visa.com\"\n  },\n  \"aggregatorInformation\": {\n    \"streetAddress\": \"202 S. Division St.\",\n    \"city\": \"Phoenix\",\n    \"state\": \"Arizona\",\n    \"postalCode\": \"560048\",\n    \"country\": \"USA\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "990580e5-bd03-444f-9487-4d0b85b3feb6",
+    "name": "CyberSource Merged Spec bankAccountValidation Payouts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

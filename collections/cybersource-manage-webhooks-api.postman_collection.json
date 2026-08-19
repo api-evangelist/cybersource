@@ -1,0 +1,1568 @@
+{
+  "item": [
+    {
+      "id": "d298a42b-d55e-48ac-822b-f00e4ec5ed1f",
+      "name": "Manage Webhooks",
+      "description": {
+        "content": "- Manage your webhooks. This will allow for you to update existing webhooks, test webhooks, or delete them.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fdb55675-b5e4-4f7d-9f76-793327796e09",
+          "name": "Get Details On All Created Webhooks",
+          "request": {
+            "name": "Get Details On All Created Webhooks",
+            "description": {
+              "content": "Retrieve a list of all previously created webhooks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "notification-subscriptions",
+                "v2",
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "organizationId",
+                  "value": "<string>",
+                  "description": "(Required) The Organization Identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "productId",
+                  "value": "<string>",
+                  "description": "The Product Identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "eventType",
+                  "value": "<string>",
+                  "description": "The Event Type."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4838c520-afff-4f77-babf-cd1915ad0b75",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "productId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "eventType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "[\n  {\n    \"webhookId\": \"string\",\n    \"organizationId\": \"string\",\n    \"products\": [\n      {\n        \"productId\": \"string\",\n        \"eventTypes\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"productId\": \"string\",\n        \"eventTypes\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"webhookUrl\": \"string\",\n    \"healthCheckUrl\": \"string\",\n    \"status\": \"INACTIVE\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"retryPolicy\": {\n      \"algorithm\": \"ARITHMETIC\",\n      \"firstRetry\": 1,\n      \"interval\": 1,\n      \"numberOfRetries\": 3,\n      \"deactivateFlag\": \"string\",\n      \"repeatSequenceCount\": 0,\n      \"repeatSequenceWaitTime\": 0,\n      \"additionalAttributes\": [\n        {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\"\n        },\n        {\n          \"key_0\": \"string\"\n        }\n      ]\n    },\n    \"securityPolicy\": {\n      \"securityType\": \"string\",\n      \"config\": {\n        \"oAuthURL\": \"string\",\n        \"oAuthTokenType\": \"string\",\n        \"additionalConfig\": {\n          \"aud\": \"string\",\n          \"client_id\": \"string\",\n          \"keyId\": \"string\",\n          \"scope\": \"string\"\n        }\n      }\n    },\n    \"createdOn\": \"string\",\n    \"notificationScope\": \"DESCENDANTS\"\n  },\n  {\n    \"webhookId\": \"string\",\n    \"organizationId\": \"string\",\n    \"products\": [\n      {\n        \"productId\": \"string\",\n        \"eventTypes\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"productId\": \"string\",\n        \"eventTypes\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"webhookUrl\": \"string\",\n    \"healthCheckUrl\": \"string\",\n    \"status\": \"INACTIVE\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"retryPolicy\": {\n      \"algorithm\": \"ARITHMETIC\",\n      \"firstRetry\": 1,\n      \"interval\": 1,\n      \"numberOfRetries\": 3,\n      \"deactivateFlag\": \"string\",\n      \"repeatSequenceCount\": 0,\n      \"repeatSequenceWaitTime\": 0,\n      \"additionalAttributes\": [\n        {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        {\n          \"key_0\": \"string\"\n        }\n      ]\n    },\n    \"securityPolicy\": {\n      \"securityType\": \"string\",\n      \"config\": {\n        \"oAuthURL\": \"string\",\n        \"oAuthTokenType\": \"string\",\n        \"additionalConfig\": {\n          \"aud\": \"string\",\n          \"client_id\": \"string\",\n          \"keyId\": \"string\",\n          \"scope\": \"string\"\n        }\n      }\n    },\n    \"createdOn\": \"string\",\n    \"notificationScope\": \"DESCENDANTS\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1347e5e6-bc5c-4580-9372-2f4e53ed510c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "productId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "eventType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "562d4947-73f8-44d3-a101-726d9d2d9294",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "productId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "eventType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34227c78-b81b-481a-add5-525c49ba87d8",
+          "name": "Get Details On a Single Webhook",
+          "request": {
+            "name": "Get Details On a Single Webhook",
+            "description": {
+              "content": "Retrieve the details of a specific webhook by supplying the webhook ID in the path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "notification-subscriptions",
+                "v2",
+                "webhooks",
+                ":webhookId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "webhookId",
+                  "description": "(Required) The webhook Identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bc931c44-27f5-47ba-bdf6-f2c1f07f9713",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The webhook Identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"webhookId\": \"string\",\n  \"organizationId\": \"string\",\n  \"products\": [\n    {\n      \"productId\": \"string\",\n      \"eventTypes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"productId\": \"string\",\n      \"eventTypes\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"webhookUrl\": \"string\",\n  \"healthCheckUrl\": \"string\",\n  \"status\": \"INACTIVE\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"retryPolicy\": {\n    \"algorithm\": \"ARITHMETIC\",\n    \"firstRetry\": 1,\n    \"interval\": 1,\n    \"numberOfRetries\": 3,\n    \"deactivateFlag\": \"string\",\n    \"repeatSequenceCount\": 0,\n    \"repeatSequenceWaitTime\": 0,\n    \"additionalAttributes\": [\n      {\n        \"key_0\": \"string\"\n      },\n      {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    ]\n  },\n  \"securityPolicy\": {\n    \"securityType\": \"string\",\n    \"config\": {\n      \"oAuthURL\": \"string\",\n      \"oAuthTokenType\": \"string\",\n      \"additionalConfig\": {\n        \"aud\": \"string\",\n        \"client_id\": \"string\",\n        \"keyId\": \"string\",\n        \"scope\": \"string\"\n      }\n    }\n  },\n  \"createdOn\": \"string\",\n  \"notificationScope\": \"DESCENDANTS\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab5f256c-2f0d-4e35-b0fe-877f3530cdce",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The webhook Identifier"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cde40c2e-79c6-4215-b871-ca77b2b7cc9c",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The webhook Identifier"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "91098983-a405-4a62-9218-06454fecd5bf",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The webhook Identifier"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b6f23bb-2e55-426e-b97c-f77a8f412cfa",
+          "name": "Update a Webhook Subscription",
+          "request": {
+            "name": "Update a Webhook Subscription",
+            "description": {
+              "content": "Update a Webhook Subscription.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "notification-subscriptions",
+                "v2",
+                "webhooks",
+                ":webhookId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "webhookId",
+                  "description": "(Required) The Webhook Identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"organizationId\": \"<string>\",\n  \"description\": \"<string>\",\n  \"products\": [\n    {\n      \"productId\": \"<string>\",\n      \"eventTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"productId\": \"<string>\",\n      \"eventTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"webhookUrl\": \"<string>\",\n  \"notificationScope\": \"DESCENDANTS\",\n  \"healthCheckUrl\": \"<string>\",\n  \"securityPolicy\": {\n    \"securityType\": \"<string>\",\n    \"config\": {\n      \"oAuthURL\": \"<string>\",\n      \"oAuthTokenType\": \"<string>\",\n      \"additionalConfig\": {\n        \"aud\": \"<string>\",\n        \"client_id\": \"<string>\",\n        \"keyId\": \"<string>\",\n        \"scope\": \"<string>\"\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dc4c63b1-afb9-429f-8cd3-3aa667c54183",
+              "name": "Updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The Webhook Identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Updated Billing Subscription\",\n  \"webhookUrl\": \"https://newwebhooks.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"webhookId\": \"string\",\n  \"organizationId\": \"string\",\n  \"products\": [\n    {\n      \"productId\": \"string\",\n      \"eventTypes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"productId\": \"string\",\n      \"eventTypes\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"webhookUrl\": \"string\",\n  \"healthCheckUrl\": \"string\",\n  \"status\": \"INACTIVE\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"retryPolicy\": {\n    \"algorithm\": \"ARITHMETIC\",\n    \"firstRetry\": 1,\n    \"interval\": 1,\n    \"numberOfRetries\": 3,\n    \"deactivateFlag\": \"string\",\n    \"repeatSequenceCount\": 0,\n    \"repeatSequenceWaitTime\": 0,\n    \"additionalAttributes\": [\n      {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    ]\n  },\n  \"securityPolicy\": {\n    \"securityType\": \"string\",\n    \"config\": {\n      \"oAuthURL\": \"string\",\n      \"oAuthTokenType\": \"string\",\n      \"additionalConfig\": {\n        \"aud\": \"string\",\n        \"client_id\": \"string\",\n        \"keyId\": \"string\",\n        \"scope\": \"string\"\n      }\n    }\n  },\n  \"createdOn\": \"string\",\n  \"updatedOn\": \"string\",\n  \"notificationScope\": \"DESCENDANTS\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "935ad1a5-b196-4fe4-9268-9b9d42baed08",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The Webhook Identifier."
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Updated Billing Subscription\",\n  \"webhookUrl\": \"https://newwebhooks.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "842cd79b-932b-44d8-b74e-1de8fc444833",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The Webhook Identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Updated Billing Subscription\",\n  \"webhookUrl\": \"https://newwebhooks.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "953577b2-9845-46b0-ad67-8001239eaa28",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The Webhook Identifier."
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Updated Billing Subscription\",\n  \"webhookUrl\": \"https://newwebhooks.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "21dde85c-bf97-4b28-a36a-8af9c049e222",
+          "name": "Delete a Webhook Subscription",
+          "request": {
+            "name": "Delete a Webhook Subscription",
+            "description": {
+              "content": "Delete the webhook. Please note that deleting a particular webhook does not delete the history of the webhook notifications.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "notification-subscriptions",
+                "v2",
+                "webhooks",
+                ":webhookId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "webhookId",
+                  "description": "(Required) The webhook identifier."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "285c4413-4045-4a61-ba31-80221acebc15",
+              "name": "Ok",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The webhook identifier."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2e163d77-1298-42fc-aa1c-bb7f75e194da",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The webhook identifier."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "61403066-5b87-4a98-a071-35d9391a23c1",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The webhook identifier."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "34e10755-019f-4786-96da-8e070921f5c1",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The webhook identifier."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19109b24-a5dc-4fff-96ea-df5aeba0a495",
+          "name": "Test a Webhook Configuration",
+          "request": {
+            "name": "Test a Webhook Configuration",
+            "description": {
+              "content": "Test the webhook configuration by sending a sample webhook. Calling this endpoint sends a sample webhook to the endpoint identified in the user's subscription. \n\nIt will contain sample values for the product & eventType based on values present in your subscription along with a sample message in the payload. \n\nBased on the webhook response users can make any necessary modifications or rest assured knowing their setup is configured correctly.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "notification-subscriptions",
+                "v1",
+                "webhooks",
+                ":webhookId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "webhookId",
+                  "description": "(Required) The Webhook Identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "abfb9c09-dd34-4329-9da9-119bd5c3b2ca",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v1",
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The Webhook Identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"eventDate\": \"string\",\n  \"eventType\": \"string\",\n  \"organizationId\": \"string\",\n  \"payloads\": {\n    \"testPayload\": {\n      \"message\": \"Yay! Your webhook integration worked! This is only a test and an example of what a webhook message payload looks like. Thank you for using our test feature.\"\n    }\n  },\n  \"productId\": \"string\",\n  \"requestType\": \"string\",\n  \"retryNumber\": 1212,\n  \"transactionTraceId\": \"string\",\n  \"webhookId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2fcb65e3-b4c3-4150-be90-4eb4d37c1b0f",
+          "name": "Update a Webhook Status",
+          "request": {
+            "name": "Update a Webhook Status",
+            "description": {
+              "content": "Users can update the status of a webhook subscription by calling this endpoint. \n\nThe webhookId parameter in the URL path identifies the specific webhook subscription to be updated. The request body accepts the values ACTIVE or INACTIVE. If the subscription is set to INACTIVE, webhooks will not be delivered until the subscription is activated again.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "notification-subscriptions",
+                "v2",
+                "webhooks",
+                ":webhookId",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "webhookId",
+                  "description": "(Required) The Webhook Identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"INACTIVE\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "72bc7967-46dc-4e41-99b9-7d52ef23631e",
+              "name": "Updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks",
+                    ":webhookId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The Webhook Identifier."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"ACTIVE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ffd958a5-0360-4ba7-94e2-71a480150724",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks",
+                    ":webhookId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The Webhook Identifier."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"ACTIVE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4ac2d4b7-dbf5-4f57-93a1-fbae26122b68",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks",
+                    ":webhookId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The Webhook Identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"ACTIVE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81b7b91a-83ee-48c8-b54d-b99512bf9698",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification-subscriptions",
+                    "v2",
+                    "webhooks",
+                    ":webhookId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookId",
+                      "description": "(Required) The Webhook Identifier."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"ACTIVE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1da88947-fe09-4c9a-a87f-f6d0fc1e59e0",
+          "name": "Message Level Encryption",
+          "request": {
+            "name": "Message Level Encryption",
+            "description": {
+              "content": "Store and manage certificates that will be used to preform Message Level Encryption (MLE).\nEach new webhook will need its own unique asymmetric certificate.\nYou can either use a digital certificate issued/signed by a CA or self-sign your own using the documentation available on the Developer Guide.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "kms",
+                "egress",
+                "v2",
+                "keys-asym"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "A globally unique id associated with your request",
+                "key": "v-c-correlation-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Sender organization id",
+                "key": "v-c-sender-organization-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Encoded user permissions returned by the CGK, for the entity user who initiated the boarding",
+                "key": "v-c-permissions",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\"\n  },\n  \"clientRequestAction\": \"<string>\",\n  \"keyInformation\": {\n    \"provider\": \"<string>\",\n    \"tenant\": \"<string>\",\n    \"keyType\": \"<string>\",\n    \"organizationId\": \"<string>\",\n    \"pub\": \"<string>\",\n    \"keyId\": \"<string>\",\n    \"pvt\": \"<string>\",\n    \"status\": \"<string>\",\n    \"expiryDuration\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "833bd14f-c943-4fdb-9d87-3c8c62a4c2fb",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kms",
+                    "egress",
+                    "v2",
+                    "keys-asym"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "A globally unique id associated with your request",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Sender organization id",
+                    "key": "v-c-sender-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Encoded user permissions returned by the CGK, for the entity user who initiated the boarding",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\"\n  },\n  \"clientRequestAction\": \"<string>\",\n  \"keyInformation\": {\n    \"provider\": \"<string>\",\n    \"tenant\": \"<string>\",\n    \"keyType\": \"<string>\",\n    \"organizationId\": \"<string>\",\n    \"pub\": \"<string>\",\n    \"keyId\": \"<string>\",\n    \"pvt\": \"<string>\",\n    \"status\": \"<string>\",\n    \"expiryDuration\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6767704-5094-4271-be17-e3544fbea9a4",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kms",
+                    "egress",
+                    "v2",
+                    "keys-asym"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "A globally unique id associated with your request",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Sender organization id",
+                    "key": "v-c-sender-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Encoded user permissions returned by the CGK, for the entity user who initiated the boarding",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\"\n  },\n  \"clientRequestAction\": \"<string>\",\n  \"keyInformation\": {\n    \"provider\": \"<string>\",\n    \"tenant\": \"<string>\",\n    \"keyType\": \"<string>\",\n    \"organizationId\": \"<string>\",\n    \"pub\": \"<string>\",\n    \"keyId\": \"<string>\",\n    \"pvt\": \"<string>\",\n    \"status\": \"<string>\",\n    \"expiryDuration\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f7ebe28a-52cb-40d2-9cac-0be1c9f0df02",
+              "name": "Unauthorized Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kms",
+                    "egress",
+                    "v2",
+                    "keys-asym"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "A globally unique id associated with your request",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Sender organization id",
+                    "key": "v-c-sender-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Encoded user permissions returned by the CGK, for the entity user who initiated the boarding",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\"\n  },\n  \"clientRequestAction\": \"<string>\",\n  \"keyInformation\": {\n    \"provider\": \"<string>\",\n    \"tenant\": \"<string>\",\n    \"keyType\": \"<string>\",\n    \"organizationId\": \"<string>\",\n    \"pub\": \"<string>\",\n    \"keyId\": \"<string>\",\n    \"pvt\": \"<string>\",\n    \"status\": \"<string>\",\n    \"expiryDuration\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dea1b955-e3bb-4df9-a892-07bce89eb27f",
+              "name": "Unexpected system error or system timeout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "kms",
+                    "egress",
+                    "v2",
+                    "keys-asym"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "A globally unique id associated with your request",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Sender organization id",
+                    "key": "v-c-sender-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Encoded user permissions returned by the CGK, for the entity user who initiated the boarding",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\"\n  },\n  \"clientRequestAction\": \"<string>\",\n  \"keyInformation\": {\n    \"provider\": \"<string>\",\n    \"tenant\": \"<string>\",\n    \"keyType\": \"<string>\",\n    \"organizationId\": \"<string>\",\n    \"pub\": \"<string>\",\n    \"keyId\": \"<string>\",\n    \"pvt\": \"<string>\",\n    \"status\": \"<string>\",\n    \"expiryDuration\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e89ede80-9efc-43c2-af94-6c6d526a5753",
+    "name": "CyberSource Merged Spec bankAccountValidation Manage Webhooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

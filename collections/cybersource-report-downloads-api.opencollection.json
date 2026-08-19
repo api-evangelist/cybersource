@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Report Downloads API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Report Downloads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download a Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reporting/v3/report-downloads",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "query",
+                "description": "Valid Organization Id"
+              },
+              {
+                "name": "reportDate",
+                "value": "",
+                "type": "query",
+                "description": "Valid date on which to download the report in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n**Example date format:**\n yyyy-mm-dd\nFor reports that span multiple days, this value would be the end date of the report in the time zone of the report subscription.\nExample 1: If your report start date is 2020-03-06 and the end date is 2020-03-09, the reportDate passed in the query is 2020-03-09.\nExample 2: If your report runs from midnight to midnight on 2020-03-09, the reportDate passed in the query is 2020-03-10\n"
+              },
+              {
+                "name": "reportName",
+                "value": "",
+                "type": "query",
+                "description": "Name of the report to download"
+              }
+            ]
+          },
+          "docs": "Download a report using the unique report name and date.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

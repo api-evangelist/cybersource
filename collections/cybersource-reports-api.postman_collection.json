@@ -1,0 +1,735 @@
+{
+  "item": [
+    {
+      "id": "2f6f70b3-3fe9-4fb1-a212-6cf5a1c23d77",
+      "name": "Reports",
+      "description": {
+        "content": "API for creation and retrieval of Reports",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0875e112-fd43-4ac5-bdfc-0a1fa99e9e16",
+          "name": "Retrieve Available Reports",
+          "request": {
+            "name": "Retrieve Available Reports",
+            "description": {
+              "content": "Retrieve a list of the available reports to which you are subscribed. This will also give you the reportId value, which you can also use to download a report.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "v3",
+                "reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "organizationId",
+                  "value": "<string>",
+                  "description": "Valid Organization Id"
+                },
+                {
+                  "disabled": false,
+                  "key": "startTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) Valid report Start Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n**Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "endTime",
+                  "value": "<dateTime>",
+                  "description": "(Required) Valid report End Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n**Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "timeQueryType",
+                  "value": "<string>",
+                  "description": "(Required) Specify time you would like to search\n\nValid values:\n- reportTimeFrame\n- executedTime\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "reportMimeType",
+                  "value": "<string>",
+                  "description": "Valid Report Format\n\nValid values:\n- application/xml\n- text/csv\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "reportFrequency",
+                  "value": "<string>",
+                  "description": "Valid Report Frequency\n\nValid values:\n- DAILY\n- WEEKLY\n- MONTHLY\n- USER_DEFINED\n- ADHOC\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "reportName",
+                  "value": "<string>",
+                  "description": "Valid Report Name"
+                },
+                {
+                  "disabled": false,
+                  "key": "reportDefinitionId",
+                  "value": "<integer>",
+                  "description": "Valid Report Definition Id"
+                },
+                {
+                  "disabled": false,
+                  "key": "reportStatus",
+                  "value": "<string>",
+                  "description": "Valid Report Status\n\nValid values:\n- COMPLETED\n- PENDING\n- QUEUED\n- RUNNING\n- ERROR\n- NO_DATA\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fb5e1ad6-ff48-4126-b1df-78d8ea950d2b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "timeQueryType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reportMimeType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reportFrequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reportName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reportDefinitionId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "reportStatus",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"reportSearchResults\": [\n    {\n      \"_link\": {\n        \"reportDownload\": {\n          \"href\": \"/reporting/v3/report-downloads?reportDate=2017-10-02&reportName=MyTransactionRequestDetailReport&reportTime=10:00:00+05:00\",\n          \"method\": \"GET\"\n        }\n      },\n      \"reportDefinitionId\": \"210\",\n      \"reportName\": \"MyTransactionRequestDetailReport\",\n      \"reportMimeType\": \"application/xml\",\n      \"reportFrequency\": \"DAILY\",\n      \"status\": \"string\",\n      \"reportStartTime\": \"2017-10-01T10:00:00+05:00\",\n      \"reportEndTime\": \"2017-10-02T10:00:00+05:00\",\n      \"timezone\": \"America/Chicago\",\n      \"reportId\": \"6d9cb5b6-0e97-2d03-e053-7cb8d30af52e\",\n      \"organizationId\": \"Test_MerchantId\",\n      \"queuedTime\": \"2017-10-03T10:00:00+05:00\",\n      \"reportGeneratingTime\": \"2017-10-03T10:00:00+05:00\",\n      \"reportCompletedTime\": \"2017-10-03T10:10:00+05:00\",\n      \"subscriptionType\": \"CUSTOM\",\n      \"groupId\": \"12345\"\n    },\n    {\n      \"_link\": {\n        \"reportDownload\": {\n          \"href\": \"/reporting/v3/report-downloads?reportDate=2017-10-02&reportName=MyTransactionRequestDetailReport&reportTime=10:00:00+05:00\",\n          \"method\": \"GET\"\n        }\n      },\n      \"reportDefinitionId\": \"210\",\n      \"reportName\": \"MyTransactionRequestDetailReport\",\n      \"reportMimeType\": \"application/xml\",\n      \"reportFrequency\": \"DAILY\",\n      \"status\": \"string\",\n      \"reportStartTime\": \"2017-10-01T10:00:00+05:00\",\n      \"reportEndTime\": \"2017-10-02T10:00:00+05:00\",\n      \"timezone\": \"America/Chicago\",\n      \"reportId\": \"6d9cb5b6-0e97-2d03-e053-7cb8d30af52e\",\n      \"organizationId\": \"Test_MerchantId\",\n      \"queuedTime\": \"2017-10-03T10:00:00+05:00\",\n      \"reportGeneratingTime\": \"2017-10-03T10:00:00+05:00\",\n      \"reportCompletedTime\": \"2017-10-03T10:10:00+05:00\",\n      \"subscriptionType\": \"CUSTOM\",\n      \"groupId\": \"12345\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51605bea-a807-4a40-a9a5-57bb2a85d620",
+              "name": "Invalid Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "timeQueryType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reportMimeType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reportFrequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reportName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reportDefinitionId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "reportStatus",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2016-08-11T22:47:57Z\",\n  \"reason\": \"INVALID_DATA\",\n  \"message\": \"One or more fields contains invalid data\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "490cdd1a-c644-44c7-851b-c224366298a1",
+              "name": "No Reports Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endTime",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "timeQueryType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reportMimeType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reportFrequency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reportName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reportDefinitionId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "reportStatus",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d01133ef-5d8a-471f-864a-5256c5c2485c",
+          "name": "Create Adhoc Report",
+          "request": {
+            "name": "Create Adhoc Report",
+            "description": {
+              "content": "Create a one-time report. You must specify the type of report in reportDefinitionName. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation)\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "v3",
+                "reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "organizationId",
+                  "value": "<string>",
+                  "description": "Valid Organization Id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"organizationId\": \"<string>\",\n  \"reportDefinitionName\": \"<string>\",\n  \"reportFields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"reportMimeType\": \"<string>\",\n  \"reportName\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"reportStartTime\": \"<dateTime>\",\n  \"reportEndTime\": \"<dateTime>\",\n  \"reportFilters\": {\n    \"Application.Name\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"firstName\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"lastName\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"email\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"reportPreferences\": {\n    \"signedAmounts\": \"<boolean>\",\n    \"fieldNameConvention\": \"<string>\"\n  },\n  \"groupName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ed9bab32-4402-4d50-a4ea-1cd18acfe6bb",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organizationId\": \"Test_Merchatnt_id\",\n  \"reportDefinitionName\": \"TransactionRequestClass\",\n  \"reportFields\": [\n    \"Request.RequestID\",\n    \"Request.TransactionDate\",\n    \"Request.MerchantID\"\n  ],\n  \"reportMimeType\": \"application/xml\",\n  \"reportName\": \"My Transaction Request report\",\n  \"timezone\": \"America/Chicago\",\n  \"reportStartTime\": \"2017-10-01T10:10:10+05:00\",\n  \"reportEndTime\": \"2017-10-02T10:10:10+05:00\",\n  \"reportFilters\": {\n    \"Application.Name\": [\n      \"ics_auth\",\n      \"ics_auth\"\n    ],\n    \"firstName\": [\n      \"Johny\",\n      \"Johny\"\n    ],\n    \"lastName\": [\n      \"Danny\",\n      \"Danny\"\n    ],\n    \"email\": [\n      \"example@visa.com\",\n      \"example@visa.com\"\n    ]\n  },\n  \"reportPreferences\": {\n    \"signedAmounts\": \"<boolean>\",\n    \"fieldNameConvention\": \"<string>\"\n  },\n  \"groupName\": \"myGroup\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ccd750a3-4abb-48fc-a8a4-c52b59f95875",
+              "name": "Not Modified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organizationId\": \"Test_Merchatnt_id\",\n  \"reportDefinitionName\": \"TransactionRequestClass\",\n  \"reportFields\": [\n    \"Request.RequestID\",\n    \"Request.TransactionDate\",\n    \"Request.MerchantID\"\n  ],\n  \"reportMimeType\": \"application/xml\",\n  \"reportName\": \"My Transaction Request report\",\n  \"timezone\": \"America/Chicago\",\n  \"reportStartTime\": \"2017-10-01T10:10:10+05:00\",\n  \"reportEndTime\": \"2017-10-02T10:10:10+05:00\",\n  \"reportFilters\": {\n    \"Application.Name\": [\n      \"ics_auth\",\n      \"ics_auth\"\n    ],\n    \"firstName\": [\n      \"Johny\",\n      \"Johny\"\n    ],\n    \"lastName\": [\n      \"Danny\",\n      \"Danny\"\n    ],\n    \"email\": [\n      \"example@visa.com\",\n      \"example@visa.com\"\n    ]\n  },\n  \"reportPreferences\": {\n    \"signedAmounts\": \"<boolean>\",\n    \"fieldNameConvention\": \"<string>\"\n  },\n  \"groupName\": \"myGroup\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Modified",
+              "code": 304,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ee36139d-5a87-4b2b-b353-617c5a9af312",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organizationId\": \"Test_Merchatnt_id\",\n  \"reportDefinitionName\": \"TransactionRequestClass\",\n  \"reportFields\": [\n    \"Request.RequestID\",\n    \"Request.TransactionDate\",\n    \"Request.MerchantID\"\n  ],\n  \"reportMimeType\": \"application/xml\",\n  \"reportName\": \"My Transaction Request report\",\n  \"timezone\": \"America/Chicago\",\n  \"reportStartTime\": \"2017-10-01T10:10:10+05:00\",\n  \"reportEndTime\": \"2017-10-02T10:10:10+05:00\",\n  \"reportFilters\": {\n    \"Application.Name\": [\n      \"ics_auth\",\n      \"ics_auth\"\n    ],\n    \"firstName\": [\n      \"Johny\",\n      \"Johny\"\n    ],\n    \"lastName\": [\n      \"Danny\",\n      \"Danny\"\n    ],\n    \"email\": [\n      \"example@visa.com\",\n      \"example@visa.com\"\n    ]\n  },\n  \"reportPreferences\": {\n    \"signedAmounts\": \"<boolean>\",\n    \"fieldNameConvention\": \"<string>\"\n  },\n  \"groupName\": \"myGroup\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2016-08-11T22:47:57Z\",\n  \"reason\": \"INVALID_DATA\",\n  \"message\": \"One or more fields contains invalid data\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d03e6bed-b836-4715-b139-23600ae536cd",
+          "name": "Get Report Based on Report Id",
+          "request": {
+            "name": "Get Report Based on Report Id",
+            "description": {
+              "content": "Download a report using the reportId value. If you don't already know this value, you can obtain it using the Retrieve available reports call.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reporting",
+                "v3",
+                "reports",
+                ":reportId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "organizationId",
+                  "value": "<string>",
+                  "description": "Valid Organization Id"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportId",
+                  "description": "(Required) Valid Report Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/hal+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2302257-4e50-4749-8b87-37c8e518f641",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "reports",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) Valid Report Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"organizationId\": \"myMerchantId\",\n  \"reportId\": \"6da01922-bb8e-a1fb-e053-7cb8d30ade29\",\n  \"reportDefinitionId\": \"210\",\n  \"reportName\": \"My Transaction Request report\",\n  \"reportMimeType\": \"application/xml\",\n  \"reportFrequency\": \"DAILY\",\n  \"reportFields\": [\n    \"Request.RequestID\",\n    \"Request.TransactionDate\",\n    \"Request.MerchantID\"\n  ],\n  \"reportStatus\": \"string\",\n  \"reportStartTime\": \"2017-10-01T10:10:10+05:00\",\n  \"reportEndTime\": \"2017-10-02T10:10:10+05:00\",\n  \"timezone\": \"America/Chicago\",\n  \"reportFilters\": {\n    \"Application.Name\": [\n      \"ics_auth\",\n      \"ics_bill\"\n    ]\n  },\n  \"reportPreferences\": {\n    \"signedAmounts\": false,\n    \"fieldNameConvention\": \"string\"\n  },\n  \"groupId\": \"12345\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d8ecca8-b758-474c-a293-a55602903116",
+              "name": "Invalid Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "reports",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) Valid Report Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2016-08-11T22:47:57Z\",\n  \"reason\": \"INVALID_DATA\",\n  \"message\": \"One or more fields contains invalid data\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82cffdfc-6163-43fa-9d51-1d482dc64d68",
+              "name": "No Reports Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reporting",
+                    "v3",
+                    "reports",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organizationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) Valid Report Id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "79667b29-bad9-4187-a8b3-576d4df55f0e",
+    "name": "CyberSource Merged Spec bankAccountValidation Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation Payer Authentication API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payer Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Setup Payer Auth",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/risk/v1/authentication-setups"
+          },
+          "docs": "A new service for Merchants to get reference_id for Digital Wallets to use in place of BIN number in Cardinal. Set up file while authenticating with Cardinal. This service should be called by Merchant when payment instrument chosen or changes. This service has to be called before enrollment check. The availability of API features for a merchant may depend on the portfolio configuration and may need to be enabled at the portfolio level before they can be added to merchant accounts."
+        },
+        {
+          "info": {
+            "name": "Check Payer Auth Enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/risk/v1/authentications"
+          },
+          "docs": "This call verifies that the card is enrolled in a card authentication program."
+        },
+        {
+          "info": {
+            "name": "Validate Authentication Results",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/risk/v1/authentication-results"
+          },
+          "docs": "This call retrieves and validates the authentication results from issuer and allows the merchant to proceed with processing the payment.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,548 @@
+{
+  "item": [
+    {
+      "id": "65ba7ad4-d4fc-4919-a104-a38053454e96",
+      "name": "Transient Token Data v2",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "114a6cb2-43b0-421f-ba78-d935e5661b80",
+          "name": "Get Transient Token Data",
+          "request": {
+            "name": "Get Transient Token Data",
+            "description": {
+              "content": "Retrieve the data captured by Unified Checkout. This API is used to retrieve the detailed data represented by the Transient Token. This API will not return PCI payment data (PAN). Include the Request ID in the GET request to retrieve the transaction details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "up",
+                "v1",
+                "payment-details",
+                ":transientToken"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transientToken",
+                  "description": "(Required) Transient Token returned by the Unified Checkout application.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e460b81a-fe66-4fe4-8b36-8e7c2a039af0",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "up",
+                    "v1",
+                    "payment-details",
+                    ":transientToken"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transientToken",
+                      "description": "(Required) Transient Token returned by the Unified Checkout application.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"paymentInformation\": {\n    \"card\": {\n      \"expirationYear\": \"2026\",\n      \"number\": \"XXXXXXXXXXXX1111\",\n      \"expirationMonth\": \"05\",\n      \"type\": \"001\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"21.00\",\n      \"currency\": \"USD\"\n    },\n    \"billTo\": {\n      \"lastName\": \"Solo\",\n      \"country\": \"US\",\n      \"firstName\": \"Han\",\n      \"email\": \"Han.solo@test.com\"\n    },\n    \"shipTo\": {\n      \"locality\": \"Mos Eisley\",\n      \"country\": \"US\",\n      \"administrativeArea\": \"CA\",\n      \"address1\": \"325 Falcon Way\",\n      \"postalCode\": \"94545\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65df9c3e-9c9f-4fff-ad44-79dec02715f9",
+              "name": "The specified resource not found in the system.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "up",
+                    "v1",
+                    "payment-details",
+                    ":transientToken"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transientToken",
+                      "description": "(Required) Transient Token returned by the Unified Checkout application.\n"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "58d367c0-49ad-4707-b23a-25e13e53a942",
+              "name": "Unexpected server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "up",
+                    "v1",
+                    "payment-details",
+                    ":transientToken"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transientToken",
+                      "description": "(Required) Transient Token returned by the Unified Checkout application.\n"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce46061f-65da-4289-b5a4-4949684c5e2b",
+          "name": "Get Transient Token Data v2",
+          "request": {
+            "name": "Get Transient Token Data v2",
+            "description": {
+              "content": "Retrieve data captured through Unified Checkout. This API retrieves the detailed information associated with a Transient Token by looking it up in TMS and using its ID (the jti claim from the /flex/v2/tokens JWT response). The response returns a decrypted version of the Transient Token; however, PCI-sensitive payment data (PAN) is never returned and is always masked.<br><br> Example jti value: 1D42LRF04LYTMO3I1G8JX6GO6S1PUFM2R4CQLU51267E0EOQ7X2169A99674E16E",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "flex",
+                "v2",
+                "payment-details",
+                ":jti"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jti",
+                  "description": "(Required) The jti within the Transient Token jwt returned by the Unified Checkout application\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7e42caf-946f-499c-a974-27cc23c7543c",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flex",
+                    "v2",
+                    "payment-details",
+                    ":jti"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jti",
+                      "description": "(Required) The jti within the Transient Token jwt returned by the Unified Checkout application\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"paymentInformation\": {\n    \"card\": {\n      \"expirationYear\": \"2026\",\n      \"number\": \"XXXXXXXXXXXX1111\",\n      \"expirationMonth\": \"05\",\n      \"type\": \"001\"\n    }\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"21.00\",\n      \"currency\": \"USD\"\n    },\n    \"billTo\": {\n      \"lastName\": \"Solo\",\n      \"country\": \"US\",\n      \"firstName\": \"Han\",\n      \"email\": \"Han.solo@test.com\"\n    },\n    \"shipTo\": {\n      \"locality\": \"Mos Eisley\",\n      \"country\": \"US\",\n      \"administrativeArea\": \"CA\",\n      \"address1\": \"325 Falcon Way\",\n      \"postalCode\": \"94545\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9e606f5-c06c-475f-a691-16d1c48704b5",
+              "name": "The specified resource not found in the system.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flex",
+                    "v2",
+                    "payment-details",
+                    ":jti"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jti",
+                      "description": "(Required) The jti within the Transient Token jwt returned by the Unified Checkout application\n"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "377dc56c-acef-4df2-b97c-6f747ec7cd2f",
+              "name": "Unexpected server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flex",
+                    "v2",
+                    "payment-details",
+                    ":jti"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jti",
+                      "description": "(Required) The jti within the Transient Token jwt returned by the Unified Checkout application\n"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cbb6e025-030d-4d2f-a8e7-8c4dbc34ed9b",
+          "name": "Get Payment Credentials",
+          "request": {
+            "name": "Get Payment Credentials",
+            "description": {
+              "content": "Retrieve the Payment data captured by Unified Checkout. This API is used to retrieve the detailed data represented by the Transient Token. This API will return PCI payment data captured by the Unified Checkout platform.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "flex",
+                "v2",
+                "payment-credentials",
+                ":paymentCredentialsReference"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "paymentCredentialsReference",
+                  "description": "(Required) The paymentCredentialsReference field contained within the Transient token returned from a successful Unified Checkout transaction.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/jwt"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3f0b8e6c-f78b-47fd-be62-5cfe08b1767b",
+              "name": "Retrieved payment credentials reference",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flex",
+                    "v2",
+                    "payment-credentials",
+                    ":paymentCredentialsReference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentCredentialsReference",
+                      "description": "(Required) The paymentCredentialsReference field contained within the Transient token returned from a successful Unified Checkout transaction.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/jwt"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/jwt"
+                }
+              ],
+              "body": "eyJhdWQiOiJwc3AiLCJzdWIiOiJwc19ocGEiLCJraWQiOiIyMDIzMDUxNC1kcmFmdC1wc3AtZW5jcnlwdCIsImN0eSI6IkpXVCIsImVuYyI6IkEyNTZHQ00iLCJleHAiOjE2ODU0MzI2ODMsImFsZyI6IlJTQS1PQUVQLTI1NiIsImp0aSI6ImMxZWRkMzVmLTRiYmUtNGRmNS04YTg0LTdjNmFlNzU0YWU1MCJ9.Zu5EW2WFuFwAaMI3N9x1-KYdARpcRQSvZSEmKXhHgwTMghOyhCaxmbsDPryIRxcqAFuWH3ojytGIpttHQ-tL35pc1G_lXcd9pA7Wyvv9hh3DdYv2pM3whDLaV6t7ZkP2P_goxiJ3HLwmTPRV0YO97YbvIRSLTEBk25b8DxNL2p9ufvLcEBcwOW7rZj-7boMBWDR3SupyoHUF1WIGfstbgHNo_7qcgOWuKeoITTJlvwFVdmZFeaFDvN2tfrtsanTBFP7v6WSWjWbaKql_z-tqLBfQkaw0nSDjBtxB70pdSw2U5ASmFoYr7Q3H60bNld-3UcAI_mpYXHRJpLleU2IiDg.llfdZVDcZgqBVKYz.BoFsW2K80UGjfczcqGtMqHq7VH-90fcMOtyl-weBc6PAhzg9Ze6MvlMpxmZi4QPKX1i3-HYnqkI514CpriOChPJ-2AR6VenR7MXfG5fGOIRseuDQ1d6WPtfpisabxW1qg9jOSoCWwAG6SrdnMdbpysBJmR_OV2Gfmo4noO5B01u02hv8AM3yY627bYOSTSAHeHovn9KKYWLdYpoJVeqkMIJwHnBtz-dqosgi3AuJNfi8LcT5_3vW6sJ-q044sM6TQ9z57Ui95EqIm4w_s0_BgF6QRIuPJNHD17i-5QgxVDD5OGYPWHwAwMC-poWp3wlG_MTkaIiLkvnAwB44tC_uvAQWJt0BvAbDMbsd9LPcqhqaIS3WDqiCFTawxM-BVotG-mAZDTEuq0f4Ctc9r6KDZyPxJj9IO0KwJDBpk86eX_RXm1ByO3bmDmMcIzsAcaJzbXdO11QRLLtmfYtQSUjZ-NZvEXEoSShJt1F-fTYx05tgoMWrQDwrQ-UMBzN77JqWKzuOpgQSTH6t3YpJ0v8g0-FXu7UHRtRVMWm9vt2HAOTHqXd5ITtqmeYpnKVKv3J_oUJerxy03rN8mPGzrWHRQn6rXOp_xKZEBf7UCK5ugr9oNcVUnbO9GnIr6RH5do3kSfGR0qBA4M8qvpm43amNfHtVcdb2bUwsoaWF15sshcVzss22JU8i94GHrTS_quR8PwktxFVNQyMYHCph_idffTrsPR2mjMoZSR2tPEGPW4V2RTKwhrpqKE_hCyOPLHSSEk3KYkQhteicRvqsqshhm7YADcEXiwRW5Ej2GADDxNop9UZojYRBtRfcQsVoA34ZM4gQvsEza5dF307NJkclwV6e2e5AdDBbm9IGsfY0ePwMOSK7dxWnVEn1gNaJMFyhWCL6o3XI4_4Pu0GWEHN3UphrH9TSHj4BxXLbFHnTDpYWw30pHrzLwLbK-eeovOsWUfID730QXbWa56OSPSqfvWG0tKNuTVmVCBJqZE_25FCoMkR0zevMgJZC9ujK5ksHB3lTFYuOXLNbXujw4y9K3QKImhEigGhWN5glXGEAWqExdWpb9aJ4vuAnT48hQREaiRc1DQueUnmzMQFjY9e-Q9iMOFHiCJ56NU7kMK9qZdBPmf7Emoe87Xx7YINsOXngQZZ2ve8nVC-sE0IDHoSh9YeqoNFAcdOHbCLDB6fi1WVWztCG6Gum0N9kauKHeM8XsSRjL-m_1yPI20da_VvszLW2D0jqbIgppFt-qiPSz4-YNTX6IgL60TEUaOcHynqkIg24_KNvbzXUl4DvlUR0I6XoUAs0XtxLiWy7Qai6Zgtih9Uvm8bZ14O4IAhigz6O09NsmucYzAgTtHi__npwHjV5kW3f-ya4dT9XYq__jGTNnV-vrokK7lj3CbNX9YJtKrM4q2PCl3dggeQXNlU46GYF36jTdLIIByFPhy6Pk5eiM1qXxn7-xZcA5k5YcOvXPyfLPHi1TiB1aNpZQuhdKRseKRqwzw.oTxqDKWidj_qi20IH0YeUA",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "42c32670-58ef-4253-82d4-6ebd12ee8227",
+              "name": "The specified resource not found in the system.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flex",
+                    "v2",
+                    "payment-credentials",
+                    ":paymentCredentialsReference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentCredentialsReference",
+                      "description": "(Required) The paymentCredentialsReference field contained within the Transient token returned from a successful Unified Checkout transaction.\n"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5b34097a-12f6-47a4-aaa2-1c8dc2314401",
+              "name": "Unexpected server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flex",
+                    "v2",
+                    "payment-credentials",
+                    ":paymentCredentialsReference"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "paymentCredentialsReference",
+                      "description": "(Required) The paymentCredentialsReference field contained within the Transient token returned from a successful Unified Checkout transaction.\n"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d390179b-7219-4339-8579-0823472681c2",
+    "name": "CyberSource Merged Spec bankAccountValidation Transient Token Data v2 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

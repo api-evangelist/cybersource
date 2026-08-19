@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CyberSource Merged Spec bankAccountValidation UserManagement API",
+    "version": "0.0.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "UserManagement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get User Information - Deprecated",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ums/v1/users",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "query",
+                "description": "This is the orgId of the organization which the user belongs to."
+              },
+              {
+                "name": "userName",
+                "value": "",
+                "type": "query",
+                "description": "User ID of the user you want to get details on."
+              },
+              {
+                "name": "permissionId",
+                "value": "",
+                "type": "query",
+                "description": "permission that you are trying to search user on."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "query",
+                "description": "role of the user you are trying to search on."
+              }
+            ]
+          },
+          "docs": "This endpoint is deprecated. Please use the search end point."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

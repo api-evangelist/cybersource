@@ -1,0 +1,663 @@
+{
+  "item": [
+    {
+      "id": "99bf12a5-79ad-47ee-a2ee-aff7ec208ca6",
+      "name": "billingAgreements",
+      "description": {
+        "content": "A billingAgreement is a stand-alone transaction that is not linked to any previous transactions. It takes money from\nyour merchant bank account and returns it to the customer.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7dc28054-22db-4df2-b49b-8e15aae5db62",
+          "name": "Create a Billing Agreement",
+          "request": {
+            "name": "Create a Billing Agreement",
+            "description": {
+              "content": "#### Standing Instruction:\nStanding Instruction with or without Token. Transaction amount in case First payment is coming along with registration. Only 2 decimal places allowed\n\n#### Create Mandate:\nYou can create a mandate through the direct debit mandate flow.\nPossible create mandate status values:\n  - Pending—the create mandate request was successfully processed.\n  - Failed—the create mandate request was not accepted.\n\n#### Import Mandate:\nIn the Bacs scheme, a mandate is created with a status of active. Direct debit collections can be made against it immediately.\nYou can import a mandate to the CyberSource database when:\n  - You have existing customers with signed, active mandates\n  - You manage mandates outside of CyberSource.\n\nWhen you import an existing mandate to the CyberSource database, provide a unique value for the mandate ID or the request results in an error.\nIf an import mandate request is not accepted, the import mandate status value is failed.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pts",
+                "v2",
+                "billing-agreements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"agreementInformation\": {\n    \"id\": \"<string>\",\n    \"dateSigned\": \"<string>\",\n    \"type\": \"<string>\",\n    \"frequency\": \"<string>\",\n    \"occurrencesPerPeriod\": \"<integer>\",\n    \"startDate\": \"<string>\",\n    \"endDate\": \"<string>\"\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"reconciliationId\": \"<string>\",\n    \"pausedRequestId\": \"<string>\",\n    \"transactionId\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"originalTransactionId\": \"<string>\",\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\",\n      \"thirdPartyCertificationNumber\": \"<string>\"\n    },\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  },\n  \"aggregatorInformation\": {\n    \"name\": \"<string>\",\n    \"subMerchant\": {\n      \"cardAcceptorId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"merchantCategoryCode\": \"<number>\"\n    }\n  },\n  \"consumerAuthenticationInformation\": {\n    \"authenticationTransactionContextId\": \"<string>\",\n    \"cavv\": \"<string>\",\n    \"transactionToken\": \"<string>\",\n    \"xid\": \"<string>\"\n  },\n  \"deviceInformation\": {\n    \"httpAcceptBrowserValue\": \"<string>\",\n    \"ipAddress\": \"<string>\",\n    \"userAgentBrowserValue\": \"<string>\"\n  },\n  \"installmentInformation\": {\n    \"alertPreference\": \"<string>\",\n    \"firstInstallmentDate\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"lastInstallmentDate\": \"<string>\",\n    \"maxAmount\": \"<string>\",\n    \"minAmount\": \"<string>\",\n    \"paymentType\": \"<string>\",\n    \"preferredDay\": \"<string>\",\n    \"sequence\": \"<integer>\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"postalCode\": \"<string>\",\n      \"contact\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"categoryCode\": \"<integer>\",\n    \"administrativeArea\": \"<string>\",\n    \"transactionLocalDateTime\": \"<string>\",\n    \"cancelUrl\": \"<string>\",\n    \"successUrl\": \"<string>\",\n    \"failureUrl\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"totalMaxAmount\": \"<string>\"\n    },\n    \"invoiceDetails\": {\n      \"productDescription\": \"<string>\"\n    },\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"buildingNumber\": \"<string>\",\n      \"company\": \"<string>\",\n      \"country\": \"<string>\",\n      \"county\": \"<string>\",\n      \"district\": \"<string>\",\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"middleName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"securityCode\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"tokenizedCard\": {\n      \"cryptogram\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"transactionType\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"paymentType\": {\n      \"method\": {\n        \"name\": \"<string>\"\n      },\n      \"name\": \"<string>\"\n    },\n    \"bank\": {\n      \"account\": {\n        \"number\": \"<string>\"\n      },\n      \"iban\": \"<string>\",\n      \"swiftCode\": \"<string>\",\n      \"scheme\": \"<string>\",\n      \"accountAlias\": {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    }\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"<string>\",\n    \"paymentCompletionTimeout\": \"<string>\",\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\",\n    \"dateOfBirth\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"language\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bdf60a82-eb68-4767-b821-019ef3ee6778",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "billing-agreements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agreementInformation\": {\n    \"id\": \"<string>\",\n    \"dateSigned\": \"<string>\",\n    \"type\": \"<string>\",\n    \"frequency\": \"<string>\",\n    \"occurrencesPerPeriod\": \"<integer>\",\n    \"startDate\": \"<string>\",\n    \"endDate\": \"<string>\"\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"reconciliationId\": \"<string>\",\n    \"pausedRequestId\": \"<string>\",\n    \"transactionId\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"originalTransactionId\": \"<string>\",\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\",\n      \"thirdPartyCertificationNumber\": \"<string>\"\n    },\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  },\n  \"aggregatorInformation\": {\n    \"name\": \"<string>\",\n    \"subMerchant\": {\n      \"cardAcceptorId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"merchantCategoryCode\": \"<number>\"\n    }\n  },\n  \"consumerAuthenticationInformation\": {\n    \"authenticationTransactionContextId\": \"<string>\",\n    \"cavv\": \"<string>\",\n    \"transactionToken\": \"<string>\",\n    \"xid\": \"<string>\"\n  },\n  \"deviceInformation\": {\n    \"httpAcceptBrowserValue\": \"<string>\",\n    \"ipAddress\": \"<string>\",\n    \"userAgentBrowserValue\": \"<string>\"\n  },\n  \"installmentInformation\": {\n    \"alertPreference\": \"<string>\",\n    \"firstInstallmentDate\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"lastInstallmentDate\": \"<string>\",\n    \"maxAmount\": \"<string>\",\n    \"minAmount\": \"<string>\",\n    \"paymentType\": \"<string>\",\n    \"preferredDay\": \"<string>\",\n    \"sequence\": \"<integer>\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"postalCode\": \"<string>\",\n      \"contact\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"categoryCode\": \"<integer>\",\n    \"administrativeArea\": \"<string>\",\n    \"transactionLocalDateTime\": \"<string>\",\n    \"cancelUrl\": \"<string>\",\n    \"successUrl\": \"<string>\",\n    \"failureUrl\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"totalMaxAmount\": \"<string>\"\n    },\n    \"invoiceDetails\": {\n      \"productDescription\": \"<string>\"\n    },\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"buildingNumber\": \"<string>\",\n      \"company\": \"<string>\",\n      \"country\": \"<string>\",\n      \"county\": \"<string>\",\n      \"district\": \"<string>\",\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"middleName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"securityCode\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"tokenizedCard\": {\n      \"cryptogram\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"transactionType\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"paymentType\": {\n      \"method\": {\n        \"name\": \"<string>\"\n      },\n      \"name\": \"<string>\"\n    },\n    \"bank\": {\n      \"account\": {\n        \"number\": \"<string>\"\n      },\n      \"iban\": \"<string>\",\n      \"swiftCode\": \"<string>\",\n      \"scheme\": \"<string>\",\n      \"accountAlias\": {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    }\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"<string>\",\n    \"paymentCompletionTimeout\": \"<string>\",\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\",\n    \"dateOfBirth\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"language\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"GET\",\n      \"method\": \"/pts/v2/billing-agreements\"\n    },\n    \"updateAgreement\": {\n      \"href\": \"PATCH\",\n      \"method\": \"/pts/v2/billing-agreements/6891011351636003303961\"\n    },\n    \"revokeAgreement\": {\n      \"href\": \"PATCH\",\n      \"method\": \"/pts/v2/billing-agreements/6891011351636003303961\"\n    },\n    \"status\": {\n      \"href\": \"PATCH\",\n      \"method\": \"/pts/v2/billing-agreements/6891011351636003303961\"\n    }\n  },\n  \"installmentInformation\": {\n    \"identifier\": \"1000000000\"\n  },\n  \"processorInformation\": {\n    \"approvalCode\": \"888888\",\n    \"responseCode\": \"00\",\n    \"transactionId\": \"2016011808153910011808153910TR\",\n    \"responseDetails\": \"00001\",\n    \"reasonCode\": \"100\"\n  },\n  \"status\": \"SUCCESS\",\n  \"submitTimeUtc\": \"2023-05-29T08:57:25Z\",\n  \"agreementInformation\": {\n    \"dateSigned\": \"20181109\",\n    \"dateCreated\": \"20181009\",\n    \"encodedHtml\": \"PGh0bWw+DQo8Ym9keT4NCiANCjxwPjxiPlRoaXMgdGV4dCBpcyBib2xkPC9iPjwvcD4NCjxwPjxpPlRoaXMgdGV4dCBpcyBpdGFsaWM8L2k+PC9wPg0KPHA+VGhpcyBpczxzdWI+IHN1YnNjcmlwdDwvc3ViPiBhbmQgPHN1cD5zdXBlcnNjcmlwdDwvc3VwPjwvcD4NCiANCjwvYm9keT4NCjwvaHRtbD4NCg==\",\n    \"encodedHtmlPopup\": \"PGh0bWw+DQo8Ym9keT4NCiANCjxwPjxiPlRoaXMgdGV4dCBpcyBib2xkPC9iPjwvcD4NCjxwPjxpPlRoaXMgdGV4dCBpcyBpdGFsaWM8L2k+PC9wPg0KPHA+VGhpcyBpczxzdWI+IHN1YnNjcmlwdDwvc3ViPiBhbmQgPHN1cD5zdXBlcnNjcmlwdDwvc3VwPjwvcD4NCiANCjwvYm9keT4NCjwvaHRtbD4NCg==\",\n    \"url\": \"https://merchant.redirect.com/url.do?param_utf=%27%22%3C%3E%20%E6%B8%AC%E8%A9%A6%E6%B8%AC&param_url=https%3A%2F%2Fwww.abc.com&param_special=+@#%~_&sign=fdaa1df42b6260a10e2e3f1c0fc87862\"\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"TC84170-1\"\n  },\n  \"riskInformation\": {\n    \"processorResults\": {\n      \"riskScore\": \"3\"\n    }\n  },\n  \"reconciliationId\": \"39570715X3E1LBQA\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b01bde7-60bd-46d3-9a33-1f111a72e1c7",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "billing-agreements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agreementInformation\": {\n    \"id\": \"<string>\",\n    \"dateSigned\": \"<string>\",\n    \"type\": \"<string>\",\n    \"frequency\": \"<string>\",\n    \"occurrencesPerPeriod\": \"<integer>\",\n    \"startDate\": \"<string>\",\n    \"endDate\": \"<string>\"\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"reconciliationId\": \"<string>\",\n    \"pausedRequestId\": \"<string>\",\n    \"transactionId\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"originalTransactionId\": \"<string>\",\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\",\n      \"thirdPartyCertificationNumber\": \"<string>\"\n    },\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  },\n  \"aggregatorInformation\": {\n    \"name\": \"<string>\",\n    \"subMerchant\": {\n      \"cardAcceptorId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"merchantCategoryCode\": \"<number>\"\n    }\n  },\n  \"consumerAuthenticationInformation\": {\n    \"authenticationTransactionContextId\": \"<string>\",\n    \"cavv\": \"<string>\",\n    \"transactionToken\": \"<string>\",\n    \"xid\": \"<string>\"\n  },\n  \"deviceInformation\": {\n    \"httpAcceptBrowserValue\": \"<string>\",\n    \"ipAddress\": \"<string>\",\n    \"userAgentBrowserValue\": \"<string>\"\n  },\n  \"installmentInformation\": {\n    \"alertPreference\": \"<string>\",\n    \"firstInstallmentDate\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"lastInstallmentDate\": \"<string>\",\n    \"maxAmount\": \"<string>\",\n    \"minAmount\": \"<string>\",\n    \"paymentType\": \"<string>\",\n    \"preferredDay\": \"<string>\",\n    \"sequence\": \"<integer>\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"postalCode\": \"<string>\",\n      \"contact\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"categoryCode\": \"<integer>\",\n    \"administrativeArea\": \"<string>\",\n    \"transactionLocalDateTime\": \"<string>\",\n    \"cancelUrl\": \"<string>\",\n    \"successUrl\": \"<string>\",\n    \"failureUrl\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"totalMaxAmount\": \"<string>\"\n    },\n    \"invoiceDetails\": {\n      \"productDescription\": \"<string>\"\n    },\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"buildingNumber\": \"<string>\",\n      \"company\": \"<string>\",\n      \"country\": \"<string>\",\n      \"county\": \"<string>\",\n      \"district\": \"<string>\",\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"middleName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"securityCode\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"tokenizedCard\": {\n      \"cryptogram\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"transactionType\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"paymentType\": {\n      \"method\": {\n        \"name\": \"<string>\"\n      },\n      \"name\": \"<string>\"\n    },\n    \"bank\": {\n      \"account\": {\n        \"number\": \"<string>\"\n      },\n      \"iban\": \"<string>\",\n      \"swiftCode\": \"<string>\",\n      \"scheme\": \"<string>\",\n      \"accountAlias\": {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    }\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"<string>\",\n    \"paymentCompletionTimeout\": \"<string>\",\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\",\n    \"dateOfBirth\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"language\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2023-11-28T14:12:01Z\",\n  \"status\": \"INVALID_REQUEST\",\n  \"reason\": \"INVALID_DATA\",\n  \"message\": \"One or more fields in the request contains invalid data.\",\n  \"details\": [\n    {\n      \"field\": \"clientReferenceInformation.code\",\n      \"reason\": \"INVALID_DATA\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "acbee080-e9e6-44c7-a915-90e0835ec94e",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "billing-agreements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agreementInformation\": {\n    \"id\": \"<string>\",\n    \"dateSigned\": \"<string>\",\n    \"type\": \"<string>\",\n    \"frequency\": \"<string>\",\n    \"occurrencesPerPeriod\": \"<integer>\",\n    \"startDate\": \"<string>\",\n    \"endDate\": \"<string>\"\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"reconciliationId\": \"<string>\",\n    \"pausedRequestId\": \"<string>\",\n    \"transactionId\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"originalTransactionId\": \"<string>\",\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\",\n      \"thirdPartyCertificationNumber\": \"<string>\"\n    },\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  },\n  \"aggregatorInformation\": {\n    \"name\": \"<string>\",\n    \"subMerchant\": {\n      \"cardAcceptorId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"merchantCategoryCode\": \"<number>\"\n    }\n  },\n  \"consumerAuthenticationInformation\": {\n    \"authenticationTransactionContextId\": \"<string>\",\n    \"cavv\": \"<string>\",\n    \"transactionToken\": \"<string>\",\n    \"xid\": \"<string>\"\n  },\n  \"deviceInformation\": {\n    \"httpAcceptBrowserValue\": \"<string>\",\n    \"ipAddress\": \"<string>\",\n    \"userAgentBrowserValue\": \"<string>\"\n  },\n  \"installmentInformation\": {\n    \"alertPreference\": \"<string>\",\n    \"firstInstallmentDate\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"lastInstallmentDate\": \"<string>\",\n    \"maxAmount\": \"<string>\",\n    \"minAmount\": \"<string>\",\n    \"paymentType\": \"<string>\",\n    \"preferredDay\": \"<string>\",\n    \"sequence\": \"<integer>\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"postalCode\": \"<string>\",\n      \"contact\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"categoryCode\": \"<integer>\",\n    \"administrativeArea\": \"<string>\",\n    \"transactionLocalDateTime\": \"<string>\",\n    \"cancelUrl\": \"<string>\",\n    \"successUrl\": \"<string>\",\n    \"failureUrl\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"totalMaxAmount\": \"<string>\"\n    },\n    \"invoiceDetails\": {\n      \"productDescription\": \"<string>\"\n    },\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"buildingNumber\": \"<string>\",\n      \"company\": \"<string>\",\n      \"country\": \"<string>\",\n      \"county\": \"<string>\",\n      \"district\": \"<string>\",\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"middleName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"securityCode\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"tokenizedCard\": {\n      \"cryptogram\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"transactionType\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"paymentType\": {\n      \"method\": {\n        \"name\": \"<string>\"\n      },\n      \"name\": \"<string>\"\n    },\n    \"bank\": {\n      \"account\": {\n        \"number\": \"<string>\"\n      },\n      \"iban\": \"<string>\",\n      \"swiftCode\": \"<string>\",\n      \"scheme\": \"<string>\",\n      \"accountAlias\": {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    }\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"<string>\",\n    \"paymentCompletionTimeout\": \"<string>\",\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"buyerInformation\": {\n    \"merchantCustomerId\": \"<string>\",\n    \"dateOfBirth\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"language\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2023-11-28T14:12:01Z\",\n  \"status\": \"SERVER_ERROR\",\n  \"reason\": \"SYSTEM_ERROR\",\n  \"message\": \"General system failure.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d041b6ed-8aa7-49a7-b2f4-2f62cbec5b7f",
+          "name": "Modify a Billing Agreement",
+          "request": {
+            "name": "Modify a Billing Agreement",
+            "description": {
+              "content": "#### Standing Instruction:\nStanding Instruction with or without Token.\n\n#### Revoke Mandate:\nWhen you revoke a mandate, any pending direct debits linked to that mandate are canceled. No notifications are sent.\nWhen you revoke a mandate with no pending direct debits, the Bacs scheme or customer's bank notify you of any subsequent direct debit events.\nWhen you revoke a mandate, you cannot send a direct debit request using the mandate ID. Customer payments cannot be made against a revoked mandate.\nYou can revoke a mandate when the customer:\n  - Requests that you revoke the mandate.\n  - Closes their account with you.\nPossible revoke mandate status values -\n  - Revoked—the revoke mandate request was successfully processed.\n  - Failed—the revoke mandate request was not accepted.\n\n#### Update Mandate:\nIn most cases, the account details of an existing mandate cannot be updated in the Bacs schema,\nexcept by creating a new mandate. However, some very limited customer information, like name and address,\ncan be updated to the mandate without needing to revoke it first\n\n#### Mandate Status:\nAfter the customer signs the mandate, request that the mandate status service verify the mandate status.\nPossible mandate status values:\n  - Active—the mandate is successfully created. A direct debit can be sent for this mandate ID.\n  - Pending—a pending mandate means the mandate is not yet signed.\n  - Failed—the customer did not authenticate.\n  - Expired—the deadline to create the mandate passed.\n  - Revoked—the mandate is cancelled.\n\n#### Paypal Billing Agreement: \nA billing agreement is set up between PayPal and your customer.\nWhen you collect the details of a customer's billing agreement, you are able to bill that customer without requiring an authorization for each payment. \nYou can bill the customer at the same time you process their PayPal Express checkout order, which simplifies your business processes.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pts",
+                "v2",
+                "billing-agreements",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID for de-registration or cancellation of Billing Agreement"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"agreementInformation\": {\n    \"id\": \"<string>\",\n    \"eSignIndicator\": \"<string>\",\n    \"type\": \"<string>\",\n    \"frequency\": \"<string>\",\n    \"dateRevoked\": \"<string>\"\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"reconciliationId\": \"<string>\",\n    \"pausedRequestId\": \"<string>\",\n    \"transactionId\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"originalTransactionId\": \"<string>\",\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\",\n      \"thirdPartyCertificationNumber\": \"<string>\"\n    },\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  },\n  \"aggregatorInformation\": {\n    \"name\": \"<string>\",\n    \"subMerchant\": {\n      \"cardAcceptorId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"merchantCategoryCode\": \"<number>\"\n    }\n  },\n  \"consumerAuthenticationInformation\": {\n    \"authenticationTransactionContextId\": \"<string>\",\n    \"cavv\": \"<string>\",\n    \"transactionToken\": \"<string>\",\n    \"xid\": \"<string>\"\n  },\n  \"deviceInformation\": {\n    \"httpAcceptBrowserValue\": \"<string>\",\n    \"ipAddress\": \"<string>\",\n    \"userAgentBrowserValue\": \"<string>\"\n  },\n  \"installmentInformation\": {\n    \"alertPreference\": \"<string>\",\n    \"firstInstallmentDate\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"lastInstallmentDate\": \"<string>\",\n    \"maxAmount\": \"<string>\",\n    \"minAmount\": \"<string>\",\n    \"paymentType\": \"<string>\",\n    \"preferredDay\": \"<string>\",\n    \"sequence\": \"<integer>\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"postalCode\": \"<string>\",\n      \"contact\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"categoryCode\": \"<integer>\",\n    \"administrativeArea\": \"<string>\",\n    \"transactionLocalDateTime\": \"<string>\",\n    \"cancelUrl\": \"<string>\",\n    \"successUrl\": \"<string>\",\n    \"failureUrl\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"totalMaxAmount\": \"<string>\"\n    },\n    \"invoiceDetails\": {\n      \"productDescription\": \"<string>\"\n    },\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"buildingNumber\": \"<string>\",\n      \"company\": \"<string>\",\n      \"country\": \"<string>\",\n      \"county\": \"<string>\",\n      \"district\": \"<string>\",\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"middleName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"securityCode\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"tokenizedCard\": {\n      \"cryptogram\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"transactionType\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"paymentType\": {\n      \"method\": {\n        \"name\": \"<string>\"\n      },\n      \"name\": \"<string>\"\n    },\n    \"bank\": {\n      \"account\": {\n        \"number\": \"<string>\"\n      },\n      \"iban\": \"<string>\",\n      \"swiftCode\": \"<string>\",\n      \"scheme\": \"<string>\",\n      \"accountAlias\": {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    }\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"<string>\",\n    \"paymentCompletionTimeout\": \"<string>\",\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"buyerInformation\": {\n    \"dateOfBirth\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"language\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d9d6a091-4e2a-43ab-93ca-f658bc531c70",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "billing-agreements",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID for de-registration or cancellation of Billing Agreement"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agreementInformation\": {\n    \"id\": \"<string>\",\n    \"eSignIndicator\": \"<string>\",\n    \"type\": \"<string>\",\n    \"frequency\": \"<string>\",\n    \"dateRevoked\": \"<string>\"\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"reconciliationId\": \"<string>\",\n    \"pausedRequestId\": \"<string>\",\n    \"transactionId\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"originalTransactionId\": \"<string>\",\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\",\n      \"thirdPartyCertificationNumber\": \"<string>\"\n    },\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  },\n  \"aggregatorInformation\": {\n    \"name\": \"<string>\",\n    \"subMerchant\": {\n      \"cardAcceptorId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"merchantCategoryCode\": \"<number>\"\n    }\n  },\n  \"consumerAuthenticationInformation\": {\n    \"authenticationTransactionContextId\": \"<string>\",\n    \"cavv\": \"<string>\",\n    \"transactionToken\": \"<string>\",\n    \"xid\": \"<string>\"\n  },\n  \"deviceInformation\": {\n    \"httpAcceptBrowserValue\": \"<string>\",\n    \"ipAddress\": \"<string>\",\n    \"userAgentBrowserValue\": \"<string>\"\n  },\n  \"installmentInformation\": {\n    \"alertPreference\": \"<string>\",\n    \"firstInstallmentDate\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"lastInstallmentDate\": \"<string>\",\n    \"maxAmount\": \"<string>\",\n    \"minAmount\": \"<string>\",\n    \"paymentType\": \"<string>\",\n    \"preferredDay\": \"<string>\",\n    \"sequence\": \"<integer>\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"postalCode\": \"<string>\",\n      \"contact\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"categoryCode\": \"<integer>\",\n    \"administrativeArea\": \"<string>\",\n    \"transactionLocalDateTime\": \"<string>\",\n    \"cancelUrl\": \"<string>\",\n    \"successUrl\": \"<string>\",\n    \"failureUrl\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"totalMaxAmount\": \"<string>\"\n    },\n    \"invoiceDetails\": {\n      \"productDescription\": \"<string>\"\n    },\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"buildingNumber\": \"<string>\",\n      \"company\": \"<string>\",\n      \"country\": \"<string>\",\n      \"county\": \"<string>\",\n      \"district\": \"<string>\",\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"middleName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"securityCode\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"tokenizedCard\": {\n      \"cryptogram\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"transactionType\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"paymentType\": {\n      \"method\": {\n        \"name\": \"<string>\"\n      },\n      \"name\": \"<string>\"\n    },\n    \"bank\": {\n      \"account\": {\n        \"number\": \"<string>\"\n      },\n      \"iban\": \"<string>\",\n      \"swiftCode\": \"<string>\",\n      \"scheme\": \"<string>\",\n      \"accountAlias\": {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    }\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"<string>\",\n    \"paymentCompletionTimeout\": \"<string>\",\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"buyerInformation\": {\n    \"dateOfBirth\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"language\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"self\": {\n      \"href\": \"GET\",\n      \"method\": \"/pts/v2/billing/agreements/6853506446826005503878\"\n    },\n    \"status\": {\n      \"href\": \"PATCH\",\n      \"method\": \"/pts/v2/billing/agreements/6853506446826005503878\"\n    }\n  },\n  \"installmentInformation\": {\n    \"identifier\": \"1000000000\"\n  },\n  \"processorInformation\": {\n    \"responseCode\": \"00\",\n    \"transactionId\": \"2016011808153910011808153910TR\",\n    \"responseDetails\": \"100\",\n    \"reasonCode\": \"100\"\n  },\n  \"status\": \"SUCCESS\",\n  \"submitTimeUtc\": \"2023-05-29T08:57:25Z\",\n  \"agreementInformation\": {\n    \"dateSigned\": \"20181109\",\n    \"dateCreated\": \"20181009\",\n    \"dateRevoked\": \"20181009\",\n    \"encodedHtml\": \"PGh0bWw+DQo8Ym9keT4NCiANCjxwPjxiPlRoaXMgdGV4dCBpcyBib2xkPC9iPjwvcD4NCjxwPjxpPlRoaXMgdGV4dCBpcyBpdGFsaWM8L2k+PC9wPg0KPHA+VGhpcyBpczxzdWI+IHN1YnNjcmlwdDwvc3ViPiBhbmQgPHN1cD5zdXBlcnNjcmlwdDwvc3VwPjwvcD4NCiANCjwvYm9keT4NCjwvaHRtbD4NCg==\",\n    \"encodedHtmlPopup\": \"PGh0bWw+DQo8Ym9keT4NCiANCjxwPjxiPlRoaXMgdGV4dCBpcyBib2xkPC9iPjwvcD4NCjxwPjxpPlRoaXMgdGV4dCBpcyBpdGFsaWM8L2k+PC9wPg0KPHA+VGhpcyBpczxzdWI+IHN1YnNjcmlwdDwvc3ViPiBhbmQgPHN1cD5zdXBlcnNjcmlwdDwvc3VwPjwvcD4NCiANCjwvYm9keT4NCjwvaHRtbD4NCg==\",\n    \"transactionId\": \"12312731\",\n    \"url\": \"https://merchant.redirect.com/url.do?param_utf=%27%22%3C%3E%20%E6%B8%AC%E8%A9%A6%E6%B8%AC&param_url=https%3A%2F%2Fwww.abc.com&param_special=+@#%~_&sign=fdaa1df42b6260a10e2e3f1c0fc87862\"\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"TC84105-1\"\n  },\n  \"riskInformation\": {\n    \"processorResults\": {\n      \"riskScore\": \"3\"\n    }\n  },\n  \"orderInformation\": {\n    \"billTo\": {\n      \"firstName\": \"Krishna\",\n      \"lastName\": \"CYBS\",\n      \"address1\": \"201 S. Division St.\",\n      \"address2\": \"Suite A101\",\n      \"locality\": \"NPCI\",\n      \"administrativeArea\": \"MI\",\n      \"postalCode\": \"560048\",\n      \"country\": \"IN\",\n      \"email\": \"test@cybs.com\"\n    },\n    \"shipTo\": {\n      \"firstName\": \"Krishna\",\n      \"lastName\": \"CYBS\",\n      \"address1\": \"201 S. Division St.\",\n      \"address2\": \"Suite A101\",\n      \"locality\": \"NPCI\",\n      \"administrativeArea\": \"MI\",\n      \"postalCode\": \"560048\",\n      \"country\": \"IN\"\n    }\n  },\n  \"paymentInformation\": {\n    \"eWallet\": {\n      \"accountId\": \"123456\"\n    },\n    \"bank\": {\n      \"iban\": \"NL51ABNC1122334455\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ebaa5d7-8e12-4758-9f61-62352d08caa7",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "billing-agreements",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID for de-registration or cancellation of Billing Agreement"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agreementInformation\": {\n    \"id\": \"<string>\",\n    \"eSignIndicator\": \"<string>\",\n    \"type\": \"<string>\",\n    \"frequency\": \"<string>\",\n    \"dateRevoked\": \"<string>\"\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"reconciliationId\": \"<string>\",\n    \"pausedRequestId\": \"<string>\",\n    \"transactionId\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"originalTransactionId\": \"<string>\",\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\",\n      \"thirdPartyCertificationNumber\": \"<string>\"\n    },\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  },\n  \"aggregatorInformation\": {\n    \"name\": \"<string>\",\n    \"subMerchant\": {\n      \"cardAcceptorId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"merchantCategoryCode\": \"<number>\"\n    }\n  },\n  \"consumerAuthenticationInformation\": {\n    \"authenticationTransactionContextId\": \"<string>\",\n    \"cavv\": \"<string>\",\n    \"transactionToken\": \"<string>\",\n    \"xid\": \"<string>\"\n  },\n  \"deviceInformation\": {\n    \"httpAcceptBrowserValue\": \"<string>\",\n    \"ipAddress\": \"<string>\",\n    \"userAgentBrowserValue\": \"<string>\"\n  },\n  \"installmentInformation\": {\n    \"alertPreference\": \"<string>\",\n    \"firstInstallmentDate\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"lastInstallmentDate\": \"<string>\",\n    \"maxAmount\": \"<string>\",\n    \"minAmount\": \"<string>\",\n    \"paymentType\": \"<string>\",\n    \"preferredDay\": \"<string>\",\n    \"sequence\": \"<integer>\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"postalCode\": \"<string>\",\n      \"contact\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"categoryCode\": \"<integer>\",\n    \"administrativeArea\": \"<string>\",\n    \"transactionLocalDateTime\": \"<string>\",\n    \"cancelUrl\": \"<string>\",\n    \"successUrl\": \"<string>\",\n    \"failureUrl\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"totalMaxAmount\": \"<string>\"\n    },\n    \"invoiceDetails\": {\n      \"productDescription\": \"<string>\"\n    },\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"buildingNumber\": \"<string>\",\n      \"company\": \"<string>\",\n      \"country\": \"<string>\",\n      \"county\": \"<string>\",\n      \"district\": \"<string>\",\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"middleName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"securityCode\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"tokenizedCard\": {\n      \"cryptogram\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"transactionType\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"paymentType\": {\n      \"method\": {\n        \"name\": \"<string>\"\n      },\n      \"name\": \"<string>\"\n    },\n    \"bank\": {\n      \"account\": {\n        \"number\": \"<string>\"\n      },\n      \"iban\": \"<string>\",\n      \"swiftCode\": \"<string>\",\n      \"scheme\": \"<string>\",\n      \"accountAlias\": {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    }\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"<string>\",\n    \"paymentCompletionTimeout\": \"<string>\",\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"buyerInformation\": {\n    \"dateOfBirth\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"language\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2023-11-28T14:12:01Z\",\n  \"status\": \"INVALID_REQUEST\",\n  \"reason\": \"INVALID_DATA\",\n  \"message\": \"One or more fields in the request contains invalid data.\",\n  \"details\": [\n    {\n      \"field\": \"clientReferenceInformation.code\",\n      \"reason\": \"INVALID_DATA\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9bc925c1-e1c1-49d4-b951-0485716f5bf3",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "billing-agreements",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID for de-registration or cancellation of Billing Agreement"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agreementInformation\": {\n    \"id\": \"<string>\",\n    \"eSignIndicator\": \"<string>\",\n    \"type\": \"<string>\",\n    \"frequency\": \"<string>\",\n    \"dateRevoked\": \"<string>\"\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"reconciliationId\": \"<string>\",\n    \"pausedRequestId\": \"<string>\",\n    \"transactionId\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"originalTransactionId\": \"<string>\",\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\",\n      \"thirdPartyCertificationNumber\": \"<string>\"\n    },\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  },\n  \"aggregatorInformation\": {\n    \"name\": \"<string>\",\n    \"subMerchant\": {\n      \"cardAcceptorId\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"address1\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"merchantCategoryCode\": \"<number>\"\n    }\n  },\n  \"consumerAuthenticationInformation\": {\n    \"authenticationTransactionContextId\": \"<string>\",\n    \"cavv\": \"<string>\",\n    \"transactionToken\": \"<string>\",\n    \"xid\": \"<string>\"\n  },\n  \"deviceInformation\": {\n    \"httpAcceptBrowserValue\": \"<string>\",\n    \"ipAddress\": \"<string>\",\n    \"userAgentBrowserValue\": \"<string>\"\n  },\n  \"installmentInformation\": {\n    \"alertPreference\": \"<string>\",\n    \"firstInstallmentDate\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"lastInstallmentDate\": \"<string>\",\n    \"maxAmount\": \"<string>\",\n    \"minAmount\": \"<string>\",\n    \"paymentType\": \"<string>\",\n    \"preferredDay\": \"<string>\",\n    \"sequence\": \"<integer>\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"postalCode\": \"<string>\",\n      \"contact\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"categoryCode\": \"<integer>\",\n    \"administrativeArea\": \"<string>\",\n    \"transactionLocalDateTime\": \"<string>\",\n    \"cancelUrl\": \"<string>\",\n    \"successUrl\": \"<string>\",\n    \"failureUrl\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"totalMaxAmount\": \"<string>\"\n    },\n    \"invoiceDetails\": {\n      \"productDescription\": \"<string>\"\n    },\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"buildingNumber\": \"<string>\",\n      \"company\": \"<string>\",\n      \"country\": \"<string>\",\n      \"county\": \"<string>\",\n      \"district\": \"<string>\",\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"middleName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"securityCode\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"tokenizedCard\": {\n      \"cryptogram\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"transactionType\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"paymentType\": {\n      \"method\": {\n        \"name\": \"<string>\"\n      },\n      \"name\": \"<string>\"\n    },\n    \"bank\": {\n      \"account\": {\n        \"number\": \"<string>\"\n      },\n      \"iban\": \"<string>\",\n      \"swiftCode\": \"<string>\",\n      \"scheme\": \"<string>\",\n      \"accountAlias\": {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    }\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"<string>\",\n    \"paymentCompletionTimeout\": \"<string>\",\n    \"actionList\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"buyerInformation\": {\n    \"dateOfBirth\": \"<string>\",\n    \"gender\": \"<string>\",\n    \"language\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2023-11-28T14:12:01Z\",\n  \"status\": \"SERVER_ERROR\",\n  \"reason\": \"SYSTEM_ERROR\",\n  \"message\": \"General system failure.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f479023e-0048-44db-82b3-2bec4984076b",
+          "name": "Standing Instruction intimation",
+          "request": {
+            "name": "Standing Instruction intimation",
+            "description": {
+              "content": "Standing Instruction with or without Token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pts",
+                "v2",
+                "billing-agreements",
+                ":id",
+                "intimations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID for intimation of Billing Agreement"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"reconciliationId\": \"<string>\",\n    \"pausedRequestId\": \"<string>\",\n    \"transactionId\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"originalTransactionId\": \"<string>\",\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\",\n      \"thirdPartyCertificationNumber\": \"<string>\"\n    },\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  },\n  \"installmentInformation\": {\n    \"alertPreference\": \"<string>\",\n    \"firstInstallmentDate\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"lastInstallmentDate\": \"<string>\",\n    \"maxAmount\": \"<string>\",\n    \"minAmount\": \"<string>\",\n    \"paymentType\": \"<string>\",\n    \"preferredDay\": \"<string>\",\n    \"sequence\": \"<integer>\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"postalCode\": \"<string>\",\n      \"contact\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"categoryCode\": \"<integer>\",\n    \"administrativeArea\": \"<string>\",\n    \"transactionLocalDateTime\": \"<string>\",\n    \"cancelUrl\": \"<string>\",\n    \"successUrl\": \"<string>\",\n    \"failureUrl\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"totalMaxAmount\": \"<string>\"\n    },\n    \"invoiceDetails\": {\n      \"productDescription\": \"<string>\"\n    },\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"buildingNumber\": \"<string>\",\n      \"company\": \"<string>\",\n      \"country\": \"<string>\",\n      \"county\": \"<string>\",\n      \"district\": \"<string>\",\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"middleName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"securityCode\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"tokenizedCard\": {\n      \"cryptogram\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"transactionType\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"paymentType\": {\n      \"method\": {\n        \"name\": \"<string>\"\n      },\n      \"name\": \"<string>\"\n    },\n    \"bank\": {\n      \"account\": {\n        \"number\": \"<string>\"\n      },\n      \"iban\": \"<string>\",\n      \"swiftCode\": \"<string>\",\n      \"scheme\": \"<string>\",\n      \"accountAlias\": {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4de0ed02-e91f-4a90-98e5-02a30edf2a34",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "billing-agreements",
+                    ":id",
+                    "intimations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID for intimation of Billing Agreement"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"reconciliationId\": \"<string>\",\n    \"pausedRequestId\": \"<string>\",\n    \"transactionId\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"originalTransactionId\": \"<string>\",\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\",\n      \"thirdPartyCertificationNumber\": \"<string>\"\n    },\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  },\n  \"installmentInformation\": {\n    \"alertPreference\": \"<string>\",\n    \"firstInstallmentDate\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"lastInstallmentDate\": \"<string>\",\n    \"maxAmount\": \"<string>\",\n    \"minAmount\": \"<string>\",\n    \"paymentType\": \"<string>\",\n    \"preferredDay\": \"<string>\",\n    \"sequence\": \"<integer>\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"postalCode\": \"<string>\",\n      \"contact\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"categoryCode\": \"<integer>\",\n    \"administrativeArea\": \"<string>\",\n    \"transactionLocalDateTime\": \"<string>\",\n    \"cancelUrl\": \"<string>\",\n    \"successUrl\": \"<string>\",\n    \"failureUrl\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"totalMaxAmount\": \"<string>\"\n    },\n    \"invoiceDetails\": {\n      \"productDescription\": \"<string>\"\n    },\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"buildingNumber\": \"<string>\",\n      \"company\": \"<string>\",\n      \"country\": \"<string>\",\n      \"county\": \"<string>\",\n      \"district\": \"<string>\",\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"middleName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"securityCode\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"tokenizedCard\": {\n      \"cryptogram\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"transactionType\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"paymentType\": {\n      \"method\": {\n        \"name\": \"<string>\"\n      },\n      \"name\": \"<string>\"\n    },\n    \"bank\": {\n      \"account\": {\n        \"number\": \"<string>\"\n      },\n      \"iban\": \"<string>\",\n      \"swiftCode\": \"<string>\",\n      \"scheme\": \"<string>\",\n      \"accountAlias\": {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"installmentInformation\": {\n    \"identifier\": \"1000000000\"\n  },\n  \"processorInformation\": {\n    \"responseCode\": \"00\"\n  },\n  \"status\": \"SUCCESS\",\n  \"submitTimeUtc\": \"2023-05-29T08:57:25Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7af12d39-301b-469d-8057-a8020d21fd2f",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "billing-agreements",
+                    ":id",
+                    "intimations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID for intimation of Billing Agreement"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"reconciliationId\": \"<string>\",\n    \"pausedRequestId\": \"<string>\",\n    \"transactionId\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"originalTransactionId\": \"<string>\",\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\",\n      \"thirdPartyCertificationNumber\": \"<string>\"\n    },\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  },\n  \"installmentInformation\": {\n    \"alertPreference\": \"<string>\",\n    \"firstInstallmentDate\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"lastInstallmentDate\": \"<string>\",\n    \"maxAmount\": \"<string>\",\n    \"minAmount\": \"<string>\",\n    \"paymentType\": \"<string>\",\n    \"preferredDay\": \"<string>\",\n    \"sequence\": \"<integer>\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"postalCode\": \"<string>\",\n      \"contact\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"categoryCode\": \"<integer>\",\n    \"administrativeArea\": \"<string>\",\n    \"transactionLocalDateTime\": \"<string>\",\n    \"cancelUrl\": \"<string>\",\n    \"successUrl\": \"<string>\",\n    \"failureUrl\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"totalMaxAmount\": \"<string>\"\n    },\n    \"invoiceDetails\": {\n      \"productDescription\": \"<string>\"\n    },\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"buildingNumber\": \"<string>\",\n      \"company\": \"<string>\",\n      \"country\": \"<string>\",\n      \"county\": \"<string>\",\n      \"district\": \"<string>\",\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"middleName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"securityCode\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"tokenizedCard\": {\n      \"cryptogram\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"transactionType\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"paymentType\": {\n      \"method\": {\n        \"name\": \"<string>\"\n      },\n      \"name\": \"<string>\"\n    },\n    \"bank\": {\n      \"account\": {\n        \"number\": \"<string>\"\n      },\n      \"iban\": \"<string>\",\n      \"swiftCode\": \"<string>\",\n      \"scheme\": \"<string>\",\n      \"accountAlias\": {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2023-11-28T14:12:01Z\",\n  \"status\": \"INVALID_REQUEST\",\n  \"reason\": \"INVALID_DATA\",\n  \"message\": \"One or more fields in the request contains invalid data.\",\n  \"details\": [\n    {\n      \"field\": \"clientReferenceInformation.code\",\n      \"reason\": \"INVALID_DATA\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0ed9fba-8aba-4d2b-be5a-bcfc466fc1c6",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v2",
+                    "billing-agreements",
+                    ":id",
+                    "intimations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID for intimation of Billing Agreement"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"reconciliationId\": \"<string>\",\n    \"pausedRequestId\": \"<string>\",\n    \"transactionId\": \"<string>\",\n    \"comments\": \"<string>\",\n    \"partner\": {\n      \"originalTransactionId\": \"<string>\",\n      \"developerId\": \"<string>\",\n      \"solutionId\": \"<string>\",\n      \"thirdPartyCertificationNumber\": \"<string>\"\n    },\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  },\n  \"installmentInformation\": {\n    \"alertPreference\": \"<string>\",\n    \"firstInstallmentDate\": \"<string>\",\n    \"identifier\": \"<string>\",\n    \"lastInstallmentDate\": \"<string>\",\n    \"maxAmount\": \"<string>\",\n    \"minAmount\": \"<string>\",\n    \"paymentType\": \"<string>\",\n    \"preferredDay\": \"<string>\",\n    \"sequence\": \"<integer>\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"postalCode\": \"<string>\",\n      \"contact\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"categoryCode\": \"<integer>\",\n    \"administrativeArea\": \"<string>\",\n    \"transactionLocalDateTime\": \"<string>\",\n    \"cancelUrl\": \"<string>\",\n    \"successUrl\": \"<string>\",\n    \"failureUrl\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"totalMaxAmount\": \"<string>\"\n    },\n    \"invoiceDetails\": {\n      \"productDescription\": \"<string>\"\n    },\n    \"billTo\": {\n      \"address1\": \"<string>\",\n      \"address2\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"buildingNumber\": \"<string>\",\n      \"company\": \"<string>\",\n      \"country\": \"<string>\",\n      \"county\": \"<string>\",\n      \"district\": \"<string>\",\n      \"email\": \"<string>\",\n      \"firstName\": \"<string>\",\n      \"middleName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"phoneNumber\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  },\n  \"paymentInformation\": {\n    \"card\": {\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"securityCode\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"tokenizedCard\": {\n      \"cryptogram\": \"<string>\",\n      \"expirationMonth\": \"<string>\",\n      \"expirationYear\": \"<string>\",\n      \"number\": \"<string>\",\n      \"transactionType\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"paymentType\": {\n      \"method\": {\n        \"name\": \"<string>\"\n      },\n      \"name\": \"<string>\"\n    },\n    \"bank\": {\n      \"account\": {\n        \"number\": \"<string>\"\n      },\n      \"iban\": \"<string>\",\n      \"swiftCode\": \"<string>\",\n      \"scheme\": \"<string>\",\n      \"accountAlias\": {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"submitTimeUtc\": \"2023-11-28T14:12:01Z\",\n  \"status\": \"SERVER_ERROR\",\n  \"reason\": \"SYSTEM_ERROR\",\n  \"message\": \"General system failure.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "31fb23cd-e7c6-437d-b18a-24738f135bf6",
+    "name": "CyberSource Merged Spec bankAccountValidation billingAgreements API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}

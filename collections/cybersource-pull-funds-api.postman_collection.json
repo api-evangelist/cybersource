@@ -1,0 +1,1607 @@
+{
+  "item": [
+    {
+      "id": "3732dda9-d4a8-41c6-b658-56cdc58e3d18",
+      "name": "Pull Funds",
+      "description": {
+        "content": "Cybersource Payouts Funds Transfer REST API for Account Funding Transaction (AFT)\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bacb9a05-a6a9-44b1-8331-5626f8286bf6",
+          "name": "Process a Pull Funds Transfer",
+          "request": {
+            "name": "Process a Pull Funds Transfer",
+            "description": {
+              "content": "Receive funds using an Account Funding Transaction (AFT).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pts",
+                "v1",
+                "pull-funds-transfer"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-requestid",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "v-c-merchant-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "v-c-permissions",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "v-c-correlation-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "v-c-organization-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"serviceFee\": \"<string>\",\n      \"foreignExchangeFee\": \"<string>\",\n      \"surcharge\": {\n        \"amount\": \"<string>\"\n      }\n    },\n    \"isCryptoCurrencyPurchase\": \"<string>\"\n  },\n  \"processingInformation\": {\n    \"businessApplicationId\": \"<string>\",\n    \"commerceIndicator\": \"<string>\",\n    \"fundingOptions\": {\n      \"initiator\": {\n        \"originatorInitiatedTransaction\": {\n          \"originalTransactionId\": \"<string>\",\n          \"reason\": \"<string>\"\n        },\n        \"type\": \"<string>\",\n        \"storedCredentialUsed\": \"<boolean>\",\n        \"credentialStoredOnFile\": \"<boolean>\"\n      }\n    },\n    \"recurringOptions\": {\n      \"firstRecurringPayment\": \"<boolean>\"\n    },\n    \"purposeOfPayment\": \"<string>\",\n    \"payoutsOptions\": {\n      \"retrievalReferenceNumber\": \"<string>\"\n    },\n    \"languageCode\": \"<string>\",\n    \"accountVerificationCode\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"recipientInformation\": {\n    \"administrativeArea\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"personalIdentification\": {\n      \"issuingCountry\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"personalIdType\": \"<string>\"\n    },\n    \"firstName\": \"<string>\",\n    \"middleInitial\": \"<string>\",\n    \"middleName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"buildingNumber\": \"<string>\",\n    \"locality\": \"<string>\",\n    \"identificationNumber\": \"<string>\",\n    \"type\": \"<string>\",\n    \"descriptor\": \"<string>\",\n    \"accountId\": \"<string>\",\n    \"accountType\": \"<string>\",\n    \"aliasName\": \"<string>\",\n    \"countryOfBirth\": \"<string>\",\n    \"dateOfBirth\": \"<string>\",\n    \"email\": \"<string>\",\n    \"nationality\": \"<string>\",\n    \"occupation\": \"<string>\",\n    \"streetName\": \"<string>\"\n  },\n  \"senderInformation\": {\n    \"postalCode\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"middleInitial\": \"<string>\",\n    \"middleName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"locality\": \"<string>\",\n    \"administrativeArea\": \"<string>\",\n    \"country\": \"<string>\",\n    \"paymentInformation\": {\n      \"card\": {\n        \"type\": \"<string>\",\n        \"securityCode\": \"<string>\",\n        \"number\": \"<string>\",\n        \"expirationMonth\": \"<string>\",\n        \"expirationYear\": \"<string>\"\n      },\n      \"tokenizedCard\": {\n        \"cryptogram\": \"<string>\",\n        \"expirationMonth\": \"<string>\",\n        \"expirationYear\": \"<string>\",\n        \"number\": \"<string>\",\n        \"securityCode\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      \"customer\": {\n        \"id\": \"<string>\"\n      },\n      \"paymentInstrument\": {\n        \"id\": \"<string>\"\n      },\n      \"instrumentIdentifier\": {\n        \"id\": \"<string>\"\n      },\n      \"accountType\": \"<string>\"\n    },\n    \"consumerAuthentication\": {\n      \"cavv\": \"<string>\",\n      \"strongAuthentication\": {\n        \"lowValueExemptionIndicator\": \"<string>\",\n        \"riskAnalysisExemptionIndicator\": \"<string>\",\n        \"trustedMerchantExemptionIndicator\": \"<string>\",\n        \"secureCorporatePaymentIndicator\": \"<string>\",\n        \"delegatedAuthenticationExemptionIndicator\": \"<string>\"\n      }\n    },\n    \"personalIdentification\": {\n      \"issuingCountry\": \"<string>\",\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"personalIdType\": \"<string>\"\n    },\n    \"referenceNumber\": \"<string>\",\n    \"account\": {\n      \"fundsSource\": \"<string>\",\n      \"number\": \"<string>\"\n    },\n    \"aliasName\": \"<string>\",\n    \"countryOfBirth\": \"<string>\",\n    \"dateOfBirth\": \"<string>\",\n    \"email\": \"<string>\",\n    \"name\": \"<string>\",\n    \"nationality\": \"<string>\",\n    \"occupation\": \"<string>\",\n    \"phoneNumber\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"buyerInformation\": {\n    \"vatRegistrationNumber\": \"<string>\"\n  },\n  \"aggregatorInformation\": {\n    \"aggregatorId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"subMerchant\": {\n      \"id\": \"<string>\"\n    },\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"state\": \"<string>\",\n    \"streetAddress\": \"<string>\"\n  },\n  \"merchantInformation\": {\n    \"merchantDescriptor\": {\n      \"address1\": \"<string>\",\n      \"administrativeArea\": \"<string>\",\n      \"contact\": \"<string>\",\n      \"country\": \"<string>\",\n      \"county\": \"<string>\",\n      \"customerServicePhoneNumber\": \"<string>\",\n      \"locality\": \"<string>\",\n      \"name\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "81b3b939-74ca-427b-b03e-6afc9f1247ac",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v1",
+                    "pull-funds-transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"33557799\",\n    \"applicationName\": \"EXAMPLE API\",\n    \"applicationVersion\": \"V1\",\n    \"applicationUser\": \"example_user\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"53.00\",\n      \"currency\": \"USD\"\n    }\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"INTERNET\",\n    \"businessApplicationId\": \"WT\",\n    \"purposeOfPayment\": \"example\"\n  },\n  \"recipientInformation\": {\n    \"administrativeArea\": \"TX\",\n    \"country\": \"US\",\n    \"firstName\": \"Jennifer\",\n    \"middleInitial\": \"M\",\n    \"lastName\": \"Doe\",\n    \"identificationNumber\": \"1234567890\",\n    \"type\": \"I\",\n    \"descriptor\": \"Jennifer1234\",\n    \"address1\": \"123 Main St\",\n    \"address2\": \"Suite 4000\"\n  },\n  \"senderInformation\": {\n    \"postalCode\": \"94440\",\n    \"firstName\": \"John\",\n    \"middleInitial\": \"A\",\n    \"lastName\": \"Doe\",\n    \"address1\": \"567 Paseo Padre Boulevard\",\n    \"address2\": \"Apt 4\",\n    \"locality\": \"Foster City\",\n    \"administrativeArea\": \"CA\",\n    \"country\": \"US\",\n    \"paymentInformation\": {\n      \"card\": {\n        \"type\": \"001\",\n        \"securityCode\": \"123\",\n        \"number\": \"4111111111111111\",\n        \"expirationMonth\": \"12\",\n        \"expirationYear\": \"2035\"\n      },\n      \"accountType\": \"30\"\n    },\n    \"personalIdentification\": {\n      \"issuingCountry\": \"US\",\n      \"type\": \"TXIN\",\n      \"personalIdType\": \"I\"\n    },\n    \"referenceNumber\": \"123456\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"_links\": {\n    \"refund\": {\n      \"href\": \"/pts/v1/pull-funds-transfer/6668885718936344401953/refund\",\n      \"method\": \"POST\"\n    },\n    \"reversal\": {\n      \"href\": \"/pts/v1/pull-funds-transfer/6668885718936344401953/reversal\",\n      \"method\": \"POST\"\n    },\n    \"self\": {\n      \"method\": \"GET\",\n      \"href\": \"/pts/v1/pull-funds-transfer/6668885718936344401953\"\n    }\n  },\n  \"processorInformation\": {\n    \"approvalCode\": \"98765X\",\n    \"transactionId\": \"393209441134856\",\n    \"systemTraceAuditNumber\": \"572474\",\n    \"responseCode\": \"5\"\n  },\n  \"status\": \"AUTHORIZED\",\n  \"submitTimeUtc\": \"2022-10-27T16:36:12Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "405bf4e7-5eb8-4ef7-9eb2-9db48170c6ee",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v1",
+                    "pull-funds-transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"33557799\",\n    \"applicationName\": \"EXAMPLE API\",\n    \"applicationVersion\": \"V1\",\n    \"applicationUser\": \"example_user\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"53.00\",\n      \"currency\": \"USD\"\n    }\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"INTERNET\",\n    \"businessApplicationId\": \"WT\",\n    \"purposeOfPayment\": \"example\"\n  },\n  \"recipientInformation\": {\n    \"administrativeArea\": \"TX\",\n    \"country\": \"US\",\n    \"firstName\": \"Jennifer\",\n    \"middleInitial\": \"M\",\n    \"lastName\": \"Doe\",\n    \"identificationNumber\": \"1234567890\",\n    \"type\": \"I\",\n    \"descriptor\": \"Jennifer1234\",\n    \"address1\": \"123 Main St\",\n    \"address2\": \"Suite 4000\"\n  },\n  \"senderInformation\": {\n    \"postalCode\": \"94440\",\n    \"firstName\": \"John\",\n    \"middleInitial\": \"A\",\n    \"lastName\": \"Doe\",\n    \"address1\": \"567 Paseo Padre Boulevard\",\n    \"address2\": \"Apt 4\",\n    \"locality\": \"Foster City\",\n    \"administrativeArea\": \"CA\",\n    \"country\": \"US\",\n    \"paymentInformation\": {\n      \"card\": {\n        \"type\": \"001\",\n        \"securityCode\": \"123\",\n        \"number\": \"4111111111111111\",\n        \"expirationMonth\": \"12\",\n        \"expirationYear\": \"2035\"\n      },\n      \"accountType\": \"30\"\n    },\n    \"personalIdentification\": {\n      \"issuingCountry\": \"US\",\n      \"type\": \"TXIN\",\n      \"personalIdType\": \"I\"\n    },\n    \"referenceNumber\": \"123456\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"stringstringstringst\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2929afd1-7671-46f3-af31-9947d2aca287",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v1",
+                    "pull-funds-transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"33557799\",\n    \"applicationName\": \"EXAMPLE API\",\n    \"applicationVersion\": \"V1\",\n    \"applicationUser\": \"example_user\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"53.00\",\n      \"currency\": \"USD\"\n    }\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"INTERNET\",\n    \"businessApplicationId\": \"WT\",\n    \"purposeOfPayment\": \"example\"\n  },\n  \"recipientInformation\": {\n    \"administrativeArea\": \"TX\",\n    \"country\": \"US\",\n    \"firstName\": \"Jennifer\",\n    \"middleInitial\": \"M\",\n    \"lastName\": \"Doe\",\n    \"identificationNumber\": \"1234567890\",\n    \"type\": \"I\",\n    \"descriptor\": \"Jennifer1234\",\n    \"address1\": \"123 Main St\",\n    \"address2\": \"Suite 4000\"\n  },\n  \"senderInformation\": {\n    \"postalCode\": \"94440\",\n    \"firstName\": \"John\",\n    \"middleInitial\": \"A\",\n    \"lastName\": \"Doe\",\n    \"address1\": \"567 Paseo Padre Boulevard\",\n    \"address2\": \"Apt 4\",\n    \"locality\": \"Foster City\",\n    \"administrativeArea\": \"CA\",\n    \"country\": \"US\",\n    \"paymentInformation\": {\n      \"card\": {\n        \"type\": \"001\",\n        \"securityCode\": \"123\",\n        \"number\": \"4111111111111111\",\n        \"expirationMonth\": \"12\",\n        \"expirationYear\": \"2035\"\n      },\n      \"accountType\": \"30\"\n    },\n    \"personalIdentification\": {\n      \"issuingCountry\": \"US\",\n      \"type\": \"TXIN\",\n      \"personalIdType\": \"I\"\n    },\n    \"referenceNumber\": \"123456\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"stringstringstringst\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "310a9277-4d34-414b-8c95-525272320136",
+              "name": "Not Found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v1",
+                    "pull-funds-transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"33557799\",\n    \"applicationName\": \"EXAMPLE API\",\n    \"applicationVersion\": \"V1\",\n    \"applicationUser\": \"example_user\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"53.00\",\n      \"currency\": \"USD\"\n    }\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"INTERNET\",\n    \"businessApplicationId\": \"WT\",\n    \"purposeOfPayment\": \"example\"\n  },\n  \"recipientInformation\": {\n    \"administrativeArea\": \"TX\",\n    \"country\": \"US\",\n    \"firstName\": \"Jennifer\",\n    \"middleInitial\": \"M\",\n    \"lastName\": \"Doe\",\n    \"identificationNumber\": \"1234567890\",\n    \"type\": \"I\",\n    \"descriptor\": \"Jennifer1234\",\n    \"address1\": \"123 Main St\",\n    \"address2\": \"Suite 4000\"\n  },\n  \"senderInformation\": {\n    \"postalCode\": \"94440\",\n    \"firstName\": \"John\",\n    \"middleInitial\": \"A\",\n    \"lastName\": \"Doe\",\n    \"address1\": \"567 Paseo Padre Boulevard\",\n    \"address2\": \"Apt 4\",\n    \"locality\": \"Foster City\",\n    \"administrativeArea\": \"CA\",\n    \"country\": \"US\",\n    \"paymentInformation\": {\n      \"card\": {\n        \"type\": \"001\",\n        \"securityCode\": \"123\",\n        \"number\": \"4111111111111111\",\n        \"expirationMonth\": \"12\",\n        \"expirationYear\": \"2035\"\n      },\n      \"accountType\": \"30\"\n    },\n    \"personalIdentification\": {\n      \"issuingCountry\": \"US\",\n      \"type\": \"TXIN\",\n      \"personalIdType\": \"I\"\n    },\n    \"referenceNumber\": \"123456\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"stringstringstringst\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f843435-f6d5-4e92-a7a5-81de2f145bf6",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v1",
+                    "pull-funds-transfer"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientReferenceInformation\": {\n    \"code\": \"33557799\",\n    \"applicationName\": \"EXAMPLE API\",\n    \"applicationVersion\": \"V1\",\n    \"applicationUser\": \"example_user\"\n  },\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"53.00\",\n      \"currency\": \"USD\"\n    }\n  },\n  \"processingInformation\": {\n    \"commerceIndicator\": \"INTERNET\",\n    \"businessApplicationId\": \"WT\",\n    \"purposeOfPayment\": \"example\"\n  },\n  \"recipientInformation\": {\n    \"administrativeArea\": \"TX\",\n    \"country\": \"US\",\n    \"firstName\": \"Jennifer\",\n    \"middleInitial\": \"M\",\n    \"lastName\": \"Doe\",\n    \"identificationNumber\": \"1234567890\",\n    \"type\": \"I\",\n    \"descriptor\": \"Jennifer1234\",\n    \"address1\": \"123 Main St\",\n    \"address2\": \"Suite 4000\"\n  },\n  \"senderInformation\": {\n    \"postalCode\": \"94440\",\n    \"firstName\": \"John\",\n    \"middleInitial\": \"A\",\n    \"lastName\": \"Doe\",\n    \"address1\": \"567 Paseo Padre Boulevard\",\n    \"address2\": \"Apt 4\",\n    \"locality\": \"Foster City\",\n    \"administrativeArea\": \"CA\",\n    \"country\": \"US\",\n    \"paymentInformation\": {\n      \"card\": {\n        \"type\": \"001\",\n        \"securityCode\": \"123\",\n        \"number\": \"4111111111111111\",\n        \"expirationMonth\": \"12\",\n        \"expirationYear\": \"2035\"\n      },\n      \"accountType\": \"30\"\n    },\n    \"personalIdentification\": {\n      \"issuingCountry\": \"US\",\n      \"type\": \"TXIN\",\n      \"personalIdType\": \"I\"\n    },\n    \"referenceNumber\": \"123456\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"stringstringstringst\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89abc5d6-f92b-4619-9e83-5508c3774ca6",
+          "name": "Process a Pull Funds Reversal",
+          "request": {
+            "name": "Process a Pull Funds Reversal",
+            "description": {
+              "content": "Reverse an Account Funding Transaction (AFT).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pts",
+                "v1",
+                "pull-funds-transfer",
+                ":id",
+                "reversal"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The transaction id of a previous Account Funding Transaction.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-requestid",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "v-c-merchant-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "v-c-permissions",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "v-c-correlation-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "v-c-organization-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reversalInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\"\n    }\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8e52089f-b056-4756-a5f3-7031bbb6e78b",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v1",
+                    "pull-funds-transfer",
+                    ":id",
+                    "reversal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The transaction id of a previous Account Funding Transaction.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reversalInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"53.00\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"processorInformation\": {\n    \"responseCode\": \"5\",\n    \"approvalCode\": \"98765X\",\n    \"transactionId\": \"858133930771324\",\n    \"systemTraceAuditNumber\": \"572474\"\n  },\n  \"_links\": {\n    \"self\": {\n      \"method\": \"GET\",\n      \"href\": \"/pts/v1/pull-funds-transfer/6668886748826345201953\"\n    }\n  },\n  \"status\": \"REVERSED\",\n  \"submitTimeUtc\": \"2022-10-27T16:37:55Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16fd0300-585f-4623-b764-c811a0e11c1b",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v1",
+                    "pull-funds-transfer",
+                    ":id",
+                    "reversal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The transaction id of a previous Account Funding Transaction.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reversalInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"53.00\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"stringstringstringst\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92cd20c0-5d0a-4261-bc59-9858b8050119",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v1",
+                    "pull-funds-transfer",
+                    ":id",
+                    "reversal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The transaction id of a previous Account Funding Transaction.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reversalInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"53.00\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"stringstringstringst\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "036ab453-9bb9-4136-a082-5754c0f30a97",
+              "name": "Not Found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v1",
+                    "pull-funds-transfer",
+                    ":id",
+                    "reversal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The transaction id of a previous Account Funding Transaction.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reversalInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"53.00\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"stringstringstringst\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71e9892a-0cde-41d8-aca7-5de51d4d65e9",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v1",
+                    "pull-funds-transfer",
+                    ":id",
+                    "reversal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The transaction id of a previous Account Funding Transaction.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reversalInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"53.00\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"stringstringstringst\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6ed9ced-4682-4c7c-8144-05b14e166791",
+          "name": "Process a Pull Funds Refund",
+          "request": {
+            "name": "Process a Pull Funds Refund",
+            "description": {
+              "content": "Refund an Account Funding Transaction (AFT).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pts",
+                "v1",
+                "pull-funds-transfer",
+                ":id",
+                "refund"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The transaction id of a previous Account Funding Transaction.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-requestid",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "v-c-merchant-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "v-c-permissions",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "v-c-correlation-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "v-c-organization-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=utf-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/hal+json;charset=utf-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"<string>\"\n    }\n  },\n  \"clientReferenceInformation\": {\n    \"code\": \"<string>\",\n    \"applicationName\": \"<string>\",\n    \"applicationVersion\": \"<string>\",\n    \"applicationUser\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8a0e748d-c2f2-4138-8f52-55ff7fc14ca6",
+              "name": "Successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v1",
+                    "pull-funds-transfer",
+                    ":id",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The transaction id of a previous Account Funding Transaction.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"53.00\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"processorInformation\": {\n    \"transactionId\": \"351083755930580\",\n    \"systemTraceAuditNumber\": \"761442\"\n  },\n  \"_links\": {\n    \"self\": {\n      \"method\": \"GET\",\n      \"href\": \"/pts/v1/pull-funds-transfer/6668887829136346401953\"\n    }\n  },\n  \"status\": \"ACCEPTED\",\n  \"submitTimeUtc\": \"2022-10-27T16:39:43Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "685abb9a-3916-487f-bf13-8c154830f696",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v1",
+                    "pull-funds-transfer",
+                    ":id",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The transaction id of a previous Account Funding Transaction.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"53.00\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"stringstringstringst\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2566a9c-e7f4-4e8a-be37-66229545056f",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v1",
+                    "pull-funds-transfer",
+                    ":id",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The transaction id of a previous Account Funding Transaction.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"53.00\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"stringstringstringst\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2228958d-4555-4949-8fd8-1763223e114c",
+              "name": "Not Found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v1",
+                    "pull-funds-transfer",
+                    ":id",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The transaction id of a previous Account Funding Transaction.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"53.00\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"stringstringstringst\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1fa60d0-54e9-40ee-aba3-517c04cf4d00",
+              "name": "Unexpected system error or system timeout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pts",
+                    "v1",
+                    "pull-funds-transfer",
+                    ":id",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The transaction id of a previous Account Funding Transaction.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-requestid",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-merchant-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-permissions",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-correlation-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "v-c-organization-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/hal+json;charset=utf-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderInformation\": {\n    \"amountDetails\": {\n      \"totalAmount\": \"53.00\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/hal+json;charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"submitTimeUtc\": \"stringstringstringst\",\n  \"status\": \"string\",\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://apitest.cybersource.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d4e0441a-52b5-4e34-bde6-25e77f53fdcb",
+    "name": "CyberSource Merged Spec bankAccountValidation Pull Funds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html",
+      "type": "text/plain"
+    }
+  }
+}
