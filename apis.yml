@@ -71,6 +71,12 @@ apis:
   - Fraud Management
   - Decision Manager
   - Risk Management
+  - Machine-Learning
+  - Fraud Detection
+  tags_raw:
+  - Fraud Management
+  - Decision Manager
+  - Risk Management
   - Machine Learning
   - Fraud Detection
   properties:
@@ -91,6 +97,11 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing.html
   baseURL: https://api.cybersource.com
   tags:
+  - Recurring Billing
+  - Subscription
+  - Installments
+  - Stored Credentials
+  tags_raw:
   - Recurring Billing
   - Subscriptions
   - Installments
@@ -161,6 +172,12 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/uc-intro.html
   baseURL: https://api.cybersource.com
   tags:
+  - Unified Checkout
+  - Digital Wallet
+  - Apple Pay
+  - Google Pay
+  - Buy Now Pay Later
+  tags_raw:
   - Unified Checkout
   - Digital Wallets
   - Apple Pay
@@ -253,6 +270,10 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/webhooks/developer/all/rest/webhooks.html
   baseURL: https://api.cybersource.com
   tags:
+  - Webhook
+  - Event Notifications
+  - Real-Time
+  tags_raw:
   - Webhooks
   - Event Notifications
   - Real-time
@@ -297,6 +318,10 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing.html
   baseURL: https://api.cybersource.com
   tags:
+  - Invoicing
+  - Payment Links
+  - Pay by Link
+  tags_raw:
   - Invoicing
   - Payment Links
   - Pay By Link
@@ -360,7 +385,8 @@ apis:
   humanURL: >-
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
-  tags:
+  tags: []
+  tags_raw:
   - bankAccountValidation
   properties:
   - type: OpenAPI
@@ -396,6 +422,8 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
+  - Billing Agreements
+  tags_raw:
   - billingAgreements
   properties:
   - type: OpenAPI
@@ -410,6 +438,8 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
+  - BIN Lookup
+  tags_raw:
   - Bin Lookup
   properties:
   - type: OpenAPI
@@ -427,6 +457,8 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
+  - Capture
+  tags_raw:
   - capture
   properties:
   - type: OpenAPI
@@ -518,6 +550,8 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
+  - Credit
+  tags_raw:
   - credit
   properties:
   - type: OpenAPI
@@ -537,6 +571,8 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
+  - Customers
+  tags_raw:
   - Customer
   properties:
   - type: OpenAPI
@@ -929,6 +965,8 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
+  - Order
+  tags_raw:
   - orders
   properties:
   - type: OpenAPI
@@ -1005,6 +1043,8 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
+  - Payment-Tokens
+  tags_raw:
   - payment-tokens
   properties:
   - type: OpenAPI
@@ -1026,6 +1066,8 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
+  - Payments
+  tags_raw:
   - payments
   properties:
   - type: OpenAPI
@@ -1125,6 +1167,8 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
+  - Refund
+  tags_raw:
   - refund
   properties:
   - type: OpenAPI
@@ -1224,6 +1268,8 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
+  - Reversal
+  tags_raw:
   - reversal
   properties:
   - type: OpenAPI
@@ -1270,6 +1316,8 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -1302,6 +1350,8 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
+  - Taxes
+  tags_raw:
   - taxes
   properties:
   - type: OpenAPI
@@ -1346,6 +1396,8 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
+  - Transaction Details
+  tags_raw:
   - TransactionDetails
   properties:
   - type: OpenAPI
@@ -1407,6 +1459,8 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
+  - User Management
+  tags_raw:
   - UserManagement
   properties:
   - type: OpenAPI
@@ -1452,6 +1506,8 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
+  - Void
+  tags_raw:
   - void
   properties:
   - type: OpenAPI
