@@ -7,6 +7,18 @@ description: >-
   comprehensive post-transaction reporting. The platform operates across 190+
   countries and supports card-present, card-not-present, digital wallets,
   alternative payment methods, and buy-now-pay-later integrations.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: unknown
