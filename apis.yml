@@ -1528,6 +1528,9 @@ apis:
     url: >-
       https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 common:
+  - type: CapabilityMap
+    url: capabilities/cybersource-capability-edges.yml
+    name: CyberSource Business Capability Map
   - type: AgenticAccess
     url: agentic-access/cybersource-agentic-access.yml
   - type: DomainSecurity
