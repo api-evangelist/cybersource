@@ -3,7 +3,7 @@ provider: CyberSource
 generated_by: planning/capability-mapping/scripts/classify_capabilities.py
 model: claude-opus-5
 frame:
-- Software & Technology
+- Banking & Capital Markets
 min_confidence: 0.7
 capability_model:
   source: https://github.com/vincentmakes/turbo-ea-capabilities
@@ -11,83 +11,198 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 7
+edge_count: 20
 edges:
+- tag: Decision Manager
+  spec_file: cybersource-decision-manager-api-openapi.yml
+  capability_id: BC-1400.30
+  capability_id_l1: BC-1400
+  capability_name: Fraud Detection & Investigation Management
+  confidence: 0.9
+  evidence: POST /risk/v1/decisions/{id}/marking  fraudUpdate  Fraud Marking; 'Take action on a DM post-transactional
+    case'
+  reason: Decision Manager creates fraud risk decisions, negative lists, case actions/comments and fraud
+    marking — plainly fraud detection and investigation on payment transactions.
+- tag: payments
+  spec_file: cybersource-payments-api-openapi.yml
+  capability_id: BC-1340.20
+  capability_id_l1: BC-1340
+  capability_name: Payment Processing Management
+  confidence: 0.85
+  evidence: POST /pts/v2/payments  createPayment  Process a Payment ... incrementAuth  Increment an Authorization
+    ... refreshPaymentStatus  Check a Payment Status
+  reason: Authorisation, incremental authorisation, status checks and alternative-payment sessions are
+    the vendor's core payment processing surface. Payment Processing Management is the best fit; slight
+    ambiguity with card transaction processing.
+- tag: void
+  spec_file: cybersource-void-api-openapi.yml
+  capability_id: BC-1340.20
+  capability_id_l1: BC-1340
+  capability_name: Payment Processing Management
+  confidence: 0.85
+  evidence: POST /pts/v2/payments/{id}/voids  voidPayment  Void a Payment; POST /pts/v2/captures/{id}/voids  voidCapture  Void
+    a Capture
+  reason: Voiding payments, captures, refunds and credits on a payment gateway is core payment transaction
+    processing (reversal handling), not a generic technical operation.
 - tag: Create New Webhooks
   spec_file: cybersource-create-new-webhooks-api-openapi.yml
   capability_id: BC-4270.80
   capability_id_l1: BC-4270
   capability_name: Webhook & Event Subscription Management
   confidence: 0.8
-  evidence: POST /notification-subscriptions/v2/webhooks  Create a New Webhook Subscription; POST /kms/egress/v2/keys-sym  saveSymEgressKey  Create
-    Webhook Security Keys
-  reason: Operations create outbound webhook subscriptions, list subscribable products and provision webhook
-    signing keys — the lifecycle of event subscriptions exposed to integrating developers, which the frame
-    names explicitly as Webhook & Event Subscription Management. Not merely internal callback plumbing
-    since the subscription lifecycle is the exposed product surface.
-- tag: Manage Webhooks
-  spec_file: cybersource-manage-webhooks-api-openapi.yml
-  capability_id: BC-4270.80
-  capability_id_l1: BC-4270
-  capability_name: Webhook & Event Subscription Management
+  evidence: POST /notification-subscriptions/v2/webhooks 'Create a New Webhook Subscription', 'Find Products
+    You Can Subscribe To'
+  reason: Creation of outbound webhook/event notification subscriptions (plus their signing keys) — Webhook
+    & Event Subscription Management on the developer platform side.
+- tag: Instructions
+  spec_file: cybersource-instructions-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
   confidence: 0.8
-  evidence: GET /notification-subscriptions/v2/webhooks 'Get Details On All Created Webhooks'; 'Delete
-    a Webhook Subscription'; 'Test a Webhook Configuration'
-  reason: Operations manage the lifecycle of outbound webhook subscriptions and their delivery configuration,
-    which is precisely Webhook & Event Subscription Management in the developer-platform capability.
+  evidence: POST /acp/v1/instructions  initiatePurchaseIntent  Initiate a purchase intent; PUT .../cancel  Cancel
+    a purchase intent
+  reason: Initiates, updates, cancels and confirms purchase intents and retrieves payment credentials
+    — capture and authorisation of payment instructions.
 - tag: Invoices
   spec_file: cybersource-invoices-api-openapi.yml
   capability_id: BC-200.30
   capability_id_l1: BC-200
   capability_name: Accounts Receivable Management
-  confidence: 0.75
-  evidence: POST /invoicing/v2/invoices 'Create a New Invoice'; 'Send an Invoice'; 'Cancel an Invoice';
-    'Publish an Invoice'
-  reason: Full lifecycle of customer invoices — create, send, publish, cancel — which is customer invoicing
-    under Accounts Receivable Management. Not evidently subscription-based, so the cross-industry AR capability
-    is the honest choice.
-- tag: Subscriptions
-  spec_file: cybersource-subscriptions-api-openapi.yml
-  capability_id: BC-4240
-  capability_id_l1: BC-4240
-  capability_name: Subscription Lifecycle Management
-  confidence: 0.75
-  evidence: POST /rbs/v1/subscriptions 'Create a Subscription'; 'Cancel a Subscription'; 'Suspend a Subscription';
-    'Reactivating a Suspended Subscription'; 'Update a Subscription'
-  reason: The operations perform the full in-life lifecycle of recurring subscriptions (create, update,
-    suspend, reactivate, cancel) plus attached payments, matching Subscription Lifecycle Management. Spans
-    provisioning, modification and cancellation so no single L2 is named; recurring-billing framing leaves
-    some ambiguity with BC-4250, hence 0.75.
-- tag: payments
-  spec_file: cybersource-payments-api-openapi.yml
-  capability_id: BC-4250.40
-  capability_id_l1: BC-4250
-  capability_name: Payment Collection & Dunning
+  confidence: 0.8
+  evidence: POST /invoicing/v2/invoices "Create a New Invoice"; "Send an Invoice"; "Cancel an Invoice"
+  reason: Full lifecycle of customer invoices — create, list, update, send, publish, cancel — which is
+    customer invoicing / receivables management rather than a banking-specific capability.
+- tag: Chargeback Details
+  spec_file: cybersource-chargeback-details-api-openapi.yml
+  capability_id: BC-1340.70
+  capability_id_l1: BC-1340
+  capability_name: Card Transaction Processing Management
   confidence: 0.72
-  evidence: POST /pts/v2/payments  createPayment  Process a Payment; PATCH /pts/v2/payments/{id}  incrementAuth  Increment
-    an Authorization
-  reason: Core payment authorisation and processing surface, including incremental authorisation and payment
-    status checks — a direct match to 'payment authorisation' under Payment Collection. Confidence not
-    higher because the candidate capability is framed around subscription billing rather than general
-    merchant acquiring.
+  evidence: GET /reporting/v3/chargeback-details  getChargebackDetails  'Get Chargeback Details'
+  reason: Chargeback data retrieval for card transactions; chargebacks are explicitly named in Card Transaction
+    Processing Management. Some ambiguity because the surface is a reporting read rather than chargeback
+    handling itself.
+- tag: Chargeback Summaries
+  spec_file: cybersource-chargeback-summaries-api-openapi.yml
+  capability_id: BC-1340.70
+  capability_id_l1: BC-1340
+  capability_name: Card Transaction Processing Management
+  confidence: 0.72
+  evidence: GET /reporting/v3/chargeback-summaries  getChargebackSummaries  'Get Chargeback Summaries'
+  reason: Aggregated chargeback reporting over card transactions, matching the chargeback element of Card
+    Transaction Processing Management; reporting-only nature keeps confidence moderate.
+- tag: taxes
+  spec_file: cybersource-taxes-api-openapi.yml
+  capability_id: BC-220.20
+  capability_id_l1: BC-220
+  capability_name: Indirect Tax Management
+  confidence: 0.72
+  evidence: POST /vas/v2/tax  calculateTax  Calculate Taxes; PATCH /vas/v2/tax/{id}  voidTax  Void Taxes
+  reason: The operations compute and reverse transaction-level tax on payments — sales/VAT-style indirect
+    tax calculation, which is Indirect Tax Management. Confidence moderated because there is no schema
+    detail confirming the tax types covered.
+- tag: Customer Payment Instrument
+  spec_file: cybersource-customer-payment-instrument-api-openapi.yml
+  capability_id: BC-1340
+  capability_id_l1: BC-1340
+  capability_name: Payments & Card Management
+  confidence: 0.7
+  evidence: POST /tms/v2/customers/{customerId}/payment-instruments  Create a Customer Payment Instrument
+  reason: Token Management Service CRUD over stored card/payment instruments for a customer — payment
+    credential (card) management, so Payments & Card Management at L1; no L2 cleanly covers stored-credential
+    tokenisation, so left null.
+- tag: Flex API
+  spec_file: cybersource-flex-api-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.7
+  evidence: POST /flex/v2/sessions  generateFlexAPICaptureContext  Establish a Payment Session with a
+    Capture Context
+  reason: Establishes a secure payment session/capture context used to collect payment credentials for
+    a transaction — payment instruction capture at the front of payment initiation.
+- tag: Instrument Identifier
+  spec_file: cybersource-instrument-identifier-api-openapi.yml
+  capability_id: BC-1340
+  capability_id_l1: BC-1340
+  capability_name: Payments & Card Management
+  confidence: 0.7
+  evidence: POST /tms/v1/instrumentidentifiers/{instrumentIdentifierId}/enrollment  Enroll an Instrument
+    Identifier for Payment Network Token
+  reason: Manages tokenised card identifiers and enrolment for payment network tokens — card credential/token
+    management within Payments & Card Management; no L2 specifically covers tokenisation.
+- tag: Manage Webhooks
+  spec_file: cybersource-manage-webhooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.7
+  evidence: GET /notification-subscriptions/v2/webhooks "Get Details On All Created Webhooks"; DELETE
+    "Delete a Webhook Subscription"; "Test a Webhook Configuration"
+  reason: Purely platform plumbing for outbound event notification subscriptions; the only honest fit
+    is the developer-platform webhook subscription capability, not any payments capability.
 - tag: Payment Instrument
   spec_file: cybersource-payment-instrument-api-openapi.yml
-  capability_id: BC-4250.40
-  capability_id_l1: BC-4250
-  capability_name: Payment Collection & Dunning
+  capability_id: BC-1340
+  capability_id_l1: BC-1340
+  capability_name: Payments & Card Management
   confidence: 0.7
   evidence: POST /tms/v1/paymentinstruments  postPaymentInstrument  Create a Payment Instrument
-  reason: Full CRUD over stored payment instruments (tokenised cards/bank accounts) in the Token Management
-    Service. That is literally 'Payment-method management' as described under BC-4250.40 Payment Collection
-    & Dunning; confidence held at 0.7 because the frame's capability is subscription-billing-flavoured
-    while this vendor serves any payment acceptance context.
+  reason: 'CRUD over stored payment instruments in the Token Management Service (vendor description: ''payment
+    tokenization''). This is payment/card credential management within Payments & Card Management, but
+    the evidence does not pin a single sub-capability (initiation vs card issuance).'
+- tag: Payouts
+  spec_file: cybersource-payouts-api-openapi.yml
+  capability_id: BC-1340.20
+  capability_id_l1: BC-1340
+  capability_name: Payment Processing Management
+  confidence: 0.7
+  evidence: POST /pts/v2/payouts  octCreatePayment  Process a Payout
+  reason: Processes a payout (OCT) through the vendor's payment processing service; vendor description
+    confirms 'payouts'. Sits in Payments & Card Management, processing/routing of the payment.
+- tag: Pull Funds
+  spec_file: cybersource-pull-funds-api-openapi.yml
+  capability_id: BC-1340.20
+  capability_id_l1: BC-1340
+  capability_name: Payment Processing Management
+  confidence: 0.7
+  evidence: POST /pts/v1/pull-funds-transfer  createPullFundsTransfer  Process a Pull Funds Transfer
+  reason: Processing account funding (pull) transfers plus reversals and refunds is payment transaction
+    processing on the card/payment rails.
+- tag: Push Funds
+  spec_file: cybersource-push-funds-api-openapi.yml
+  capability_id: BC-1340.20
+  capability_id_l1: BC-1340
+  capability_name: Payment Processing Management
+  confidence: 0.7
+  evidence: POST /pts/v1/push-funds-transfer  createPushFundsTransfer  Process a Push Funds Transfer
+  reason: Processes a push funds (credit) transfer over the payment network — payment processing within
+    Payments & Card Management.
 - tag: capture
   spec_file: cybersource-capture-api-openapi.yml
-  capability_id: BC-4250.40
-  capability_id_l1: BC-4250
-  capability_name: Payment Collection & Dunning
+  capability_id: BC-1340.70
+  capability_id_l1: BC-1340
+  capability_name: Card Transaction Processing Management
   confidence: 0.7
   evidence: POST /pts/v2/payments/{id}/captures  capturePayment  Capture a Payment
-  reason: Capturing a previously authorised payment is the settlement leg of payment collection; BC-4250.40
-    explicitly covers 'payment authorisation' and collection. Confidence tempered because the candidate
-    frame casts this as subscription billing while CyberSource serves any merchant payment flow.
+  reason: Capture of a previously authorised card transaction is core acquirer-side card transaction processing.
+    L2 choice between card transaction processing and general payment processing is the residual uncertainty.
+- tag: refund
+  spec_file: cybersource-refund-api-openapi.yml
+  capability_id: BC-1340.70
+  capability_id_l1: BC-1340
+  capability_name: Card Transaction Processing Management
+  confidence: 0.7
+  evidence: POST /pts/v2/payments/{id}/refunds  refundPayment  Refund a Payment
+  reason: Refunding payments and captures is post-transaction handling on the acquirer/processor side,
+    alongside chargeback-type flows in card transaction processing.
+- tag: reversal
+  spec_file: cybersource-reversal-api-openapi.yml
+  capability_id: BC-1340.70
+  capability_id_l1: BC-1340
+  capability_name: Card Transaction Processing Management
+  confidence: 0.7
+  evidence: POST /pts/v2/payments/{id}/reversals  authReversal  Process an Authorization Reversal
+  reason: Authorisation reversal and timeout reversal are card authorisation lifecycle operations, squarely
+    card transaction processing; residual uncertainty only on L2 versus general payment processing.
