@@ -332,7 +332,7 @@ apis:
   tags:
   - Invoicing
   - Payment Links
-  - Pay by Link
+  - Pay By Link
   tags_raw:
   - Invoicing
   - Payment Links
@@ -433,8 +433,7 @@ apis:
   humanURL: >-
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
-  tags:
-  - Billing Agreements
+  tags: []
   tags_raw:
   - billingAgreements
   properties:
@@ -450,7 +449,7 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
-  - BIN Lookup
+  - Bin Lookup
   tags_raw:
   - Bin Lookup
   properties:
@@ -1055,7 +1054,7 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
-  - Payment-Tokens
+  - payment-tokens
   tags_raw:
   - payment-tokens
   properties:
@@ -1179,7 +1178,7 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
-  - Refund
+  - refund
   tags_raw:
   - refund
   properties:
@@ -1280,7 +1279,7 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
-  - Reversal
+  - reversal
   tags_raw:
   - reversal
   properties:
@@ -1408,7 +1407,7 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
-  - Transaction Details
+  - TransactionDetails
   tags_raw:
   - TransactionDetails
   properties:
@@ -1471,7 +1470,7 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
-  - User Management
+  - UserManagement
   tags_raw:
   - UserManagement
   properties:
