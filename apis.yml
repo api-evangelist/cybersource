@@ -332,7 +332,7 @@ apis:
   tags:
   - Invoicing
   - Payment Links
-  - Pay By Link
+  - Pay by Link
   tags_raw:
   - Invoicing
   - Payment Links
@@ -397,7 +397,8 @@ apis:
   humanURL: >-
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
-  tags: []
+  tags:
+  - Bank Account Validation
   tags_raw:
   - bankAccountValidation
   properties:
@@ -433,7 +434,8 @@ apis:
   humanURL: >-
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
-  tags: []
+  tags:
+  - Billing Agreements
   tags_raw:
   - billingAgreements
   properties:
@@ -449,7 +451,7 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
-  - Bin Lookup
+  - BIN Lookup
   tags_raw:
   - Bin Lookup
   properties:
@@ -1054,7 +1056,7 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
-  - payment-tokens
+  - Payment-Tokens
   tags_raw:
   - payment-tokens
   properties:
@@ -1178,7 +1180,7 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
-  - refund
+  - Refund
   tags_raw:
   - refund
   properties:
@@ -1279,7 +1281,7 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
-  - reversal
+  - Reversal
   tags_raw:
   - reversal
   properties:
@@ -1407,7 +1409,7 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
-  - TransactionDetails
+  - Transaction Details
   tags_raw:
   - TransactionDetails
   properties:
@@ -1470,7 +1472,7 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
-  - UserManagement
+  - User Management
   tags_raw:
   - UserManagement
   properties:
