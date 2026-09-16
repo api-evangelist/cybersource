@@ -1328,6 +1328,8 @@ apis:
   - type: Documentation
     url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 common:
+- type: Website
+  url: https://cybersource.com
 - type: CapabilityMap
   url: capabilities/cybersource-capability-edges.yml
   name: CyberSource Business Capability Map
