@@ -46,9 +46,10 @@ tags:
 - Financial Technology
 apis:
 - name: CyberSource Token Management Service (TMS) API
-  description: Securely tokenizes, stores, and manages customer payment credentials and card data. Supports
-    instrument identifiers, payment instruments, customer profiles, network tokens, and cryptograms. Reduces
-    PCI DSS scope by replacing sensitive card data with non-sensitive tokens and supports stored credentials
+  description: >-
+    Securely tokenizes, stores, and manages customer payment credentials and card data. Supports instrument
+    identifiers, payment instruments, customer profiles, network tokens, and cryptograms. Reduces PCI
+    DSS scope by replacing sensitive card data with non-sensitive tokens and supports stored credentials
     for recurring and one-click payment flows.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms.html
@@ -67,8 +68,9 @@ apis:
     url: https://developer.cybersource.com/
     email: ''
 - name: CyberSource Decision Manager API
-  description: Provides AI-powered fraud detection and risk management using machine learning models trained
-    on Visa and CyberSource transaction data. Offers real-time fraud scoring, custom rules, device fingerprinting,
+  description: >-
+    Provides AI-powered fraud detection and risk management using machine learning models trained on Visa
+    and CyberSource transaction data. Offers real-time fraud scoring, custom rules, device fingerprinting,
     account takeover protection, case management, and post-transactional review workflows. Supports list
     management, fraud marking, and hierarchical organization-level rules.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
@@ -94,12 +96,14 @@ apis:
     url: https://developer.cybersource.com/
     email: ''
 - name: CyberSource Recurring Billing API
-  description: Enables subscription management and automated recurring payments without storing sensitive
-    card data. Create and manage subscription plans, customer billing agreements, and on-demand charges.
-    Supports trial periods, installment billing, standing orders, and integrates with Token Management
-    Service for secure credential storage.
+  description: >-
+    Enables subscription management and automated recurring payments without storing sensitive card data.
+    Create and manage subscription plans, customer billing agreements, and on-demand charges. Supports
+    trial periods, installment billing, standing orders, and integrates with Token Management Service
+    for secure credential storage.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing.html
   baseURL: https://api.cybersource.com
   tags:
   - Recurring Billing
@@ -113,18 +117,21 @@ apis:
   - Stored Credentials
   properties:
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/recurring-billing/developer/all/rest/recurring-billing.html
   contact:
   - FN: CyberSource Developer Support
     url: https://developer.cybersource.com/
     email: ''
 - name: CyberSource Payouts API
-  description: Delivers funds directly to recipients via eligible Visa and Mastercard debit accounts using
-    Account Funding Transactions (AFT) and Original Credit Transactions (OCT). Supports use cases including
-    gig economy worker payments, insurance disbursements, gaming winnings, and marketplace seller payouts
+  description: >-
+    Delivers funds directly to recipients via eligible Visa and Mastercard debit accounts using Account
+    Funding Transactions (AFT) and Original Credit Transactions (OCT). Supports use cases including gig
+    economy worker payments, insurance disbursements, gaming winnings, and marketplace seller payouts
     across global markets.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payouts/developer/all/rest/payouts.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payouts/developer/all/rest/payouts.html
   baseURL: https://api.cybersource.com
   tags:
   - Payouts
@@ -134,18 +141,20 @@ apis:
   - AFT
   properties:
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payouts/developer/all/rest/payouts.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payouts/developer/all/rest/payouts.html
   contact:
   - FN: CyberSource Developer Support
     url: https://developer.cybersource.com/
     email: ''
 - name: CyberSource Flex Microform API
-  description: PCI DSS-compliant hosted payment field solution that replaces sensitive card input fields
-    with secure CyberSource-hosted iFrame components. Encrypts card data on the customer's device before
-    transmission, generates transient tokens for server-side processing, and significantly reduces PCI
-    scope for merchants.
+  description: >-
+    PCI DSS-compliant hosted payment field solution that replaces sensitive card input fields with secure
+    CyberSource-hosted iFrame components. Encrypts card data on the customer's device before transmission,
+    generates transient tokens for server-side processing, and significantly reduces PCI scope for merchants.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/microform-integ-v2.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/microform-integ-v2.html
   baseURL: https://api.cybersource.com
   tags:
   - Flex Microform
@@ -155,18 +164,21 @@ apis:
   - Secure Acceptance
   properties:
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/microform-integ-v2.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/microform-integ-v2.html
   contact:
   - FN: CyberSource Developer Support
     url: https://developer.cybersource.com/
     email: ''
 - name: CyberSource Unified Checkout API
-  description: Pre-built, customizable payment acceptance widget supporting multiple payment methods from
-    a single integration. Supports credit/debit cards, digital wallets (Apple Pay, Google Pay, Click to
-    Pay), buy-now-pay-later providers, and alternative payment methods. Reduces development burden and
-    accelerates time-to-live for multi-method checkout flows.
+  description: >-
+    Pre-built, customizable payment acceptance widget supporting multiple payment methods from a single
+    integration. Supports credit/debit cards, digital wallets (Apple Pay, Google Pay, Click to Pay), buy-now-pay-later
+    providers, and alternative payment methods. Reduces development burden and accelerates time-to-live
+    for multi-method checkout flows.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/uc-intro.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/uc-intro.html
   baseURL: https://api.cybersource.com
   tags:
   - Unified Checkout
@@ -182,18 +194,21 @@ apis:
   - Buy Now Pay Later
   properties:
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/uc-intro.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/digital-accept-flex/developer/all/rest/digital-accept-flex/uc-intro.html
   contact:
   - FN: CyberSource Developer Support
     url: https://developer.cybersource.com/
     email: ''
 - name: CyberSource Payer Authentication (3D Secure) API
-  description: Implements 3D Secure 2.x authentication to reduce fraud liability and enable frictionless
-    payment experiences. Checks enrollment, validates payer authentication responses, and integrates with
-    issuer bank authentication flows. Helps merchants shift chargeback liability and satisfy Strong Customer
+  description: >-
+    Implements 3D Secure 2.x authentication to reduce fraud liability and enable frictionless payment
+    experiences. Checks enrollment, validates payer authentication responses, and integrates with issuer
+    bank authentication flows. Helps merchants shift chargeback liability and satisfy Strong Customer
     Authentication (SCA) requirements in regulated markets.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payer-authentication/developer/all/rest/payer-auth.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payer-authentication/developer/all/rest/payer-auth.html
   baseURL: https://api.cybersource.com
   tags:
   - Payer Authentication
@@ -203,18 +218,21 @@ apis:
   - Chargeback Liability
   properties:
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payer-authentication/developer/all/rest/payer-auth.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payer-authentication/developer/all/rest/payer-auth.html
   contact:
   - FN: CyberSource Developer Support
     url: https://developer.cybersource.com/
     email: ''
 - name: CyberSource Reporting API
-  description: Generates financial, reconciliation, and operational reports covering transaction history,
-    settlement data, chargebacks, and OCT activity. Supports on-demand report generation, scheduled report
-    subscriptions, and report download by date range. Provides data for accounting reconciliation, business
-    intelligence, and compliance requirements.
+  description: >-
+    Generates financial, reconciliation, and operational reports covering transaction history, settlement
+    data, chargebacks, and OCT activity. Supports on-demand report generation, scheduled report subscriptions,
+    and report download by date range. Provides data for accounting reconciliation, business intelligence,
+    and compliance requirements.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/reporting/developer/all/rest/reporting.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/reporting/developer/all/rest/reporting.html
   baseURL: https://api.cybersource.com
   tags:
   - Reporting
@@ -223,18 +241,20 @@ apis:
   - Analytics
   properties:
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/reporting/developer/all/rest/reporting.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/reporting/developer/all/rest/reporting.html
   contact:
   - FN: CyberSource Developer Support
     url: https://developer.cybersource.com/
     email: ''
 - name: CyberSource Transaction Search API
-  description: Enables merchants to query, filter, and retrieve transaction records by various criteria
-    including date range, amount, card type, merchant reference number, and transaction status. Supports
-    both individual transaction detail retrieval and batch queries for operational monitoring and customer
-    service workflows.
+  description: >-
+    Enables merchants to query, filter, and retrieve transaction records by various criteria including
+    date range, amount, card type, merchant reference number, and transaction status. Supports both individual
+    transaction detail retrieval and batch queries for operational monitoring and customer service workflows.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/reporting/developer/all/rest/reporting/txn-search.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/reporting/developer/all/rest/reporting/txn-search.html
   baseURL: https://api.cybersource.com
   tags:
   - Transaction Search
@@ -242,18 +262,21 @@ apis:
   - Reporting
   properties:
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/reporting/developer/all/rest/reporting/txn-search.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/reporting/developer/all/rest/reporting/txn-search.html
   contact:
   - FN: CyberSource Developer Support
     url: https://developer.cybersource.com/
     email: ''
 - name: CyberSource Webhooks API
-  description: Event-driven notification system that delivers real-time alerts for payment events, fraud
-    decisions, and system state changes to merchant-configured endpoints. Supports digital signatures
-    for payload verification, retry logic for failed deliveries, and multiple event subscription types.
-    Webhooks v2 is the current supported version following decommission of v1.
+  description: >-
+    Event-driven notification system that delivers real-time alerts for payment events, fraud decisions,
+    and system state changes to merchant-configured endpoints. Supports digital signatures for payload
+    verification, retry logic for failed deliveries, and multiple event subscription types. Webhooks v2
+    is the current supported version following decommission of v1.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/webhooks/developer/all/rest/webhooks.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/webhooks/developer/all/rest/webhooks.html
   baseURL: https://api.cybersource.com
   tags:
   - Webhook
@@ -265,18 +288,21 @@ apis:
   - Real-time
   properties:
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/webhooks/developer/all/rest/webhooks.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/webhooks/developer/all/rest/webhooks.html
   contact:
   - FN: CyberSource Developer Support
     url: https://developer.cybersource.com/
     email: ''
 - name: CyberSource Boarding API
-  description: Programmatically creates and manages hierarchical merchant account structures representing
-    business units, divisions, and sub-merchants. Enables ISOs, payment facilitators, and technology partners
-    to onboard merchants, configure product settings, and manage organizational hierarchies at scale through
+  description: >-
+    Programmatically creates and manages hierarchical merchant account structures representing business
+    units, divisions, and sub-merchants. Enables ISOs, payment facilitators, and technology partners to
+    onboard merchants, configure product settings, and manage organizational hierarchies at scale through
     REST API calls.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/account-management/developer/all/rest/account-mgmt.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/account-management/developer/all/rest/account-mgmt.html
   baseURL: https://api.cybersource.com
   tags:
   - Account Management
@@ -285,18 +311,20 @@ apis:
   - Payment Facilitators
   properties:
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/account-management/developer/all/rest/account-mgmt.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/account-management/developer/all/rest/account-mgmt.html
   contact:
   - FN: CyberSource Developer Support
     url: https://developer.cybersource.com/
     email: ''
 - name: CyberSource Invoicing API
-  description: Creates and manages payment invoices with customizable fields, due dates, and customer
-    information. Generates shareable payment links, tracks invoice status, and enables merchants to collect
-    payments via email-delivered invoices without requiring customer account creation or full checkout
-    integration.
+  description: >-
+    Creates and manages payment invoices with customizable fields, due dates, and customer information.
+    Generates shareable payment links, tracks invoice status, and enables merchants to collect payments
+    via email-delivered invoices without requiring customer account creation or full checkout integration.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing.html
   baseURL: https://api.cybersource.com
   tags:
   - Invoicing
@@ -308,18 +336,20 @@ apis:
   - Pay By Link
   properties:
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing.html
   contact:
   - FN: CyberSource Developer Support
     url: https://developer.cybersource.com/
     email: ''
 - name: CyberSource BIN Lookup API
-  description: Identifies card type, issuing bank, country of origin, and fast funds eligibility based
-    on the Bank Identification Number (BIN) extracted from payment card numbers. Helps merchants optimize
-    checkout routing decisions, apply appropriate fee structures, and support dynamic currency conversion
-    logic.
+  description: >-
+    Identifies card type, issuing bank, country of origin, and fast funds eligibility based on the Bank
+    Identification Number (BIN) extracted from payment card numbers. Helps merchants optimize checkout
+    routing decisions, apply appropriate fee structures, and support dynamic currency conversion logic.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/bin-lookup/developer/all/rest/bin-lookup.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/bin-lookup/developer/all/rest/bin-lookup.html
   baseURL: https://api.cybersource.com
   tags:
   - BIN Lookup
@@ -328,16 +358,17 @@ apis:
   - Routing
   properties:
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/bin-lookup/developer/all/rest/bin-lookup.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/bin-lookup/developer/all/rest/bin-lookup.html
   contact:
   - FN: CyberSource Developer Support
     url: https://developer.cybersource.com/
     email: ''
 - name: CyberSource Intelligent Commerce API
-  description: Unified API suite for secure, cross-network agent-initiated payments enabling seamless
-    merchant onboarding, card enrollment, and transaction management. Designed to support AI agent workflows,
-    automated payment orchestration, and programmatic commerce integrations for next-generation payment
-    scenarios.
+  description: >-
+    Unified API suite for secure, cross-network agent-initiated payments enabling seamless merchant onboarding,
+    card enrollment, and transaction management. Designed to support AI agent workflows, automated payment
+    orchestration, and programmatic commerce integrations for next-generation payment scenarios.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://developer.cybersource.com/
   baseURL: https://api.cybersource.com
@@ -355,11 +386,13 @@ apis:
     email: ''
 - aid: cybersource:cybersource-bankaccountvalidation-api
   name: CyberSource bankAccountValidation API
-  description: The Visa Bank Account Validation Service is a new standalone product designed to validate
-    customer's routing and bank account number combination for ACH transactions. Merchant's can use this
-    standalone product to validate their customer's account prior to processing an ACH transaction against
-    the customer's account to comply with Nacha's account validation mandate for Web-debit transactions.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  description: >-
+    The Visa Bank Account Validation Service is a new standalone product designed to validate customer's
+    routing and bank account number combination for ACH transactions. Merchant's can use this standalone
+    product to validate their customer's account prior to processing an ACH transaction against the customer's
+    account to comply with Nacha's account validation mandate for Web-debit transactions.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Bank Account Validation
@@ -369,13 +402,16 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-bankaccountvalidation-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-batches-api
   name: CyberSource Batches API
-  description: 'Once a batch is created its status can be checked using the status resource.
+  description: >-
+    Once a batch is created its status can be checked using the status resource.
 
-    When the batch status is COMPLETED its report can then be retrieved.'
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    When the batch status is COMPLETED its report can then be retrieved.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Batches
@@ -383,28 +419,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-batches-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
-- aid: cybersource:cybersource-billingagreements-api
-  name: CyberSource billingAgreements API
-  description: 'A billingAgreement is a stand-alone transaction that is not linked to any previous transactions.
-    It takes money from
-
-    your merchant bank account and returns it to the customer.'
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
-  baseURL: https://api.cybersource.com
-  tags:
-  - Billing Agreements
-  tags_raw:
-  - billingAgreements
-  properties:
-  - type: OpenAPI
-    url: openapi/cybersource-billingagreements-api-openapi.yml
-  - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-bin-lookup-api
   name: CyberSource Bin Lookup API
   description: The Bin Lookup API from CyberSource — 1 operation(s) for bin lookup.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - BIN Lookup
@@ -414,13 +435,16 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-bin-lookup-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-capture-api
   name: CyberSource capture API
-  description: 'When you are ready to fulfill a customer''s order and transfer funds from the customer''s
+  description: >-
+    When you are ready to fulfill a customer's order and transfer funds from the customer's
 
-    bank to your bank, capture the payment for that order.'
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    bank to your bank, capture the payment for that order.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Capture
@@ -430,11 +454,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-capture-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-chargeback-details-api
   name: CyberSource Chargeback Details API
   description: API for requesting Chargeback Details.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Chargeback Details
@@ -442,11 +468,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-chargeback-details-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-chargeback-summaries-api
   name: CyberSource Chargeback Summaries API
   description: API for requesting Chargeback Summaries.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Chargeback Summaries
@@ -454,11 +482,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-chargeback-summaries-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-conversion-details-api
   name: CyberSource Conversion Details API
   description: API for retrieving conversion data for merchant
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Conversion Details
@@ -466,11 +496,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-conversion-details-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-create-new-webhooks-api
   name: CyberSource Create New Webhooks API
   description: Create a new webhook connection
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Create New Webhooks
@@ -478,14 +510,16 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-create-new-webhooks-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-credentials-api
   name: CyberSource Credentials API
-  description: MPP (Machine Payment Protocol) token provisioning and encrypted credential generation.
-    Use these APIs to provision encrypted payment credentials for use in MPP Authorization Payment headers.
-    Accepts an instrument identifier and merchant challenge context, returns RSA-OAEP encrypted token
-    payloads.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  description: >-
+    MPP (Machine Payment Protocol) token provisioning and encrypted credential generation. Use these APIs
+    to provision encrypted payment credentials for use in MPP Authorization Payment headers. Accepts an
+    instrument identifier and merchant challenge context, returns RSA-OAEP encrypted token payloads.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Credentials
@@ -493,14 +527,17 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-credentials-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-credit-api
   name: CyberSource credit API
-  description: 'A credit is a stand-alone transaction that is not linked to any previous transactions.
-    It takes money from
+  description: >-
+    A credit is a stand-alone transaction that is not linked to any previous transactions. It takes money
+    from
 
-    your merchant bank account and returns it to the customer.'
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    your merchant bank account and returns it to the customer.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Credit
@@ -510,15 +547,18 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-credit-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-customer-api
   name: CyberSource Customer API
-  description: 'A Customer can be linked to multiple Payment Instruments and Shipping Addresses.
+  description: >-
+    A Customer can be linked to multiple Payment Instruments and Shipping Addresses.
 
     With one Payment Instrument and Shipping Address designated as the default.
 
-    It stores merchant reference information for the Customer such as email and merchant defined data.'
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    It stores merchant reference information for the Customer such as email and merchant defined data.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Customers
@@ -528,13 +568,16 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-customer-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-customer-payment-instrument-api
   name: CyberSource Customer Payment Instrument API
-  description: 'A Customer Payment Instrument is linked to a Customer and an Instrument Identifier.
+  description: >-
+    A Customer Payment Instrument is linked to a Customer and an Instrument Identifier.
 
-    It stores additional information in relation to a card number(PAN) or bank account (echeck).'
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    It stores additional information in relation to a card number(PAN) or bank account (echeck).
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Customer Payment Instrument
@@ -542,13 +585,16 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-customer-payment-instrument-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-customer-shipping-address-api
   name: CyberSource Customer Shipping Address API
-  description: 'A Customer Shipping Address is linked to a Customer.
+  description: >-
+    A Customer Shipping Address is linked to a Customer.
 
-    It stores shipping information in relation to the Customer.'
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    It stores shipping information in relation to the Customer.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Customer Shipping Address
@@ -556,11 +602,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-customer-shipping-address-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-decision-manager-api
   name: CyberSource Decision Manager API
   description: REST API for the Decision Manager Service
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Decision Manager
@@ -568,11 +616,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-decision-manager-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-device-de-association-api
   name: CyberSource Device De-Association API
   description: Remove Association of a Device.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Device De-Association
@@ -580,11 +630,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-device-de-association-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-device-search-api
   name: CyberSource Device Search API
   description: Search and Retrieve Devices.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Device Search
@@ -592,11 +644,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-device-search-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-download-dtd-api
   name: CyberSource Download DTD API
   description: API to download report DTDs
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Download DTD
@@ -604,11 +658,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-download-dtd-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-download-xsd-api
   name: CyberSource Download XSD API
   description: API to download report XSDs
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Download XSD
@@ -616,11 +672,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-download-xsd-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-emvtagdetails-api
   name: CyberSource EMVTagDetails API
   description: The EMVTagDetails API from CyberSource — 1 operation(s) for emvtagdetails.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - EMVTagDetails
@@ -628,13 +686,16 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-emvtagdetails-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-enrollment-api
   name: CyberSource Enrollment API
-  description: Card enrollment and tokenization for agentic payments. Use these APIs to register a consumer's
-    payment card, creating a tokenized reference that can be used in subsequent purchase instructions
-    and payment credential retrieval. Supports Visa, Mastercard, and American Express networks.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  description: >-
+    Card enrollment and tokenization for agentic payments. Use these APIs to register a consumer's payment
+    card, creating a tokenized reference that can be used in subsequent purchase instructions and payment
+    credential retrieval. Supports Visa, Mastercard, and American Express networks.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Enrollment
@@ -642,14 +703,16 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-enrollment-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-flex-api-api
   name: CyberSource Flex API
-  description: 'The Flex API enables merchants to securely accept customer payment information captured
-    within a server-side application using a set of APIs.
+  description: >-
+    The Flex API enables merchants to securely accept customer payment information captured within a server-side
+    application using a set of APIs.
 
-    These APIs protect your customer''s primary account number (PAN), card verification number (CVN),
-    and other payment information by embedding it within a transient token.
+    These APIs protect your customer's primary account number (PAN), card verification number (CVN), and
+    other payment information by embedding it within a transient token.
 
     This allows payment data to be stored and transported and complies with the Payment Card Industry
     Data Security Standard (PCI DSS) policies and procedures. These transient tokens can be validated
@@ -675,8 +738,9 @@ apis:
 
     An important benefit of the Flex API is managing Personal Identifiable Information (PII). You can
     set up your customer context to include all PII associated with transactions, protecting this information
-    from third parties.'
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    from third parties.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Flex API
@@ -684,14 +748,17 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-flex-api-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-instructions-api
   name: CyberSource Instructions API
-  description: Purchase intent lifecycle management for agentic payments. Use these APIs to create, update,
-    and cancel purchase intents (instructions) that define what a consumer wants to buy, including mandates,
-    order details, merchant information, and shipping. An instruction must exist before payment credentials
+  description: >-
+    Purchase intent lifecycle management for agentic payments. Use these APIs to create, update, and cancel
+    purchase intents (instructions) that define what a consumer wants to buy, including mandates, order
+    details, merchant information, and shipping. An instruction must exist before payment credentials
     can be retrieved.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Instructions
@@ -699,13 +766,16 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-instructions-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-instrument-identifier-api
   name: CyberSource Instrument Identifier API
-  description: 'An Instrument Identifier represents a unique card number(PAN) or bank account (echeck).
+  description: >-
+    An Instrument Identifier represents a unique card number(PAN) or bank account (echeck).
 
-    It can also be associated with a Network Token that can be used for payment transactions.'
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    It can also be associated with a Network Token that can be used for payment transactions.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Instrument Identifier
@@ -713,11 +783,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-instrument-identifier-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-interchange-clearing-level-details-api
   name: CyberSource Interchange Clearing Level Details API
   description: API for requesting Interchange Clearing Level data for an account or a merchant.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Interchange Clearing Level Details
@@ -725,11 +797,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-interchange-clearing-level-details-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-invoice-settings-api
   name: CyberSource Invoice Settings API
   description: Update the settings for the invoice payment page.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Invoice Settings
@@ -737,12 +811,14 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-invoice-settings-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-invoices-api
   name: CyberSource Invoices API
-  description: Offer your customers a simple, convenient, and fast way to pay with the new online invoicing
-    tool.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  description: >-
+    Offer your customers a simple, convenient, and fast way to pay with the new online invoicing tool.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Invoices
@@ -750,12 +826,15 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-invoices-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-manage-webhooks-api
   name: CyberSource Manage Webhooks API
-  description: '- Manage your webhooks. This will allow for you to update existing webhooks, test webhooks,
-    or delete them.'
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  description: >-
+    - Manage your webhooks. This will allow for you to update existing webhooks, test webhooks, or delete
+    them.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Manage Webhooks
@@ -763,11 +842,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-manage-webhooks-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-merchant-boarding-api
   name: CyberSource Merchant Boarding API
   description: Manage Boarding Registrations
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Merchant Boarding
@@ -775,12 +856,14 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-merchant-boarding-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-merchant-defined-fields-api
   name: CyberSource Merchant Defined Fields API
-  description: The Merchant Defined Fields API from CyberSource — 2 operation(s) for merchant defined
-    fields.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  description: >-
+    The Merchant Defined Fields API from CyberSource — 2 operation(s) for merchant defined fields.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Merchant Defined Fields
@@ -788,11 +871,14 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-merchant-defined-fields-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-microform-integration-api
   name: CyberSource Microform Integration API
-  description: The Microform Integration API from CyberSource — 1 operation(s) for microform integration.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  description: >-
+    The Microform Integration API from CyberSource — 1 operation(s) for microform integration.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Microform Integration
@@ -800,11 +886,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-microform-integration-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-net-fundings-api
   name: CyberSource Net Fundings API
   description: API for retrieving the netfunding data for an account or a merchant
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Net Fundings
@@ -812,12 +900,15 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-net-fundings-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-network-tokens-api
   name: CyberSource Network Tokens API
-  description: A Network Token represents a tokenized version of a card number (PAN) that can be used
-    for payment transactions and, it's represented by a Tokenized Card in TMS.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  description: >-
+    A Network Token represents a tokenized version of a card number (PAN) that can be used for payment
+    transactions and, it's represented by a Tokenized Card in TMS.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Network Tokens
@@ -825,11 +916,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-network-tokens-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-notification-of-changes-api
   name: CyberSource Notification Of Changes API
   description: API for Notification Of Change
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Notification Of Changes
@@ -837,11 +930,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-notification-of-changes-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-offers-api
   name: CyberSource Offers API
   description: Operations related to creating, retrieving, and updating offers.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Offers
@@ -849,12 +944,15 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-offers-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-orders-api
   name: CyberSource orders API
-  description: An order is a service that is used for initiating a transaction with itemized details,
-    shipping, billing and buyer information.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  description: >-
+    An order is a service that is used for initiating a transaction with itemized details, shipping, billing
+    and buyer information.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Order
@@ -864,11 +962,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-orders-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-payer-authentication-api
   name: CyberSource Payer Authentication API
   description: The Payer Authentication API from CyberSource — 3 operation(s) for payer authentication.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Payer Authentication
@@ -876,11 +976,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-payer-authentication-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-payment-batch-summaries-api
   name: CyberSource Payment Batch Summaries API
   description: API for payment batch summary reports
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Payment Batch Summaries
@@ -888,13 +990,16 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-payment-batch-summaries-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-payment-instrument-api
   name: CyberSource Payment Instrument API
-  description: 'A stand-alone Payment Instrument is linked to an Instrument Identifier.
+  description: >-
+    A stand-alone Payment Instrument is linked to an Instrument Identifier.
 
-    It stores additional information in relation to a card number(PAN) or bank account (echeck).'
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    It stores additional information in relation to a card number(PAN) or bank account (echeck).
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Payment Instrument
@@ -902,12 +1007,14 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-payment-instrument-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-payment-links-api
   name: CyberSource Payment Links API
-  description: Offer your customers a simple, convenient, and fast way to pay with the new online pay
-    by link tool.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  description: >-
+    Offer your customers a simple, convenient, and fast way to pay with the new online pay by link tool.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Payment Links
@@ -915,12 +1022,15 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-payment-links-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-payment-tokens-api
   name: CyberSource payment-tokens API
-  description: A payment-tokens is a service that is used for retrieving vault details or deleting vault
-    id/payment method.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  description: >-
+    A payment-tokens is a service that is used for retrieving vault details or deleting vault id/payment
+    method.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Payment-Tokens
@@ -930,17 +1040,20 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-payment-tokens-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-payments-api
   name: CyberSource payments API
-  description: 'A payment authorizes the amount for the transaction. There are a number of supported payment
+  description: >-
+    A payment authorizes the amount for the transaction. There are a number of supported payment
 
     instruments, such as Credit Card, Debit Card, e-Wallet, and Alternative Payments. A payment
 
     response includes the status of the request. It also includes processor-specific information
 
-    when the request is successful and errors if unsuccessful.'
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    when the request is successful and errors if unsuccessful.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Payments
@@ -950,17 +1063,20 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-payments-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-payouts-api
   name: CyberSource Payouts API
-  description: 'A payout enables an originator to send funds on behalf of itself, merchants, or customers
-    to credit card
+  description: >-
+    A payout enables an originator to send funds on behalf of itself, merchants, or customers to credit
+    card
 
     accounts using an Original Credit Transaction (OCT). An originator is a merchant, government entity,
     or
 
-    corporation with a merchant account from an acquiring bank.'
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    corporation with a merchant account from an acquiring bank.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Payouts
@@ -968,11 +1084,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-payouts-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-plans-api
   name: CyberSource Plans API
   description: Create and manage Plans for subscriptions.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Plans
@@ -980,11 +1098,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-plans-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-pull-funds-api
   name: CyberSource Pull Funds API
   description: Cybersource Payouts Funds Transfer REST API for Account Funding Transaction (AFT)
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Pull Funds
@@ -992,11 +1112,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-pull-funds-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-purchase-and-refund-details-api
   name: CyberSource Purchase And Refund Details API
   description: API for Purchase and Refund Details
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Purchase And Refund Details
@@ -1004,17 +1126,20 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-purchase-and-refund-details-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-push-funds-api
   name: CyberSource Push Funds API
-  description: 'A payout enables an originator to send funds on behalf of itself, merchants, or customers
-    to credit card
+  description: >-
+    A payout enables an originator to send funds on behalf of itself, merchants, or customers to credit
+    card
 
     accounts using an Original Credit Transaction (OCT). An originator is a merchant, government entity,
     or
 
-    corporation with a merchant account from an acquiring bank.'
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    corporation with a merchant account from an acquiring bank.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Push Funds
@@ -1022,12 +1147,14 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-push-funds-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-refund-api
   name: CyberSource refund API
-  description: A refund is a follow-on transaction that uses the ID returned from either a payment or
-    capture request.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  description: >-
+    A refund is a follow-on transaction that uses the ID returned from either a payment or capture request.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Refund
@@ -1037,11 +1164,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-refund-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-report-definitions-api
   name: CyberSource Report Definitions API
   description: Get report definition information
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Report Definitions
@@ -1049,11 +1178,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-report-definitions-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-report-downloads-api
   name: CyberSource Report Downloads API
   description: API for creation and retrieval of Reports
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Report Downloads
@@ -1061,11 +1192,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-report-downloads-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-report-subscriptions-api
   name: CyberSource Report Subscriptions API
   description: API for creation and retrieval of Report Subscriptions
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Report Subscriptions
@@ -1073,11 +1206,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-report-subscriptions-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-reports-api
   name: CyberSource Reports API
   description: API for creation and retrieval of Reports
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Reports
@@ -1085,11 +1220,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-reports-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-retrieval-details-api
   name: CyberSource Retrieval Details API
   description: API for requesting Retrieval Details.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Retrieval Details
@@ -1097,11 +1234,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-retrieval-details-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-retrieval-summaries-api
   name: CyberSource Retrieval Summaries API
   description: API for requesting Retrieval Summaries
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Retrieval Summaries
@@ -1109,11 +1248,14 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-retrieval-summaries-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-reversal-api
   name: CyberSource reversal API
-  description: An authorization reversal releases the hold that the payment placed on the customer's funds.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  description: >-
+    An authorization reversal releases the hold that the payment placed on the customer's funds.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Reversal
@@ -1123,11 +1265,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-reversal-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-searchtransactions-api
   name: CyberSource SearchTransactions API
   description: The SearchTransactions API from CyberSource — 2 operation(s) for searchtransactions.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - SearchTransactions
@@ -1135,11 +1279,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-searchtransactions-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-securefileshare-api
   name: CyberSource SecureFileShare API
   description: The SecureFileShare API from CyberSource — 2 operation(s) for securefileshare.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - SecureFileShare
@@ -1147,14 +1293,17 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-securefileshare-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-subscriptions-api
   name: CyberSource Subscriptions API
-  description: 'Create and manage Recurring Subscriptions.
+  description: >-
+    Create and manage Recurring Subscriptions.
 
 
-    You have option to link subscription to plan or create independent subscriptions.'
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    You have option to link subscription to plan or create independent subscriptions.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Subscription
@@ -1164,14 +1313,17 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-subscriptions-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-subscriptions-follow-ons-api
   name: CyberSource Subscriptions Follow-Ons API
-  description: 'Create a Follow-On Subscription from an already existing successful Transaction.
+  description: >-
+    Create a Follow-On Subscription from an already existing successful Transaction.
 
 
-    You have option to link subscription to plan or create independent subscriptions.'
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    You have option to link subscription to plan or create independent subscriptions.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Subscriptions Follow-Ons
@@ -1179,11 +1331,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-subscriptions-follow-ons-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-taxes-api
   name: CyberSource taxes API
   description: tax calculation service
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Taxes
@@ -1193,11 +1347,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-taxes-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-tokenize-api
   name: CyberSource Tokenize API
   description: An orchestration resource used to combine multiple API calls into a single request.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Tokenize
@@ -1205,12 +1361,15 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-tokenize-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-transactionbatches-api
   name: CyberSource TransactionBatches API
-  description: Get a list of batch files or details of Individual file processed through the Offline Transaction
+  description: >-
+    Get a list of batch files or details of Individual file processed through the Offline Transaction
     Submission Services.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - TransactionBatches
@@ -1218,11 +1377,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-transactionbatches-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-transactiondetails-api
   name: CyberSource TransactionDetails API
   description: The TransactionDetails API from CyberSource — 1 operation(s) for transactiondetails.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Transaction Details
@@ -1232,12 +1393,14 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-transactiondetails-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-transient-token-data-v2-api
   name: CyberSource Transient Token Data v2 API
-  description: The Transient Token Data v2 API from CyberSource — 3 operation(s) for transient token data
-    v2.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  description: >-
+    The Transient Token Data v2 API from CyberSource — 3 operation(s) for transient token data v2.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Transient Token Data v2
@@ -1245,12 +1408,15 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-transient-token-data-v2-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-unified-checkout-capture-context-api
   name: CyberSource Unified Checkout Capture Context API
-  description: The Unified Checkout Capture Context API from CyberSource — 1 operation(s) for unified
-    checkout capture context.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  description: >-
+    The Unified Checkout Capture Context API from CyberSource — 1 operation(s) for unified checkout capture
+    context.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Unified Checkout Capture Context
@@ -1258,12 +1424,15 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-unified-checkout-capture-context-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-unified-checkout-v1-capture-context-api
   name: CyberSource Unified Checkout V1 Capture Context API
-  description: The Unified Checkout V1 Capture Context API from CyberSource — 1 operation(s) for unified
-    checkout v1 capture context.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  description: >-
+    The Unified Checkout V1 Capture Context API from CyberSource — 1 operation(s) for unified checkout
+    v1 capture context.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Unified Checkout V1 Capture Context
@@ -1271,25 +1440,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-unified-checkout-v1-capture-context-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
-- aid: cybersource:cybersource-usermanagement-api
-  name: CyberSource UserManagement API
-  description: The UserManagement API from CyberSource — 1 operation(s) for usermanagement.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
-  baseURL: https://api.cybersource.com
-  tags:
-  - User Management
-  tags_raw:
-  - UserManagement
-  properties:
-  - type: OpenAPI
-    url: openapi/cybersource-usermanagement-api-openapi.yml
-  - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-usermanagementsearch-api
   name: CyberSource UserManagementSearch API
   description: The UserManagementSearch API from CyberSource — 1 operation(s) for usermanagementsearch.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - UserManagementSearch
@@ -1297,11 +1454,13 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-usermanagementsearch-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-verification-api
   name: CyberSource Verification API
   description: The Verification API from CyberSource — 2 operation(s) for verification.
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Verification
@@ -1309,14 +1468,16 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-verification-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-void-api
   name: CyberSource void API
-  description: 'A void cancels a payment or capture. A transaction can be voided only when CyberSource
-    has not already
+  description: >-
+    A void cancels a payment or capture. A transaction can be voided only when CyberSource has not already
 
-    submitted the capture to your processor. You cannot undo a void.'
-  humanURL: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    submitted the capture to your processor. You cannot undo a void.
+  humanURL: >-
+    https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
   - Void
@@ -1326,7 +1487,38 @@ apis:
   - type: OpenAPI
     url: openapi/cybersource-void-api-openapi.yml
   - type: Documentation
-    url: https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+- aid: cybersource:cybersource-billing-agreements-api
+  name: CyberSource Billing Agreements API
+  description: >-
+    A billingAgreement is a stand-alone transaction that is not linked to any previous transactions. It
+    takes money from
+
+    your merchant bank account and returns it to the customer.
+  humanURL: https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms.html
+  baseURL: https://api.cybersource.com
+  tags:
+  - Billing Agreements
+  properties:
+  - type: OpenAPI
+    url: openapi/cybersource-billing-agreements-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
+- aid: cybersource:cybersource-user-management-api
+  name: CyberSource User Management API
+  description: The User Management API from CyberSource — 1 operation(s) for user management.
+  humanURL: https://developer.cybersource.com/docs/cybs/en-us/tms/developer/all/rest/tms.html
+  baseURL: https://api.cybersource.com
+  tags:
+  - User Management
+  properties:
+  - type: OpenAPI
+    url: openapi/cybersource-user-management-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 common:
 - type: Website
   url: https://cybersource.com
