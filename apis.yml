@@ -1340,7 +1340,7 @@ apis:
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
   baseURL: https://api.cybersource.com
   tags:
-  - Taxes
+  - Tax
   tags_raw:
   - taxes
   properties:
