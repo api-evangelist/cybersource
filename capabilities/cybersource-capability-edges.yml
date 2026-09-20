@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 20
+edge_count: 21
 edges:
 - tag: Decision Manager
   spec_file: cybersource-decision-manager-api-openapi.yml
@@ -73,6 +73,19 @@ edges:
   evidence: POST /invoicing/v2/invoices "Create a New Invoice"; "Send an Invoice"; "Cancel an Invoice"
   reason: Full lifecycle of customer invoices — create, list, update, send, publish, cancel — which is
     customer invoicing / receivables management rather than a banking-specific capability.
+- tag: Subscriptions
+  spec_file: cybersource-subscriptions-api-openapi.yml
+  capability_id: BC-4240
+  capability_id_l1: BC-4240
+  capability_name: Subscription Lifecycle Management
+  confidence: 0.75
+  evidence: POST /rbs/v1/subscriptions 'Create a Subscription'; 'Cancel a Subscription'; 'Suspend a Subscription';
+    'Reactivating a Suspended Subscription'; 'Update a Subscription'
+  reason: The operations perform the full in-life lifecycle of recurring subscriptions (create, update,
+    suspend, reactivate, cancel) plus attached payments, matching Subscription Lifecycle Management. Spans
+    provisioning, modification and cancellation so no single L2 is named; recurring-billing framing leaves
+    some ambiguity with BC-4250, hence 0.75.
+  recovered_from: sweep-20260828T235257Z-edges.json
 - tag: Chargeback Details
   spec_file: cybersource-chargeback-details-api-openapi.yml
   capability_id: BC-1340.70
