@@ -1,16 +1,10 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
   version: 0.0.1
-  title: CyberSource Merged Spec bankAccountValidation Report Subscriptions API
-host: apitest.cybersource.com
-basePath: /
-schemes:
-- https
-consumes:
-- application/json;charset=utf-8
-produces:
-- application/hal+json;charset=utf-8
+  title: CyberSource Merged Spec Report Subscriptions API
+servers:
+- url: https://apitest.cybersource.com/
 tags:
 - name: Report Subscriptions
   description: API for creation and retrieval of Report Subscriptions
@@ -20,317 +14,207 @@ paths:
       tags:
       - Report Subscriptions
       summary: Get All Subscriptions
-      description: 'View a summary of all report subscriptions.
-
-        '
+      description: View a summary of all report subscriptions.
       operationId: getAllSubscriptions
       x-devcenter-metaData:
         categoryTag: Reporting
-      produces:
-      - application/hal+json
       parameters:
       - name: organizationId
         in: query
         description: Valid Organization Id
-        pattern: '[a-zA-Z0-9-_]+'
         required: false
-        type: string
-        minLength: 1
-        maxLength: 32
+        schema:
+          type: string
+          maxLength: 32
+          minLength: 1
+          pattern: '[a-zA-Z0-9-_]+'
       responses:
         '200':
           description: Ok
-          schema:
-            title: reportingV3ReportSubscriptionsGet200Response
-            type: object
-            properties:
-              subscriptions:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    organizationId:
-                      type: string
-                      description: Selected Organization Id
-                      example: Merchant 1
-                    reportDefinitionId:
-                      type: string
-                      description: Report Definition Id
-                      example: '210'
-                    reportDefinitionName:
-                      type: string
-                      description: Report Definition Class
-                      example: TransactionRequestDetailClass
-                    reportMimeType:
-                      type: string
-                      example: application/xml
-                      description: "Report Format            \n            \nValid values:\n- application/xml\n- text/csv\n"
-                    reportFrequency:
-                      type: string
-                      example: DAILY
-                      description: '''Report Frequency''
-
-                        **NOTE: Do not document USER_DEFINED Frequency field in developer center**
-
-
-                        Valid values:
-
-                        - DAILY
-
-                        - WEEKLY
-
-                        - MONTHLY
-
-                        - USER_DEFINED
-
-                        '
-                    reportInterval:
-                      type: string
-                      pattern: ^PT((([1-9]|1[0-9]|2[0-3])H(([1-9]|[1-4][0-9]|5[0-9])M)?)|((([1-9]|1[0-9]|2[0-3])H)?([1-9]|[1-4][0-9]|5[0-9])M))$
-                      description: "If the reportFrequency is User-defined, reportInterval should be in **ISO 8601 time format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Time Format](https://en.wikipedia.org/wiki/ISO_8601#Durations)\n\n**Example time format for 2 hours and 30 Mins:**\n  - PT2H30M\n**NOTE: Do not document reportInterval field in developer center**\n"
-                    reportName:
-                      type: string
-                      description: Report Name
-                      example: My Transaction Request Detail Report
-                    timezone:
-                      type: string
-                      description: Time Zone
-                      example: America/Chicago
-                    startTime:
-                      type: string
-                      description: Start Time
-                      format: date-time
-                      example: '2017-10-01T10:10:10+05:00'
-                    startDay:
-                      type: integer
-                      format: int32
-                      description: Start Day
-                      example: 1
-                    reportFields:
-                      type: array
-                      example:
-                      - Request.RequestID
-                      - Request.TransactionDate
-                      - Request.MerchantID
-                      description: List of all fields String values
-                      items:
-                        type: string
-                    reportFilters:
+          content:
+            application/hal+json:
+              schema:
+                title: reportingV3ReportSubscriptionsGet200Response
+                type: object
+                properties:
+                  subscriptions:
+                    type: array
+                    items:
                       type: object
-                      additionalProperties:
-                        type: array
-                        items:
-                          type: string
-                      description: List of filters to apply
-                      example:
-                        Application.Name:
-                        - ics_auth
-                        - ics_bill
-                    reportPreferences:
-                      type: object
-                      description: Report Preferences
                       properties:
-                        signedAmounts:
-                          type: boolean
-                          description: Indicator to determine whether negative sign infront of amount for all refunded transaction
-                        fieldNameConvention:
+                        organizationId:
                           type: string
-                          description: 'Specify the field naming convention to be followed in reports (applicable to only csv report formats)
+                          description: Selected Organization Id
+                          example: Merchant 1
+                        reportDefinitionId:
+                          type: string
+                          description: Report Definition Id
+                          example: '210'
+                        reportDefinitionName:
+                          type: string
+                          description: Report Definition Class
+                          example: TransactionRequestDetailClass
+                        reportMimeType:
+                          type: string
+                          example: application/xml
+                          description: "Report Format            \n            \nValid values:\n- application/xml\n- text/csv\n"
+                        reportFrequency:
+                          type: string
+                          example: DAILY
+                          description: '''Report Frequency''
+
+                            **NOTE: Do not document USER_DEFINED Frequency field in developer center**
 
 
                             Valid values:
 
-                            - SOAPI
+                            - DAILY
 
-                            - SCMP
+                            - WEEKLY
+
+                            - MONTHLY
+
+                            - USER_DEFINED
 
                             '
-                    groupId:
-                      type: string
-                      example: '12345'
-                      description: Id for the selected group.
-                  description: Subscription Details
+                        reportInterval:
+                          type: string
+                          pattern: ^PT((([1-9]|1[0-9]|2[0-3])H(([1-9]|[1-4][0-9]|5[0-9])M)?)|((([1-9]|1[0-9]|2[0-3])H)?([1-9]|[1-4][0-9]|5[0-9])M))$
+                          description: "If the reportFrequency is User-defined, reportInterval should be in **ISO 8601 time format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Time Format](https://en.wikipedia.org/wiki/ISO_8601#Durations)\n\n**Example time format for 2 hours and 30 Mins:**\n  - PT2H30M\n**NOTE: Do not document reportInterval field in developer center**\n"
+                        reportName:
+                          type: string
+                          description: Report Name
+                          example: My Transaction Request Detail Report
+                        timezone:
+                          type: string
+                          description: Time Zone
+                          example: America/Chicago
+                        startTime:
+                          type: string
+                          description: Start Time
+                          format: date-time
+                          example: '2017-10-01T10:10:10+05:00'
+                        startDay:
+                          type: integer
+                          format: int32
+                          description: Start Day
+                          example: 1
+                        reportFields:
+                          type: array
+                          example:
+                          - Request.RequestID
+                          - Request.TransactionDate
+                          - Request.MerchantID
+                          description: List of all fields String values
+                          items:
+                            type: string
+                        reportFilters:
+                          type: object
+                          additionalProperties:
+                            type: array
+                            items:
+                              type: string
+                          description: List of filters to apply
+                          example:
+                            Application.Name:
+                            - ics_auth
+                            - ics_bill
+                        reportPreferences:
+                          type: object
+                          description: Report Preferences
+                          properties:
+                            signedAmounts:
+                              type: boolean
+                              description: Indicator to determine whether negative sign infront of amount for all refunded transaction
+                            fieldNameConvention:
+                              type: string
+                              description: 'Specify the field naming convention to be followed in reports (applicable to only csv report formats)
+
+
+                                Valid values:
+
+                                - SOAPI
+
+                                - SCMP
+
+                                '
+                        groupId:
+                          type: string
+                          example: '12345'
+                          description: Id for the selected group.
+                      description: Subscription Details
         '400':
           description: Invalid request
-          schema:
-            title: reportingV3ReportSubscriptionsGet400Response
-            type: object
-            required:
-            - submitTimeUtc
-            - reason
-            - message
-            - details
-            properties:
-              submitTimeUtc:
-                type: string
-                format: date-time
-                description: "Time of request in UTC. \n"
-                example: '2016-08-11T22:47:57Z'
-              reason:
-                type: string
-                description: 'Documented reason code
+          content:
+            application/hal+json:
+              schema:
+                title: reportingV3ReportSubscriptionsGet400Response
+                type: object
+                required:
+                - submitTimeUtc
+                - reason
+                - message
+                - details
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    format: date-time
+                    description: "Time of request in UTC. \n"
+                    example: '2016-08-11T22:47:57Z'
+                  reason:
+                    type: string
+                    description: 'Documented reason code
 
-                  '
-                example: INVALID_DATA
-              message:
-                type: string
-                description: 'Short descriptive message to the user.
+                      '
+                    example: INVALID_DATA
+                  message:
+                    type: string
+                    description: 'Short descriptive message to the user.
 
-                  '
-                example: One or more fields contains invalid data
-              details:
-                type: array
-                description: 'Error field list
+                      '
+                    example: One or more fields contains invalid data
+                  details:
+                    type: array
+                    description: 'Error field list
 
-                  '
-                items:
-                  type: object
-                  properties:
-                    field:
-                      type: string
-                      description: 'Field in request that caused an error
+                      '
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'Field in request that caused an error
+
+                            '
+                        reason:
+                          type: string
+                          description: 'Documented reason code
+
+                            '
+                      description: 'Provides failed validation input field detail
 
                         '
-                    reason:
-                      type: string
-                      description: 'Documented reason code
-
-                        '
-                  description: 'Provides failed validation input field detail
-
-                    '
-            description: HTTP status code for client application
+                description: HTTP status code for client application
         '404':
           description: Subscriptions not found
     put:
       tags:
       - Report Subscriptions
       summary: Create Report Subscription for a Report Name by Organization
-      description: 'Create a report subscription for your organization. The report name must be unique.
-
-        '
+      description: Create a report subscription for your organization. The report name must be unique.
       operationId: createSubscription
       x-devcenter-metaData:
         categoryTag: Reporting
-      consumes:
-      - application/json
-      produces:
-      - application/hal+json
       parameters:
       - name: organizationId
         in: query
         description: Valid Organization Id
-        pattern: '[a-zA-Z0-9-_]+'
         required: false
-        type: string
-        minLength: 1
-        maxLength: 32
-      - in: body
-        name: createReportSubscriptionRequest
-        description: Report subscription request payload
-        required: true
         schema:
-          type: object
-          required:
-          - reportDefinitionName
-          - reportFields
-          - reportName
-          - startTime
-          - timezone
-          - reportFrequency
-          - reportMimeType
-          properties:
-            organizationId:
-              type: string
-              pattern: '[a-zA-Z0-9-_]+'
-              description: Valid CyberSource organizationId
-              example: Merchant 1
-            reportDefinitionName:
-              type: string
-              minLength: 1
-              maxLength: 80
-              pattern: '[a-zA-Z0-9-]+'
-              description: Valid Report Definition Name
-              example: TransactionDetailReportClass
-            reportFields:
-              type: array
-              items:
-                type: string
-              example:
-              - Request.RequestID
-              - Request.TransactionDate
-              - Request.MerchantID
-            reportMimeType:
-              type: string
-              description: 'Valid values:
-
-                - application/xml
-
-                - text/csv
-
-                '
-              example: application/xml
-            reportFrequency:
-              type: string
-              description: "'The frequency for which subscription is created.'\n**NOTE: Do not document USER_DEFINED Frequency field in developer center**\nValid Values:\n  - 'DAILY'\n  - 'WEEKLY'\n  - 'MONTHLY'\n  - 'USER_DEFINED'\n"
-              example: DAILY
-            reportInterval:
-              type: string
-              pattern: ^PT((([1-9]|1[0-9]|2[0-3])H(([1-9]|[1-4][0-9]|5[0-9])M)?)|((([1-9]|1[0-9]|2[0-3])H)?([1-9]|[1-4][0-9]|5[0-9])M))$
-              description: "If the reportFrequency is User-defined, reportInterval should be in **ISO 8601 time format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Time Format](https://en.wikipedia.org/wiki/ISO_8601#Durations)\n\n**Example time format for 2 hours and 30 Mins:**\n  - PT2H30M\n**NOTE: Do not document reportInterval field in developer center**\n"
-            reportName:
-              type: string
-              minLength: 1
-              maxLength: 128
-              pattern: '[a-zA-Z0-9-_ ]+'
-              example: My Daily Subscription
-            timezone:
-              type: string
-              example: America/Chicago
-            startTime:
-              type: string
-              description: The hour at which the report generation should start. It should be in hhmm format.
-              example: 0900
-            startDay:
-              type: integer
-              minimum: 1
-              maximum: 31
-              description: This is the start day if the frequency is WEEKLY or MONTHLY. The value varies from 1-7 for WEEKLY and 1-31 for MONTHLY. For WEEKLY 1 means Sunday and 7 means Saturday. By default the value is 1.
-            reportFilters:
-              type: object
-              additionalProperties:
-                type: array
-                items:
-                  type: string
-              description: List of filters to apply
-              example:
-                Application.Name:
-                - ics_auth
-                - ics_bill
-            reportPreferences:
-              type: object
-              description: Report Preferences
-              properties:
-                signedAmounts:
-                  type: boolean
-                  description: Indicator to determine whether negative sign infront of amount for all refunded transaction
-                fieldNameConvention:
-                  type: string
-                  description: 'Specify the field naming convention to be followed in reports (applicable to only csv report formats)
-
-
-                    Valid values:
-
-                    - SOAPI
-
-                    - SCMP
-
-                    '
-            groupName:
-              type: string
-              pattern: '[a-zA-Z0-9-_ ]+'
-              description: Valid GroupName
-              example: CEMEA Group
+          type: string
+          maxLength: 32
+          minLength: 1
+          pattern: '[a-zA-Z0-9-_]+'
       responses:
         '200':
           description: Ok
@@ -338,44 +222,46 @@ paths:
           description: NOT MODIFIED
         '400':
           description: Invalid request
-          schema:
-            type: object
-            required:
-            - code
-            - message
-            properties:
-              code:
-                type: string
-                description: Error code
-              message:
-                type: string
-                description: Error message
-              localizationKey:
-                type: string
-                description: Localization Key Name
-              correlationId:
-                type: string
-                description: Correlation Id
-              detail:
-                type: string
-                description: Error Detail
-              fields:
-                type: array
-                description: Error fields List
-                items:
-                  type: object
-                  properties:
-                    path:
-                      type: string
-                      description: Path of the failed property
-                    message:
-                      type: string
-                      description: Error description about validation failed field
-                    localizationKey:
-                      type: string
-                      description: Localized Key Name
-                  description: Provide validation failed input field details
-            description: Error Bean
+          content:
+            application/hal+json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                  message:
+                    type: string
+                    description: Error message
+                  localizationKey:
+                    type: string
+                    description: Localization Key Name
+                  correlationId:
+                    type: string
+                    description: Correlation Id
+                  detail:
+                    type: string
+                    description: Error Detail
+                  fields:
+                    type: array
+                    description: Error fields List
+                    items:
+                      type: object
+                      properties:
+                        path:
+                          type: string
+                          description: Path of the failed property
+                        message:
+                          type: string
+                          description: Error description about validation failed field
+                        localizationKey:
+                          type: string
+                          description: Localized Key Name
+                      description: Provide validation failed input field details
+                description: Error Bean
       x-example:
         example0:
           summary: Create Report Subscription
@@ -917,14 +803,119 @@ paths:
             timezone: GMT
             startTime: 900
             startDay: '1'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - reportDefinitionName
+              - reportFields
+              - reportName
+              - startTime
+              - timezone
+              - reportFrequency
+              - reportMimeType
+              properties:
+                organizationId:
+                  type: string
+                  pattern: '[a-zA-Z0-9-_]+'
+                  description: Valid CyberSource organizationId
+                  example: Merchant 1
+                reportDefinitionName:
+                  type: string
+                  minLength: 1
+                  maxLength: 80
+                  pattern: '[a-zA-Z0-9-]+'
+                  description: Valid Report Definition Name
+                  example: TransactionDetailReportClass
+                reportFields:
+                  type: array
+                  items:
+                    type: string
+                  example:
+                  - Request.RequestID
+                  - Request.TransactionDate
+                  - Request.MerchantID
+                reportMimeType:
+                  type: string
+                  description: 'Valid values:
+
+                    - application/xml
+
+                    - text/csv
+
+                    '
+                  example: application/xml
+                reportFrequency:
+                  type: string
+                  description: "'The frequency for which subscription is created.'\n**NOTE: Do not document USER_DEFINED Frequency field in developer center**\nValid Values:\n  - 'DAILY'\n  - 'WEEKLY'\n  - 'MONTHLY'\n  - 'USER_DEFINED'\n"
+                  example: DAILY
+                reportInterval:
+                  type: string
+                  pattern: ^PT((([1-9]|1[0-9]|2[0-3])H(([1-9]|[1-4][0-9]|5[0-9])M)?)|((([1-9]|1[0-9]|2[0-3])H)?([1-9]|[1-4][0-9]|5[0-9])M))$
+                  description: "If the reportFrequency is User-defined, reportInterval should be in **ISO 8601 time format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Time Format](https://en.wikipedia.org/wiki/ISO_8601#Durations)\n\n**Example time format for 2 hours and 30 Mins:**\n  - PT2H30M\n**NOTE: Do not document reportInterval field in developer center**\n"
+                reportName:
+                  type: string
+                  minLength: 1
+                  maxLength: 128
+                  pattern: '[a-zA-Z0-9-_ ]+'
+                  example: My Daily Subscription
+                timezone:
+                  type: string
+                  example: America/Chicago
+                startTime:
+                  type: string
+                  description: The hour at which the report generation should start. It should be in hhmm format.
+                  example: 0900
+                startDay:
+                  type: integer
+                  minimum: 1
+                  maximum: 31
+                  description: This is the start day if the frequency is WEEKLY or MONTHLY. The value varies from 1-7 for WEEKLY and 1-31 for MONTHLY. For WEEKLY 1 means Sunday and 7 means Saturday. By default the value is 1.
+                reportFilters:
+                  type: object
+                  additionalProperties:
+                    type: array
+                    items:
+                      type: string
+                  description: List of filters to apply
+                  example:
+                    Application.Name:
+                    - ics_auth
+                    - ics_bill
+                reportPreferences:
+                  type: object
+                  description: Report Preferences
+                  properties:
+                    signedAmounts:
+                      type: boolean
+                      description: Indicator to determine whether negative sign infront of amount for all refunded transaction
+                    fieldNameConvention:
+                      type: string
+                      description: 'Specify the field naming convention to be followed in reports (applicable to only csv report formats)
+
+
+                        Valid values:
+
+                        - SOAPI
+
+                        - SCMP
+
+                        '
+                groupName:
+                  type: string
+                  pattern: '[a-zA-Z0-9-_ ]+'
+                  description: Valid GroupName
+                  example: CEMEA Group
+        description: Report subscription request payload
+        required: true
   /reporting/v3/report-subscriptions/{reportName}:
     get:
       tags:
       - Report Subscriptions
       summary: Get Subscription for Report Name
-      description: 'View the details of a report subscription, such as the report format or report frequency, using the report''s unique name.
-
-        '
+      description: View the details of a report subscription, such as the report format or report frequency, using the report's unique name.
       operationId: getSubscription
       x-devcenter-metaData:
         categoryTag: Reporting
@@ -937,192 +928,194 @@ paths:
         - sourceField: _embedded.Subscriptions[0].reportName
           destinationField: reportName
           fieldTypeInDestination: path
-      produces:
-      - application/hal+json
       parameters:
       - name: organizationId
         in: query
         description: Valid Organization Id
-        pattern: '[a-zA-Z0-9-_]+'
         required: false
-        type: string
-        minLength: 1
-        maxLength: 32
+        schema:
+          type: string
+          maxLength: 32
+          minLength: 1
+          pattern: '[a-zA-Z0-9-_]+'
       - name: reportName
         in: path
         description: Name of the Report to Retrieve
         required: true
-        type: string
-        maxLength: 80
-        minLength: 1
-        pattern: '[a-zA-Z0-9-_+]+'
+        schema:
+          type: string
+          maxLength: 80
+          minLength: 1
+          pattern: '[a-zA-Z0-9-_+]+'
       responses:
         '200':
           description: Ok
-          schema:
-            type: object
-            properties:
-              organizationId:
-                type: string
-                description: Selected Organization Id
-                example: Merchant 1
-              reportDefinitionId:
-                type: string
-                description: Report Definition Id
-                example: '210'
-              reportDefinitionName:
-                type: string
-                description: Report Definition Class
-                example: TransactionRequestDetailClass
-              reportMimeType:
-                type: string
-                example: application/xml
-                description: "Report Format            \n            \nValid values:\n- application/xml\n- text/csv\n"
-              reportFrequency:
-                type: string
-                example: DAILY
-                description: '''Report Frequency''
-
-                  **NOTE: Do not document USER_DEFINED Frequency field in developer center**
-
-
-                  Valid values:
-
-                  - DAILY
-
-                  - WEEKLY
-
-                  - MONTHLY
-
-                  - USER_DEFINED
-
-                  '
-              reportInterval:
-                type: string
-                pattern: ^PT((([1-9]|1[0-9]|2[0-3])H(([1-9]|[1-4][0-9]|5[0-9])M)?)|((([1-9]|1[0-9]|2[0-3])H)?([1-9]|[1-4][0-9]|5[0-9])M))$
-                description: "If the reportFrequency is User-defined, reportInterval should be in **ISO 8601 time format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Time Format](https://en.wikipedia.org/wiki/ISO_8601#Durations)\n\n**Example time format for 2 hours and 30 Mins:**\n  - PT2H30M\n**NOTE: Do not document reportInterval field in developer center**\n"
-              reportName:
-                type: string
-                description: Report Name
-                example: My Transaction Request Detail Report
-              timezone:
-                type: string
-                description: Time Zone
-                example: America/Chicago
-              startTime:
-                type: string
-                description: Start Time
-                format: date-time
-                example: '2017-10-01T10:10:10+05:00'
-              startDay:
-                type: integer
-                format: int32
-                description: Start Day
-                example: 1
-              reportFields:
-                type: array
-                example:
-                - Request.RequestID
-                - Request.TransactionDate
-                - Request.MerchantID
-                description: List of all fields String values
-                items:
-                  type: string
-              reportFilters:
+          content:
+            application/hal+json:
+              schema:
                 type: object
-                additionalProperties:
-                  type: array
-                  items:
-                    type: string
-                description: List of filters to apply
-                example:
-                  Application.Name:
-                  - ics_auth
-                  - ics_bill
-              reportPreferences:
-                type: object
-                description: Report Preferences
                 properties:
-                  signedAmounts:
-                    type: boolean
-                    description: Indicator to determine whether negative sign infront of amount for all refunded transaction
-                  fieldNameConvention:
+                  organizationId:
                     type: string
-                    description: 'Specify the field naming convention to be followed in reports (applicable to only csv report formats)
+                    description: Selected Organization Id
+                    example: Merchant 1
+                  reportDefinitionId:
+                    type: string
+                    description: Report Definition Id
+                    example: '210'
+                  reportDefinitionName:
+                    type: string
+                    description: Report Definition Class
+                    example: TransactionRequestDetailClass
+                  reportMimeType:
+                    type: string
+                    example: application/xml
+                    description: "Report Format            \n            \nValid values:\n- application/xml\n- text/csv\n"
+                  reportFrequency:
+                    type: string
+                    example: DAILY
+                    description: '''Report Frequency''
+
+                      **NOTE: Do not document USER_DEFINED Frequency field in developer center**
 
 
                       Valid values:
 
-                      - SOAPI
+                      - DAILY
 
-                      - SCMP
+                      - WEEKLY
+
+                      - MONTHLY
+
+                      - USER_DEFINED
 
                       '
-              groupId:
-                type: string
-                example: '12345'
-                description: Id for the selected group.
-            description: Subscription Details
-            title: reportingV3ReportsSubscriptionsNameGet200Response
+                  reportInterval:
+                    type: string
+                    pattern: ^PT((([1-9]|1[0-9]|2[0-3])H(([1-9]|[1-4][0-9]|5[0-9])M)?)|((([1-9]|1[0-9]|2[0-3])H)?([1-9]|[1-4][0-9]|5[0-9])M))$
+                    description: "If the reportFrequency is User-defined, reportInterval should be in **ISO 8601 time format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Time Format](https://en.wikipedia.org/wiki/ISO_8601#Durations)\n\n**Example time format for 2 hours and 30 Mins:**\n  - PT2H30M\n**NOTE: Do not document reportInterval field in developer center**\n"
+                  reportName:
+                    type: string
+                    description: Report Name
+                    example: My Transaction Request Detail Report
+                  timezone:
+                    type: string
+                    description: Time Zone
+                    example: America/Chicago
+                  startTime:
+                    type: string
+                    description: Start Time
+                    format: date-time
+                    example: '2017-10-01T10:10:10+05:00'
+                  startDay:
+                    type: integer
+                    format: int32
+                    description: Start Day
+                    example: 1
+                  reportFields:
+                    type: array
+                    example:
+                    - Request.RequestID
+                    - Request.TransactionDate
+                    - Request.MerchantID
+                    description: List of all fields String values
+                    items:
+                      type: string
+                  reportFilters:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                    description: List of filters to apply
+                    example:
+                      Application.Name:
+                      - ics_auth
+                      - ics_bill
+                  reportPreferences:
+                    type: object
+                    description: Report Preferences
+                    properties:
+                      signedAmounts:
+                        type: boolean
+                        description: Indicator to determine whether negative sign infront of amount for all refunded transaction
+                      fieldNameConvention:
+                        type: string
+                        description: 'Specify the field naming convention to be followed in reports (applicable to only csv report formats)
+
+
+                          Valid values:
+
+                          - SOAPI
+
+                          - SCMP
+
+                          '
+                  groupId:
+                    type: string
+                    example: '12345'
+                    description: Id for the selected group.
+                description: Subscription Details
+                title: reportingV3ReportsSubscriptionsNameGet200Response
         '400':
           description: Invalid request
-          schema:
-            title: reportingV3ReportSubscriptionsNameGet400Response
-            type: object
-            required:
-            - submitTimeUtc
-            - reason
-            - message
-            - details
-            properties:
-              submitTimeUtc:
-                type: string
-                format: date-time
-                description: "Time of request in UTC. \n"
-                example: '2016-08-11T22:47:57Z'
-              reason:
-                type: string
-                description: 'Documented reason code
+          content:
+            application/hal+json:
+              schema:
+                title: reportingV3ReportSubscriptionsNameGet400Response
+                type: object
+                required:
+                - submitTimeUtc
+                - reason
+                - message
+                - details
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    format: date-time
+                    description: "Time of request in UTC. \n"
+                    example: '2016-08-11T22:47:57Z'
+                  reason:
+                    type: string
+                    description: 'Documented reason code
 
-                  '
-                example: INVALID_DATA
-              message:
-                type: string
-                description: 'Short descriptive message to the user.
+                      '
+                    example: INVALID_DATA
+                  message:
+                    type: string
+                    description: 'Short descriptive message to the user.
 
-                  '
-                example: One or more fields contains invalid data
-              details:
-                type: array
-                description: 'Error field list
+                      '
+                    example: One or more fields contains invalid data
+                  details:
+                    type: array
+                    description: 'Error field list
 
-                  '
-                items:
-                  type: object
-                  properties:
-                    field:
-                      type: string
-                      description: 'Field in request that caused an error
+                      '
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'Field in request that caused an error
+
+                            '
+                        reason:
+                          type: string
+                          description: 'Documented reason code
+
+                            '
+                      description: 'Provides failed validation input field detail
 
                         '
-                    reason:
-                      type: string
-                      description: 'Documented reason code
-
-                        '
-                  description: 'Provides failed validation input field detail
-
-                    '
-            description: HTTP status code for client application
+                description: HTTP status code for client application
         '404':
           description: Subscription not found
     delete:
       tags:
       - Report Subscriptions
       summary: Delete Subscription of a Report Name by Organization
-      description: 'Delete a report subscription for your organization. You must know the unique name of the report you want to delete.
-
-        '
+      description: Delete a report subscription for your organization. You must know the unique name of the report you want to delete.
       operationId: deleteSubscription
       x-devcenter-metaData:
         categoryTag: Reporting
@@ -1135,219 +1128,151 @@ paths:
         - sourceField: reportName
           destinationField: reportName
           fieldTypeInDestination: path
-      produces:
-      - application/hal+json
       parameters:
       - name: organizationId
         in: query
         description: Valid Organization Id
-        pattern: '[a-zA-Z0-9-_]+'
         required: false
-        type: string
-        minLength: 1
-        maxLength: 32
+        schema:
+          type: string
+          maxLength: 32
+          minLength: 1
+          pattern: '[a-zA-Z0-9-_]+'
       - name: reportName
         in: path
         description: Name of the Report to Delete
         required: true
-        type: string
-        maxLength: 80
-        minLength: 1
-        pattern: '[a-zA-Z0-9-_+]+'
+        schema:
+          type: string
+          maxLength: 80
+          minLength: 1
+          pattern: '[a-zA-Z0-9-_+]+'
       responses:
         '200':
           description: Ok
         '400':
           description: Invalid request
-          schema:
-            title: reportingV3ReportSubscriptionsNameDelete400Response
-            type: object
-            required:
-            - submitTimeUtc
-            - reason
-            - message
-            - details
-            properties:
-              submitTimeUtc:
-                type: string
-                format: date-time
-                description: "Time of request in UTC. \n"
-                example: '2016-08-11T22:47:57Z'
-              reason:
-                type: string
-                description: 'Documented reason code
+          content:
+            application/hal+json:
+              schema:
+                title: reportingV3ReportSubscriptionsNameDelete400Response
+                type: object
+                required:
+                - submitTimeUtc
+                - reason
+                - message
+                - details
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    format: date-time
+                    description: "Time of request in UTC. \n"
+                    example: '2016-08-11T22:47:57Z'
+                  reason:
+                    type: string
+                    description: 'Documented reason code
 
-                  '
-                example: INVALID_DATA
-              message:
-                type: string
-                description: 'Short descriptive message to the user.
+                      '
+                    example: INVALID_DATA
+                  message:
+                    type: string
+                    description: 'Short descriptive message to the user.
 
-                  '
-                example: One or more fields contains invalid data
-              details:
-                type: array
-                description: 'Error field list
+                      '
+                    example: One or more fields contains invalid data
+                  details:
+                    type: array
+                    description: 'Error field list
 
-                  '
-                items:
-                  type: object
-                  properties:
-                    field:
-                      type: string
-                      description: 'Field in request that caused an error
+                      '
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'Field in request that caused an error
+
+                            '
+                        reason:
+                          type: string
+                          description: 'Documented reason code
+
+                            '
+                      description: 'Provides failed validation input field detail
 
                         '
-                    reason:
-                      type: string
-                      description: 'Documented reason code
-
-                        '
-                  description: 'Provides failed validation input field detail
-
-                    '
-            description: HTTP status code for client application
+                description: HTTP status code for client application
         '404':
           description: Subscription not found
-          schema:
-            title: reportingV3ReportSubscriptionsnameDelete404Response
-            type: object
-            required:
-            - submitTimeUtc
-            - reason
-            - message
-            - details
-            properties:
-              submitTimeUtc:
-                type: string
-                format: date-time
-                description: "Time of request in UTC. \n"
-                example: '2016-08-11T22:47:57Z'
-              reason:
-                type: string
-                description: 'Documented reason code
+          content:
+            application/hal+json:
+              schema:
+                title: reportingV3ReportSubscriptionsnameDelete404Response
+                type: object
+                required:
+                - submitTimeUtc
+                - reason
+                - message
+                - details
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    format: date-time
+                    description: "Time of request in UTC. \n"
+                    example: '2016-08-11T22:47:57Z'
+                  reason:
+                    type: string
+                    description: 'Documented reason code
 
-                  '
-                example: INVALID_DATA
-              message:
-                type: string
-                description: 'Short descriptive message to the user.
+                      '
+                    example: INVALID_DATA
+                  message:
+                    type: string
+                    description: 'Short descriptive message to the user.
 
-                  '
-                example: One or more fields contains invalid data
-              details:
-                type: array
-                description: 'Error field list
+                      '
+                    example: One or more fields contains invalid data
+                  details:
+                    type: array
+                    description: 'Error field list
 
-                  '
-                items:
-                  type: object
-                  properties:
-                    field:
-                      type: string
-                      description: 'Field in request that caused an error
+                      '
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'Field in request that caused an error
+
+                            '
+                        reason:
+                          type: string
+                          description: 'Documented reason code
+
+                            '
+                      description: 'Provides failed validation input field detail
 
                         '
-                    reason:
-                      type: string
-                      description: 'Documented reason code
-
-                        '
-                  description: 'Provides failed validation input field detail
-
-                    '
-            description: HTTP status code for client application
+                description: HTTP status code for client application
   /reporting/v3/predefined-report-subscriptions:
     put:
       tags:
       - Report Subscriptions
       summary: Create a Standard or Classic Subscription
-      description: 'Create or update an already existing classic or standard subscription.
-
-        '
+      description: Create or update an already existing classic or standard subscription.
       operationId: createStandardOrClassicSubscription
       x-devcenter-metaData:
         categoryTag: Reporting
-      produces:
-      - application/hal+json
       parameters:
       - name: organizationId
         in: query
         description: Valid Organization Id
-        pattern: '[a-zA-Z0-9-_]+'
         required: false
-        type: string
-        minLength: 1
-        maxLength: 32
-      - in: body
-        name: predefinedSubscriptionRequestBean
-        description: Report subscription request payload
-        required: true
         schema:
-          type: object
-          required:
-          - reportDefinitionName
-          - subscriptionType
-          properties:
-            reportDefinitionName:
-              type: string
-              minLength: 1
-              maxLength: 80
-              pattern: '[a-zA-Z]+'
-              description: Valid Report Definition Name
-              example: TransactionDetailReportClass
-            subscriptionType:
-              description: "The subscription type for which report definition is required. Valid values are CLASSIC and STANDARD.\nValid Values:\n  - CLASSIC\n  - STANDARD\n"
-              type: string
-            reportName:
-              type: string
-              minLength: 1
-              maxLength: 128
-              pattern: '[a-zA-Z0-9-_ ]+'
-              example: TransactionDetailReport_Daily_Classic
-            reportMimeType:
-              type: string
-              example: application/xml
-              description: "Report Format            \nValid Values:\n  - application/xml\n  - text/csv\n"
-            reportFrequency:
-              type: string
-              description: '''The frequency for which subscription is created. For Standard we can have DAILY, WEEKLY and MONTHLY. But for Classic we will have only DAILY.''
-
-                **NOTE: Do not document USER_DEFINED Frequency field in developer center**
-
-                Valid Values:
-
-                - ''DAILY''
-
-                - ''WEEKLY''
-
-                - ''MONTHLY''
-
-                - ''USER_DEFINED''
-
-                '
-              example: DAILY
-            reportInterval:
-              type: string
-              pattern: ^PT((([1-9]|1[0-9]|2[0-3])H(([1-9]|[1-4][0-9]|5[0-9])M)?)|((([1-9]|1[0-9]|2[0-3])H)?([1-9]|[1-4][0-9]|5[0-9])M))$
-              description: "If the reportFrequency is User-defined, reportInterval should be in **ISO 8601 time format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Time Format](https://en.wikipedia.org/wiki/ISO_8601#Durations)\n\n**Example time format for 2 hours and 30 Mins:**\n  - PT2H30M\n**NOTE: Do not document reportInterval field in developer center**\n"
-            timezone:
-              type: string
-              description: By Default the timezone for Standard subscription is PST. And for Classic subscription it will be GMT. If user provides any other time zone apart from PST for Standard subscription api should error out.
-              example: America/Los_Angeles
-            startTime:
-              type: string
-              description: The hour at which the report generation should start. It should be in hhmm format. By Default it will be 0000. The format is 24 hours format.
-              example: 0900
-            startDay:
-              type: integer
-              minimum: 1
-              maximum: 31
-              description: This is the start day if the frequency is WEEKLY or MONTHLY. The value varies from 1-7 for WEEKLY and 1-31 for MONTHLY. For WEEKLY 1 means Sunday and 7 means Saturday. By default the value is 1.
-            subscriptionStatus:
-              type: string
-              description: "The status for subscription which is either created or updated. By default it is ACTIVE.\nValid Values:\n  - ACTIVE\n  - INACTIVE\n"
-              example: ACTIVE
+          type: string
+          maxLength: 32
+          minLength: 1
+          pattern: '[a-zA-Z0-9-_]+'
       responses:
         '200':
           description: Ok
@@ -1355,50 +1280,122 @@ paths:
           description: Created
         '400':
           description: Invalid request
-          schema:
-            type: object
-            required:
-            - code
-            - message
-            properties:
-              code:
-                type: string
-                description: Error code
-              message:
-                type: string
-                description: Error message
-              localizationKey:
-                type: string
-                description: Localization Key Name
-              correlationId:
-                type: string
-                description: Correlation Id
-              detail:
-                type: string
-                description: Error Detail
-              fields:
-                type: array
-                description: Error fields List
-                items:
-                  type: object
-                  properties:
-                    path:
-                      type: string
-                      description: Path of the failed property
-                    message:
-                      type: string
-                      description: Error description about validation failed field
-                    localizationKey:
-                      type: string
-                      description: Localized Key Name
-                  description: Provide validation failed input field details
-            description: Error Bean
+          content:
+            application/hal+json:
+              schema:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                    description: Error code
+                  message:
+                    type: string
+                    description: Error message
+                  localizationKey:
+                    type: string
+                    description: Localization Key Name
+                  correlationId:
+                    type: string
+                    description: Correlation Id
+                  detail:
+                    type: string
+                    description: Error Detail
+                  fields:
+                    type: array
+                    description: Error fields List
+                    items:
+                      type: object
+                      properties:
+                        path:
+                          type: string
+                          description: Path of the failed property
+                        message:
+                          type: string
+                          description: Error description about validation failed field
+                        localizationKey:
+                          type: string
+                          description: Localized Key Name
+                      description: Provide validation failed input field details
+                description: Error Bean
       x-example:
         example0:
           summary: Create Classic/Standard Report Subscription
           value:
             reportDefinitionName: TransactionRequestClass
             subscriptionType: CLASSIC
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              type: object
+              required:
+              - reportDefinitionName
+              - subscriptionType
+              properties:
+                reportDefinitionName:
+                  type: string
+                  minLength: 1
+                  maxLength: 80
+                  pattern: '[a-zA-Z]+'
+                  description: Valid Report Definition Name
+                  example: TransactionDetailReportClass
+                subscriptionType:
+                  description: "The subscription type for which report definition is required. Valid values are CLASSIC and STANDARD.\nValid Values:\n  - CLASSIC\n  - STANDARD\n"
+                  type: string
+                reportName:
+                  type: string
+                  minLength: 1
+                  maxLength: 128
+                  pattern: '[a-zA-Z0-9-_ ]+'
+                  example: TransactionDetailReport_Daily_Classic
+                reportMimeType:
+                  type: string
+                  example: application/xml
+                  description: "Report Format            \nValid Values:\n  - application/xml\n  - text/csv\n"
+                reportFrequency:
+                  type: string
+                  description: '''The frequency for which subscription is created. For Standard we can have DAILY, WEEKLY and MONTHLY. But for Classic we will have only DAILY.''
+
+                    **NOTE: Do not document USER_DEFINED Frequency field in developer center**
+
+                    Valid Values:
+
+                    - ''DAILY''
+
+                    - ''WEEKLY''
+
+                    - ''MONTHLY''
+
+                    - ''USER_DEFINED''
+
+                    '
+                  example: DAILY
+                reportInterval:
+                  type: string
+                  pattern: ^PT((([1-9]|1[0-9]|2[0-3])H(([1-9]|[1-4][0-9]|5[0-9])M)?)|((([1-9]|1[0-9]|2[0-3])H)?([1-9]|[1-4][0-9]|5[0-9])M))$
+                  description: "If the reportFrequency is User-defined, reportInterval should be in **ISO 8601 time format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Time Format](https://en.wikipedia.org/wiki/ISO_8601#Durations)\n\n**Example time format for 2 hours and 30 Mins:**\n  - PT2H30M\n**NOTE: Do not document reportInterval field in developer center**\n"
+                timezone:
+                  type: string
+                  description: By Default the timezone for Standard subscription is PST. And for Classic subscription it will be GMT. If user provides any other time zone apart from PST for Standard subscription api should error out.
+                  example: America/Los_Angeles
+                startTime:
+                  type: string
+                  description: The hour at which the report generation should start. It should be in hhmm format. By Default it will be 0000. The format is 24 hours format.
+                  example: 0900
+                startDay:
+                  type: integer
+                  minimum: 1
+                  maximum: 31
+                  description: This is the start day if the frequency is WEEKLY or MONTHLY. The value varies from 1-7 for WEEKLY and 1-31 for MONTHLY. For WEEKLY 1 means Sunday and 7 means Saturday. By default the value is 1.
+                subscriptionStatus:
+                  type: string
+                  description: "The status for subscription which is either created or updated. By default it is ACTIVE.\nValid Values:\n  - ACTIVE\n  - INACTIVE\n"
+                  example: ACTIVE
+        description: Report subscription request payload
+        required: true
 x-devcenter-metaData:
   categoryTagArray:
   - name: Payments

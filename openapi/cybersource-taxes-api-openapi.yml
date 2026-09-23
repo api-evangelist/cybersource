@@ -1,1420 +1,89 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
   version: 0.0.1
-  title: CyberSource Merged Spec bankAccountValidation taxes API
-host: apitest.cybersource.com
-basePath: /
-schemes:
-- https
-consumes:
-- application/json;charset=utf-8
-produces:
-- application/hal+json;charset=utf-8
+  title: CyberSource Merged Spec Taxes API
+servers:
+- url: https://apitest.cybersource.com/
 tags:
-- name: taxes
+- name: Taxes
   description: tax calculation service
 paths:
   /vas/v2/tax:
     post:
       summary: Calculate Taxes
-      description: "The tax calculation service provides real-time sales tax and VAT calculations for orders placed with your business worldwide. \nIt enhances your ability to conduct business globally and enables you to avoid the risk and complexity of managing online tax calculation. \nThe service supports product-based tax rules and exemptions for goods and services. \nThe tax rates are updated twice a month and calculations include sub-level detail (rates per taxing jurisdiction, names and types of jurisdictions).\nImplementation guidance, list of supported countries, and information on tax reporting are in the [Tax User Guide](https://developer.cybersource.com/docs/cybs/en-us/tax-calculation/developer/all/rest/tax-calculation/tax-overview.html).\nThe availability of API features for a merchant can depend on the portfolio configuration and may need to be enabled at the portfolio level before they can be added to merchant accounts.\n"
+      description: 'The tax calculation service provides real-time sales tax and VAT calculations for orders placed with your business worldwide.
+
+        It enhances your ability to conduct business globally and enables you to avoid the risk and complexity of managing online tax calculation.
+
+        The service supports product-based tax rules and exemptions for goods and services.
+
+        The tax rates are updated twice a month and calculations include sub-level detail (rates per taxing jurisdiction, names and types of jurisdictions).
+
+        Implementation guidance, list of supported countries, and information on tax reporting are in the Tax User Guide.
+
+        The availability of API features for a merchant can depend on the portfolio configuration and may need to be enabled at the portfolio level before they can be added to merchant accounts.'
       operationId: calculateTax
       x-devcenter-metaData:
         categoryTag: Value_Added_Service
         developerGuides: https://developer.cybersource.com/docs/cybs/en-us/tax-calculation/developer/all/rest/tax-calculation/tax-overview.html
       tags:
-      - taxes
-      parameters:
-      - name: taxRequest
-        in: body
-        required: true
-        schema:
-          type: object
-          properties:
-            clientReferenceInformation:
-              type: object
-              properties:
-                code:
-                  type: string
-                  maxLength: 59
-                  description: 'Merchant-generated order reference or tracking number. It is recommended that you send a unique value for each
-
-                    transaction so that you can perform meaningful searches for the transaction.
-
-
-                    #### Used by
-
-                    **Authorization**
-
-                    Required field.
-
-
-                    #### PIN Debit
-
-                    Requests for PIN debit reversals need to use the same merchant reference number that was used in the transaction that is being
-
-                    reversed.
-
-
-                    Required field for all PIN Debit requests (purchase, credit, and reversal).
-
-
-                    #### FDC Nashville Global
-
-                    Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports.
-
-                    '
-                partner:
-                  type: object
-                  properties:
-                    developerId:
-                      type: string
-                      maxLength: 8
-                      description: 'Identifier for the developer that helped integrate a partner solution to CyberSource.
-
-
-                        Send this value in all requests that are sent through the partner solutions built by that developer.
-
-                        CyberSource assigns the ID to the developer.
-
-
-                        **Note** When you see a developer ID of 999 in reports, the developer ID that was submitted is incorrect.
-
-                        '
-                    solutionId:
-                      type: string
-                      maxLength: 8
-                      description: 'Identifier for the partner that is integrated to CyberSource.
-
-
-                        Send this value in all requests that are sent through the partner solution. CyberSource assigns the ID to the partner.
-
-
-                        **Note** When you see a solutionId of 999 in reports, the solutionId that was submitted is incorrect.
-
-                        '
-                comments:
-                  type: string
-                  description: Brief description of the order or any comment you wish to add to the order.
-            taxInformation:
-              type: object
-              properties:
-                reportingDate:
-                  type: string
-                  maxLength: 8
-                  description: 'Reporting date of transaction. Format: YYYYMMDD. Defaults to current date if not specified.
-
-                    Optional for U.S., Canadian, international tax, and value added taxes.
-
-                    '
-                dateOverrideReason:
-                  type: string
-                  maxLength: 50
-                  description: 'If a past or future date is specified in `orderInformation.invoiceDetails.invoiceDate`, then provide the reason for that for audit purposes.
-
-                    Typical reasons include: ''Return'', ''Layaway'', ''Imported''.
-
-
-                    Optional for U.S., Canadian, international tax, and value added taxes.
-
-                    '
-                nexus:
-                  description: 'Comma-separated list of states or provinces in which merchandise is taxable. Note merchandise may be still be non-taxable or tax exempt depending on the product taxability. Indicate the type of product you are selling in the product code field for product-level taxability rules to be applied. Do not use both the `taxInformation.nexus` and `taxInformation.noNexus` fields in your request. If you do not include this field in a tax calculation service request, the tax system makes its calculations as if you have nexus in every US state or Canadian province. Use the [State, Province, and Territory Codes for the United States and Canada](https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf).
-
-
-                    If you indicate you do not have nexus in the destination state, jurisdiction level fields are left blank in the Tax Detail Report.
-
-
-                    Optional field for U.S. and Canadian taxes only. Either this field or `taxInformation.noNexus` is required if you do not have nexus in every state or province.
-
-
-                    Not applicable for international and value added taxes.
-
-                    '
-                  type: array
-                  items:
-                    type: string
-                    maxLength: 2
-                noNexus:
-                  description: 'Comma-separated list of states or provinces where you do not have nexus. Check with a tax advisor to determine where your business has nexus. Do not use both the `taxInformation.nexus` and `taxInformation.noNexus` fields in your request. If you do not include this field in a tax calculation service request, the tax system makes its calculations as if you have nexus in every US state or Canadian province.
-
-                    Use the [State, Province, and Territory Codes for the United States and Canada](https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf).
-
-
-                    If you indicate you do not have nexus in the destination state, jurisdiction level fields are left blank in the Tax Detail Report.
-
-
-                    Optional field for U.S. and Canadian taxes only. Either this field or `taxInformation.nexus` is required if you do not have nexus in every state or province.
-
-
-                    Not applicable for international and value added taxes.
-
-                    '
-                  type: array
-                  items:
-                    type: string
-                    maxLength: 2
-                showTaxPerLineItem:
-                  type: string
-                  description: 'Whether or not to display tax amounts for each line item. This field can contain one of the following values:
-
-                    - `Yes` - Display tax amounts for each line item
-
-                    - `No` (default) - Do not display tax amounts for each line item
-
-
-                    Optional for U.S., Canadian, international tax, and value added taxes.
-
-                    '
-                commitIndicator:
-                  type: boolean
-                  description: 'Indicates whether this is a committed tax transaction. For a committed tax transaction, the status in the Tax Detail Report is "Committed." For an uncommitted tax transaction, the status in the Tax Detail Report is "Uncommitted." Possible values:
-
-                    - `true`: This is a committed tax transaction.
-
-                    - `false` (default): This is not a committed tax transaction.
-
-
-                    A committed tax request is a tax service request that sets the status field in the Tax Detail Report to committed.
-
-                    The committed status indicates that the amount calculated by the tax service is included in the amount of a capture or credit.
-
-
-                    Use a void service request to cancel a committed tax request or a committed refund tax request. The void transaction is included as a separate entry in the Tax Detail Report. The value of the status field is cancelled. The value of the link ID is the request ID of the committed tax request or refund tax request that was voided. You can use the value of the link ID to reconcile your orders.
-
-
-                    Optional for U.S., Canadian, international tax, and value added taxes.
-
-                    For more information on Tax Detail Report features refer the [Tax Service Guide](https://developer.cybersource.com/docs/cybs/en-us/tax-calculation/developer/all/rest/tax-calculation/tax-overview.html).
-
-                    '
-                refundIndicator:
-                  type: boolean
-                  description: 'Indicates whether this is a refund tax transaction. For a refund tax transaction, amounts in the Tax Detail Report will be negative.
-
-                    Possible values:
-
-                    - `true`: This is a refund tax transaction.
-
-                    - `false` (default): This is not a refund tax transaction.
-
-
-                    A refund tax request is a tax service request that sets the transaction type field in the Tax Detail Report to refunded and makes the reported amount negative.
-
-                    Tax amounts are returned as positive amounts in reply messages, but they are saved in reports as negative amounts which enables the reporting software to accurately calculate the aggregate amounts.
-
-
-                    Optional for U.S., Canadian, international tax, and value added taxes.
-
-                    For more information on Tax Detail Report features refer the [Tax Service Guide](https://developer.cybersource.com/docs/cybs/en-us/tax-calculation/developer/all/rest/tax-calculation/tax-overview.html).
-
-                    '
-            orderInformation:
-              type: object
-              properties:
-                amountDetails:
-                  type: object
-                  properties:
-                    currency:
-                      type: string
-                      maxLength: 3
-                      description: 'Currency used for the order. Use the three-character [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)
-
-
-                        #### Used by
-
-                        **Authorization**
-
-                        Required field.
-
-
-                        **Authorization Reversal**
-
-                        For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.
-
-
-                        #### PIN Debit
-
-                        Currency for the amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
-
-                        Returned by PIN debit purchase.
-
-
-                        For PIN debit reversal requests, you must use the same currency that was used for the PIN debit purchase or PIN debit credit that you are reversing.
-
-                        For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
-
-
-                        Required field for PIN Debit purchase and PIN Debit credit requests.
-
-                        Optional field for PIN Debit reversal requests.
-
-
-                        #### GPX
-
-                        This field is optional for reversing an authorization or credit.
-
-
-                        #### DCC for First Data
-
-                        Your local currency.
-
-
-                        #### Tax Calculation
-
-                        Required for international tax and value added tax only.
-
-                        Optional for U.S. and Canadian taxes.
-
-                        Your local currency.
-
-                        '
-                billTo:
-                  type: object
-                  properties:
-                    address1:
-                      type: string
-                      maxLength: 60
-                      description: 'First line of the billing street address.
-
-
-                        #### Tax Calculation
-
-                        Required for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                        '
-                    address2:
-                      type: string
-                      maxLength: 60
-                      description: 'Second line of the billing street address.
-
-
-                        #### Tax Calculation
-
-                        Optional for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                        '
-                    locality:
-                      type: string
-                      maxLength: 50
-                      description: 'Credit card billing city.
-
-
-                        #### Tax Calculation
-
-                        Required for U.S. and Canadian taxes only. Not applicable to international and value added taxes.
-
-                        '
-                    administrativeArea:
-                      type: string
-                      maxLength: 2
-                      description: 'Credit card billing state or province.
-
-
-                        #### Tax Calculation
-
-                        Required for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                        '
-                    postalCode:
-                      type: string
-                      maxLength: 10
-                      description: 'Postal code for the billing address. The postal code must consist of 5 to 9 digits.
-
-                        If the billing country is the U.S., the 9-digit postal code must follow this format:
-
-
-                        [5 digits][dash][4 digits]
-
-
-                        **Example**: 12345-6789
-
-
-                        If the billing country is Canada, the 6-digit postal code must follow this format:
-
-
-                        [alpha][numeric][alpha] [numeric][alpha][numeric]
-
-
-                        **Example**: A1B 2C3
-
-
-                        #### Tax Calculation
-
-                        Required for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                        '
-                    country:
-                      type: string
-                      maxLength: 2
-                      description: 'Credit card billing country. Use the [ISO Standard Country Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf).
-
-
-                        If `orderInformation.shipTo.country` is not provided, `orderInformation.billTo.country` is used in its place. If  `orderInformation.billTo.country` is set to `US` or `CA`, then `orderInformation.billTo.postalCode` and `orderInformation.billTo.administrativeArea` are also required.
-
-
-                        #### Tax Calculation
-
-                        Required for U.S., Canadian, international and value added taxes.
-
-                        '
-                shippingDetails:
-                  type: object
-                  properties:
-                    shipFromLocality:
-                      type: string
-                      maxLength: 50
-                      description: 'City where the product is shipped from.
-
-                        This field is used only when the `orderInformation.shipTo.administrativeArea` and `orderInformation.shipTo.country` fields are present.
-
-
-                        **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                        #### Tax Calculation
-
-                        This field is used to determine tax rules and/or rates applied to the transaction based on sourcing.
-
-
-                        Optional for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                        '
-                    shipFromCountry:
-                      type: string
-                      maxLength: 2
-                      description: 'Country from which the order is shipped. This field is used only when `orderInformation.shippingDetails.shipFromLocality` and `orderInformation.shippingDetails.shipFromAdministrativeArea` are present. Use the [ISO Standard Country Codes](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf).
-
-
-                        **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                        #### Tax Calculation
-
-                        This field is used to determine tax rules and/ or rates applied to the transaction based on sourcing.
-
-
-                        Optional for U.S., Canadian, international tax, and value added taxes.
-
-                        '
-                    shipFromPostalCode:
-                      type: string
-                      maxLength: 10
-                      description: 'Postal code where the product is shipped from.
-
-
-                        #### Tax Calculation
-
-                        This field is used to determine tax rules and/or rates applied to the transaction based on sourcing.
-
-
-                        Optional for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                        '
-                    shipFromAdministrativeArea:
-                      type: string
-                      maxLength: 2
-                      description: 'State from which the order is shipped. This field is used only when `orderInformation.shippingDetails.shipFromLocality` and `orderInformation.shippingDetails.shipFromCountry` are present. Use the [State, Province, and Territory Codes for the United States and Canada](http://apps.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf).
-
-
-                        **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                        #### Tax Calculation
-
-                        This field is used to determine tax rules and/or rates applied to the transaction based on sourcing.
-
-
-                        Optional for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                        '
-                shipTo:
-                  type: object
-                  properties:
-                    country:
-                      type: string
-                      description: 'Country of the shipping address. Use the two-character [ISO Standard Country Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf)
-
-
-                        Required field for authorization if any shipping address information is included in the request; otherwise, optional.
-
-
-                        #### Tax Calculation
-
-                        Optional field for U.S., Canadian, international tax, and value added taxes.
-
-                        Billing address objects will be used to determine the cardholder''s location when shipTo objects are not present.
-
-                        '
-                      maxLength: 3
-                    administrativeArea:
-                      type: string
-                      maxLength: 50
-                      description: "State or province of the shipping address. Use the [State, Province, and Territory Codes for the United States and Canada](https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf) (maximum length: 2) \n\nRequired field for authorization if any shipping address information is included in the request and shipping to the U.S.\nor Canada; otherwise, optional.\n\n#### Tax Calculation\nOptional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.\nBilling address objects will be used to determine the cardholder's location when shipTo objects are not present.\n"
-                    locality:
-                      type: string
-                      maxLength: 50
-                      description: 'City of the shipping address.
-
-
-                        Required field for authorization if any shipping address information is included in the request and shipping to the U.S. or
-
-                        Canada; otherwise, optional.
-
-
-                        #### Tax Calculation
-
-                        Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                        Billing address objects will be used to determine the cardholder''s location when shipTo objects are not present.
-
-                        '
-                    postalCode:
-                      type: string
-                      maxLength: 32
-                      description: 'Postal code for the shipping address. The postal code must consist of 5 to 9 digits.
-
-
-                        Required field for authorization if any shipping address information is included in the request and
-
-                        shipping to the U.S. or Canada; otherwise, optional.
-
-
-                        When the billing country is the U.S., the 9-digit postal code must follow this format:
-
-                        [5 digits][dash][4 digits]
-
-
-                        Example 12345-6789
-
-
-                        When the billing country is Canada, the 6-digit postal code must follow this format:
-
-                        [alpha][numeric][alpha][space][numeric][alpha][numeric]
-
-
-                        Example A1B 2C3
-
-
-                        #### American Express Direct
-
-                        Before sending the postal code to the processor, all nonalphanumeric characters are removed and, if the
-
-                        remaining value is longer than nine characters, the value is truncated starting from the right side.
-
-                        #### Tax Calculation
-
-                        Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                        Billing address objects will be used to determine the cardholder''s location when shipTo objects are not present.
-
-                        '
-                    address1:
-                      type: string
-                      maxLength: 60
-                      description: 'First line of the shipping address.
-
-
-                        Required field for authorization if any shipping address information is included in the request; otherwise, optional.
-
-
-                        #### Tax Calculation
-
-                        Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                        Billing address objects will be used to determine the cardholder''s location when shipTo objects are not present.
-
-                        '
-                    address2:
-                      type: string
-                      maxLength: 60
-                      description: 'Second line of the shipping address.
-
-
-                        Optional field.
-
-
-                        #### Tax Calculation
-
-                        Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                        Billing address objects will be used to determine the cardholder''s location when shipTo objects are not present.
-
-                        '
-                    address3:
-                      type: string
-                      maxLength: 60
-                      description: 'Third line of the shipping address.
-
-
-                        #### Tax Calculation
-
-                        Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                        Billing address objects will be used to determine the cardholder''s location when shipTo objects are not present.
-
-                        '
-                lineItems:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      productSKU:
-                        type: string
-                        maxLength: 255
-                        description: 'Product identifier code. Also known as the Stock Keeping Unit (SKU) code for the product.
-
-
-                          For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`), this field is required when `orderInformation.lineItems[].productCode` is not set to **default** or one of the other values that are related to shipping and/or handling.
-
-
-                          #### Tax Calculation
-
-                          Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                          For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`), this field is
-
-                          required when `orderInformation.lineItems[].productCode` is not `default` or one of the values related to shipping and/or handling.
-
-                          '
-                      productCode:
-                        type: string
-                        maxLength: 255
-                        description: 'Type of product. The value for this field is used to identify the product category (electronic, handling, physical,
-
-                          service, or shipping). The default value is `default`.
-
-
-                          If you are performing an authorization transaction (`processingOptions.capture` is set to `false`), and you set
-
-                          this field to a value other than `default` or one of the values related to shipping and/or handling, then
-
-                          `orderInformation.lineItems[].quantity`, `orderInformation.lineItems[].productName`, and
-
-                          `orderInformation.lineItems[].productSku` fields are required.
-
-
-                          Optional field.
-
-
-                          #### Tax Calculation
-
-                          Optional field for U.S., Canadian, international tax, and value added taxes.
-
-
-                          The Product Codes for the tax service are located in the Cybersource Tax Codes guide. Contact Customer Support to request the guide. If you don''t send a tax service Product Code in your tax request, product-based rules or exemptions will not be applied and the transaction will default to fully taxable in the locations where you''ve indicated you need to collect tax [by way of nexus, no nexus, or seller registration number fields].
-
-                          '
-                      quantity:
-                        type: integer
-                        minimum: 1
-                        maximum: 999999999
-                        default: 1
-                        description: 'Number of units for this order. Must be a non-negative integer.
-
-
-                          The default is `1`. For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`),
-
-                          this field is required when `orderInformation.lineItems[].productCode` is not `default` or one of the other values
-
-                          related to shipping and/or handling.
-
-
-                          #### Tax Calculation
-
-                          Optional field for U.S., Canadian, international tax, and value added taxes.
-
-                          '
-                      productName:
-                        type: string
-                        maxLength: 255
-                        description: 'For an authorization or capture transaction (`processingOptions.capture` is `true` or `false`),
-
-                          this field is required when `orderInformation.lineItems[].productCode` is not `default` or one of
-
-                          the other values that are related to shipping and/or handling.
-
-
-                          #### Tax Calculation
-
-                          Optional field for U.S., Canadian, international tax, and value added taxes.
-
-                          '
-                      unitPrice:
-                        type: string
-                        maxLength: 15
-                        description: 'Per-item price of the product. This value for this field cannot be negative.
-
-
-                          You must include either this field or the request-level field `orderInformation.amountDetails.totalAmount` in your request.
-
-
-                          You can include a decimal point (.), but you cannot include any other special characters.
-
-                          The value is truncated to the correct number of decimal places.
-
-
-                          #### DCC with a Third-Party Provider
-
-                          Set this field to the converted amount that was returned by the DCC provider. You must include either
-
-                          the 1st line item in the order and this field, or the request-level field `orderInformation.amountDetails.totalAmount` in your request.
-
-
-                          #### Tax Calculation
-
-                          Required field for U.S., Canadian, international and value added taxes.
-
-
-                          #### Zero Amount Authorizations
-
-                          If your processor supports zero amount authorizations, you can set this field to 0 for the
-
-                          authorization to check if the card is lost or stolen.
-
-
-                          #### Maximum Field Lengths
-
-                          For GPN and JCN Gateway: Decimal (10)
-
-                          All other processors: Decimal (15)
-
-                          '
-                      taxAmount:
-                        type: string
-                        maxLength: 15
-                        description: "Total tax to apply to the product. This value cannot be negative. The tax amount and the offer amount must\nbe in the same currency. The tax amount field is additive.\n\nThe following example uses a two-exponent currency such as USD:\n\n 1. You include each line item in your request.\n ..- 1st line item has amount=10.00, quantity=1, and taxAmount=0.80\n ..- 2nd line item has amount=20.00, quantity=1, and taxAmount=1.60\n 2. The total amount authorized will be 32.40, not 30.00 with 2.40 of tax included.\n\nOptional field.\n\n#### Airlines processing\nTax portion of the order amount. This value cannot exceed 99999999999999 (fourteen 9s).\nFormat: English characters only.\nOptional request field for a line item.\n\n#### Tax Calculation\nOptional field for U.S., Canadian, international tax, and value added taxes.\n\nNote if you send this field in your tax request, the value in the field will override the tax engine\n"
-                      orderAcceptance:
-                        type: object
-                        description: The Order Acceptance address fields may be used by the tax service to determine the taxability of the order or applicable taxing jurisdictions. You should consult your tax, legal and/or accounting advisors to determine if you should include an Order Acceptance address in your tax service request for some or all of your transactions based on your business.
-                        properties:
-                          locality:
-                            type: string
-                            maxLength: 50
-                            description: 'Order acceptance city. This field is not used unless the `orderInformation.orderAcceptance.administrativeArea` and `orderInformation.orderAcceptance.country` fields are present.
-
-
-                              **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                              #### Tax Calculation
-
-                              Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                              '
-                          administrativeArea:
-                            type: string
-                            maxLength: 2
-                            description: 'Order acceptance state. This field is not used unless the `orderInformation.orderAcceptance.locality` and `orderInformation.orderAcceptance.country` fields are present. Use the [State, Province, and Territory Codes for the United States and Canada](https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf).
-
-
-                              **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                              #### Tax Calculation
-
-                              Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                              '
-                          postalCode:
-                            type: string
-                            maxLength: 10
-                            description: 'Order acceptance postal code. This field is not used unless the `orderInformation.orderAcceptance.locality`, `orderInformation.orderAcceptance.administrativeArea`, and `orderInformation.orderAcceptance.country` fields are present.
-
-                              Must be sent at the line or offer level to be surfaced in the Tax Detail Report.
-
-
-                              **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                              #### Tax Calculation
-
-                              Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                              '
-                          country:
-                            type: string
-                            maxLength: 2
-                            description: 'Order acceptance country. This field is not used unless the `orderInformation.orderAcceptance.administrativeArea` and `orderInformation.orderAcceptance.locality` fields are present. Use the [ISO Standard Country Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf)
-
-
-                              **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                              #### Tax Calculation
-
-                              Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                              '
-                      orderOrigin:
-                        type: object
-                        description: The Order Origin address fields may be used by the tax service to determine the taxability of the order or applicable taxing jurisdictions. You should consult your tax, legal and/or accounting advisors to determine if you should include an Order Origin address in your tax service request for some or all of your transactions based on your business.
-                        properties:
-                          locality:
-                            type: string
-                            maxLength: 50
-                            description: 'Order origin city. This field is not used unless the `orderInformation.orderOrigin.administrativeArea` and `orderInformation.orderOrigin.country` fields are present.
-
-
-                              **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                              #### Tax Calculation
-
-                              Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                              '
-                          administrativeArea:
-                            type: string
-                            maxLength: 2
-                            description: 'Order origin state. This field is not used unless the `orderInformation.orderOrigin.locality` and `orderInformation.orderOrigin.country` fields are present. Use the [State, Province, and Territory Codes for the United States and Canada](http://apps.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf).
-
-
-                              **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                              #### Tax Calculation
-
-                              Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                              '
-                          postalCode:
-                            type: string
-                            maxLength: 10
-                            description: 'Order origin postal code. This field is not used unless the `orderInformation.orderOrigin.locality`, `orderInformation.orderOrigin.administrativeArea` and `orderInformation.orderOrigin.country` fields are present.
-
-                              Must be sent at the lineItem level to appear in the Tax Detail Report.
-
-
-                              **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                              #### Tax Calculation
-
-                              Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                              '
-                          country:
-                            type: string
-                            maxLength: 2
-                            description: 'Order origin country. This field is not used unless the `orderInformation.orderOrigin.administrativeArea` and `orderInformation.orderOrigin.locality` fields are present. Use the [ISO Standard Country Codes](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf).
-
-
-                              **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                              #### Tax Calculation
-
-                              Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                              '
-                      shipFromCountry:
-                        type: string
-                        maxLength: 2
-                        description: 'Country from which the order is shipped. This field is used only when `orderInformation.shippingDetails.shipFromLocality` and `orderInformation.shippingDetails.shipFromAdministrativeArea` are present. Use the [ISO Standard Country Codes](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf).
-
-
-                          **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                          #### Tax Calculation
-
-                          This field is used to determine tax rules and/ or rates applied to the transaction based on sourcing.
-
-
-                          Optional for U.S., Canadian, international tax, and value added taxes.
-
-                          '
-                      shipFromAdministrativeArea:
-                        type: string
-                        maxLength: 2
-                        description: 'State from which the order is shipped. This field is used only when `orderInformation.shippingDetails.shipFromLocality` and `orderInformation.shippingDetails.shipFromCountry` are present. Use the [State, Province, and Territory Codes for the United States and Canada](http://apps.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf).
-
-
-                          **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                          #### Tax Calculation
-
-                          This field is used to determine tax rules and/or rates applied to the transaction based on sourcing.
-
-
-                          Optional for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                          '
-                      shipFromLocality:
-                        type: string
-                        maxLength: 50
-                        description: 'City where the product is shipped from.
-
-                          This field is used only when the `orderInformation.shipTo.administrativeArea` and `orderInformation.shipTo.country` fields are present.
-
-
-                          **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                          #### Tax Calculation
-
-                          This field is used to determine tax rules and/or rates applied to the transaction based on sourcing.
-
-
-                          Optional for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                          '
-                      shipFromPostalCode:
-                        type: string
-                        maxLength: 10
-                        description: 'Postal code where the product is shipped from.
-
-
-                          #### Tax Calculation
-
-                          This field is used to determine tax rules and/or rates applied to the transaction based on sourcing.
-
-
-                          Optional for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                          '
-                      buyerVatRegistrationNumber:
-                        type: string
-                        maxLength: 25
-                        description: 'Buyer''s VAT registration number.
-
-
-                          **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                          #### Tax Calculation
-
-                          Optional field for international and value added taxes only. Not applicable to U.S. and Canadian taxes.
-
-                          '
-                      sellerVatRegistrationNumber:
-                        type: string
-                        maxLength: 25
-                        description: 'VAT seller registration number.
-
-
-                          **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                          #### Tax Calculation
-
-                          Optional field for international and value added taxes only. Not applicable to U.S. and Canadian taxes.
-
-                          '
-                invoiceDetails:
-                  type: object
-                  properties:
-                    invoiceDate:
-                      type: string
-                      maxLength: 8
-                      description: 'Date of the tax calculation. Use format YYYYMMDD. You can provide a date in the past if you are calculating tax for a refund and want to know what the tax was on the date the order was placed.
-
-                        You can provide a date in the future if you are calculating the tax for a future date, such as an upcoming tax holiday.
-
-
-                        The default is the date, in Pacific time, that the bank receives the request.
-
-                        Keep this in mind if you are in a different time zone and want the tax calculated with the rates that are applicable on a specific date.
-
-
-                        #### Tax Calculation
-
-                        Optional field for U.S., Canadian, international tax, and value added taxes.
-
-                        '
-                orderAcceptance:
-                  type: object
-                  description: The Order Acceptance address fields may be used by the tax service to determine the taxability of the order or applicable taxing jurisdictions. You should consult your tax, legal and/or accounting advisors to determine if you should include an Order Acceptance address in your tax service request for some or all of your transactions based on your business.
-                  properties:
-                    locality:
-                      type: string
-                      maxLength: 50
-                      description: 'Order acceptance city. This field is not used unless the `orderInformation.orderAcceptance.administrativeArea` and `orderInformation.orderAcceptance.country` fields are present.
-
-
-                        **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                        #### Tax Calculation
-
-                        Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                        '
-                    administrativeArea:
-                      type: string
-                      maxLength: 2
-                      description: 'Order acceptance state. This field is not used unless the `orderInformation.orderAcceptance.locality` and `orderInformation.orderAcceptance.country` fields are present. Use the [State, Province, and Territory Codes for the United States and Canada](https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf).
-
-
-                        **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                        #### Tax Calculation
-
-                        Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                        '
-                    postalCode:
-                      type: string
-                      maxLength: 10
-                      description: 'Order acceptance postal code. This field is not used unless the `orderInformation.orderAcceptance.locality`, `orderInformation.orderAcceptance.administrativeArea`, and `orderInformation.orderAcceptance.country` fields are present.
-
-                        Must be sent at the line or offer level to be surfaced in the Tax Detail Report.
-
-
-                        **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                        #### Tax Calculation
-
-                        Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                        '
-                    country:
-                      type: string
-                      maxLength: 2
-                      description: 'Order acceptance country. This field is not used unless the `orderInformation.orderAcceptance.administrativeArea` and `orderInformation.orderAcceptance.locality` fields are present. Use the [ISO Standard Country Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf)
-
-
-                        **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                        #### Tax Calculation
-
-                        Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                        '
-                orderOrigin:
-                  type: object
-                  description: The Order Origin address fields may be used by the tax service to determine the taxability of the order or applicable taxing jurisdictions. You should consult your tax, legal and/or accounting advisors to determine if you should include an Order Origin address in your tax service request for some or all of your transactions based on your business.
-                  properties:
-                    locality:
-                      type: string
-                      maxLength: 50
-                      description: 'Order origin city. This field is not used unless the `orderInformation.orderOrigin.administrativeArea` and `orderInformation.orderOrigin.country` fields are present.
-
-
-                        **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                        #### Tax Calculation
-
-                        Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                        '
-                    administrativeArea:
-                      type: string
-                      maxLength: 2
-                      description: 'Order origin state. This field is not used unless the `orderInformation.orderOrigin.locality` and `orderInformation.orderOrigin.country` fields are present. Use the [State, Province, and Territory Codes for the United States and Canada](http://apps.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf).
-
-
-                        **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                        #### Tax Calculation
-
-                        Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                        '
-                    postalCode:
-                      type: string
-                      maxLength: 10
-                      description: 'Order origin postal code. This field is not used unless the `orderInformation.orderOrigin.locality`, `orderInformation.orderOrigin.administrativeArea` and `orderInformation.orderOrigin.country` fields are present.
-
-                        Must be sent at the lineItem level to appear in the Tax Detail Report.
-
-
-                        **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                        #### Tax Calculation
-
-                        Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                        '
-                    country:
-                      type: string
-                      maxLength: 2
-                      description: 'Order origin country. This field is not used unless the `orderInformation.orderOrigin.administrativeArea` and `orderInformation.orderOrigin.locality` fields are present. Use the [ISO Standard Country Codes](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf).
-
-
-                        **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
-
-
-                        #### Tax Calculation
-
-                        Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
-
-                        '
-            merchantInformation:
-              type: object
-              properties:
-                vatRegistrationNumber:
-                  type: string
-                  maxLength: 21
-                  description: 'Your government-assigned tax identification number.
-
-
-                    #### Tax Calculation
-
-                    Required field for value added tax only. Not applicable to U.S. and Canadian taxes.
-
-
-                    #### CyberSource through VisaNet
-
-                    For CtV processors, the maximum length is 20.
-
-                    '
-            buyerInformation:
-              type: object
-              properties:
-                vatRegistrationNumber:
-                  type: string
-                  maxLength: 20
-                  description: 'Customer''s government-assigned tax identification number.
-
-
-                    #### Tax Calculation
-
-                    Optional for international and value added taxes only. Not applicable to U.S. and Canadian taxes.
-
-                    '
+      - Taxes
       responses:
         '201':
           description: Successful response.
-          schema:
-            title: vasV2PaymentsPost201Response
-            type: object
-            properties:
-              _links:
+          content:
+            application/hal+json;charset=utf-8:
+              schema:
+                title: vasV2PaymentsPost201Response
                 type: object
                 properties:
-                  void:
+                  _links:
                     type: object
                     properties:
-                      href:
-                        type: string
-                        description: This is the endpoint of the resource that was created by the successful request.
-                      method:
-                        type: string
-                        description: '`method` refers to the HTTP method that you can send to the `self` endpoint to retrieve details of the resource.'
-              id:
-                type: string
-                maxLength: 26
-                description: 'An unique identification number generated by Cybersource to identify the submitted request. Returned by all services.
-
-                  It is also appended to the endpoint of the resource.
-
-                  On incremental authorizations, this value with be the same as the identification number returned in the original authorization response.
-
-                  '
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
-
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
-
-                  The `T` separates the date and the time. The `Z` indicates UTC.
-
-
-                  Returned by Cybersource for all services.
-
-                  '
-              status:
-                type: string
-                description: "The status of the submitted transaction.\n\nPossible values:\n - COMPLETED\n"
-              clientReferenceInformation:
-                type: object
-                properties:
-                  code:
+                      void:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                            description: This is the endpoint of the resource that was created by the successful request.
+                          method:
+                            type: string
+                            description: '`method` refers to the HTTP method that you can send to the `self` endpoint to retrieve details of the resource.'
+                  id:
                     type: string
-                    maxLength: 59
-                    description: 'Merchant-generated order reference or tracking number. It is recommended that you send a unique value for each
+                    maxLength: 26
+                    description: 'An unique identification number generated by Cybersource to identify the submitted request. Returned by all services.
 
-                      transaction so that you can perform meaningful searches for the transaction.
+                      It is also appended to the endpoint of the resource.
 
-
-                      #### Used by
-
-                      **Authorization**
-
-                      Required field.
-
-
-                      #### PIN Debit
-
-                      Requests for PIN debit reversals need to use the same merchant reference number that was used in the transaction that is being
-
-                      reversed.
-
-
-                      Required field for all PIN Debit requests (purchase, credit, and reversal).
-
-
-                      #### FDC Nashville Global
-
-                      Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports.
+                      On incremental authorizations, this value with be the same as the identification number returned in the original authorization response.
 
                       '
-                  submitLocalDateTime:
+                  submitTimeUtc:
                     type: string
-                    maxLength: 14
-                    description: 'Date and time at your physical location.
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                      Format: `YYYYMMDDhhmmss`, where YYYY = year, MM = month, DD = day, hh = hour, mm = minutes ss = seconds
-
-
-                      #### PIN Debit
-
-                      Optional field for PIN Debit purchase and credit requests.
+                      Returned by Cybersource for all services.
 
                       '
-                  ownerMerchantId:
+                  status:
                     type: string
-                    description: 'Merchant ID that was used to create the subscription or customer profile for which the service was requested.
-
-
-                      If your CyberSource account is enabled for Recurring Billing, this field is returned only if you are using
-
-                      subscription sharing and if your merchant ID is in the same merchant ID pool as the owner merchant ID.
-
-
-                      If your CyberSource account is enabled for Payment Tokenization, this field is returned only if you are using
-
-                      profile sharing and if your merchant ID is in the same merchant ID pool as the owner merchant ID.
-
-                      '
-              taxInformation:
-                type: object
-                properties:
-                  commitIndicator:
-                    type: boolean
-                    description: 'Indicates whether this is a committed tax transaction. For a committed tax transaction, the status in the Tax Detail Report is "Committed." For an uncommitted tax transaction, the status in the Tax Detail Report is "Uncommitted." Possible values:
-
-                      - `true`: This is a committed tax transaction.
-
-                      - `false` (default): This is not a committed tax transaction.
-
-
-                      A committed tax request is a tax service request that sets the status field in the Tax Detail Report to committed.
-
-                      The committed status indicates that the amount calculated by the tax service is included in the amount of a capture or credit.
-
-
-                      Use a void service request to cancel a committed tax request or a committed refund tax request. The void transaction is included as a separate entry in the Tax Detail Report. The value of the status field is cancelled. The value of the link ID is the request ID of the committed tax request or refund tax request that was voided. You can use the value of the link ID to reconcile your orders.
-
-
-                      Optional for U.S., Canadian, international tax, and value added taxes.
-
-                      For more information on Tax Detail Report features refer the [Tax Service Guide](https://developer.cybersource.com/docs/cybs/en-us/tax-calculation/developer/all/rest/tax-calculation/tax-overview.html).
-
-                      '
-                  refundIndicator:
-                    type: boolean
-                    description: 'Indicates whether this is a refund tax transaction. For a refund tax transaction, amounts in the Tax Detail Report will be negative.
-
-                      Possible values:
-
-                      - `true`: This is a refund tax transaction.
-
-                      - `false` (default): This is not a refund tax transaction.
-
-
-                      A refund tax request is a tax service request that sets the transaction type field in the Tax Detail Report to refunded and makes the reported amount negative.
-
-                      Tax amounts are returned as positive amounts in reply messages, but they are saved in reports as negative amounts which enables the reporting software to accurately calculate the aggregate amounts.
-
-
-                      Optional for U.S., Canadian, international tax, and value added taxes.
-
-                      For more information on Tax Detail Report features refer the [Tax Service Guide](https://developer.cybersource.com/docs/cybs/en-us/tax-calculation/developer/all/rest/tax-calculation/tax-overview.html).
-
-                      '
-              orderInformation:
-                type: object
-                properties:
-                  exemptAmount:
-                    type: string
-                    maxLength: 15
-                    description: 'Total amount of tax exempt amounts. This value is the sum of the values for all the `orderInformation.lineItems[].exemptAmount` fields in the tax calculation request.
-
-                      '
-                  taxableAmount:
-                    type: string
-                    maxLength: 15
-                    description: 'Total amount of all taxable amounts. This value is the sum of the values for all the `orderInformation.lineItems[].taxAmount` fields in the tax calculation request.
-
-                      '
-                  taxAmount:
-                    type: string
-                    maxLength: 15
-                    description: 'Total amount of tax for all lineItems in the tax calculation request.
-
-                      '
-                  lineItems:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        taxDetails:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              type:
-                                type: string
-                                maxLength: 15
-                                description: 'Allowed tax types:
-
-                                  - city
-
-                                  - county
-
-                                  - state
-
-                                  - national
-
-                                  - special
-
-                                  '
-                              amount:
-                                type: string
-                                maxLength: 15
-                                description: 'Amount corresponding to different types of taxes applied.
-
-                                  '
-                        jurisdiction:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              type:
-                                type: string
-                                maxLength: 15
-                                description: 'Type of tax jurisdiction for the item. Returned only if the `taxInformation.showTaxPerLineItem` field is set to `Yes`.
-
-
-                                  Possible values:
-
-                                  - `city`
-
-                                  - `county`
-
-                                  - `state`
-
-                                  - `country`
-
-                                  - `special`
-
-                                  '
-                              taxName:
-                                type: string
-                                maxLength: 15
-                                description: 'Name of the jurisdiction tax for the item. For example, CA State Tax. Returned only if the `taxInformation.showTaxPerLineItem` field is set to `Yes`.
-
-                                  '
-                              taxAmount:
-                                type: string
-                                maxLength: 15
-                                description: 'Jurisdiction tax amount for the item. Returned only if the `taxInformation.showTaxPerLineItem` field is set to `Yes`.
-
-                                  '
-                              taxable:
-                                type: string
-                                maxLength: 15
-                                description: 'Jurisdiction taxable amount for the item, not including product level exemptions. Returned only if the `taxInformation.showTaxPerLineItem` field is set to `Yes`.
-
-                                  '
-                              name:
-                                type: string
-                                maxLength: 15
-                                description: 'Free-text description of the jurisdiction for the item. For example, San Mateo County. Returned only if the `taxInformation.showTaxPerLineItem` field is set to `Yes`.
-
-                                  '
-                              code:
-                                type: string
-                                maxLength: 15
-                                description: 'Jurisdiction code assigned by the tax provider. Returned only if the `taxInformation.showTaxPerLineItem` field is set to `Yes`.
-
-                                  '
-                              rate:
-                                type: string
-                                maxLength: 15
-                                description: 'Jurisdiction tax rate for the item. Returned only if the `taxInformation.showTaxPerLineItem` field is set to `Yes`.
-
-                                  '
-                              region:
-                                type: string
-                                maxLength: 15
-                                description: 'Free-text description of the jurisdiction region for the item. For example, CA (California State) or GB (Great Britain). Returned only if the `taxInformation.showTaxPerLineItem` field is set to `Yes`.
-
-                                  '
-                              country:
-                                type: string
-                                maxLength: 15
-                                description: 'Tax jurisdiction country for the item. Returned only if the `taxInformation.showTaxPerLineItem` field is set to `Yes`.
-
-                                  '
-                        exemptAmount:
-                          type: string
-                          maxLength: 15
-                          description: 'Exempt amount for the lineItem. Returned only if the `taxInformation.showTaxPerLineItem` field is set to `Yes`.
-
-                            '
-                        taxableAmount:
-                          type: string
-                          maxLength: 15
-                          description: 'Portion of the item amount that is taxable.
-
-                            '
-                        taxAmount:
-                          type: string
-                          maxLength: 15
-                          description: 'Total tax for the item. This value is the sum of all taxes applied to the item.
-
-                            '
-                  taxDetails:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        type:
-                          type: string
-                          maxLength: 15
-                          description: 'Allowed tax types:
-
-                            - city
-
-                            - county
-
-                            - state
-
-                            - national
-
-                            - special
-
-                            '
-                        amount:
-                          type: string
-                          maxLength: 15
-                          description: 'Amount corresponding to different types of taxes applied.
-
-                            '
-                  amountDetails:
+                    description: "The status of the submitted transaction.\n\nPossible values:\n - COMPLETED\n"
+                  clientReferenceInformation:
                     type: object
                     properties:
-                      totalAmount:
+                      code:
                         type: string
-                        maxLength: 19
-                        description: "Grand total for the order. This value cannot be negative. You can include a decimal point (.), but no other special characters.\nCyberSource truncates the amount to the correct number of decimal places.\n\n**Note** For CTV, FDCCompass, Paymentech processors, the maximum length for this field is 12.\n\n**Important** Some processors have specific requirements and limitations, such as maximum amounts and maximum field lengths.\n\nIf your processor supports zero amount authorizations, you can set this field to 0 for the authorization to check if the card is lost or stolen. \n\n#### Card Present\nRequired to include either this field or `orderInformation.lineItems[].unitPrice` for the order.\n\n#### Invoicing / Pay By Link\nRequired for creating a new invoice or payment link.\n\n#### PIN Debit\nAmount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount.\n\nRequired field for PIN Debit purchase and PIN Debit credit requests.\nOptional field for PIN Debit reversal requests.\n\n#### GPX\nThis field is optional for reversing an authorization or credit; however, for all other processors, these fields are required.\n\n#### DCC with a Third-Party Provider\nSet this field to the converted amount that was returned by the DCC provider. You must include either this field or the 1st line item in the order and the specific line-order amount in your request. \n\n#### DCC for First Data\nNot used.\n"
-                      currency:
-                        type: string
-                        maxLength: 3
-                        description: 'Currency used for the order. Use the three-character [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)
+                        maxLength: 59
+                        description: 'Merchant-generated order reference or tracking number. It is recommended that you send a unique value for each
+
+                          transaction so that you can perform meaningful searches for the transaction.
 
 
                           #### Used by
@@ -1424,112 +93,396 @@ paths:
                           Required field.
 
 
-                          **Authorization Reversal**
+                          #### PIN Debit
 
-                          For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.
+                          Requests for PIN debit reversals need to use the same merchant reference number that was used in the transaction that is being
+
+                          reversed.
+
+
+                          Required field for all PIN Debit requests (purchase, credit, and reversal).
+
+
+                          #### FDC Nashville Global
+
+                          Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports.
+
+                          '
+                      submitLocalDateTime:
+                        type: string
+                        maxLength: 14
+                        description: 'Date and time at your physical location.
+
+
+                          Format: `YYYYMMDDhhmmss`, where YYYY = year, MM = month, DD = day, hh = hour, mm = minutes ss = seconds
 
 
                           #### PIN Debit
 
-                          Currency for the amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
-
-                          Returned by PIN debit purchase.
-
-
-                          For PIN debit reversal requests, you must use the same currency that was used for the PIN debit purchase or PIN debit credit that you are reversing.
-
-                          For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
-
-
-                          Required field for PIN Debit purchase and PIN Debit credit requests.
-
-                          Optional field for PIN Debit reversal requests.
-
-
-                          #### GPX
-
-                          This field is optional for reversing an authorization or credit.
-
-
-                          #### DCC for First Data
-
-                          Your local currency.
-
-
-                          #### Tax Calculation
-
-                          Required for international tax and value added tax only.
-
-                          Optional for U.S. and Canadian taxes.
-
-                          Your local currency.
+                          Optional field for PIN Debit purchase and credit requests.
 
                           '
+                      ownerMerchantId:
+                        type: string
+                        description: 'Merchant ID that was used to create the subscription or customer profile for which the service was requested.
+
+
+                          If your CyberSource account is enabled for Recurring Billing, this field is returned only if you are using
+
+                          subscription sharing and if your merchant ID is in the same merchant ID pool as the owner merchant ID.
+
+
+                          If your CyberSource account is enabled for Payment Tokenization, this field is returned only if you are using
+
+                          profile sharing and if your merchant ID is in the same merchant ID pool as the owner merchant ID.
+
+                          '
+                  taxInformation:
+                    type: object
+                    properties:
+                      commitIndicator:
+                        type: boolean
+                        description: 'Indicates whether this is a committed tax transaction. For a committed tax transaction, the status in the Tax Detail Report is "Committed." For an uncommitted tax transaction, the status in the Tax Detail Report is "Uncommitted." Possible values:
+
+                          - `true`: This is a committed tax transaction.
+
+                          - `false` (default): This is not a committed tax transaction.
+
+
+                          A committed tax request is a tax service request that sets the status field in the Tax Detail Report to committed.
+
+                          The committed status indicates that the amount calculated by the tax service is included in the amount of a capture or credit.
+
+
+                          Use a void service request to cancel a committed tax request or a committed refund tax request. The void transaction is included as a separate entry in the Tax Detail Report. The value of the status field is cancelled. The value of the link ID is the request ID of the committed tax request or refund tax request that was voided. You can use the value of the link ID to reconcile your orders.
+
+
+                          Optional for U.S., Canadian, international tax, and value added taxes.
+
+                          For more information on Tax Detail Report features refer the [Tax Service Guide](https://developer.cybersource.com/docs/cybs/en-us/tax-calculation/developer/all/rest/tax-calculation/tax-overview.html).
+
+                          '
+                      refundIndicator:
+                        type: boolean
+                        description: 'Indicates whether this is a refund tax transaction. For a refund tax transaction, amounts in the Tax Detail Report will be negative.
+
+                          Possible values:
+
+                          - `true`: This is a refund tax transaction.
+
+                          - `false` (default): This is not a refund tax transaction.
+
+
+                          A refund tax request is a tax service request that sets the transaction type field in the Tax Detail Report to refunded and makes the reported amount negative.
+
+                          Tax amounts are returned as positive amounts in reply messages, but they are saved in reports as negative amounts which enables the reporting software to accurately calculate the aggregate amounts.
+
+
+                          Optional for U.S., Canadian, international tax, and value added taxes.
+
+                          For more information on Tax Detail Report features refer the [Tax Service Guide](https://developer.cybersource.com/docs/cybs/en-us/tax-calculation/developer/all/rest/tax-calculation/tax-overview.html).
+
+                          '
+                  orderInformation:
+                    type: object
+                    properties:
+                      exemptAmount:
+                        type: string
+                        maxLength: 15
+                        description: 'Total amount of tax exempt amounts. This value is the sum of the values for all the `orderInformation.lineItems[].exemptAmount` fields in the tax calculation request.
+
+                          '
+                      taxableAmount:
+                        type: string
+                        maxLength: 15
+                        description: 'Total amount of all taxable amounts. This value is the sum of the values for all the `orderInformation.lineItems[].taxAmount` fields in the tax calculation request.
+
+                          '
+                      taxAmount:
+                        type: string
+                        maxLength: 15
+                        description: 'Total amount of tax for all lineItems in the tax calculation request.
+
+                          '
+                      lineItems:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            taxDetails:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  type:
+                                    type: string
+                                    maxLength: 15
+                                    description: 'Allowed tax types:
+
+                                      - city
+
+                                      - county
+
+                                      - state
+
+                                      - national
+
+                                      - special
+
+                                      '
+                                  amount:
+                                    type: string
+                                    maxLength: 15
+                                    description: 'Amount corresponding to different types of taxes applied.
+
+                                      '
+                            jurisdiction:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  type:
+                                    type: string
+                                    maxLength: 15
+                                    description: 'Type of tax jurisdiction for the item. Returned only if the `taxInformation.showTaxPerLineItem` field is set to `Yes`.
+
+
+                                      Possible values:
+
+                                      - `city`
+
+                                      - `county`
+
+                                      - `state`
+
+                                      - `country`
+
+                                      - `special`
+
+                                      '
+                                  taxName:
+                                    type: string
+                                    maxLength: 15
+                                    description: 'Name of the jurisdiction tax for the item. For example, CA State Tax. Returned only if the `taxInformation.showTaxPerLineItem` field is set to `Yes`.
+
+                                      '
+                                  taxAmount:
+                                    type: string
+                                    maxLength: 15
+                                    description: 'Jurisdiction tax amount for the item. Returned only if the `taxInformation.showTaxPerLineItem` field is set to `Yes`.
+
+                                      '
+                                  taxable:
+                                    type: string
+                                    maxLength: 15
+                                    description: 'Jurisdiction taxable amount for the item, not including product level exemptions. Returned only if the `taxInformation.showTaxPerLineItem` field is set to `Yes`.
+
+                                      '
+                                  name:
+                                    type: string
+                                    maxLength: 15
+                                    description: 'Free-text description of the jurisdiction for the item. For example, San Mateo County. Returned only if the `taxInformation.showTaxPerLineItem` field is set to `Yes`.
+
+                                      '
+                                  code:
+                                    type: string
+                                    maxLength: 15
+                                    description: 'Jurisdiction code assigned by the tax provider. Returned only if the `taxInformation.showTaxPerLineItem` field is set to `Yes`.
+
+                                      '
+                                  rate:
+                                    type: string
+                                    maxLength: 15
+                                    description: 'Jurisdiction tax rate for the item. Returned only if the `taxInformation.showTaxPerLineItem` field is set to `Yes`.
+
+                                      '
+                                  region:
+                                    type: string
+                                    maxLength: 15
+                                    description: 'Free-text description of the jurisdiction region for the item. For example, CA (California State) or GB (Great Britain). Returned only if the `taxInformation.showTaxPerLineItem` field is set to `Yes`.
+
+                                      '
+                                  country:
+                                    type: string
+                                    maxLength: 15
+                                    description: 'Tax jurisdiction country for the item. Returned only if the `taxInformation.showTaxPerLineItem` field is set to `Yes`.
+
+                                      '
+                            exemptAmount:
+                              type: string
+                              maxLength: 15
+                              description: 'Exempt amount for the lineItem. Returned only if the `taxInformation.showTaxPerLineItem` field is set to `Yes`.
+
+                                '
+                            taxableAmount:
+                              type: string
+                              maxLength: 15
+                              description: 'Portion of the item amount that is taxable.
+
+                                '
+                            taxAmount:
+                              type: string
+                              maxLength: 15
+                              description: 'Total tax for the item. This value is the sum of all taxes applied to the item.
+
+                                '
+                      taxDetails:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              maxLength: 15
+                              description: 'Allowed tax types:
+
+                                - city
+
+                                - county
+
+                                - state
+
+                                - national
+
+                                - special
+
+                                '
+                            amount:
+                              type: string
+                              maxLength: 15
+                              description: 'Amount corresponding to different types of taxes applied.
+
+                                '
+                      amountDetails:
+                        type: object
+                        properties:
+                          totalAmount:
+                            type: string
+                            maxLength: 19
+                            description: "Grand total for the order. This value cannot be negative. You can include a decimal point (.), but no other special characters.\nCyberSource truncates the amount to the correct number of decimal places.\n\n**Note** For CTV, FDCCompass, Paymentech processors, the maximum length for this field is 12.\n\n**Important** Some processors have specific requirements and limitations, such as maximum amounts and maximum field lengths.\n\nIf your processor supports zero amount authorizations, you can set this field to 0 for the authorization to check if the card is lost or stolen. \n\n#### Card Present\nRequired to include either this field or `orderInformation.lineItems[].unitPrice` for the order.\n\n#### Invoicing / Pay By Link\nRequired for creating a new invoice or payment link.\n\n#### PIN Debit\nAmount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount.\n\nRequired field for PIN Debit purchase and PIN Debit credit requests.\nOptional field for PIN Debit reversal requests.\n\n#### GPX\nThis field is optional for reversing an authorization or credit; however, for all other processors, these fields are required.\n\n#### DCC with a Third-Party Provider\nSet this field to the converted amount that was returned by the DCC provider. You must include either this field or the 1st line item in the order and the specific line-order amount in your request. \n\n#### DCC for First Data\nNot used.\n"
+                          currency:
+                            type: string
+                            maxLength: 3
+                            description: 'Currency used for the order. Use the three-character [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)
+
+
+                              #### Used by
+
+                              **Authorization**
+
+                              Required field.
+
+
+                              **Authorization Reversal**
+
+                              For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.
+
+
+                              #### PIN Debit
+
+                              Currency for the amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+
+                              Returned by PIN debit purchase.
+
+
+                              For PIN debit reversal requests, you must use the same currency that was used for the PIN debit purchase or PIN debit credit that you are reversing.
+
+                              For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+
+
+                              Required field for PIN Debit purchase and PIN Debit credit requests.
+
+                              Optional field for PIN Debit reversal requests.
+
+
+                              #### GPX
+
+                              This field is optional for reversing an authorization or credit.
+
+
+                              #### DCC for First Data
+
+                              Your local currency.
+
+
+                              #### Tax Calculation
+
+                              Required for international tax and value added tax only.
+
+                              Optional for U.S. and Canadian taxes.
+
+                              Your local currency.
+
+                              '
         '400':
           description: Invalid request.
-          schema:
-            type: object
-            title: vasV2PaymentsPost400Response
-            properties:
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+          content:
+            application/hal+json;charset=utf-8:
+              schema:
+                type: object
+                title: vasV2PaymentsPost400Response
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
 
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                  Returned by Cybersource for all services.
+                      Returned by Cybersource for all services.
 
-                  '
-              status:
-                type: string
-                description: "The status of the submitted transaction.\n\nPossible values:\n - INVALID_REQUEST\n"
-              reason:
-                type: string
-                description: "The reason of the status.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n - INVALID_MERCHANT_CONFIGURATION\n - INVALID_ADDRESS\n"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    field:
-                      type: string
-                      description: This is the flattened JSON object field name/path that is either missing or invalid.
-                    reason:
-                      type: string
-                      description: "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n"
+                      '
+                  status:
+                    type: string
+                    description: "The status of the submitted transaction.\n\nPossible values:\n - INVALID_REQUEST\n"
+                  reason:
+                    type: string
+                    description: "The reason of the status.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n - INVALID_MERCHANT_CONFIGURATION\n - INVALID_ADDRESS\n"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: This is the flattened JSON object field name/path that is either missing or invalid.
+                        reason:
+                          type: string
+                          description: "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n"
         '502':
           description: Unexpected system error or system timeout.
-          schema:
-            title: vasV2PaymentsPost502Response
-            type: object
-            properties:
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+          content:
+            application/hal+json;charset=utf-8:
+              schema:
+                title: vasV2PaymentsPost502Response
+                type: object
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
 
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                  Returned by Cybersource for all services.
+                      Returned by Cybersource for all services.
 
-                  '
-              status:
-                type: string
-                description: "The status of the submitted transaction.\n\nPossible values:\n - SERVER_ERROR\n"
-              reason:
-                type: string
-                description: "The reason of the status.\n\nPossible values:\n - SYSTEM_ERROR\n - SERVER_TIMEOUT\n - SERVICE_TIMEOUT\n"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
+                      '
+                  status:
+                    type: string
+                    description: "The status of the submitted transaction.\n\nPossible values:\n - SERVER_ERROR\n"
+                  reason:
+                    type: string
+                    description: "The reason of the status.\n\nPossible values:\n - SYSTEM_ERROR\n - SERVER_TIMEOUT\n - SERVICE_TIMEOUT\n"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
       x-example:
         example0:
           summary: Basic Tax Calculation Request
@@ -1706,292 +659,1285 @@ paths:
               refundIndicator: true
             merchantInformation:
               vatRegistrationNumber: abcdef
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              type: object
+              properties:
+                clientReferenceInformation:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                      maxLength: 59
+                      description: 'Merchant-generated order reference or tracking number. It is recommended that you send a unique value for each
+
+                        transaction so that you can perform meaningful searches for the transaction.
+
+
+                        #### Used by
+
+                        **Authorization**
+
+                        Required field.
+
+
+                        #### PIN Debit
+
+                        Requests for PIN debit reversals need to use the same merchant reference number that was used in the transaction that is being
+
+                        reversed.
+
+
+                        Required field for all PIN Debit requests (purchase, credit, and reversal).
+
+
+                        #### FDC Nashville Global
+
+                        Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports.
+
+                        '
+                    partner:
+                      type: object
+                      properties:
+                        developerId:
+                          type: string
+                          maxLength: 8
+                          description: 'Identifier for the developer that helped integrate a partner solution to CyberSource.
+
+
+                            Send this value in all requests that are sent through the partner solutions built by that developer.
+
+                            CyberSource assigns the ID to the developer.
+
+
+                            **Note** When you see a developer ID of 999 in reports, the developer ID that was submitted is incorrect.
+
+                            '
+                        solutionId:
+                          type: string
+                          maxLength: 8
+                          description: 'Identifier for the partner that is integrated to CyberSource.
+
+
+                            Send this value in all requests that are sent through the partner solution. CyberSource assigns the ID to the partner.
+
+
+                            **Note** When you see a solutionId of 999 in reports, the solutionId that was submitted is incorrect.
+
+                            '
+                    comments:
+                      type: string
+                      description: Brief description of the order or any comment you wish to add to the order.
+                taxInformation:
+                  type: object
+                  properties:
+                    reportingDate:
+                      type: string
+                      maxLength: 8
+                      description: 'Reporting date of transaction. Format: YYYYMMDD. Defaults to current date if not specified.
+
+                        Optional for U.S., Canadian, international tax, and value added taxes.
+
+                        '
+                    dateOverrideReason:
+                      type: string
+                      maxLength: 50
+                      description: 'If a past or future date is specified in `orderInformation.invoiceDetails.invoiceDate`, then provide the reason for that for audit purposes.
+
+                        Typical reasons include: ''Return'', ''Layaway'', ''Imported''.
+
+
+                        Optional for U.S., Canadian, international tax, and value added taxes.
+
+                        '
+                    nexus:
+                      description: 'Comma-separated list of states or provinces in which merchandise is taxable. Note merchandise may be still be non-taxable or tax exempt depending on the product taxability. Indicate the type of product you are selling in the product code field for product-level taxability rules to be applied. Do not use both the `taxInformation.nexus` and `taxInformation.noNexus` fields in your request. If you do not include this field in a tax calculation service request, the tax system makes its calculations as if you have nexus in every US state or Canadian province. Use the [State, Province, and Territory Codes for the United States and Canada](https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf).
+
+
+                        If you indicate you do not have nexus in the destination state, jurisdiction level fields are left blank in the Tax Detail Report.
+
+
+                        Optional field for U.S. and Canadian taxes only. Either this field or `taxInformation.noNexus` is required if you do not have nexus in every state or province.
+
+
+                        Not applicable for international and value added taxes.
+
+                        '
+                      type: array
+                      items:
+                        type: string
+                        maxLength: 2
+                    noNexus:
+                      description: 'Comma-separated list of states or provinces where you do not have nexus. Check with a tax advisor to determine where your business has nexus. Do not use both the `taxInformation.nexus` and `taxInformation.noNexus` fields in your request. If you do not include this field in a tax calculation service request, the tax system makes its calculations as if you have nexus in every US state or Canadian province.
+
+                        Use the [State, Province, and Territory Codes for the United States and Canada](https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf).
+
+
+                        If you indicate you do not have nexus in the destination state, jurisdiction level fields are left blank in the Tax Detail Report.
+
+
+                        Optional field for U.S. and Canadian taxes only. Either this field or `taxInformation.nexus` is required if you do not have nexus in every state or province.
+
+
+                        Not applicable for international and value added taxes.
+
+                        '
+                      type: array
+                      items:
+                        type: string
+                        maxLength: 2
+                    showTaxPerLineItem:
+                      type: string
+                      description: 'Whether or not to display tax amounts for each line item. This field can contain one of the following values:
+
+                        - `Yes` - Display tax amounts for each line item
+
+                        - `No` (default) - Do not display tax amounts for each line item
+
+
+                        Optional for U.S., Canadian, international tax, and value added taxes.
+
+                        '
+                    commitIndicator:
+                      type: boolean
+                      description: 'Indicates whether this is a committed tax transaction. For a committed tax transaction, the status in the Tax Detail Report is "Committed." For an uncommitted tax transaction, the status in the Tax Detail Report is "Uncommitted." Possible values:
+
+                        - `true`: This is a committed tax transaction.
+
+                        - `false` (default): This is not a committed tax transaction.
+
+
+                        A committed tax request is a tax service request that sets the status field in the Tax Detail Report to committed.
+
+                        The committed status indicates that the amount calculated by the tax service is included in the amount of a capture or credit.
+
+
+                        Use a void service request to cancel a committed tax request or a committed refund tax request. The void transaction is included as a separate entry in the Tax Detail Report. The value of the status field is cancelled. The value of the link ID is the request ID of the committed tax request or refund tax request that was voided. You can use the value of the link ID to reconcile your orders.
+
+
+                        Optional for U.S., Canadian, international tax, and value added taxes.
+
+                        For more information on Tax Detail Report features refer the [Tax Service Guide](https://developer.cybersource.com/docs/cybs/en-us/tax-calculation/developer/all/rest/tax-calculation/tax-overview.html).
+
+                        '
+                    refundIndicator:
+                      type: boolean
+                      description: 'Indicates whether this is a refund tax transaction. For a refund tax transaction, amounts in the Tax Detail Report will be negative.
+
+                        Possible values:
+
+                        - `true`: This is a refund tax transaction.
+
+                        - `false` (default): This is not a refund tax transaction.
+
+
+                        A refund tax request is a tax service request that sets the transaction type field in the Tax Detail Report to refunded and makes the reported amount negative.
+
+                        Tax amounts are returned as positive amounts in reply messages, but they are saved in reports as negative amounts which enables the reporting software to accurately calculate the aggregate amounts.
+
+
+                        Optional for U.S., Canadian, international tax, and value added taxes.
+
+                        For more information on Tax Detail Report features refer the [Tax Service Guide](https://developer.cybersource.com/docs/cybs/en-us/tax-calculation/developer/all/rest/tax-calculation/tax-overview.html).
+
+                        '
+                orderInformation:
+                  type: object
+                  properties:
+                    amountDetails:
+                      type: object
+                      properties:
+                        currency:
+                          type: string
+                          maxLength: 3
+                          description: 'Currency used for the order. Use the three-character [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)
+
+
+                            #### Used by
+
+                            **Authorization**
+
+                            Required field.
+
+
+                            **Authorization Reversal**
+
+                            For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.
+
+
+                            #### PIN Debit
+
+                            Currency for the amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+
+                            Returned by PIN debit purchase.
+
+
+                            For PIN debit reversal requests, you must use the same currency that was used for the PIN debit purchase or PIN debit credit that you are reversing.
+
+                            For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+
+
+                            Required field for PIN Debit purchase and PIN Debit credit requests.
+
+                            Optional field for PIN Debit reversal requests.
+
+
+                            #### GPX
+
+                            This field is optional for reversing an authorization or credit.
+
+
+                            #### DCC for First Data
+
+                            Your local currency.
+
+
+                            #### Tax Calculation
+
+                            Required for international tax and value added tax only.
+
+                            Optional for U.S. and Canadian taxes.
+
+                            Your local currency.
+
+                            '
+                    billTo:
+                      type: object
+                      properties:
+                        address1:
+                          type: string
+                          maxLength: 60
+                          description: 'First line of the billing street address.
+
+
+                            #### Tax Calculation
+
+                            Required for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                            '
+                        address2:
+                          type: string
+                          maxLength: 60
+                          description: 'Second line of the billing street address.
+
+
+                            #### Tax Calculation
+
+                            Optional for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                            '
+                        locality:
+                          type: string
+                          maxLength: 50
+                          description: 'Credit card billing city.
+
+
+                            #### Tax Calculation
+
+                            Required for U.S. and Canadian taxes only. Not applicable to international and value added taxes.
+
+                            '
+                        administrativeArea:
+                          type: string
+                          maxLength: 2
+                          description: 'Credit card billing state or province.
+
+
+                            #### Tax Calculation
+
+                            Required for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                            '
+                        postalCode:
+                          type: string
+                          maxLength: 10
+                          description: 'Postal code for the billing address. The postal code must consist of 5 to 9 digits.
+
+                            If the billing country is the U.S., the 9-digit postal code must follow this format:
+
+
+                            [5 digits][dash][4 digits]
+
+
+                            **Example**: 12345-6789
+
+
+                            If the billing country is Canada, the 6-digit postal code must follow this format:
+
+
+                            [alpha][numeric][alpha] [numeric][alpha][numeric]
+
+
+                            **Example**: A1B 2C3
+
+
+                            #### Tax Calculation
+
+                            Required for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                            '
+                        country:
+                          type: string
+                          maxLength: 2
+                          description: 'Credit card billing country. Use the [ISO Standard Country Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf).
+
+
+                            If `orderInformation.shipTo.country` is not provided, `orderInformation.billTo.country` is used in its place. If  `orderInformation.billTo.country` is set to `US` or `CA`, then `orderInformation.billTo.postalCode` and `orderInformation.billTo.administrativeArea` are also required.
+
+
+                            #### Tax Calculation
+
+                            Required for U.S., Canadian, international and value added taxes.
+
+                            '
+                    shippingDetails:
+                      type: object
+                      properties:
+                        shipFromLocality:
+                          type: string
+                          maxLength: 50
+                          description: 'City where the product is shipped from.
+
+                            This field is used only when the `orderInformation.shipTo.administrativeArea` and `orderInformation.shipTo.country` fields are present.
+
+
+                            **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                            #### Tax Calculation
+
+                            This field is used to determine tax rules and/or rates applied to the transaction based on sourcing.
+
+
+                            Optional for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                            '
+                        shipFromCountry:
+                          type: string
+                          maxLength: 2
+                          description: 'Country from which the order is shipped. This field is used only when `orderInformation.shippingDetails.shipFromLocality` and `orderInformation.shippingDetails.shipFromAdministrativeArea` are present. Use the [ISO Standard Country Codes](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf).
+
+
+                            **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                            #### Tax Calculation
+
+                            This field is used to determine tax rules and/ or rates applied to the transaction based on sourcing.
+
+
+                            Optional for U.S., Canadian, international tax, and value added taxes.
+
+                            '
+                        shipFromPostalCode:
+                          type: string
+                          maxLength: 10
+                          description: 'Postal code where the product is shipped from.
+
+
+                            #### Tax Calculation
+
+                            This field is used to determine tax rules and/or rates applied to the transaction based on sourcing.
+
+
+                            Optional for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                            '
+                        shipFromAdministrativeArea:
+                          type: string
+                          maxLength: 2
+                          description: 'State from which the order is shipped. This field is used only when `orderInformation.shippingDetails.shipFromLocality` and `orderInformation.shippingDetails.shipFromCountry` are present. Use the [State, Province, and Territory Codes for the United States and Canada](http://apps.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf).
+
+
+                            **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                            #### Tax Calculation
+
+                            This field is used to determine tax rules and/or rates applied to the transaction based on sourcing.
+
+
+                            Optional for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                            '
+                    shipTo:
+                      type: object
+                      properties:
+                        country:
+                          type: string
+                          description: 'Country of the shipping address. Use the two-character [ISO Standard Country Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf)
+
+
+                            Required field for authorization if any shipping address information is included in the request; otherwise, optional.
+
+
+                            #### Tax Calculation
+
+                            Optional field for U.S., Canadian, international tax, and value added taxes.
+
+                            Billing address objects will be used to determine the cardholder''s location when shipTo objects are not present.
+
+                            '
+                          maxLength: 3
+                        administrativeArea:
+                          type: string
+                          maxLength: 50
+                          description: "State or province of the shipping address. Use the [State, Province, and Territory Codes for the United States and Canada](https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf) (maximum length: 2) \n\nRequired field for authorization if any shipping address information is included in the request and shipping to the U.S.\nor Canada; otherwise, optional.\n\n#### Tax Calculation\nOptional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.\nBilling address objects will be used to determine the cardholder's location when shipTo objects are not present.\n"
+                        locality:
+                          type: string
+                          maxLength: 50
+                          description: 'City of the shipping address.
+
+
+                            Required field for authorization if any shipping address information is included in the request and shipping to the U.S. or
+
+                            Canada; otherwise, optional.
+
+
+                            #### Tax Calculation
+
+                            Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                            Billing address objects will be used to determine the cardholder''s location when shipTo objects are not present.
+
+                            '
+                        postalCode:
+                          type: string
+                          maxLength: 32
+                          description: 'Postal code for the shipping address. The postal code must consist of 5 to 9 digits.
+
+
+                            Required field for authorization if any shipping address information is included in the request and
+
+                            shipping to the U.S. or Canada; otherwise, optional.
+
+
+                            When the billing country is the U.S., the 9-digit postal code must follow this format:
+
+                            [5 digits][dash][4 digits]
+
+
+                            Example 12345-6789
+
+
+                            When the billing country is Canada, the 6-digit postal code must follow this format:
+
+                            [alpha][numeric][alpha][space][numeric][alpha][numeric]
+
+
+                            Example A1B 2C3
+
+
+                            #### American Express Direct
+
+                            Before sending the postal code to the processor, all nonalphanumeric characters are removed and, if the
+
+                            remaining value is longer than nine characters, the value is truncated starting from the right side.
+
+                            #### Tax Calculation
+
+                            Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                            Billing address objects will be used to determine the cardholder''s location when shipTo objects are not present.
+
+                            '
+                        address1:
+                          type: string
+                          maxLength: 60
+                          description: 'First line of the shipping address.
+
+
+                            Required field for authorization if any shipping address information is included in the request; otherwise, optional.
+
+
+                            #### Tax Calculation
+
+                            Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                            Billing address objects will be used to determine the cardholder''s location when shipTo objects are not present.
+
+                            '
+                        address2:
+                          type: string
+                          maxLength: 60
+                          description: 'Second line of the shipping address.
+
+
+                            Optional field.
+
+
+                            #### Tax Calculation
+
+                            Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                            Billing address objects will be used to determine the cardholder''s location when shipTo objects are not present.
+
+                            '
+                        address3:
+                          type: string
+                          maxLength: 60
+                          description: 'Third line of the shipping address.
+
+
+                            #### Tax Calculation
+
+                            Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                            Billing address objects will be used to determine the cardholder''s location when shipTo objects are not present.
+
+                            '
+                    lineItems:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          productSKU:
+                            type: string
+                            maxLength: 255
+                            description: 'Product identifier code. Also known as the Stock Keeping Unit (SKU) code for the product.
+
+
+                              For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`), this field is required when `orderInformation.lineItems[].productCode` is not set to **default** or one of the other values that are related to shipping and/or handling.
+
+
+                              #### Tax Calculation
+
+                              Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                              For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`), this field is
+
+                              required when `orderInformation.lineItems[].productCode` is not `default` or one of the values related to shipping and/or handling.
+
+                              '
+                          productCode:
+                            type: string
+                            maxLength: 255
+                            description: 'Type of product. The value for this field is used to identify the product category (electronic, handling, physical,
+
+                              service, or shipping). The default value is `default`.
+
+
+                              If you are performing an authorization transaction (`processingOptions.capture` is set to `false`), and you set
+
+                              this field to a value other than `default` or one of the values related to shipping and/or handling, then
+
+                              `orderInformation.lineItems[].quantity`, `orderInformation.lineItems[].productName`, and
+
+                              `orderInformation.lineItems[].productSku` fields are required.
+
+
+                              Optional field.
+
+
+                              #### Tax Calculation
+
+                              Optional field for U.S., Canadian, international tax, and value added taxes.
+
+
+                              The Product Codes for the tax service are located in the Cybersource Tax Codes guide. Contact Customer Support to request the guide. If you don''t send a tax service Product Code in your tax request, product-based rules or exemptions will not be applied and the transaction will default to fully taxable in the locations where you''ve indicated you need to collect tax [by way of nexus, no nexus, or seller registration number fields].
+
+                              '
+                          quantity:
+                            type: integer
+                            minimum: 1
+                            maximum: 999999999
+                            default: 1
+                            description: 'Number of units for this order. Must be a non-negative integer.
+
+
+                              The default is `1`. For an authorization or capture transaction (`processingOptions.capture` is set to `true` or `false`),
+
+                              this field is required when `orderInformation.lineItems[].productCode` is not `default` or one of the other values
+
+                              related to shipping and/or handling.
+
+
+                              #### Tax Calculation
+
+                              Optional field for U.S., Canadian, international tax, and value added taxes.
+
+                              '
+                          productName:
+                            type: string
+                            maxLength: 255
+                            description: 'For an authorization or capture transaction (`processingOptions.capture` is `true` or `false`),
+
+                              this field is required when `orderInformation.lineItems[].productCode` is not `default` or one of
+
+                              the other values that are related to shipping and/or handling.
+
+
+                              #### Tax Calculation
+
+                              Optional field for U.S., Canadian, international tax, and value added taxes.
+
+                              '
+                          unitPrice:
+                            type: string
+                            maxLength: 15
+                            description: 'Per-item price of the product. This value for this field cannot be negative.
+
+
+                              You must include either this field or the request-level field `orderInformation.amountDetails.totalAmount` in your request.
+
+
+                              You can include a decimal point (.), but you cannot include any other special characters.
+
+                              The value is truncated to the correct number of decimal places.
+
+
+                              #### DCC with a Third-Party Provider
+
+                              Set this field to the converted amount that was returned by the DCC provider. You must include either
+
+                              the 1st line item in the order and this field, or the request-level field `orderInformation.amountDetails.totalAmount` in your request.
+
+
+                              #### Tax Calculation
+
+                              Required field for U.S., Canadian, international and value added taxes.
+
+
+                              #### Zero Amount Authorizations
+
+                              If your processor supports zero amount authorizations, you can set this field to 0 for the
+
+                              authorization to check if the card is lost or stolen.
+
+
+                              #### Maximum Field Lengths
+
+                              For GPN and JCN Gateway: Decimal (10)
+
+                              All other processors: Decimal (15)
+
+                              '
+                          taxAmount:
+                            type: string
+                            maxLength: 15
+                            description: "Total tax to apply to the product. This value cannot be negative. The tax amount and the offer amount must\nbe in the same currency. The tax amount field is additive.\n\nThe following example uses a two-exponent currency such as USD:\n\n 1. You include each line item in your request.\n ..- 1st line item has amount=10.00, quantity=1, and taxAmount=0.80\n ..- 2nd line item has amount=20.00, quantity=1, and taxAmount=1.60\n 2. The total amount authorized will be 32.40, not 30.00 with 2.40 of tax included.\n\nOptional field.\n\n#### Airlines processing\nTax portion of the order amount. This value cannot exceed 99999999999999 (fourteen 9s).\nFormat: English characters only.\nOptional request field for a line item.\n\n#### Tax Calculation\nOptional field for U.S., Canadian, international tax, and value added taxes.\n\nNote if you send this field in your tax request, the value in the field will override the tax engine\n"
+                          orderAcceptance:
+                            type: object
+                            description: The Order Acceptance address fields may be used by the tax service to determine the taxability of the order or applicable taxing jurisdictions. You should consult your tax, legal and/or accounting advisors to determine if you should include an Order Acceptance address in your tax service request for some or all of your transactions based on your business.
+                            properties:
+                              locality:
+                                type: string
+                                maxLength: 50
+                                description: 'Order acceptance city. This field is not used unless the `orderInformation.orderAcceptance.administrativeArea` and `orderInformation.orderAcceptance.country` fields are present.
+
+
+                                  **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                                  #### Tax Calculation
+
+                                  Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                                  '
+                              administrativeArea:
+                                type: string
+                                maxLength: 2
+                                description: 'Order acceptance state. This field is not used unless the `orderInformation.orderAcceptance.locality` and `orderInformation.orderAcceptance.country` fields are present. Use the [State, Province, and Territory Codes for the United States and Canada](https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf).
+
+
+                                  **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                                  #### Tax Calculation
+
+                                  Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                                  '
+                              postalCode:
+                                type: string
+                                maxLength: 10
+                                description: 'Order acceptance postal code. This field is not used unless the `orderInformation.orderAcceptance.locality`, `orderInformation.orderAcceptance.administrativeArea`, and `orderInformation.orderAcceptance.country` fields are present.
+
+                                  Must be sent at the line or offer level to be surfaced in the Tax Detail Report.
+
+
+                                  **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                                  #### Tax Calculation
+
+                                  Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                                  '
+                              country:
+                                type: string
+                                maxLength: 2
+                                description: 'Order acceptance country. This field is not used unless the `orderInformation.orderAcceptance.administrativeArea` and `orderInformation.orderAcceptance.locality` fields are present. Use the [ISO Standard Country Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf)
+
+
+                                  **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                                  #### Tax Calculation
+
+                                  Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                                  '
+                          orderOrigin:
+                            type: object
+                            description: The Order Origin address fields may be used by the tax service to determine the taxability of the order or applicable taxing jurisdictions. You should consult your tax, legal and/or accounting advisors to determine if you should include an Order Origin address in your tax service request for some or all of your transactions based on your business.
+                            properties:
+                              locality:
+                                type: string
+                                maxLength: 50
+                                description: 'Order origin city. This field is not used unless the `orderInformation.orderOrigin.administrativeArea` and `orderInformation.orderOrigin.country` fields are present.
+
+
+                                  **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                                  #### Tax Calculation
+
+                                  Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                                  '
+                              administrativeArea:
+                                type: string
+                                maxLength: 2
+                                description: 'Order origin state. This field is not used unless the `orderInformation.orderOrigin.locality` and `orderInformation.orderOrigin.country` fields are present. Use the [State, Province, and Territory Codes for the United States and Canada](http://apps.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf).
+
+
+                                  **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                                  #### Tax Calculation
+
+                                  Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                                  '
+                              postalCode:
+                                type: string
+                                maxLength: 10
+                                description: 'Order origin postal code. This field is not used unless the `orderInformation.orderOrigin.locality`, `orderInformation.orderOrigin.administrativeArea` and `orderInformation.orderOrigin.country` fields are present.
+
+                                  Must be sent at the lineItem level to appear in the Tax Detail Report.
+
+
+                                  **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                                  #### Tax Calculation
+
+                                  Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                                  '
+                              country:
+                                type: string
+                                maxLength: 2
+                                description: 'Order origin country. This field is not used unless the `orderInformation.orderOrigin.administrativeArea` and `orderInformation.orderOrigin.locality` fields are present. Use the [ISO Standard Country Codes](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf).
+
+
+                                  **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                                  #### Tax Calculation
+
+                                  Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                                  '
+                          shipFromCountry:
+                            type: string
+                            maxLength: 2
+                            description: 'Country from which the order is shipped. This field is used only when `orderInformation.shippingDetails.shipFromLocality` and `orderInformation.shippingDetails.shipFromAdministrativeArea` are present. Use the [ISO Standard Country Codes](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf).
+
+
+                              **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                              #### Tax Calculation
+
+                              This field is used to determine tax rules and/ or rates applied to the transaction based on sourcing.
+
+
+                              Optional for U.S., Canadian, international tax, and value added taxes.
+
+                              '
+                          shipFromAdministrativeArea:
+                            type: string
+                            maxLength: 2
+                            description: 'State from which the order is shipped. This field is used only when `orderInformation.shippingDetails.shipFromLocality` and `orderInformation.shippingDetails.shipFromCountry` are present. Use the [State, Province, and Territory Codes for the United States and Canada](http://apps.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf).
+
+
+                              **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                              #### Tax Calculation
+
+                              This field is used to determine tax rules and/or rates applied to the transaction based on sourcing.
+
+
+                              Optional for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                              '
+                          shipFromLocality:
+                            type: string
+                            maxLength: 50
+                            description: 'City where the product is shipped from.
+
+                              This field is used only when the `orderInformation.shipTo.administrativeArea` and `orderInformation.shipTo.country` fields are present.
+
+
+                              **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                              #### Tax Calculation
+
+                              This field is used to determine tax rules and/or rates applied to the transaction based on sourcing.
+
+
+                              Optional for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                              '
+                          shipFromPostalCode:
+                            type: string
+                            maxLength: 10
+                            description: 'Postal code where the product is shipped from.
+
+
+                              #### Tax Calculation
+
+                              This field is used to determine tax rules and/or rates applied to the transaction based on sourcing.
+
+
+                              Optional for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                              '
+                          buyerVatRegistrationNumber:
+                            type: string
+                            maxLength: 25
+                            description: 'Buyer''s VAT registration number.
+
+
+                              **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                              #### Tax Calculation
+
+                              Optional field for international and value added taxes only. Not applicable to U.S. and Canadian taxes.
+
+                              '
+                          sellerVatRegistrationNumber:
+                            type: string
+                            maxLength: 25
+                            description: 'VAT seller registration number.
+
+
+                              **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                              #### Tax Calculation
+
+                              Optional field for international and value added taxes only. Not applicable to U.S. and Canadian taxes.
+
+                              '
+                    invoiceDetails:
+                      type: object
+                      properties:
+                        invoiceDate:
+                          type: string
+                          maxLength: 8
+                          description: 'Date of the tax calculation. Use format YYYYMMDD. You can provide a date in the past if you are calculating tax for a refund and want to know what the tax was on the date the order was placed.
+
+                            You can provide a date in the future if you are calculating the tax for a future date, such as an upcoming tax holiday.
+
+
+                            The default is the date, in Pacific time, that the bank receives the request.
+
+                            Keep this in mind if you are in a different time zone and want the tax calculated with the rates that are applicable on a specific date.
+
+
+                            #### Tax Calculation
+
+                            Optional field for U.S., Canadian, international tax, and value added taxes.
+
+                            '
+                    orderAcceptance:
+                      type: object
+                      description: The Order Acceptance address fields may be used by the tax service to determine the taxability of the order or applicable taxing jurisdictions. You should consult your tax, legal and/or accounting advisors to determine if you should include an Order Acceptance address in your tax service request for some or all of your transactions based on your business.
+                      properties:
+                        locality:
+                          type: string
+                          maxLength: 50
+                          description: 'Order acceptance city. This field is not used unless the `orderInformation.orderAcceptance.administrativeArea` and `orderInformation.orderAcceptance.country` fields are present.
+
+
+                            **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                            #### Tax Calculation
+
+                            Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                            '
+                        administrativeArea:
+                          type: string
+                          maxLength: 2
+                          description: 'Order acceptance state. This field is not used unless the `orderInformation.orderAcceptance.locality` and `orderInformation.orderAcceptance.country` fields are present. Use the [State, Province, and Territory Codes for the United States and Canada](https://developer.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf).
+
+
+                            **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                            #### Tax Calculation
+
+                            Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                            '
+                        postalCode:
+                          type: string
+                          maxLength: 10
+                          description: 'Order acceptance postal code. This field is not used unless the `orderInformation.orderAcceptance.locality`, `orderInformation.orderAcceptance.administrativeArea`, and `orderInformation.orderAcceptance.country` fields are present.
+
+                            Must be sent at the line or offer level to be surfaced in the Tax Detail Report.
+
+
+                            **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                            #### Tax Calculation
+
+                            Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                            '
+                        country:
+                          type: string
+                          maxLength: 2
+                          description: 'Order acceptance country. This field is not used unless the `orderInformation.orderAcceptance.administrativeArea` and `orderInformation.orderAcceptance.locality` fields are present. Use the [ISO Standard Country Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf)
+
+
+                            **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                            #### Tax Calculation
+
+                            Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                            '
+                    orderOrigin:
+                      type: object
+                      description: The Order Origin address fields may be used by the tax service to determine the taxability of the order or applicable taxing jurisdictions. You should consult your tax, legal and/or accounting advisors to determine if you should include an Order Origin address in your tax service request for some or all of your transactions based on your business.
+                      properties:
+                        locality:
+                          type: string
+                          maxLength: 50
+                          description: 'Order origin city. This field is not used unless the `orderInformation.orderOrigin.administrativeArea` and `orderInformation.orderOrigin.country` fields are present.
+
+
+                            **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                            #### Tax Calculation
+
+                            Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                            '
+                        administrativeArea:
+                          type: string
+                          maxLength: 2
+                          description: 'Order origin state. This field is not used unless the `orderInformation.orderOrigin.locality` and `orderInformation.orderOrigin.country` fields are present. Use the [State, Province, and Territory Codes for the United States and Canada](http://apps.cybersource.com/library/documentation/sbc/quickref/states_and_provinces.pdf).
+
+
+                            **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                            #### Tax Calculation
+
+                            Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                            '
+                        postalCode:
+                          type: string
+                          maxLength: 10
+                          description: 'Order origin postal code. This field is not used unless the `orderInformation.orderOrigin.locality`, `orderInformation.orderOrigin.administrativeArea` and `orderInformation.orderOrigin.country` fields are present.
+
+                            Must be sent at the lineItem level to appear in the Tax Detail Report.
+
+
+                            **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                            #### Tax Calculation
+
+                            Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                            '
+                        country:
+                          type: string
+                          maxLength: 2
+                          description: 'Order origin country. This field is not used unless the `orderInformation.orderOrigin.administrativeArea` and `orderInformation.orderOrigin.locality` fields are present. Use the [ISO Standard Country Codes](http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf).
+
+
+                            **NOTE** If this field appears in a `lineItems` object, then the value of this field in the `lineItems` object overrides the value of the corresponding field at the request-level or order-level object.
+
+
+                            #### Tax Calculation
+
+                            Optional field for U.S. and Canadian taxes. Not applicable to international and value added taxes.
+
+                            '
+                merchantInformation:
+                  type: object
+                  properties:
+                    vatRegistrationNumber:
+                      type: string
+                      maxLength: 21
+                      description: 'Your government-assigned tax identification number.
+
+
+                        #### Tax Calculation
+
+                        Required field for value added tax only. Not applicable to U.S. and Canadian taxes.
+
+
+                        #### CyberSource through VisaNet
+
+                        For CtV processors, the maximum length is 20.
+
+                        '
+                buyerInformation:
+                  type: object
+                  properties:
+                    vatRegistrationNumber:
+                      type: string
+                      maxLength: 20
+                      description: 'Customer''s government-assigned tax identification number.
+
+
+                        #### Tax Calculation
+
+                        Optional for international and value added taxes only. Not applicable to U.S. and Canadian taxes.
+
+                        '
+        required: true
   /vas/v2/tax/{id}:
     patch:
       summary: Void Taxes
       description: Pass the Tax Request ID in the PATCH request to void the committed tax calculation.
       tags:
-      - taxes
+      - Taxes
       operationId: voidTax
       x-devcenter-metaData:
         categoryTag: Value_Added_Service
       parameters:
-      - name: voidTaxRequest
-        in: body
-        required: true
-        schema:
-          type: object
-          properties:
-            clientReferenceInformation:
-              type: object
-              properties:
-                code:
-                  type: string
-                  maxLength: 59
-                  description: 'Merchant-generated order reference or tracking number. It is recommended that you send a unique value for each
-
-                    transaction so that you can perform meaningful searches for the transaction.
-
-
-                    #### Used by
-
-                    **Authorization**
-
-                    Required field.
-
-
-                    #### PIN Debit
-
-                    Requests for PIN debit reversals need to use the same merchant reference number that was used in the transaction that is being
-
-                    reversed.
-
-
-                    Required field for all PIN Debit requests (purchase, credit, and reversal).
-
-
-                    #### FDC Nashville Global
-
-                    Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports.
-
-                    '
-                comments:
-                  type: string
-                  description: Brief description of the order or any comment you wish to add to the order.
-                partner:
-                  type: object
-                  properties:
-                    solutionId:
-                      type: string
-                      maxLength: 8
-                      description: 'Identifier for the partner that is integrated to CyberSource.
-
-
-                        Send this value in all requests that are sent through the partner solution. CyberSource assigns the ID to the partner.
-
-
-                        **Note** When you see a solutionId of 999 in reports, the solutionId that was submitted is incorrect.
-
-                        '
-                    developerId:
-                      type: string
-                      maxLength: 8
-                      description: 'Identifier for the developer that helped integrate a partner solution to CyberSource.
-
-
-                        Send this value in all requests that are sent through the partner solutions built by that developer.
-
-                        CyberSource assigns the ID to the developer.
-
-
-                        **Note** When you see a developer ID of 999 in reports, the developer ID that was submitted is incorrect.
-
-                        '
       - name: id
         in: path
         description: The tax ID returned from a previous request.
         required: true
-        type: string
+        schema:
+          type: string
       responses:
         '200':
           description: Successful response.
-          schema:
-            title: vasV2TaxVoid200Response
-            type: object
-            properties:
-              id:
-                type: string
-                maxLength: 26
-                description: 'An unique identification number generated by Cybersource to identify the submitted request. Returned by all services.
-
-                  It is also appended to the endpoint of the resource.
-
-                  On incremental authorizations, this value with be the same as the identification number returned in the original authorization response.
-
-                  '
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
-
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
-
-                  The `T` separates the date and the time. The `Z` indicates UTC.
-
-
-                  Returned by Cybersource for all services.
-
-                  '
-              status:
-                type: string
-                description: "The status of the submitted transaction.\n\nPossible values:\n - VOIDED\n - CANCELLED\n - FAILED\n"
-              clientReferenceInformation:
+          content:
+            application/hal+json;charset=utf-8:
+              schema:
+                title: vasV2TaxVoid200Response
                 type: object
                 properties:
-                  code:
+                  id:
                     type: string
-                    maxLength: 59
-                    description: 'Merchant-generated order reference or tracking number. It is recommended that you send a unique value for each
+                    maxLength: 26
+                    description: 'An unique identification number generated by Cybersource to identify the submitted request. Returned by all services.
 
-                      transaction so that you can perform meaningful searches for the transaction.
+                      It is also appended to the endpoint of the resource.
 
-
-                      #### Used by
-
-                      **Authorization**
-
-                      Required field.
-
-
-                      #### PIN Debit
-
-                      Requests for PIN debit reversals need to use the same merchant reference number that was used in the transaction that is being
-
-                      reversed.
-
-
-                      Required field for all PIN Debit requests (purchase, credit, and reversal).
-
-
-                      #### FDC Nashville Global
-
-                      Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports.
+                      On incremental authorizations, this value with be the same as the identification number returned in the original authorization response.
 
                       '
-              voidAmountDetails:
-                type: object
-                properties:
-                  voidAmount:
+                  submitTimeUtc:
                     type: string
-                    description: 'Total amount of the void.
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                      #### PIN Debit
-
-                      Amount of the reversal.
-
-
-                      Returned by PIN debit reversal.
+                      Returned by Cybersource for all services.
 
                       '
-                  currency:
+                  status:
                     type: string
-                    maxLength: 3
-                    description: 'Currency used for the order. Use the three-character [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)
+                    description: "The status of the submitted transaction.\n\nPossible values:\n - VOIDED\n - CANCELLED\n - FAILED\n"
+                  clientReferenceInformation:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        maxLength: 59
+                        description: 'Merchant-generated order reference or tracking number. It is recommended that you send a unique value for each
+
+                          transaction so that you can perform meaningful searches for the transaction.
 
 
-                      #### Used by
+                          #### Used by
 
-                      **Authorization**
+                          **Authorization**
 
-                      Required field.
-
-
-                      **Authorization Reversal**
-
-                      For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.
+                          Required field.
 
 
-                      #### PIN Debit
+                          #### PIN Debit
 
-                      Currency for the amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+                          Requests for PIN debit reversals need to use the same merchant reference number that was used in the transaction that is being
 
-                      Returned by PIN debit purchase.
-
-
-                      For PIN debit reversal requests, you must use the same currency that was used for the PIN debit purchase or PIN debit credit that you are reversing.
-
-                      For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+                          reversed.
 
 
-                      Required field for PIN Debit purchase and PIN Debit credit requests.
-
-                      Optional field for PIN Debit reversal requests.
+                          Required field for all PIN Debit requests (purchase, credit, and reversal).
 
 
-                      #### GPX
+                          #### FDC Nashville Global
 
-                      This field is optional for reversing an authorization or credit.
+                          Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports.
+
+                          '
+                  voidAmountDetails:
+                    type: object
+                    properties:
+                      voidAmount:
+                        type: string
+                        description: 'Total amount of the void.
 
 
-                      #### DCC for First Data
+                          #### PIN Debit
 
-                      Your local currency.
+                          Amount of the reversal.
 
 
-                      #### Tax Calculation
+                          Returned by PIN debit reversal.
 
-                      Required for international tax and value added tax only.
+                          '
+                      currency:
+                        type: string
+                        maxLength: 3
+                        description: 'Currency used for the order. Use the three-character [ISO Standard Currency Codes.](http://apps.cybersource.com/library/documentation/sbc/quickref/currencies.pdf)
 
-                      Optional for U.S. and Canadian taxes.
 
-                      Your local currency.
+                          #### Used by
 
-                      '
+                          **Authorization**
+
+                          Required field.
+
+
+                          **Authorization Reversal**
+
+                          For an authorization reversal (`reversalInformation`) or a capture (`processingOptions.capture` is set to `true`), you must use the same currency that you used in your payment authorization request.
+
+
+                          #### PIN Debit
+
+                          Currency for the amount you requested for the PIN debit purchase. This value is returned for partial authorizations. The issuing bank can approve a partial amount if the balance on the debit card is less than the requested transaction amount. For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+
+                          Returned by PIN debit purchase.
+
+
+                          For PIN debit reversal requests, you must use the same currency that was used for the PIN debit purchase or PIN debit credit that you are reversing.
+
+                          For the possible values, see the [ISO Standard Currency Codes](https://developer.cybersource.com/library/documentation/sbc/quickref/currencies.pdf).
+
+
+                          Required field for PIN Debit purchase and PIN Debit credit requests.
+
+                          Optional field for PIN Debit reversal requests.
+
+
+                          #### GPX
+
+                          This field is optional for reversing an authorization or credit.
+
+
+                          #### DCC for First Data
+
+                          Your local currency.
+
+
+                          #### Tax Calculation
+
+                          Required for international tax and value added tax only.
+
+                          Optional for U.S. and Canadian taxes.
+
+                          Your local currency.
+
+                          '
         '400':
           description: Invalid request.
-          schema:
-            title: vasV2TaxVoidsPost400Response
-            type: object
-            properties:
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+          content:
+            application/hal+json;charset=utf-8:
+              schema:
+                title: vasV2TaxVoidsPost400Response
+                type: object
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
 
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                  Returned by Cybersource for all services.
+                      Returned by Cybersource for all services.
 
-                  '
-              status:
-                type: string
-                description: "The status of the submitted transaction.\n\nPossible values:\n - INVALID_REQUEST\n"
-              reason:
-                type: string
-                description: "The reason of the status.\n\nPossible values:\n - INVALID_DATA\n - NOT_VOIDABLE\n"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    field:
-                      type: string
-                      description: This is the flattened JSON object field name/path that is either missing or invalid.
-                    reason:
-                      type: string
-                      description: "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n"
+                      '
+                  status:
+                    type: string
+                    description: "The status of the submitted transaction.\n\nPossible values:\n - INVALID_REQUEST\n"
+                  reason:
+                    type: string
+                    description: "The reason of the status.\n\nPossible values:\n - INVALID_DATA\n - NOT_VOIDABLE\n"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: This is the flattened JSON object field name/path that is either missing or invalid.
+                        reason:
+                          type: string
+                          description: "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n"
         '502':
           description: Unexpected system error or system timeout.
-          schema:
-            title: vasV2TaxVoidsPost502Response
-            type: object
-            properties:
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+          content:
+            application/hal+json;charset=utf-8:
+              schema:
+                title: vasV2TaxVoidsPost502Response
+                type: object
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
 
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                  Returned by Cybersource for all services.
+                      Returned by Cybersource for all services.
 
-                  '
-              status:
-                type: string
-                description: "The status of the submitted transaction.\n\nPossible values:\n - SERVER_ERROR\n"
-              reason:
-                type: string
-                description: "The reason of the status.\n\nPossible values:\n - SYSTEM_ERROR\n - SERVER_TIMEOUT\n - SERVICE_TIMEOUT\n"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
+                      '
+                  status:
+                    type: string
+                    description: "The status of the submitted transaction.\n\nPossible values:\n - SERVER_ERROR\n"
+                  reason:
+                    type: string
+                    description: "The reason of the status.\n\nPossible values:\n - SYSTEM_ERROR\n - SERVER_TIMEOUT\n - SERVICE_TIMEOUT\n"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
       x-example:
         example0:
           summary: Void a Committed Tax Call
@@ -2007,6 +1953,78 @@ paths:
             - sourceField: id
               destinationField: id
               fieldTypeInDestination: path
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              type: object
+              properties:
+                clientReferenceInformation:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                      maxLength: 59
+                      description: 'Merchant-generated order reference or tracking number. It is recommended that you send a unique value for each
+
+                        transaction so that you can perform meaningful searches for the transaction.
+
+
+                        #### Used by
+
+                        **Authorization**
+
+                        Required field.
+
+
+                        #### PIN Debit
+
+                        Requests for PIN debit reversals need to use the same merchant reference number that was used in the transaction that is being
+
+                        reversed.
+
+
+                        Required field for all PIN Debit requests (purchase, credit, and reversal).
+
+
+                        #### FDC Nashville Global
+
+                        Certain circumstances can cause the processor to truncate this value to 15 or 17 characters for Level II and Level III processing, which can cause a discrepancy between the value you submit and the value included in some processor reports.
+
+                        '
+                    comments:
+                      type: string
+                      description: Brief description of the order or any comment you wish to add to the order.
+                    partner:
+                      type: object
+                      properties:
+                        solutionId:
+                          type: string
+                          maxLength: 8
+                          description: 'Identifier for the partner that is integrated to CyberSource.
+
+
+                            Send this value in all requests that are sent through the partner solution. CyberSource assigns the ID to the partner.
+
+
+                            **Note** When you see a solutionId of 999 in reports, the solutionId that was submitted is incorrect.
+
+                            '
+                        developerId:
+                          type: string
+                          maxLength: 8
+                          description: 'Identifier for the developer that helped integrate a partner solution to CyberSource.
+
+
+                            Send this value in all requests that are sent through the partner solutions built by that developer.
+
+                            CyberSource assigns the ID to the developer.
+
+
+                            **Note** When you see a developer ID of 999 in reports, the developer ID that was submitted is incorrect.
+
+                            '
+        required: true
 x-devcenter-metaData:
   categoryTagArray:
   - name: Payments

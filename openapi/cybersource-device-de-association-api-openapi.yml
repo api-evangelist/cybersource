@@ -1,16 +1,10 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
   version: 0.0.1
-  title: CyberSource Merged Spec bankAccountValidation Device De-Association API
-host: apitest.cybersource.com
-basePath: /
-schemes:
-- https
-consumes:
-- application/json;charset=utf-8
-produces:
-- application/hal+json;charset=utf-8
+  title: CyberSource Merged Spec Device De-Association API
+servers:
+- url: https://apitest.cybersource.com/
 tags:
 - name: Device De-Association
   description: Remove Association of a Device.
@@ -27,395 +21,391 @@ paths:
         firstLevelApiLifeCycle: hidden
         secondLevelApiLifeCycle: hidden
         apiLifeCycle: hidden
-      parameters:
-      - name: deAssociationRequestBody
-        required: true
-        in: body
-        description: de association of the deviceId in the request body.
-        schema:
-          type: object
-          properties:
-            deviceId:
-              type: string
-              description: UUID of the device which needs to be de-associated
-      consumes:
-      - application/json;charset=UTF-8
       responses:
         '204':
           description: The request is fulfilled but does not need to return a body
         '400':
           description: Bad Request
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: "The status of the submitted request. \nPossible values:\n- BAD_REQUEST"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              code:
-                type: string
-                description: An optional short string which identifies the exact error.
-              details:
-                type: array
-                description: An optional array which provides more details of the error.
-                items:
-                  type: object
-                  properties:
-                    field:
-                      type: string
-                      description: This is the flattened JSON object field name/path that is either missing or invalid.
-                    reason:
-                      type: string
-                      description: 'Possible reasons for the error.
+          content:
+            application/hal+json;charset=utf-8:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: "The status of the submitted request. \nPossible values:\n- BAD_REQUEST"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  code:
+                    type: string
+                    description: An optional short string which identifies the exact error.
+                  details:
+                    type: array
+                    description: An optional array which provides more details of the error.
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: This is the flattened JSON object field name/path that is either missing or invalid.
+                        reason:
+                          type: string
+                          description: 'Possible reasons for the error.
 
-                        '
-                    code:
-                      type: string
-                      description: An optional short string which identifies the exact field error.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+                            '
+                        code:
+                          type: string
+                          description: An optional short string which identifies the exact field error.
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
 
 
-                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+                      Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
 
-                  time. The Z indicates UTC.
+                      time. The Z indicates UTC.
 
-                  '
+                      '
         '401':
           description: Unauthorized
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: "The status of the submitted request.\n \nPossible values:\n- UNAUTHORIZED"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              code:
-                type: string
-                description: An optional short string which identifies the exact error.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+          content:
+            application/hal+json;charset=utf-8:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: "The status of the submitted request.\n \nPossible values:\n- UNAUTHORIZED"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  code:
+                    type: string
+                    description: An optional short string which identifies the exact error.
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
 
 
-                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+                      Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
 
-                  time. The Z indicates UTC.
+                      time. The Z indicates UTC.
 
-                  '
+                      '
         '403':
           description: Forbidden
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: "The status of the submitted request.\n \nPossible values:\n- FORBIDDEN"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              code:
-                type: string
-                description: An optional short string which identifies the exact error.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+          content:
+            application/hal+json;charset=utf-8:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: "The status of the submitted request.\n \nPossible values:\n- FORBIDDEN"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  code:
+                    type: string
+                    description: An optional short string which identifies the exact error.
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
 
 
-                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+                      Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
 
-                  time. The Z indicates UTC.
+                      time. The Z indicates UTC.
 
-                  '
+                      '
         '404':
           description: Not Found
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: "The status of the submitted request.\n \nPossible values:\n- NOT_FOUND"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              code:
-                type: string
-                description: An optional short string which identifies the exact error.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+          content:
+            application/hal+json;charset=utf-8:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: "The status of the submitted request.\n \nPossible values:\n- NOT_FOUND"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  code:
+                    type: string
+                    description: An optional short string which identifies the exact error.
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
 
 
-                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+                      Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
 
-                  time. The Z indicates UTC.
+                      time. The Z indicates UTC.
 
-                  '
+                      '
         '500':
           description: Unexpected system error or system timeout.
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: "The status of the submitted request.\n \nPossible values:\n- INTERNAL_SERVER_ERROR"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              code:
-                type: string
-                description: An optional short string which identifies the exact error.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+          content:
+            application/hal+json;charset=utf-8:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: "The status of the submitted request.\n \nPossible values:\n- INTERNAL_SERVER_ERROR"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  code:
+                    type: string
+                    description: An optional short string which identifies the exact error.
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
 
 
-                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+                      Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
 
-                  time. The Z indicates UTC.
+                      time. The Z indicates UTC.
 
-                  '
+                      '
       x-example:
         example0:
           summary: De-associate a device based on its deviceId.
           value:
             deviceId: 6ba4a8e3-d437-476d-ab94-996598ac8706
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              type: object
+              properties:
+                deviceId:
+                  type: string
+                  description: UUID of the device which needs to be de-associated
+        description: de association of the deviceId in the request body.
+        required: true
   /dms/v3/devices/deassociate:
     post:
-      summary: De-associate a device from merchant to account or reseller and from account to reseller
+      summary: De-associate a device from merchant to account or reseller and from account to…
       description: 'A device will be de-associated from its current organization and moved up in the hierarchy.
 
-        The device''s new position will be determined by a specified destination, either an account or a portfolio. If no destination is provided, the device will default to the currently logged-in user.
-
-        '
+        The device''s new position will be determined by a specified destination, either an account or a portfolio. If no destination is provided, the device will default to the currently logged-in user.'
       tags:
       - Device De-Association
       operationId: postDeAssociateV3Terminal
       x-devcenter-metaData:
         categoryTag: Device_Management
-      parameters:
-      - name: deviceDeAssociateV3Request
-        required: true
-        in: body
-        description: deviceId that has to be de-associated to the destination organizationId.
-        schema:
-          type: array
-          items:
-            type: object
-            required:
-            - deviceId
-            properties:
-              deviceId:
-                type: string
-                description: ID of the device to be de-associated.
-                maxLength: 256
-              organizationId:
-                type: string
-                description: A field representing value of either account id or portfolio id.
-                maxLength: 30
-      consumes:
-      - application/json;charset=UTF-8
-      produces:
-      - application/json;charset=UTF-8
       responses:
         '200':
           description: De-associated all device(s) to their respective destination(s)
-          schema:
-            type: array
-            description: A collection of details of each device de-associate
-            items:
-              type: object
-              properties:
-                status:
-                  type: string
-                  description: 'Possible values:
-
-                    - OK'
-                devices:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      deviceId:
-                        type: string
-                        example: 73c7d8ba-3673-4baf-801e-cf4bf5cc2b57
-                      reason:
-                        type: string
-                        example: Device detached successfully.
-                      code:
-                        type: string
-                        example: deviceDetach.sync.success
-        '206':
-          description: Partial Success. De-associated device(s) to their respective destination(s)
-          schema:
-            type: array
-            description: A collection of details of each device de-associate
-            items:
-              type: object
-              properties:
-                status:
-                  type: string
-                  description: 'Possible values:
-
-                    - OK
-
-                    - BAD_REQUEST'
-                devices:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      deviceId:
-                        type: string
-                        example: 73c7d8ba-3673-4baf-801e-cf4bf5cc2b57
-                      reason:
-                        type: string
-                        example: Device detached successfully.
-                      code:
-                        type: string
-                        example: deviceDetach.sync.success
-        '400':
-          description: Bad Request
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: "The status of the submitted request. \nPossible values:\n- BAD_REQUEST"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              code:
-                type: string
-                description: An optional short string which identifies the exact error.
-              details:
+          content:
+            application/json;charset=UTF-8:
+              schema:
                 type: array
-                description: An optional array which provides more details of the error.
+                description: A collection of details of each device de-associate
                 items:
                   type: object
                   properties:
-                    field:
+                    status:
                       type: string
-                      description: This is the flattened JSON object field name/path that is either missing or invalid.
-                    reason:
+                      description: 'Possible values:
+
+                        - OK'
+                    devices:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          deviceId:
+                            type: string
+                            example: 73c7d8ba-3673-4baf-801e-cf4bf5cc2b57
+                          reason:
+                            type: string
+                            example: Device detached successfully.
+                          code:
+                            type: string
+                            example: deviceDetach.sync.success
+        '206':
+          description: Partial Success. De-associated device(s) to their respective destination(s)
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: array
+                description: A collection of details of each device de-associate
+                items:
+                  type: object
+                  properties:
+                    status:
                       type: string
-                      description: 'Possible reasons for the error.
+                      description: 'Possible values:
 
-                        '
-                    code:
-                      type: string
-                      description: An optional short string which identifies the exact field error.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+                        - OK
+
+                        - BAD_REQUEST'
+                    devices:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          deviceId:
+                            type: string
+                            example: 73c7d8ba-3673-4baf-801e-cf4bf5cc2b57
+                          reason:
+                            type: string
+                            example: Device detached successfully.
+                          code:
+                            type: string
+                            example: deviceDetach.sync.success
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: "The status of the submitted request. \nPossible values:\n- BAD_REQUEST"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  code:
+                    type: string
+                    description: An optional short string which identifies the exact error.
+                  details:
+                    type: array
+                    description: An optional array which provides more details of the error.
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: This is the flattened JSON object field name/path that is either missing or invalid.
+                        reason:
+                          type: string
+                          description: 'Possible reasons for the error.
+
+                            '
+                        code:
+                          type: string
+                          description: An optional short string which identifies the exact field error.
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
 
 
-                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+                      Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
 
-                  time. The Z indicates UTC.
+                      time. The Z indicates UTC.
 
-                  '
+                      '
         '401':
           description: Unauthorized
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: "The status of the submitted request.\n \nPossible values:\n- UNAUTHORIZED"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              code:
-                type: string
-                description: An optional short string which identifies the exact error.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: "The status of the submitted request.\n \nPossible values:\n- UNAUTHORIZED"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  code:
+                    type: string
+                    description: An optional short string which identifies the exact error.
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
 
 
-                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+                      Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
 
-                  time. The Z indicates UTC.
+                      time. The Z indicates UTC.
 
-                  '
+                      '
         '403':
           description: Forbidden
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: "The status of the submitted request.\n \nPossible values:\n- FORBIDDEN"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              code:
-                type: string
-                description: An optional short string which identifies the exact error.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: "The status of the submitted request.\n \nPossible values:\n- FORBIDDEN"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  code:
+                    type: string
+                    description: An optional short string which identifies the exact error.
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
 
 
-                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+                      Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
 
-                  time. The Z indicates UTC.
+                      time. The Z indicates UTC.
 
-                  '
+                      '
         '404':
           description: Not Found
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: "The status of the submitted request.\n \nPossible values:\n- NOT_FOUND"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              code:
-                type: string
-                description: An optional short string which identifies the exact error.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: "The status of the submitted request.\n \nPossible values:\n- NOT_FOUND"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  code:
+                    type: string
+                    description: An optional short string which identifies the exact error.
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
 
 
-                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+                      Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
 
-                  time. The Z indicates UTC.
+                      time. The Z indicates UTC.
 
-                  '
+                      '
         '500':
           description: Unexpected system error or system timeout.
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: "The status of the submitted request.\n \nPossible values:\n- INTERNAL_SERVER_ERROR"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              code:
-                type: string
-                description: An optional short string which identifies the exact error.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: "The status of the submitted request.\n \nPossible values:\n- INTERNAL_SERVER_ERROR"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  code:
+                    type: string
+                    description: An optional short string which identifies the exact error.
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
 
 
-                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+                      Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
 
-                  time. The Z indicates UTC.
+                      time. The Z indicates UTC.
 
-                  '
+                      '
       x-example:
         example0:
           summary: De-associate a device based on its deviceId and destination orgId(account).
@@ -427,6 +417,26 @@ paths:
           value:
             deviceId: 852a52fd-bae4-4c4f-a6e6-c92d9e78e093
             organizationId: CYBSLondonStore
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              type: array
+              items:
+                type: object
+                required:
+                - deviceId
+                properties:
+                  deviceId:
+                    type: string
+                    description: ID of the device to be de-associated.
+                    maxLength: 256
+                  organizationId:
+                    type: string
+                    description: A field representing value of either account id or portfolio id.
+                    maxLength: 30
+        description: deviceId that has to be de-associated to the destination organizationId.
+        required: true
 x-devcenter-metaData:
   categoryTagArray:
   - name: Payments

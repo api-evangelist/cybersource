@@ -1,16 +1,10 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
   version: 0.0.1
-  title: CyberSource Merged Spec bankAccountValidation Transient Token Data v2 API
-host: apitest.cybersource.com
-basePath: /
-schemes:
-- https
-consumes:
-- application/json;charset=utf-8
-produces:
-- application/hal+json;charset=utf-8
+  title: CyberSource Merged Spec Transient Token Data v2 API
+servers:
+- url: https://apitest.cybersource.com/
 tags:
 - name: Transient Token Data v2
   externalDocs:
@@ -23,8 +17,6 @@ paths:
       description: Retrieve the data captured by Unified Checkout. This API is used to retrieve the detailed data represented by the Transient Token. This API will not return PCI payment data (PAN). Include the Request ID in the GET request to retrieve the transaction details.
       tags:
       - Transient Token Data v2
-      produces:
-      - application/json
       operationId: getTransactionForTransientToken
       x-devcenter-metaData:
         firstLevelApiLifeCycle: new
@@ -40,33 +32,35 @@ paths:
 
           '
         required: true
-        type: string
+        schema:
+          type: string
       responses:
         '200':
           description: Successful response.
-          examples:
+          content:
             application/json:
-              paymentInformation:
-                card:
-                  expirationYear: '2026'
-                  number: XXXXXXXXXXXX1111
-                  expirationMonth: '05'
-                  type: '001'
-              orderInformation:
-                amountDetails:
-                  totalAmount: '21.00'
-                  currency: USD
-                billTo:
-                  lastName: Solo
-                  country: US
-                  firstName: Han
-                  email: Han.solo@test.com
-                shipTo:
-                  locality: Mos Eisley
-                  country: US
-                  administrativeArea: CA
-                  address1: 325 Falcon Way
-                  postalCode: '94545'
+              example:
+                paymentInformation:
+                  card:
+                    expirationYear: '2026'
+                    number: XXXXXXXXXXXX1111
+                    expirationMonth: '05'
+                    type: '001'
+                orderInformation:
+                  amountDetails:
+                    totalAmount: '21.00'
+                    currency: USD
+                  billTo:
+                    lastName: Solo
+                    country: US
+                    firstName: Han
+                    email: Han.solo@test.com
+                  shipTo:
+                    locality: Mos Eisley
+                    country: US
+                    administrativeArea: CA
+                    address1: 325 Falcon Way
+                    postalCode: '94545'
         '404':
           description: The specified resource not found in the system.
         '500':
@@ -74,11 +68,12 @@ paths:
   /flex/v2/payment-details/{jti}:
     get:
       summary: Get Transient Token Data v2
-      description: 'Retrieve data captured through Unified Checkout. This API retrieves the detailed information associated with a Transient Token by looking it up in TMS and using its ID (the jti claim from the /flex/v2/tokens JWT response). The response returns a decrypted version of the Transient Token; however, PCI-sensitive payment data (PAN) is never returned and is always masked.<br><br> Example jti value: 1D42LRF04LYTMO3I1G8JX6GO6S1PUFM2R4CQLU51267E0EOQ7X2169A99674E16E'
+      description: 'Retrieve data captured through Unified Checkout. This API retrieves the detailed information associated with a Transient Token by looking it up in TMS and using its ID (the jti claim from the /flex/v2/tokens JWT response). The response returns a decrypted version of the Transient Token; however, PCI-sensitive payment data (PAN) is never returned and is always masked.
+
+
+        Example jti value: 1D42LRF04LYTMO3I1G8JX6GO6S1PUFM2R4CQLU51267E0EOQ7X2169A99674E16E'
       tags:
       - Transient Token Data v2
-      produces:
-      - application/json
       operationId: getTransactionForTransientTokenJTI
       x-devcenter-metaData:
         categoryTag: Unified_Checkout
@@ -91,33 +86,35 @@ paths:
 
           '
         required: true
-        type: string
+        schema:
+          type: string
       responses:
         '200':
           description: Successful response.
-          examples:
+          content:
             application/json:
-              paymentInformation:
-                card:
-                  expirationYear: '2026'
-                  number: XXXXXXXXXXXX1111
-                  expirationMonth: '05'
-                  type: '001'
-              orderInformation:
-                amountDetails:
-                  totalAmount: '21.00'
-                  currency: USD
-                billTo:
-                  lastName: Solo
-                  country: US
-                  firstName: Han
-                  email: Han.solo@test.com
-                shipTo:
-                  locality: Mos Eisley
-                  country: US
-                  administrativeArea: CA
-                  address1: 325 Falcon Way
-                  postalCode: '94545'
+              example:
+                paymentInformation:
+                  card:
+                    expirationYear: '2026'
+                    number: XXXXXXXXXXXX1111
+                    expirationMonth: '05'
+                    type: '001'
+                orderInformation:
+                  amountDetails:
+                    totalAmount: '21.00'
+                    currency: USD
+                  billTo:
+                    lastName: Solo
+                    country: US
+                    firstName: Han
+                    email: Han.solo@test.com
+                  shipTo:
+                    locality: Mos Eisley
+                    country: US
+                    administrativeArea: CA
+                    address1: 325 Falcon Way
+                    postalCode: '94545'
         '404':
           description: The specified resource not found in the system.
         '500':
@@ -128,8 +125,6 @@ paths:
       description: Retrieve the Payment data captured by Unified Checkout. This API is used to retrieve the detailed data represented by the Transient Token. This API will return PCI payment data captured by the Unified Checkout platform.
       tags:
       - Transient Token Data v2
-      produces:
-      - application/jwt
       operationId: getPaymentCredentialsForTransientToken
       x-devcenter-metaData:
         categoryTag: Unified_Checkout
@@ -142,14 +137,16 @@ paths:
 
           '
         required: true
-        type: string
+        schema:
+          type: string
       responses:
         '200':
           description: Retrieved payment credentials reference
-          schema:
-            type: string
-          examples:
-            application/jwt: eyJhdWQiOiJwc3AiLCJzdWIiOiJwc19ocGEiLCJraWQiOiIyMDIzMDUxNC1kcmFmdC1wc3AtZW5jcnlwdCIsImN0eSI6IkpXVCIsImVuYyI6IkEyNTZHQ00iLCJleHAiOjE2ODU0MzI2ODMsImFsZyI6IlJTQS1PQUVQLTI1NiIsImp0aSI6ImMxZWRkMzVmLTRiYmUtNGRmNS04YTg0LTdjNmFlNzU0YWU1MCJ9.Zu5EW2WFuFwAaMI3N9x1-KYdARpcRQSvZSEmKXhHgwTMghOyhCaxmbsDPryIRxcqAFuWH3ojytGIpttHQ-tL35pc1G_lXcd9pA7Wyvv9hh3DdYv2pM3whDLaV6t7ZkP2P_goxiJ3HLwmTPRV0YO97YbvIRSLTEBk25b8DxNL2p9ufvLcEBcwOW7rZj-7boMBWDR3SupyoHUF1WIGfstbgHNo_7qcgOWuKeoITTJlvwFVdmZFeaFDvN2tfrtsanTBFP7v6WSWjWbaKql_z-tqLBfQkaw0nSDjBtxB70pdSw2U5ASmFoYr7Q3H60bNld-3UcAI_mpYXHRJpLleU2IiDg.llfdZVDcZgqBVKYz.BoFsW2K80UGjfczcqGtMqHq7VH-90fcMOtyl-weBc6PAhzg9Ze6MvlMpxmZi4QPKX1i3-HYnqkI514CpriOChPJ-2AR6VenR7MXfG5fGOIRseuDQ1d6WPtfpisabxW1qg9jOSoCWwAG6SrdnMdbpysBJmR_OV2Gfmo4noO5B01u02hv8AM3yY627bYOSTSAHeHovn9KKYWLdYpoJVeqkMIJwHnBtz-dqosgi3AuJNfi8LcT5_3vW6sJ-q044sM6TQ9z57Ui95EqIm4w_s0_BgF6QRIuPJNHD17i-5QgxVDD5OGYPWHwAwMC-poWp3wlG_MTkaIiLkvnAwB44tC_uvAQWJt0BvAbDMbsd9LPcqhqaIS3WDqiCFTawxM-BVotG-mAZDTEuq0f4Ctc9r6KDZyPxJj9IO0KwJDBpk86eX_RXm1ByO3bmDmMcIzsAcaJzbXdO11QRLLtmfYtQSUjZ-NZvEXEoSShJt1F-fTYx05tgoMWrQDwrQ-UMBzN77JqWKzuOpgQSTH6t3YpJ0v8g0-FXu7UHRtRVMWm9vt2HAOTHqXd5ITtqmeYpnKVKv3J_oUJerxy03rN8mPGzrWHRQn6rXOp_xKZEBf7UCK5ugr9oNcVUnbO9GnIr6RH5do3kSfGR0qBA4M8qvpm43amNfHtVcdb2bUwsoaWF15sshcVzss22JU8i94GHrTS_quR8PwktxFVNQyMYHCph_idffTrsPR2mjMoZSR2tPEGPW4V2RTKwhrpqKE_hCyOPLHSSEk3KYkQhteicRvqsqshhm7YADcEXiwRW5Ej2GADDxNop9UZojYRBtRfcQsVoA34ZM4gQvsEza5dF307NJkclwV6e2e5AdDBbm9IGsfY0ePwMOSK7dxWnVEn1gNaJMFyhWCL6o3XI4_4Pu0GWEHN3UphrH9TSHj4BxXLbFHnTDpYWw30pHrzLwLbK-eeovOsWUfID730QXbWa56OSPSqfvWG0tKNuTVmVCBJqZE_25FCoMkR0zevMgJZC9ujK5ksHB3lTFYuOXLNbXujw4y9K3QKImhEigGhWN5glXGEAWqExdWpb9aJ4vuAnT48hQREaiRc1DQueUnmzMQFjY9e-Q9iMOFHiCJ56NU7kMK9qZdBPmf7Emoe87Xx7YINsOXngQZZ2ve8nVC-sE0IDHoSh9YeqoNFAcdOHbCLDB6fi1WVWztCG6Gum0N9kauKHeM8XsSRjL-m_1yPI20da_VvszLW2D0jqbIgppFt-qiPSz4-YNTX6IgL60TEUaOcHynqkIg24_KNvbzXUl4DvlUR0I6XoUAs0XtxLiWy7Qai6Zgtih9Uvm8bZ14O4IAhigz6O09NsmucYzAgTtHi__npwHjV5kW3f-ya4dT9XYq__jGTNnV-vrokK7lj3CbNX9YJtKrM4q2PCl3dggeQXNlU46GYF36jTdLIIByFPhy6Pk5eiM1qXxn7-xZcA5k5YcOvXPyfLPHi1TiB1aNpZQuhdKRseKRqwzw.oTxqDKWidj_qi20IH0YeUA
+          content:
+            application/jwt:
+              schema:
+                type: string
+              example: eyJhdWQiOiJwc3AiLCJzdWIiOiJwc19ocGEiLCJraWQiOiIyMDIzMDUxNC1kcmFmdC1wc3AtZW5jcnlwdCIsImN0eSI6IkpXVCIsImVuYyI6IkEyNTZHQ00iLCJleHAiOjE2ODU0MzI2ODMsImFsZyI6IlJTQS1PQUVQLTI1NiIsImp0aSI6ImMxZWRkMzVmLTRiYmUtNGRmNS04YTg0LTdjNmFlNzU0YWU1MCJ9.Zu5EW2WFuFwAaMI3N9x1-KYdARpcRQSvZSEmKXhHgwTMghOyhCaxmbsDPryIRxcqAFuWH3ojytGIpttHQ-tL35pc1G_lXcd9pA7Wyvv9hh3DdYv2pM3whDLaV6t7ZkP2P_goxiJ3HLwmTPRV0YO97YbvIRSLTEBk25b8DxNL2p9ufvLcEBcwOW7rZj-7boMBWDR3SupyoHUF1WIGfstbgHNo_7qcgOWuKeoITTJlvwFVdmZFeaFDvN2tfrtsanTBFP7v6WSWjWbaKql_z-tqLBfQkaw0nSDjBtxB70pdSw2U5ASmFoYr7Q3H60bNld-3UcAI_mpYXHRJpLleU2IiDg.llfdZVDcZgqBVKYz.BoFsW2K80UGjfczcqGtMqHq7VH-90fcMOtyl-weBc6PAhzg9Ze6MvlMpxmZi4QPKX1i3-HYnqkI514CpriOChPJ-2AR6VenR7MXfG5fGOIRseuDQ1d6WPtfpisabxW1qg9jOSoCWwAG6SrdnMdbpysBJmR_OV2Gfmo4noO5B01u02hv8AM3yY627bYOSTSAHeHovn9KKYWLdYpoJVeqkMIJwHnBtz-dqosgi3AuJNfi8LcT5_3vW6sJ-q044sM6TQ9z57Ui95EqIm4w_s0_BgF6QRIuPJNHD17i-5QgxVDD5OGYPWHwAwMC-poWp3wlG_MTkaIiLkvnAwB44tC_uvAQWJt0BvAbDMbsd9LPcqhqaIS3WDqiCFTawxM-BVotG-mAZDTEuq0f4Ctc9r6KDZyPxJj9IO0KwJDBpk86eX_RXm1ByO3bmDmMcIzsAcaJzbXdO11QRLLtmfYtQSUjZ-NZvEXEoSShJt1F-fTYx05tgoMWrQDwrQ-UMBzN77JqWKzuOpgQSTH6t3YpJ0v8g0-FXu7UHRtRVMWm9vt2HAOTHqXd5ITtqmeYpnKVKv3J_oUJerxy03rN8mPGzrWHRQn6rXOp_xKZEBf7UCK5ugr9oNcVUnbO9GnIr6RH5do3kSfGR0qBA4M8qvpm43amNfHtVcdb2bUwsoaWF15sshcVzss22JU8i94GHrTS_quR8PwktxFVNQyMYHCph_idffTrsPR2mjMoZSR2tPEGPW4V2RTKwhrpqKE_hCyOPLHSSEk3KYkQhteicRvqsqshhm7YADcEXiwRW5Ej2GADDxNop9UZojYRBtRfcQsVoA34ZM4gQvsEza5dF307NJkclwV6e2e5AdDBbm9IGsfY0ePwMOSK7dxWnVEn1gNaJMFyhWCL6o3XI4_4Pu0GWEHN3UphrH9TSHj4BxXLbFHnTDpYWw30pHrzLwLbK-eeovOsWUfID730QXbWa56OSPSqfvWG0tKNuTVmVCBJqZE_25FCoMkR0zevMgJZC9ujK5ksHB3lTFYuOXLNbXujw4y9K3QKImhEigGhWN5glXGEAWqExdWpb9aJ4vuAnT48hQREaiRc1DQueUnmzMQFjY9e-Q9iMOFHiCJ56NU7kMK9qZdBPmf7Emoe87Xx7YINsOXngQZZ2ve8nVC-sE0IDHoSh9YeqoNFAcdOHbCLDB6fi1WVWztCG6Gum0N9kauKHeM8XsSRjL-m_1yPI20da_VvszLW2D0jqbIgppFt-qiPSz4-YNTX6IgL60TEUaOcHynqkIg24_KNvbzXUl4DvlUR0I6XoUAs0XtxLiWy7Qai6Zgtih9Uvm8bZ14O4IAhigz6O09NsmucYzAgTtHi__npwHjV5kW3f-ya4dT9XYq__jGTNnV-vrokK7lj3CbNX9YJtKrM4q2PCl3dggeQXNlU46GYF36jTdLIIByFPhy6Pk5eiM1qXxn7-xZcA5k5YcOvXPyfLPHi1TiB1aNpZQuhdKRseKRqwzw.oTxqDKWidj_qi20IH0YeUA
         '404':
           description: The specified resource not found in the system.
         '500':

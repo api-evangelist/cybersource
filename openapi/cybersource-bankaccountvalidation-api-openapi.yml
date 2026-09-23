@@ -1,28 +1,18 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
   version: 0.0.1
-  title: CyberSource Merged Spec bankAccountValidation API
-host: apitest.cybersource.com
-basePath: /
-schemes:
-- https
-consumes:
-- application/json;charset=utf-8
-produces:
-- application/hal+json;charset=utf-8
+  title: CyberSource Merged Spec Bank Account Validation API
+servers:
+- url: https://apitest.cybersource.com/
 tags:
 - name: bankAccountValidation
-  description: 'The Visa Bank Account Validation Service is a new standalone product designed to validate customer''s routing and bank account number combination for ACH transactions. Merchant''s can use this standalone product to validate their customer''s account prior to processing an ACH transaction against the customer''s account to comply with Nacha''s account validation mandate for Web-debit transactions.
-
-    '
+  description: The Visa Bank Account Validation Service is a new standalone product designed to validate customer's routing and bank account number combination for ACH transactions. Merchant's can use this standalone product to validate their customer's account prior to processing an ACH transaction against the customer's account to comply with Nacha's account validation mandate for Web-debit transactions.
 paths:
   /bavs/v1/account-validations:
     post:
       summary: Visa Bank Account Validation Service
-      description: 'The Visa Bank Account Validation Service is a new standalone product designed to validate customer''s routing and bank account number combination for ACH transactions. Merchant''s can use this standalone product to validate their customer''s account prior to processing an ACH transaction against the customer''s account to comply with Nacha''s account validation mandate for Web-debit transactions.
-
-        '
+      description: The Visa Bank Account Validation Service is a new standalone product designed to validate customer's routing and bank account number combination for ACH transactions. Merchant's can use this standalone product to validate their customer's account prior to processing an ACH transaction against the customer's account to comply with Nacha's account validation mandate for Web-debit transactions.
       tags:
       - bankAccountValidation
       operationId: bankAccountValidationRequest
@@ -39,346 +29,252 @@ paths:
         - Json Web Token
         overrideMerchantCredential: apiref_chase
         SDK_ONLY_AddDisclaimer: true
-      consumes:
-      - application/json;charset=utf-8
-      produces:
-      - application/json;charset=utf-8
-      parameters:
-      - name: accountValidationsRequest
-        in: body
-        required: true
-        schema:
-          type: object
-          required:
-          - processingInformation
-          - paymentInformation
-          properties:
-            clientReferenceInformation:
-              type: object
-              properties:
-                code:
-                  type: string
-                  description: Client reference code
-                  example: TC50171_3
-            processingInformation:
-              type: object
-              required:
-              - validationLevel
-              properties:
-                validationLevel:
-                  type: integer
-                  description: 'Enter 1 for routing and account number validation.
-
-                    '
-            paymentInformation:
-              type: object
-              description: 'Payment information for account validation. Either tokenized payment data or bank account details must be provided, but not both.
-
-                When token information is provided, the bank object becomes optional. Only one token type may be included per request.
-
-                '
-              properties:
-                customer:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      minLength: 1
-                      maxLength: 32
-                      description: Unique identifier for the Customer token. When this value is included in your request, the bank object becomes optional.
-                      example: AB12C34D56E78F90
-                paymentInstrument:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      minLength: 1
-                      maxLength: 32
-                      description: Unique identifier for the Payment Instrument token. When this value is included in your request, the bank object becomes optional.
-                      example: '7010000000000001234'
-                instrumentIdentifier:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      minLength: 12
-                      maxLength: 32
-                      description: Unique identifier for the Instrument Identifier token. When this value is included in your request, the bank object becomes optional.
-                      example: '7010000000000001111'
-                bank:
-                  type: object
-                  required:
-                  - routingNumber
-                  - account
-                  properties:
-                    routingNumber:
-                      type: string
-                      minLength: 9
-                      maxLength: 9
-                      description: 'Bank routing number. This is also called the transit number.
-
-
-                        Non-Negative String, containing only digits.
-
-                        '
-                      example: '123456789'
-                    account:
-                      type: object
-                      required:
-                      - number
-                      properties:
-                        number:
-                          type: string
-                          maxLength: 17
-                          description: 'Account Number.
-
-
-                            Non-Negative String, containing only digits.
-
-                            '
-                          example: '12345678901234577'
-            tokenInformation:
-              type: object
-              description: Optional token information for BAVS detokenization. Only one token type may be provided.
-              properties:
-                jti:
-                  type: string
-                  maxLength: 64
-                  description: TMS Transient Token for BAVS detokenization. A 64 hexadecimal character identifier representing captured payment credentials.
-                  example: 1A2B3C4D5E6F7890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890
-                transientTokenJwt:
-                  type: string
-                  description: Flex API Transient Token encoded as JWT for BAVS detokenization. Contains encrypted bank account information from Flex microform or Unified Payment checkout.
-                  example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
       responses:
         '200':
           description: Successful response.
-          schema:
-            type: object
-            properties:
-              clientReferenceInformation:
+          content:
+            application/json;charset=utf-8:
+              schema:
                 type: object
                 properties:
-                  code:
+                  clientReferenceInformation:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        description: Client reference code
+                        example: TC50171_3
+                  requestId:
                     type: string
-                    description: Client reference code
-                    example: TC50171_3
-              requestId:
-                type: string
-                description: Request Id sent as part of the request.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC.
-
-
-                  Format: `YYYY-MM-DDThhmmssZ`, where:
-
-                  - `T`:  Separates the date and the time
-
-                  - `Z`:  Indicates Coordinated Universal Time (UTC), also known as Greenwich Mean Time (GMT)
-
-
-                  Example:  `2020-01-11T224757Z`
-
-                  equals January 11, 2020, at 22:47:57 (10:47:57 p.m.)
-
-                  '
-              bankAccountValidation:
-                type: object
-                properties:
-                  rawValidationCode:
-                    type: integer
-                    description: "Raw Validation Codes for routing number and account number\n\n    Possible values:\n    • -1: Unable to perform validation/Unknown error\n    • -2: Service Unavailable\n    • 12 to 16: Validation results\n"
-                  resultCode:
-                    type: integer
-                    description: "Result codes for account number and routing number\n\n    Possible values: 00, 04, 98, 99\n"
-                  resultMessage:
+                    description: Request Id sent as part of the request.
+                  submitTimeUtc:
                     type: string
+                    description: 'Time of request in UTC.
+
+
+                      Format: `YYYY-MM-DDThhmmssZ`, where:
+
+                      - `T`:  Separates the date and the time
+
+                      - `Z`:  Indicates Coordinated Universal Time (UTC), also known as Greenwich Mean Time (GMT)
+
+
+                      Example:  `2020-01-11T224757Z`
+
+                      equals January 11, 2020, at 22:47:57 (10:47:57 p.m.)
+
+                      '
+                  bankAccountValidation:
+                    type: object
+                    properties:
+                      rawValidationCode:
+                        type: integer
+                        description: "Raw Validation Codes for routing number and account number\n\n    Possible values:\n    • -1: Unable to perform validation/Unknown error\n    • -2: Service Unavailable\n    • 12 to 16: Validation results\n"
+                      resultCode:
+                        type: integer
+                        description: "Result codes for account number and routing number\n\n    Possible values: 00, 04, 98, 99\n"
+                      resultMessage:
+                        type: string
         '400':
           description: Bad Request
           headers:
             v-c-correlationid:
-              type: string
               description: Unique identifier for this request
-          schema:
-            type: object
-            properties:
-              submitTimeUtc:
+              schema:
                 type: string
-                description: 'Time verification was requested
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: object
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time verification was requested
 
 
-                  Format: `YYYY-MM-DDThhmmssZ`, where:
+                      Format: `YYYY-MM-DDThhmmssZ`, where:
 
-                  - `T`:  Separates the date and the time
+                      - `T`:  Separates the date and the time
 
-                  - `Z`:  Indicates Coordinated Universal Time (UTC), also known as Greenwich Mean Time (GMT)
+                      - `Z`:  Indicates Coordinated Universal Time (UTC), also known as Greenwich Mean Time (GMT)
 
 
-                  Example:  `2020-01-11T224757Z`
+                      Example:  `2020-01-11T224757Z`
 
-                  equals January 11, 2020, at 22:47:57 (10:47:57 p.m.)
+                      equals January 11, 2020, at 22:47:57 (10:47:57 p.m.)
 
-                  '
-              status:
-                type: string
-                description: "Possible values:\n  - `INVALID_REQUEST`\n"
-              message:
-                type: string
-                description: The detail message related to the status and reason
-              reason:
-                type: string
-                description: "The reason of the status.\n\nPossible values:\n  - `INVALID_REQUEST`\n"
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    field:
-                      type: string
-                      description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+                      '
+                  status:
+                    type: string
+                    description: "Possible values:\n  - `INVALID_REQUEST`\n"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason
+                  reason:
+                    type: string
+                    description: "The reason of the status.\n\nPossible values:\n  - `INVALID_REQUEST`\n"
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
 
-                        '
-                    reason:
-                      type: string
-                      description: "Possible reasons for the error.\n\nPossible values:\n  - `MISSING_FIELD`\n  - `INVALID_DATA`\n"
+                            '
+                        reason:
+                          type: string
+                          description: "Possible reasons for the error.\n\nPossible values:\n  - `MISSING_FIELD`\n  - `INVALID_DATA`\n"
         '403':
           description: Authorization failure.
           headers:
             v-c-correlationid:
-              type: string
               description: Unique identifier for this request
-          schema:
-            type: object
-            properties:
-              submitTimeUtc:
+              schema:
                 type: string
-                description: 'Time of request in UTC.
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: object
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC.
 
 
-                  Format: `YYYY-MM-DDThhmmssZ`, where:
+                      Format: `YYYY-MM-DDThhmmssZ`, where:
 
-                  - `T`:  Separates the date and the time
+                      - `T`:  Separates the date and the time
 
-                  - `Z`:  Indicates Coordinated Universal Time (UTC), also known as Greenwich Mean Time (GMT)
+                      - `Z`:  Indicates Coordinated Universal Time (UTC), also known as Greenwich Mean Time (GMT)
 
 
-                  Example:  `2020-01-11T224757Z`
+                      Example:  `2020-01-11T224757Z`
 
-                  equals January 11, 2020, at 22:47:57 (10:47:57 p.m.)
+                      equals January 11, 2020, at 22:47:57 (10:47:57 p.m.)
 
-                  '
-              status:
-                type: string
-                description: "Possible values:\n  - `UNAUTHORIZED`\n"
-              reason:
-                type: string
-                description: "The reason of the status.\n\nPossible values:\n  - `UNAUTHORIZED`\n"
-              message:
-                type: string
-                description: 'The detail message related to the status and reason.
+                      '
+                  status:
+                    type: string
+                    description: "Possible values:\n  - `UNAUTHORIZED`\n"
+                  reason:
+                    type: string
+                    description: "The reason of the status.\n\nPossible values:\n  - `UNAUTHORIZED`\n"
+                  message:
+                    type: string
+                    description: 'The detail message related to the status and reason.
 
-                  '
+                      '
         '404':
           description: Resource Not Found
           headers:
             v-c-correlationid:
-              type: string
               description: Unique identifier for this request
-          schema:
-            type: object
-            properties:
-              submitTimeUtc:
+              schema:
                 type: string
-                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: object
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
 
 
-                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+                      Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
 
-                  time. The Z indicates UTC.
+                      time. The Z indicates UTC.
 
-                  '
-              status:
-                type: string
-                description: "The status of the submitted request. \nPossible values:\n- NOT_FOUND"
-              reason:
-                type: string
-                description: "The reason of the status. \nPossible values:\n- NOT_FOUND"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
+                      '
+                  status:
+                    type: string
+                    description: "The status of the submitted request. \nPossible values:\n- NOT_FOUND"
+                  reason:
+                    type: string
+                    description: "The reason of the status. \nPossible values:\n- NOT_FOUND"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
         '422':
           description: Unprocessable Entity.
           headers:
             v-c-correlationid:
-              type: string
               description: Unique identifier for this request
-          schema:
-            type: object
-            properties:
-              submitTimeUtc:
+              schema:
                 type: string
-                description: 'Time of request in UTC.
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: object
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC.
 
 
-                  Format: `YYYY-MM-DDThhmmssZ`, where:
+                      Format: `YYYY-MM-DDThhmmssZ`, where:
 
-                  - `T`:  Separates the date and the time
+                      - `T`:  Separates the date and the time
 
-                  - `Z`:  Indicates Coordinated Universal Time (UTC), also known as Greenwich Mean Time (GMT)
+                      - `Z`:  Indicates Coordinated Universal Time (UTC), also known as Greenwich Mean Time (GMT)
 
 
-                  Example:  `2020-01-11T224757Z`
+                      Example:  `2020-01-11T224757Z`
 
-                  equals January 11, 2020, at 22:47:57 (10:47:57 p.m.)
+                      equals January 11, 2020, at 22:47:57 (10:47:57 p.m.)
 
-                  '
-              status:
-                type: string
-                description: "Possible values:\n  - `VALIDATION_ERROR`\n"
-              reason:
-                type: string
-                description: "The reason of the status.\n\nPossible values:\n  - `PRODUCT_INACTIVE`\n  - `INVALID_MERCHANT_CONFIGURATION`\n  - `PRODUCT_NOT_CONFIGURED`\n"
-              message:
-                type: string
-                description: 'The detail message related to the status and reason.
+                      '
+                  status:
+                    type: string
+                    description: "Possible values:\n  - `VALIDATION_ERROR`\n"
+                  reason:
+                    type: string
+                    description: "The reason of the status.\n\nPossible values:\n  - `PRODUCT_INACTIVE`\n  - `INVALID_MERCHANT_CONFIGURATION`\n  - `PRODUCT_NOT_CONFIGURED`\n"
+                  message:
+                    type: string
+                    description: 'The detail message related to the status and reason.
 
-                  '
+                      '
         '502':
           description: Internal Server error
           headers:
             v-c-correlationid:
-              type: string
               description: Unique identifier for this request
-          schema:
-            type: object
-            properties:
-              submitTimeUtc:
+              schema:
                 type: string
-                description: 'Time verification was requested
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: object
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time verification was requested
 
 
-                  Format: `YYYY-MM-DDThhmmssZ`, where:
+                      Format: `YYYY-MM-DDThhmmssZ`, where:
 
-                  - `T`:  Separates the date and the time
+                      - `T`:  Separates the date and the time
 
-                  - `Z`:  Indicates Coordinated Universal Time (UTC), also known as Greenwich Mean Time (GMT)
+                      - `Z`:  Indicates Coordinated Universal Time (UTC), also known as Greenwich Mean Time (GMT)
 
 
-                  Example:  `2020-01-11T224757Z`
+                      Example:  `2020-01-11T224757Z`
 
-                  equals January 11, 2020, at 22:47:57 (10:47:57 p.m.)
+                      equals January 11, 2020, at 22:47:57 (10:47:57 p.m.)
 
-                  '
-              status:
-                type: string
-                description: "The status of the submitted transaction.\nPossible values:\n  - `SERVER_ERROR`\n"
-              message:
-                type: string
-                description: The detail message related to the status and reason
-              reason:
-                type: string
-                description: "The reason of the status.\n\nPossible values:\n  - `SYSTEM_ERROR`\n  - `SERVER_TIMEOUT`\n  - `SERVICE_TIMEOUT`\n"
+                      '
+                  status:
+                    type: string
+                    description: "The status of the submitted transaction.\nPossible values:\n  - `SERVER_ERROR`\n"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason
+                  reason:
+                    type: string
+                    description: "The reason of the status.\n\nPossible values:\n  - `SYSTEM_ERROR`\n  - `SERVER_TIMEOUT`\n  - `SERVICE_TIMEOUT`\n"
       x-example:
         example0:
           summary: Bank Account Validation - Validated
@@ -485,6 +381,113 @@ paths:
               rawValidationCode: 12
               resultCode: '00'
               resultMessage: Validated
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              type: object
+              required:
+              - processingInformation
+              - paymentInformation
+              properties:
+                clientReferenceInformation:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                      description: Client reference code
+                      example: TC50171_3
+                processingInformation:
+                  type: object
+                  required:
+                  - validationLevel
+                  properties:
+                    validationLevel:
+                      type: integer
+                      description: 'Enter 1 for routing and account number validation.
+
+                        '
+                paymentInformation:
+                  type: object
+                  description: 'Payment information for account validation. Either tokenized payment data or bank account details must be provided, but not both.
+
+                    When token information is provided, the bank object becomes optional. Only one token type may be included per request.
+
+                    '
+                  properties:
+                    customer:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          minLength: 1
+                          maxLength: 32
+                          description: Unique identifier for the Customer token. When this value is included in your request, the bank object becomes optional.
+                          example: AB12C34D56E78F90
+                    paymentInstrument:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          minLength: 1
+                          maxLength: 32
+                          description: Unique identifier for the Payment Instrument token. When this value is included in your request, the bank object becomes optional.
+                          example: '7010000000000001234'
+                    instrumentIdentifier:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          minLength: 12
+                          maxLength: 32
+                          description: Unique identifier for the Instrument Identifier token. When this value is included in your request, the bank object becomes optional.
+                          example: '7010000000000001111'
+                    bank:
+                      type: object
+                      required:
+                      - routingNumber
+                      - account
+                      properties:
+                        routingNumber:
+                          type: string
+                          minLength: 9
+                          maxLength: 9
+                          description: 'Bank routing number. This is also called the transit number.
+
+
+                            Non-Negative String, containing only digits.
+
+                            '
+                          example: '123456789'
+                        account:
+                          type: object
+                          required:
+                          - number
+                          properties:
+                            number:
+                              type: string
+                              maxLength: 17
+                              description: 'Account Number.
+
+
+                                Non-Negative String, containing only digits.
+
+                                '
+                              example: '12345678901234577'
+                tokenInformation:
+                  type: object
+                  description: Optional token information for BAVS detokenization. Only one token type may be provided.
+                  properties:
+                    jti:
+                      type: string
+                      maxLength: 64
+                      description: TMS Transient Token for BAVS detokenization. A 64 hexadecimal character identifier representing captured payment credentials.
+                      example: 1A2B3C4D5E6F7890ABCDEF1234567890ABCDEF1234567890ABCDEF1234567890
+                    transientTokenJwt:
+                      type: string
+                      description: Flex API Transient Token encoded as JWT for BAVS detokenization. Contains encrypted bank account information from Flex microform or Unified Payment checkout.
+                      example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+        required: true
 x-devcenter-metaData:
   categoryTagArray:
   - name: Payments

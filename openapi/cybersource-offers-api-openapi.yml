@@ -1,31 +1,18 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
   version: 0.0.1
-  title: CyberSource Merged Spec bankAccountValidation Offers API
-host: apitest.cybersource.com
-basePath: /
-schemes:
-- https
-consumes:
-- application/json;charset=utf-8
-produces:
-- application/hal+json;charset=utf-8
+  title: CyberSource Merged Spec Offers API
+servers:
+- url: https://apitest.cybersource.com/
 tags:
 - name: Offers
-  description: 'Operations related to creating, retrieving, and updating offers.
-
-    '
+  description: Operations related to creating, retrieving, and updating offers.
 paths:
   /vas/v1/currencyconversion:
     post:
       summary: Create an Offer
       description: 'Empower global transactions with transparency and choice. Our Dynamic Currency Conversion API lets merchants offer customers the option to pay in their home currency at checkout, delivering real-time exchange rates.
-
-
-        <div style="display: flex; gap: 2rem;">
-
-        <div style="flex: 1;">
 
 
         **Key Benefits:**
@@ -39,13 +26,7 @@ paths:
         - **Regulatory Compliance:** Provides the data required for acquirers and merchants to meet and maintain card scheme requirements for disclosure and consent.
 
 
-        <br>
-
-
         Ideal for merchants and payment partners seeking to boost trust and conversion in cross-border commerce.
-
-
-        <br>
 
 
         **Key Features:**
@@ -57,19 +38,11 @@ paths:
         - **Compliance:** Ensures merchants have the data required to adhere to card network regulations; exchange rates, markups, etc.
 
 
-        <div style="margin-top: 1.5rem;">
-
-
         **Supported Scenarios:**
 
         - Dynamic Currency Conversion when cardholder''s billing currency differs from merchant''s pricing currency.
 
         - Merchant and acquirer must support the cardholder''s billing currency.
-
-        </div>
-
-
-        <div style="margin-top: 1.5rem;">
 
 
         **Supported Processors:**
@@ -77,11 +50,6 @@ paths:
         - VPC
 
         - FDI Global
-
-        </div>
-
-
-        <div style="margin-top: 1.5rem;">
 
 
         **Compliance & Disclosure:**
@@ -97,13 +65,6 @@ paths:
 
         - Work with your acquirer to obtain full set of compliance requirements.
 
-        </div>
-
-
-        </div>
-
-        <div style="flex: 1;">
-
 
         **Core API Endpoints:**
 
@@ -118,9 +79,6 @@ paths:
         - marginRate
 
         - reconciliationId and Id (for subsequent payment requests)
-
-
-        <div style="margin-top: 1.5rem;">
 
 
         **Payment Authorization with DCC***
@@ -141,11 +99,6 @@ paths:
 
         - currencyConversion.indicator (e.g., 1 = Converted, 2 = Nonconvertible, 3 = Declined)
 
-        </div>
-
-
-        <div style="margin-top: 1.5rem;">
-
 
         **Capture with DCC***
 
@@ -154,11 +107,6 @@ paths:
 
 
         Maps from original authorization and includes original and converted amounts.
-
-        </div>
-
-
-        <div style="margin-top: 1.5rem;">
 
 
         **Refund with DCC***
@@ -172,20 +120,8 @@ paths:
 
         *Note: DCC is only supported on select processors. Contact your acquirer or account manager for more information.*
 
-        </div>
 
-
-        </div>
-
-        </div>
-
-
-        <br>
-
-
-        For more information, see the [Currency Conversion Developer Guide](https://developer.cybersource.com/docs/cybs/en-us/currency-conversion/developer/all/rest/currency-conversion/cc-intro.html).
-
-        '
+        For more information, see the Currency Conversion Developer Guide.'
       tags:
       - Offers
       operationId: createOffer
@@ -199,554 +135,576 @@ paths:
       parameters:
       - name: Content-Type
         in: header
-        type: string
-        required: true
-      - name: x-requestid
-        in: header
-        type: string
-        required: true
-      - name: v-c-merchant-id
-        in: header
-        type: string
-        required: true
-      - name: v-c-correlation-id
-        in: header
-        type: string
-        required: true
-      - name: v-c-organization-id
-        in: header
-        type: string
-        required: true
-      - name: offerRequest
-        in: body
         required: true
         schema:
-          type: object
-          properties:
-            clientReferenceInformation:
-              type: object
-              properties:
-                code:
-                  type: string
-                  maxLength: 50
-                  x-nullable: true
-                  description: "Merchant-generated order reference or tracking number. \nIt is recommended that you send a unique value for each transaction so that you can perform meaningful searches for the transaction.\n"
-                applicationName:
-                  type: string
-                  maxLength: 50
-                  x-nullable: true
-                  description: The name of the Connection Method client (such as Virtual Terminal or SOAP Toolkit API) that the merchant uses to send a transaction request to CyberSource.
-                applicationVersion:
-                  type: string
-                  maxLength: 50
-                  x-nullable: true
-                  description: Version of the CyberSource application or integration used for a transaction.
-                applicationUser:
-                  type: string
-                  maxLength: 60
-                  x-nullable: true
-                  description: The entity that is responsible for running the transaction and submitting the processing request to CyberSource. This could be a person, a system, or a connection method.
-                partner:
-                  type: object
-                  properties:
-                    developerId:
-                      type: string
-                      maxLength: 8
-                      x-nullable: true
-                      description: 'Identifier for the developer that helped integrate a partner solution to CyberSource.
-
-
-                        Send this value in all requests that are sent through the partner solutions built by that developer.
-
-                        CyberSource assigns the ID to the developer.
-
-
-                        **Note** When you see a developer ID of 999 in reports, the developer ID that was submitted is incorrect.
-
-                        '
-                    solutionId:
-                      type: string
-                      maxLength: 8
-                      x-nullable: true
-                      description: 'Identifier for the partner that is integrated to CyberSource.
-
-
-                        Send this value in all requests that are sent through the partner solution. CyberSource assigns the ID to the partner.
-
-
-                        **Note** When you see a solutionId of 999 in reports, the solutionId that was submitted is incorrect.
-
-                        '
-            paymentInformation:
-              type: object
-              properties:
-                card:
-                  type: object
-                  properties:
-                    number:
-                      type: string
-                      maxLength: 11
-                      x-nullable: true
-                      description: First 11 digits of the card number for which an offer is being sought. Mandatory when type=DCC.
-            orderInformation:
-              type: object
-              properties:
-                amountDetails:
-                  type: object
-                  properties:
-                    originalAmount:
-                      type: string
-                      maxLength: 15
-                      x-nullable: true
-                      description: The amount of the sale in the merchant's currency. Mandatory when type=DCC, optional otherwise. This value cannot be negative. You can include a decimal point (.), but no other special characters.
-                    originalCurrency:
-                      type: string
-                      maxLength: 3
-                      x-nullable: true
-                      description: 'Original currency of the transaction in the merchant''s currency. Mandatory when type=DCC, optional otherwise.
-
-                        Use three-character alphabetic [ISO 4271 Currency Codes.](https://developer.cybersource.com/docs/cybs/en-us/currency-codes/reference/all/na/currency-codes/currency-codes.html)
-
-                        '
-                currencyConversion:
-                  type: object
-                  properties:
-                    type:
-                      type: string
-                      maxLength: 3
-                      default: DCC
-                      x-nullable: true
-                      description: 'Valid Values:
-
-                        - `DCC`: Dynamic Currency Conversion
-
-                        - `MCP`: Multi-Currency Pricing
-
-                        '
-            pointOfSaleInformation:
-              type: object
-              properties:
-                terminalId:
-                  type: string
-                  maxLength: 16
-                  x-nullable: true
-                  description: Identifier for the terminal used by the merchant's to process the transaction.
-                entryMode:
-                  type: string
-                  maxLength: 30
-                  x-nullable: true
-                  description: 'Valid Values:
-
-                    - ''KEYED''
-
-                    - ''SWIPED''
-
-                    - ''CONTACT''
-
-                    - ''CONTACTLESS''
-
-
-                    How the transaction information was captured. Optional. `KEYED` can refer to MOTO on a terminal, MOTO on a virtual terminal, or eCommerce. All other options refer to card holder present transactions. Optional.
-
-                    '
-          example:
-            clientReferenceInformation:
-              code: REF-101-GBP-909
-              partner:
-                developerId: '123456'
-                solutionId: '123456'
-              applicationName: REST API
-              applicationVersion: 1.23.44
-              applicationUser: Bob
-            paymentInformation:
-              card:
-                number: '41111111111'
-            orderInformation:
-              amountDetails:
-                originalAmount: '100.00'
-                originalCurrency: GBP
-              currencyConversion:
-                type: DCC
-            pointOfSaleInformation:
-              terminalId: '12345678'
-              entryMode: CONTACT
+          type: string
+      - name: x-requestid
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: v-c-merchant-id
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: v-c-correlation-id
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: v-c-organization-id
+        in: header
+        required: true
+        schema:
+          type: string
       responses:
         '201':
           description: Request OK.
-          schema:
-            type: object
-            required:
-            - id
-            - submitTimeUtc
-            - status
-            properties:
-              clientReferenceInformation:
+          content:
+            application/hal+json;charset=utf-8:
+              schema:
                 type: object
+                required:
+                - id
+                - submitTimeUtc
+                - status
                 properties:
-                  code:
+                  clientReferenceInformation:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        maxLength: 50
+                        description: "Merchant-generated order reference or tracking number. \nIt is recommended that you send a unique value for each transaction so that you can perform meaningful searches for the transaction.\n"
+                  id:
                     type: string
-                    maxLength: 50
-                    description: "Merchant-generated order reference or tracking number. \nIt is recommended that you send a unique value for each transaction so that you can perform meaningful searches for the transaction.\n"
-              id:
-                type: string
-                maxLength: 26
-                description: 'Request ID generated by Cybersource. This was sent in the header on the request.
+                    maxLength: 26
+                    description: 'Request ID generated by Cybersource. This was sent in the header on the request.
 
-                  Echo value from x-requestid
+                      Echo value from x-requestid
 
-                  '
-              submitTimeUtc:
-                type: string
-                maxLength: 20
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+                      '
+                  submitTimeUtc:
+                    type: string
+                    maxLength: 20
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
 
-                  **Example** `2023-05-17T22:47:57Z` equals May 17, 2023, at 22:47:57 (10:47:57 PM).
+                      **Example** `2023-05-17T22:47:57Z` equals May 17, 2023, at 22:47:57 (10:47:57 PM).
 
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
-                  '
-              status:
-                type: string
-                maxLength: 18
-                description: "Message describing the status of the currency conversion request.\n \nPossible values:\n- PENDING\n- DECLINED\n- SERVER_ERROR"
-              errorInformation:
+                      '
+                  status:
+                    type: string
+                    maxLength: 18
+                    description: "Message describing the status of the currency conversion request.\n \nPossible values:\n- PENDING\n- DECLINED\n- SERVER_ERROR"
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                        maxLength: 30
+                        description: 'Only required when offer cannot be made. The reason of the status.
+
+
+                          Possible values:
+
+                          - ''INVALID_MERCHANT_CONFIGURATION''
+
+                          - ''NOT_ELIGIBLE''
+
+                          - ''CURRENCY_NOT_CONFIGURED''
+
+                          - ''BIN_UNKNOWN''
+
+                          - ''CURRENCY_MATCH''
+
+                          - ''CURRENCY_NOT_ALLOWED''
+
+                          - ''LOOKUP_FAILED''
+
+                          - ''EXCHANGE_RATE_NOT_FOUND''
+
+                          - ''CARD_TYPE_NOT_ACCEPTED''
+
+                          - ''INVALID_AMOUNT''
+
+                          - ''INVALID_CARD''
+
+                          - ''INVALID_CURRENCY''
+
+                          - ''INVALID_TERMINAL''
+
+                          - ''INVALID_ACQUIRER''
+
+                          - ''SERVICE_DISABLED''
+
+                          - ''DUPLICATE_REQUEST''
+
+                          - ''UNKNOWN''
+
+                          - ''PROCESSOR_ERROR''
+
+                          '
+                      message:
+                        type: string
+                        maxLength: 256
+                        description: Only required when the requested action cannot be performed. Descriptive message to add more detail to the status E.g. not all cards are eligible for DCC, so it is not possible for DCC to be offered.
+                  orderInformation:
+                    type: object
+                    properties:
+                      currencyConversion:
+                        type: object
+                        required:
+                        - reconciliationId
+                        properties:
+                          type:
+                            type: string
+                            maxLength: 3
+                            description: 'Valid Values:
+
+                              - `DCC`: Dynamic Currency Conversion
+
+                              - `MCP`: Multi-Currency Pricing
+
+                              This should be echo''d from the request
+
+                              '
+                          reconciliationId:
+                            type: string
+                            maxLength: 60
+                            description: Unique identifier generated by the DCC provider.
+                          offer:
+                            type: array
+                            description: 'When type is DCC this is a single item.
+
+                              When type is MCP this is an array that repeats for each currency that''s configured by the currency conversion provider for the merchant.
+
+                              '
+                            items:
+                              type: object
+                              properties:
+                                originalAmount:
+                                  type: string
+                                  maxLength: 15
+                                  description: "The amount of the sale in the merchant's currency. \nFor DCC this should be the same value as the request. For MCP will be 1 major unit of the merchant's base currency.\n"
+                                originalCurrency:
+                                  type: string
+                                  maxLength: 3
+                                  description: "Currency of the transaction in the merchant's currency. \nFor DCC this should be the same value as the request. \nFor MCP will be the merchant's base currency as configured on the currency conversion provider's system.\nUse three-character alphabetic [ISO 4271 Currency Codes.](https://developer.cybersource.com/docs/cybs/en-us/currency-codes/reference/all/na/currency-codes/currency-codes.html)\n"
+                                amount:
+                                  type: string
+                                  maxLength: 15
+                                  description: 'The offer amount, calculated using the originalAmount and the exchangeRate.
+
+                                    For DCC this is the amount in the card issuer''s currency.
+
+                                    '
+                                currency:
+                                  type: string
+                                  maxLength: 3
+                                  description: 'Currency of the offer. For DCC this is the card''s issuers currency.
+
+                                    Use three-character alphabetic  [ISO 4271 Currency Codes.](https://developer.cybersource.com/docs/cybs/en-us/currency-codes/reference/all/na/currency-codes/currency-codes.html)
+
+                                    '
+                                exchangeRate:
+                                  type: string
+                                  maxLength: 13
+                                  description: 'The exchange rate of the offer from 1 major unit of the sale currency including margin.
+
+                                    This will be printed on the receipt.
+
+                                    For example, if a USD consumer is purchasing in EUR, this field should return the amount of 1 EUR in USD including mark-up.
+
+                                    The receipt will contain the following: `EUR 1.00 = USD 1.09998900010999` - where 1.09998900010999 is the value returned in this field.
+
+                                    '
+                                exchangeRateInverted:
+                                  type: boolean
+                                  example: true
+                                  description: 'An inverted exchange rate is the base currency amount divided by the converted currency amount.
+
+                                    Ex. If a USD customer is purchasing in EUR, this field should return the value of USD divided by EUR.
+
+                                    '
+                                marginRate:
+                                  type: string
+                                  maxLength: 8
+                                  description: 'The margin between the offer exchange rate and wholesale rates, i.e. the mark up.
+
+                                    Expressed as a percentage of 100, e.g. 3.75
+
+                                    '
+                                rateSource:
+                                  type: string
+                                  maxLength: 50
+                                  description: 'The source of the rate (excluding mark up). Optional field.
+
+                                    '
+                                exchangeRateTimeUtc:
+                                  type: string
+                                  maxLength: 20
+                                  description: 'The date and time of exchange rate in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                                    **Example** `2023-05-17T23:47:57Z` equals May 17, 2023, at 23:47:57 (11:47:57 PM).
+
+                                    The `T` separates the date and the time. The `Z` indicates UTC.
+
+                                    '
+                                exchangeRateExpirationTimeUtc:
+                                  type: string
+                                  maxLength: 20
+                                  description: 'The expiration time of the exchange rate in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                                    '
+                                rateId:
+                                  type: string
+                                  maxLength: 36
+                                  description: 'A unique MCP rate identifier.
+
+                                    '
+                          disclaimer:
+                            type: string
+                            maxLength: 1024
+                            description: "This text is intended to inform customers about their opt-in choices. It should include details such \nas the amount, exchange rate, currency, mark-up, and any other regulated requirements, such as \nthe mark-up over the ECB rate, if applicable. It is mandatory for DCC (Dynamic Currency \nConversion) and optional otherwise. This information will be displayed on the screen and printed on \nthe receipt without modification.\n"
+                  processorInformation:
+                    type: object
+                    properties:
+                      responseCode:
+                        type: string
+                        maxLength: 10
+                        description: 'The error message sent directly from the currency conversion provider. Returned only when the provider returns this value.
+
+                          '
+                example:
+                  clientReferenceInformation:
+                    code: REF-101-GBP-909
+                  id: '6843379070056369304008'
+                  submitTimeUtc: '2023-05-17T22:47:57Z'
+                  status: DECLINED
+                  errorInformation:
+                    reason: INVALID_MERCHANT_CONFIGURATION
+                    message: Only required when valid request cannot be fulfilled
+                  orderInformation:
+                    currencyConversion:
+                      type: DCC
+                      reconciliationId: ABC123
+                      offer:
+                      - originalAmount: '100.00'
+                        originalCurrency: GBP
+                        amount: '123.21'
+                        currency: EUR
+                        exchangeRate: '0.8116'
+                        marginRate: '3.75'
+                        rateSource: European Central Bank
+                        exchangeRateTimeUtc: '2023-05-17T23:47:57Z'
+                        exchangeRateExpirationTimeUtc: '2024-05-18T22:47:57Z'
+                        exchangeRateInverted: true
+                        rateId: 009F303309AF07234520190628143445
+                      disclaimer: 'I accept I have been offered a choice of currencies for payment. I accept the conversion rate and sale amount and that the selected currency is EUR. I acknowledge I had a choice to pay in GBP. Currency Conversion for this transaction is offered by the Merchant and is based on the reference rate of the currency conversion provider. Mark up on reference rate: 3.7500.'
+        '400':
+          description: Bad Request Data, e.g. missing field, field containing invalid data.
+          content:
+            application/hal+json;charset=utf-8:
+              schema:
                 type: object
+                required:
+                - id
+                - submitTimeUtc
+                - status
                 properties:
+                  id:
+                    type: string
+                    maxLength: 26
+                    description: 'Request ID generated by Cybersource. This was sent in the header on the request.
+
+                      Echo value from x-requestid
+
+                      '
+                  submitTimeUtc:
+                    type: string
+                    maxLength: 20
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+
+                      **Example** `2023-05-17T22:47:57Z` equals May 17, 2023, at 22:47:57 (10:47:57 PM).
+
+                      The `T` separates the date and the time. The `Z` indicates UTC.
+
+                      '
+                  status:
+                    type: string
+                    description: "Message describing the status of the currency conversion request.\n \nPossible values:\n- INVALID_REQUEST"
                   reason:
                     type: string
-                    maxLength: 30
-                    description: 'Only required when offer cannot be made. The reason of the status.
+                    description: "The reason of the status.\n \nPossible values:\n- MISSING_FIELD\n- INVALID_DATA"
+                  message:
+                    type: string
+                    description: 'Descriptive message to add more detail to the status
+
+                      '
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                            '
+                        reason:
+                          type: string
+                          description: 'Possible reasons for the error.
+
+
+                            Possible values:
+
+                            - MISSING_FIELD
+
+                            - INVALID_DATA
+
+                            '
+                example:
+                  id: '6843379070056369304008'
+                  submitTimeUtc: '2023-05-17T22:47:57Z'
+                  status: INVALID_REQUEST
+                  reason: MISSING_FIELD
+                  message: string
+                  details:
+                  - field: paymentInformation.card.number
+                    reason: MISSING_FIELD
+        '502':
+          description: Unexpected system error or system timeout.
+          content:
+            application/hal+json;charset=utf-8:
+              schema:
+                type: object
+                required:
+                - status
+                properties:
+                  id:
+                    type: string
+                    maxLength: 26
+                    description: 'Request ID generated by Cybersource. This was sent in the header on the request.
+
+                      Echo value from x-requestid
+
+                      '
+                  submitTimeUtc:
+                    type: string
+                    maxLength: 20
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+
+                      **Example** `2023-05-17T22:47:57Z` equals May 17, 2023, at 22:47:57 (10:47:57 PM).
+
+                      The `T` separates the date and the time. The `Z` indicates UTC.
+
+                      '
+                  status:
+                    type: string
+                    description: "Message describing the status of the currency conversion request.\n \nPossible values:\n- SERVER_ERROR"
+                  reason:
+                    type: string
+                    description: 'Only required when offer cannot be made.
+
+                      The reason of the status. Only required when the requested action cannot be performed cannot be made.
 
 
                       Possible values:
 
-                      - ''INVALID_MERCHANT_CONFIGURATION''
+                      - SYSTEM_ERROR
 
-                      - ''NOT_ELIGIBLE''
+                      - SERVER_TIMEOUT
 
-                      - ''CURRENCY_NOT_CONFIGURED''
-
-                      - ''BIN_UNKNOWN''
-
-                      - ''CURRENCY_MATCH''
-
-                      - ''CURRENCY_NOT_ALLOWED''
-
-                      - ''LOOKUP_FAILED''
-
-                      - ''EXCHANGE_RATE_NOT_FOUND''
-
-                      - ''CARD_TYPE_NOT_ACCEPTED''
-
-                      - ''INVALID_AMOUNT''
-
-                      - ''INVALID_CARD''
-
-                      - ''INVALID_CURRENCY''
-
-                      - ''INVALID_TERMINAL''
-
-                      - ''INVALID_ACQUIRER''
-
-                      - ''SERVICE_DISABLED''
-
-                      - ''DUPLICATE_REQUEST''
-
-                      - ''UNKNOWN''
-
-                      - ''PROCESSOR_ERROR''
+                      - SERVICE_TIMEOUT
 
                       '
                   message:
                     type: string
-                    maxLength: 256
-                    description: Only required when the requested action cannot be performed. Descriptive message to add more detail to the status E.g. not all cards are eligible for DCC, so it is not possible for DCC to be offered.
-              orderInformation:
-                type: object
-                properties:
-                  currencyConversion:
-                    type: object
-                    required:
-                    - reconciliationId
-                    properties:
-                      type:
-                        type: string
-                        maxLength: 3
-                        description: 'Valid Values:
-
-                          - `DCC`: Dynamic Currency Conversion
-
-                          - `MCP`: Multi-Currency Pricing
-
-                          This should be echo''d from the request
-
-                          '
-                      reconciliationId:
-                        type: string
-                        maxLength: 60
-                        description: Unique identifier generated by the DCC provider.
-                      offer:
-                        type: array
-                        description: 'When type is DCC this is a single item.
-
-                          When type is MCP this is an array that repeats for each currency that''s configured by the currency conversion provider for the merchant.
-
-                          '
-                        items:
-                          type: object
-                          properties:
-                            originalAmount:
-                              type: string
-                              maxLength: 15
-                              description: "The amount of the sale in the merchant's currency. \nFor DCC this should be the same value as the request. For MCP will be 1 major unit of the merchant's base currency.\n"
-                            originalCurrency:
-                              type: string
-                              maxLength: 3
-                              description: "Currency of the transaction in the merchant's currency. \nFor DCC this should be the same value as the request. \nFor MCP will be the merchant's base currency as configured on the currency conversion provider's system.\nUse three-character alphabetic [ISO 4271 Currency Codes.](https://developer.cybersource.com/docs/cybs/en-us/currency-codes/reference/all/na/currency-codes/currency-codes.html)\n"
-                            amount:
-                              type: string
-                              maxLength: 15
-                              description: 'The offer amount, calculated using the originalAmount and the exchangeRate.
-
-                                For DCC this is the amount in the card issuer''s currency.
-
-                                '
-                            currency:
-                              type: string
-                              maxLength: 3
-                              description: 'Currency of the offer. For DCC this is the card''s issuers currency.
-
-                                Use three-character alphabetic  [ISO 4271 Currency Codes.](https://developer.cybersource.com/docs/cybs/en-us/currency-codes/reference/all/na/currency-codes/currency-codes.html)
-
-                                '
-                            exchangeRate:
-                              type: string
-                              maxLength: 13
-                              description: 'The exchange rate of the offer from 1 major unit of the sale currency including margin.
-
-                                This will be printed on the receipt.
-
-                                For example, if a USD consumer is purchasing in EUR, this field should return the amount of 1 EUR in USD including mark-up.
-
-                                The receipt will contain the following: `EUR 1.00 = USD 1.09998900010999` - where 1.09998900010999 is the value returned in this field.
-
-                                '
-                            exchangeRateInverted:
-                              type: boolean
-                              example: true
-                              description: 'An inverted exchange rate is the base currency amount divided by the converted currency amount.
-
-                                Ex. If a USD customer is purchasing in EUR, this field should return the value of USD divided by EUR.
-
-                                '
-                            marginRate:
-                              type: string
-                              maxLength: 8
-                              description: 'The margin between the offer exchange rate and wholesale rates, i.e. the mark up.
-
-                                Expressed as a percentage of 100, e.g. 3.75
-
-                                '
-                            rateSource:
-                              type: string
-                              maxLength: 50
-                              description: 'The source of the rate (excluding mark up). Optional field.
-
-                                '
-                            exchangeRateTimeUtc:
-                              type: string
-                              maxLength: 20
-                              description: 'The date and time of exchange rate in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
-
-                                **Example** `2023-05-17T23:47:57Z` equals May 17, 2023, at 23:47:57 (11:47:57 PM).
-
-                                The `T` separates the date and the time. The `Z` indicates UTC.
-
-                                '
-                            exchangeRateExpirationTimeUtc:
-                              type: string
-                              maxLength: 20
-                              description: 'The expiration time of the exchange rate in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
-
-                                '
-                            rateId:
-                              type: string
-                              maxLength: 36
-                              description: 'A unique MCP rate identifier.
-
-                                '
-                      disclaimer:
-                        type: string
-                        maxLength: 1024
-                        description: "This text is intended to inform customers about their opt-in choices. It should include details such \nas the amount, exchange rate, currency, mark-up, and any other regulated requirements, such as \nthe mark-up over the ECB rate, if applicable. It is mandatory for DCC (Dynamic Currency \nConversion) and optional otherwise. This information will be displayed on the screen and printed on \nthe receipt without modification.\n"
-              processorInformation:
-                type: object
-                properties:
-                  responseCode:
-                    type: string
-                    maxLength: 10
-                    description: 'The error message sent directly from the currency conversion provider. Returned only when the provider returns this value.
+                    description: 'The detail message related to the status and reason listed above.
 
                       '
-            example:
-              clientReferenceInformation:
-                code: REF-101-GBP-909
-              id: '6843379070056369304008'
-              submitTimeUtc: '2023-05-17T22:47:57Z'
-              status: DECLINED
-              errorInformation:
-                reason: INVALID_MERCHANT_CONFIGURATION
-                message: Only required when valid request cannot be fulfilled
-              orderInformation:
-                currencyConversion:
-                  type: DCC
-                  reconciliationId: ABC123
-                  offer:
-                  - originalAmount: '100.00'
-                    originalCurrency: GBP
-                    amount: '123.21'
-                    currency: EUR
-                    exchangeRate: '0.8116'
-                    marginRate: '3.75'
-                    rateSource: European Central Bank
-                    exchangeRateTimeUtc: '2023-05-17T23:47:57Z'
-                    exchangeRateExpirationTimeUtc: '2024-05-18T22:47:57Z'
-                    exchangeRateInverted: true
-                    rateId: 009F303309AF07234520190628143445
-                  disclaimer: 'I accept I have been offered a choice of currencies for payment. I accept the conversion rate and sale amount and that the selected currency is EUR. I acknowledge I had a choice to pay in GBP. Currency Conversion for this transaction is offered by the Merchant and is based on the reference rate of the currency conversion provider. Mark up on reference rate: 3.7500.'
-        '400':
-          description: Bad Request Data, e.g. missing field, field containing invalid data.
-          schema:
-            type: object
-            required:
-            - id
-            - submitTimeUtc
-            - status
-            properties:
-              id:
-                type: string
-                maxLength: 26
-                description: 'Request ID generated by Cybersource. This was sent in the header on the request.
-
-                  Echo value from x-requestid
-
-                  '
-              submitTimeUtc:
-                type: string
-                maxLength: 20
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
-
-
-                  **Example** `2023-05-17T22:47:57Z` equals May 17, 2023, at 22:47:57 (10:47:57 PM).
-
-                  The `T` separates the date and the time. The `Z` indicates UTC.
-
-                  '
-              status:
-                type: string
-                description: "Message describing the status of the currency conversion request.\n \nPossible values:\n- INVALID_REQUEST"
-              reason:
-                type: string
-                description: "The reason of the status.\n \nPossible values:\n- MISSING_FIELD\n- INVALID_DATA"
-              message:
-                type: string
-                description: 'Descriptive message to add more detail to the status
-
-                  '
-              details:
-                type: array
-                items:
+                example:
+                  id: '6843379070056369304008'
+                  submitTimeUtc: '2023-05-17T22:47:57Z'
+                  status: SERVER_ERROR
+                  reason: SYSTEM_ERROR
+                  message: string
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              type: object
+              properties:
+                clientReferenceInformation:
                   type: object
                   properties:
-                    field:
-                      type: string
-                      description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+                    code:
+                      type:
+                      - string
+                      - 'null'
+                      maxLength: 50
+                      description: "Merchant-generated order reference or tracking number. \nIt is recommended that you send a unique value for each transaction so that you can perform meaningful searches for the transaction.\n"
+                    applicationName:
+                      type:
+                      - string
+                      - 'null'
+                      maxLength: 50
+                      description: The name of the Connection Method client (such as Virtual Terminal or SOAP Toolkit API) that the merchant uses to send a transaction request to CyberSource.
+                    applicationVersion:
+                      type:
+                      - string
+                      - 'null'
+                      maxLength: 50
+                      description: Version of the CyberSource application or integration used for a transaction.
+                    applicationUser:
+                      type:
+                      - string
+                      - 'null'
+                      maxLength: 60
+                      description: The entity that is responsible for running the transaction and submitting the processing request to CyberSource. This could be a person, a system, or a connection method.
+                    partner:
+                      type: object
+                      properties:
+                        developerId:
+                          type:
+                          - string
+                          - 'null'
+                          maxLength: 8
+                          description: 'Identifier for the developer that helped integrate a partner solution to CyberSource.
+
+
+                            Send this value in all requests that are sent through the partner solutions built by that developer.
+
+                            CyberSource assigns the ID to the developer.
+
+
+                            **Note** When you see a developer ID of 999 in reports, the developer ID that was submitted is incorrect.
+
+                            '
+                        solutionId:
+                          type:
+                          - string
+                          - 'null'
+                          maxLength: 8
+                          description: 'Identifier for the partner that is integrated to CyberSource.
+
+
+                            Send this value in all requests that are sent through the partner solution. CyberSource assigns the ID to the partner.
+
+
+                            **Note** When you see a solutionId of 999 in reports, the solutionId that was submitted is incorrect.
+
+                            '
+                paymentInformation:
+                  type: object
+                  properties:
+                    card:
+                      type: object
+                      properties:
+                        number:
+                          type:
+                          - string
+                          - 'null'
+                          maxLength: 11
+                          description: First 11 digits of the card number for which an offer is being sought. Mandatory when type=DCC.
+                orderInformation:
+                  type: object
+                  properties:
+                    amountDetails:
+                      type: object
+                      properties:
+                        originalAmount:
+                          type:
+                          - string
+                          - 'null'
+                          maxLength: 15
+                          description: The amount of the sale in the merchant's currency. Mandatory when type=DCC, optional otherwise. This value cannot be negative. You can include a decimal point (.), but no other special characters.
+                        originalCurrency:
+                          type:
+                          - string
+                          - 'null'
+                          maxLength: 3
+                          description: 'Original currency of the transaction in the merchant''s currency. Mandatory when type=DCC, optional otherwise.
+
+                            Use three-character alphabetic [ISO 4271 Currency Codes.](https://developer.cybersource.com/docs/cybs/en-us/currency-codes/reference/all/na/currency-codes/currency-codes.html)
+
+                            '
+                    currencyConversion:
+                      type: object
+                      properties:
+                        type:
+                          type:
+                          - string
+                          - 'null'
+                          maxLength: 3
+                          default: DCC
+                          description: 'Valid Values:
+
+                            - `DCC`: Dynamic Currency Conversion
+
+                            - `MCP`: Multi-Currency Pricing
+
+                            '
+                pointOfSaleInformation:
+                  type: object
+                  properties:
+                    terminalId:
+                      type:
+                      - string
+                      - 'null'
+                      maxLength: 16
+                      description: Identifier for the terminal used by the merchant's to process the transaction.
+                    entryMode:
+                      type:
+                      - string
+                      - 'null'
+                      maxLength: 30
+                      description: 'Valid Values:
+
+                        - ''KEYED''
+
+                        - ''SWIPED''
+
+                        - ''CONTACT''
+
+                        - ''CONTACTLESS''
+
+
+                        How the transaction information was captured. Optional. `KEYED` can refer to MOTO on a terminal, MOTO on a virtual terminal, or eCommerce. All other options refer to card holder present transactions. Optional.
 
                         '
-                    reason:
-                      type: string
-                      description: 'Possible reasons for the error.
-
-
-                        Possible values:
-
-                        - MISSING_FIELD
-
-                        - INVALID_DATA
-
-                        '
-            example:
-              id: '6843379070056369304008'
-              submitTimeUtc: '2023-05-17T22:47:57Z'
-              status: INVALID_REQUEST
-              reason: MISSING_FIELD
-              message: string
-              details:
-              - field: paymentInformation.card.number
-                reason: MISSING_FIELD
-        '502':
-          description: Unexpected system error or system timeout.
-          schema:
-            type: object
-            required:
-            - status
-            properties:
-              id:
-                type: string
-                maxLength: 26
-                description: 'Request ID generated by Cybersource. This was sent in the header on the request.
-
-                  Echo value from x-requestid
-
-                  '
-              submitTimeUtc:
-                type: string
-                maxLength: 20
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
-
-
-                  **Example** `2023-05-17T22:47:57Z` equals May 17, 2023, at 22:47:57 (10:47:57 PM).
-
-                  The `T` separates the date and the time. The `Z` indicates UTC.
-
-                  '
-              status:
-                type: string
-                description: "Message describing the status of the currency conversion request.\n \nPossible values:\n- SERVER_ERROR"
-              reason:
-                type: string
-                description: 'Only required when offer cannot be made.
-
-                  The reason of the status. Only required when the requested action cannot be performed cannot be made.
-
-
-                  Possible values:
-
-                  - SYSTEM_ERROR
-
-                  - SERVER_TIMEOUT
-
-                  - SERVICE_TIMEOUT
-
-                  '
-              message:
-                type: string
-                description: 'The detail message related to the status and reason listed above.
-
-                  '
-            example:
-              id: '6843379070056369304008'
-              submitTimeUtc: '2023-05-17T22:47:57Z'
-              status: SERVER_ERROR
-              reason: SYSTEM_ERROR
-              message: string
+              example:
+                clientReferenceInformation:
+                  code: REF-101-GBP-909
+                  partner:
+                    developerId: '123456'
+                    solutionId: '123456'
+                  applicationName: REST API
+                  applicationVersion: 1.23.44
+                  applicationUser: Bob
+                paymentInformation:
+                  card:
+                    number: '41111111111'
+                orderInformation:
+                  amountDetails:
+                    originalAmount: '100.00'
+                    originalCurrency: GBP
+                  currencyConversion:
+                    type: DCC
+                pointOfSaleInformation:
+                  terminalId: '12345678'
+                  entryMode: CONTACT
+        required: true
   /vas/v1/currencyconversion/{id}:
     get:
       summary: Retrieve an Offer
-      description: 'Retrieves an offer record from the system.
-
-        '
+      description: Retrieves an offer record from the system.
       tags:
       - Offers
       operationId: getOffer
@@ -755,402 +713,414 @@ paths:
       parameters:
       - name: Content-Type
         in: header
-        type: string
         required: true
+        schema:
+          type: string
       - name: x-requestid
         in: header
-        type: string
         required: true
+        schema:
+          type: string
       - name: v-c-merchant-id
         in: header
-        type: string
         required: true
+        schema:
+          type: string
       - name: v-c-correlation-id
         in: header
-        type: string
         required: true
+        schema:
+          type: string
       - name: v-c-organization-id
         in: header
-        type: string
         required: true
+        schema:
+          type: string
       - name: id
         in: path
         description: Request ID generated by Cybersource. This was sent in the header on the request. Echo value from v-c-request-id
         required: true
-        type: string
-        maxLength: 26
+        schema:
+          type: string
+          maxLength: 26
       responses:
         '200':
           description: Request OK.
-          schema:
-            type: object
-            required:
-            - id
-            - submitTimeUtc
-            - status
-            properties:
-              clientReferenceInformation:
+          content:
+            application/hal+json;charset=utf-8:
+              schema:
                 type: object
+                required:
+                - id
+                - submitTimeUtc
+                - status
                 properties:
-                  code:
-                    type: string
-                    maxLength: 50
-                    description: "Merchant-generated order reference or tracking number. \nIt is recommended that you send a unique value for each transaction so that you can perform meaningful searches for the transaction.\n"
-                  applicationName:
-                    type: string
-                    maxLength: 50
-                    description: The name of the Connection Method client (such as Virtual Terminal or SOAP Toolkit API) that the merchant uses to send a transaction request to CyberSource.
-                  applicationVersion:
-                    type: string
-                    maxLength: 50
-                    description: Version of the CyberSource application or integration used for a transaction.
-                  applicationUser:
-                    type: string
-                    maxLength: 60
-                    description: The entity that is responsible for running the transaction and submitting the processing request to CyberSource. This could be a person, a system, or a connection method.
-                  partner:
+                  clientReferenceInformation:
                     type: object
                     properties:
-                      developerId:
+                      code:
                         type: string
-                        maxLength: 8
-                        description: 'Identifier for the developer that helped integrate a partner solution to CyberSource.
+                        maxLength: 50
+                        description: "Merchant-generated order reference or tracking number. \nIt is recommended that you send a unique value for each transaction so that you can perform meaningful searches for the transaction.\n"
+                      applicationName:
+                        type: string
+                        maxLength: 50
+                        description: The name of the Connection Method client (such as Virtual Terminal or SOAP Toolkit API) that the merchant uses to send a transaction request to CyberSource.
+                      applicationVersion:
+                        type: string
+                        maxLength: 50
+                        description: Version of the CyberSource application or integration used for a transaction.
+                      applicationUser:
+                        type: string
+                        maxLength: 60
+                        description: The entity that is responsible for running the transaction and submitting the processing request to CyberSource. This could be a person, a system, or a connection method.
+                      partner:
+                        type: object
+                        properties:
+                          developerId:
+                            type: string
+                            maxLength: 8
+                            description: 'Identifier for the developer that helped integrate a partner solution to CyberSource.
 
 
-                          Send this value in all requests that are sent through the partner solutions built by that developer.
+                              Send this value in all requests that are sent through the partner solutions built by that developer.
 
-                          CyberSource assigns the ID to the developer.
+                              CyberSource assigns the ID to the developer.
 
 
-                          **Note** When you see a developer ID of 999 in reports, the developer ID that was submitted is incorrect.
+                              **Note** When you see a developer ID of 999 in reports, the developer ID that was submitted is incorrect.
+
+                              '
+                          solutionId:
+                            type: string
+                            maxLength: 8
+                            description: 'Identifier for the partner that is integrated to CyberSource.
+
+
+                              Send this value in all requests that are sent through the partner solution. CyberSource assigns the ID to the partner.
+
+
+                              **Note** When you see a solutionId of 999 in reports, the solutionId that was submitted is incorrect.
+
+                              '
+                  id:
+                    type: string
+                    maxLength: 26
+                    description: 'Request ID generated by Cybersource. This was sent in the header on the request.
+
+                      Echo value from x-requestid
+
+                      '
+                  submitTimeUtc:
+                    type: string
+                    maxLength: 20
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+
+                      **Example** `2023-05-17T22:47:57Z` equals May 17, 2023, at 22:47:57 (10:47:57 PM).
+
+                      The `T` separates the date and the time. The `Z` indicates UTC.
+
+                      '
+                  status:
+                    type: string
+                    maxLength: 18
+                    description: 'Message describing the status of the currency conversion request.
+
+
+                      Values:
+
+                      - `PENDING`
+
+                      - `DECLINED`
+
+                      - `INVALID_REQUEST`
+
+                      - `SERVER_ERROR`
+
+                      - `OFFER_DECLINED`
+
+                      - `AUTHORIZED`
+
+                      - `AUTHORIZATION_DECLINED`
+
+                      - `AUTHORIZATION_FAILURE`
+
+                      - `REVERSED`
+
+                      - `CAPTURED`
+
+                      - `REFUNDED`
+
+                      - `CANCELLED`
+
+                      '
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                        maxLength: 30
+                        description: 'Only required when offer cannot be made. The reason of the status.
+
+
+                          Possible values:
+
+                          - ''INVALID_MERCHANT_CONFIGURATION''
+
+                          - ''NOT_ELIGIBLE''
+
+                          - ''CURRENCY_NOT_CONFIGURED''
+
+                          - ''BIN_UNKNOWN''
+
+                          - ''CURRENCY_MATCH''
+
+                          - ''CURRENCY_NOT_ALLOWED''
+
+                          - ''LOOKUP_FAILED''
+
+                          - ''EXCHANGE_RATE_NOT_FOUND''
+
+                          - ''CARD_TYPE_NOT_ACCEPTED''
+
+                          - ''INVALID_AMOUNT''
+
+                          - ''INVALID_CARD''
+
+                          - ''INVALID_CURRENCY''
+
+                          - ''INVALID_TERMINAL''
+
+                          - ''INVALID_ACQUIRER''
+
+                          - ''SERVICE_DISABLED''
+
+                          - ''DUPLICATE_REQUEST''
+
+                          - ''UNKNOWN''
+
+                          - ''PROCESSOR_ERROR''
 
                           '
-                      solutionId:
+                      message:
                         type: string
-                        maxLength: 8
-                        description: 'Identifier for the partner that is integrated to CyberSource.
+                        maxLength: 256
+                        description: Only required when the requested action cannot be performed. Descriptive message to add more detail to the status E.g. not all cards are eligible for DCC, so it is not possible for DCC to be offered.
+                  orderInformation:
+                    type: object
+                    properties:
+                      currencyConversion:
+                        type: object
+                        required:
+                        - reconciliationId
+                        properties:
+                          type:
+                            type: string
+                            maxLength: 3
+                            description: 'Valid Values:
 
+                              - `DCC`: Dynamic Currency Conversion
 
-                          Send this value in all requests that are sent through the partner solution. CyberSource assigns the ID to the partner.
+                              - `MCP`: Multi-Currency Pricing
 
+                              This should be echo''d from the request
 
-                          **Note** When you see a solutionId of 999 in reports, the solutionId that was submitted is incorrect.
+                              '
+                          reconciliationId:
+                            type: string
+                            maxLength: 60
+                            description: Unique identifier generated by the DCC provider.
+                          offer:
+                            type: array
+                            description: 'When type is DCC this is a single item.
 
-                          '
-              id:
-                type: string
-                maxLength: 26
-                description: 'Request ID generated by Cybersource. This was sent in the header on the request.
+                              When type is MCP this is an array that repeats for each currency that''s configured by the currency conversion provider for the merchant.
 
-                  Echo value from x-requestid
+                              '
+                            items:
+                              type: object
+                              properties:
+                                originalAmount:
+                                  type: string
+                                  maxLength: 15
+                                  description: "The amount of the sale in the merchant's currency. \nFor DCC this should be the same value as the request. For MCP will be 1 major unit of the merchant's base currency.\n"
+                                originalCurrency:
+                                  type: string
+                                  maxLength: 3
+                                  description: "Currency of the transaction in the merchant's currency. \nFor DCC this should be the same value as the request. \nFor MCP will be the merchant's base currency as configured on the currency conversion provider's system.\nUse three-character alphabetic [ISO 4271 Currency Codes.](https://developer.cybersource.com/docs/cybs/en-us/currency-codes/reference/all/na/currency-codes/currency-codes.html)\n"
+                                amount:
+                                  type: string
+                                  maxLength: 15
+                                  description: 'The offer amount, calculated using the originalAmount and the exchangeRate.
 
-                  '
-              submitTimeUtc:
-                type: string
-                maxLength: 20
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+                                    For DCC this is the amount in the card issuer''s currency.
 
+                                    '
+                                currency:
+                                  type: string
+                                  maxLength: 3
+                                  description: 'Currency of the offer. For DCC this is the card''s issuers currency.
 
-                  **Example** `2023-05-17T22:47:57Z` equals May 17, 2023, at 22:47:57 (10:47:57 PM).
+                                    Use three-character alphabetic  [ISO 4271 Currency Codes.](https://developer.cybersource.com/docs/cybs/en-us/currency-codes/reference/all/na/currency-codes/currency-codes.html)
 
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                                    '
+                                exchangeRate:
+                                  type: string
+                                  maxLength: 13
+                                  description: 'The exchange rate of the offer from 1 major unit of the sale currency including margin.
 
-                  '
-              status:
-                type: string
-                maxLength: 18
-                description: 'Message describing the status of the currency conversion request.
+                                    This will be printed on the receipt.
 
+                                    For example, if a USD consumer is purchasing in EUR, this field should return the amount of 1 EUR in USD including mark-up.
 
-                  Values:
+                                    The receipt will contain the following: `EUR 1.00 = USD 1.09998900010999` - where 1.09998900010999 is the value returned in this field.
 
-                  - `PENDING`
+                                    '
+                                exchangeRateInverted:
+                                  type: boolean
+                                  example: true
+                                  description: 'An inverted exchange rate is the base currency amount divided by the converted currency amount.
 
-                  - `DECLINED`
+                                    Ex. If a USD customer is purchasing in EUR, this field should return the value of USD divided by EUR.
 
-                  - `INVALID_REQUEST`
+                                    '
+                                marginRate:
+                                  type: string
+                                  maxLength: 8
+                                  description: 'The margin between the offer exchange rate and wholesale rates, i.e. the mark up.
 
-                  - `SERVER_ERROR`
+                                    Expressed as a percentage of 100, e.g. 3.75
 
-                  - `OFFER_DECLINED`
+                                    '
+                                rateSource:
+                                  type: string
+                                  maxLength: 50
+                                  description: 'The source of the rate (excluding mark up). Optional field.
 
-                  - `AUTHORIZED`
+                                    '
+                                exchangeRateTimeUtc:
+                                  type: string
+                                  maxLength: 20
+                                  description: 'The date and time of exchange rate in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                  - `AUTHORIZATION_DECLINED`
+                                    **Example** `2023-05-17T23:47:57Z` equals May 17, 2023, at 23:47:57 (11:47:57 PM).
 
-                  - `AUTHORIZATION_FAILURE`
+                                    The `T` separates the date and the time. The `Z` indicates UTC.
 
-                  - `REVERSED`
+                                    '
+                                exchangeRateExpirationTimeUtc:
+                                  type: string
+                                  maxLength: 20
+                                  description: 'The expiration time of the exchange rate in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                  - `CAPTURED`
+                                    '
+                                rateId:
+                                  type: string
+                                  maxLength: 36
+                                  description: 'A unique MCP rate identifier.
 
-                  - `REFUNDED`
-
-                  - `CANCELLED`
-
-                  '
-              errorInformation:
+                                    '
+                          disclaimer:
+                            type: string
+                            maxLength: 1024
+                            description: "This text is intended to inform customers about their opt-in choices. It should include details such \nas the amount, exchange rate, currency, mark-up, and any other regulated requirements, such as \nthe mark-up over the ECB rate, if applicable. It is mandatory for DCC (Dynamic Currency \nConversion) and optional otherwise. This information will be displayed on the screen and printed on \nthe receipt without modification.\n"
+                example:
+                  clientReferenceInformation:
+                    code: REF-101-GBP-909
+                    partner:
+                      developerId: '123456'
+                      solutionId: '123456'
+                    applicationName: REST API
+                    applicationVersion: 1.23.44
+                    applicationUser: Bob
+                  id: '6843379070056369304008'
+                  submitTimeUtc: '2023-05-17T22:47:57Z'
+                  status: OFFER_PENDING
+                  errorInformation:
+                    reason: INVALID_MERCHANT_CONFIGURATION
+                    message: Only required when valid request cannot be fulfilled
+                  orderInformation:
+                    currencyConversion:
+                      type: DCC
+                      reconciliationId: ABC123
+                    offer:
+                    - originalAmount: '100.00'
+                      originalCurrency: GBP
+                      amount: '123.21'
+                      currency: EUR
+                      exchangeRate: '0.8116'
+                      marginRate: '3.75'
+                      rateSource: European Central Bank
+                      disclaimer: 'I accept I have been offered a choice of currencies for payment. I accept the conversion rate and sale amount and that the selected currency is EUR. I acknowledge I had a choice to pay in GBP. Currency Conversion for this transaction is offered by the Merchant and is based on the reference rate of the currency conversion provider. Mark up on reference rate: 3.7500.'
+                      exchangeRateTimeUtc: '2023-05-17T23:47:57Z'
+                      exchangeRateExpirationTimeUtc: '2024-05-18T22:47:57Z'
+                      exchangeRateInverted: true
+                      rateId: 009F303309AF07234520190628143445
+        '404':
+          description: Offer not found.
+          content:
+            application/hal+json;charset=utf-8:
+              schema:
+                description: Currency conversion offer not found
+        '500':
+          description: Unexpected system error or system timeout.
+          content:
+            application/hal+json;charset=utf-8:
+              schema:
                 type: object
+                required:
+                - status
                 properties:
+                  id:
+                    type: string
+                    maxLength: 26
+                    description: 'Request ID generated by Cybersource. This was sent in the header on the request.
+
+                      Echo value from x-requestid
+
+                      '
+                  submitTimeUtc:
+                    type: string
+                    maxLength: 20
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+
+                      **Example** `2023-05-17T22:47:57Z` equals May 17, 2023, at 22:47:57 (10:47:57 PM).
+
+                      The `T` separates the date and the time. The `Z` indicates UTC.
+
+                      '
+                  status:
+                    type: string
+                    description: "Message describing the status of the currency conversion request.\n \nPossible values:\n- SERVER_ERROR"
                   reason:
                     type: string
-                    maxLength: 30
-                    description: 'Only required when offer cannot be made. The reason of the status.
+                    description: 'Only required when offer cannot be made.
+
+                      The reason of the status. Only required when the requested action cannot be performed cannot be made.
 
 
                       Possible values:
 
-                      - ''INVALID_MERCHANT_CONFIGURATION''
+                      - SYSTEM_ERROR
 
-                      - ''NOT_ELIGIBLE''
+                      - SERVER_TIMEOUT
 
-                      - ''CURRENCY_NOT_CONFIGURED''
-
-                      - ''BIN_UNKNOWN''
-
-                      - ''CURRENCY_MATCH''
-
-                      - ''CURRENCY_NOT_ALLOWED''
-
-                      - ''LOOKUP_FAILED''
-
-                      - ''EXCHANGE_RATE_NOT_FOUND''
-
-                      - ''CARD_TYPE_NOT_ACCEPTED''
-
-                      - ''INVALID_AMOUNT''
-
-                      - ''INVALID_CARD''
-
-                      - ''INVALID_CURRENCY''
-
-                      - ''INVALID_TERMINAL''
-
-                      - ''INVALID_ACQUIRER''
-
-                      - ''SERVICE_DISABLED''
-
-                      - ''DUPLICATE_REQUEST''
-
-                      - ''UNKNOWN''
-
-                      - ''PROCESSOR_ERROR''
+                      - SERVICE_TIMEOUT
 
                       '
                   message:
                     type: string
-                    maxLength: 256
-                    description: Only required when the requested action cannot be performed. Descriptive message to add more detail to the status E.g. not all cards are eligible for DCC, so it is not possible for DCC to be offered.
-              orderInformation:
-                type: object
-                properties:
-                  currencyConversion:
-                    type: object
-                    required:
-                    - reconciliationId
-                    properties:
-                      type:
-                        type: string
-                        maxLength: 3
-                        description: 'Valid Values:
+                    description: 'The detail message related to the status and reason listed above.
 
-                          - `DCC`: Dynamic Currency Conversion
-
-                          - `MCP`: Multi-Currency Pricing
-
-                          This should be echo''d from the request
-
-                          '
-                      reconciliationId:
-                        type: string
-                        maxLength: 60
-                        description: Unique identifier generated by the DCC provider.
-                      offer:
-                        type: array
-                        description: 'When type is DCC this is a single item.
-
-                          When type is MCP this is an array that repeats for each currency that''s configured by the currency conversion provider for the merchant.
-
-                          '
-                        items:
-                          type: object
-                          properties:
-                            originalAmount:
-                              type: string
-                              maxLength: 15
-                              description: "The amount of the sale in the merchant's currency. \nFor DCC this should be the same value as the request. For MCP will be 1 major unit of the merchant's base currency.\n"
-                            originalCurrency:
-                              type: string
-                              maxLength: 3
-                              description: "Currency of the transaction in the merchant's currency. \nFor DCC this should be the same value as the request. \nFor MCP will be the merchant's base currency as configured on the currency conversion provider's system.\nUse three-character alphabetic [ISO 4271 Currency Codes.](https://developer.cybersource.com/docs/cybs/en-us/currency-codes/reference/all/na/currency-codes/currency-codes.html)\n"
-                            amount:
-                              type: string
-                              maxLength: 15
-                              description: 'The offer amount, calculated using the originalAmount and the exchangeRate.
-
-                                For DCC this is the amount in the card issuer''s currency.
-
-                                '
-                            currency:
-                              type: string
-                              maxLength: 3
-                              description: 'Currency of the offer. For DCC this is the card''s issuers currency.
-
-                                Use three-character alphabetic  [ISO 4271 Currency Codes.](https://developer.cybersource.com/docs/cybs/en-us/currency-codes/reference/all/na/currency-codes/currency-codes.html)
-
-                                '
-                            exchangeRate:
-                              type: string
-                              maxLength: 13
-                              description: 'The exchange rate of the offer from 1 major unit of the sale currency including margin.
-
-                                This will be printed on the receipt.
-
-                                For example, if a USD consumer is purchasing in EUR, this field should return the amount of 1 EUR in USD including mark-up.
-
-                                The receipt will contain the following: `EUR 1.00 = USD 1.09998900010999` - where 1.09998900010999 is the value returned in this field.
-
-                                '
-                            exchangeRateInverted:
-                              type: boolean
-                              example: true
-                              description: 'An inverted exchange rate is the base currency amount divided by the converted currency amount.
-
-                                Ex. If a USD customer is purchasing in EUR, this field should return the value of USD divided by EUR.
-
-                                '
-                            marginRate:
-                              type: string
-                              maxLength: 8
-                              description: 'The margin between the offer exchange rate and wholesale rates, i.e. the mark up.
-
-                                Expressed as a percentage of 100, e.g. 3.75
-
-                                '
-                            rateSource:
-                              type: string
-                              maxLength: 50
-                              description: 'The source of the rate (excluding mark up). Optional field.
-
-                                '
-                            exchangeRateTimeUtc:
-                              type: string
-                              maxLength: 20
-                              description: 'The date and time of exchange rate in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
-
-                                **Example** `2023-05-17T23:47:57Z` equals May 17, 2023, at 23:47:57 (11:47:57 PM).
-
-                                The `T` separates the date and the time. The `Z` indicates UTC.
-
-                                '
-                            exchangeRateExpirationTimeUtc:
-                              type: string
-                              maxLength: 20
-                              description: 'The expiration time of the exchange rate in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
-
-                                '
-                            rateId:
-                              type: string
-                              maxLength: 36
-                              description: 'A unique MCP rate identifier.
-
-                                '
-                      disclaimer:
-                        type: string
-                        maxLength: 1024
-                        description: "This text is intended to inform customers about their opt-in choices. It should include details such \nas the amount, exchange rate, currency, mark-up, and any other regulated requirements, such as \nthe mark-up over the ECB rate, if applicable. It is mandatory for DCC (Dynamic Currency \nConversion) and optional otherwise. This information will be displayed on the screen and printed on \nthe receipt without modification.\n"
-            example:
-              clientReferenceInformation:
-                code: REF-101-GBP-909
-                partner:
-                  developerId: '123456'
-                  solutionId: '123456'
-                applicationName: REST API
-                applicationVersion: 1.23.44
-                applicationUser: Bob
-              id: '6843379070056369304008'
-              submitTimeUtc: '2023-05-17T22:47:57Z'
-              status: OFFER_PENDING
-              errorInformation:
-                reason: INVALID_MERCHANT_CONFIGURATION
-                message: Only required when valid request cannot be fulfilled
-              orderInformation:
-                currencyConversion:
-                  type: DCC
-                  reconciliationId: ABC123
-                offer:
-                - originalAmount: '100.00'
-                  originalCurrency: GBP
-                  amount: '123.21'
-                  currency: EUR
-                  exchangeRate: '0.8116'
-                  marginRate: '3.75'
-                  rateSource: European Central Bank
-                  disclaimer: 'I accept I have been offered a choice of currencies for payment. I accept the conversion rate and sale amount and that the selected currency is EUR. I acknowledge I had a choice to pay in GBP. Currency Conversion for this transaction is offered by the Merchant and is based on the reference rate of the currency conversion provider. Mark up on reference rate: 3.7500.'
-                  exchangeRateTimeUtc: '2023-05-17T23:47:57Z'
-                  exchangeRateExpirationTimeUtc: '2024-05-18T22:47:57Z'
-                  exchangeRateInverted: true
-                  rateId: 009F303309AF07234520190628143445
-        '404':
-          description: Offer not found.
-          schema:
-            description: Currency conversion offer not found
-        '500':
-          description: Unexpected system error or system timeout.
-          schema:
-            type: object
-            required:
-            - status
-            properties:
-              id:
-                type: string
-                maxLength: 26
-                description: 'Request ID generated by Cybersource. This was sent in the header on the request.
-
-                  Echo value from x-requestid
-
-                  '
-              submitTimeUtc:
-                type: string
-                maxLength: 20
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
-
-
-                  **Example** `2023-05-17T22:47:57Z` equals May 17, 2023, at 22:47:57 (10:47:57 PM).
-
-                  The `T` separates the date and the time. The `Z` indicates UTC.
-
-                  '
-              status:
-                type: string
-                description: "Message describing the status of the currency conversion request.\n \nPossible values:\n- SERVER_ERROR"
-              reason:
-                type: string
-                description: 'Only required when offer cannot be made.
-
-                  The reason of the status. Only required when the requested action cannot be performed cannot be made.
-
-
-                  Possible values:
-
-                  - SYSTEM_ERROR
-
-                  - SERVER_TIMEOUT
-
-                  - SERVICE_TIMEOUT
-
-                  '
-              message:
-                type: string
-                description: 'The detail message related to the status and reason listed above.
-
-                  '
-            example:
-              id: '6843379070056369304008'
-              submitTimeUtc: '2023-05-17T22:47:57Z'
-              status: SERVER_ERROR
-              reason: SYSTEM_ERROR
-              message: string
+                      '
+                example:
+                  id: '6843379070056369304008'
+                  submitTimeUtc: '2023-05-17T22:47:57Z'
+                  status: SERVER_ERROR
+                  reason: SYSTEM_ERROR
+                  message: string
 x-devcenter-metaData:
   categoryTagArray:
   - name: Payments

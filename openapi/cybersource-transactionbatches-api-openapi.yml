@@ -1,21 +1,13 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
   version: 0.0.1
-  title: CyberSource Merged Spec bankAccountValidation TransactionBatches API
-host: apitest.cybersource.com
-basePath: /
-schemes:
-- https
-consumes:
-- application/json;charset=utf-8
-produces:
-- application/hal+json;charset=utf-8
+  title: CyberSource Merged Spec Transaction Batches API
+servers:
+- url: https://apitest.cybersource.com/
 tags:
 - name: TransactionBatches
-  description: 'Get a list of batch files or details of Individual file processed through the Offline Transaction Submission Services.
-
-    '
+  description: Get a list of batch files or details of Individual file processed through the Offline Transaction Submission Services.
 paths:
   /pts/v1/transaction-batches:
     get:
@@ -30,275 +22,287 @@ paths:
       x-queryParameterDefaults:
         startTime: '2020-02-22T01:47:57Z'
         endTime: '2020-02-22T22:47:57Z'
-      produces:
-      - application/hal+json
       parameters:
       - name: startTime
         in: query
         description: "Valid report Start Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n **Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZZ\n"
         required: true
-        type: string
-        format: date-time
+        schema:
+          type: string
+          format: date-time
       - name: endTime
         in: query
         description: "Valid report End Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n **Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZZ\n"
         required: true
-        type: string
-        format: date-time
+        schema:
+          type: string
+          format: date-time
       responses:
         '200':
           description: OK
-          schema:
-            title: ptsV1TransactionBatchesGet200Response
-            type: object
-            properties:
-              transactionBatches:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                      description: Unique identifier assigned to the batch file.
-                      example: psy8s1d
-                      pattern: ^[a-zA-Z0-9_+-]*$
-                      minLength: 1
-                      maxLength: 8
-                    uploadDate:
-                      type: string
-                      description: Date when the batch template was update.
-                      example: '2018-01-01'
-                    completionDate:
-                      type: string
-                      description: The date when the batch template processing completed.
-                      example: '2018-01-01'
-                    transactionCount:
-                      type: integer
-                      description: Number of transactions in the transaction.
-                      example: 7534
-                    acceptedTransactionCount:
-                      type: integer
-                      description: Number of transactions accepted.
-                      example: 50013
-                    rejectedTransactionCount:
-                      type: string
-                      description: Number of transactions rejected.
-                      example: 2508
-                    status:
-                      type: string
-                      description: The status of you batch template processing.
-                      example: Completed
-              _links:
+          content:
+            application/hal+json:
+              schema:
+                title: ptsV1TransactionBatchesGet200Response
                 type: object
                 properties:
-                  self:
+                  transactionBatches:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Unique identifier assigned to the batch file.
+                          example: psy8s1d
+                          pattern: ^[a-zA-Z0-9_+-]*$
+                          minLength: 1
+                          maxLength: 8
+                        uploadDate:
+                          type: string
+                          description: Date when the batch template was update.
+                          example: '2018-01-01'
+                        completionDate:
+                          type: string
+                          description: The date when the batch template processing completed.
+                          example: '2018-01-01'
+                        transactionCount:
+                          type: integer
+                          description: Number of transactions in the transaction.
+                          example: 7534
+                        acceptedTransactionCount:
+                          type: integer
+                          description: Number of transactions accepted.
+                          example: 50013
+                        rejectedTransactionCount:
+                          type: string
+                          description: Number of transactions rejected.
+                          example: 2508
+                        status:
+                          type: string
+                          description: The status of you batch template processing.
+                          example: Completed
+                  _links:
                     type: object
                     properties:
-                      href:
-                        type: string
-                        example: /pts/v1/transaction-batches
-                      method:
-                        type: string
-                        example: GET
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+                      self:
+                        type: object
+                        properties:
+                          href:
+                            type: string
+                            example: /pts/v1/transaction-batches
+                          method:
+                            type: string
+                            example: GET
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
 
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                  Returned by Cybersource for all services.
+                      Returned by Cybersource for all services.
 
-                  '
+                      '
         '400':
           description: Bad Request
-          schema:
-            title: ptsV1TransactionBatchesGet400Response
-            type: object
-            properties:
-              errorInformation:
+          content:
+            application/hal+json:
+              schema:
+                title: ptsV1TransactionBatchesGet400Response
                 type: object
                 properties:
-                  reason:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            field:
+                              type: string
+                              description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                                '
+                            message:
+                              type: string
+                              description: 'The detailed message related to the status and reason listed above.
+
+                                '
+                  submitTimeUtc:
                     type: string
-                  message:
-                    type: string
-                  details:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        field:
-                          type: string
-                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                            '
-                        message:
-                          type: string
-                          description: 'The detailed message related to the status and reason listed above.
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
 
-                            '
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
-
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
-
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                  Returned by Cybersource for all services.
+                      Returned by Cybersource for all services.
 
-                  '
+                      '
         '401':
           description: Not Authorized
-          schema:
-            title: ptsV1TransactionBatchesGet401Response
-            type: object
-            properties:
-              errorInformation:
+          content:
+            application/hal+json:
+              schema:
+                title: ptsV1TransactionBatchesGet401Response
                 type: object
                 properties:
-                  reason:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            field:
+                              type: string
+                              description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                                '
+                            message:
+                              type: string
+                              description: 'The detailed message related to the status and reason listed above.
+
+                                '
+                  submitTimeUtc:
                     type: string
-                  message:
-                    type: string
-                  details:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        field:
-                          type: string
-                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                            '
-                        message:
-                          type: string
-                          description: 'The detailed message related to the status and reason listed above.
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
 
-                            '
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
-
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
-
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                  Returned by Cybersource for all services.
+                      Returned by Cybersource for all services.
 
-                  '
+                      '
         '403':
           description: No Authenticated
-          schema:
-            title: ptsV1TransactionBatchesGet403Response
-            type: object
-            properties:
-              errorInformation:
+          content:
+            application/hal+json:
+              schema:
+                title: ptsV1TransactionBatchesGet403Response
                 type: object
                 properties:
-                  reason:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            field:
+                              type: string
+                              description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                                '
+                            message:
+                              type: string
+                              description: 'The detailed message related to the status and reason listed above.
+
+                                '
+                  submitTimeUtc:
                     type: string
-                  message:
-                    type: string
-                  details:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        field:
-                          type: string
-                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                            '
-                        message:
-                          type: string
-                          description: 'The detailed message related to the status and reason listed above.
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
 
-                            '
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
-
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
-
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                  Returned by Cybersource for all services.
+                      Returned by Cybersource for all services.
 
-                  '
+                      '
         '404':
           description: No Reports Found
-          schema:
-            title: ptsV1TransactionBatchesGet404Response
-            type: object
-            properties:
-              errorInformation:
+          content:
+            application/hal+json:
+              schema:
+                title: ptsV1TransactionBatchesGet404Response
                 type: object
                 properties:
-                  reason:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            field:
+                              type: string
+                              description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                                '
+                            message:
+                              type: string
+                              description: 'The detailed message related to the status and reason listed above.
+
+                                '
+                  submitTimeUtc:
                     type: string
-                  message:
-                    type: string
-                  details:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        field:
-                          type: string
-                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                            '
-                        message:
-                          type: string
-                          description: 'The detailed message related to the status and reason listed above.
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
 
-                            '
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
-
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
-
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                  Returned by Cybersource for all services.
+                      Returned by Cybersource for all services.
 
-                  '
+                      '
         '500':
           description: Bad Gateway
-          schema:
-            title: ptsV1TransactionBatchesGet500Response
-            type: object
-            properties:
-              errorInformation:
+          content:
+            application/hal+json:
+              schema:
+                title: ptsV1TransactionBatchesGet500Response
                 type: object
                 properties:
-                  reason:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                        description: The reason of status
+                      message:
+                        type: string
+                        description: The detailed message related to the status and reason listed above.
+                  submitTimeUtc:
                     type: string
-                    description: The reason of status
-                  message:
-                    type: string
-                    description: The detailed message related to the status and reason listed above.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
 
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                  Returned by Cybersource for all services.
+                      Returned by Cybersource for all services.
 
-                  '
+                      '
   /pts/v1/transaction-batches/{id}:
     get:
       summary: Get Individual Batch File
@@ -318,261 +322,270 @@ paths:
         - sourceField: transactionBatches[0].id
           destinationField: id
           fieldTypeInDestination: path
-      produces:
-      - application/hal+json
       parameters:
       - name: id
         in: path
         description: The batch id assigned for the template.
         required: true
-        type: string
+        schema:
+          type: string
       responses:
         '200':
           description: OK
-          schema:
-            title: ptsV1TransactionBatchesIdGet200Response
-            type: object
-            properties:
-              id:
-                type: string
-                description: Unique identifier assigned to the batch file.
-                example: psy8s1d
-                pattern: ^[a-zA-Z0-9_+-]*$
-                minLength: 1
-                maxLength: 8
-              uploadDate:
-                type: string
-                description: Date when the batch template was update.
-                example: '2018-01-01'
-              completionDate:
-                type: string
-                description: The date when the batch template processing completed.
-                example: '2018-01-01'
-              transactionCount:
-                type: integer
-                description: Number of transactions in the transaction.
-                example: 7534
-              acceptedTransactionCount:
-                type: integer
-                description: Number of transactions accepted.
-                example: 50013
-              rejectedTransactionCount:
-                type: string
-                description: Number of transactions rejected.
-                example: 2508
-              status:
-                type: string
-                description: The status of you batch template processing.
-                example: Completed
-              _links:
+          content:
+            application/hal+json:
+              schema:
+                title: ptsV1TransactionBatchesIdGet200Response
                 type: object
                 properties:
-                  transactions:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        href:
-                          type: string
-                          description: Self link for this request
-                          example: /tss/v2/transactions/5289798134206292501013
-                        method:
-                          type: string
+                  id:
+                    type: string
+                    description: Unique identifier assigned to the batch file.
+                    example: psy8s1d
+                    pattern: ^[a-zA-Z0-9_+-]*$
+                    minLength: 1
+                    maxLength: 8
+                  uploadDate:
+                    type: string
+                    description: Date when the batch template was update.
+                    example: '2018-01-01'
+                  completionDate:
+                    type: string
+                    description: The date when the batch template processing completed.
+                    example: '2018-01-01'
+                  transactionCount:
+                    type: integer
+                    description: Number of transactions in the transaction.
+                    example: 7534
+                  acceptedTransactionCount:
+                    type: integer
+                    description: Number of transactions accepted.
+                    example: 50013
+                  rejectedTransactionCount:
+                    type: string
+                    description: Number of transactions rejected.
+                    example: 2508
+                  status:
+                    type: string
+                    description: The status of you batch template processing.
+                    example: Completed
+                  _links:
+                    type: object
+                    properties:
+                      transactions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            href:
+                              type: string
+                              description: Self link for this request
+                              example: /tss/v2/transactions/5289798134206292501013
+                            method:
+                              type: string
         '400':
           description: Bad Request
-          schema:
-            title: ptsV1TransactionBatchesGet400Response
-            type: object
-            properties:
-              errorInformation:
+          content:
+            application/hal+json:
+              schema:
+                title: ptsV1TransactionBatchesGet400Response
                 type: object
                 properties:
-                  reason:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            field:
+                              type: string
+                              description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                                '
+                            message:
+                              type: string
+                              description: 'The detailed message related to the status and reason listed above.
+
+                                '
+                  submitTimeUtc:
                     type: string
-                  message:
-                    type: string
-                  details:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        field:
-                          type: string
-                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                            '
-                        message:
-                          type: string
-                          description: 'The detailed message related to the status and reason listed above.
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
 
-                            '
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
-
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
-
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                  Returned by Cybersource for all services.
+                      Returned by Cybersource for all services.
 
-                  '
+                      '
         '401':
           description: Not Authorized
-          schema:
-            title: ptsV1TransactionBatchesGet401Response
-            type: object
-            properties:
-              errorInformation:
+          content:
+            application/hal+json:
+              schema:
+                title: ptsV1TransactionBatchesGet401Response
                 type: object
                 properties:
-                  reason:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            field:
+                              type: string
+                              description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                                '
+                            message:
+                              type: string
+                              description: 'The detailed message related to the status and reason listed above.
+
+                                '
+                  submitTimeUtc:
                     type: string
-                  message:
-                    type: string
-                  details:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        field:
-                          type: string
-                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                            '
-                        message:
-                          type: string
-                          description: 'The detailed message related to the status and reason listed above.
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
 
-                            '
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
-
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
-
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                  Returned by Cybersource for all services.
+                      Returned by Cybersource for all services.
 
-                  '
+                      '
         '403':
           description: No Authenticated
-          schema:
-            title: ptsV1TransactionBatchesGet403Response
-            type: object
-            properties:
-              errorInformation:
+          content:
+            application/hal+json:
+              schema:
+                title: ptsV1TransactionBatchesGet403Response
                 type: object
                 properties:
-                  reason:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            field:
+                              type: string
+                              description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                                '
+                            message:
+                              type: string
+                              description: 'The detailed message related to the status and reason listed above.
+
+                                '
+                  submitTimeUtc:
                     type: string
-                  message:
-                    type: string
-                  details:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        field:
-                          type: string
-                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                            '
-                        message:
-                          type: string
-                          description: 'The detailed message related to the status and reason listed above.
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
 
-                            '
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
-
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
-
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                  Returned by Cybersource for all services.
+                      Returned by Cybersource for all services.
 
-                  '
+                      '
         '404':
           description: No Reports Found
-          schema:
-            title: ptsV1TransactionBatchesGet404Response
-            type: object
-            properties:
-              errorInformation:
+          content:
+            application/hal+json:
+              schema:
+                title: ptsV1TransactionBatchesGet404Response
                 type: object
                 properties:
-                  reason:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            field:
+                              type: string
+                              description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                                '
+                            message:
+                              type: string
+                              description: 'The detailed message related to the status and reason listed above.
+
+                                '
+                  submitTimeUtc:
                     type: string
-                  message:
-                    type: string
-                  details:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        field:
-                          type: string
-                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                            '
-                        message:
-                          type: string
-                          description: 'The detailed message related to the status and reason listed above.
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
 
-                            '
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
-
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
-
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                  Returned by Cybersource for all services.
+                      Returned by Cybersource for all services.
 
-                  '
+                      '
         '502':
           description: Bad Gateway
-          schema:
-            title: ptsV1TransactionBatchesGet502Response
-            type: object
-            properties:
-              errorInformation:
+          content:
+            application/hal+json:
+              schema:
+                title: ptsV1TransactionBatchesGet502Response
                 type: object
                 properties:
-                  reason:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                        description: The reason of status
+                      message:
+                        type: string
+                        description: The detailed message related to the status and reason listed above.
+                  submitTimeUtc:
                     type: string
-                    description: The reason of status
-                  message:
-                    type: string
-                    description: The detailed message related to the status and reason listed above.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
 
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                  Returned by Cybersource for all services.
+                      Returned by Cybersource for all services.
 
-                  '
+                      '
   /pts/v1/transaction-batch-details/{id}:
     get:
       tags:
       - TransactionBatches
       summary: Get Transaction Details for a given Batch Id
-      description: 'Provides real-time detailed status information about the transactions that you previously uploaded in the Business Center or processed with the Offline Transaction File Submission service.
-
-        '
+      description: Provides real-time detailed status information about the transactions that you previously uploaded in the Business Center or processed with the Offline Transaction File Submission service.
       operationId: getTransactionBatchDetails
       x-streaming: true
       x-devcenter-metaData:
@@ -596,22 +609,20 @@ paths:
         - sourceField: id
           destinationField: id
           fieldTypeInDestination: path
-      produces:
-      - text/csv
-      - application/xml
-      - text/vnd.cybersource.map-csv
       parameters:
       - name: id
         in: path
         description: The batch id assigned for the template.
         required: true
-        type: string
+        schema:
+          type: string
       - name: uploadDate
         in: query
         description: "Date in which the original batch file was uploaded. Date must be in ISO-8601 format.\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n**Example date format:**\n - yyyy-MM-dd\n"
         required: false
-        type: string
-        format: date
+        schema:
+          type: string
+          format: date
       - name: status
         in: query
         description: 'Allows you to filter by rejected response.
@@ -623,210 +634,588 @@ paths:
 
           '
         required: false
-        type: string
+        schema:
+          type: string
       responses:
         '200':
           description: OK
-          examples:
-            text/vnd.cybersource.map-csv: 'merchantID=testrest,batchID=01lzdah4
+          content:
+            text/vnd.cybersource.map-csv:
+              example: 'merchantID=testrest,batchID=01lzdah4
 
 
-              merchantReferenceCode=7vvc3645,purchaseTotals_currency=GBP,ccAuthReversalReply_processorResponse=00,ccAuthReversalReply_requestDateTime=2019-03-08 10:50:23 GMT,ccAuthReversalReply_amount=8.00,decision=ACCEPT,requestID=5520424090516341303098,merchantReferenceCode=7Y3E112F,requestToken=Ahj//wSTLNz0kRV6lzumGxkyXTozqrWfMbTWSi9xQvvlQFRe4pB8qekDsTiONhk0kyxdfAw3sUHMmWbkw9bmwBX9cAAA+Rh4,reasonCode=100,ccAuthReversalReply_reasonCode=100
+                merchantReferenceCode=7vvc3645,purchaseTotals_currency=GBP,ccAuthReversalReply_processorResponse=00,ccAuthReversalReply_requestDateTime=2019-03-08 10:50:23 GMT,ccAuthReversalReply_amount=8.00,decision=ACCEPT,requestID=5520424090516341303098,merchantReferenceCode=7Y3E112F,requestToken=Ahj//wSTLNz0kRV6lzumGxkyXTozqrWfMbTWSi9xQvvlQFRe4pB8qekDsTiONhk0kyxdfAw3sUHMmWbkw9bmwBX9cAAA+Rh4,reasonCode=100,ccAuthReversalReply_reasonCode=100
 
-              '
-            text/csv: 'Submission Date/Time,Submission File ID,link_to_request,request_id,transaction_date,cybs_mid,processor_mid,hierarchy_id,trans_ref_number,merchant_ref_number,transaction_type,amount,transaction_amount_currency,payment_method,payment_type,account_suffix,decision,reason_code,reserved,auth_trans_ref_number,auth_date,auth_request_id,auth_amount,auth_currency,auth_code,auth_reason_code,auth_rcode,merchant_defined_data1,merchant_defined_data2,merchant_defined_data3,merchant_defined_data4
+                '
+            text/csv:
+              example: 'Submission Date/Time,Submission File ID,link_to_request,request_id,transaction_date,cybs_mid,processor_mid,hierarchy_id,trans_ref_number,merchant_ref_number,transaction_type,amount,transaction_amount_currency,payment_method,payment_type,account_suffix,decision,reason_code,reserved,auth_trans_ref_number,auth_date,auth_request_id,auth_amount,auth_currency,auth_code,auth_reason_code,auth_rcode,merchant_defined_data1,merchant_defined_data2,merchant_defined_data3,merchant_defined_data4
 
-              2019-03-08 10:50:23 GMT,01lzdah4,5520424090516341303098,5520424090516341303098,2019-03-08 10:53:29 GMT,testrest,,101011000871000110003,51512455,4,ics_auth,8.00,GBP  ,credit card,Visa,1111,,100,,,,5520424090516341303098,,,,,,3817,,,
+                2019-03-08 10:50:23 GMT,01lzdah4,5520424090516341303098,5520424090516341303098,2019-03-08 10:53:29 GMT,testrest,,101011000871000110003,51512455,4,ics_auth,8.00,GBP  ,credit card,Visa,1111,,100,,,,5520424090516341303098,,,,,,3817,,,
 
-              '
-            application/xml: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!DOCTYPE Report SYSTEM \"https://apitest.cybersource.com/reporting/v2/dtds/bsd\">\n<Report MerchantID=\"testrest\"\n        Name=\"Batch Submission Detail Report\"\n        SubmissionFileID=\"01lzdah4\"\n        SubmissionDateTime=\"2019-03-08 10:50:23 GMT\"\n        Version=\"1.0\">\n    <Transaction>\n        <LinkToRequest>5520424090516341303098</LinkToRequest>\n        <RequestID>5520424090516341303098</RequestID>\n        <TransactionDate>2019-03-08 10:53:29 GMT</TransactionDate>\n        <CybsMID>pa_gpn</CybsMID>\n        <HierarchyID>101011000871000110003</HierarchyID>\n        <TransRefNumber>51512455</TransRefNumber>\n        <MerchantRefNumber>7vvc3645</MerchantRefNumber>\n        <TransactionType>ics_auth</TransactionType>\n        <Amount>8.00</Amount>\n        <TransactionAmountCurrency>GBP</TransactionAmountCurrency>\n        <PaymentMethod>credit card</PaymentMethod>\n        <PaymentType>Visa</PaymentType>\n        <AccountSuffix>1111</AccountSuffix>\n        <ReasonCode>100</ReasonCode>\n        <Auth>\n            <RequestID>5520424090516341303098</RequestID>\n        </Auth>\n        <MerchantDefinedData1>3817</MerchantDefinedData1>\n    </Transaction>\n</Report>\n"
+                '
+            application/xml:
+              example: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!DOCTYPE Report SYSTEM \"https://apitest.cybersource.com/reporting/v2/dtds/bsd\">\n<Report MerchantID=\"testrest\"\n        Name=\"Batch Submission Detail Report\"\n        SubmissionFileID=\"01lzdah4\"\n        SubmissionDateTime=\"2019-03-08 10:50:23 GMT\"\n        Version=\"1.0\">\n    <Transaction>\n        <LinkToRequest>5520424090516341303098</LinkToRequest>\n        <RequestID>5520424090516341303098</RequestID>\n        <TransactionDate>2019-03-08 10:53:29 GMT</TransactionDate>\n        <CybsMID>pa_gpn</CybsMID>\n        <HierarchyID>101011000871000110003</HierarchyID>\n        <TransRefNumber>51512455</TransRefNumber>\n        <MerchantRefNumber>7vvc3645</MerchantRefNumber>\n        <TransactionType>ics_auth</TransactionType>\n        <Amount>8.00</Amount>\n        <TransactionAmountCurrency>GBP</TransactionAmountCurrency>\n        <PaymentMethod>credit card</PaymentMethod>\n        <PaymentType>Visa</PaymentType>\n        <AccountSuffix>1111</AccountSuffix>\n        <ReasonCode>100</ReasonCode>\n        <Auth>\n            <RequestID>5520424090516341303098</RequestID>\n        </Auth>\n        <MerchantDefinedData1>3817</MerchantDefinedData1>\n    </Transaction>\n</Report>\n"
         '400':
           description: Bad Request
-          schema:
-            title: ptsV1TransactionBatchDetailsGet400Response
-            type: object
-            properties:
-              errorInformation:
+          content:
+            text/csv:
+              schema:
+                title: ptsV1TransactionBatchDetailsGet400Response
                 type: object
                 properties:
-                  reason:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            field:
+                              type: string
+                              description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                                '
+                            message:
+                              type: string
+                              description: 'The detailed message related to the status and reason listed above.
+
+                                '
+                  submitTimeUtc:
                     type: string
-                  message:
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                      The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                      Returned by Cybersource for all services.
+
+                      '
+            application/xml:
+              schema:
+                title: ptsV1TransactionBatchDetailsGet400Response
+                type: object
+                properties:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            field:
+                              type: string
+                              description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                                '
+                            message:
+                              type: string
+                              description: 'The detailed message related to the status and reason listed above.
+
+                                '
+                  submitTimeUtc:
                     type: string
-                  details:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        field:
-                          type: string
-                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                            '
-                        message:
-                          type: string
-                          description: 'The detailed message related to the status and reason listed above.
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
 
-                            '
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
-
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
-
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                  Returned by Cybersource for all services.
+                      Returned by Cybersource for all services.
 
-                  '
+                      '
+            text/vnd.cybersource.map-csv:
+              schema:
+                title: ptsV1TransactionBatchDetailsGet400Response
+                type: object
+                properties:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            field:
+                              type: string
+                              description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                                '
+                            message:
+                              type: string
+                              description: 'The detailed message related to the status and reason listed above.
+
+                                '
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                      The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                      Returned by Cybersource for all services.
+
+                      '
         '401':
           description: Not Authorized
-          schema:
-            title: ptsV1TransactionBatchDetailsGet401Response
-            type: object
-            properties:
-              errorInformation:
+          content:
+            text/csv:
+              schema:
+                title: ptsV1TransactionBatchDetailsGet401Response
                 type: object
                 properties:
-                  reason:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            field:
+                              type: string
+                              description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                                '
+                            message:
+                              type: string
+                              description: 'The detailed message related to the status and reason listed above.
+
+                                '
+                  submitTimeUtc:
                     type: string
-                  message:
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                      The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                      Returned by Cybersource for all services.
+
+                      '
+            application/xml:
+              schema:
+                title: ptsV1TransactionBatchDetailsGet401Response
+                type: object
+                properties:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            field:
+                              type: string
+                              description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                                '
+                            message:
+                              type: string
+                              description: 'The detailed message related to the status and reason listed above.
+
+                                '
+                  submitTimeUtc:
                     type: string
-                  details:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        field:
-                          type: string
-                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                            '
-                        message:
-                          type: string
-                          description: 'The detailed message related to the status and reason listed above.
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
 
-                            '
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
-
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
-
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                  Returned by Cybersource for all services.
+                      Returned by Cybersource for all services.
 
-                  '
+                      '
+            text/vnd.cybersource.map-csv:
+              schema:
+                title: ptsV1TransactionBatchDetailsGet401Response
+                type: object
+                properties:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            field:
+                              type: string
+                              description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                                '
+                            message:
+                              type: string
+                              description: 'The detailed message related to the status and reason listed above.
+
+                                '
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                      The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                      Returned by Cybersource for all services.
+
+                      '
         '403':
           description: No Authenticated
-          schema:
-            title: ptsV1TransactionBatchDetailsGet403Response
-            type: object
-            properties:
-              errorInformation:
+          content:
+            text/csv:
+              schema:
+                title: ptsV1TransactionBatchDetailsGet403Response
                 type: object
                 properties:
-                  reason:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            field:
+                              type: string
+                              description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                                '
+                            message:
+                              type: string
+                              description: 'The detailed message related to the status and reason listed above.
+
+                                '
+                  submitTimeUtc:
                     type: string
-                  message:
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                      The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                      Returned by Cybersource for all services.
+
+                      '
+            application/xml:
+              schema:
+                title: ptsV1TransactionBatchDetailsGet403Response
+                type: object
+                properties:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            field:
+                              type: string
+                              description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                                '
+                            message:
+                              type: string
+                              description: 'The detailed message related to the status and reason listed above.
+
+                                '
+                  submitTimeUtc:
                     type: string
-                  details:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        field:
-                          type: string
-                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                            '
-                        message:
-                          type: string
-                          description: 'The detailed message related to the status and reason listed above.
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
 
-                            '
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
-
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
-
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                  Returned by Cybersource for all services.
+                      Returned by Cybersource for all services.
 
-                  '
+                      '
+            text/vnd.cybersource.map-csv:
+              schema:
+                title: ptsV1TransactionBatchDetailsGet403Response
+                type: object
+                properties:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            field:
+                              type: string
+                              description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                                '
+                            message:
+                              type: string
+                              description: 'The detailed message related to the status and reason listed above.
+
+                                '
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                      The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                      Returned by Cybersource for all services.
+
+                      '
         '404':
           description: No Reports Found
-          schema:
-            title: ptsV1TransactionBatchDetailsGet404Response
-            type: object
-            properties:
-              errorInformation:
+          content:
+            text/csv:
+              schema:
+                title: ptsV1TransactionBatchDetailsGet404Response
                 type: object
                 properties:
-                  reason:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            field:
+                              type: string
+                              description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                                '
+                            message:
+                              type: string
+                              description: 'The detailed message related to the status and reason listed above.
+
+                                '
+                  submitTimeUtc:
                     type: string
-                  message:
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                      The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                      Returned by Cybersource for all services.
+
+                      '
+            application/xml:
+              schema:
+                title: ptsV1TransactionBatchDetailsGet404Response
+                type: object
+                properties:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            field:
+                              type: string
+                              description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                                '
+                            message:
+                              type: string
+                              description: 'The detailed message related to the status and reason listed above.
+
+                                '
+                  submitTimeUtc:
                     type: string
-                  details:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        field:
-                          type: string
-                          description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                            '
-                        message:
-                          type: string
-                          description: 'The detailed message related to the status and reason listed above.
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
 
-                            '
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
-
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
-
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                  Returned by Cybersource for all services.
+                      Returned by Cybersource for all services.
 
-                  '
+                      '
+            text/vnd.cybersource.map-csv:
+              schema:
+                title: ptsV1TransactionBatchDetailsGet404Response
+                type: object
+                properties:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                      message:
+                        type: string
+                      details:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            field:
+                              type: string
+                              description: 'This is the flattened JSON object field name/path that is either missing or invalid.
+
+                                '
+                            message:
+                              type: string
+                              description: 'The detailed message related to the status and reason listed above.
+
+                                '
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                      The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                      Returned by Cybersource for all services.
+
+                      '
         '502':
           description: Bad Gateway
-          schema:
-            title: ptsV1TransactionBatchDetailsGet502Response
-            type: object
-            properties:
-              errorInformation:
+          content:
+            text/csv:
+              schema:
+                title: ptsV1TransactionBatchDetailsGet502Response
                 type: object
                 properties:
-                  reason:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                        description: The reason of status
+                      message:
+                        type: string
+                        description: The detailed message related to the status and reason listed above.
+                  submitTimeUtc:
                     type: string
-                    description: The reason of status
-                  message:
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                      The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                      Returned by Cybersource for all services.
+
+                      '
+            application/xml:
+              schema:
+                title: ptsV1TransactionBatchDetailsGet502Response
+                type: object
+                properties:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                        description: The reason of status
+                      message:
+                        type: string
+                        description: The detailed message related to the status and reason listed above.
+                  submitTimeUtc:
                     type: string
-                    description: The detailed message related to the status and reason listed above.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
 
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                  Returned by Cybersource for all services.
+                      Returned by Cybersource for all services.
 
-                  '
+                      '
+            text/vnd.cybersource.map-csv:
+              schema:
+                title: ptsV1TransactionBatchDetailsGet502Response
+                type: object
+                properties:
+                  errorInformation:
+                    type: object
+                    properties:
+                      reason:
+                        type: string
+                        description: The reason of status
+                      message:
+                        type: string
+                        description: The detailed message related to the status and reason listed above.
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+
+                      The `T` separates the date and the time. The `Z` indicates UTC.
+
+
+                      Returned by Cybersource for all services.
+
+                      '
   /pts/v1/transaction-batch-upload:
     post:
       summary: Upload a Batch File
@@ -841,49 +1230,57 @@ paths:
         firstLevelApiLifeCycle: hidden
         secondLevelApiLifeCycle: hidden
         apiLifeCycle: hidden
-      produces:
-      - application/json
-      consumes:
-      - multipart/form-data
-      parameters:
-      - in: formData
-        name: file
-        type: file
-        description: The file to upload.
-        required: true
       responses:
         '201':
           description: Batch File uploaded successfully
         '400':
           description: Bad Request
-          schema:
-            title: 400UploadBatchFileResponse
-            type: object
-            properties:
-              error:
-                type: string
-              message:
-                type: string
+          content:
+            application/json:
+              schema:
+                title: 400UploadBatchFileResponse
+                type: object
+                properties:
+                  error:
+                    type: string
+                  message:
+                    type: string
         '403':
           description: Not Authorized
-          schema:
-            title: 403UploadBatchFileResponse
-            type: object
-            properties:
-              error:
-                type: string
-              message:
-                type: string
+          content:
+            application/json:
+              schema:
+                title: 403UploadBatchFileResponse
+                type: object
+                properties:
+                  error:
+                    type: string
+                  message:
+                    type: string
         '500':
           description: Bad Gateway
-          schema:
-            title: 500UploadBatchFileResponse
-            type: object
-            properties:
-              error:
-                type: string
-              message:
-                type: string
+          content:
+            application/json:
+              schema:
+                title: 500UploadBatchFileResponse
+                type: object
+                properties:
+                  error:
+                    type: string
+                  message:
+                    type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  description: The file to upload.
+                  format: binary
+              required:
+              - file
 x-devcenter-metaData:
   categoryTagArray:
   - name: Payments

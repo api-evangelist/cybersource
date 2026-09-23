@@ -1,16 +1,10 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
   version: 0.0.1
-  title: CyberSource Merged Spec bankAccountValidation Reports API
-host: apitest.cybersource.com
-basePath: /
-schemes:
-- https
-consumes:
-- application/json;charset=utf-8
-produces:
-- application/hal+json;charset=utf-8
+  title: CyberSource Merged Spec Reports API
+servers:
+- url: https://apitest.cybersource.com/
 tags:
 - name: Reports
   description: API for creation and retrieval of Reports
@@ -20,9 +14,7 @@ paths:
       tags:
       - Reports
       summary: Retrieve Available Reports
-      description: 'Retrieve a list of the available reports to which you are subscribed. This will also give you the reportId value, which you can also use to download a report.
-
-        '
+      description: Retrieve a list of the available reports to which you are subscribed. This will also give you the reportId value, which you can also use to download a report.
       operationId: searchReports
       x-devcenter-metaData:
         categoryTag: Reporting
@@ -31,29 +23,30 @@ paths:
         endTime: '2019-10-30T23:59:59Z'
         timeQueryType: executedTime
         reportMimeType: application/xml
-      produces:
-      - application/hal+json
       parameters:
       - name: organizationId
         in: query
         description: Valid Organization Id
-        pattern: '[a-zA-Z0-9-_]+'
         required: false
-        type: string
-        minLength: 1
-        maxLength: 32
+        schema:
+          type: string
+          maxLength: 32
+          minLength: 1
+          pattern: '[a-zA-Z0-9-_]+'
       - name: startTime
         in: query
         description: "Valid report Start Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n**Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)\n"
         required: true
-        type: string
-        format: date-time
+        schema:
+          type: string
+          format: date-time
       - name: endTime
         in: query
         description: "Valid report End Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n**Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)\n"
         required: true
-        type: string
-        format: date-time
+        schema:
+          type: string
+          format: date-time
       - name: timeQueryType
         in: query
         description: 'Specify time you would like to search
@@ -67,7 +60,8 @@ paths:
 
           '
         required: true
-        type: string
+        schema:
+          type: string
       - name: reportMimeType
         in: query
         description: 'Valid Report Format
@@ -81,7 +75,8 @@ paths:
 
           '
         required: false
-        type: string
+        schema:
+          type: string
       - name: reportFrequency
         in: query
         description: 'Valid Report Frequency
@@ -101,18 +96,21 @@ paths:
 
           '
         required: false
-        type: string
+        schema:
+          type: string
       - name: reportName
         in: query
         description: Valid Report Name
         required: false
-        type: string
+        schema:
+          type: string
       - name: reportDefinitionId
         in: query
         description: Valid Report Definition Id
         required: false
-        type: integer
-        format: int32
+        schema:
+          type: integer
+          format: int32
       - name: reportStatus
         in: query
         description: 'Valid Report Status
@@ -134,314 +132,211 @@ paths:
 
           '
         required: false
-        type: string
+        schema:
+          type: string
       responses:
         '200':
           description: OK
-          schema:
-            title: reportingV3ReportsGet200Response
-            type: object
-            properties:
-              reportSearchResults:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    _link:
+          content:
+            application/hal+json:
+              schema:
+                title: reportingV3ReportsGet200Response
+                type: object
+                properties:
+                  reportSearchResults:
+                    type: array
+                    items:
                       type: object
                       properties:
-                        reportDownload:
+                        _link:
                           type: object
                           properties:
-                            href:
-                              type: string
-                              example: /reporting/v3/report-downloads?reportDate=2017-10-02&reportName=MyTransactionRequestDetailReport&reportTime=10:00:00+05:00
-                            method:
-                              type: string
-                              example: GET
-                    reportDefinitionId:
-                      type: string
-                      description: Unique Report Identifier of each report type
-                      example: '210'
-                    reportName:
-                      type: string
-                      description: Name of the report specified by merchant while creating the report
-                      example: MyTransactionRequestDetailReport
-                    reportMimeType:
-                      type: string
-                      example: application/xml
-                      description: 'Format of the report to get generated
+                            reportDownload:
+                              type: object
+                              properties:
+                                href:
+                                  type: string
+                                  example: /reporting/v3/report-downloads?reportDate=2017-10-02&reportName=MyTransactionRequestDetailReport&reportTime=10:00:00+05:00
+                                method:
+                                  type: string
+                                  example: GET
+                        reportDefinitionId:
+                          type: string
+                          description: Unique Report Identifier of each report type
+                          example: '210'
+                        reportName:
+                          type: string
+                          description: Name of the report specified by merchant while creating the report
+                          example: MyTransactionRequestDetailReport
+                        reportMimeType:
+                          type: string
+                          example: application/xml
+                          description: 'Format of the report to get generated
 
-                        Valid Values:
+                            Valid Values:
 
-                        - application/xml
+                            - application/xml
 
-                        - text/csv
+                            - text/csv
 
-                        '
-                    reportFrequency:
-                      type: string
-                      example: DAILY
-                      description: 'Frequency of the report to get generated
+                            '
+                        reportFrequency:
+                          type: string
+                          example: DAILY
+                          description: 'Frequency of the report to get generated
 
-                        Valid Values:
+                            Valid Values:
 
-                        - DAILY
+                            - DAILY
 
-                        - WEEKLY
+                            - WEEKLY
 
-                        - MONTHLY
+                            - MONTHLY
 
-                        - ADHOC
+                            - ADHOC
 
-                        '
-                    status:
-                      type: string
-                      description: 'Status of the report
+                            '
+                        status:
+                          type: string
+                          description: 'Status of the report
 
-                        Valid Values:
+                            Valid Values:
 
-                        - COMPLETED
+                            - COMPLETED
 
-                        - PENDING
+                            - PENDING
 
-                        - QUEUED
+                            - QUEUED
 
-                        - RUNNING
+                            - RUNNING
 
-                        - ERROR
+                            - ERROR
 
-                        - NO_DATA
+                            - NO_DATA
 
-                        '
-                    reportStartTime:
-                      type: string
-                      format: date-time
-                      example: '2017-10-01T10:00:00+05:00'
-                      description: Specifies the report start time in ISO 8601 format
-                    reportEndTime:
-                      type: string
-                      format: date-time
-                      example: '2017-10-02T10:00:00+05:00'
-                      description: Specifies the report end time in ISO 8601 format
-                    timezone:
-                      type: string
-                      example: America/Chicago
-                      description: Time Zone
-                    reportId:
-                      type: string
-                      example: 6d9cb5b6-0e97-2d03-e053-7cb8d30af52e
-                      description: Unique identifier generated for every reports
-                    organizationId:
-                      type: string
-                      example: Test_MerchantId
-                      description: CyberSource Merchant Id
-                    queuedTime:
-                      type: string
-                      format: date-time
-                      example: '2017-10-03T10:00:00+05:00'
-                      description: Specifies the time of the report in queued  in ISO 8601 format
-                    reportGeneratingTime:
-                      type: string
-                      format: date-time
-                      example: '2017-10-03T10:00:00+05:00'
-                      description: Specifies the time of the report started to generate  in ISO 8601 format
-                    reportCompletedTime:
-                      type: string
-                      format: date-time
-                      example: '2017-10-03T10:10:00+05:00'
-                      description: Specifies the time of the report completed the generation  in ISO 8601 format
-                    subscriptionType:
-                      type: string
-                      example: CUSTOM
-                      description: 'Specifies whether the subscription created is either Custom, Standard or Classic
+                            '
+                        reportStartTime:
+                          type: string
+                          format: date-time
+                          example: '2017-10-01T10:00:00+05:00'
+                          description: Specifies the report start time in ISO 8601 format
+                        reportEndTime:
+                          type: string
+                          format: date-time
+                          example: '2017-10-02T10:00:00+05:00'
+                          description: Specifies the report end time in ISO 8601 format
+                        timezone:
+                          type: string
+                          example: America/Chicago
+                          description: Time Zone
+                        reportId:
+                          type: string
+                          example: 6d9cb5b6-0e97-2d03-e053-7cb8d30af52e
+                          description: Unique identifier generated for every reports
+                        organizationId:
+                          type: string
+                          example: Test_MerchantId
+                          description: CyberSource Merchant Id
+                        queuedTime:
+                          type: string
+                          format: date-time
+                          example: '2017-10-03T10:00:00+05:00'
+                          description: Specifies the time of the report in queued  in ISO 8601 format
+                        reportGeneratingTime:
+                          type: string
+                          format: date-time
+                          example: '2017-10-03T10:00:00+05:00'
+                          description: Specifies the time of the report started to generate  in ISO 8601 format
+                        reportCompletedTime:
+                          type: string
+                          format: date-time
+                          example: '2017-10-03T10:10:00+05:00'
+                          description: Specifies the time of the report completed the generation  in ISO 8601 format
+                        subscriptionType:
+                          type: string
+                          example: CUSTOM
+                          description: 'Specifies whether the subscription created is either Custom, Standard or Classic
 
-                        '
-                    groupId:
-                      type: string
-                      example: '12345'
-                      description: Id for selected group.
-                  description: Report Search Result Bean
+                            '
+                        groupId:
+                          type: string
+                          example: '12345'
+                          description: Id for selected group.
+                      description: Report Search Result Bean
         '400':
           description: Invalid Request
-          schema:
-            title: reportingV3ReportsGet400Response
-            type: object
-            required:
-            - submitTimeUtc
-            - reason
-            - message
-            - details
-            properties:
-              submitTimeUtc:
-                type: string
-                format: date-time
-                description: "Time of request in UTC. \n"
-                example: '2016-08-11T22:47:57Z'
-              reason:
-                type: string
-                description: 'Documented reason code
+          content:
+            application/hal+json:
+              schema:
+                title: reportingV3ReportsGet400Response
+                type: object
+                required:
+                - submitTimeUtc
+                - reason
+                - message
+                - details
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    format: date-time
+                    description: "Time of request in UTC. \n"
+                    example: '2016-08-11T22:47:57Z'
+                  reason:
+                    type: string
+                    description: 'Documented reason code
 
-                  '
-                example: INVALID_DATA
-              message:
-                type: string
-                description: 'Short descriptive message to the user.
+                      '
+                    example: INVALID_DATA
+                  message:
+                    type: string
+                    description: 'Short descriptive message to the user.
 
-                  '
-                example: One or more fields contains invalid data
-              details:
-                type: array
-                description: 'Error field list
+                      '
+                    example: One or more fields contains invalid data
+                  details:
+                    type: array
+                    description: 'Error field list
 
-                  '
-                items:
-                  type: object
-                  properties:
-                    field:
-                      type: string
-                      description: 'Field in request that caused an error
+                      '
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'Field in request that caused an error
+
+                            '
+                        reason:
+                          type: string
+                          description: 'Documented reason code
+
+                            '
+                      description: 'Provides failed validation input field detail
 
                         '
-                    reason:
-                      type: string
-                      description: 'Documented reason code
-
-                        '
-                  description: 'Provides failed validation input field detail
-
-                    '
-            description: HTTP status code for client application
+                description: HTTP status code for client application
         '404':
           description: No Reports Found
     post:
       tags:
       - Reports
       summary: Create Adhoc Report
-      description: 'Create a one-time report. You must specify the type of report in reportDefinitionName. For a list of values for reportDefinitionName, see the [Reporting Developer Guide](https://www.cybersource.com/developers/documentation/reporting_and_reconciliation)
-
-        '
+      description: Create a one-time report. You must specify the type of report in reportDefinitionName. For a list of values for reportDefinitionName, see the Reporting Developer Guide
       operationId: createReport
       x-devcenter-metaData:
         categoryTag: Reporting
       x-queryParameterDefaults:
         organizationId: testrest
-      consumes:
-      - application/json
-      produces:
-      - application/hal+json
       parameters:
       - name: organizationId
         in: query
         description: Valid Organization Id
-        pattern: '[a-zA-Z0-9-_]+'
         required: false
-        type: string
-        minLength: 1
-        maxLength: 32
-      - in: body
-        name: createAdhocReportRequest
-        description: Report subscription request payload
-        required: true
         schema:
-          type: object
-          properties:
-            organizationId:
-              type: string
-              description: Valid CyberSource Organization Id
-              pattern: '[a-zA-Z0-9-_]+'
-              example: Test_Merchatnt_id
-            reportDefinitionName:
-              type: string
-              minLength: 1
-              maxLength: 80
-              pattern: '[a-zA-Z0-9-]+'
-              example: TransactionRequestClass
-            reportFields:
-              type: array
-              items:
-                type: string
-              description: List of fields which needs to get included in a report
-              example:
-              - Request.RequestID
-              - Request.TransactionDate
-              - Request.MerchantID
-            reportMimeType:
-              type: string
-              description: "'Format of the report'\n                \nValid values:\n- application/xml\n- text/csv\n"
-              example: application/xml
-            reportName:
-              type: string
-              minLength: 1
-              maxLength: 128
-              pattern: '[a-zA-Z0-9-_ ]+'
-              description: Name of the report
-              example: My Transaction Request report
-            timezone:
-              type: string
-              description: Timezone of the report
-              example: America/Chicago
-            reportStartTime:
-              type: string
-              format: date-time
-              description: Start time of the report
-              example: '2017-10-01T10:10:10+05:00'
-            reportEndTime:
-              type: string
-              format: date-time
-              description: End time of the report
-              example: '2017-10-02T10:10:10+05:00'
-            reportFilters:
-              type: object
-              properties:
-                Application.Name:
-                  type: array
-                  items:
-                    type: string
-                    description: Specifies filter criteria by list of application names separated by comma
-                    example: ics_auth
-                firstName:
-                  type: array
-                  items:
-                    type: string
-                    description: Specifies filter criteria by list of first names separated by comma
-                    example: Johny
-                lastName:
-                  type: array
-                  items:
-                    type: string
-                    description: Specifies filter criteria by list of last names separated by comma
-                    example: Danny
-                email:
-                  type: array
-                  items:
-                    type: string
-                    description: Specifies filter criteria by list of email addresses separated by comma
-                    example: example@visa.com
-            reportPreferences:
-              type: object
-              description: Report Preferences
-              properties:
-                signedAmounts:
-                  type: boolean
-                  description: Indicator to determine whether negative sign infront of amount for all refunded transaction
-                fieldNameConvention:
-                  type: string
-                  description: 'Specify the field naming convention to be followed in reports (applicable to only csv report formats)
-
-
-                    Valid values:
-
-                    - SOAPI
-
-                    - SCMP
-
-                    '
-            groupName:
-              type: string
-              pattern: '[0-9]*'
-              description: Specifies the group name
-              example: myGroup
+          type: string
+          maxLength: 32
+          minLength: 1
+          pattern: '[a-zA-Z0-9-_]+'
       responses:
         '201':
           description: Created
@@ -449,54 +344,56 @@ paths:
           description: Not Modified
         '400':
           description: Invalid request
-          schema:
-            title: reportingV3ReportsPost400Response
-            type: object
-            required:
-            - submitTimeUtc
-            - reason
-            - message
-            - details
-            properties:
-              submitTimeUtc:
-                type: string
-                format: date-time
-                description: "Time of request in UTC. \n"
-                example: '2016-08-11T22:47:57Z'
-              reason:
-                type: string
-                description: 'Documented reason code
+          content:
+            application/hal+json:
+              schema:
+                title: reportingV3ReportsPost400Response
+                type: object
+                required:
+                - submitTimeUtc
+                - reason
+                - message
+                - details
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    format: date-time
+                    description: "Time of request in UTC. \n"
+                    example: '2016-08-11T22:47:57Z'
+                  reason:
+                    type: string
+                    description: 'Documented reason code
 
-                  '
-                example: INVALID_DATA
-              message:
-                type: string
-                description: 'Short descriptive message to the user.
+                      '
+                    example: INVALID_DATA
+                  message:
+                    type: string
+                    description: 'Short descriptive message to the user.
 
-                  '
-                example: One or more fields contains invalid data
-              details:
-                type: array
-                description: 'Error field list
+                      '
+                    example: One or more fields contains invalid data
+                  details:
+                    type: array
+                    description: 'Error field list
 
-                  '
-                items:
-                  type: object
-                  properties:
-                    field:
-                      type: string
-                      description: 'Field in request that caused an error
+                      '
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'Field in request that caused an error
+
+                            '
+                        reason:
+                          type: string
+                          description: 'Documented reason code
+
+                            '
+                      description: 'Provides failed validation input field detail
 
                         '
-                    reason:
-                      type: string
-                      description: 'Documented reason code
-
-                        '
-                  description: 'Provides failed validation input field detail
-
-                    '
-            description: HTTP status code for client application
+                description: HTTP status code for client application
       x-example:
         example0:
           summary: Create Adhoc Report
@@ -1044,14 +941,116 @@ paths:
             reportPreferences:
               signedAmounts: 'true'
               fieldNameConvention: SOAPI
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                organizationId:
+                  type: string
+                  description: Valid CyberSource Organization Id
+                  pattern: '[a-zA-Z0-9-_]+'
+                  example: Test_Merchatnt_id
+                reportDefinitionName:
+                  type: string
+                  minLength: 1
+                  maxLength: 80
+                  pattern: '[a-zA-Z0-9-]+'
+                  example: TransactionRequestClass
+                reportFields:
+                  type: array
+                  items:
+                    type: string
+                  description: List of fields which needs to get included in a report
+                  example:
+                  - Request.RequestID
+                  - Request.TransactionDate
+                  - Request.MerchantID
+                reportMimeType:
+                  type: string
+                  description: "'Format of the report'\n                \nValid values:\n- application/xml\n- text/csv\n"
+                  example: application/xml
+                reportName:
+                  type: string
+                  minLength: 1
+                  maxLength: 128
+                  pattern: '[a-zA-Z0-9-_ ]+'
+                  description: Name of the report
+                  example: My Transaction Request report
+                timezone:
+                  type: string
+                  description: Timezone of the report
+                  example: America/Chicago
+                reportStartTime:
+                  type: string
+                  format: date-time
+                  description: Start time of the report
+                  example: '2017-10-01T10:10:10+05:00'
+                reportEndTime:
+                  type: string
+                  format: date-time
+                  description: End time of the report
+                  example: '2017-10-02T10:10:10+05:00'
+                reportFilters:
+                  type: object
+                  properties:
+                    Application.Name:
+                      type: array
+                      items:
+                        type: string
+                        description: Specifies filter criteria by list of application names separated by comma
+                        example: ics_auth
+                    firstName:
+                      type: array
+                      items:
+                        type: string
+                        description: Specifies filter criteria by list of first names separated by comma
+                        example: Johny
+                    lastName:
+                      type: array
+                      items:
+                        type: string
+                        description: Specifies filter criteria by list of last names separated by comma
+                        example: Danny
+                    email:
+                      type: array
+                      items:
+                        type: string
+                        description: Specifies filter criteria by list of email addresses separated by comma
+                        example: example@visa.com
+                reportPreferences:
+                  type: object
+                  description: Report Preferences
+                  properties:
+                    signedAmounts:
+                      type: boolean
+                      description: Indicator to determine whether negative sign infront of amount for all refunded transaction
+                    fieldNameConvention:
+                      type: string
+                      description: 'Specify the field naming convention to be followed in reports (applicable to only csv report formats)
+
+
+                        Valid values:
+
+                        - SOAPI
+
+                        - SCMP
+
+                        '
+                groupName:
+                  type: string
+                  pattern: '[0-9]*'
+                  description: Specifies the group name
+                  example: myGroup
+        description: Report subscription request payload
+        required: true
   /reporting/v3/reports/{reportId}:
     get:
       tags:
       - Reports
       summary: Get Report Based on Report Id
-      description: 'Download a report using the reportId value. If you don''t already know this value, you can obtain it using the Retrieve available reports call.
-
-        '
+      description: Download a report using the reportId value. If you don't already know this value, you can obtain it using the Retrieve available reports call.
       operationId: getReportByReportId
       x-devcenter-metaData:
         categoryTag: Reporting
@@ -1071,206 +1070,389 @@ paths:
         - sourceField: reportSearchResults[0].reportId
           destinationField: reportId
           fieldTypeInDestination: path
-      produces:
-      - application/hal+json
-      - application/xml
       parameters:
       - name: reportId
         in: path
         description: Valid Report Id
         required: true
-        type: string
+        schema:
+          type: string
       - name: organizationId
         in: query
         description: Valid Organization Id
-        pattern: '[a-zA-Z0-9-_]+'
         required: false
-        type: string
-        minLength: 1
-        maxLength: 32
+        schema:
+          type: string
+          maxLength: 32
+          minLength: 1
+          pattern: '[a-zA-Z0-9-_]+'
       responses:
         '200':
           description: OK
-          schema:
-            title: reportingV3ReportsIdGet200Response
-            type: object
-            properties:
-              organizationId:
-                type: string
-                description: CyberSource merchant id
-                example: myMerchantId
-              reportId:
-                type: string
-                description: Report ID Value
-                example: 6da01922-bb8e-a1fb-e053-7cb8d30ade29
-              reportDefinitionId:
-                type: string
-                description: Report definition Id
-                example: '210'
-              reportName:
-                type: string
-                description: Report Name
-                example: My Transaction Request report
-              reportMimeType:
-                type: string
-                example: application/xml
-                description: 'Report Format
-
-
-                  Valid values:
-
-                  - application/xml
-
-                  - text/csv
-
-                  '
-              reportFrequency:
-                type: string
-                example: DAILY
-                description: 'Report Frequency Value
-
-
-                  Valid values:
-
-                  - DAILY
-
-                  - WEEKLY
-
-                  - MONTHLY
-
-                  - ADHOC
-
-                  '
-              reportFields:
-                type: array
-                description: List of Integer Values
-                items:
-                  type: string
-                example:
-                - Request.RequestID
-                - Request.TransactionDate
-                - Request.MerchantID
-              reportStatus:
-                type: string
-                description: 'Report Status Value
-
-
-                  Valid values:
-
-                  - COMPLETED
-
-                  - PENDING
-
-                  - QUEUED
-
-                  - RUNNING
-
-                  - ERROR
-
-                  - NO_DATA
-
-                  - RERUN
-
-                  '
-              reportStartTime:
-                type: string
-                format: date-time
-                example: '2017-10-01T10:10:10+05:00'
-                description: Report Start Time Value
-              reportEndTime:
-                type: string
-                format: date-time
-                example: '2017-10-02T10:10:10+05:00'
-                description: Report End Time Value
-              timezone:
-                type: string
-                description: Time Zone Value
-                example: America/Chicago
-              reportFilters:
+          content:
+            application/hal+json:
+              schema:
+                title: reportingV3ReportsIdGet200Response
                 type: object
-                additionalProperties:
-                  type: array
-                  items:
-                    type: string
-                description: List of filters to apply
-                example:
-                  Application.Name:
-                  - ics_auth
-                  - ics_bill
-              reportPreferences:
-                type: object
-                description: Report Preferences
                 properties:
-                  signedAmounts:
-                    type: boolean
-                    description: Indicator to determine whether negative sign infront of amount for all refunded transaction
-                  fieldNameConvention:
+                  organizationId:
                     type: string
-                    description: 'Specify the field naming convention to be followed in reports (applicable to only csv report formats)
+                    description: CyberSource merchant id
+                    example: myMerchantId
+                  reportId:
+                    type: string
+                    description: Report ID Value
+                    example: 6da01922-bb8e-a1fb-e053-7cb8d30ade29
+                  reportDefinitionId:
+                    type: string
+                    description: Report definition Id
+                    example: '210'
+                  reportName:
+                    type: string
+                    description: Report Name
+                    example: My Transaction Request report
+                  reportMimeType:
+                    type: string
+                    example: application/xml
+                    description: 'Report Format
 
 
                       Valid values:
 
-                      - SOAPI
+                      - application/xml
 
-                      - SCMP
+                      - text/csv
 
                       '
-              groupId:
-                type: string
-                description: Id for selected group.
-                example: '12345'
-            description: Report Log
+                  reportFrequency:
+                    type: string
+                    example: DAILY
+                    description: 'Report Frequency Value
+
+
+                      Valid values:
+
+                      - DAILY
+
+                      - WEEKLY
+
+                      - MONTHLY
+
+                      - ADHOC
+
+                      '
+                  reportFields:
+                    type: array
+                    description: List of Integer Values
+                    items:
+                      type: string
+                    example:
+                    - Request.RequestID
+                    - Request.TransactionDate
+                    - Request.MerchantID
+                  reportStatus:
+                    type: string
+                    description: 'Report Status Value
+
+
+                      Valid values:
+
+                      - COMPLETED
+
+                      - PENDING
+
+                      - QUEUED
+
+                      - RUNNING
+
+                      - ERROR
+
+                      - NO_DATA
+
+                      - RERUN
+
+                      '
+                  reportStartTime:
+                    type: string
+                    format: date-time
+                    example: '2017-10-01T10:10:10+05:00'
+                    description: Report Start Time Value
+                  reportEndTime:
+                    type: string
+                    format: date-time
+                    example: '2017-10-02T10:10:10+05:00'
+                    description: Report End Time Value
+                  timezone:
+                    type: string
+                    description: Time Zone Value
+                    example: America/Chicago
+                  reportFilters:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                    description: List of filters to apply
+                    example:
+                      Application.Name:
+                      - ics_auth
+                      - ics_bill
+                  reportPreferences:
+                    type: object
+                    description: Report Preferences
+                    properties:
+                      signedAmounts:
+                        type: boolean
+                        description: Indicator to determine whether negative sign infront of amount for all refunded transaction
+                      fieldNameConvention:
+                        type: string
+                        description: 'Specify the field naming convention to be followed in reports (applicable to only csv report formats)
+
+
+                          Valid values:
+
+                          - SOAPI
+
+                          - SCMP
+
+                          '
+                  groupId:
+                    type: string
+                    description: Id for selected group.
+                    example: '12345'
+                description: Report Log
+            application/xml:
+              schema:
+                title: reportingV3ReportsIdGet200Response
+                type: object
+                properties:
+                  organizationId:
+                    type: string
+                    description: CyberSource merchant id
+                    example: myMerchantId
+                  reportId:
+                    type: string
+                    description: Report ID Value
+                    example: 6da01922-bb8e-a1fb-e053-7cb8d30ade29
+                  reportDefinitionId:
+                    type: string
+                    description: Report definition Id
+                    example: '210'
+                  reportName:
+                    type: string
+                    description: Report Name
+                    example: My Transaction Request report
+                  reportMimeType:
+                    type: string
+                    example: application/xml
+                    description: 'Report Format
+
+
+                      Valid values:
+
+                      - application/xml
+
+                      - text/csv
+
+                      '
+                  reportFrequency:
+                    type: string
+                    example: DAILY
+                    description: 'Report Frequency Value
+
+
+                      Valid values:
+
+                      - DAILY
+
+                      - WEEKLY
+
+                      - MONTHLY
+
+                      - ADHOC
+
+                      '
+                  reportFields:
+                    type: array
+                    description: List of Integer Values
+                    items:
+                      type: string
+                    example:
+                    - Request.RequestID
+                    - Request.TransactionDate
+                    - Request.MerchantID
+                  reportStatus:
+                    type: string
+                    description: 'Report Status Value
+
+
+                      Valid values:
+
+                      - COMPLETED
+
+                      - PENDING
+
+                      - QUEUED
+
+                      - RUNNING
+
+                      - ERROR
+
+                      - NO_DATA
+
+                      - RERUN
+
+                      '
+                  reportStartTime:
+                    type: string
+                    format: date-time
+                    example: '2017-10-01T10:10:10+05:00'
+                    description: Report Start Time Value
+                  reportEndTime:
+                    type: string
+                    format: date-time
+                    example: '2017-10-02T10:10:10+05:00'
+                    description: Report End Time Value
+                  timezone:
+                    type: string
+                    description: Time Zone Value
+                    example: America/Chicago
+                  reportFilters:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                    description: List of filters to apply
+                    example:
+                      Application.Name:
+                      - ics_auth
+                      - ics_bill
+                  reportPreferences:
+                    type: object
+                    description: Report Preferences
+                    properties:
+                      signedAmounts:
+                        type: boolean
+                        description: Indicator to determine whether negative sign infront of amount for all refunded transaction
+                      fieldNameConvention:
+                        type: string
+                        description: 'Specify the field naming convention to be followed in reports (applicable to only csv report formats)
+
+
+                          Valid values:
+
+                          - SOAPI
+
+                          - SCMP
+
+                          '
+                  groupId:
+                    type: string
+                    description: Id for selected group.
+                    example: '12345'
+                description: Report Log
         '400':
           description: Invalid Request
-          schema:
-            title: reportingV3ReportsIdPost400Response
-            type: object
-            required:
-            - submitTimeUtc
-            - reason
-            - message
-            - details
-            properties:
-              submitTimeUtc:
-                type: string
-                format: date-time
-                description: "Time of request in UTC. \n"
-                example: '2016-08-11T22:47:57Z'
-              reason:
-                type: string
-                description: 'Documented reason code
+          content:
+            application/hal+json:
+              schema:
+                title: reportingV3ReportsIdPost400Response
+                type: object
+                required:
+                - submitTimeUtc
+                - reason
+                - message
+                - details
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    format: date-time
+                    description: "Time of request in UTC. \n"
+                    example: '2016-08-11T22:47:57Z'
+                  reason:
+                    type: string
+                    description: 'Documented reason code
 
-                  '
-                example: INVALID_DATA
-              message:
-                type: string
-                description: 'Short descriptive message to the user.
+                      '
+                    example: INVALID_DATA
+                  message:
+                    type: string
+                    description: 'Short descriptive message to the user.
 
-                  '
-                example: One or more fields contains invalid data
-              details:
-                type: array
-                description: 'Error field list
+                      '
+                    example: One or more fields contains invalid data
+                  details:
+                    type: array
+                    description: 'Error field list
 
-                  '
-                items:
-                  type: object
-                  properties:
-                    field:
-                      type: string
-                      description: 'Field in request that caused an error
+                      '
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'Field in request that caused an error
+
+                            '
+                        reason:
+                          type: string
+                          description: 'Documented reason code
+
+                            '
+                      description: 'Provides failed validation input field detail
 
                         '
-                    reason:
-                      type: string
-                      description: 'Documented reason code
+                description: HTTP status code for client application
+            application/xml:
+              schema:
+                title: reportingV3ReportsIdPost400Response
+                type: object
+                required:
+                - submitTimeUtc
+                - reason
+                - message
+                - details
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    format: date-time
+                    description: "Time of request in UTC. \n"
+                    example: '2016-08-11T22:47:57Z'
+                  reason:
+                    type: string
+                    description: 'Documented reason code
+
+                      '
+                    example: INVALID_DATA
+                  message:
+                    type: string
+                    description: 'Short descriptive message to the user.
+
+                      '
+                    example: One or more fields contains invalid data
+                  details:
+                    type: array
+                    description: 'Error field list
+
+                      '
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'Field in request that caused an error
+
+                            '
+                        reason:
+                          type: string
+                          description: 'Documented reason code
+
+                            '
+                      description: 'Provides failed validation input field detail
 
                         '
-                  description: 'Provides failed validation input field detail
-
-                    '
-            description: HTTP status code for client application
+                description: HTTP status code for client application
         '404':
           description: No Reports Found
 x-devcenter-metaData:

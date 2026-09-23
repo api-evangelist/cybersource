@@ -1,16 +1,10 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
   version: 0.0.1
-  title: CyberSource Merged Spec bankAccountValidation Conversion Details API
-host: apitest.cybersource.com
-basePath: /
-schemes:
-- https
-consumes:
-- application/json;charset=utf-8
-produces:
-- application/hal+json;charset=utf-8
+  title: CyberSource Merged Spec Conversion Details API
+servers:
+- url: https://apitest.cybersource.com/
 tags:
 - name: Conversion Details
   description: API for retrieving conversion data for merchant
@@ -33,210 +27,392 @@ paths:
         startTime: '2019-03-21T00:00:00Z'
         endTime: '2019-03-21T23:00:00Z'
         organizationId: testrest
-      produces:
-      - application/hal+json
-      - application/xml
       parameters:
       - name: startTime
         in: query
         description: "Valid report Start Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n**Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)\n"
         required: true
-        type: string
-        format: date-time
+        schema:
+          type: string
+          format: date-time
       - name: endTime
         in: query
         description: "Valid report End Time in **ISO 8601 format**\nPlease refer the following link to know more about ISO 8601 format.[Rfc Date Format](https://xml2rfc.tools.ietf.org/public/rfc/html/rfc3339.html#anchor14)\n\n**Example date format:**\n  - yyyy-MM-dd'T'HH:mm:ss.SSSZ (e.g. 2018-01-01T00:00:00.000Z)\n"
         required: true
-        type: string
-        format: date-time
+        schema:
+          type: string
+          format: date-time
       - name: organizationId
         in: query
         description: Valid Organization Id
-        pattern: '[a-zA-Z0-9-_]+'
         required: false
-        type: string
-        minLength: 1
-        maxLength: 32
+        schema:
+          type: string
+          maxLength: 32
+          minLength: 1
+          pattern: '[a-zA-Z0-9-_]+'
       responses:
         '200':
           description: OK
-          schema:
-            title: reportingV3ConversionDetailsGet200Response
-            type: object
-            properties:
-              organizationId:
-                type: string
-                description: Merchant Id
-                example: testMerchantId
-                xml:
-                  name: MerchantID
-                  attribute: true
-              startTime:
-                type: string
-                format: date-time
-                example: '2017-10-01T10:10:10+05:00'
-                xml:
-                  name: ReportStartDate
-                  attribute: true
-              endTime:
-                type: string
-                format: date-time
-                example: '2017-10-01T10:10:10+05:00'
-                xml:
-                  name: ReportEndDate
-                  attribute: true
-              conversionDetails:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    merchantReferenceNumber:
-                      type: string
-                      description: Merchant reference number of a merchant
-                      example: '1234567890'
-                      xml:
-                        name: MerchantReferenceNumber
-                        attribute: true
-                    conversionTime:
-                      type: string
-                      format: date-time
-                      description: Date of conversion
-                      example: '2017-10-01T10:10:10+05:00'
-                      xml:
-                        name: ConversionDate
-                        attribute: true
-                    requestId:
-                      type: string
-                      description: Cybersource Transation request id
-                      example: '1234567890123456789012'
-                      xml:
-                        name: RequestID
-                        attribute: true
-                    originalDecision:
-                      type: string
-                      description: Original decision
-                      example: REVIEW
-                      xml:
-                        name: OriginalDecision
-                    newDecision:
-                      type: string
-                      description: New decision
-                      example: ACCEPT
-                      xml:
-                        name: NewDecision
-                    reviewer:
-                      type: string
-                      description: User name of the reviewer
-                      example: testuserId
-                      xml:
-                        name: Reviewer
-                    reviewerComments:
-                      type: string
-                      description: Comments of the reviewer
-                      example: Verified order.
-                      xml:
-                        name: ReviewerComments
-                    queue:
-                      type: string
-                      description: Name of the queue
-                      example: Review Queue
-                      xml:
-                        name: Queue
-                    profile:
-                      type: string
-                      description: Name of the profile
-                      example: Test Profile
-                      xml:
-                        name: Profile
-                    notes:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          time:
-                            type: string
-                            format: date-time
-                            description: Time of the note added by reviewer
-                            example: '2017-10-01T10:10:10+05:00'
+          content:
+            application/hal+json:
+              schema:
+                title: reportingV3ConversionDetailsGet200Response
+                type: object
+                properties:
+                  organizationId:
+                    type: string
+                    description: Merchant Id
+                    example: testMerchantId
+                    xml:
+                      name: MerchantID
+                      attribute: true
+                  startTime:
+                    type: string
+                    format: date-time
+                    example: '2017-10-01T10:10:10+05:00'
+                    xml:
+                      name: ReportStartDate
+                      attribute: true
+                  endTime:
+                    type: string
+                    format: date-time
+                    example: '2017-10-01T10:10:10+05:00'
+                    xml:
+                      name: ReportEndDate
+                      attribute: true
+                  conversionDetails:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        merchantReferenceNumber:
+                          type: string
+                          description: Merchant reference number of a merchant
+                          example: '1234567890'
+                          xml:
+                            name: MerchantReferenceNumber
+                            attribute: true
+                        conversionTime:
+                          type: string
+                          format: date-time
+                          description: Date of conversion
+                          example: '2017-10-01T10:10:10+05:00'
+                          xml:
+                            name: ConversionDate
+                            attribute: true
+                        requestId:
+                          type: string
+                          description: Cybersource Transation request id
+                          example: '1234567890123456789012'
+                          xml:
+                            name: RequestID
+                            attribute: true
+                        originalDecision:
+                          type: string
+                          description: Original decision
+                          example: REVIEW
+                          xml:
+                            name: OriginalDecision
+                        newDecision:
+                          type: string
+                          description: New decision
+                          example: ACCEPT
+                          xml:
+                            name: NewDecision
+                        reviewer:
+                          type: string
+                          description: User name of the reviewer
+                          example: testuserId
+                          xml:
+                            name: Reviewer
+                        reviewerComments:
+                          type: string
+                          description: Comments of the reviewer
+                          example: Verified order.
+                          xml:
+                            name: ReviewerComments
+                        queue:
+                          type: string
+                          description: Name of the queue
+                          example: Review Queue
+                          xml:
+                            name: Queue
+                        profile:
+                          type: string
+                          description: Name of the profile
+                          example: Test Profile
+                          xml:
+                            name: Profile
+                        notes:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              time:
+                                type: string
+                                format: date-time
+                                description: Time of the note added by reviewer
+                                example: '2017-10-01T10:10:10+05:00'
+                                xml:
+                                  name: Date
+                                  attribute: true
+                              addedBy:
+                                type: string
+                                description: Note added by reviewer
+                                example: testuserId
+                                xml:
+                                  name: AddedBy
+                                  attribute: true
+                              comments:
+                                type: string
+                                description: Comments given by the reviewer
+                                example: Verified the order and accepted.
+                                xml:
+                                  name: Comment
+                                  attribute: true
                             xml:
-                              name: Date
-                              attribute: true
-                          addedBy:
-                            type: string
-                            description: Note added by reviewer
-                            example: testuserId
-                            xml:
-                              name: AddedBy
-                              attribute: true
-                          comments:
-                            type: string
-                            description: Comments given by the reviewer
-                            example: Verified the order and accepted.
-                            xml:
-                              name: Comment
-                              attribute: true
-                        xml:
-                          name: Note
+                              name: Note
+                          xml:
+                            name: Notes
                       xml:
-                        name: Notes
-                  xml:
-                    name: Conversion
-            xml:
-              name: Report
+                        name: Conversion
+                xml:
+                  name: Report
+            application/xml:
+              schema:
+                title: reportingV3ConversionDetailsGet200Response
+                type: object
+                properties:
+                  organizationId:
+                    type: string
+                    description: Merchant Id
+                    example: testMerchantId
+                    xml:
+                      name: MerchantID
+                      attribute: true
+                  startTime:
+                    type: string
+                    format: date-time
+                    example: '2017-10-01T10:10:10+05:00'
+                    xml:
+                      name: ReportStartDate
+                      attribute: true
+                  endTime:
+                    type: string
+                    format: date-time
+                    example: '2017-10-01T10:10:10+05:00'
+                    xml:
+                      name: ReportEndDate
+                      attribute: true
+                  conversionDetails:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        merchantReferenceNumber:
+                          type: string
+                          description: Merchant reference number of a merchant
+                          example: '1234567890'
+                          xml:
+                            name: MerchantReferenceNumber
+                            attribute: true
+                        conversionTime:
+                          type: string
+                          format: date-time
+                          description: Date of conversion
+                          example: '2017-10-01T10:10:10+05:00'
+                          xml:
+                            name: ConversionDate
+                            attribute: true
+                        requestId:
+                          type: string
+                          description: Cybersource Transation request id
+                          example: '1234567890123456789012'
+                          xml:
+                            name: RequestID
+                            attribute: true
+                        originalDecision:
+                          type: string
+                          description: Original decision
+                          example: REVIEW
+                          xml:
+                            name: OriginalDecision
+                        newDecision:
+                          type: string
+                          description: New decision
+                          example: ACCEPT
+                          xml:
+                            name: NewDecision
+                        reviewer:
+                          type: string
+                          description: User name of the reviewer
+                          example: testuserId
+                          xml:
+                            name: Reviewer
+                        reviewerComments:
+                          type: string
+                          description: Comments of the reviewer
+                          example: Verified order.
+                          xml:
+                            name: ReviewerComments
+                        queue:
+                          type: string
+                          description: Name of the queue
+                          example: Review Queue
+                          xml:
+                            name: Queue
+                        profile:
+                          type: string
+                          description: Name of the profile
+                          example: Test Profile
+                          xml:
+                            name: Profile
+                        notes:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              time:
+                                type: string
+                                format: date-time
+                                description: Time of the note added by reviewer
+                                example: '2017-10-01T10:10:10+05:00'
+                                xml:
+                                  name: Date
+                                  attribute: true
+                              addedBy:
+                                type: string
+                                description: Note added by reviewer
+                                example: testuserId
+                                xml:
+                                  name: AddedBy
+                                  attribute: true
+                              comments:
+                                type: string
+                                description: Comments given by the reviewer
+                                example: Verified the order and accepted.
+                                xml:
+                                  name: Comment
+                                  attribute: true
+                            xml:
+                              name: Note
+                          xml:
+                            name: Notes
+                      xml:
+                        name: Conversion
+                xml:
+                  name: Report
         '400':
           description: Invalid request
-          schema:
-            title: reportingV3ConversionDetailsGet400Response
-            type: object
-            required:
-            - submitTimeUtc
-            - reason
-            - message
-            - details
-            properties:
-              submitTimeUtc:
-                type: string
-                format: date-time
-                description: "Time of request in UTC. \n"
-                example: '2016-08-11T22:47:57Z'
-              reason:
-                type: string
-                description: 'Documented reason code
+          content:
+            application/hal+json:
+              schema:
+                title: reportingV3ConversionDetailsGet400Response
+                type: object
+                required:
+                - submitTimeUtc
+                - reason
+                - message
+                - details
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    format: date-time
+                    description: "Time of request in UTC. \n"
+                    example: '2016-08-11T22:47:57Z'
+                  reason:
+                    type: string
+                    description: 'Documented reason code
 
-                  '
-                example: INVALID_DATA
-              message:
-                type: string
-                description: 'Short descriptive message to the user.
+                      '
+                    example: INVALID_DATA
+                  message:
+                    type: string
+                    description: 'Short descriptive message to the user.
 
-                  '
-                example: One or more fields contains invalid data
-              details:
-                type: array
-                description: 'Error field list
+                      '
+                    example: One or more fields contains invalid data
+                  details:
+                    type: array
+                    description: 'Error field list
 
-                  '
-                items:
-                  type: object
-                  properties:
-                    field:
-                      type: string
-                      description: 'Field in request that caused an error
+                      '
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'Field in request that caused an error
+
+                            '
+                        reason:
+                          type: string
+                          description: 'Documented reason code
+
+                            '
+                      description: 'Provides failed validation input field detail
 
                         '
-                    reason:
-                      type: string
-                      description: 'Documented reason code
+                description: HTTP status code for client application
+            application/xml:
+              schema:
+                title: reportingV3ConversionDetailsGet400Response
+                type: object
+                required:
+                - submitTimeUtc
+                - reason
+                - message
+                - details
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    format: date-time
+                    description: "Time of request in UTC. \n"
+                    example: '2016-08-11T22:47:57Z'
+                  reason:
+                    type: string
+                    description: 'Documented reason code
+
+                      '
+                    example: INVALID_DATA
+                  message:
+                    type: string
+                    description: 'Short descriptive message to the user.
+
+                      '
+                    example: One or more fields contains invalid data
+                  details:
+                    type: array
+                    description: 'Error field list
+
+                      '
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: 'Field in request that caused an error
+
+                            '
+                        reason:
+                          type: string
+                          description: 'Documented reason code
+
+                            '
+                      description: 'Provides failed validation input field detail
 
                         '
-                  description: 'Provides failed validation input field detail
-
-                    '
-            description: HTTP status code for client application
+                description: HTTP status code for client application
         '404':
           description: Conversion detail not found
-          schema:
-            title: reportingV3ConversionDetailsGet404Response
+          content:
+            application/hal+json:
+              schema:
+                title: reportingV3ConversionDetailsGet404Response
+            application/xml:
+              schema:
+                title: reportingV3ConversionDetailsGet404Response
 x-devcenter-metaData:
   categoryTagArray:
   - name: Payments

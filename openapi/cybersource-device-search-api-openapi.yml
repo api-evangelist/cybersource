@@ -1,16 +1,10 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
   version: 0.0.1
-  title: CyberSource Merged Spec bankAccountValidation Device Search API
-host: apitest.cybersource.com
-basePath: /
-schemes:
-- https
-consumes:
-- application/json;charset=utf-8
-produces:
-- application/hal+json;charset=utf-8
+  title: CyberSource Merged Spec Device Search API
+servers:
+- url: https://apitest.cybersource.com/
 tags:
 - name: Device Search
   description: Search and Retrieve Devices.
@@ -19,27 +13,6 @@ paths:
     post:
       summary: Retrieve List of Devices for a given search query V2
       description: Retrieves list of terminals in paginated format.
-      parameters:
-      - name: postDeviceSearchRequest
-        in: body
-        required: true
-        schema:
-          type: object
-          properties:
-            query:
-              type: string
-              description: The Search Query to retrieve the Terminals(Example :- terminalSerialNumber:12345678 AND readerId:66c395ca-4f20-4b40-acac-5ff4c772d5f9 AND terminalId:T9KN88RTPE). Empty Query returns everything for the given organization.
-            sort:
-              type: string
-              description: The Sort Query to order the Terminals by. By Default, It is in ascending order of last update of a device.
-            offset:
-              type: integer
-              format: int64
-              description: The offset or page number.
-            limit:
-              type: integer
-              format: int64
-              description: Number of devices to retrieve in one request.
       tags:
       - Device Search
       operationId: postSearchQuery
@@ -48,227 +21,256 @@ paths:
         firstLevelApiLifeCycle: hidden
         secondLevelApiLifeCycle: hidden
         apiLifeCycle: hidden
-      consumes:
-      - application/json;charset=UTF-8
-      produces:
-      - application/json;charset=UTF-8
       responses:
         '200':
           description: Retrieved all Devices matched by the search query
-          schema:
-            type: object
-            properties:
-              totalCount:
-                type: integer
-                description: Total number of results.
-              offset:
-                type: integer
-                description: 'Controls the starting point within the collection of results, which defaults to 0. The first item in the collection is retrieved by setting a zero offset.
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: object
+                properties:
+                  totalCount:
+                    type: integer
+                    description: Total number of results.
+                  offset:
+                    type: integer
+                    description: 'Controls the starting point within the collection of results, which defaults to 0. The first item in the collection is retrieved by setting a zero offset.
 
 
-                  For example, if you have a collection of 15 items to be retrieved from a resource and you specify limit=5, you can retrieve the entire set of results in 3 successive requests by varying the offset value like this:
+                      For example, if you have a collection of 15 items to be retrieved from a resource and you specify limit=5, you can retrieve the entire set of results in 3 successive requests by varying the offset value like this:
 
 
-                  `offset=0`
+                      `offset=0`
 
-                  `offset=5`
+                      `offset=5`
 
-                  `offset=10`
-
-
-                  **Note:** If an offset larger than the number of results is provided, this will result in no embedded object being returned.
-
-                  '
-              limit:
-                type: integer
-                description: 'Controls the maximum number of items that may be returned for a single request. The default is 20, the maximum is 2500.
-
-                  '
-              sort:
-                type: string
-                description: 'A comma separated list of the following form:
+                      `offset=10`
 
 
-                  `submitTimeUtc:desc`
+                      **Note:** If an offset larger than the number of results is provided, this will result in no embedded object being returned.
 
-                  '
-              count:
-                type: integer
-                description: Results for this page, this could be below the limit.
-              devices:
-                type: array
-                description: A collection of devices
-                items:
-                  type: object
-                  properties:
-                    readerId:
-                      type: string
-                      maxLength: 36
-                    terminalSerialNumber:
-                      type: string
-                      maxLength: 256
-                      pattern: '[0-9a-zA-Z][0-9a-zA-Z-]*'
-                    terminalId:
-                      type: string
-                      maxLength: 256
-                    model:
-                      type: string
-                      maxLength: 256
-                      pattern: ^[0-9a-zA-Z_ ]*$
-                    make:
-                      type: string
-                      maxLength: 100
-                      pattern: ^[0-9a-zA-Z_ ]*$
-                    hardwareRevision:
-                      type: string
-                      maxLength: 256
-                      pattern: ^[0-9a-zA-Z][0-9a-zA-Z-/_.]*$
-                    status:
-                      type: string
-                      description: "Status of the device.\nPossible Values:\n  - 'ACTIVE'\n  - 'INACTIVE'\n"
-                    creationDate:
-                      type: string
-                      maxLength: 20
-                      pattern: YYYY-MM-DDThh:mm:ssZ
-                    pin:
-                      type: string
+                      '
+                  limit:
+                    type: integer
+                    description: 'Controls the maximum number of items that may be returned for a single request. The default is 20, the maximum is 2500.
+
+                      '
+                  sort:
+                    type: string
+                    description: 'A comma separated list of the following form:
+
+
+                      `submitTimeUtc:desc`
+
+                      '
+                  count:
+                    type: integer
+                    description: Results for this page, this could be below the limit.
+                  devices:
+                    type: array
+                    description: A collection of devices
+                    items:
+                      type: object
+                      properties:
+                        readerId:
+                          type: string
+                          maxLength: 36
+                        terminalSerialNumber:
+                          type: string
+                          maxLength: 256
+                          pattern: '[0-9a-zA-Z][0-9a-zA-Z-]*'
+                        terminalId:
+                          type: string
+                          maxLength: 256
+                        model:
+                          type: string
+                          maxLength: 256
+                          pattern: ^[0-9a-zA-Z_ ]*$
+                        make:
+                          type: string
+                          maxLength: 100
+                          pattern: ^[0-9a-zA-Z_ ]*$
+                        hardwareRevision:
+                          type: string
+                          maxLength: 256
+                          pattern: ^[0-9a-zA-Z][0-9a-zA-Z-/_.]*$
+                        status:
+                          type: string
+                          description: "Status of the device.\nPossible Values:\n  - 'ACTIVE'\n  - 'INACTIVE'\n"
+                        creationDate:
+                          type: string
+                          maxLength: 20
+                          pattern: YYYY-MM-DDThh:mm:ssZ
+                        pin:
+                          type: string
         '400':
           description: Bad Request
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: "The status of the submitted request. \nPossible values:\n- BAD_REQUEST"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              code:
-                type: string
-                description: An optional short string which identifies the exact error.
-              details:
-                type: array
-                description: An optional array which provides more details of the error.
-                items:
-                  type: object
-                  properties:
-                    field:
-                      type: string
-                      description: This is the flattened JSON object field name/path that is either missing or invalid.
-                    reason:
-                      type: string
-                      description: 'Possible reasons for the error.
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: "The status of the submitted request. \nPossible values:\n- BAD_REQUEST"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  code:
+                    type: string
+                    description: An optional short string which identifies the exact error.
+                  details:
+                    type: array
+                    description: An optional array which provides more details of the error.
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: This is the flattened JSON object field name/path that is either missing or invalid.
+                        reason:
+                          type: string
+                          description: 'Possible reasons for the error.
 
-                        '
-                    code:
-                      type: string
-                      description: An optional short string which identifies the exact field error.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+                            '
+                        code:
+                          type: string
+                          description: An optional short string which identifies the exact field error.
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
 
 
-                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+                      Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
 
-                  time. The Z indicates UTC.
+                      time. The Z indicates UTC.
 
-                  '
+                      '
         '401':
           description: Unauthorized
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: "The status of the submitted request.\n \nPossible values:\n- UNAUTHORIZED"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              code:
-                type: string
-                description: An optional short string which identifies the exact error.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: "The status of the submitted request.\n \nPossible values:\n- UNAUTHORIZED"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  code:
+                    type: string
+                    description: An optional short string which identifies the exact error.
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
 
 
-                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+                      Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
 
-                  time. The Z indicates UTC.
+                      time. The Z indicates UTC.
 
-                  '
+                      '
         '403':
           description: Forbidden
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: "The status of the submitted request.\n \nPossible values:\n- FORBIDDEN"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              code:
-                type: string
-                description: An optional short string which identifies the exact error.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: "The status of the submitted request.\n \nPossible values:\n- FORBIDDEN"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  code:
+                    type: string
+                    description: An optional short string which identifies the exact error.
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
 
 
-                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+                      Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
 
-                  time. The Z indicates UTC.
+                      time. The Z indicates UTC.
 
-                  '
+                      '
         '404':
           description: Not Found
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: "The status of the submitted request.\n \nPossible values:\n- NOT_FOUND"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              code:
-                type: string
-                description: An optional short string which identifies the exact error.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: "The status of the submitted request.\n \nPossible values:\n- NOT_FOUND"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  code:
+                    type: string
+                    description: An optional short string which identifies the exact error.
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
 
 
-                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+                      Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
 
-                  time. The Z indicates UTC.
+                      time. The Z indicates UTC.
 
-                  '
+                      '
         '500':
           description: Unexpected system error or system timeout.
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: "The status of the submitted request.\n \nPossible values:\n- INTERNAL_SERVER_ERROR"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              code:
-                type: string
-                description: An optional short string which identifies the exact error.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: "The status of the submitted request.\n \nPossible values:\n- INTERNAL_SERVER_ERROR"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  code:
+                    type: string
+                    description: An optional short string which identifies the exact error.
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
 
 
-                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+                      Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
 
-                  time. The Z indicates UTC.
+                      time. The Z indicates UTC.
 
-                  '
+                      '
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                  description: The Search Query to retrieve the Terminals(Example :- terminalSerialNumber:12345678 AND readerId:66c395ca-4f20-4b40-acac-5ff4c772d5f9 AND terminalId:T9KN88RTPE). Empty Query returns everything for the given organization.
+                sort:
+                  type: string
+                  description: The Sort Query to order the Terminals by. By Default, It is in ascending order of last update of a device.
+                offset:
+                  type: integer
+                  format: int64
+                  description: The offset or page number.
+                limit:
+                  type: integer
+                  format: int64
+                  description: Number of devices to retrieve in one request.
+        required: true
   /dms/v3/devices/search:
     post:
       summary: Retrieve List of Devices for a given search query
@@ -278,272 +280,278 @@ paths:
         The search query supports serialNumber, readerId, terminalId, status, statusChangeReason or organizationId
 
 
-        Matching results are paginated.
-
-        '
-      parameters:
-      - name: postDeviceSearchRequestV3
-        in: body
-        required: true
-        schema:
-          type: object
-          properties:
-            query:
-              type: string
-              description: The Search Query to retrieve the Terminals.(Example :- serialNumber:456345234 AND readerId:509353f0-86ca-4af4-a1c9-c2702bfd7431  AND terminalId:7854922 AND status:Inactive AND statusChangeReason:Other AND organizationId:London Store)
-            sort:
-              type: string
-              description: terminalCreationDate:desc (default) or serialNumber or terminalUpdationDate
-            offset:
-              type: integer
-              format: int64
-              description: The offset or page number.
-            limit:
-              type: integer
-              format: int64
-              description: Number of devices to retrieve in one request.
+        Matching results are paginated.'
       tags:
       - Device Search
       operationId: postSearchQueryV3
       x-devcenter-metaData:
         categoryTag: Device_Management
-      consumes:
-      - application/json;charset=UTF-8
-      produces:
-      - application/json;charset=UTF-8
       responses:
         '200':
           description: Retrieved all Devices matched by the search query
-          schema:
-            type: object
-            properties:
-              totalCount:
-                type: integer
-                description: Total number of results.
-              offset:
-                type: integer
-                description: 'Controls the starting point within the collection of results, which defaults to 0. The first item in the collection is retrieved by setting a zero offset.
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: object
+                properties:
+                  totalCount:
+                    type: integer
+                    description: Total number of results.
+                  offset:
+                    type: integer
+                    description: 'Controls the starting point within the collection of results, which defaults to 0. The first item in the collection is retrieved by setting a zero offset.
 
 
-                  For example, if you have a collection of 15 items to be retrieved from a resource and you specify limit=5, you can retrieve the entire set of results in 3 successive requests by varying the offset value like this:
+                      For example, if you have a collection of 15 items to be retrieved from a resource and you specify limit=5, you can retrieve the entire set of results in 3 successive requests by varying the offset value like this:
 
 
-                  `offset=0`
+                      `offset=0`
 
-                  `offset=5`
+                      `offset=5`
 
-                  `offset=10`
-
-
-                  **Note:** If an offset larger than the number of results is provided, this will result in no embedded object being returned.
-
-                  '
-              limit:
-                type: integer
-                description: 'Controls the maximum number of items that may be returned for a single request. The default is 20, the maximum is 2500.
-
-                  '
-              sort:
-                type: string
-                description: 'A comma separated list of the following form:
+                      `offset=10`
 
 
-                  `terminalCreationDate:desc or serialNumber or terminalUpdationDate`
+                      **Note:** If an offset larger than the number of results is provided, this will result in no embedded object being returned.
 
-                  '
-              count:
-                type: integer
-                description: Results for this page, this could be below the limit.
-              devices:
-                type: array
-                description: A collection of devices
-                items:
-                  type: object
-                  properties:
-                    readerId:
-                      type: string
-                      maxLength: 36
-                    serialNumber:
-                      type: string
-                      maxLength: 256
-                      pattern: '[0-9a-zA-Z][0-9a-zA-Z-]*'
-                    model:
-                      type: string
-                      maxLength: 256
-                      pattern: ^[0-9a-zA-Z_ ]*$
-                    make:
-                      type: string
-                      maxLength: 100
-                      pattern: ^[0-9a-zA-Z_ ]*$
-                    hardwareRevision:
-                      type: string
-                      maxLength: 256
-                      pattern: ^[0-9a-zA-Z][0-9a-zA-Z-/_.]*$
-                    status:
-                      type: string
-                      description: "Status of the device.\nPossible Values:\n  - 'ACTIVE'\n  - 'INACTIVE'\n"
-                    statusChangeReason:
-                      type: string
-                      description: Reason for change in status.
-                    merchantId:
-                      type: string
-                      description: ID of the merchant to whom this device is assigned.
-                    accountId:
-                      type: string
-                      description: ID of the account to whom the device assigned.
-                    terminalCreationDate:
-                      type: string
-                      format: date-time
-                      description: Timestamp in which the device was created.
-                    terminalUpdationDate:
-                      type: string
-                      format: date-time
-                      description: Timestamp in which the device was updated/modified.
-                    paymentProcessorToTerminalMap:
+                      '
+                  limit:
+                    type: integer
+                    description: 'Controls the maximum number of items that may be returned for a single request. The default is 20, the maximum is 2500.
+
+                      '
+                  sort:
+                    type: string
+                    description: 'A comma separated list of the following form:
+
+
+                      `terminalCreationDate:desc or serialNumber or terminalUpdationDate`
+
+                      '
+                  count:
+                    type: integer
+                    description: Results for this page, this could be below the limit.
+                  devices:
+                    type: array
+                    description: A collection of devices
+                    items:
                       type: object
-                      description: Mapping between processor and Terminal.
                       properties:
-                        processor:
+                        readerId:
                           type: string
-                        terminalId:
+                          maxLength: 36
+                        serialNumber:
                           type: string
+                          maxLength: 256
+                          pattern: '[0-9a-zA-Z][0-9a-zA-Z-]*'
+                        model:
+                          type: string
+                          maxLength: 256
+                          pattern: ^[0-9a-zA-Z_ ]*$
+                        make:
+                          type: string
+                          maxLength: 100
+                          pattern: ^[0-9a-zA-Z_ ]*$
+                        hardwareRevision:
+                          type: string
+                          maxLength: 256
+                          pattern: ^[0-9a-zA-Z][0-9a-zA-Z-/_.]*$
+                        status:
+                          type: string
+                          description: "Status of the device.\nPossible Values:\n  - 'ACTIVE'\n  - 'INACTIVE'\n"
+                        statusChangeReason:
+                          type: string
+                          description: Reason for change in status.
+                        merchantId:
+                          type: string
+                          description: ID of the merchant to whom this device is assigned.
+                        accountId:
+                          type: string
+                          description: ID of the account to whom the device assigned.
+                        terminalCreationDate:
+                          type: string
+                          format: date-time
+                          description: Timestamp in which the device was created.
+                        terminalUpdationDate:
+                          type: string
+                          format: date-time
+                          description: Timestamp in which the device was updated/modified.
+                        paymentProcessorToTerminalMap:
+                          type: object
+                          description: Mapping between processor and Terminal.
+                          properties:
+                            processor:
+                              type: string
+                            terminalId:
+                              type: string
         '400':
           description: Bad Request
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: "The status of the submitted request. \nPossible values:\n- BAD_REQUEST"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              code:
-                type: string
-                description: An optional short string which identifies the exact error.
-              details:
-                type: array
-                description: An optional array which provides more details of the error.
-                items:
-                  type: object
-                  properties:
-                    field:
-                      type: string
-                      description: This is the flattened JSON object field name/path that is either missing or invalid.
-                    reason:
-                      type: string
-                      description: 'Possible reasons for the error.
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: "The status of the submitted request. \nPossible values:\n- BAD_REQUEST"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  code:
+                    type: string
+                    description: An optional short string which identifies the exact error.
+                  details:
+                    type: array
+                    description: An optional array which provides more details of the error.
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: This is the flattened JSON object field name/path that is either missing or invalid.
+                        reason:
+                          type: string
+                          description: 'Possible reasons for the error.
 
-                        '
-                    code:
-                      type: string
-                      description: An optional short string which identifies the exact field error.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+                            '
+                        code:
+                          type: string
+                          description: An optional short string which identifies the exact field error.
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
 
 
-                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+                      Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
 
-                  time. The Z indicates UTC.
+                      time. The Z indicates UTC.
 
-                  '
+                      '
         '401':
           description: Unauthorized
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: "The status of the submitted request.\n \nPossible values:\n- UNAUTHORIZED"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              code:
-                type: string
-                description: An optional short string which identifies the exact error.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: "The status of the submitted request.\n \nPossible values:\n- UNAUTHORIZED"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  code:
+                    type: string
+                    description: An optional short string which identifies the exact error.
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
 
 
-                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+                      Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
 
-                  time. The Z indicates UTC.
+                      time. The Z indicates UTC.
 
-                  '
+                      '
         '403':
           description: Forbidden
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: "The status of the submitted request.\n \nPossible values:\n- FORBIDDEN"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              code:
-                type: string
-                description: An optional short string which identifies the exact error.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: "The status of the submitted request.\n \nPossible values:\n- FORBIDDEN"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  code:
+                    type: string
+                    description: An optional short string which identifies the exact error.
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
 
 
-                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+                      Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
 
-                  time. The Z indicates UTC.
+                      time. The Z indicates UTC.
 
-                  '
+                      '
         '404':
           description: Not Found
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: "The status of the submitted request.\n \nPossible values:\n- NOT_FOUND"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              code:
-                type: string
-                description: An optional short string which identifies the exact error.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: "The status of the submitted request.\n \nPossible values:\n- NOT_FOUND"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  code:
+                    type: string
+                    description: An optional short string which identifies the exact error.
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
 
 
-                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+                      Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
 
-                  time. The Z indicates UTC.
+                      time. The Z indicates UTC.
 
-                  '
+                      '
         '500':
           description: Unexpected system error or system timeout.
-          schema:
-            type: object
-            properties:
-              status:
-                type: string
-                description: "The status of the submitted request.\n \nPossible values:\n- INTERNAL_SERVER_ERROR"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              code:
-                type: string
-                description: An optional short string which identifies the exact error.
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: "The status of the submitted request.\n \nPossible values:\n- INTERNAL_SERVER_ERROR"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  code:
+                    type: string
+                    description: An optional short string which identifies the exact error.
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. `Format: YYYY-MM-DDThh:mm:ssZ`
 
 
-                  Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
+                      Example 2016-08-11T22:47:57Z equals August 11, 2016, at 22:47:57 (10:47:57 p.m.). The T separates the date and the
 
-                  time. The Z indicates UTC.
+                      time. The Z indicates UTC.
 
-                  '
+                      '
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                  description: The Search Query to retrieve the Terminals.(Example :- serialNumber:456345234 AND readerId:509353f0-86ca-4af4-a1c9-c2702bfd7431  AND terminalId:7854922 AND status:Inactive AND statusChangeReason:Other AND organizationId:London Store)
+                sort:
+                  type: string
+                  description: terminalCreationDate:desc (default) or serialNumber or terminalUpdationDate
+                offset:
+                  type: integer
+                  format: int64
+                  description: The offset or page number.
+                limit:
+                  type: integer
+                  format: int64
+                  description: Number of devices to retrieve in one request.
+        required: true
 x-devcenter-metaData:
   categoryTagArray:
   - name: Payments

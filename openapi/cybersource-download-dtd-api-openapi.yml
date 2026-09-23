@@ -1,16 +1,10 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
   version: 0.0.1
-  title: CyberSource Merged Spec bankAccountValidation Download DTD API
-host: apitest.cybersource.com
-basePath: /
-schemes:
-- https
-consumes:
-- application/json;charset=utf-8
-produces:
-- application/hal+json;charset=utf-8
+  title: CyberSource Merged Spec Download DTD API
+servers:
+- url: https://apitest.cybersource.com/
 tags:
 - name: Download DTD
   description: API to download report DTDs
@@ -25,14 +19,13 @@ paths:
       x-devcenter-metaData:
         categoryTag: Reporting
         isClientSideApi: true
-      produces:
-      - application/xml-dtd
       parameters:
       - name: reportDefinitionNameVersion
         in: path
         description: Name and version of DTD file to download. Some DTDs only have one version. In that case version name is not needed. Some example values are ctdr-1.0, tdr, pbdr-1.1
         required: true
-        type: string
+        schema:
+          type: string
       responses:
         '200':
           description: Ok

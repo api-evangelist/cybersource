@@ -1,18 +1,12 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
   version: 0.0.1
-  title: CyberSource Merged Spec bankAccountValidation UserManagement API
-host: apitest.cybersource.com
-basePath: /
-schemes:
-- https
-consumes:
-- application/json;charset=utf-8
-produces:
-- application/hal+json;charset=utf-8
+  title: CyberSource Merged Spec User Management API
+servers:
+- url: https://apitest.cybersource.com/
 tags:
-- name: UserManagement
+- name: User Management
 paths:
   /ums/v1/users:
     get:
@@ -20,9 +14,7 @@ paths:
       summary: Get User Information - Deprecated
       description: This endpoint is deprecated. Please use the search end point.
       tags:
-      - UserManagement
-      produces:
-      - application/hal+json;charset=utf-8
+      - User Management
       operationId: getUsers
       x-devcenter-metaData:
         categoryTag: User_Management
@@ -33,155 +25,163 @@ paths:
       parameters:
       - in: query
         name: organizationId
-        type: string
         description: This is the orgId of the organization which the user belongs to.
+        schema:
+          type: string
       - in: query
         name: userName
-        type: string
         description: User ID of the user you want to get details on.
+        schema:
+          type: string
       - in: query
         name: permissionId
-        type: string
         description: permission that you are trying to search user on.
+        schema:
+          type: string
       - in: query
         name: roleId
-        type: string
         description: role of the user you are trying to search on.
+        schema:
+          type: string
       responses:
         '200':
           description: OK
-          schema:
-            type: object
-            title: umsV1UsersGet200Response
-            properties:
-              users:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    accountInformation:
+          content:
+            application/hal+json;charset=utf-8:
+              schema:
+                type: object
+                title: umsV1UsersGet200Response
+                properties:
+                  users:
+                    type: array
+                    items:
                       type: object
                       properties:
-                        userName:
-                          type: string
-                        roleId:
-                          type: string
-                        permissions:
-                          type: array
-                          items:
+                        accountInformation:
+                          type: object
+                          properties:
+                            userName:
+                              type: string
+                            roleId:
+                              type: string
+                            permissions:
+                              type: array
+                              items:
+                                type: string
+                                description: array of permissions
+                            status:
+                              type: string
+                              description: 'Valid values:
+
+                                - active
+
+                                - inactive
+
+                                - locked
+
+                                - disabled
+
+                                - forgotpassword
+
+                                - deleted
+
+                                '
+                            createdTime:
+                              type: string
+                              format: date-time
+                            lastAccessTime:
+                              type: string
+                              format: date-time
+                            languagePreference:
+                              type: string
+                            timezone:
+                              type: string
+                        organizationInformation:
+                          type: object
+                          properties:
+                            organizationId:
+                              type: string
+                        contactInformation:
+                          type: object
+                          properties:
+                            email:
+                              type: string
+                            phoneNumber:
+                              type: string
+                            firstName:
+                              type: string
+                            lastName:
+                              type: string
+                        customFields:
+                          type: object
+                          additionalProperties:
                             type: string
-                            description: array of permissions
-                        status:
-                          type: string
-                          description: 'Valid values:
-
-                            - active
-
-                            - inactive
-
-                            - locked
-
-                            - disabled
-
-                            - forgotpassword
-
-                            - deleted
-
-                            '
-                        createdTime:
-                          type: string
-                          format: date-time
-                        lastAccessTime:
-                          type: string
-                          format: date-time
-                        languagePreference:
-                          type: string
-                        timezone:
-                          type: string
+                example:
+                  users:
+                  - accountInformation:
+                      userName: auto_nonmember
+                      roleId: admin
+                      permissions:
+                      - ReportViewPermission
+                      - ReportGeneratePermission
+                      status: active
+                      createdTime: '2018-06-14T19:45:52.093Z'
+                      lastAccessTime: '2018-06-14T19:45:52.093Z'
+                      languagePreference: en-US
+                      timezone: America/Los_Angeles
                     organizationInformation:
-                      type: object
-                      properties:
-                        organizationId:
-                          type: string
+                      organizationId: auto_nonmember
                     contactInformation:
-                      type: object
-                      properties:
-                        email:
-                          type: string
-                        phoneNumber:
-                          type: string
-                        firstName:
-                          type: string
-                        lastName:
-                          type: string
+                      email: auto_nonmember@exchange.com
+                      phoneNumber: '4445551234'
+                      firstName: Zeta
+                      lastName: DMH
                     customFields:
-                      type: object
-                      additionalProperties:
-                        type: string
-            example:
-              users:
-              - accountInformation:
-                  userName: auto_nonmember
-                  roleId: admin
-                  permissions:
-                  - ReportViewPermission
-                  - ReportGeneratePermission
-                  status: active
-                  createdTime: '2018-06-14T19:45:52.093Z'
-                  lastAccessTime: '2018-06-14T19:45:52.093Z'
-                  languagePreference: en-US
-                  timezone: America/Los_Angeles
-                organizationInformation:
-                  organizationId: auto_nonmember
-                contactInformation:
-                  email: auto_nonmember@exchange.com
-                  phoneNumber: '4445551234'
-                  firstName: Zeta
-                  lastName: DMH
-                customFields:
-                  employeeId: '12344'
-                  employeeName: John Doe
-                  employeeDesignation: abc
-                  zone: NA
-                  department: map
+                      employeeId: '12344'
+                      employeeName: John Doe
+                      employeeDesignation: abc
+                      zone: NA
+                      department: map
         '400':
           description: Invalid request.
-          schema:
-            type: object
-            title: umsV1UsersGet400Response
-            properties:
-              submitTimeUtc:
-                type: string
-                description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
+          content:
+            application/hal+json;charset=utf-8:
+              schema:
+                type: object
+                title: umsV1UsersGet400Response
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    description: 'Time of request in UTC. Format: `YYYY-MM-DDThh:mm:ssZ`
 
-                  **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
+                      **Example** `2016-08-11T22:47:57Z` equals August 11, 2016, at 22:47:57 (10:47:57 p.m.).
 
-                  The `T` separates the date and the time. The `Z` indicates UTC.
+                      The `T` separates the date and the time. The `Z` indicates UTC.
 
 
-                  Returned by Cybersource for all services.
+                      Returned by Cybersource for all services.
 
-                  '
-              status:
-                type: string
-                description: "The status of the submitted transaction.\n\nPossible values:\n - INVALID_REQUEST\n"
-              reason:
-                type: string
-                description: "The reason of the status.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n - DUPLICATE_REQUEST\n - INVALID_CARD\n - INVALID_MERCHANT_CONFIGURATION\n - INVALID_AMOUNT\n - CAPTURE_ALREADY_VOIDED\n - ACCOUNT_NOT_ALLOWED_CREDIT\n - NOT_SUPPORTED\n"
-              message:
-                type: string
-                description: The detail message related to the status and reason listed above.
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    field:
-                      type: string
-                      description: This is the flattened JSON object field name/path that is either missing or invalid.
-                    reason:
-                      type: string
-                      description: "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n"
+                      '
+                  status:
+                    type: string
+                    description: "The status of the submitted transaction.\n\nPossible values:\n - INVALID_REQUEST\n"
+                  reason:
+                    type: string
+                    description: "The reason of the status.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n - DUPLICATE_REQUEST\n - INVALID_CARD\n - INVALID_MERCHANT_CONFIGURATION\n - INVALID_AMOUNT\n - CAPTURE_ALREADY_VOIDED\n - ACCOUNT_NOT_ALLOWED_CREDIT\n - NOT_SUPPORTED\n"
+                  message:
+                    type: string
+                    description: The detail message related to the status and reason listed above.
+                  details:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: This is the flattened JSON object field name/path that is either missing or invalid.
+                        reason:
+                          type: string
+                          description: "Possible reasons for the error.\n\nPossible values:\n - MISSING_FIELD\n - INVALID_DATA\n"
         '500':
           description: Unexpected server error.
 x-devcenter-metaData:

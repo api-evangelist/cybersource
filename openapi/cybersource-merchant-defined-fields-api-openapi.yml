@@ -1,16 +1,10 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
   version: 0.0.1
-  title: CyberSource Merged Spec bankAccountValidation Merchant Defined Fields API
-host: apitest.cybersource.com
-basePath: /
-schemes:
-- https
-consumes:
-- application/json;charset=utf-8
-produces:
-- application/hal+json;charset=utf-8
+  title: CyberSource Merged Spec Merchant Defined Fields API
+servers:
+- url: https://apitest.cybersource.com/
 tags:
 - name: Merchant Defined Fields
 paths:
@@ -23,122 +17,123 @@ paths:
       x-devcenter-metaData:
         categoryTag: Invoicing
         developerGuides: https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing/Introduction.html
-      consumes:
-      - application/json
-      produces:
-      - application/json
       parameters:
       - name: referenceType
         in: path
-        type: string
-        enum:
-        - Invoice
-        - Purchase
-        - Donation
         description: The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation
         required: true
+        schema:
+          type: string
+          enum:
+          - Invoice
+          - Purchase
+          - Donation
       responses:
         '200':
           description: Get all merchant defined fields for a given reference type
-          schema:
-            type: array
-            items:
-              type: object
-              properties:
-                id:
-                  type: integer
-                  format: int64
-                fieldType:
-                  type: string
-                label:
-                  type: string
-                customerVisible:
-                  type: boolean
-                textMinLength:
-                  type: integer
-                  format: int32
-                textMaxLength:
-                  type: integer
-                  format: int32
-                possibleValues:
-                  type: string
-                textDefaultValue:
-                  type: string
-                merchantId:
-                  type: string
-                referenceType:
-                  type: string
-                readOnly:
-                  type: boolean
-                merchantDefinedDataIndex:
-                  type: integer
-                  format: int32
-              example:
-                fieldType: Text
-                label: Cup
-                customerVisible: 'true'
-                readOnly: 'false'
-                textMinLength: 1
-                textMaxLength: 100
-                textDefaultValue: default text
-                merchantDefinedDataIndex: 15
-        '404':
-          description: Merchant defined fields not found
-          schema:
-            type: object
-            properties:
-              submitTimeUtc:
-                type: string
-                description: The time the response was submitted
-              status:
-                type: integer
-                description: The status code of the response
-                format: int32
-              reason:
-                type: string
-                description: The reason for the response
-              message:
-                type: string
-                description: The message of the response
-              details:
-                description: The details of the validation error
+          content:
+            application/json:
+              schema:
                 type: array
                 items:
                   type: object
                   properties:
-                    field:
+                    id:
+                      type: integer
+                      format: int64
+                    fieldType:
                       type: string
-                      description: The field that caused the validation error
-                    reason:
+                    label:
                       type: string
-                      description: The reason for the validation error
-            example:
-              correlationId: 08b69ffe-f79b-4e09-991f-b030058e21f4
-              status: 400
-              responseData:
-                submitTimeUtc: '2016-08-11T22:47:57Z'
-                status: 400
-                reason: MERCHANT_DEFINED_FIELD_ALREADY_UPDATED
-                message: Merchant defined field already updated or does not exist
-                details:
-                - field: customerVisible readOnly
-                  reason: For 'Select' field type 'Read only' must be false and 'Customer Visible' true
-                - field: textMinLength
-                  reason: textMinLength is not allowed for field type Select
-                - field: textMaxLength
-                  reason: textMaxLength is not allowed for field type Select
-                - field: textDefaultValue
-                  reason: textDefaultValue is not allowed for field type Select
-                - field: possibleValues
-                  reason: Possible values cannot be empty for Select field type
-                - field: possibleValues
-                  reason: Possible value Best Dad in the world is too long
-                - field: possibleValues
-                  reason: Possible values must contain at least two values
-                - field: possibleValues
-                  reason: Possible values total length cannot exceed 4000 characters
-                - field: possibleValues
-                  reason: Possible value cannot be empty
+                    customerVisible:
+                      type: boolean
+                    textMinLength:
+                      type: integer
+                      format: int32
+                    textMaxLength:
+                      type: integer
+                      format: int32
+                    possibleValues:
+                      type: string
+                    textDefaultValue:
+                      type: string
+                    merchantId:
+                      type: string
+                    referenceType:
+                      type: string
+                    readOnly:
+                      type: boolean
+                    merchantDefinedDataIndex:
+                      type: integer
+                      format: int32
+                  example:
+                    fieldType: Text
+                    label: Cup
+                    customerVisible: 'true'
+                    readOnly: 'false'
+                    textMinLength: 1
+                    textMaxLength: 100
+                    textDefaultValue: default text
+                    merchantDefinedDataIndex: 15
+        '404':
+          description: Merchant defined fields not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    description: The time the response was submitted
+                  status:
+                    type: integer
+                    description: The status code of the response
+                    format: int32
+                  reason:
+                    type: string
+                    description: The reason for the response
+                  message:
+                    type: string
+                    description: The message of the response
+                  details:
+                    description: The details of the validation error
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: The field that caused the validation error
+                        reason:
+                          type: string
+                          description: The reason for the validation error
+                example:
+                  correlationId: 08b69ffe-f79b-4e09-991f-b030058e21f4
+                  status: 400
+                  responseData:
+                    submitTimeUtc: '2016-08-11T22:47:57Z'
+                    status: 400
+                    reason: MERCHANT_DEFINED_FIELD_ALREADY_UPDATED
+                    message: Merchant defined field already updated or does not exist
+                    details:
+                    - field: customerVisible readOnly
+                      reason: For 'Select' field type 'Read only' must be false and 'Customer Visible' true
+                    - field: textMinLength
+                      reason: textMinLength is not allowed for field type Select
+                    - field: textMaxLength
+                      reason: textMaxLength is not allowed for field type Select
+                    - field: textDefaultValue
+                      reason: textDefaultValue is not allowed for field type Select
+                    - field: possibleValues
+                      reason: Possible values cannot be empty for Select field type
+                    - field: possibleValues
+                      reason: Possible value Best Dad in the world is too long
+                    - field: possibleValues
+                      reason: Possible values must contain at least two values
+                    - field: possibleValues
+                      reason: Possible values total length cannot exceed 4000 characters
+                    - field: possibleValues
+                      reason: Possible value cannot be empty
     post:
       tags:
       - Merchant Defined Fields
@@ -147,289 +142,241 @@ paths:
         developerGuides: https://developer.cybersource.com/docs/cybs/en-us/invoicing/developer/all/rest/invoicing/Introduction.html
       summary: Create merchant defined field for a given reference type
       operationId: createMerchantDefinedFieldDefinition
-      consumes:
-      - application/json
-      produces:
-      - application/json
       parameters:
       - name: referenceType
         in: path
-        type: string
-        enum:
-        - Invoice
-        - Purchase
-        - Donation
         description: The reference type for which merchant defined fields are to be fetched. Available values are Invoice, Purchase, Donation
         required: true
-      - name: MerchantDefinedFieldDefinitionRequest
-        in: body
-        required: true
         schema:
-          type: object
-          properties:
-            fieldType:
-              type: string
-              description: 'Possible values:
-
-                - text
-
-                - select'
-            label:
-              type: string
-              maxLength: 100
-            customerVisible:
-              type: boolean
-              default: false
-            textMinLength:
-              type: integer
-              default: 0
-              description: Should be used only if fieldType = "text"
-            textMaxLength:
-              type: integer
-              default: 100
-              description: Should be used only if fieldType = "text"
-            textDefaultValue:
-              type: string
-              maxLength: 100
-              description: Should be used only if fieldType = "text"
-            possibleValues:
-              type: string
-              maxLength: 600
-              description: Should be mandatory and used only if fieldType = "select"
-            readOnly:
-              type: boolean
-              default: false
-            merchantDefinedDataIndex:
-              type: integer
-          required:
-          - fieldType
-          - label
-          - merchantDefinedDataIndex
-          example:
-            fieldType: Text
-            label: Cup
-            customerVisible: 'true'
-            readOnly: 'false'
-            textMinLength: 1
-            textMaxLength: 100
-            textDefaultValue: default text
-            merchantDefinedDataIndex: 15
+          type: string
+          enum:
+          - Invoice
+          - Purchase
+          - Donation
       responses:
         '201':
           description: Create merchant defined field for a given reference type
-          schema:
-            type: array
-            items:
-              type: object
-              properties:
-                id:
-                  type: integer
-                  format: int64
-                fieldType:
-                  type: string
-                label:
-                  type: string
-                customerVisible:
-                  type: boolean
-                textMinLength:
-                  type: integer
-                  format: int32
-                textMaxLength:
-                  type: integer
-                  format: int32
-                possibleValues:
-                  type: string
-                textDefaultValue:
-                  type: string
-                merchantId:
-                  type: string
-                referenceType:
-                  type: string
-                readOnly:
-                  type: boolean
-                merchantDefinedDataIndex:
-                  type: integer
-                  format: int32
-              example:
-                fieldType: Text
-                label: Cup
-                customerVisible: 'true'
-                readOnly: 'false'
-                textMinLength: 1
-                textMaxLength: 100
-                textDefaultValue: default text
-                merchantDefinedDataIndex: 15
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                    fieldType:
+                      type: string
+                    label:
+                      type: string
+                    customerVisible:
+                      type: boolean
+                    textMinLength:
+                      type: integer
+                      format: int32
+                    textMaxLength:
+                      type: integer
+                      format: int32
+                    possibleValues:
+                      type: string
+                    textDefaultValue:
+                      type: string
+                    merchantId:
+                      type: string
+                    referenceType:
+                      type: string
+                    readOnly:
+                      type: boolean
+                    merchantDefinedDataIndex:
+                      type: integer
+                      format: int32
+                  example:
+                    fieldType: Text
+                    label: Cup
+                    customerVisible: 'true'
+                    readOnly: 'false'
+                    textMinLength: 1
+                    textMaxLength: 100
+                    textDefaultValue: default text
+                    merchantDefinedDataIndex: 15
         '400':
           description: MerchantDefinedData definition is already updated or Merchant Defined Data Index is already assigned
-          schema:
-            type: object
-            properties:
-              submitTimeUtc:
-                type: string
-                description: The time the response was submitted
-              status:
-                type: integer
-                description: The status code of the response
-                format: int32
-              reason:
-                type: string
-                description: The reason for the response
-              message:
-                type: string
-                description: The message of the response
-              details:
-                description: The details of the validation error
-                type: array
-                items:
-                  type: object
-                  properties:
-                    field:
-                      type: string
-                      description: The field that caused the validation error
-                    reason:
-                      type: string
-                      description: The reason for the validation error
-            example:
-              correlationId: 08b69ffe-f79b-4e09-991f-b030058e21f4
-              status: 400
-              responseData:
-                submitTimeUtc: '2016-08-11T22:47:57Z'
-                status: 400
-                reason: MERCHANT_DEFINED_FIELD_ALREADY_UPDATED
-                message: Merchant defined field already updated or does not exist
-                details:
-                - field: customerVisible readOnly
-                  reason: For 'Select' field type 'Read only' must be false and 'Customer Visible' true
-                - field: textMinLength
-                  reason: textMinLength is not allowed for field type Select
-                - field: textMaxLength
-                  reason: textMaxLength is not allowed for field type Select
-                - field: textDefaultValue
-                  reason: textDefaultValue is not allowed for field type Select
-                - field: possibleValues
-                  reason: Possible values cannot be empty for Select field type
-                - field: possibleValues
-                  reason: Possible value Best Dad in the world is too long
-                - field: possibleValues
-                  reason: Possible values must contain at least two values
-                - field: possibleValues
-                  reason: Possible values total length cannot exceed 4000 characters
-                - field: possibleValues
-                  reason: Possible value cannot be empty
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    description: The time the response was submitted
+                  status:
+                    type: integer
+                    description: The status code of the response
+                    format: int32
+                  reason:
+                    type: string
+                    description: The reason for the response
+                  message:
+                    type: string
+                    description: The message of the response
+                  details:
+                    description: The details of the validation error
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: The field that caused the validation error
+                        reason:
+                          type: string
+                          description: The reason for the validation error
+                example:
+                  correlationId: 08b69ffe-f79b-4e09-991f-b030058e21f4
+                  status: 400
+                  responseData:
+                    submitTimeUtc: '2016-08-11T22:47:57Z'
+                    status: 400
+                    reason: MERCHANT_DEFINED_FIELD_ALREADY_UPDATED
+                    message: Merchant defined field already updated or does not exist
+                    details:
+                    - field: customerVisible readOnly
+                      reason: For 'Select' field type 'Read only' must be false and 'Customer Visible' true
+                    - field: textMinLength
+                      reason: textMinLength is not allowed for field type Select
+                    - field: textMaxLength
+                      reason: textMaxLength is not allowed for field type Select
+                    - field: textDefaultValue
+                      reason: textDefaultValue is not allowed for field type Select
+                    - field: possibleValues
+                      reason: Possible values cannot be empty for Select field type
+                    - field: possibleValues
+                      reason: Possible value Best Dad in the world is too long
+                    - field: possibleValues
+                      reason: Possible values must contain at least two values
+                    - field: possibleValues
+                      reason: Possible values total length cannot exceed 4000 characters
+                    - field: possibleValues
+                      reason: Possible value cannot be empty
         '409':
           description: MerchantDefinedData definition is already updated or Merchant Defined Data Index is already assigned
-          schema:
-            type: object
-            properties:
-              submitTimeUtc:
-                type: string
-                description: The time the response was submitted
-              status:
-                type: integer
-                description: The status code of the response
-                format: int32
-              reason:
-                type: string
-                description: The reason for the response
-              message:
-                type: string
-                description: The message of the response
-              details:
-                description: The details of the validation error
-                type: array
-                items:
-                  type: object
-                  properties:
-                    field:
-                      type: string
-                      description: The field that caused the validation error
-                    reason:
-                      type: string
-                      description: The reason for the validation error
-            example:
-              correlationId: 08b69ffe-f79b-4e09-991f-b030058e21f4
-              status: 400
-              responseData:
-                submitTimeUtc: '2016-08-11T22:47:57Z'
-                status: 400
-                reason: MERCHANT_DEFINED_FIELD_ALREADY_UPDATED
-                message: Merchant defined field already updated or does not exist
-                details:
-                - field: customerVisible readOnly
-                  reason: For 'Select' field type 'Read only' must be false and 'Customer Visible' true
-                - field: textMinLength
-                  reason: textMinLength is not allowed for field type Select
-                - field: textMaxLength
-                  reason: textMaxLength is not allowed for field type Select
-                - field: textDefaultValue
-                  reason: textDefaultValue is not allowed for field type Select
-                - field: possibleValues
-                  reason: Possible values cannot be empty for Select field type
-                - field: possibleValues
-                  reason: Possible value Best Dad in the world is too long
-                - field: possibleValues
-                  reason: Possible values must contain at least two values
-                - field: possibleValues
-                  reason: Possible values total length cannot exceed 4000 characters
-                - field: possibleValues
-                  reason: Possible value cannot be empty
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    description: The time the response was submitted
+                  status:
+                    type: integer
+                    description: The status code of the response
+                    format: int32
+                  reason:
+                    type: string
+                    description: The reason for the response
+                  message:
+                    type: string
+                    description: The message of the response
+                  details:
+                    description: The details of the validation error
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: The field that caused the validation error
+                        reason:
+                          type: string
+                          description: The reason for the validation error
+                example:
+                  correlationId: 08b69ffe-f79b-4e09-991f-b030058e21f4
+                  status: 400
+                  responseData:
+                    submitTimeUtc: '2016-08-11T22:47:57Z'
+                    status: 400
+                    reason: MERCHANT_DEFINED_FIELD_ALREADY_UPDATED
+                    message: Merchant defined field already updated or does not exist
+                    details:
+                    - field: customerVisible readOnly
+                      reason: For 'Select' field type 'Read only' must be false and 'Customer Visible' true
+                    - field: textMinLength
+                      reason: textMinLength is not allowed for field type Select
+                    - field: textMaxLength
+                      reason: textMaxLength is not allowed for field type Select
+                    - field: textDefaultValue
+                      reason: textDefaultValue is not allowed for field type Select
+                    - field: possibleValues
+                      reason: Possible values cannot be empty for Select field type
+                    - field: possibleValues
+                      reason: Possible value Best Dad in the world is too long
+                    - field: possibleValues
+                      reason: Possible values must contain at least two values
+                    - field: possibleValues
+                      reason: Possible values total length cannot exceed 4000 characters
+                    - field: possibleValues
+                      reason: Possible value cannot be empty
         '412':
           description: Merchant has exceeded limit for type {referenceType}
-          schema:
-            type: object
-            properties:
-              submitTimeUtc:
-                type: string
-                description: The time the response was submitted
-              status:
-                type: integer
-                description: The status code of the response
-                format: int32
-              reason:
-                type: string
-                description: The reason for the response
-              message:
-                type: string
-                description: The message of the response
-              details:
-                description: The details of the validation error
-                type: array
-                items:
-                  type: object
-                  properties:
-                    field:
-                      type: string
-                      description: The field that caused the validation error
-                    reason:
-                      type: string
-                      description: The reason for the validation error
-            example:
-              correlationId: 08b69ffe-f79b-4e09-991f-b030058e21f4
-              status: 400
-              responseData:
-                submitTimeUtc: '2016-08-11T22:47:57Z'
-                status: 400
-                reason: MERCHANT_DEFINED_FIELD_ALREADY_UPDATED
-                message: Merchant defined field already updated or does not exist
-                details:
-                - field: customerVisible readOnly
-                  reason: For 'Select' field type 'Read only' must be false and 'Customer Visible' true
-                - field: textMinLength
-                  reason: textMinLength is not allowed for field type Select
-                - field: textMaxLength
-                  reason: textMaxLength is not allowed for field type Select
-                - field: textDefaultValue
-                  reason: textDefaultValue is not allowed for field type Select
-                - field: possibleValues
-                  reason: Possible values cannot be empty for Select field type
-                - field: possibleValues
-                  reason: Possible value Best Dad in the world is too long
-                - field: possibleValues
-                  reason: Possible values must contain at least two values
-                - field: possibleValues
-                  reason: Possible values total length cannot exceed 4000 characters
-                - field: possibleValues
-                  reason: Possible value cannot be empty
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    description: The time the response was submitted
+                  status:
+                    type: integer
+                    description: The status code of the response
+                    format: int32
+                  reason:
+                    type: string
+                    description: The reason for the response
+                  message:
+                    type: string
+                    description: The message of the response
+                  details:
+                    description: The details of the validation error
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: The field that caused the validation error
+                        reason:
+                          type: string
+                          description: The reason for the validation error
+                example:
+                  correlationId: 08b69ffe-f79b-4e09-991f-b030058e21f4
+                  status: 400
+                  responseData:
+                    submitTimeUtc: '2016-08-11T22:47:57Z'
+                    status: 400
+                    reason: MERCHANT_DEFINED_FIELD_ALREADY_UPDATED
+                    message: Merchant defined field already updated or does not exist
+                    details:
+                    - field: customerVisible readOnly
+                      reason: For 'Select' field type 'Read only' must be false and 'Customer Visible' true
+                    - field: textMinLength
+                      reason: textMinLength is not allowed for field type Select
+                    - field: textMaxLength
+                      reason: textMaxLength is not allowed for field type Select
+                    - field: textDefaultValue
+                      reason: textDefaultValue is not allowed for field type Select
+                    - field: possibleValues
+                      reason: Possible values cannot be empty for Select field type
+                    - field: possibleValues
+                      reason: Possible value Best Dad in the world is too long
+                    - field: possibleValues
+                      reason: Possible values must contain at least two values
+                    - field: possibleValues
+                      reason: Possible values total length cannot exceed 4000 characters
+                    - field: possibleValues
+                      reason: Possible value cannot be empty
       x-example:
         example0:
           summary: Create merchant defined field
@@ -442,6 +389,60 @@ paths:
             textMaxLength: 100
             textDefaultValue: default text
             merchantDefinedDataIndex: 15
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fieldType:
+                  type: string
+                  description: 'Possible values:
+
+                    - text
+
+                    - select'
+                label:
+                  type: string
+                  maxLength: 100
+                customerVisible:
+                  type: boolean
+                  default: false
+                textMinLength:
+                  type: integer
+                  default: 0
+                  description: Should be used only if fieldType = "text"
+                textMaxLength:
+                  type: integer
+                  default: 100
+                  description: Should be used only if fieldType = "text"
+                textDefaultValue:
+                  type: string
+                  maxLength: 100
+                  description: Should be used only if fieldType = "text"
+                possibleValues:
+                  type: string
+                  maxLength: 600
+                  description: Should be mandatory and used only if fieldType = "select"
+                readOnly:
+                  type: boolean
+                  default: false
+                merchantDefinedDataIndex:
+                  type: integer
+              required:
+              - fieldType
+              - label
+              - merchantDefinedDataIndex
+              example:
+                fieldType: Text
+                label: Cup
+                customerVisible: 'true'
+                readOnly: 'false'
+                textMinLength: 1
+                textMaxLength: 100
+                textDefaultValue: default text
+                merchantDefinedDataIndex: 15
+        required: true
   /invoicing/v2/{referenceType}/merchantDefinedFields/{id}:
     put:
       tags:
@@ -455,228 +456,183 @@ paths:
       - in: path
         name: referenceType
         required: true
-        type: string
-        enum:
-        - Invoice
-        - Purchase
-        - Donation
+        schema:
+          type: string
+          enum:
+          - Invoice
+          - Purchase
+          - Donation
       - in: path
         name: id
         required: true
-        type: integer
-        format: int64
-      - name: MerchantDefinedFieldCore
-        in: body
-        required: true
         schema:
-          type: object
-          properties:
-            fieldType:
-              type: string
-              description: 'Possible values:
-
-                - text
-
-                - select'
-            label:
-              type: string
-              maxLength: 100
-            customerVisible:
-              type: boolean
-              default: false
-            textMinLength:
-              type: integer
-              default: 0
-              description: Should be used only if fieldType = "text"
-            textMaxLength:
-              type: integer
-              default: 100
-              description: Should be used only if fieldType = "text"
-            textDefaultValue:
-              type: string
-              maxLength: 100
-              description: Should be used only if fieldType = "text"
-            possibleValues:
-              type: string
-              maxLength: 600
-              description: Should be mandatory and used only if fieldType = "select"
-            readOnly:
-              type: boolean
-              default: false
-            merchantDefinedDataIndex:
-              type: integer
-          required:
-          - fieldType
-          - label
-          - merchantDefinedDataIndex
-          example:
-            fieldType: Text
-            label: Cup
-            customerVisible: 'true'
-            readOnly: 'false'
-            textMinLength: 1
-            textMaxLength: 100
-            textDefaultValue: default text
-            merchantDefinedDataIndex: 15
+          type: integer
+          format: int64
       responses:
         '200':
           description: A list of MerchantDefinedField
-          schema:
-            type: array
-            items:
-              type: object
-              properties:
-                id:
-                  type: integer
-                  format: int64
-                fieldType:
-                  type: string
-                label:
-                  type: string
-                customerVisible:
-                  type: boolean
-                textMinLength:
-                  type: integer
-                  format: int32
-                textMaxLength:
-                  type: integer
-                  format: int32
-                possibleValues:
-                  type: string
-                textDefaultValue:
-                  type: string
-                merchantId:
-                  type: string
-                referenceType:
-                  type: string
-                readOnly:
-                  type: boolean
-                merchantDefinedDataIndex:
-                  type: integer
-                  format: int32
-              example:
-                fieldType: Text
-                label: Cup
-                customerVisible: 'true'
-                readOnly: 'false'
-                textMinLength: 1
-                textMaxLength: 100
-                textDefaultValue: default text
-                merchantDefinedDataIndex: 15
+          content:
+            application/hal+json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                    fieldType:
+                      type: string
+                    label:
+                      type: string
+                    customerVisible:
+                      type: boolean
+                    textMinLength:
+                      type: integer
+                      format: int32
+                    textMaxLength:
+                      type: integer
+                      format: int32
+                    possibleValues:
+                      type: string
+                    textDefaultValue:
+                      type: string
+                    merchantId:
+                      type: string
+                    referenceType:
+                      type: string
+                    readOnly:
+                      type: boolean
+                    merchantDefinedDataIndex:
+                      type: integer
+                      format: int32
+                  example:
+                    fieldType: Text
+                    label: Cup
+                    customerVisible: 'true'
+                    readOnly: 'false'
+                    textMinLength: 1
+                    textMaxLength: 100
+                    textDefaultValue: default text
+                    merchantDefinedDataIndex: 15
         '400':
           description: Wrong referenceType in the path
-          schema:
-            type: object
-            properties:
-              submitTimeUtc:
-                type: string
-                description: The time the response was submitted
-              status:
-                type: integer
-                description: The status code of the response
-                format: int32
-              reason:
-                type: string
-                description: The reason for the response
-              message:
-                type: string
-                description: The message of the response
-              details:
-                description: The details of the validation error
-                type: array
-                items:
-                  type: object
-                  properties:
-                    field:
-                      type: string
-                      description: The field that caused the validation error
-                    reason:
-                      type: string
-                      description: The reason for the validation error
-            example:
-              correlationId: 08b69ffe-f79b-4e09-991f-b030058e21f4
-              status: 400
-              responseData:
-                submitTimeUtc: '2016-08-11T22:47:57Z'
-                status: 400
-                reason: MERCHANT_DEFINED_FIELD_ALREADY_UPDATED
-                message: Merchant defined field already updated or does not exist
-                details:
-                - field: customerVisible readOnly
-                  reason: For 'Select' field type 'Read only' must be false and 'Customer Visible' true
-                - field: textMinLength
-                  reason: textMinLength is not allowed for field type Select
-                - field: textMaxLength
-                  reason: textMaxLength is not allowed for field type Select
-                - field: textDefaultValue
-                  reason: textDefaultValue is not allowed for field type Select
-                - field: possibleValues
-                  reason: Possible values cannot be empty for Select field type
-                - field: possibleValues
-                  reason: Possible value Best Dad in the world is too long
-                - field: possibleValues
-                  reason: Possible values must contain at least two values
-                - field: possibleValues
-                  reason: Possible values total length cannot exceed 4000 characters
-                - field: possibleValues
-                  reason: Possible value cannot be empty
+          content:
+            application/hal+json;charset=utf-8:
+              schema:
+                type: object
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    description: The time the response was submitted
+                  status:
+                    type: integer
+                    description: The status code of the response
+                    format: int32
+                  reason:
+                    type: string
+                    description: The reason for the response
+                  message:
+                    type: string
+                    description: The message of the response
+                  details:
+                    description: The details of the validation error
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: The field that caused the validation error
+                        reason:
+                          type: string
+                          description: The reason for the validation error
+                example:
+                  correlationId: 08b69ffe-f79b-4e09-991f-b030058e21f4
+                  status: 400
+                  responseData:
+                    submitTimeUtc: '2016-08-11T22:47:57Z'
+                    status: 400
+                    reason: MERCHANT_DEFINED_FIELD_ALREADY_UPDATED
+                    message: Merchant defined field already updated or does not exist
+                    details:
+                    - field: customerVisible readOnly
+                      reason: For 'Select' field type 'Read only' must be false and 'Customer Visible' true
+                    - field: textMinLength
+                      reason: textMinLength is not allowed for field type Select
+                    - field: textMaxLength
+                      reason: textMaxLength is not allowed for field type Select
+                    - field: textDefaultValue
+                      reason: textDefaultValue is not allowed for field type Select
+                    - field: possibleValues
+                      reason: Possible values cannot be empty for Select field type
+                    - field: possibleValues
+                      reason: Possible value Best Dad in the world is too long
+                    - field: possibleValues
+                      reason: Possible values must contain at least two values
+                    - field: possibleValues
+                      reason: Possible values total length cannot exceed 4000 characters
+                    - field: possibleValues
+                      reason: Possible value cannot be empty
         '409':
           description: MerchantDefinedData definition is already updated or Merchant Defined Data Index is already assigned
-          schema:
-            type: object
-            properties:
-              submitTimeUtc:
-                type: string
-                description: The time the response was submitted
-              status:
-                type: integer
-                description: The status code of the response
-                format: int32
-              reason:
-                type: string
-                description: The reason for the response
-              message:
-                type: string
-                description: The message of the response
-              details:
-                description: The details of the validation error
-                type: array
-                items:
-                  type: object
-                  properties:
-                    field:
-                      type: string
-                      description: The field that caused the validation error
-                    reason:
-                      type: string
-                      description: The reason for the validation error
-            example:
-              correlationId: 08b69ffe-f79b-4e09-991f-b030058e21f4
-              status: 400
-              responseData:
-                submitTimeUtc: '2016-08-11T22:47:57Z'
-                status: 400
-                reason: MERCHANT_DEFINED_FIELD_ALREADY_UPDATED
-                message: Merchant defined field already updated or does not exist
-                details:
-                - field: customerVisible readOnly
-                  reason: For 'Select' field type 'Read only' must be false and 'Customer Visible' true
-                - field: textMinLength
-                  reason: textMinLength is not allowed for field type Select
-                - field: textMaxLength
-                  reason: textMaxLength is not allowed for field type Select
-                - field: textDefaultValue
-                  reason: textDefaultValue is not allowed for field type Select
-                - field: possibleValues
-                  reason: Possible values cannot be empty for Select field type
-                - field: possibleValues
-                  reason: Possible value Best Dad in the world is too long
-                - field: possibleValues
-                  reason: Possible values must contain at least two values
-                - field: possibleValues
-                  reason: Possible values total length cannot exceed 4000 characters
-                - field: possibleValues
-                  reason: Possible value cannot be empty
+          content:
+            application/hal+json;charset=utf-8:
+              schema:
+                type: object
+                properties:
+                  submitTimeUtc:
+                    type: string
+                    description: The time the response was submitted
+                  status:
+                    type: integer
+                    description: The status code of the response
+                    format: int32
+                  reason:
+                    type: string
+                    description: The reason for the response
+                  message:
+                    type: string
+                    description: The message of the response
+                  details:
+                    description: The details of the validation error
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field:
+                          type: string
+                          description: The field that caused the validation error
+                        reason:
+                          type: string
+                          description: The reason for the validation error
+                example:
+                  correlationId: 08b69ffe-f79b-4e09-991f-b030058e21f4
+                  status: 400
+                  responseData:
+                    submitTimeUtc: '2016-08-11T22:47:57Z'
+                    status: 400
+                    reason: MERCHANT_DEFINED_FIELD_ALREADY_UPDATED
+                    message: Merchant defined field already updated or does not exist
+                    details:
+                    - field: customerVisible readOnly
+                      reason: For 'Select' field type 'Read only' must be false and 'Customer Visible' true
+                    - field: textMinLength
+                      reason: textMinLength is not allowed for field type Select
+                    - field: textMaxLength
+                      reason: textMaxLength is not allowed for field type Select
+                    - field: textDefaultValue
+                      reason: textDefaultValue is not allowed for field type Select
+                    - field: possibleValues
+                      reason: Possible values cannot be empty for Select field type
+                    - field: possibleValues
+                      reason: Possible value Best Dad in the world is too long
+                    - field: possibleValues
+                      reason: Possible values must contain at least two values
+                    - field: possibleValues
+                      reason: Possible values total length cannot exceed 4000 characters
+                    - field: possibleValues
+                      reason: Possible value cannot be empty
       x-example:
         example0:
           summary: Create merchant defined field
@@ -689,6 +645,60 @@ paths:
             textMaxLength: 100
             textDefaultValue: default text
             merchantDefinedDataIndex: 15
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              type: object
+              properties:
+                fieldType:
+                  type: string
+                  description: 'Possible values:
+
+                    - text
+
+                    - select'
+                label:
+                  type: string
+                  maxLength: 100
+                customerVisible:
+                  type: boolean
+                  default: false
+                textMinLength:
+                  type: integer
+                  default: 0
+                  description: Should be used only if fieldType = "text"
+                textMaxLength:
+                  type: integer
+                  default: 100
+                  description: Should be used only if fieldType = "text"
+                textDefaultValue:
+                  type: string
+                  maxLength: 100
+                  description: Should be used only if fieldType = "text"
+                possibleValues:
+                  type: string
+                  maxLength: 600
+                  description: Should be mandatory and used only if fieldType = "select"
+                readOnly:
+                  type: boolean
+                  default: false
+                merchantDefinedDataIndex:
+                  type: integer
+              required:
+              - fieldType
+              - label
+              - merchantDefinedDataIndex
+              example:
+                fieldType: Text
+                label: Cup
+                customerVisible: 'true'
+                readOnly: 'false'
+                textMinLength: 1
+                textMaxLength: 100
+                textDefaultValue: default text
+                merchantDefinedDataIndex: 15
+        required: true
     delete:
       tags:
       - Merchant Defined Fields
@@ -701,16 +711,18 @@ paths:
       - in: path
         name: referenceType
         required: true
-        type: string
-        enum:
-        - Invoice
-        - Purchase
-        - Donation
+        schema:
+          type: string
+          enum:
+          - Invoice
+          - Purchase
+          - Donation
       - in: path
         name: id
         required: true
-        type: integer
-        format: int64
+        schema:
+          type: integer
+          format: int64
       responses:
         '204':
           description: MerchantDefinedField deleted

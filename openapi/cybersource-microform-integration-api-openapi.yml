@@ -1,16 +1,10 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   description: All CyberSource API specs merged together. These are available at https://developer.cybersource.com/api/reference/api-reference.html
   version: 0.0.1
-  title: CyberSource Merged Spec bankAccountValidation Microform Integration API
-host: apitest.cybersource.com
-basePath: /
-schemes:
-- https
-consumes:
-- application/json;charset=utf-8
-produces:
-- application/hal+json;charset=utf-8
+  title: CyberSource Merged Spec Microform Integration API
+servers:
+- url: https://apitest.cybersource.com/
 tags:
 - name: Microform Integration
 paths:
@@ -19,48 +13,11 @@ paths:
       tags:
       - Microform Integration
       summary: Generate Capture Context
-      description: This API is used to generate the Capture Context data structure for the Microform Integration.  Microform is a browser-based acceptance solution that allows a seller to capture payment information is a secure manner from their website.  For more information about Flex Microform transactions, see the [Flex Developer Guides Page](https://developer.cybersource.com/api/developer-guides/dita-flex/SAFlexibleToken.html). For examples on how to integrate Flex Microform within your webpage please see our [GitHub Flex Samples](https://github.com/CyberSource?q=flex&type=&language=) This API is a server-to-server API to generate the capture context that can be used to initiate instance of microform on a acceptance page.  The capture context is a digitally signed JWT that provides authentication, one-time keys, and the target origin to the Microform Integration application.  The availability of API features for a merchant may depend on the portfolio configuration and may need to be enabled at the portfolio level before they can be added to merchant accounts.
+      description: This API is used to generate the Capture Context data structure for the Microform Integration. Microform is a browser-based acceptance solution that allows a seller to capture payment information is a secure manner from their website. For more information about Flex Microform transactions, see the Flex Developer Guides Page. For examples on how to integrate Flex Microform within your webpage please see our GitHub Flex Samples This API is a server-to-server API to generate the capture context that can be used to initiate instance of microform on a acceptance page. The capture context is a digitally signed JWT that provides authentication, one-time keys, and the target origin to the Microform Integration application. The availability of API features for a merchant may depend on the portfolio configuration and may need to be enabled at the portfolio level before they can be added to merchant accounts.
       operationId: generateCaptureContext
       x-devcenter-metaData:
         categoryTag: Flex_Microform
         developerGuides: https://developer.cybersource.com/api/developer-guides/dita-flex/SAFlexibleToken.html
-      produces:
-      - application/jwt
-      parameters:
-      - in: body
-        name: generateCaptureContextRequest
-        required: true
-        schema:
-          type: object
-          description: 'This is a server-to-server API request to generate the capture context that can be used to initiate an instance of Microform on an acceptance page.   The capture context is a digitally signed JWT that provides authentication, one-time keys, and the target origin to the Microform Integration application. '
-          properties:
-            clientVersion:
-              type: string
-              description: 'Specify the version of Microform that you want to use.
-
-                '
-            targetOrigins:
-              type: array
-              items:
-                type: string
-                example: https://www.test.com
-              description: "The [target origin](https://developer.mozilla.org/en-US/docs/Glossary/Origin) of the website on which you will be launching Microform is defined by the scheme (protocol), hostname (domain) and port number (if used).  \n\nYou must use https://hostname (unless you use http://localhost)\nWildcards are NOT supported.  Ensure that subdomains are included.\nAny valid top-level domain is supported (e.g. .com, .co.uk, .gov.br etc)\n\nExamples:\n  - https://example.com\n  - https://subdomain.example.com\n  - https://example.com:8080<br><br>\n\nIf you are embedding within multiple nested iframes you need to specify the origins of all the browser contexts used, for example:\n\n  targetOrigins: [\n    \"https://example.com\",\n    \"https://basket.example.com\",\n    \"https://ecom.example.com\"\n  ]<br><br>\n\nYou can supply up to nine origins within the targetOrigins field for nested iframes.\nIf the list of origins exceeds five ensure that you:\n  - Compare the list of origins in the v2/sessions targetOrigins field against the location.ancestorOrigins of the browser. \n  - Ensure that the count of origins and their content matches in both.  If any origins are absent or mismatched, the system will prevent Microform from loading and display a client-side error message.\n"
-            allowedCardNetworks:
-              type: array
-              items:
-                type: string
-              description: "The list of card networks you want to use for this Microform transaction.\n\nMicroform currently supports the following card networks:\n    - VISA\n    - MASTERCARD\n    - AMEX\n    - CARNET\n    - CARTESBANCAIRES\n    - CUP\n    - DINERSCLUB\n    - DISCOVER\n    - EFTPOS\n    - ELO\n    - JAYWAN\n    - JCB\n    - JCREW\n    - KCP\n    - MADA\n    - MAESTRO\n    - MEEZA\n    - PAYPAK\n    - UATP\n\n**Important:** \n  - When integrating Microform (Card) at least one card network should be specified in the allowedCardNetworks field in the capture context request.\n  - When integrating Microform (ACH/eCheck) the allowedCardNetworks field is not required in the capture context request.\n  - When integrating both Microform (Card) and Microform (ACH/eCheck) at least one card network should be specified in the allowedCardNetworks field in the capture context request.\n"
-            allowedPaymentTypes:
-              type: array
-              items:
-                type: string
-              description: "The payment types that are allowed for the merchant.  \n\nPossible values when launching Microform:\n- CARD\n- CHECK <br><br>\n"
-            transientTokenResponseOptions:
-              type: object
-              properties:
-                includeCardPrefix:
-                  type: boolean
-                  description: "Use the transientTokenResponseOptions.includeCardPrefix field to choose your preferred card number prefix length: 6-digit, 8-digit, or no card number prefix.\n\nPossible values:\n- True\n- False<br><br>\n\nTo select the type of card number prefix:\n- No field included: A 6-digit prefix is returned (default)\n- True: An 8-digit prefix is returned\n- False: No prefix is returned<br><br>\n\nThe following conditions apply:\n- 8-digit card number prefixes only apply to Discover, JCB, Mastercard, UnionPay, and Visa brands with 16-digit card numbers or more.\n- Any card with less than 16-digit numbers will return a 6-digit prefix even when the transientTokenResponseOptions.includeCardPrefix field is set to true.\n- Any card brand other than Discover, JCB, Mastercard, UnionPay, or Visa will return a 6-digit prefix even when the transientTokenResponseOptions.includeCardPrefix field is set to true.\n- If any card brand is co-branded with Discover, JCB, Mastercard, UnionPay, or Visa, an 8-digit prefix will be returned if the transientTokenResponseOptions.includeCardPrefix field is set to true.<br><br>\n\n**Important:** \nIf your application does NOT require a card number prefix for routing or identification purposes, set the transientTokenResponseOptions.includeCardPrefix field to False.  This will minimize your personal data exposure.\n"
       x-example:
         example0:
           summary: Generate Capture Context (Card)
@@ -127,83 +84,121 @@ paths:
       responses:
         '201':
           description: Capture Context Created
-          schema:
-            type: string
-          examples:
-            application/jwt: eyJraWQiOiJ6dSIsImFsZyI6IlJTMjU2In0.eyJmbHgiOnsicGF0aCI6Ii9mbGV4L3YyL3Rva2VucyIsImRhdGEiOiJVUmIycEtZa2xhU0M4OW43ai9CWEJCQUFFQ1ZjVjRlU0xoTThvdDc5anRFREp4Vk1PdUFDRCtaUU03UGEydEhkbm5ENzh0MjBYcktCZVFnaUI4dysrZ0hNbHpBOUxqTng1K2MxNlo2VzJ2bGNaWGJyUmEydkUyRWFyaldlUUc0Q1pieEwiLCJvcmlnaW4iOiJodHRwczovL3Rlc3RmbGV4LmN5YmVyc291cmNlLmNvbSIsImp3ayI6eyJrdHkiOiJSU0EiLCJlIjoiQVFBQiIsInVzZSI6ImVuYyIsIm4iOiJod3VBT0NWcG5YWk9mTXNHWWJ6dUQyYW81dndvZGNPMVVqa2RpS3RXdEh5dmMybS1iY1hwUTRGRTk3UDk3NV9KMVJwMWJiZW5jWjNCZW1lbUJ5aU9VajlHRVVkV25raXVyNE5VWmVkQVpzelFkbFFaSlAzdzZQWVoxREFUY05ZekZwYjRXbnQzQkpKSm9XM2p3aTlMLTY1cWNuYU5SWFppRTV1V0FlQnFQY085UmNDU1BtR3lsT3REUWEzT0d5ZXFESDl0S3piU2lKNGxHMW9FcExVRWw2N003V0xXeXR1R2tsOExXUExncmkybldoaEdLS2d5cFA3bEp5Qk5IX2FxUHVOT3A3YUFVYTlvZVRqV2t0WVpqUzNqbTFjTDVkazJ6VkFGU3JkRGdTYzd1VXMtZVdkZThOYW1zZHhZTHFzX3BFSW1XU3FteDVvc2tpenZWR1A3anciLCJraWQiOiIwNzZSRjlmMEZMdVRLaU9jZkhiNU1TSkZwZzZqODY2YSJ9fSwiY3R4IjpbeyJkYXRhIjp7ImNsaWVudExpYnJhcnkiOiJodHRwczovL3Rlc3RmbGV4LmN5YmVyc291cmNlLmNvbS9taWNyb2Zvcm0vYnVuZGxlL3YxL2ZsZXgtbWljcm9mb3JtLm1pbi5qcyIsInRhcmdldE9yaWdpbnMiOlsiaHR0cHM6Ly93d3cuY3liZXJzb3VyY2UtbWVyY2hhbnQuY29tIl0sIm1mT3JpZ2luIjoiaHR0cHM6Ly90ZXN0ZmxleC5jeWJlcnNvdXJjZS5jb20ifSwidHlwZSI6Im1mLTEuMC4wIn1dLCJpc3MiOiJGbGV4IEFQSSIsImV4cCI6MTY2NDkyNzM5NywiaWF0IjoxNjY0OTI2NDk3LCJqdGkiOiJybXBWQ0NCSW9sdWhYQ2E0In0.LlunfxI-deZ_Tqypz4ucNhhF_IYsB6ZhlKndgWdJe1vv91ekePZBU6icq6aDVUAFuDR5MmjCQc7IsQNhCiZGf6uqV9YFLokhEZdnHOHkpwE1viH9GoddsdiSvBcJrYJ4FsV49JK2xRNvGTxNKR62wiO2YqPhNm934b2bbsjyYyDByw2wEZhJyAPBIDJk6IF2IvR4kq1lNyAtFs4EXVO2tqBATvj1nahqHMqUlrTsOGY96XioXl1YKnqeM1g5lREqoxR3M8HsWm2kCSsGyirIWLEaOYYEvWcKNBmkhW410XEYfb3hrg-H7irLe0_4OICdV1FyY-AsjbzO7mO17BENQg
+          content:
+            application/jwt:
+              schema:
+                type: string
+              example: eyJraWQiOiJ6dSIsImFsZyI6IlJTMjU2In0.eyJmbHgiOnsicGF0aCI6Ii9mbGV4L3YyL3Rva2VucyIsImRhdGEiOiJVUmIycEtZa2xhU0M4OW43ai9CWEJCQUFFQ1ZjVjRlU0xoTThvdDc5anRFREp4Vk1PdUFDRCtaUU03UGEydEhkbm5ENzh0MjBYcktCZVFnaUI4dysrZ0hNbHpBOUxqTng1K2MxNlo2VzJ2bGNaWGJyUmEydkUyRWFyaldlUUc0Q1pieEwiLCJvcmlnaW4iOiJodHRwczovL3Rlc3RmbGV4LmN5YmVyc291cmNlLmNvbSIsImp3ayI6eyJrdHkiOiJSU0EiLCJlIjoiQVFBQiIsInVzZSI6ImVuYyIsIm4iOiJod3VBT0NWcG5YWk9mTXNHWWJ6dUQyYW81dndvZGNPMVVqa2RpS3RXdEh5dmMybS1iY1hwUTRGRTk3UDk3NV9KMVJwMWJiZW5jWjNCZW1lbUJ5aU9VajlHRVVkV25raXVyNE5VWmVkQVpzelFkbFFaSlAzdzZQWVoxREFUY05ZekZwYjRXbnQzQkpKSm9XM2p3aTlMLTY1cWNuYU5SWFppRTV1V0FlQnFQY085UmNDU1BtR3lsT3REUWEzT0d5ZXFESDl0S3piU2lKNGxHMW9FcExVRWw2N003V0xXeXR1R2tsOExXUExncmkybldoaEdLS2d5cFA3bEp5Qk5IX2FxUHVOT3A3YUFVYTlvZVRqV2t0WVpqUzNqbTFjTDVkazJ6VkFGU3JkRGdTYzd1VXMtZVdkZThOYW1zZHhZTHFzX3BFSW1XU3FteDVvc2tpenZWR1A3anciLCJraWQiOiIwNzZSRjlmMEZMdVRLaU9jZkhiNU1TSkZwZzZqODY2YSJ9fSwiY3R4IjpbeyJkYXRhIjp7ImNsaWVudExpYnJhcnkiOiJodHRwczovL3Rlc3RmbGV4LmN5YmVyc291cmNlLmNvbS9taWNyb2Zvcm0vYnVuZGxlL3YxL2ZsZXgtbWljcm9mb3JtLm1pbi5qcyIsInRhcmdldE9yaWdpbnMiOlsiaHR0cHM6Ly93d3cuY3liZXJzb3VyY2UtbWVyY2hhbnQuY29tIl0sIm1mT3JpZ2luIjoiaHR0cHM6Ly90ZXN0ZmxleC5jeWJlcnNvdXJjZS5jb20ifSwidHlwZSI6Im1mLTEuMC4wIn1dLCJpc3MiOiJGbGV4IEFQSSIsImV4cCI6MTY2NDkyNzM5NywiaWF0IjoxNjY0OTI2NDk3LCJqdGkiOiJybXBWQ0NCSW9sdWhYQ2E0In0.LlunfxI-deZ_Tqypz4ucNhhF_IYsB6ZhlKndgWdJe1vv91ekePZBU6icq6aDVUAFuDR5MmjCQc7IsQNhCiZGf6uqV9YFLokhEZdnHOHkpwE1viH9GoddsdiSvBcJrYJ4FsV49JK2xRNvGTxNKR62wiO2YqPhNm934b2bbsjyYyDByw2wEZhJyAPBIDJk6IF2IvR4kq1lNyAtFs4EXVO2tqBATvj1nahqHMqUlrTsOGY96XioXl1YKnqeM1g5lREqoxR3M8HsWm2kCSsGyirIWLEaOYYEvWcKNBmkhW410XEYfb3hrg-H7irLe0_4OICdV1FyY-AsjbzO7mO17BENQg
         default:
           description: Error retrieving key.
-          schema:
-            type: object
-            properties:
-              responseStatus:
-                properties:
-                  status:
-                    type: number
-                    description: HTTP Status code.
-                  reason:
-                    type: string
-                    description: Error Reason Code.
-                  message:
-                    type: string
-                    description: Error Message.
-                  correlationId:
-                    type: string
-                    description: API correlation ID.
-                  details:
-                    type: array
-                    items:
-                      properties:
-                        location:
-                          type: string
-                          description: Field name referred to for validation issues.
-                        message:
-                          type: string
-                          description: Description or code of any error response.
-              _links:
+          content:
+            application/jwt:
+              schema:
                 type: object
                 properties:
-                  next:
-                    type: array
-                    items:
-                      properties:
-                        href:
-                          type: string
-                          description: URI of the linked resource.
-                        title:
-                          type: string
-                          description: Label of the linked resource.
-                        method:
-                          type: string
-                          description: HTTP method of the linked resource.
-                  documentation:
-                    type: array
-                    items:
-                      properties:
-                        href:
-                          type: string
-                          description: URI of the linked resource.
-                        title:
-                          type: string
-                          description: Label of the linked resource.
-                        method:
-                          type: string
-                          description: HTTP method of the linked resource.
-                  self:
+                  responseStatus:
                     properties:
-                      href:
+                      status:
+                        type: number
+                        description: HTTP Status code.
+                      reason:
                         type: string
-                        description: URI of the linked resource.
-                      title:
+                        description: Error Reason Code.
+                      message:
                         type: string
-                        description: Label of the linked resource.
-                      method:
+                        description: Error Message.
+                      correlationId:
                         type: string
-                        description: HTTP method of the linked resource.
+                        description: API correlation ID.
+                      details:
+                        type: array
+                        items:
+                          properties:
+                            location:
+                              type: string
+                              description: Field name referred to for validation issues.
+                            message:
+                              type: string
+                              description: Description or code of any error response.
+                  _links:
+                    type: object
+                    properties:
+                      next:
+                        type: array
+                        items:
+                          properties:
+                            href:
+                              type: string
+                              description: URI of the linked resource.
+                            title:
+                              type: string
+                              description: Label of the linked resource.
+                            method:
+                              type: string
+                              description: HTTP method of the linked resource.
+                      documentation:
+                        type: array
+                        items:
+                          properties:
+                            href:
+                              type: string
+                              description: URI of the linked resource.
+                            title:
+                              type: string
+                              description: Label of the linked resource.
+                            method:
+                              type: string
+                              description: HTTP method of the linked resource.
+                      self:
+                        properties:
+                          href:
+                            type: string
+                            description: URI of the linked resource.
+                          title:
+                            type: string
+                            description: Label of the linked resource.
+                          method:
+                            type: string
+                            description: HTTP method of the linked resource.
       x-samplePayload:
         targetOrigins:
         - https://www.cybersource-merchant.com
       x-sampleResponse: eyJraWQiOiJ6dSIsImFsZyI6IlJTMjU2In0.eyJmbHgiOnsicGF0aCI6Ii9mbGV4L3YyL3Rva2VucyIsImRhdGEiOiJVUmIycEtZa2xhU0M4OW43ai9CWEJCQUFFQ1ZjVjRlU0xoTThvdDc5anRFREp4Vk1PdUFDRCtaUU03UGEydEhkbm5ENzh0MjBYcktCZVFnaUI4dysrZ0hNbHpBOUxqTng1K2MxNlo2VzJ2bGNaWGJyUmEydkUyRWFyaldlUUc0Q1pieEwiLCJvcmlnaW4iOiJodHRwczovL3Rlc3RmbGV4LmN5YmVyc291cmNlLmNvbSIsImp3ayI6eyJrdHkiOiJSU0EiLCJlIjoiQVFBQiIsInVzZSI6ImVuYyIsIm4iOiJod3VBT0NWcG5YWk9mTXNHWWJ6dUQyYW81dndvZGNPMVVqa2RpS3RXdEh5dmMybS1iY1hwUTRGRTk3UDk3NV9KMVJwMWJiZW5jWjNCZW1lbUJ5aU9VajlHRVVkV25raXVyNE5VWmVkQVpzelFkbFFaSlAzdzZQWVoxREFUY05ZekZwYjRXbnQzQkpKSm9XM2p3aTlMLTY1cWNuYU5SWFppRTV1V0FlQnFQY085UmNDU1BtR3lsT3REUWEzT0d5ZXFESDl0S3piU2lKNGxHMW9FcExVRWw2N003V0xXeXR1R2tsOExXUExncmkybldoaEdLS2d5cFA3bEp5Qk5IX2FxUHVOT3A3YUFVYTlvZVRqV2t0WVpqUzNqbTFjTDVkazJ6VkFGU3JkRGdTYzd1VXMtZVdkZThOYW1zZHhZTHFzX3BFSW1XU3FteDVvc2tpenZWR1A3anciLCJraWQiOiIwNzZSRjlmMEZMdVRLaU9jZkhiNU1TSkZwZzZqODY2YSJ9fSwiY3R4IjpbeyJkYXRhIjp7ImNsaWVudExpYnJhcnkiOiJodHRwczovL3Rlc3RmbGV4LmN5YmVyc291cmNlLmNvbS9taWNyb2Zvcm0vYnVuZGxlL3YxL2ZsZXgtbWljcm9mb3JtLm1pbi5qcyIsInRhcmdldE9yaWdpbnMiOlsiaHR0cHM6Ly93d3cuY3liZXJzb3VyY2UtbWVyY2hhbnQuY29tIl0sIm1mT3JpZ2luIjoiaHR0cHM6Ly90ZXN0ZmxleC5jeWJlcnNvdXJjZS5jb20ifSwidHlwZSI6Im1mLTEuMC4wIn1dLCJpc3MiOiJGbGV4IEFQSSIsImV4cCI6MTY2NDkyNzM5NywiaWF0IjoxNjY0OTI2NDk3LCJqdGkiOiJybXBWQ0NCSW9sdWhYQ2E0In0.LlunfxI-deZ_Tqypz4ucNhhF_IYsB6ZhlKndgWdJe1vv91ekePZBU6icq6aDVUAFuDR5MmjCQc7IsQNhCiZGf6uqV9YFLokhEZdnHOHkpwE1viH9GoddsdiSvBcJrYJ4FsV49JK2xRNvGTxNKR62wiO2YqPhNm934b2bbsjyYyDByw2wEZhJyAPBIDJk6IF2IvR4kq1lNyAtFs4EXVO2tqBATvj1nahqHMqUlrTsOGY96XioXl1YKnqeM1g5lREqoxR3M8HsWm2kCSsGyirIWLEaOYYEvWcKNBmkhW410XEYfb3hrg-H7irLe0_4OICdV1FyY-AsjbzO7mO17BENQg
+      requestBody:
+        content:
+          application/json;charset=utf-8:
+            schema:
+              type: object
+              description: 'This is a server-to-server API request to generate the capture context that can be used to initiate an instance of Microform on an acceptance page.   The capture context is a digitally signed JWT that provides authentication, one-time keys, and the target origin to the Microform Integration application. '
+              properties:
+                clientVersion:
+                  type: string
+                  description: 'Specify the version of Microform that you want to use.
+
+                    '
+                targetOrigins:
+                  type: array
+                  items:
+                    type: string
+                    example: https://www.test.com
+                  description: "The [target origin](https://developer.mozilla.org/en-US/docs/Glossary/Origin) of the website on which you will be launching Microform is defined by the scheme (protocol), hostname (domain) and port number (if used).  \n\nYou must use https://hostname (unless you use http://localhost)\nWildcards are NOT supported.  Ensure that subdomains are included.\nAny valid top-level domain is supported (e.g. .com, .co.uk, .gov.br etc)\n\nExamples:\n  - https://example.com\n  - https://subdomain.example.com\n  - https://example.com:8080<br><br>\n\nIf you are embedding within multiple nested iframes you need to specify the origins of all the browser contexts used, for example:\n\n  targetOrigins: [\n    \"https://example.com\",\n    \"https://basket.example.com\",\n    \"https://ecom.example.com\"\n  ]<br><br>\n\nYou can supply up to nine origins within the targetOrigins field for nested iframes.\nIf the list of origins exceeds five ensure that you:\n  - Compare the list of origins in the v2/sessions targetOrigins field against the location.ancestorOrigins of the browser. \n  - Ensure that the count of origins and their content matches in both.  If any origins are absent or mismatched, the system will prevent Microform from loading and display a client-side error message.\n"
+                allowedCardNetworks:
+                  type: array
+                  items:
+                    type: string
+                  description: "The list of card networks you want to use for this Microform transaction.\n\nMicroform currently supports the following card networks:\n    - VISA\n    - MASTERCARD\n    - AMEX\n    - CARNET\n    - CARTESBANCAIRES\n    - CUP\n    - DINERSCLUB\n    - DISCOVER\n    - EFTPOS\n    - ELO\n    - JAYWAN\n    - JCB\n    - JCREW\n    - KCP\n    - MADA\n    - MAESTRO\n    - MEEZA\n    - PAYPAK\n    - UATP\n\n**Important:** \n  - When integrating Microform (Card) at least one card network should be specified in the allowedCardNetworks field in the capture context request.\n  - When integrating Microform (ACH/eCheck) the allowedCardNetworks field is not required in the capture context request.\n  - When integrating both Microform (Card) and Microform (ACH/eCheck) at least one card network should be specified in the allowedCardNetworks field in the capture context request.\n"
+                allowedPaymentTypes:
+                  type: array
+                  items:
+                    type: string
+                  description: "The payment types that are allowed for the merchant.  \n\nPossible values when launching Microform:\n- CARD\n- CHECK <br><br>\n"
+                transientTokenResponseOptions:
+                  type: object
+                  properties:
+                    includeCardPrefix:
+                      type: boolean
+                      description: "Use the transientTokenResponseOptions.includeCardPrefix field to choose your preferred card number prefix length: 6-digit, 8-digit, or no card number prefix.\n\nPossible values:\n- True\n- False<br><br>\n\nTo select the type of card number prefix:\n- No field included: A 6-digit prefix is returned (default)\n- True: An 8-digit prefix is returned\n- False: No prefix is returned<br><br>\n\nThe following conditions apply:\n- 8-digit card number prefixes only apply to Discover, JCB, Mastercard, UnionPay, and Visa brands with 16-digit card numbers or more.\n- Any card with less than 16-digit numbers will return a 6-digit prefix even when the transientTokenResponseOptions.includeCardPrefix field is set to true.\n- Any card brand other than Discover, JCB, Mastercard, UnionPay, or Visa will return a 6-digit prefix even when the transientTokenResponseOptions.includeCardPrefix field is set to true.\n- If any card brand is co-branded with Discover, JCB, Mastercard, UnionPay, or Visa, an 8-digit prefix will be returned if the transientTokenResponseOptions.includeCardPrefix field is set to true.<br><br>\n\n**Important:** \nIf your application does NOT require a card number prefix for routing or identification purposes, set the transientTokenResponseOptions.includeCardPrefix field to False.  This will minimize your personal data exposure.\n"
+        required: true
 x-devcenter-metaData:
   categoryTagArray:
   - name: Payments
