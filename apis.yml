@@ -38,6 +38,15 @@ specificationVersion: '0.23'
 tags:
 - Payments
 - Payment Processing
+- Fraud Prevention
+- Tokenization
+- Recurring Billing
+- Payouts
+- Payment Gateway
+- Financial Technology
+tags_raw:
+- Payments
+- Payment Processing
 - Fraud Management
 - Tokenization
 - Recurring Billing
@@ -77,17 +86,17 @@ apis:
   humanURL: https://developer.cybersource.com/docs/cybs/en-us/fraud/developer/all/rest/fraud.html
   baseURL: https://api.cybersource.com
   tags:
-  - Fraud Management
+  - Fraud Prevention
   - Decision Manager
   - Risk Management
-  - Machine-Learning
-  - Fraud Detection
+  - Machine Learning
   tags_raw:
   - Fraud Management
   - Decision Manager
   - Risk Management
   - Machine Learning
   - Fraud Detection
+  - Machine-Learning
   properties:
   - type: Documentation
     url: https://developer.cybersource.com/docs/cybs/en-us/fraud/developer/all/rest/fraud.html
@@ -375,6 +384,11 @@ apis:
   tags:
   - Intelligent Commerce
   - AI Payments
+  - Agentic Payments
+  - Payment Orchestration
+  tags_raw:
+  - Intelligent Commerce
+  - AI Payments
   - Agent Payments
   - Payment Orchestration
   properties:
@@ -385,7 +399,7 @@ apis:
     url: https://developer.cybersource.com/
     email: ''
 - aid: cybersource:cybersource-bankaccountvalidation-api
-  name: CyberSource bankAccountValidation API
+  name: CyberSource Bank Account Validation API
   description: >-
     The Visa Bank Account Validation Service is a new standalone product designed to validate customer's
     routing and bank account number combination for ACH transactions. Merchant's can use this standalone
@@ -438,7 +452,7 @@ apis:
     url: >-
       https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-capture-api
-  name: CyberSource capture API
+  name: CyberSource Capture API
   description: >-
     When you are ready to fulfill a customer's order and transfer funds from the customer's
 
@@ -530,7 +544,7 @@ apis:
     url: >-
       https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-credit-api
-  name: CyberSource credit API
+  name: CyberSource Credit API
   description: >-
     A credit is a stand-alone transaction that is not linked to any previous transactions. It takes money
     from
@@ -947,7 +961,7 @@ apis:
     url: >-
       https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-orders-api
-  name: CyberSource orders API
+  name: CyberSource Orders API
   description: >-
     An order is a service that is used for initiating a transaction with itemized details, shipping, billing
     and buyer information.
@@ -1025,7 +1039,7 @@ apis:
     url: >-
       https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-payment-tokens-api
-  name: CyberSource payment-tokens API
+  name: CyberSource Payment Tokens API
   description: >-
     A payment-tokens is a service that is used for retrieving vault details or deleting vault id/payment
     method.
@@ -1043,7 +1057,7 @@ apis:
     url: >-
       https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-payments-api
-  name: CyberSource payments API
+  name: CyberSource Payments API
   description: >-
     A payment authorizes the amount for the transaction. There are a number of supported payment
 
@@ -1150,7 +1164,7 @@ apis:
     url: >-
       https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-refund-api
-  name: CyberSource refund API
+  name: CyberSource Refund API
   description: >-
     A refund is a follow-on transaction that uses the ID returned from either a payment or capture request.
   humanURL: >-
@@ -1251,7 +1265,7 @@ apis:
     url: >-
       https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-reversal-api
-  name: CyberSource reversal API
+  name: CyberSource Reversal API
   description: >-
     An authorization reversal releases the hold that the payment placed on the customer's funds.
   humanURL: >-
@@ -1334,7 +1348,7 @@ apis:
     url: >-
       https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-taxes-api
-  name: CyberSource taxes API
+  name: CyberSource Taxes API
   description: tax calculation service
   humanURL: >-
     https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
@@ -1471,7 +1485,7 @@ apis:
     url: >-
       https://developer.cybersource.com/docs/cybs/en-us/payments/developer/all/rest/payments.html
 - aid: cybersource:cybersource-void-api
-  name: CyberSource void API
+  name: CyberSource Void API
   description: >-
     A void cancels a payment or capture. A transaction can be voided only when CyberSource has not already
 
