@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/cybersource/integrations
+- https://n8n.io/integrations/cybersource/
+- https://composio.dev/toolkits/cybersource
+- https://monid.ai/tools/cybersource
+checked:
+- https://composio.dev/toolkits/cybersource
+- https://monid.ai/tools/cybersource
+- https://n8n.io/integrations/cybersource/
+- https://zapier.com/apps/cybersource/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
