@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/cybersource/integrations
 - https://n8n.io/integrations/cybersource/
@@ -12,5 +12,20 @@ checked:
 - https://zapier.com/apps/cybersource/integrations
 summary: null
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: silverflow
+  partner: silverflow
+  partner_match: domain
+  type: contract
+  channel: partner-built
+  relationship: processor-connection
+  direction: partner-built
+  evidence: https://github.com/api-evangelist/silverflow/blob/main/openapi/silverflow-transaction-risk-assessment-api-openapi.yml
+  contract_reference:
+    repo: silverflow
+    spec_file: silverflow-transaction-risk-assessment-api-openapi.yml
+    value: cybersource
+    property: schemas.cybersourceProvider
+    detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
 templates: []
