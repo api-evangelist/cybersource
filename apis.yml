@@ -223,6 +223,12 @@ apis:
   - Payer Authentication
   - 3D Secure
   - Fraud Prevention
+  - Software Composition Analysis
+  - Chargeback Liability
+  tags_raw:
+  - Payer Authentication
+  - 3D Secure
+  - Fraud Prevention
   - SCA
   - Chargeback Liability
   properties:
