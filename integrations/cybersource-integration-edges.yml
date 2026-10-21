@@ -11,6 +11,7 @@ checked:
 - https://n8n.io/integrations/cybersource/
 - https://zapier.com/apps/cybersource/integrations
 - https://listings.pcisecuritystandards.org/assessors_and_solutions
+- commercetools/integrations/commercetools-integration-edges.yml
 summary: null
 marketplace_apps: []
 edges:
@@ -65,4 +66,21 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-compliance-assurance.py
   first_seen: '2026-10-20'
+- partner_name: commercetools (own)
+  partner: commercetools
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://commercetools.com/technology-partners/cybersource
+  mirror_of: commercetools/integrations/commercetools-integration-edges.yml
+  apps:
+  - Cybersource
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: Financial Services
 templates: []

@@ -57,3 +57,16 @@
     detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
+- slug: cybersource-commercetools-own
+  label: commercetools (own)
+  partner: commercetools
+  partner_name: commercetools (own)
+  category: Financial Services
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/cybersource
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
