@@ -57,19 +57,6 @@
     detected: '2026-10-20'
   status: not-a-workflow
   arazzo: null
-- slug: cybersource-commercetools-own
-  label: commercetools (own)
-  partner: commercetools
-  partner_name: commercetools (own)
-  category: Financial Services
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://commercetools.com/technology-partners/cybersource
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: cybersource-mozilla-firefox-add-ons-amo
   label: Mozilla Firefox Add-ons (AMO)
   partner_name: Mozilla Firefox Add-ons (AMO)
@@ -96,5 +83,31 @@
       to mirror.
     detected_by: sweep-browser-extension-stores.py
     detected: '2026-10-21'
+  status: not-a-workflow
+  arazzo: null
+- slug: cybersource-commercetools-own
+  label: commercetools (own)
+  partner: commercetools
+  partner_name: commercetools (own)
+  category: Financial Services
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercetools.com/technology-partners/cybersource
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: cybersource-adobe-commerce-own
+  label: Adobe Commerce (own)
+  partner: adobe-commerce
+  partner_name: Adobe Commerce (own)
+  category: Adobe Commerce Marketplace extension
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercemarketplace.adobe.com/cybersource-global-payment-management.html
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null
